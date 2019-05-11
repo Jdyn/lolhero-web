@@ -1,0 +1,19 @@
+{
+  "name": "projectviolet",
+  "version": "1.0.0",
+  "root": "/client/src/",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server/server.js"
+  },
+  "dependencies": {
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-jss": "^10.0.0-alpha.16",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  }
+}
