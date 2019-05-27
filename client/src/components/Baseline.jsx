@@ -26,11 +26,9 @@ const styles = theme => ({
       margin: 0,
       backgroundColor: theme.primary,
       fontSize: "100%",
-      fontDisplay: "auto",
       fontFamily: "Segoe UI, sans-serif",
       fontWeight: "normal",
       fontStyle: "normal",
-      webkitTextSizeAdjust: "100%",
       textRendering: "optimizeLegibility",
     }
   }

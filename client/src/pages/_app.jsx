@@ -4,6 +4,8 @@ import App, { Container } from "next/app";
 import withRedux from "../store/withRedux";
 import Layout from "../components/Layout";
 import Baseline from "../components/Baseline";
+import { ThemeProvider } from "react-jss";
+import theme from "../lib/theme"
 
 class Application extends App {
   componentDidMount() {
@@ -20,11 +22,13 @@ class Application extends App {
     return (
       <Container>
         <Provider store={store}>
-          <Baseline>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Baseline>
+          <ThemeProvider theme={theme.light}>
+            <Baseline>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </Baseline>
+          </ThemeProvider>
         </Provider>
       </Container>
     );

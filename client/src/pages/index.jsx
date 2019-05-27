@@ -1,15 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-import Stripes from "../components/Stripes";
+import HomeContainer from "../containers/HomeContainer";
 
-class test extends React.Component {
+class index extends React.Component {
   render() {
-    return (
-      <div>
-        <Stripes />
-      </div>
-    );
+    return <HomeContainer />;
   }
 }
 
-export default connect(state => state)(test);
+export default index;
