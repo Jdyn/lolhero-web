@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Header";
+import Footer from "../Footer";
 import SEO from "./SEO";
 
 const propTypes = {

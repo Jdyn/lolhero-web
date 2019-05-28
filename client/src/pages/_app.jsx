@@ -2,8 +2,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import App, { Container } from "next/app";
 import withRedux from "../store/withRedux";
-import Layout from "../components/Layout";
-import Baseline from "../components/Baseline";
+import Layout from "../components/shared/Layout";
+import Baseline from "../components/shared/Baseline";
 import { ThemeProvider } from "react-jss";
 import theme from "../lib/theme"
 
