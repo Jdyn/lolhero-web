@@ -10,9 +10,13 @@ const defaultProps = {
   children: null
 };
 
-const Baseline = props => props.children
+const Baseline = props => props.children;
 
 const styles = theme => ({
+  "@font-face": {
+    fontFamily: "museo-sans",
+    src: "url(../../static/fonts/museosansrounded-500.woff2) format(woff2)"
+  },
   "@global": {
     html: {
       WebkitFontSmoothing: "antialiased",
@@ -22,14 +26,27 @@ const styles = theme => ({
     "*, *::before, *::after": {
       boxSizing: "inherit"
     },
-    "body": {
+    body: {
       margin: 0,
       backgroundColor: theme.primary,
       fontSize: "100%",
-      fontFamily: "Segoe UI, sans-serif",
+      fontFamily: "Museo Sans Rounded",
       fontWeight: "normal",
       fontStyle: "normal",
-      textRendering: "optimizeLegibility",
+      textRendering: "optimizeLegibility"
+    },
+    "&::-webkit-scrollbar": {
+      width: "15px",
+      height: "16px",
+      backgroundColor: "lightgrey"
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,0.2)"
+    },
+    "&::-webkit-scrollbar-button": {
+      width: "0",
+      height: "0",
+      display: "none"
     }
   }
 });

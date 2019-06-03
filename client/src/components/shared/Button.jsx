@@ -25,7 +25,7 @@ Button.propTypes = propTypes;
 Button.defaultProps = {
   margin: "0",
   width: "auto",
-  height: "40px"
+  height: "50px"
 };
 
 const styles = theme => ({
@@ -41,7 +41,7 @@ const styles = theme => ({
     letterSpacing: ".025em",
     textTransform: "uppercase",
     transitionDuration: ".15s",
-    height: "75px",
+    // height: "75px",
     "&:hover": {
       transform: "translateY(-2px)"
     },
@@ -52,19 +52,19 @@ const styles = theme => ({
   primary: {
     extend: "button",
     backgroundClip: "border-box",
-    backgroundColor: theme.green,
+    backgroundColor: theme.accent,
     color: theme.white,
     width: props => props.width,
-    height: props => props.height,
+    minHeight: props => props.height,
     margin: props => props.margin
   },
   secondary: {
     extend: "button",
     backgroundClip: "border-box",
-    backgroundColor: theme.white,
-    color: theme.accent,
+    backgroundColor: theme.green,
+    color: theme.white,
     width: props => props.width,
-    height: props => props.height,
+    minHeight: props => props.height,
     margin: props => props.margin
   }
 });

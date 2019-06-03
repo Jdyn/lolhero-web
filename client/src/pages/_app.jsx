@@ -22,7 +22,7 @@ class Application extends App {
     return (
       <Container>
         <Provider store={store}>
-          <ThemeProvider theme={theme.light}>
+          <ThemeProvider theme={theme.dark}>
             <Baseline>
               <Layout>
                 <Component {...pageProps} />

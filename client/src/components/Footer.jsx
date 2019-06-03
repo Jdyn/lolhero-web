@@ -9,7 +9,7 @@ const propTypes = {
 const Footer = props => {
   const { classes } = props;
 
-  return <div className={classes.container}>footer</div>;
+  return <div className={classes.container}></div>;
 };
 
 const styles = {

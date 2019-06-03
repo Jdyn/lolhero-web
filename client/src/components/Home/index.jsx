@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Button from "../shared/Button";
 import HomeCards from "./HomeCards";
+import Head from "next/head";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -11,18 +12,74 @@ const propTypes = {
 const Home = props => {
   const { classes } = props;
 
+  let stripe;
+
+  useEffect(() => {
+    // stripe = Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8");
+  });
+
+  const handleClick = event => {
+    event.preventDefault();
+
+    const payload = {
+      payment_method_types: ["card"],
+      success_url: "http://successurl.com",
+      cancel_url: "http://cancelurl.com",
+      line_items: [
+        {
+          name: "extra large cock ring",
+          amount: 550,
+          currency: "usd",
+          quantity: 1
+        },
+        {
+          name: "dragon lube",
+          amount: 9999,
+          currency: "usd",
+          quantity: 1
+        }
+      ]
+    };
+
+    fetch("http://localhost:4000/api/checkout", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          console.log(response);
+          stripe.redirectToCheckout({
+            sessionId: response.result.session.id
+          });
+        }
+      })
+      .catch(error => error);
+  };
+
   return (
     <>
       <div className={classes.hero}>
         <form className={classes.form}>
           <h1>LoL Hero</h1>
+          <h2>League Of Legends</h2>
           <input placeholder="Enter tracking ID" className={classes.search} />
         </form>
         <div className={classes.wrapper}>
-          <Button secondary noShadow width="200px" margin="0 25px 0 0">
+          <Button
+            secondary
+            noShadow
+            width="185px"
+            margin="0 25px 0 0"
+            onClick={e => handleClick(e)}
+          >
             prebuilt order
           </Button>
-          <Button width="200px">custom order</Button>
+          <Button width="185px">custom order</Button>
         </div>
       </div>
       <HomeCards />
@@ -37,18 +94,18 @@ const styles = theme => ({
     position: "relative",
     width: "100%",
     maxHeight: "1080px",
-    minHeight: "550px",
+    minHeight: "650px",
     padding: "110px 0",
     overflow: "hidden",
     zIndex: 1,
-    backgroundColor: "#9E9E9E"
+    backgroundColor: theme.secondary
   },
   wrapper: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "50px"
+    marginTop: "35px"
   },
   form: {
     display: "flex",
@@ -60,8 +117,13 @@ const styles = theme => ({
     height: "100%",
     "& h1": {
       fontSize: 45,
-      margin: "0 0 20px 0",
+      margin: "0 0 0 0",
       color: theme.white
+    },
+    "& h2": {
+      fontSize: 32,
+      color: theme.white,
+      margin: "0 0 25px 0"
     }
   },
   search: {
@@ -71,8 +133,10 @@ const styles = theme => ({
     width: "100%",
     maxWidth: "380px",
     borderRadius: "8px",
-    height: "40px",
-    fontSize: 16
+    height: "55px",
+    color: theme.white,
+    fontSize: 16,
+    backgroundColor: theme.quartinary
   }
 });
 
