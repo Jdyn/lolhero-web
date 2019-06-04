@@ -21,7 +21,7 @@ const styles = theme => ({
     height: "475px",
     width: "100%",
     maxWidth: "295px",
-    margin: "15px",
+    margin: "20px",
     zIndex: 100,
     boxShadow: "0 5px 15px rgb(0,0,0,.3)",
     backgroundColor: theme.primary,

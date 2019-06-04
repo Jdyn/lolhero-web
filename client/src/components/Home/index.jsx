@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import Button from "../shared/Button";
+import Button from "../Shared/Button";
 import HomeCards from "./HomeCards";
-import Head from "next/head";
+import Link from "next/link";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -66,20 +66,19 @@ const Home = props => {
       <div className={classes.hero}>
         <form className={classes.form}>
           <h1>LoL Hero</h1>
-          <h2>League Of Legends</h2>
+          <h2>League of Legends</h2>
           <input placeholder="Enter tracking ID" className={classes.search} />
         </form>
         <div className={classes.wrapper}>
-          <Button
-            secondary
-            noShadow
-            width="185px"
-            margin="0 25px 0 0"
-            onClick={e => handleClick(e)}
-          >
-            prebuilt order
-          </Button>
-          <Button width="185px">custom order</Button>
+          <Link href="/">
+            <Button secondary margin="0 25px 0 0">
+              prebuilt order
+            </Button>
+          </Link>
+
+          <Link prefetch href="/boost/custom">
+            <Button>custom order</Button>
+          </Link>
         </div>
       </div>
       <HomeCards />

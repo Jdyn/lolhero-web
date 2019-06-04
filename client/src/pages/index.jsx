@@ -1,9 +1,14 @@
 import React from "react";
 import HomeContainer from "../containers/HomeContainer";
+import Layout from "../components/Shared/Layout";
 
 class index extends React.Component {
   render() {
-    return <HomeContainer />;
+    return (
+      <Layout>
+        <HomeContainer />
+      </Layout>
+    );
   }
 }
 

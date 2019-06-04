@@ -9,19 +9,20 @@ const propTypes = {
 const Header = props => {
   const { classes } = props;
 
-  return <div className={classes.root} />;
+  return <div className={classes.root}>header</div>;
 };
 
-const styles = {
+const styles = theme => ({
   root: {
-    position: "absolute",
+    position: "relative",
+    backgroundColor: theme.secondary,
     width: "100%",
     height: "75px",
     top: 0,
     left: 0,
     zIndex: 5
   }
-};
+});
 
 Header.propTypes = propTypes;
 

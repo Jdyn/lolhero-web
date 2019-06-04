@@ -2,10 +2,9 @@ import React from "react";
 import { Provider } from "react-redux";
 import App, { Container } from "next/app";
 import withRedux from "../store/withRedux";
-import Layout from "../components/shared/Layout";
-import Baseline from "../components/shared/Baseline";
+import Baseline from "../components/Shared/Baseline";
 import { ThemeProvider } from "react-jss";
-import theme from "../lib/theme"
+import theme from "../lib/theme";
 
 class Application extends App {
   componentDidMount() {
@@ -24,9 +23,7 @@ class Application extends App {
         <Provider store={store}>
           <ThemeProvider theme={theme.dark}>
             <Baseline>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <Component {...pageProps} />
             </Baseline>
           </ThemeProvider>
         </Provider>

@@ -28,7 +28,7 @@ const styles = theme => ({
     },
     body: {
       margin: 0,
-      backgroundColor: theme.primary,
+      backgroundColor: theme.secondary,
       fontSize: "100%",
       fontFamily: "Museo Sans Rounded",
       fontWeight: "normal",

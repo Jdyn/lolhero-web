@@ -25,23 +25,23 @@ Button.propTypes = propTypes;
 Button.defaultProps = {
   margin: "0",
   width: "auto",
-  height: "50px"
+  minHeight: "50px"
 };
 
 const styles = theme => ({
   button: {
     cursor: "pointer",
-		outline: "none",
-		border: "none",
+    outline: "none",
+    border: "none",
     fontWeight: 700,
     zIndex: 100,
     fontSize: 14,
     padding: "10px",
     borderRadius: 8,
+    minWidth: "185px",
     letterSpacing: ".025em",
     textTransform: "uppercase",
     transitionDuration: ".15s",
-    // height: "75px",
     "&:hover": {
       transform: "translateY(-2px)"
     },
@@ -55,7 +55,7 @@ const styles = theme => ({
     backgroundColor: theme.accent,
     color: theme.white,
     width: props => props.width,
-    minHeight: props => props.height,
+    minHeight: props => props.minHeight,
     margin: props => props.margin
   },
   secondary: {
@@ -64,9 +64,9 @@ const styles = theme => ({
     backgroundColor: theme.green,
     color: theme.white,
     width: props => props.width,
-    minHeight: props => props.height,
+    minHeight: props => props.minHeight,
     margin: props => props.margin
   }
 });
 
-export default withStyles(styles)(Button);
+export default withStyles(styles, { link: true })(Button);
