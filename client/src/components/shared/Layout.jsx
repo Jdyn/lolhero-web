@@ -15,7 +15,6 @@ const Layout = props => {
 
   return (
     <>
-      <SEO />
       <Header />
       {children}
       <Footer />

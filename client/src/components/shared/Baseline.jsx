@@ -13,10 +13,6 @@ const defaultProps = {
 const Baseline = props => props.children;
 
 const styles = theme => ({
-  "@font-face": {
-    fontFamily: "museo-sans",
-    src: "url(../../static/fonts/museosansrounded-500.woff2) format(woff2)"
-  },
   "@global": {
     html: {
       WebkitFontSmoothing: "antialiased",

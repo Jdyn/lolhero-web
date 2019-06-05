@@ -5,6 +5,7 @@ import withRedux from "../store/withRedux";
 import Baseline from "../components/Shared/Baseline";
 import { ThemeProvider } from "react-jss";
 import theme from "../lib/theme";
+import SEO from "../components/Shared/SEO";
 
 class Application extends App {
   componentDidMount() {
@@ -23,6 +24,7 @@ class Application extends App {
         <Provider store={store}>
           <ThemeProvider theme={theme.dark}>
             <Baseline>
+              <SEO />
               <Component {...pageProps} />
             </Baseline>
           </ThemeProvider>
