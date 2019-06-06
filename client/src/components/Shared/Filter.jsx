@@ -24,8 +24,8 @@ const Filter = props => {
           className={props.classes.item}
           onClick={e => handleClick(e, index)}
           style={{
-            borderColor: state === index ? props.theme.accent : "#e5e5e5",
-            color: state === index ? props.theme.accent : "#e5e5e5"
+            borderColor: state === index ? props.theme.accent : "#999",
+            color: state === index ? props.theme.accent : "#999"
           }}
         >
           {filter.name}
