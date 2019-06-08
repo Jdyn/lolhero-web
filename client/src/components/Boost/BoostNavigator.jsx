@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Filter from "../Shared/Filter";
+import boostOptions from "../../lib/boostOptions";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -9,35 +10,49 @@ const propTypes = {
 
 const filters = [
   {
-    name: "Duo Boost"
-  },
-  {
     name: "Solo Boost"
-  }
-];
-
-const products = [
-  {
-    name: "Division Boost",
-    description: "Guarantee the rank you want without thinking twice."
   },
   {
-    name: "Net Wins Boost"
-  },
-  {
-    name: "Placements"
+    name: "Duo Boost"
   }
 ];
 
 const BoostNavigator = props => {
-  const { classes } = props;
+  const { classes, theme } = props;
+
+  const [currentIndex, setIndex] = useState(0);
+  const [currentFilter, setFilter] = useState("solo");
+
+  const handleItemClick = index => {
+    setIndex(index);
+  };
+
+  const handleFilterClick = index => {
+    setFilter(index === 0 ? "solo" : "duo");
+  };
 
   return (
     <div className={classes.container}>
-      <Filter extended filters={filters} />
+      <Filter extended filters={filters} onClick={handleFilterClick} />
+      <div className={classes.notice}>
+        SOLO means one of our boosters will <b>log onto your account</b> and complete the boost.{" "}
+        <span>If you want to play along side the booster, you can select DUO.</span>
+      </div>
       <div className={classes.wrapper}>
-        {products.map((item, index) => (
-          <div>{item.name}</div>
+        {boostOptions[currentFilter].map((item, index) => (
+          <div
+            key={index}
+            className={classes.card}
+            onClick={() => handleItemClick(index)}
+            style={{ backgroundColor: currentIndex === index ? theme.tertiary : theme.primary }}
+          >
+            <div className={classes.cardHeader}>
+              <h2>
+                <span>{currentFilter}</span> {item.name}
+              </h2>
+            </div>
+            <p>{item.description}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -50,20 +65,79 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     height: "calc(100% - 166px)",
-    width: "435px",
+    width: "425px",
     left: 0,
+    overflow: "auto",
+    backgroundColor: theme.primary,
     // borderRadius: 16,
     // backgroundColor: theme.tertiary,
-    boxShadow: "5px 0 6px 0 rgb(0,0,0,.12)"
+    boxShadow: "5px 0px 6px 0px rgba(0, 0, 0, 0.12)",
+    "&::-webkit-scrollbar": {
+      width: "8px",
+      backgroundColor: "#ddd"
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "#999999",
+      borderRadius: 6,
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: theme.primary,
+      // borderRadius: 6,
+      webkitBoxShadow: "inset 0 0 6px transparent"
+    },
+    "&::-webkit-scrollbar-button": {
+      width: "0",
+      height: "0",
+      display: "none"
+    }
   },
   wrapper: {
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
     height: "300px"
+  },
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "108px",
+    padding: "24px",
+    "& p": {
+      color: theme.grey,
+      margin: 0
+    },
+    borderBottom: "2px solid #646464",
+    cursor: "pointer",
+    transitionDuration: ".15s",
+    "&:hover": {
+      backgroundColor: `${theme.tertiary} !important`
+    }
+  },
+  cardHeader: {
+    "& h2": {
+      margin: 0,
+      color: theme.white,
+      fontSize: 16
+    },
+    "& span": {
+      color: theme.accent,
+      textTransform: "uppercase"
+    }
+  },
+  notice: {
+    margin: "20px 10px",
+    padding: "15px",
+    boxShadow: "0px 0px 15px rgb(0,0,0,.12)",
+    backgroundColor: theme.tertiary,
+    color: theme.white,
+    borderRadius: 8,
+    "& span": {
+      color: theme.grey
+    }
   }
 });
 
 BoostNavigator.propTypes = propTypes;
 
-export default withStyles(styles)(BoostNavigator);
+export default withStyles(styles, { injectTheme: true })(BoostNavigator);

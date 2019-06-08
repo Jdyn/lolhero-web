@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import theme from "../../lib/theme";
+import Link from "next/link";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -12,7 +12,11 @@ const TopNavigator = props => {
 
   return (
     <div className={classes.container}>
-      <div>top</div>
+      <Link href="/">
+        <div className={classes.logo}>
+          <h1>LoL Hero</h1>
+        </div>
+      </Link>
     </div>
   );
 };
@@ -27,6 +31,20 @@ const styles = theme => ({
     zIndex: 10,
     backgroundColor: theme.tertiary,
     borderBottom: `2px solid ${theme.quartinary}`
+  },
+  logo: {
+    display: "flex",
+    // flex: 1,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "180px",
+    minHeight: "76px",
+    cursor: "pointer",
+    "& h1": {
+      margin: 0,
+      color: theme.white
+    }
   }
 });
 

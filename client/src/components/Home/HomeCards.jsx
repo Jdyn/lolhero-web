@@ -36,8 +36,14 @@ const styles = theme => ({
   container: {
     display: "flex",
     justifyContent: "center",
-    flexDirection: "row",
+    flexDirection: "column",
     marginTop: "-145px",
+    // maxWidth: "345px",
+    // margin: "0 auto",
+    "@media (min-width: 650px)": {
+      flexDirection: "row",
+      justifyContent: "center",
+    },
     backgroundColor: theme.quartinary
   }
 });

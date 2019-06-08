@@ -104,7 +104,8 @@ const styles = theme => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "35px"
+    marginTop: "35px",
+    margin: "15px",
   },
   form: {
     display: "flex",
@@ -112,8 +113,8 @@ const styles = theme => ({
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
     height: "100%",
+    margin: "15px",
     "& h1": {
       fontSize: 45,
       margin: "0 0 0 0",

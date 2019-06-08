@@ -19,16 +19,19 @@ const HomeCard = props => {
 const styles = theme => ({
   container: {
     height: "475px",
-    width: "100%",
-    maxWidth: "295px",
-    margin: "20px",
+    flexGrow: 1,
+    "@media (min-width: 650px)": {
+      maxWidth: "305px",
+      margin: "1%",
+    },
+    margin: "5%",
     zIndex: 100,
     boxShadow: "0 5px 15px rgb(0,0,0,.3)",
     backgroundColor: theme.primary,
     borderRadius: 8,
     transitionDuration: ".15s",
     "&:hover": {
-      transform: "translateY(-4px)"
+      transform: "translateY(-4px)",
     }
   },
   header: {

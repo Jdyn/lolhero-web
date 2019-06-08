@@ -5,13 +5,13 @@ export default {
     green: "#3ecf8e"
   },
   dark: {
-    white: "#fafafa",
+    white: "#f0f0f0",
     accent: "#4285F4",
     green: "#1bb978",
     primary: "#353535",
     secondary: "#323232",
     tertiary: "#292929",
     quartinary: "#252525",
-    grey: "#616161"
+    grey: "#999999"
   }
 };

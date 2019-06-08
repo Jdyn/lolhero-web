@@ -38,7 +38,8 @@ const styles = theme => ({
     fontSize: 14,
     padding: "10px",
     borderRadius: 8,
-    minWidth: "185px",
+    maxWidth: "185px",
+    flexGrow: 1,
     letterSpacing: ".025em",
     textTransform: "uppercase",
     transitionDuration: ".15s",
@@ -54,7 +55,6 @@ const styles = theme => ({
     backgroundClip: "border-box",
     backgroundColor: theme.accent,
     color: theme.white,
-    width: props => props.width,
     minHeight: props => props.minHeight,
     margin: props => props.margin
   },
@@ -63,7 +63,6 @@ const styles = theme => ({
     backgroundClip: "border-box",
     backgroundColor: theme.green,
     color: theme.white,
-    width: props => props.width,
     minHeight: props => props.minHeight,
     margin: props => props.margin
   }

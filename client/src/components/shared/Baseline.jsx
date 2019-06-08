@@ -32,12 +32,18 @@ const styles = theme => ({
       textRendering: "optimizeLegibility"
     },
     "&::-webkit-scrollbar": {
-      width: "15px",
-      height: "16px",
-      backgroundColor: "lightgrey"
+      width: "8px",
+      backgroundColor: "#ddd"
     },
     "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(0,0,0,0.2)"
+      backgroundColor: "#ddd",
+      borderRadius: 6,
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
+    },
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: theme.primary,
+      borderRadius: 6,
+      webkitBoxShadow: "inset 0 0 6px transparent"
     },
     "&::-webkit-scrollbar-button": {
       width: "0",
