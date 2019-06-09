@@ -35,20 +35,20 @@ const BoostNavigator = props => {
     <div className={classes.container}>
       <Filter extended filters={filters} onClick={handleFilterClick} />
       <div className={classes.notice}>
-        SOLO means one of our boosters will <b>log onto your account</b> and complete the boost.{" "}
-        <span>If you want to play along side the booster, you can select DUO.</span>
+        {boostOptions[currentFilter].description}
+        <span>{boostOptions[currentFilter].subdescription}</span>
       </div>
       <div className={classes.wrapper}>
-        {boostOptions[currentFilter].map((item, index) => (
+        {boostOptions[currentFilter].items.map((item, index) => (
           <div
             key={index}
             className={classes.card}
-            onClick={() => handleItemClick(index)}
+            onClick={() => handleItemClick(index)} 
             style={{ backgroundColor: currentIndex === index ? theme.tertiary : theme.primary }}
           >
             <div className={classes.cardHeader}>
               <h2>
-                <span>{currentFilter}</span> {item.name}
+                <span style={{color: boostOptions[currentFilter].color}}>{currentFilter}</span> {item.name}
               </h2>
             </div>
             <p>{item.description}</p>
@@ -61,11 +61,11 @@ const BoostNavigator = props => {
 
 const styles = theme => ({
   container: {
-    position: "fixed",
+    position: "relative",
     display: "flex",
     flexDirection: "column",
-    height: "calc(100% - 166px)",
-    width: "425px",
+    height: "100%",
+    width: "400px",
     left: 0,
     overflow: "auto",
     backgroundColor: theme.primary,
@@ -96,18 +96,18 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-    height: "300px"
+    // height: "300px"
   },
   card: {
     display: "flex",
     flexDirection: "column",
-    minHeight: "108px",
-    padding: "24px",
+    minHeight: "106px",
+    padding: "24px 32px",
     "& p": {
       color: theme.grey,
       margin: 0
     },
-    borderBottom: "2px solid #646464",
+    // borderBottom: "2px solid #646464",
     cursor: "pointer",
     transitionDuration: ".15s",
     "&:hover": {
