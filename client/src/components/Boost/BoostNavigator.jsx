@@ -110,6 +110,8 @@ const styles = theme => ({
     // borderBottom: "2px solid #646464",
     cursor: "pointer",
     transitionDuration: ".15s",
+    borderRadius: 8,
+    margin: "2px 0",
     "&:hover": {
       backgroundColor: `${theme.tertiary} !important`
     }
