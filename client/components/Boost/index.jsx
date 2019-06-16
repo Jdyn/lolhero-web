@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
@@ -12,13 +12,17 @@ const propTypes = {
 };
 
 const CustomBoost = props => {
-  const { classes } = props;
+  const { classes, fetchBoosts, boosts } = props;
+
+  useEffect(() => {
+    fetchBoosts();
+  }, []);
 
   return (
     <div className={classes.root}>
       <TopNavigator />
       <div className={classes.container}>
-        <BoostNavigator />
+        <BoostNavigator boosts={boosts} />
         <div className={classes.main}>
           <Banner />
           <Banner />

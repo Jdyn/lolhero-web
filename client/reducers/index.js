@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import example from "../reducers/example";
+import request from "../reducers/request";
+import market from "../reducers/market";
 
 export default combineReducers({
-  example
+  request,
+  market
 });
