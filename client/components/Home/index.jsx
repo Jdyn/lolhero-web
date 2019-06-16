@@ -21,44 +21,6 @@ const Home = props => {
   const handleClick = event => {
     event.preventDefault();
 
-    const payload = {
-      payment_method_types: ["card"],
-      success_url: "http://successurl.com",
-      cancel_url: "http://cancelurl.com",
-      line_items: [
-        {
-          name: "extra large cock ring",
-          amount: 550,
-          currency: "usd",
-          quantity: 1
-        },
-        {
-          name: "dragon lube",
-          amount: 9999,
-          currency: "usd",
-          quantity: 1
-        }
-      ]
-    };
-
-    fetch("http://localhost:4000/api/checkout", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-      .then(response => response.json())
-      .then(response => {
-        if (response.ok) {
-          console.log(response);
-          stripe.redirectToCheckout({
-            sessionId: response.result.session.id
-          });
-        }
-      })
-      .catch(error => error);
   };
 
   return (

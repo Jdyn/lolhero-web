@@ -7,7 +7,7 @@ export default {
     items: [
       {
         name: "Division Boost",
-        description: "We guarantee your desired division"
+        description: "We play the required amount of games to reach the division you select."
 			},
 			{
         name: "Placement Games",

@@ -2,26 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Filter from "../Shared/Filter";
-import boostOptions from "../../lib/boostOptions";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const filters = [
-  {
-    name: "Solo Boost"
-  },
-  {
-    name: "Duo Boost"
-  }
-];
 
 const BoostNavigator = props => {
   const { classes, theme } = props;
 
   const [currentIndex, setIndex] = useState(0);
   const [currentFilter, setFilter] = useState("solo");
+
+
 
   const handleItemClick = index => {
     setIndex(index);
@@ -43,12 +36,12 @@ const BoostNavigator = props => {
           <div
             key={index}
             className={classes.card}
-            onClick={() => handleItemClick(index)} 
+            onClick={() => handleItemClick(index)}
             style={{ backgroundColor: currentIndex === index ? theme.tertiary : theme.primary }}
           >
             <div className={classes.cardHeader}>
               <h2>
-                <span style={{color: boostOptions[currentFilter].color}}>{currentFilter}</span> {item.name}
+                <span style={{ color: boostOptions[currentFilter].color }}>{currentFilter}</span> {item.name}
               </h2>
             </div>
             <p>{item.description}</p>

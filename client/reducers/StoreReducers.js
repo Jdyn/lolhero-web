@@ -1,5 +1,7 @@
 const initialState = {
-  username: ""
+  store: {
+    boosting: []
+  }
 };
 
 export default (state = initialState, action) => {
