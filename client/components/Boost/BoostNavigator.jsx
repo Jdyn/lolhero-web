@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const BoostNavigator = props => {
-  const { classes, theme, boosts } = props;
+  const { classes, theme, boosts, setCollection } = props;
 
   const [selectedIndex, setIndex] = useState(0);
   const [filterIndex, setFilter] = useState(0);
@@ -28,7 +28,10 @@ const BoostNavigator = props => {
             <div
               key={index}
               className={classes.card}
-              onClick={() => setIndex(index)}
+              onClick={() => {
+                setIndex(index);
+                setCollection(boosts[filterIndex].collections[selectedIndex])
+              }}
               style={{
                 backgroundColor:
                   selectedIndex === index ? theme.tertiary : theme.primary
@@ -60,8 +63,6 @@ const styles = theme => ({
     left: 0,
     overflow: "auto",
     backgroundColor: theme.primary,
-    // borderRadius: 16,
-    // backgroundColor: theme.tertiary,
     boxShadow: "5px 0px 6px 0px rgba(0, 0, 0, 0.12)",
     "&::-webkit-scrollbar": {
       width: "8px",
@@ -74,7 +75,6 @@ const styles = theme => ({
     },
     "&::-webkit-scrollbar-track": {
       backgroundColor: theme.primary,
-      // borderRadius: 6,
       webkitBoxShadow: "inset 0 0 6px transparent"
     },
     "&::-webkit-scrollbar-button": {

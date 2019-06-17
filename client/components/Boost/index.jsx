@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
@@ -14,15 +14,24 @@ const propTypes = {
 const CustomBoost = props => {
   const { classes, fetchBoosts, boosts } = props;
 
+  const [currentCollection, setCollection] = useState({});
+
   useEffect(() => {
     fetchBoosts();
   }, []);
 
+  useEffect(() => {
+    if (boosts.length > 0) {
+      setCollection(boosts[0].collections[0]);
+    }
+  }, [boosts]);
+
+  
   return (
     <div className={classes.root}>
       <TopNavigator />
       <div className={classes.container}>
-        <BoostNavigator boosts={boosts} />
+        <BoostNavigator boosts={boosts} setCollection={setCollection} />
         <div className={classes.main}>
           <Banner />
           <Banner />
