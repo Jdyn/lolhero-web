@@ -8,46 +8,58 @@ const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const BoostNavigator = props => {
-  const { classes, theme, boosts, setCollection } = props;
+const filters = [
+  {
+    name: "Solo Boost"
+  },
+  {
+    name: "Duo Boost"
+  }
+];
 
-  const [selectedIndex, setIndex] = useState(0);
-  const [filterIndex, setFilter] = useState(0);
-  const [filters] = useState([{ name: "Solo Boost" }, { name: "Duo Boost" }]);
+const BoostNavigator = props => {
+  const { classes, theme } = props;
+
+  const [currentIndex, setIndex] = useState(0);
+  const [filter, setFilter] = useState("solo");
+
+  const handleItemClick = index => {
+    setIndex(index);
+  };
+
+  const handleFilterClick = index => {
+    setFilter(index === 0 ? "solo" : "duo");
+  };
 
   return (
     <div className={classes.container}>
-      <Filter extended filters={filters} onClick={index => setFilter(index)} />
+      <Filter extended filters={filters} onClick={handleFilterClick} />
       <div className={classes.notice}>
-        {boostContent[filterIndex].description}
-        <span>{boostContent[filterIndex].subdescription}</span>
+        {boostContent[filter].description}
+        <span>{boostContent[filter].subdescription}</span>
       </div>
       <div className={classes.wrapper}>
-        {boosts.length > 0 &&
-          boosts[filterIndex].collections.map((item, index) => (
-            <div
-              key={index}
-              className={classes.card}
-              onClick={() => {
-                setIndex(index);
-                setCollection(boosts[filterIndex].collections[selectedIndex])
-              }}
-              style={{
-                backgroundColor:
-                  selectedIndex === index ? theme.tertiary : theme.primary
-              }}
-            >
-              <div className={classes.cardHeader}>
-                <h2>
-                  <span style={{ color: boostContent[filterIndex].color }}>
-                    {filterIndex === 0 ? "solo" : "duo"}
-                  </span>{" "}
-                  {item.title}
-                </h2>
-              </div>
-              <p>{item.description}</p>
+        {boostContent[filter].items.map((item, index) => (
+          <div
+            key={index}
+            className={classes.card}
+            onClick={() => handleItemClick(index)}
+            style={{
+              backgroundColor:
+                currentIndex === index ? theme.tertiary : theme.primary
+            }}
+          >
+            <div className={classes.cardHeader}>
+              <h2>
+                <span style={{ color: boostContent[filter].color }}>
+                  {filter}
+                </span>{" "}
+                {item.name}
+              </h2>
             </div>
-          ))}
+            <p>{item.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -87,7 +99,6 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     flexGrow: 1
-    // height: "300px"
   },
   card: {
     display: "flex",
@@ -98,7 +109,6 @@ const styles = theme => ({
       color: theme.grey,
       margin: 0
     },
-    // borderBottom: "2px solid #646464",
     cursor: "pointer",
     transitionDuration: ".15s",
     borderRadius: 8,

@@ -4,8 +4,8 @@ import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
 import BottomNavigator from "./BottomNavigator";
 import BoostNavigator from "./BoostNavigator";
-import Banner from "./Banner";
 import AddonNavigator from "./AddonNavigator";
+import RankSelect from "./RankSelect";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -20,22 +20,14 @@ const CustomBoost = props => {
     fetchBoosts();
   }, []);
 
-  useEffect(() => {
-    if (boosts.length > 0) {
-      setCollection(boosts[0].collections[0]);
-    }
-  }, [boosts]);
+  console.log(currentCollection);
 
-  
   return (
     <div className={classes.root}>
       <TopNavigator />
       <div className={classes.container}>
         <BoostNavigator boosts={boosts} setCollection={setCollection} />
-        <div className={classes.main}>
-          <Banner />
-          <Banner />
-        </div>
+        <RankSelect collection={currentCollection}/>
         <AddonNavigator />
       </div>
       <BottomNavigator />
@@ -57,11 +49,6 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     height: "100%"
-  },
-  main: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    flexGrow: 1
   }
 });
 
