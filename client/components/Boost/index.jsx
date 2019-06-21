@@ -14,20 +14,28 @@ const propTypes = {
 const CustomBoost = props => {
   const { classes, fetchBoosts, boosts } = props;
 
-  const [currentCollection, setCollection] = useState({});
+  const [currentOrder, setOrder] = useState({
+    collection_id: 1,
+    starting_rank: 12,
+    desired_rank: 13
+  });
 
   useEffect(() => {
-    fetchBoosts();
+    // fetchBoosts();
   }, []);
 
-  console.log(currentCollection);
+  console.log(currentOrder)
 
   return (
     <div className={classes.root}>
       <TopNavigator />
       <div className={classes.container}>
-        <BoostNavigator boosts={boosts} setCollection={setCollection} />
-        <RankSelect collection={currentCollection}/>
+        <BoostNavigator
+          boosts={boosts}
+          setOrder={setOrder}
+          currentOrder={currentOrder}
+        />
+        <RankSelect setOrder={setOrder} currentOrder={currentOrder} />
         <AddonNavigator />
       </div>
       <BottomNavigator />

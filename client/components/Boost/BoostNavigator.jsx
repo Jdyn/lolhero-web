@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Filter from "../Shared/Filter";
@@ -18,13 +18,24 @@ const filters = [
 ];
 
 const BoostNavigator = props => {
-  const { classes, theme } = props;
+  const { classes, theme, setOrder, currentOrder } = props;
 
   const [currentIndex, setIndex] = useState(0);
   const [filter, setFilter] = useState("solo");
 
+  useEffect(() => {
+    setOrder(prev => ({
+      ...prev,
+      collection_id: boostContent[filter].items[currentIndex].id
+    }));
+  }, [filter]);
+
   const handleItemClick = index => {
     setIndex(index);
+    setOrder(prev => ({
+      ...prev,
+      collection_id: boostContent[filter].items[index].id
+    }));
   };
 
   const handleFilterClick = index => {
