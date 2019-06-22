@@ -26,12 +26,19 @@ const Banner = props => {
   return (
     <>
       <div className={classes.container}>
-        <div className={classes.wrapper}>
+        <div
+          className={classes.wrapper}
+          style={{ backgroundColor: rank.color, borderColor: rank.accent}}
+        >
           {slider ? (
             <div>slide</div>
           ) : (
             <>
-              <span>{rank.title}</span>
+              <h1>{rank.title}</h1>
+              <div className={classes.queue}>
+                <span>Queue</span>
+                <div>solo</div>
+              </div>
               <div className={classes.ranks}>
                 {ranks.map((rankList, tierIndex) =>
                   rankList.map((listItem, itemIndex) => (
@@ -39,12 +46,13 @@ const Banner = props => {
                       key={listItem.title}
                       className={classes.button}
                       style={{
-                        backgroundColor: ranks[tierIndex][itemIndex].color
+                        backgroundColor: ranks[tierIndex][itemIndex].color,
+                        borderColor: ranks[tierIndex][itemIndex].accent
                       }}
-                      onClick={() => handleClick(tierIndex, itemIndex, isStartingRank)}
-                    >
-                      {/* {listItem.title} */}
-                    </button>
+                      onClick={() =>
+                        handleClick(tierIndex, itemIndex, isStartingRank)
+                      }
+                    />
                   ))
                 )}
               </div>
@@ -52,13 +60,16 @@ const Banner = props => {
           )}
         </div>
 
-        <svg
-          className={classes.footer}
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
-        >
-          <path d="M0 0 L50 100 L100 0 Z" />
-        </svg>
+        <div className={classes.footerWrapper}>
+          <svg
+            className={classes.footer}
+            style={{ fill: rank.color, stroke: rank.accent }}
+            preserveAspectRatio="none"
+            viewBox="0 0 100 100"
+          >
+            <path d="M0 0 L50 100 L100 0 Z" />
+          </svg>
+        </div>
       </div>
     </>
   );
@@ -73,10 +84,10 @@ const styles = theme => ({
     height: "calc(90% - 100px)",
     minHeight: "400px",
     backgroundColor: theme.tertiary,
-    boxShadow: "0px 0px 20px rgba(0,0,0,.3)",
+    boxShadow: "0px 0px 20px rgba(0,0,0,.4)",
     margin: "0 15px",
     maxHeight: "450px",
-    zIndex: 1
+    zIndex: 5
   },
   wrapper: {
     display: "flex",
@@ -84,35 +95,59 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     color: "#fefefe",
+    borderLeft: "6px solid",
+    borderRight: "6px solid",
     "& span": {
       textAlign: "center"
     }
   },
   ranks: {
-    // display: "flex",
+    display: "flex",
     // flexDirection: "row",
-    // flexWrap: 1,
-    maxWidth: "145px",
-
+    flexWrap: "wrap",
+    width: "144px"
+  },
+  queue: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    "& div": {
+      textTransform: "uppercase",
+      textAlign: "center",
+      fontWeight: 700
+    }
   },
   button: {
     border: "none",
     outline: "none",
-    margin: "0 3px 0 0",
+    margin: "1px 1px",
     padding: 0,
     cursor: "pointer",
     borderRadius: 3,
-    height: "30px",
-    width: "9px"
+    height: "35px",
+    width: "10px",  
+    border: `1px solid`,
+    transitionDuration: ".1s",
+    "&:hover": {
+      transform: "scale(1.5)",
+    }
   },
   footer: {
     width: "100%",
     height: "100px",
     position: "absolute",
-    bottom: "-100px",
+    // bottom: "-100px",
     fill: theme.tertiary,
-    zIndex: -1,
+    strokeWidth: 3,
+    zIndex: 0,
     filter: "drop-shadow(0 65px 15px rgba(0,0,0,.35))"
+  },
+  footerWrapper: {
+    width: "100%",
+    height: "100px",
+    position: "absolute",
+    bottom: "-98px",
+    zIndex: -1
   }
 });
 
