@@ -28,16 +28,20 @@ const Banner = props => {
       <div className={classes.container}>
         <div
           className={classes.wrapper}
-          style={{ backgroundColor: rank.color, borderColor: rank.accent}}
+          style={{ backgroundColor: rank.color, borderColor: rank.accent }}
         >
           {slider ? (
             <div>slide</div>
           ) : (
             <>
-              <h1>{rank.title}</h1>
-              <div className={classes.queue}>
-                <span>Queue</span>
-                <div>solo</div>
+              <div className={classes.header}>
+                <h1>{rank.title}</h1>
+              </div>
+              <div className={classes.body}>
+                <div className={classes.queue}>
+                  <span>queue</span> <h3>solo</h3>
+                </div>
+                <div className={classes.itemWrapper} />
               </div>
               <div className={classes.ranks}>
                 {ranks.map((rankList, tierIndex) =>
@@ -49,9 +53,7 @@ const Banner = props => {
                         backgroundColor: ranks[tierIndex][itemIndex].color,
                         borderColor: ranks[tierIndex][itemIndex].accent
                       }}
-                      onClick={() =>
-                        handleClick(tierIndex, itemIndex, isStartingRank)
-                      }
+                      onClick={() => handleClick(tierIndex, itemIndex, isStartingRank)}
                     />
                   ))
                 )}
@@ -95,11 +97,25 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     color: "#fefefe",
+    padding: "75px 24px",
     borderLeft: "6px solid",
     borderRight: "6px solid",
     "& span": {
       textAlign: "center"
     }
+  },
+  header: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    "& h1": {
+      fontSize: 30
+    }
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%"
   },
   ranks: {
     display: "flex",
@@ -110,11 +126,11 @@ const styles = theme => ({
   queue: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    "& div": {
-      textTransform: "uppercase",
-      textAlign: "center",
-      fontWeight: 700
+    fontSize: 14,
+    textAlign: "center",
+    "& span": {
+      fontSize: 20,
+      textTransform: "uppercase"
     }
   },
   button: {
@@ -125,11 +141,11 @@ const styles = theme => ({
     cursor: "pointer",
     borderRadius: 3,
     height: "35px",
-    width: "10px",  
+    width: "10px",
     border: `1px solid`,
     transitionDuration: ".1s",
     "&:hover": {
-      transform: "scale(1.5)",
+      transform: "scale(1.5)"
     }
   },
   footer: {

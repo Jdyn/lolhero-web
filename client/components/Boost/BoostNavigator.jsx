@@ -116,9 +116,11 @@ const styles = theme => ({
     flexDirection: "column",
     minHeight: "106px",
     padding: "24px 32px",
+    fontSize: 18,
     "& p": {
       color: theme.grey,
-      margin: 0
+      margin: 0,
+      fontSize: 16
     },
     cursor: "pointer",
     transitionDuration: ".15s",
@@ -146,6 +148,7 @@ const styles = theme => ({
     backgroundColor: theme.tertiary,
     color: theme.white,
     borderRadius: 8,
+    fontSize: 18,
     "& span": {
       color: theme.grey
     }
