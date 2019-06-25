@@ -7,11 +7,11 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { classes, setTopFilter, currentTopFilter } = props;
+  const { classes } = props;
 
   return (
     <div className={classes.container}>
-      <button onClick={() => setTopFilter(currentTopFilter + 1)} />
+      <button className={classes.navigate} onClick={() => {}}>next</button>
     </div>
   );
 };
@@ -20,13 +20,25 @@ const styles = theme => ({
   container: {
     position: "fixed",
     display: "flex",
+    justifyContent: "flex-end",
     gridArea: "botNav",
     minHeight: "90px",
     width: "100%",
     bottom: 0,
     backgroundColor: theme.tertiary,
     zIndex: 10,
-    borderTop: `2px solid ${theme.quartinary}`
+  },
+  navigate: {
+    outline: "none",
+    border: "none",
+    width: "375px",
+    cursor: "pointer",
+    color: theme.white,
+    textTransform: "uppercase",
+    letterSpacing: .8,
+    fontWeight: 700,
+    fontSize: 20,
+    backgroundColor: theme.accent
   }
 });
 

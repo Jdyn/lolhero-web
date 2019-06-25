@@ -74,6 +74,7 @@ const styles = theme => ({
     color: theme.secondaryColor,
     borderBottom: "3px solid",
     paddingBottom: "20px",
+    transitionDuration: ".15s",
     "&:hover": {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`

@@ -10,10 +10,14 @@ const propTypes = {
 };
 
 const BoostListItem = props => {
-  const { classes, item, onClick } = props;
+  const { classes, theme, item, onClick, isSelected } = props;
 
   return (
-    <div className={classes.container} onClick={onClick}>
+    <div
+      className={classes.container}
+      onClick={onClick}
+      style={{ backgroundColor: isSelected ? theme.tertiary : theme.primary }}
+    >
       <h2 className={classes.header}>
         <span>{item.tag}</span>
         {` ${item.name}`}
@@ -24,19 +28,25 @@ const BoostListItem = props => {
 };
 
 const styles = theme => ({
-  container: ({ isSelected }) => ({
+  container: {
+    width: "100%",
     cursor: "pointer",
     margin: "4px 10px",
     display: "flex",
-    padding: "25px 35px",
+    padding: "25px 25px",
     borderRadius: 8,
     flexDirection: "column",
-    backgroundColor: isSelected ? theme.tertiary : theme.primary,
     transitionDuration: ".15s",
+    "@media (min-width: 640px)": {
+      width: "47%"
+    },
+    "@media (min-width: 1025px)": {
+      width: "auto"
+    },
     "&:hover": {
-      backgroundColor: theme.tertiary
+      backgroundColor: `${theme.tertiary} !important`
     }
-  }),
+  },
   header: {
     color: theme.white,
     margin: 0,
@@ -55,4 +65,4 @@ const styles = theme => ({
 
 BoostListItem.propTypes = propTypes;
 
-export default withStyles(styles)(BoostListItem);
+export default withStyles(styles, { injectTheme: true })(BoostListItem);

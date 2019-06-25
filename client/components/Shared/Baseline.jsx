@@ -34,7 +34,6 @@ const styles = theme => ({
     div: {
       "&::-webkit-scrollbar": {
         width: "8px",
-        backgroundColor: "#ddd"
       },
       "&::-webkit-scrollbar-thumb": {
         backgroundColor: "#999",

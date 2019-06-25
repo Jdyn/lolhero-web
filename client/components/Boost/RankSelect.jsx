@@ -9,7 +9,9 @@ const propTypes = {
 };
 
 const RankSelect = props => {
-  const { classes, setOrder, currentOrder } = props;
+  const { classes, setOrder, order } = props;
+
+  console.log(order)
 
   const [ranksObject] = useState(
     [].concat
@@ -25,12 +27,12 @@ const RankSelect = props => {
           <>
             <Banner
               isStartingRank
-              rank={ranksObject[currentOrder.starting_rank]}
-              setOrder={setOrder}
+              rank={ranksObject[order.starting_rank]}
+              // setOrder={setOrder}
             />
             <Banner
-              rank={ranksObject[currentOrder.desired_rank]}
-              setOrder={setOrder}
+              rank={ranksObject[order.desired_rank]}
+              // setOrder={setOrder}
             />
           </>
         );
@@ -40,34 +42,19 @@ const RankSelect = props => {
   };
 
   return (
-    <div className={classes.container}>
-      {renderContent(currentOrder.collection_id)}
-
-      {/* <div>
-        {ranks.map((rankList, tierIndex) =>
-          rankList.map((listItem, itemIndex) => (
-            <button
-              key={listItem.title}
-              className={classes.button}
-              style={{ backgroundColor: ranks[tierIndex][itemIndex].color }}
-              onClick={() => handleClick(tierIndex, itemIndex, false)}
-            >
-              {listItem.title}
-            </button>
-          ))
-        )}
-      </div> */}
+    <div className={classes.root}>
+      {renderContent(1)}
     </div>
   );
 };
 
 const styles = {
-  container: {
+  root: {
     display: "flex",
-    gridArea: "ranks",
+    position: "relative",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    flexGrow: 1
+    flexGrow: 1,
   }
 };
 

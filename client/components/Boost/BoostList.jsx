@@ -30,7 +30,7 @@ const BoostList = props => {
           <BoostListItem
             key={index}
             item={item}
-            isSelected={index === selectedIndex}
+            isSelected={selectedIndex === index}
             onClick={() => setIndex(index)}
           />
         ))}
@@ -41,25 +41,32 @@ const BoostList = props => {
 
 const styles = theme => ({
   root: {
-    left: 0,
-    width: "400px",
-    height: "100%",
+    width: "100%",
     display: "flex",
     position: "relative",
-    boxShadow: "5px 0px 15px 0px rgba(0, 0, 0, 0.4)",
-    borderRadius: 16,
+    boxShadow: "5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
+    borderRadius: 12,
     flexDirection: "column",
-    backgroundColor: theme.primary
+    backgroundColor: theme.primary,
+    "@media (min-width: 1025px)": {
+      width: "435px",
+      height: "100%"
+    }
   },
   container: {
     display: "flex",
-    flexDirection: "column",
-    flexGrow: 3,
-    overflowY: "auto",
-    margin: "10px 10px"
+    flexWrap: "wrap",
+    flexGrow: 1,
+    overflow: "auto",
+    flexDirection: "row",
+    margin: "10px 10px",
+    "@media (min-width: 1025px)": {
+      flexWrap: "nowrap",
+      flexDirection: "column"
+    }
   },
   notice: {
-    margin: "10px",
+    margin: "20px 10px 10px 10px",
     padding: "15px",
     boxShadow: "0px 0px 15px rgb(0,0,0,.12)",
     backgroundColor: theme.tertiary,
