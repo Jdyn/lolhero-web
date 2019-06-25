@@ -45,11 +45,11 @@ const styles = theme => ({
     display: "flex",
     position: "relative",
     boxShadow: "5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
-    borderRadius: 12,
+    borderRadius: 16,
     flexDirection: "column",
     backgroundColor: theme.primary,
     "@media (min-width: 1025px)": {
-      width: "435px",
+      width: "400px",
       height: "100%"
     }
   },

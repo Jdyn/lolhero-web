@@ -8,7 +8,7 @@ const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const filters = ["service", "Details", "Add-Ons", "Payment"];
+const filters = ["Details", "Add-Ons", "set-up", "Payment"];
 
 const TopNavigator = props => {
   const { classes } = props;

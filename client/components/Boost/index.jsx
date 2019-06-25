@@ -27,6 +27,7 @@ const CustomBoost = props => {
       <div className={classes.container}>
         <BoostList />
         <RankSelect order={currentOrder} />
+        <AddonNavigator />
       </div>
       <BottomNavigator />
     </div>
@@ -50,8 +51,7 @@ const styles = theme => ({
     width: "100%",
     height: "100%",
     "@media (min-width: 1025px)": {
-      flexDirection: "row",
-
+      flexDirection: "row"
     }
   }
 });

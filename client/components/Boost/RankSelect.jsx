@@ -11,8 +11,6 @@ const propTypes = {
 const RankSelect = props => {
   const { classes, setOrder, order } = props;
 
-  console.log(order)
-
   const [ranksObject] = useState(
     [].concat
       .apply([], ranks)

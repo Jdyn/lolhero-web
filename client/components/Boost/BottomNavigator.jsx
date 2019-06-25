@@ -11,7 +11,7 @@ const BottomNavigator = props => {
 
   return (
     <div className={classes.container}>
-      <button className={classes.navigate} onClick={() => {}}>next</button>
+      <button className={classes.button} onClick={() => {}}>next</button>
     </div>
   );
 };
@@ -28,10 +28,12 @@ const styles = theme => ({
     backgroundColor: theme.tertiary,
     zIndex: 10,
   },
-  navigate: {
+  button: {
     outline: "none",
     border: "none",
-    width: "375px",
+    width: "350px",
+    margin: "15px 25px",
+    borderRadius: 12,
     cursor: "pointer",
     color: theme.white,
     textTransform: "uppercase",
