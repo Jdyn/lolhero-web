@@ -2,13 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Link from "next/link";
+import Filter from "../Shared/Filter";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
+const filters = [
+  {
+    name: "Details"
+  },
+  {
+    name: "Add-ons"
+  },
+  {
+    name: "Payment"
+  }
+];
+
 const TopNavigator = props => {
-  const { classes } = props;
+  const { classes, setFilter, currentFilter } = props;
+
+  const handleFilterClick = index => {
+    setFilter(index);
+    console.log(index)
+  };
 
   return (
     <div className={classes.container}>
@@ -17,6 +35,14 @@ const TopNavigator = props => {
           <h1>LoL Hero</h1>
         </div>
       </Link>
+      <div style={{ width: "5%" }} />
+      <Filter
+        extended
+        filters={filters}
+        onClick={index => handleFilterClick(index)}
+        currentIndex={currentFilter}
+      />
+      <div style={{ width: "15%" }} />
     </div>
   );
 };
@@ -25,6 +51,7 @@ const styles = theme => ({
   container: {
     position: "fixed",
     display: "flex",
+    gridArea: "topNav",
     minHeight: "76px",
     width: "100%",
     top: 0,
@@ -32,13 +59,19 @@ const styles = theme => ({
     backgroundColor: theme.tertiary,
     borderBottom: `2px solid ${theme.quartinary}`
   },
+  filterWrapper: {
+    display: "flex",
+    position: "relaitve",
+    flexDirection: "row",
+    flexGrow: 1
+  },
   logo: {
     display: "flex",
+    position: "relative",
     // flex: 1,
-    height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    width: "180px",
+    width: "200px",
     minHeight: "76px",
     cursor: "pointer",
     "& h1": {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
 import BottomNavigator from "./BottomNavigator";
-import BoostNavigator from "./BoostNavigator";
+import BoostList from "./BoostList";
 import AddonNavigator from "./AddonNavigator";
 import RankSelect from "./RankSelect";
 
@@ -13,6 +13,8 @@ const propTypes = {
 
 const CustomBoost = props => {
   const { classes, fetchBoosts, boosts } = props;
+
+  const [currentTopFilter, setTopFilter] = useState(0);
 
   const [currentOrder, setOrder] = useState({
     collection_id: 1,
@@ -24,21 +26,24 @@ const CustomBoost = props => {
     // fetchBoosts();
   }, []);
 
-  console.log(currentOrder)
+  const handleTopFilterClick = index => {};
 
   return (
     <div className={classes.root}>
-      <TopNavigator />
+      <TopNavigator setFilter={setTopFilter} currentFilter={currentTopFilter} />
       <div className={classes.container}>
-        <BoostNavigator
+        <BoostList
           boosts={boosts}
           setOrder={setOrder}
           currentOrder={currentOrder}
         />
         <RankSelect setOrder={setOrder} currentOrder={currentOrder} />
-        <AddonNavigator />
+        <AddonNavigator topIndex={currentTopFilter} />
       </div>
-      <BottomNavigator />
+      <BottomNavigator
+        setTopFilter={setTopFilter}
+        currentTopFilter={currentTopFilter}
+      />
     </div>
   );
 };

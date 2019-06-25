@@ -7,19 +7,31 @@ const propTypes = {
 };
 
 const AddonNavigator = props => {
-  const { classes } = props;
+  const { classes, topIndex } = props;
 
-  return (
-    <div className={classes.container}>
-      content homie
-    </div>
-  );
+  const renderContent = index => {
+    switch (index) {
+      case 0:
+        return <div>details</div>;
+      case 1:
+        return (
+          <div>add ons</div>
+        )
+      case 2:
+      return (
+        <div>payment</div>
+      )
+    }
+  };
+
+  return <div className={classes.container}>{renderContent(topIndex)}</div>;
 };
 
 const styles = theme => ({
   container: {
     position: "relative",
     display: "flex",
+    gridArea: "addons",
     flexDirection: "column",
     height: "100%",
     width: "400px",

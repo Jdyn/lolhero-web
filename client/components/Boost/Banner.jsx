@@ -38,8 +38,19 @@ const Banner = props => {
                 <h1>{rank.title}</h1>
               </div>
               <div className={classes.body}>
-                <div className={classes.queue}>
-                  <span>queue</span> <h3>solo</h3>
+                <button className={classes.optionButton}>
+                  <span>queue</span>
+                  <span className={classes.optionItem}>solo</span>
+                </button>
+                <div className={classes.options}>
+                  <button className={classes.optionButton}>
+                    <span>server</span>
+                    <span className={classes.optionItem}>NA</span>
+                  </button>
+                  <button className={classes.optionButton}>
+                    <span>lp</span>
+                    <span className={classes.optionItem}>0-21</span>
+                  </button>
                 </div>
                 <div className={classes.itemWrapper} />
               </div>
@@ -53,7 +64,9 @@ const Banner = props => {
                         backgroundColor: ranks[tierIndex][itemIndex].color,
                         borderColor: ranks[tierIndex][itemIndex].accent
                       }}
-                      onClick={() => handleClick(tierIndex, itemIndex, isStartingRank)}
+                      onClick={() =>
+                        handleClick(tierIndex, itemIndex, isStartingRank)
+                      }
                     />
                   ))
                 )}
@@ -115,7 +128,16 @@ const styles = theme => ({
   body: {
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+    flexGrow: 1,
     width: "100%"
+  },
+  options: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    padding: "10px 20px"
   },
   ranks: {
     display: "flex",
@@ -123,15 +145,27 @@ const styles = theme => ({
     flexWrap: "wrap",
     width: "144px"
   },
-  queue: {
+  optionButton: {
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "transparent",
+    outline: "none",
+    border: "none",
     fontSize: 14,
+    justifyContent: "center",
+    alignItems: "center",
     textAlign: "center",
-    "& span": {
-      fontSize: 20,
-      textTransform: "uppercase"
-    }
+    padding: "5px",
+    borderRadius: 6,
+    color: theme.white,
+    fontWeight: 700,
+    width: "65px"
+  },
+  optionItem: {
+    fontSize: 18,
+    textTransform: "uppercase",
+    fontWeight: 700,
+    color: theme.white
   },
   button: {
     border: "none",
@@ -142,7 +176,7 @@ const styles = theme => ({
     borderRadius: 3,
     height: "35px",
     width: "10px",
-    border: `1px solid`,
+    border: `1px solid #e5e5e5`,
     transitionDuration: ".1s",
     "&:hover": {
       transform: "scale(1.5)"

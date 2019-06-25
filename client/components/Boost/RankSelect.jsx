@@ -64,6 +64,7 @@ const RankSelect = props => {
 const styles = {
   container: {
     display: "flex",
+    gridArea: "ranks",
     flexDirection: "row",
     justifyContent: "space-evenly",
     flexGrow: 1

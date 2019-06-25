@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import withStyles from "react-jss";
 import PropTypes from "prop-types";
 
@@ -7,9 +7,16 @@ const propTypes = {
 };
 
 const Filter = props => {
-  const [state, set] = useState(0);
+  const [state, set] = useState(props.currentIndex);
 
-  const handleClick = (event, index) => {
+  useEffect(() => {
+    console.log(props.currentIndex);
+    if (props.currentIndex <= props.filters.length - 1) {
+      set(props.currentIndex);
+    }
+  }, [props.currentIndex]);
+
+  const handleClick = index => {
     if (typeof props.onClick === "function") {
       props.onClick(index);
     }
@@ -22,7 +29,7 @@ const Filter = props => {
         <li
           key={index}
           className={props.classes.item}
-          onClick={e => handleClick(e, index)}
+          onClick={() => handleClick(index)}
           style={{
             borderColor: state === index ? props.theme.accent : "#999",
             color: state === index ? props.theme.accent : "#999"
@@ -44,14 +51,13 @@ const styles = theme => ({
   container: props => ({
     display: "flex",
     flexDirection: "row",
+    flexGrow: 1,
     position: "relative",
     margin: 0,
     padding: 0,
-    // borderBottom: "2px solid #343536",
-    paddingTop: props.extended ? "15px" : 0,
+    paddingTop: props.extended ? "20px" : 0,
     marginLeft: props.extended ? "-20px" : 0,
-    backgroundColor: "transparent",
-    // width: props.extended ? "calc(100% + 40px)" : "auto"
+    backgroundColor: "transparent"
   }),
   item: props => ({
     display: "flex",
@@ -60,14 +66,15 @@ const styles = theme => ({
     justifyContent: "center",
     textTransform: "uppercase",
     letterSpacing: ".8px",
+    alignItems: "center",
     fontSize: props.fontSize,
     fontWeight: 700,
     position: "relative",
     listStyle: "none",
     cursor: "pointer",
     color: theme.secondaryColor,
-    borderBottom: "2px solid #e5e5e5",
-    paddingBottom: "15px",
+    borderBottom: "3px solid",
+    paddingBottom: "20px",
     "&:hover": {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`

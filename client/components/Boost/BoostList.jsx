@@ -44,7 +44,9 @@ const BoostNavigator = props => {
 
   return (
     <div className={classes.container}>
-      <Filter extended filters={filters} onClick={handleFilterClick} />
+      {/* <div className={classes.filterWrapper}> */}
+        <Filter extended filters={filters} onClick={handleFilterClick} />
+      {/* </div> */}
       <div className={classes.notice}>
         {boostContent[filter].description}
         <span>{boostContent[filter].subdescription}</span>
@@ -105,6 +107,9 @@ const styles = theme => ({
       height: "0",
       display: "none"
     }
+  },
+  filterWrapper: {
+    height: "100px"
   },
   wrapper: {
     display: "flex",
