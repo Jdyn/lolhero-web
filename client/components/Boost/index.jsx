@@ -6,6 +6,7 @@ import BottomNavigator from "./BottomNavigator";
 import BoostList from "./BoostList";
 import AddonNavigator from "./AddonNavigator";
 import RankSelect from "./RankSelect";
+import Filter from "../Shared/Filter";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -30,7 +31,7 @@ const CustomBoost = props => {
 
   return (
     <div className={classes.root}>
-      <TopNavigator setFilter={setTopFilter} currentFilter={currentTopFilter} />
+      {/* <TopNavigator setFilter={setTopFilter} currentFilter={currentTopFilter} />
       <div className={classes.container}>
         <BoostList
           boosts={boosts}
@@ -43,7 +44,8 @@ const CustomBoost = props => {
       <BottomNavigator
         setTopFilter={setTopFilter}
         currentTopFilter={currentTopFilter}
-      />
+      /> */}
+      <BoostList />
     </div>
   );
 };

@@ -3,39 +3,43 @@ import withStyles from "react-jss";
 import PropTypes from "prop-types";
 
 const propTypes = {
-  filters: PropTypes.array.isRequired
+  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClick: PropTypes.func.isRequired,
+  extended: PropTypes.bool,
+  selectedIndex: PropTypes.number
 };
 
 const Filter = props => {
-  const [state, set] = useState(props.currentIndex);
+  const { classes, theme, filters, selectedIndex, onClick } = props;
+
+  const [state, set] = useState(selectedIndex || 0);
 
   useEffect(() => {
-    console.log(props.currentIndex);
-    if (props.currentIndex <= props.filters.length - 1) {
-      set(props.currentIndex);
-    }
-  }, [props.currentIndex]);
+    if (selectedIndex < filters.length) set(selectedIndex);
+  }, [selectedIndex, filters]);
 
   const handleClick = index => {
-    if (typeof props.onClick === "function") {
-      props.onClick(index);
+    if (typeof onClick === "function") {
+      onClick(index);
     }
     set(index);
   };
 
   return (
-    <ul className={props.classes.container}>
-      {props.filters.map((filter, index) => (
+    <ul className={classes.container}>
+      {filters.map((filter, index) => (
         <li
           key={index}
-          className={props.classes.item}
+          className={classes.item}
           onClick={() => handleClick(index)}
           style={{
-            borderColor: state === index ? props.theme.accent : "#999",
-            color: state === index ? props.theme.accent : "#999"
+            borderColor: state === index ? theme.accent : "#999",
+            color: state === index ? theme.accent : "#999"
           }}
         >
-          {filter.name}
+          {filter}
         </li>
       ))}
     </ul>
@@ -43,33 +47,28 @@ const Filter = props => {
 };
 
 Filter.propTypes = propTypes;
-Filter.defaultProps = {
-  fontSize: 16
-};
+Filter.defaultProps = {};
 
 const styles = theme => ({
-  container: props => ({
-    display: "flex",
-    flexDirection: "row",
-    flexGrow: 1,
-    position: "relative",
+  container: ({ extended }) => ({
     margin: 0,
-    padding: 0,
-    paddingTop: props.extended ? "20px" : 0,
-    marginLeft: props.extended ? "-20px" : 0,
-    backgroundColor: "transparent"
+    padding: "20px 0 0 0",
+    display: "flex",
+    flexGrow: extended ? 1 : 0,
+    position: "relative",
+    flexDirection: "row"
   }),
   item: props => ({
     display: "flex",
+    position: "relative",
     width: `calc(100% / ${props.filters.length})`,
     marginBottom: "-2px",
     justifyContent: "center",
     textTransform: "uppercase",
-    letterSpacing: ".8px",
+    letterSpacing: ".9px",
     alignItems: "center",
-    fontSize: props.fontSize,
+    fontSize: 16,
     fontWeight: 700,
-    position: "relative",
     listStyle: "none",
     cursor: "pointer",
     color: theme.secondaryColor,

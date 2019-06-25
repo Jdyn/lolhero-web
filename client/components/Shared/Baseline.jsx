@@ -19,7 +19,7 @@ const styles = theme => ({
       MozOsxFontSmoothing: "grayscale",
       boxSizing: "border-box"
     },
-    "*, *::before, *::after": {
+    "*, *::before, *::after, div": {
       boxSizing: "inherit"
     },
     body: {
@@ -31,24 +31,25 @@ const styles = theme => ({
       fontStyle: "normal",
       textRendering: "optimizeLegibility"
     },
-    "&::-webkit-scrollbar": {
-      width: "8px",
-      backgroundColor: "#ddd"
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "#ddd",
-      borderRadius: 6,
-      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
-    },
-    "&::-webkit-scrollbar-track": {
-      backgroundColor: theme.primary,
-      borderRadius: 6,
-      webkitBoxShadow: "inset 0 0 6px transparent"
-    },
-    "&::-webkit-scrollbar-button": {
-      width: "0",
-      height: "0",
-      display: "none"
+    div: {
+      "&::-webkit-scrollbar": {
+        width: "8px",
+        backgroundColor: "#ddd"
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#999",
+        borderRadius: 6,
+        webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
+      },
+      "&::-webkit-scrollbar-track": {
+        backgroundColor: theme.primary,
+        webkitBoxShadow: "inset 0 0 6px transparent"
+      },
+      "&::-webkit-scrollbar-button": {
+        width: "0",
+        height: "0",
+        display: "none"
+      }
     }
   }
 });
