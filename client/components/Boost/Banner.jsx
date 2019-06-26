@@ -27,14 +27,17 @@ const Banner = props => {
     <div className={classes.container}>
       <div
         className={classes.wrapper}
-        style={{ backgroundColor: rank.color, borderColor: rank.accent }}
+        style={{
+          backgroundColor: rank.color || "blue",
+          borderColor: rank.accent || "yellow"
+        }}
       >
         {slider ? (
           <div>slide</div>
         ) : (
           <>
             <div className={classes.header}>
-              <h1>{rank.title}</h1>
+              <h1>{rank.title || "RANK"}</h1>
             </div>
             <div className={classes.body}>
               <button className={classes.optionButton}>
@@ -77,7 +80,7 @@ const Banner = props => {
       <div className={classes.footerWrapper}>
         <svg
           className={classes.footer}
-          style={{ fill: rank.color, stroke: rank.accent }}
+          style={{ fill: rank.color || "blue", stroke: rank.accent || "yellow" }}
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
         >

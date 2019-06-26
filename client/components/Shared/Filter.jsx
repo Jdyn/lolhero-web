@@ -29,19 +29,20 @@ const Filter = props => {
 
   return (
     <ul className={classes.container}>
-      {filters.map((filter, index) => (
-        <li
-          key={index}
-          className={classes.item}
-          onClick={() => handleClick(index)}
-          style={{
-            borderColor: state === index ? theme.accent : "#999",
-            color: state === index ? theme.accent : "#999"
-          }}
-        >
-          {filter}
-        </li>
-      ))}
+      {Array.isArray(filters) &&
+        filters.map((filter, index) => (
+          <li
+            key={index}
+            className={classes.item}
+            onClick={() => handleClick(index)}
+            style={{
+              borderColor: state === index ? theme.accent : "#999",
+              color: state === index ? theme.accent : "#999"
+            }}
+          >
+            {filter}
+          </li>
+        ))}
     </ul>
   );
 };

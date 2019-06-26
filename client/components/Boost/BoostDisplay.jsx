@@ -26,12 +26,12 @@ const BoostDisplay = props => {
             <div className={classes.wrapper}>
               <Banner
                 isStartingRank
-                rank={ranksObject[order.starting_rank]}
+                rank={order.start_rank ? ranksObject[order.start_rank] : {}}
                 // setOrder={setOrder}
               />
             </div>
             <Banner
-              rank={ranksObject[order.desired_rank]}
+              rank={order.desired_rank ? ranksObject[order.desired_rank] : {}}
               // setOrder={setOrder}
             />
           </>
@@ -53,7 +53,7 @@ const styles = {
     justifyContent: "space-evenly",
     alignItems: "center",
     flexGrow: 1,
-    top: -6 ,
+    top: -6,
     "@media (min-width: 640px)": {
       flexDirection: "row",
       alignItems: "normal"
@@ -68,8 +68,7 @@ const styles = {
     boxShadow: "0px 0px 15px rgb(0,0,0,.4)",
     "@media (min-width: 640px)": {
       boxShadow: "none",
-      width: "auto",
-
+      width: "auto"
     }
   }
 };

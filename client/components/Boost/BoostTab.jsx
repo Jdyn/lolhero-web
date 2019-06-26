@@ -6,14 +6,29 @@ import withStyles from "react-jss";
 import BoostTabItem from "./BoostTabItem";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  setOrder: PropTypes.func.isRequired
 };
 
 const BoostList = props => {
-  const { classes } = props;
+  const { classes, setOrder } = props;
 
   const [selectedFilter, setFilter] = useState("solo");
   const [selectedIndex, setIndex] = useState(0);
+
+  useEffect(() => {
+    updateOrder(selectedIndex);
+  }, [selectedFilter]);
+
+  const updateOrder = newSelectedIndex => {
+    const selectedCollection = content[selectedFilter].items[newSelectedIndex];
+    setIndex(newSelectedIndex);
+    setOrder(prev => ({
+      ...prev,
+      collection_id: selectedCollection.id,
+      type: selectedFilter
+    }));
+  };
 
   return (
     <div className={classes.root}>
@@ -31,7 +46,7 @@ const BoostList = props => {
             key={index}
             item={item}
             isSelected={selectedIndex === index}
-            onClick={() => setIndex(index)}
+            onClick={() => updateOrder(index)}
           />
         ))}
       </div>

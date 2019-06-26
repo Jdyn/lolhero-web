@@ -1,9 +1,9 @@
 import React from "react";
-import CustomBoostContainer from "../../containers/CustomBoostContainer";
+import BoostContainer from "../containers/BoostContainer";
 
 class customBoost extends React.Component {
   render() {
-    return <CustomBoostContainer />;
+    return <BoostContainer />;
   }
 }
 

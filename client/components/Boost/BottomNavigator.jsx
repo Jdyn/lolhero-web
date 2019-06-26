@@ -7,11 +7,36 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { classes } = props;
+  const { classes, currentStage, setStage } = props;
+
+  const updateStage = stage => {
+    if (stage + 1 <= 3) {
+      setStage(prev => prev + 1);
+    }
+  };
+
+  const stageText = currentStage => {
+    switch (currentStage) {
+      case 0:
+      case 1:
+        return "next";
+      case 2:
+        return "checkout";
+      case 3:
+        return "order";
+      default:
+        return "next";
+    }
+  };
 
   return (
     <div className={classes.container}>
-      <button className={classes.button} onClick={() => {}}>next</button>
+      <button
+        className={classes.button}
+        onClick={() => updateStage(currentStage)}
+      >
+        {stageText(currentStage)}
+      </button>
     </div>
   );
 };
@@ -26,7 +51,7 @@ const styles = theme => ({
     width: "100%",
     bottom: 0,
     backgroundColor: theme.tertiary,
-    zIndex: 20,
+    zIndex: 20
   },
   button: {
     outline: "none",
@@ -37,7 +62,7 @@ const styles = theme => ({
     cursor: "pointer",
     color: theme.white,
     textTransform: "uppercase",
-    letterSpacing: .8,
+    letterSpacing: 0.8,
     fontWeight: 700,
     fontSize: 20,
     backgroundColor: theme.accent

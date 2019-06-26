@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CustomBoost from "../components/Boost";
+import Boost from "../components/Boost";
 import { fetchBoosts } from "../actions/MarketActions";
 
-class CustomBoostContainer extends Component {
+class BoostContainer extends Component {
   render() {
-    return <CustomBoost {...this.props} />;
+    return <Boost {...this.props} />;
   }
 }
 
@@ -20,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CustomBoostContainer);
+)(BoostContainer);

@@ -38,7 +38,7 @@ const Home = props => {
             </Button>
           </Link>
 
-          <Link prefetch href="/boost/custom">
+          <Link prefetch href="/boost">
             <Button>custom order</Button>
           </Link>
         </div>

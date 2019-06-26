@@ -1,34 +1,39 @@
 import React, { useState, useEffect } from "react";
+import BoostTab from "./BoostTab";
+import AddonTab from "./AddonTab";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
-import BottomNavigator from "./BottomNavigator";
-import BoostList from "./BoostTab";
-import AddonTab from "./AddonTab";
 import BoostDisplay from "./BoostDisplay";
+import BottomNavigator from "./BottomNavigator";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const CustomBoost = props => {
+const Boost = props => {
   const { classes, fetchBoosts, boosts } = props;
 
+  const [currentStage, setStage] = useState(0);
   const [currentOrder, setOrder] = useState({
-    collection_id: 1,
-    starting_rank: 12,
-    desired_rank: 13
+    lp: null,
+    type: null,
+    queue: null,
+    server: null,
+    start_rank: null,
+    desired_rank: null,
+    collection_id: 1
   });
 
   return (
     <div className={classes.root}>
-      <TopNavigator />
+      <TopNavigator currentStage={currentStage} setStage={setStage} />
       <div className={classes.container}>
-        <BoostList />
+        <BoostTab setOrder={setOrder} />
         <BoostDisplay order={currentOrder} />
-        <AddonTab />
+        <AddonTab currentStage={currentStage} />
       </div>
-      <BottomNavigator />
+      <BottomNavigator currentStage={currentStage} setStage={setStage} />
     </div>
   );
 };
@@ -55,6 +60,6 @@ const styles = theme => ({
   }
 });
 
-CustomBoost.propTypes = propTypes;
+Boost.propTypes = propTypes;
 
-export default withStyles(styles)(CustomBoost);
+export default withStyles(styles)(Boost);

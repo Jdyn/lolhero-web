@@ -8,10 +8,10 @@ const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const filters = ["Details", "Add-Ons", "set-up", "Payment"];
+const filters = ["Details", "Add-Ons", "set-up", "review"];
 
 const TopNavigator = props => {
-  const { classes } = props;
+  const { classes, currentStage, setStage } = props;
 
   return (
     <div className={classes.root}>
@@ -24,7 +24,8 @@ const TopNavigator = props => {
         <Filter
           extended
           filters={filters}
-          onClick={index => console.log(index)}
+          selectedIndex={currentStage}
+          onClick={index => setStage(index)}
         />
       </div>
     </div>

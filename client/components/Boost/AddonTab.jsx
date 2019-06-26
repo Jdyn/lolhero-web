@@ -7,20 +7,24 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { classes, topIndex } = props;
+  const { classes, currentStage } = props;
 
-  const renderContent = index => {
-    switch (index) {
+  const renderContent = stage => {
+    switch (stage) {
       case 0:
         return <div>details</div>;
       case 1:
         return <div>add ons</div>;
       case 2:
-        return <div>payment</div>;
+        return <div>setup</div>;
+      case 3:
+        return <div>review</div>;
+      default:
+        return <div>default</div>;
     }
   };
 
-  return <div className={classes.container}>{renderContent(topIndex)}</div>;
+  return <div className={classes.container}>{renderContent(currentStage)}</div>;
 };
 
 const styles = theme => ({
