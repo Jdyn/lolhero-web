@@ -8,14 +8,22 @@ const propTypes = {
 };
 
 const Banner = props => {
-  const { classes, slider, rank, setOrder, isStartingRank } = props;
+  const {
+    classes,
+    theme,
+    slider,
+    rank,
+    setOrder,
+    currentOrder,
+    isStartingRank
+  } = props;
 
   const handleClick = (tierIndex, itemIndex, isStartingRank) => {
     const item = ranks[tierIndex][itemIndex];
     const change = {};
 
     if (isStartingRank) {
-      change["starting_rank"] = item.rank;
+      change["start_rank"] = item.rank;
     } else {
       change["desired_rank"] = item.rank;
     }
@@ -23,13 +31,15 @@ const Banner = props => {
     setOrder(prev => ({ ...prev, ...change }));
   };
 
+  console.log(rank);
+
   return (
     <div className={classes.container}>
       <div
         className={classes.wrapper}
         style={{
-          backgroundColor: rank.color || "blue",
-          borderColor: rank.accent || "yellow"
+          backgroundColor: rank.color || theme.secondary,
+          borderColor: rank.accent || theme.tertiary
         }}
       >
         {slider ? (
@@ -37,21 +47,33 @@ const Banner = props => {
         ) : (
           <>
             <div className={classes.header}>
-              <h1>{rank.title || "RANK"}</h1>
+              <h1>
+                {rank.title
+                  ? rank.title
+                  : isStartingRank
+                  ? "current rank"
+                  : "desired rank"}
+              </h1>
             </div>
             <div className={classes.body}>
               <button className={classes.optionButton}>
                 <span>queue</span>
-                <span className={classes.optionItem}>solo</span>
+                <span className={classes.optionItem}>
+                  {currentOrder.queue || "—"}
+                </span>
               </button>
               <div className={classes.options}>
                 <button className={classes.optionButton}>
                   <span>server</span>
-                  <span className={classes.optionItem}>NA</span>
+                  <span className={classes.optionItem}>
+                    {currentOrder.server || "—"}
+                  </span>
                 </button>
                 <button className={classes.optionButton}>
                   <span>lp</span>
-                  <span className={classes.optionItem}>0-21</span>
+                  <span className={classes.optionItem}>
+                    {currentOrder.lp || "—"}
+                  </span>
                 </button>
               </div>
               <div className={classes.itemWrapper} />
@@ -80,7 +102,10 @@ const Banner = props => {
       <div className={classes.footerWrapper}>
         <svg
           className={classes.footer}
-          style={{ fill: rank.color || "blue", stroke: rank.accent || "yellow" }}
+          style={{
+            fill: rank.color || theme.secondary,
+            stroke: rank.accent || theme.tertiary
+          }}
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
         >
@@ -107,10 +132,12 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     color: "#fefefe",
-    padding: "75px 24px",
+    padding: "65px 24px",
     borderLeft: "6px solid",
     borderRight: "6px solid",
+    boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     maxHeight: "450px",
+    height: "465px",
     "& span": {
       textAlign: "center"
     }
@@ -141,7 +168,7 @@ const styles = theme => ({
     display: "flex",
     // flexDirection: "row",
     flexWrap: "wrap",
-    width: "144px"
+    width: "170px"
   },
   optionButton: {
     display: "flex",
@@ -168,12 +195,12 @@ const styles = theme => ({
   button: {
     border: "none",
     outline: "none",
-    margin: "1px 1px",
+    margin: "1.5px 1px",
     padding: 0,
     cursor: "pointer",
     borderRadius: 3,
     height: "35px",
-    width: "10px",
+    width: "12px",
     border: `1px solid #e5e5e5`,
     transitionDuration: ".1s",
     "&:hover": {
@@ -202,4 +229,4 @@ const styles = theme => ({
 
 Banner.propTypes = propTypes;
 
-export default withStyles(styles)(Banner);
+export default withStyles(styles, { injectTheme: true })(Banner);

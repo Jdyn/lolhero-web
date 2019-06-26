@@ -22,15 +22,17 @@ const Boost = props => {
     server: null,
     start_rank: null,
     desired_rank: null,
-    collection_id: 1
+    collection_id: null
   });
+
+  console.log(currentOrder)
 
   return (
     <div className={classes.root}>
       <TopNavigator currentStage={currentStage} setStage={setStage} />
       <div className={classes.container}>
         <BoostTab setOrder={setOrder} />
-        <BoostDisplay order={currentOrder} />
+        <BoostDisplay currentOrder={currentOrder} setOrder={setOrder} />
         <AddonTab currentStage={currentStage} />
       </div>
       <BottomNavigator currentStage={currentStage} setStage={setStage} />

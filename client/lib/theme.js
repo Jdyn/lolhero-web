@@ -6,7 +6,7 @@ export default {
   },
   dark: {
     white: "#f0f0f0",
-    accent: "#4285F4",
+    accent: "#0C7AF2",
     green: "#1bb978",
     primary: "#353535",
     secondary: "#323232",
