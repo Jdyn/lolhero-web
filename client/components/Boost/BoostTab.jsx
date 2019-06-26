@@ -3,7 +3,7 @@ import Filter from "../Shared/Filter";
 import content from "../../lib/boostContent";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import BoostListItem from "./BoostListItem";
+import BoostTabItem from "./BoostTabItem";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -27,7 +27,7 @@ const BoostList = props => {
       </div>
       <div className={classes.container}>
         {content[selectedFilter].items.map((item, index) => (
-          <BoostListItem
+          <BoostTabItem
             key={index}
             item={item}
             isSelected={selectedIndex === index}
@@ -46,6 +46,7 @@ const styles = theme => ({
     position: "relative",
     boxShadow: "5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
     borderRadius: 16,
+    zIndex: 15,
     flexDirection: "column",
     backgroundColor: theme.primary,
     "@media (min-width: 1025px)": {

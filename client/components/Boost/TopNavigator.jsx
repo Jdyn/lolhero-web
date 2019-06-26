@@ -35,7 +35,7 @@ const styles = theme => ({
   root: {
     top: 0,
     width: "100%",
-    zIndex: 10,
+    zIndex: 20,
     display: "flex",
     position: "fixed",
     justifyContent: "center",

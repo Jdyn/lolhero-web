@@ -9,7 +9,7 @@ const propTypes = {
   isSelected: PropTypes.bool.isRequired
 };
 
-const BoostListItem = props => {
+const BoostTabItem = props => {
   const { classes, theme, item, onClick, isSelected } = props;
 
   return (
@@ -38,7 +38,7 @@ const styles = theme => ({
     flexDirection: "column",
     transitionDuration: ".15s",
     "@media (min-width: 640px)": {
-      width: "47%"
+      width: "45%"
     },
     "@media (min-width: 1025px)": {
       width: "auto"
@@ -63,6 +63,6 @@ const styles = theme => ({
   }
 });
 
-BoostListItem.propTypes = propTypes;
+BoostTabItem.propTypes = propTypes;
 
-export default withStyles(styles, { injectTheme: true })(BoostListItem);
+export default withStyles(styles, { injectTheme: true })(BoostTabItem);

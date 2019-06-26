@@ -6,7 +6,7 @@ const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const AddonNavigator = props => {
+const AddonTab = props => {
   const { classes, topIndex } = props;
 
   const renderContent = index => {
@@ -39,6 +39,6 @@ const styles = theme => ({
   }
 });
 
-AddonNavigator.propTypes = propTypes;
+AddonTab.propTypes = propTypes;
 
-export default withStyles(styles)(AddonNavigator);
+export default withStyles(styles)(AddonTab);

@@ -32,22 +32,24 @@ const styles = theme => ({
       textRendering: "optimizeLegibility"
     },
     div: {
-      "&::-webkit-scrollbar": {
-        width: "8px",
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "#999",
-        borderRadius: 6,
-        webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
-      },
-      "&::-webkit-scrollbar-track": {
-        backgroundColor: theme.primary,
-        webkitBoxShadow: "inset 0 0 6px transparent"
-      },
-      "&::-webkit-scrollbar-button": {
-        width: "0",
-        height: "0",
-        display: "none"
+      "@media (min-width: 1025px)": {
+        "&::-webkit-scrollbar": {
+          width: "8px"
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#999",
+          borderRadius: 6,
+          webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: theme.primary,
+          webkitBoxShadow: "inset 0 0 6px transparent"
+        },
+        "&::-webkit-scrollbar-button": {
+          width: "0",
+          height: "0",
+          display: "none"
+        }
       }
     }
   }

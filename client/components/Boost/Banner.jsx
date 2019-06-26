@@ -24,69 +24,67 @@ const Banner = props => {
   };
 
   return (
-    <>
-      <div className={classes.container}>
-        <div
-          className={classes.wrapper}
-          style={{ backgroundColor: rank.color, borderColor: rank.accent }}
-        >
-          {slider ? (
-            <div>slide</div>
-          ) : (
-            <>
-              <div className={classes.header}>
-                <h1>{rank.title}</h1>
-              </div>
-              <div className={classes.body}>
+    <div className={classes.container}>
+      <div
+        className={classes.wrapper}
+        style={{ backgroundColor: rank.color, borderColor: rank.accent }}
+      >
+        {slider ? (
+          <div>slide</div>
+        ) : (
+          <>
+            <div className={classes.header}>
+              <h1>{rank.title}</h1>
+            </div>
+            <div className={classes.body}>
+              <button className={classes.optionButton}>
+                <span>queue</span>
+                <span className={classes.optionItem}>solo</span>
+              </button>
+              <div className={classes.options}>
                 <button className={classes.optionButton}>
-                  <span>queue</span>
-                  <span className={classes.optionItem}>solo</span>
+                  <span>server</span>
+                  <span className={classes.optionItem}>NA</span>
                 </button>
-                <div className={classes.options}>
-                  <button className={classes.optionButton}>
-                    <span>server</span>
-                    <span className={classes.optionItem}>NA</span>
-                  </button>
-                  <button className={classes.optionButton}>
-                    <span>lp</span>
-                    <span className={classes.optionItem}>0-21</span>
-                  </button>
-                </div>
-                <div className={classes.itemWrapper} />
+                <button className={classes.optionButton}>
+                  <span>lp</span>
+                  <span className={classes.optionItem}>0-21</span>
+                </button>
               </div>
-              <div className={classes.ranks}>
-                {ranks.map((rankList, tierIndex) =>
-                  rankList.map((listItem, itemIndex) => (
-                    <button
-                      key={listItem.title}
-                      className={classes.button}
-                      style={{
-                        backgroundColor: ranks[tierIndex][itemIndex].color,
-                        borderColor: ranks[tierIndex][itemIndex].accent
-                      }}
-                      onClick={() =>
-                        handleClick(tierIndex, itemIndex, isStartingRank)
-                      }
-                    />
-                  ))
-                )}
-              </div>
-            </>
-          )}
-        </div>
-
-        <div className={classes.footerWrapper}>
-          <svg
-            className={classes.footer}
-            style={{ fill: rank.color, stroke: rank.accent }}
-            preserveAspectRatio="none"
-            viewBox="0 0 100 100"
-          >
-            <path d="M0 0 L50 100 L100 0 Z" />
-          </svg>
-        </div>
+              <div className={classes.itemWrapper} />
+            </div>
+            <div className={classes.ranks}>
+              {ranks.map((rankList, tierIndex) =>
+                rankList.map((listItem, itemIndex) => (
+                  <button
+                    key={listItem.title}
+                    className={classes.button}
+                    style={{
+                      backgroundColor: ranks[tierIndex][itemIndex].color,
+                      borderColor: ranks[tierIndex][itemIndex].accent
+                    }}
+                    onClick={() =>
+                      handleClick(tierIndex, itemIndex, isStartingRank)
+                    }
+                  />
+                ))
+              )}
+            </div>
+          </>
+        )}
       </div>
-    </>
+
+      <div className={classes.footerWrapper}>
+        <svg
+          className={classes.footer}
+          style={{ fill: rank.color, stroke: rank.accent }}
+          preserveAspectRatio="none"
+          viewBox="0 0 100 100"
+        >
+          <path d="M0 0 L50 100 L100 0 Z" />
+        </svg>
+      </div>
+    </div>
   );
 };
 
@@ -94,14 +92,10 @@ const styles = theme => ({
   container: {
     position: "relative",
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "flex-start",
     width: "245px",
-    height: "calc(90% - 100px)",
-    minHeight: "400px",
-    backgroundColor: theme.tertiary,
-    boxShadow: "0px 0px 20px rgba(0,0,0,.4)",
-    margin: "0 15px",
-    maxHeight: "450px",
+    margin: "0 15px 50px 15px",
     zIndex: 5
   },
   wrapper: {
@@ -113,6 +107,7 @@ const styles = theme => ({
     padding: "75px 24px",
     borderLeft: "6px solid",
     borderRight: "6px solid",
+    maxHeight: "450px",
     "& span": {
       textAlign: "center"
     }
@@ -185,9 +180,7 @@ const styles = theme => ({
   footer: {
     width: "100%",
     height: "100px",
-    position: "absolute",
-    // bottom: "-100px",
-    fill: theme.tertiary,
+    position: "relative",
     strokeWidth: 3,
     zIndex: 0,
     filter: "drop-shadow(0 65px 15px rgba(0,0,0,.35))"
@@ -195,8 +188,11 @@ const styles = theme => ({
   footerWrapper: {
     width: "100%",
     height: "100px",
-    position: "absolute",
-    bottom: "-98px",
+    minHeight: "100px",
+    backgroundColor: "transparent",
+    fill: "transparent",
+    position: "relative",
+    bottom: 2,
     zIndex: -1
   }
 });

@@ -26,7 +26,7 @@ const styles = theme => ({
     width: "100%",
     bottom: 0,
     backgroundColor: theme.tertiary,
-    zIndex: 10,
+    zIndex: 20,
   },
   button: {
     outline: "none",

@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
 import BottomNavigator from "./BottomNavigator";
-import BoostList from "./BoostList";
-import AddonNavigator from "./AddonNavigator";
-import RankSelect from "./RankSelect";
-import Filter from "../Shared/Filter";
+import BoostList from "./BoostTab";
+import AddonTab from "./AddonTab";
+import BoostDisplay from "./BoostDisplay";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -26,8 +25,8 @@ const CustomBoost = props => {
       <TopNavigator />
       <div className={classes.container}>
         <BoostList />
-        <RankSelect order={currentOrder} />
-        <AddonNavigator />
+        <BoostDisplay order={currentOrder} />
+        <AddonTab />
       </div>
       <BottomNavigator />
     </div>
