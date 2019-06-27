@@ -12,6 +12,6 @@ export default {
     secondary: "#323232",
     tertiary: "#292929",
     quartinary: "#252525",
-    grey: "#999999"
+    grey: "#999"
   }
 };

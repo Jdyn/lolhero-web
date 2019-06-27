@@ -25,7 +25,7 @@ const Boost = props => {
     collection_id: null
   });
 
-  console.log(currentOrder)
+  console.log(currentOrder);
 
   return (
     <div className={classes.root}>
@@ -33,7 +33,11 @@ const Boost = props => {
       <div className={classes.container}>
         <BoostTab setOrder={setOrder} />
         <BoostDisplay currentOrder={currentOrder} setOrder={setOrder} />
-        <AddonTab currentStage={currentStage} />
+        <AddonTab
+          currentStage={currentStage}
+          currentOrder={currentOrder}
+          setOrder={setOrder}
+        />
       </div>
       <BottomNavigator currentStage={currentStage} setStage={setStage} />
     </div>

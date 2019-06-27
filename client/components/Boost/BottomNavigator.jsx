@@ -10,7 +10,7 @@ const BottomNavigator = props => {
   const { classes, currentStage, setStage } = props;
 
   const updateStage = stage => {
-    if (stage + 1 <= 3) {
+    if (stage + 1 <= 4) {
       setStage(prev => prev + 1);
     }
   };

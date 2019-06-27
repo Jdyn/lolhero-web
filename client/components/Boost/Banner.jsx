@@ -31,8 +31,6 @@ const Banner = props => {
     setOrder(prev => ({ ...prev, ...change }));
   };
 
-  console.log(rank);
-
   return (
     <div className={classes.container}>
       <div
