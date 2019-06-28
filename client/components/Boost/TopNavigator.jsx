@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import Link from "next/link";
+import React from "react";
+import Filter from "../Shared/Filter";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import Link from "next/link";
-import Filter from "../Shared/Filter";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -79,4 +79,4 @@ const styles = theme => ({
 
 TopNavigator.propTypes = propTypes;
 
-export default withStyles(styles)(TopNavigator);
+export default withStyles(styles, { link: true })(TopNavigator);

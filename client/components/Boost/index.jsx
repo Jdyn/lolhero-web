@@ -25,8 +25,6 @@ const Boost = props => {
     collection_id: null
   });
 
-  console.log(currentOrder);
-
   return (
     <div className={classes.root}>
       <TopNavigator currentStage={currentStage} setStage={setStage} />

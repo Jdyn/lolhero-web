@@ -58,4 +58,4 @@ const styles = theme => ({
 Baseline.propTypes = propTypes;
 Baseline.defaultProps = defaultProps;
 
-export default withStyles(styles)(Baseline);
+export default withStyles(styles, { link: true })(Baseline);

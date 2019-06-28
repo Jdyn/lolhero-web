@@ -9,18 +9,14 @@ const propTypes = {
   isSelected: PropTypes.bool
 };
 
-const Button = props => {
-  const { classes, children, onClick } = props;
-  console.log(props.isSelected)
-  return (
-    <button onClick={onClick} className={classes.button}>
-      {children}
-    </button>
-  );
-};
+const Toggle = ({ classes, children, onClick }) => (
+  <button onClick={onClick} className={classes.button}>
+    {children}
+  </button>
+);
 
-Button.propTypes = propTypes;
-Button.defaultProps = {
+Toggle.propTypes = propTypes;
+Toggle.defaultProps = {
   width: "100%",
   height: "auto",
   margin: "6px 0"
@@ -52,4 +48,4 @@ const styles = theme => ({
   })
 });
 
-export default withStyles(styles, { link: true })(Button);
+export default withStyles(styles, { link: true })(Toggle);

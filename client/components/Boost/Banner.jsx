@@ -53,27 +53,27 @@ const Banner = props => {
                   : "desired rank"}
               </h1>
             </div>
+
             <div className={classes.body}>
-              <button className={classes.optionButton}>
-                <span>queue</span>
-                <span className={classes.optionItem}>
-                  {currentOrder.queue || "—"}
-                </span>
-              </button>
-              <div className={classes.options}>
-                <button className={classes.optionButton}>
-                  <span>server</span>
-                  <span className={classes.optionItem}>
-                    {currentOrder.server || "—"}
-                  </span>
-                </button>
-                <button className={classes.optionButton}>
-                  <span>lp</span>
-                  <span className={classes.optionItem}>
-                    {currentOrder.lp || "—"}
-                  </span>
-                </button>
-              </div>
+              {isStartingRank && (
+                <>
+                  <div className={classes.info}>
+                    <h3>queue</h3>
+                    <span>{currentOrder.queue || "—"}</span>
+                  </div>
+                  <div className={classes.options}>
+                    <div className={classes.info}>
+                      <h3>server</h3>
+                      <span>{currentOrder.server || "—"}</span>
+                    </div>
+                    <div className={classes.info}>
+                      <h3>lp</h3>
+                      <span>{currentOrder.lp || "—"}</span>
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div className={classes.itemWrapper} />
             </div>
             <div className={classes.ranks}>

@@ -16,7 +16,6 @@ const AddonTab = props => {
       switch (newUpdate.type) {
         case "server":
           if (currentOrder.server !== newUpdate.server) {
-            console.log("true");
             setOrder(prev => ({ ...prev, server: newUpdate.server }));
           }
           return;
@@ -40,10 +39,7 @@ const AddonTab = props => {
     0: (
       <div className={classes.container}>
         <div className={classes.wrapper}>
-          <h1>Details</h1>
-        </div>
-        <div className={classes.wrapper}>
-          <h2>Servers</h2>
+          <h2>Available Servers</h2>
           {addons.details.servers.map((server, index) => {
             return (
               <Toggle
@@ -58,7 +54,7 @@ const AddonTab = props => {
         </div>
 
         <div className={classes.wrapper}>
-          <h2>Queue Type</h2>
+          <h2>Available Queues</h2>
           {addons.details.queues.map((queue, index) => {
             return (
               <Toggle
@@ -80,8 +76,8 @@ const AddonTab = props => {
                   key={index}
                   onClick={() => updateOrder(lp)}
                   width="85px"
-                  height="95px"
-                  margin="10px 5px"
+                  // height="65px"
+                  margin="5px 5px"
                   isSelected={currentOrder.lp === lp.lp}
                 >
                   {lp.title}
@@ -117,14 +113,14 @@ const styles = theme => ({
   container: {
     height: "100%",
     overflowY: "auto",
-    color: theme.grey,
+    color: theme.white,
     "& h1": {
       fontSize: 20,
-      margin: 0
+      margin: "25px"
     },
     "& h2": {
       fontSize: 18,
-      margin: "0px 0 25px 0"
+      margin: "25px"
     }
   },
   wrapper: {
@@ -134,7 +130,10 @@ const styles = theme => ({
     borderRadius: 12,
     padding: "25px",
     boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 15px 10px"
+    margin: "10px 10px 20px 10px",
+    "& h2": {
+      margin: "0 0 15px 0"
+    }
   },
   lp: {
     display: "flex",

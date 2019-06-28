@@ -15,7 +15,10 @@ const propTypes = {
 const Button = props => {
   const { classes, children, secondary, onClick } = props;
   return (
-    <button onClick={onClick} className={secondary ? classes.secondary : classes.primary}>
+    <button
+      onClick={onClick}
+      className={secondary ? classes.secondary : classes.primary}
+    >
       {children}
     </button>
   );
@@ -46,7 +49,7 @@ const styles = theme => ({
     "&:hover": {
       transform: "translateY(-2px)"
     },
-    "&:active": {
+    "&::active": {
       transform: "translateY(2px)"
     }
   },

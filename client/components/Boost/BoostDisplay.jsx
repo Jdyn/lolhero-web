@@ -63,7 +63,7 @@ const styles = {
     justifyContent: "space-evenly",
     alignItems: "center",
     flexGrow: 1,
-    top: -6,
+    // top: -6,
     "@media (min-width: 640px)": {
       flexDirection: "row",
       alignItems: "normal"

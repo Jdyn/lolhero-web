@@ -51,11 +51,11 @@ Filter.propTypes = propTypes;
 Filter.defaultProps = {};
 
 const styles = theme => ({
-  container: ({ extended }) => ({
+  container: props => ({
     margin: 0,
     padding: "20px 0 0 0",
     display: "flex",
-    flexGrow: extended ? 1 : 0,
+    flexGrow: props.extended ? 1 : 0,
     position: "relative",
     flexDirection: "row"
   }),
@@ -83,4 +83,4 @@ const styles = theme => ({
   })
 });
 
-export default withStyles(styles, { injectTheme: true })(Filter);
+export default withStyles(styles, { link: true, injectTheme: true })(Filter);
