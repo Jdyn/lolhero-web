@@ -31,6 +31,8 @@ const BottomNavigator = props => {
 
   return (
     <div className={classes.container}>
+
+      <h3>purchase price</h3>
       <button
         className={classes.button}
         onClick={() => updateStage(currentStage)}
@@ -45,7 +47,7 @@ const styles = theme => ({
   container: {
     position: "fixed",
     display: "flex",
-    justifyContent: "flex-end",
+    // justifyContent: "flex-end",
     gridArea: "botNav",
     minHeight: "90px",
     width: "100%",
@@ -57,7 +59,7 @@ const styles = theme => ({
     outline: "none",
     border: "none",
     width: "350px",
-    margin: "15px 25px",
+    margin: "15px 25px 15px auto",
     borderRadius: 12,
     cursor: "pointer",
     color: theme.white,

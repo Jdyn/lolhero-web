@@ -83,7 +83,7 @@ const styles = theme => ({
   },
   notice: {
     margin: "20px 10px 10px 10px",
-    padding: "15px",
+    padding: "25px",
     boxShadow: "0px 0px 15px rgb(0,0,0,.12)",
     backgroundColor: theme.tertiary,
     color: theme.white,

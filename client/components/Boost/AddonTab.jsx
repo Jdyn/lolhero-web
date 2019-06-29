@@ -39,7 +39,8 @@ const AddonTab = props => {
     0: (
       <div className={classes.container}>
         <div className={classes.wrapper}>
-          <h2>Available Servers</h2>
+          <h2>Servers</h2>
+          <p>What server are you on? We currently support the following servers.</p>
           {addons.details.servers.map((server, index) => {
             return (
               <Toggle
@@ -54,7 +55,8 @@ const AddonTab = props => {
         </div>
 
         <div className={classes.wrapper}>
-          <h2>Available Queues</h2>
+          <h2>Queues</h2>
+          <p>What queue type do you want to play on? We currently support the following queues. </p>
           {addons.details.queues.map((queue, index) => {
             return (
               <Toggle
@@ -68,7 +70,8 @@ const AddonTab = props => {
           })}
         </div>
         <div className={classes.wrapper}>
-          <h2>What is your current LP?</h2>
+          <h2>League Points</h2>
+          <p>How much LP do you have? We lower the price based on how much LP you currently have. </p>
           <div className={classes.lp}>
             {addons.details.lp.map((lp, index) => {
               return (
@@ -132,7 +135,14 @@ const styles = theme => ({
     boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
     margin: "10px 10px 20px 10px",
     "& h2": {
-      margin: "0 0 15px 0"
+      fontSize: 20,
+      margin: 0
+    },
+    "& p": {
+      color: theme.grey,
+      margin: 0,
+      fontSize: 16,
+      marginBottom: "15px"
     }
   },
   lp: {
