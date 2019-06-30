@@ -4,9 +4,9 @@ const initialState = {
   price: null,
   stage: 0,
   order: {
-    lp: null,
-    queue: null,
-    server: null,
+    lp: 20,
+    queue: "solo",
+    server: "NA",
     boost_type: null,
     start_rank: null,
     desired_rank: null,
