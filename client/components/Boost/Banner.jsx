@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import ranks from "../../lib/ranks";
+import BannerRankItem from "./BannerRankItem";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -10,36 +11,16 @@ const propTypes = {
 const Banner = props => {
   const {
     classes,
-    theme,
     slider,
     rank,
-    setOrder,
+    updateOrder,
     currentOrder,
     isStartingRank
   } = props;
 
-  const handleClick = (tierIndex, itemIndex, isStartingRank) => {
-    const item = ranks[tierIndex][itemIndex];
-    const change = {};
-
-    if (isStartingRank) {
-      change["start_rank"] = item.rank;
-    } else {
-      change["desired_rank"] = item.rank;
-    }
-
-    setOrder(prev => ({ ...prev, ...change }));
-  };
-
   return (
     <div className={classes.container}>
-      <div
-        className={classes.wrapper}
-        style={{
-          backgroundColor: rank.color || theme.secondary,
-          borderColor: rank.accent || theme.tertiary
-        }}
-      >
+      <div className={classes.wrapper}>
         {slider ? (
           <div>slide</div>
         ) : (
@@ -79,16 +60,12 @@ const Banner = props => {
             <div className={classes.ranks}>
               {ranks.map((rankList, tierIndex) =>
                 rankList.map((listItem, itemIndex) => (
-                  <button
-                    key={listItem.title}
-                    className={classes.button}
-                    style={{
-                      backgroundColor: ranks[tierIndex][itemIndex].color,
-                      borderColor: ranks[tierIndex][itemIndex].accent
-                    }}
-                    onClick={() =>
-                      handleClick(tierIndex, itemIndex, isStartingRank)
-                    }
+                  <BannerRankItem
+                    rank={ranks[tierIndex][itemIndex]}
+                    isSelected={rank.rank === listItem.rank}
+                    isStartingRank={isStartingRank}
+                    isDisabled={false}
+                    updateOrder={updateOrder}
                   />
                 ))
               )}
@@ -100,10 +77,6 @@ const Banner = props => {
       <div className={classes.footerWrapper}>
         <svg
           className={classes.footer}
-          style={{
-            fill: rank.color || theme.secondary,
-            stroke: rank.accent || theme.tertiary
-          }}
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
         >
@@ -113,6 +86,20 @@ const Banner = props => {
     </div>
   );
 };
+
+{
+  /* <button
+key={listItem.title}
+className={classes.button}
+style={{
+  backgroundColor: ranks[tierIndex][itemIndex].color,
+  borderColor: ranks[tierIndex][itemIndex].accent
+}}
+onClick={() =>
+  handleClick(tierIndex, itemIndex, isStartingRank)
+}
+/> */
+}
 
 const styles = theme => ({
   container: {
@@ -124,22 +111,23 @@ const styles = theme => ({
     margin: "0 15px 50px 15px",
     zIndex: 5
   },
-  wrapper: {
+  wrapper: props => ({
     display: "flex",
     flexGrow: 1,
     flexDirection: "column",
     alignItems: "center",
     color: "#fefefe",
     padding: "65px 24px",
-    borderLeft: "6px solid",
-    borderRight: "6px solid",
+    borderLeft: `6px solid ${props.rank.accent || theme.tertiary}`,
+    borderRight: `6px solid ${props.rank.accent || theme.tertiary}`,
+    backgroundColor: props.rank.color || theme.secondary,
     boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     maxHeight: "450px",
     height: "465px",
     "& span": {
       textAlign: "center"
     }
-  },
+  }),
   header: {
     display: "flex",
     width: "100%",
@@ -190,29 +178,16 @@ const styles = theme => ({
     fontWeight: 700,
     color: theme.white
   },
-  button: {
-    border: "none",
-    outline: "none",
-    margin: "1.5px 1px",
-    padding: 0,
-    cursor: "pointer",
-    borderRadius: 3,
-    height: "35px",
-    width: "12px",
-    border: `1px solid #e5e5e5`,
-    transitionDuration: ".1s",
-    "&:hover": {
-      transform: "scale(1.5)"
-    }
-  },
-  footer: {
+  footer: props => ({
     width: "100%",
     height: "100px",
     position: "relative",
     strokeWidth: 3,
     zIndex: 0,
+    fill: props.rank.color || theme.secondary,
+    stroke: props.rank.accent || theme.tertiary,
     filter: "drop-shadow(0 65px 15px rgba(0,0,0,.35))"
-  },
+  }),
   footerWrapper: {
     width: "100%",
     height: "100px",
@@ -227,4 +202,4 @@ const styles = theme => ({
 
 Banner.propTypes = propTypes;
 
-export default withStyles(styles, { injectTheme: true })(Banner);
+export default withStyles(styles, { link: true })(Banner);

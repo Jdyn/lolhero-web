@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const BoostDisplay = props => {
-  const { classes, setOrder, currentOrder } = props;
+  const { classes, updateOrder, currentOrder } = props;
 
   const [ranksObject] = useState(
     [].concat
@@ -32,7 +32,7 @@ const BoostDisplay = props => {
                     : {}
                 }
                 currentOrder={currentOrder}
-                setOrder={setOrder}
+                updateOrder={updateOrder}
               />
             </div>
             <Banner
@@ -41,7 +41,7 @@ const BoostDisplay = props => {
                   ? ranksObject[currentOrder.desired_rank]
                   : {}
               }
-              setOrder={setOrder}
+              updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
           </>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Boost from "../components/Boost";
-import { fetchBoosts } from "../actions/MarketActions";
+import { fetchBoostPrices, updateOrder } from "../actions/BoostActions";
 
 class BoostContainer extends Component {
   render() {
@@ -10,11 +10,13 @@ class BoostContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  boosts: state.market.boosting
+  currentOrder: state.boost.order,
+  boost: state.boost
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchBoosts: () => dispatch(fetchBoosts())
+  fetchBoostPrices: () => dispatch(fetchBoostPrices()),
+  updateOrder: newUpdate => dispatch(updateOrder(newUpdate))
 });
 
 export default connect(

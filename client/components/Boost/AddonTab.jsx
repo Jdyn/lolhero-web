@@ -9,43 +9,21 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { classes, currentStage, setOrder, currentOrder } = props;
-
-  const updateOrder = newUpdate => {
-    if (typeof newUpdate === "object") {
-      switch (newUpdate.type) {
-        case "server":
-          if (currentOrder.server !== newUpdate.server) {
-            setOrder(prev => ({ ...prev, server: newUpdate.server }));
-          }
-          return;
-        case "queue":
-          if (currentOrder.queue !== newUpdate.queue) {
-            setOrder(prev => ({ ...prev, queue: newUpdate.queue }));
-          }
-          return;
-        case "lp":
-          if (currentOrder.lp !== newUpdate.lp) {
-            setOrder(prev => ({ ...prev, lp: newUpdate.lp }));
-          }
-          return;
-      }
-    }
-  };
-
-  console.log(currentOrder);
+  const { classes, currentStage, updateOrder, currentOrder } = props;
 
   const views = {
     0: (
       <div className={classes.container}>
         <div className={classes.wrapper}>
           <h2>Servers</h2>
-          <p>What server are you on? We currently support the following servers.</p>
+          <p>
+            What server are you on? We currently support the following servers.
+          </p>
           {addons.details.servers.map((server, index) => {
             return (
               <Toggle
                 key={index}
-                onClick={() => updateOrder(server)}
+                onClick={() => updateOrder({ server: server.server })}
                 isSelected={currentOrder.server === server.server}
               >
                 {server.title}
@@ -56,12 +34,15 @@ const AddonTab = props => {
 
         <div className={classes.wrapper}>
           <h2>Queues</h2>
-          <p>What queue type do you want to play on? We currently support the following queues. </p>
+          <p>
+            What queue type do you want to play on? We currently support the
+            following queues.
+          </p>
           {addons.details.queues.map((queue, index) => {
             return (
               <Toggle
                 key={index}
-                onClick={() => updateOrder(queue)}
+                onClick={() => updateOrder({ queue: queue.queue })}
                 isSelected={currentOrder.queue === queue.queue}
               >
                 {queue.title}
@@ -71,15 +52,16 @@ const AddonTab = props => {
         </div>
         <div className={classes.wrapper}>
           <h2>League Points</h2>
-          <p>How much LP do you have? We lower the price based on how much LP you currently have. </p>
+          <p>
+            How much LP do you have? We adjust the price based on the amount.
+          </p>
           <div className={classes.lp}>
             {addons.details.lp.map((lp, index) => {
               return (
                 <Toggle
                   key={index}
-                  onClick={() => updateOrder(lp)}
+                  onClick={() => updateOrder({ lp: lp.lp })}
                   width="85px"
-                  // height="65px"
                   margin="5px 5px"
                   isSelected={currentOrder.lp === lp.lp}
                 >

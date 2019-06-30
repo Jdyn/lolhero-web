@@ -12,32 +12,31 @@ const propTypes = {
 };
 
 const Boost = props => {
-  const { classes, fetchBoosts, boosts } = props;
+  const { classes, fetchBoostPrices, updateOrder, currentOrder, boost } = props;
 
   const [currentStage, setStage] = useState(0);
-  const [currentOrder, setOrder] = useState({
-    lp: null,
-    type: null,
-    queue: null,
-    server: null,
-    start_rank: null,
-    desired_rank: null,
-    collection_id: null
-  });
+
+  useEffect(() => {
+    fetchBoostPrices();
+  }, []);
 
   return (
     <div className={classes.root}>
       <TopNavigator currentStage={currentStage} setStage={setStage} />
       <div className={classes.container}>
-        <BoostTab setOrder={setOrder} />
-        <BoostDisplay currentOrder={currentOrder} setOrder={setOrder} />
+        <BoostTab updateOrder={updateOrder} />
+        <BoostDisplay currentOrder={currentOrder} updateOrder={updateOrder} />
         <AddonTab
           currentStage={currentStage}
           currentOrder={currentOrder}
-          setOrder={setOrder}
+          updateOrder={updateOrder}
         />
       </div>
-      <BottomNavigator currentStage={currentStage} setStage={setStage} />
+      <BottomNavigator
+        currentStage={currentStage}
+        setStage={setStage}
+        boost={boost}
+      />
     </div>
   );
 };

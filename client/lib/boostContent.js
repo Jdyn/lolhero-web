@@ -47,26 +47,29 @@ export default {
         name: "Division Boost",
         tag: "duo",
         id: 5,
-        description: ""
+        description:
+          "We play the required amount of games to reach the division you select."
       },
       {
         name: "Net Wins",
         tag: "duo",
         id: 6,
-        description: ""
+        description: "We play your desired amount of placement matches."
       },
 
       {
         name: "Placement Games",
         tag: "duo",
         id: 7,
-        description: ""
+        description:
+          "We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins."
       },
       {
         name: "Net Games",
         tag: "duo",
         id: 8,
-        description: ""
+        description:
+          "Low cost, guaranteeing high performance without a specific win rate"
       }
     ]
   }

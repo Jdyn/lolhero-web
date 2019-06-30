@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { classes, currentStage, setStage } = props;
+  const { classes, currentStage, setStage, boost } = props;
 
   const updateStage = stage => {
     if (stage + 1 <= 4) {
@@ -31,8 +31,7 @@ const BottomNavigator = props => {
 
   return (
     <div className={classes.container}>
-
-      <h3>purchase price</h3>
+      <h3>purchase price {boost.price}</h3>
       <button
         className={classes.button}
         onClick={() => updateStage(currentStage)}
@@ -49,6 +48,7 @@ const styles = theme => ({
     display: "flex",
     // justifyContent: "flex-end",
     gridArea: "botNav",
+    color: theme.white,
     minHeight: "90px",
     width: "100%",
     bottom: 0,

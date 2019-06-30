@@ -7,27 +7,26 @@ import BoostTabItem from "./BoostTabItem";
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
-  setOrder: PropTypes.func.isRequired
+  updateOrder: PropTypes.func.isRequired
 };
 
-const BoostList = props => {
-  const { classes, setOrder } = props;
+const BoostTab = props => {
+  const { classes, updateOrder } = props;
 
   const [selectedFilter, setFilter] = useState("solo");
   const [selectedIndex, setIndex] = useState(0);
 
   useEffect(() => {
-    updateOrder(selectedIndex);
+    handleOrderUpdate(selectedIndex);
   }, [selectedFilter]);
 
-  const updateOrder = newSelectedIndex => {
+  const handleOrderUpdate = newSelectedIndex => {
     const selectedCollection = content[selectedFilter].items[newSelectedIndex];
     setIndex(newSelectedIndex);
-    setOrder(prev => ({
-      ...prev,
+    updateOrder({
       collection_id: selectedCollection.id,
-      type: selectedFilter
-    }));
+      boost_type: selectedFilter
+    });
   };
 
   return (
@@ -46,7 +45,7 @@ const BoostList = props => {
             key={index}
             item={item}
             isSelected={selectedIndex === index}
-            onClick={() => updateOrder(index)}
+            onClick={() => handleOrderUpdate(index)}
           />
         ))}
       </div>
@@ -95,6 +94,6 @@ const styles = theme => ({
   }
 });
 
-BoostList.propTypes = propTypes;
+BoostTab.propTypes = propTypes;
 
-export default withStyles(styles)(BoostList);
+export default withStyles(styles)(BoostTab);

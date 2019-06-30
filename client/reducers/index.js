@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import request from "../reducers/request";
-import market from "../reducers/market";
+import request from "./request";
+import boost from "./boost";
 
 export default combineReducers({
   request,
-  market
+  boost
 });
