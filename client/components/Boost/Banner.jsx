@@ -18,6 +18,22 @@ const Banner = props => {
     isStartingRank
   } = props;
 
+  const validateDisabled = itemIndex => {
+    if (!isStartingRank) {
+      if (currentOrder.start_rank !== null) {
+        return itemIndex < currentOrder.start_rank + 1;
+      } else {
+        return false;
+      }
+    } else {
+      if (currentOrder.desired_rank !== null) {
+        return itemIndex > currentOrder.desired_rank - 1;
+      } else {
+        return false;
+      }
+    }
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -29,24 +45,6 @@ const Banner = props => {
               <h1>{rank.title || ""}</h1>
               <h3>{isStartingRank ? "current rank" : "desired rank"}</h3>
             </div>
-            {/* <div className={classes.body}>
-              {isStartingRank && (
-                <>
-                  <div className={classes.info}>
-                    <h3>queue</h3>
-                    <span>{currentOrder.queue || "—"}</span>
-                  </div>
-                  <div className={classes.info}>
-                    <h3>server</h3>
-                    <span>{currentOrder.server || "—"}</span>
-                  </div>
-                  <div className={classes.info}>
-                    <h3>lp</h3>
-                    <span>{currentOrder.lp || "—"}</span>
-                  </div>
-                </>
-              )}
-            </div> */}
             <div className={classes.ranks}>
               {ranks.map((rankList, tierIndex) =>
                 rankList.map((listItem, itemIndex) => (
@@ -55,7 +53,7 @@ const Banner = props => {
                     rank={ranks[tierIndex][itemIndex]}
                     isSelected={rank.rank === listItem.rank}
                     isStartingRank={isStartingRank}
-                    isDisabled={false}
+                    isDisabled={validateDisabled(listItem.rank)}
                     updateOrder={updateOrder}
                   />
                 ))
@@ -83,7 +81,9 @@ const styles = theme => ({
     position: "relative",
     display: "flex",
     flexDirection: "column",
-    height: "520px",
+    // height: "520px",
+    height: "65vh",
+    maxHeight: "540px",
     justifyContent: "flex-start",
     width: "245px",
     margin: "0 15px 50px 15px",
@@ -101,27 +101,10 @@ const styles = theme => ({
     borderRight: `6px solid ${props.rank.accent || theme.tertiary}`,
     backgroundColor: props.rank.color || theme.secondary,
     boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
-    // height: "450px",
     "& span": {
       textAlign: "center"
     }
   }),
-  info: {
-    display: "flex",
-    flexDirection: "column",
-    fontSize: 15,
-    margin: "5px 0",
-    fontWeight: 700,
-    textTransform: "uppercase",
-    color: theme.white,
-    textShadow: "0 0 15px rgba(0,0,0,.5)",
-    "& h3": {
-      textTransform: "lowercase",
-      color: theme.white,
-      margin: "5px 0",
-      fontSize: 18
-    }
-  },
   header: {
     display: "flex",
     width: "100%",
@@ -138,14 +121,6 @@ const styles = theme => ({
       color: theme.white,
       fontSize: 16
     }
-  },
-  body: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    flexGrow: 1,
-    width: "100%"
   },
   ranks: {
     display: "flex",

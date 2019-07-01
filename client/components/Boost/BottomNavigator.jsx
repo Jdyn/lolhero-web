@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { classes, currentStage, setStage, boost } = props;
+  const { classes, currentStage, setStage, boost, currentOrder } = props;
 
   const updateStage = stage => {
     if (stage + 1 <= 4) {
@@ -31,7 +31,23 @@ const BottomNavigator = props => {
 
   return (
     <div className={classes.container}>
-      <h3>purchase price {boost.price}</h3>
+      <div className={classes.content}>
+        <h3>{currentOrder.lp || "-"}</h3>
+        <span>LP</span>
+      </div>
+      <div className={classes.content}>
+        <h3>{currentOrder.queue || "-"}</h3>
+        <span>Queue</span>
+      </div>
+      <div className={classes.content}>
+        <h3>{currentOrder.server || "-"}</h3>
+        <span>Server</span>
+      </div>
+      <div className={classes.content}>
+        <h3>${boost.price || 0}</h3>
+        <span>Purchase price</span>
+      </div>
+
       <button
         className={classes.button}
         onClick={() => updateStage(currentStage)}
@@ -46,20 +62,50 @@ const styles = theme => ({
   container: {
     position: "fixed",
     display: "flex",
-    // justifyContent: "flex-end",
     gridArea: "botNav",
     color: theme.white,
-    minHeight: "90px",
+    justifyContent: "flex-end",
+    height: "90px",
     width: "100%",
+    padding: "10px 0",
     bottom: 0,
     backgroundColor: theme.tertiary,
     zIndex: 20
+  },
+  wrapper: {
+    display: "flex",
+    height: "100%",
+    padding: "0 15px"
+  },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+    minWidth: "110px",
+    justifyContent: "center",
+    alignItems: "center",
+    // padding: "0 4%",
+    textAlign: "center",
+    borderRight: ".7px solid #999",
+    lineHeight: 1,
+    flexGrow: 1,
+    "& h3": {
+      fontSize: 19,
+      margin: 0,
+      // minWidth: "50px",
+      textTransform: "uppercase"
+    },
+    "& span": {
+      fontSize: 17,
+      marginTop: "5px",
+      color: theme.grey
+    }
   },
   button: {
     outline: "none",
     border: "none",
     width: "350px",
-    margin: "15px 25px 15px auto",
+    margin: "5px 25px 5px 3%",
     borderRadius: 12,
     cursor: "pointer",
     color: theme.white,

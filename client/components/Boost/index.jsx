@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BoostTab from "./BoostTab";
-import AddonTab from "./AddonTab";
+import AddonTab from "./AddonTab/AddonTab";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
@@ -34,6 +34,7 @@ const Boost = props => {
       </div>
       <BottomNavigator
         currentStage={currentStage}
+        currentOrder={currentOrder}
         setStage={setStage}
         boost={boost}
       />

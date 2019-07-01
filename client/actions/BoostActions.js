@@ -62,7 +62,7 @@ const calculatePrice = (getState, order) => {
   const pricing = getState().boost.pricing[order.boost_type];
 
   var total = 0;
-  for (var i = order.start_rank; i < order.desired_rank + 1; i++) {
+  for (var i = order.start_rank; i < order.desired_rank; i++) {
     total += pricing[order.collection_id][i];
   }
 

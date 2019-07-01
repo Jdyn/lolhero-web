@@ -15,7 +15,7 @@ const BannerRankItem = props => {
       : updateOrder({ desired_rank: rank.rank });
   };
 
-  return <button className={classes.container} onClick={handleClick} />;
+  return <button className={classes.container} disabled={props.isDisabled} onClick={handleClick} style={{opacity: props.isDisabled ? "0.4" : "1"}} />;
 };
 
 const styles = theme => ({
