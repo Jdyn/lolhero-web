@@ -11,6 +11,7 @@ const propTypes = {
 const Banner = props => {
   const {
     classes,
+    theme,
     slider,
     rank,
     updateOrder,
@@ -36,7 +37,13 @@ const Banner = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
+      <div
+        className={classes.container}
+        style={{
+          backgroundColor: rank.color || theme.secondary,
+          borderColor: `${rank.accent || theme.tertiary}`
+        }}
+      >
         {slider ? (
           <div>slide</div>
         ) : (
@@ -68,6 +75,10 @@ const Banner = props => {
           className={classes.footer}
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
+          style={{
+            fill: rank.color || theme.secondary,
+            stroke: rank.accent || theme.tertiary
+          }}
         >
           <path d="M0 0 L50 100 L100 0 Z" />
         </svg>
@@ -83,9 +94,9 @@ const styles = theme => ({
     flexDirection: "column",
     // height: "520px",
     height: "65vh",
-    maxHeight: "540px",
+    maxHeight: "550px",
     justifyContent: "flex-start",
-    width: "245px",
+    width: "235px",
     margin: "0 15px 50px 15px",
     zIndex: 5
   },
@@ -97,9 +108,8 @@ const styles = theme => ({
     justifyContent: "space-between",
     color: "#fefefe",
     padding: "55px 24px",
-    borderLeft: `6px solid ${props.rank.accent || theme.tertiary}`,
-    borderRight: `6px solid ${props.rank.accent || theme.tertiary}`,
-    backgroundColor: props.rank.color || theme.secondary,
+    borderLeft: `6px solid`,
+    borderRight: `6px solid`,
     boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     "& span": {
       textAlign: "center"
@@ -151,4 +161,4 @@ const styles = theme => ({
 
 Banner.propTypes = propTypes;
 
-export default withStyles(styles, { link: true })(Banner);
+export default withStyles(styles, { link: true, injectTheme: true })(Banner);

@@ -66,5 +66,11 @@ const calculatePrice = (getState, order) => {
     total += pricing[order.collection_id][i];
   }
 
+  if (order.is_express) {
+    const diff = total * .2
+    console.log(diff)
+    total += diff
+  }
+
   return total;
 };

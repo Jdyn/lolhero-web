@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 const BannerRankItem = props => {
-  const { classes, rank, isStartingRank, updateOrder } = props;
+  const { classes, rank, isStartingRank, updateOrder, theme } = props;
 
   const handleClick = () => {
     isStartingRank
@@ -15,13 +15,23 @@ const BannerRankItem = props => {
       : updateOrder({ desired_rank: rank.rank });
   };
 
-  return <button className={classes.container} disabled={props.isDisabled} onClick={handleClick} style={{opacity: props.isDisabled ? "0.4" : "1"}} />;
+  return (
+    <button
+      className={classes.container}
+      disabled={props.isDisabled}
+      onClick={handleClick}
+      style={{
+        opacity: props.isDisabled ? "0.4" : "1",
+        borderColor: props.isSelected ? theme.white : rank.accent
+      }}
+    />
+  );
 };
 
 const styles = theme => ({
   container: ({ isSelected, rank }) => ({
     width: "12px",
-    border: `1px solid ${isSelected ? theme.white : rank.accent}`,
+    border: `1px solid`,
     margin: "1.5px 1px",
     cursor: "pointer",
     height: "35px",
@@ -39,4 +49,4 @@ const styles = theme => ({
 
 BannerRankItem.propTypes = propTypes;
 
-export default withStyles(styles)(BannerRankItem);
+export default withStyles(styles, {injectTheme: true})(BannerRankItem);

@@ -11,8 +11,6 @@ const propTypes = {
 const DetailsView = props => {
   const { classes, currentOrder, updateOrder } = props;
 
-  console.log("hello");
-
   return (
     <>
       <div className={classes.wrapper}>

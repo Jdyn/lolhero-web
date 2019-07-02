@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import DetailsView from "./DetailsView";
+import AddonView from "./AddonView";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -16,7 +17,11 @@ const AddonTab = props => {
         <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />
       </div>
     ),
-    1: <div>add ons</div>,
+    1: (
+      <div className={classes.container}>
+        <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />
+      </div>
+    ),
     2: <div>set up</div>,
     3: <div>review</div>
   };

@@ -10,7 +10,7 @@ const BottomNavigator = props => {
   const { classes, currentStage, setStage, boost, currentOrder } = props;
 
   const updateStage = stage => {
-    if (stage + 1 <= 4) {
+    if (stage + 1 <= 3) {
       setStage(prev => prev + 1);
     }
   };
@@ -84,7 +84,6 @@ const styles = theme => ({
     minWidth: "110px",
     justifyContent: "center",
     alignItems: "center",
-    // padding: "0 4%",
     textAlign: "center",
     borderRight: ".7px solid #999",
     lineHeight: 1,
@@ -92,7 +91,6 @@ const styles = theme => ({
     "& h3": {
       fontSize: 19,
       margin: 0,
-      // minWidth: "50px",
       textTransform: "uppercase"
     },
     "& span": {

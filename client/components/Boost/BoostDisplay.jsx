@@ -51,7 +51,11 @@ const BoostDisplay = props => {
     }
   };
 
-  return <div className={classes.root}>{renderContent(1)}</div>;
+  return (
+    <div className={classes.root}>
+      {renderContent(currentOrder.collection_id)}
+    </div>
+  );
 };
 
 const styles = {
