@@ -47,12 +47,10 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   if (request.success) {
     const order = { ...getState().boost.order, ...newUpdate };
 
-    if (order.start_rank && order.desired_rank) {
-      const price = calculatePrice(getState, order);
+    const price = calculatePrice(getState, order);
 
-      dispatch(setBoost({ boost: { price }, order: { ...newUpdate } }));
-      return;
-    }
+    dispatch(setBoost({ boost: { price }, order: { ...newUpdate } }));
+    return;
   }
 
   dispatch(setBoost({ boost: {}, order: { ...newUpdate } }));
@@ -62,15 +60,27 @@ const calculatePrice = (getState, order) => {
   const pricing = getState().boost.pricing[order.boost_type];
 
   var total = 0;
+
   for (var i = order.start_rank; i < order.desired_rank; i++) {
     total += pricing[order.collection_id][i];
   }
 
+  const queues = pricing["queues"];
+  const modifiers = pricing["modifiers"];
+
+  total = total * queues[order.queue];
+
   if (order.is_express) {
-    const diff = total * .2
-    console.log(diff)
-    total += diff
+    total = total * modifiers["express"];
   }
 
-  return total;
+  if (order.is_unrestricted) {
+    total = total * modifiers["unrestricted"];
+  }
+
+  if (order.is_incognito) {
+    total = total * modifiers["incognito"];
+  }
+
+  return Math.round(total * 100) / 100;
 };

@@ -1,9 +1,9 @@
 export default {
   details: {
-    servers: [{ server: "NA", title: "North America", type: "server" }],
+    servers: [{ server: "NA", title: "North America", type: "servers" }],
     queues: [
-      { queue: "solo", title: "Solo Queue", type: "queue" },
-      { queue: "flex", title: "Flex Queue", type: "queue" }
+      { queue: "solo", title: "Solo Queue", type: "queues" },
+      { queue: "flex", title: "Flex Queue", type: "queues" }
     ],
     lp: [
       { lp: 20, title: "0 - 20", type: "lp" },
@@ -28,14 +28,14 @@ export default {
           "Unrestricted Orders allow us to play any champion or role on your account to complete the order. Discount -10%",
         title: "Unrestricted Order",
         soloOnly: true,
-        type: "unrestricted"
+        type: "is_unrestricted"
       },
       {
         description:
           "Want to be invisible to your friends? We make it appear as if you are offline to everyone on your friends list. Costs +5%",
         title: "Incognito Mode",
         soloOnly: true,
-        type: "incognito"
+        type: "is_incognito"
       }
     ]
   }

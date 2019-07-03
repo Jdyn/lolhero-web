@@ -29,10 +29,29 @@ const BottomNavigator = props => {
     }
   };
 
+  const formatLP = lp => {
+    switch (lp) {
+      case 20:
+        return "0-20";
+      case 40:
+        return "21-40";
+      case 60:
+        return "41-60";
+      case 80:
+        return "61-80";
+      case 99:
+        return "81-99";
+      case 100:
+        return "100";
+      default:
+        return "0";
+    }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <h3>{currentOrder.lp || "-"}</h3>
+        <h3>{formatLP(currentOrder.lp) || "-"}</h3>
         <span>LP</span>
       </div>
       <div className={classes.content}>
