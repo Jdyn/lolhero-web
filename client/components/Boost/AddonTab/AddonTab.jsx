@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import DetailsView from "./DetailsView";
 import AddonView from "./AddonView";
+import Api from "../../../services/api";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -10,6 +11,20 @@ const propTypes = {
 
 const AddonTab = props => {
   const { classes, currentStage, updateOrder, currentOrder } = props;
+
+  const submit = () => {
+    Api.post("/checkout", currentOrder).then(response => {
+      console.log(response)
+      if (response.ok) {
+        Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8").redirectToCheckout({
+            sessionId: response.result.session.id
+          })
+          .then(result => {
+            console.log(result);
+          });
+      }
+    });
+  };
 
   const views = {
     0: (
@@ -23,7 +38,11 @@ const AddonTab = props => {
       </div>
     ),
     2: <div>set up</div>,
-    3: <div>review</div>
+    3: (
+      <div>
+        <button onClick={() => submit()}>ok</button>
+      </div>
+    )
   };
 
   return <div className={classes.root}>{views[currentStage]}</div>;

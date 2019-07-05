@@ -12,12 +12,6 @@ const propTypes = {
 const Home = props => {
   const { classes } = props;
 
-  let stripe;
-
-  useEffect(() => {
-    // stripe = Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8");
-  });
-
   const handleClick = event => {
     event.preventDefault();
 

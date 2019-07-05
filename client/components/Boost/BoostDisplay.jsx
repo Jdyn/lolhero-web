@@ -47,7 +47,32 @@ const BoostDisplay = props => {
           </>
         );
       default:
-        return <div>Oh</div>;
+        return (
+          <>
+            <div className={classes.wrapper}>
+              <Banner
+                isStartingRank
+                rank={
+                  currentOrder.start_rank
+                    ? ranksObject[currentOrder.start_rank]
+                    : {}
+                }
+                currentOrder={currentOrder}
+                updateOrder={updateOrder}
+              />
+            </div>
+            <Banner
+            slider
+              rank={
+                currentOrder.desired_rank
+                  ? ranksObject[currentOrder.desired_rank]
+                  : {}
+              }
+              updateOrder={updateOrder}
+              currentOrder={currentOrder}
+            />
+          </>
+        );
     }
   };
 
