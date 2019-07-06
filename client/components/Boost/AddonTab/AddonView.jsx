@@ -20,9 +20,8 @@ const AddonView = props => {
       <div className={classes.wrapper}>
         <h2>Extras</h2>
         {addons.addons.extras.map((extra, index) => (
-          <>
+          <React.Fragment key={index}>
             <Toggle
-              key={index}
               isSelected={currentOrder[extra.type]}
               onClick={() =>
                 updateOrder({ [extra.type]: !currentOrder[extra.type] })
@@ -31,7 +30,7 @@ const AddonView = props => {
               {extra.title}
             </Toggle>
             <p>{extra.description}</p>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>

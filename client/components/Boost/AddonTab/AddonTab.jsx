@@ -10,13 +10,13 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { classes, currentStage, updateOrder, currentOrder } = props;
+  const { classes, currentStage, updateOrder, currentOrder, boost } = props;
 
   const submit = () => {
-    Api.post("/checkout", currentOrder).then(response => {
-      console.log(response)
+    Api.post("/checkout", boost.order).then(response => {
       if (response.ok) {
-        Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8").redirectToCheckout({
+        Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
+          .redirectToCheckout({
             sessionId: response.result.session.id
           })
           .then(result => {
@@ -37,7 +37,11 @@ const AddonTab = props => {
         <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />
       </div>
     ),
-    2: <div>set up</div>,
+    2: (
+      <div className={classes.container}>
+        <div>set up</div>
+      </div>
+    ),
     3: (
       <div>
         <button onClick={() => submit()}>ok</button>

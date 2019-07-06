@@ -27,6 +27,7 @@ const Boost = props => {
         <BoostTab updateOrder={updateOrder} />
         <BoostDisplay currentOrder={currentOrder} updateOrder={updateOrder} />
         <AddonTab
+          boost={boost}
           currentStage={currentStage}
           currentOrder={currentOrder}
           updateOrder={updateOrder}

@@ -4,14 +4,17 @@ const initialState = {
   price: null,
   stage: 0,
   order: {
-    lp: 20,
-    queue: "solo",
-    server: "NA",
-    boost_type: null,
-    start_rank: null,
-    desired_rank: null,
-    collection_id: null,
-    is_express: false
+    type: "boost",
+    details: {
+      lp: 20,
+      queue: "solo",
+      server: "NA",
+      boost_type: null,
+      collection_id: null,
+      is_express: false,
+      is_incognito: false,
+      is_unrestricted: false
+    }
   },
   pricing: {
     solo: {},
@@ -27,7 +30,10 @@ export default (state = initialState, action) => {
         ...action.update.boost,
         order: {
           ...state.order,
-          ...action.update.order
+          details: {
+            ...state.order.details,
+            ...action.update.details
+          }
         }
       };
     case actions.FETCH_BOOST_PRICES:

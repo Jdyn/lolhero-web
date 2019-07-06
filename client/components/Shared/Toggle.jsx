@@ -9,8 +9,16 @@ const propTypes = {
   isSelected: PropTypes.bool
 };
 
-const Toggle = ({ classes, children, onClick }) => (
-  <button onClick={onClick} className={classes.button}>
+const Toggle = ({ classes, children, onClick, key, theme, ...props }) => (
+  <button
+    onClick={onClick}
+    className={classes.button}
+    key={key}
+    style={{
+      borderColor: props.isSelected ? theme.accent : theme.grey,
+      color: props.isSelected ? theme.accent : theme.white
+    }}
+  >
     {children}
   </button>
 );
@@ -28,7 +36,7 @@ const styles = theme => ({
     width: props.width,
     height: props.height,
     outline: "none",
-    border: `2px solid ${props.isSelected ? theme.accent : theme.grey}`,
+    border: `2px solid`,
     backgroundColor: "transparent",
     color: props.isSelected ? theme.accent : theme.white,
     fontWeight: 700,
@@ -48,4 +56,4 @@ const styles = theme => ({
   })
 });
 
-export default withStyles(styles, { link: true })(Toggle);
+export default withStyles(styles, { injectTheme: true, link: true })(Toggle);

@@ -45,15 +45,15 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   const request = getState().request.BOOST_PRICING || {};
 
   if (request.success) {
-    const order = { ...getState().boost.order, ...newUpdate };
+    const order = { ...getState().boost.order.details, ...newUpdate };
 
     const price = calculatePrice(getState, order);
 
-    dispatch(setBoost({ boost: { price }, order: { ...newUpdate } }));
+    dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
     return;
   }
 
-  dispatch(setBoost({ boost: {}, order: { ...newUpdate } }));
+  dispatch(setBoost({ boost: {}, details: { ...newUpdate } }));
 };
 
 const calculatePrice = (getState, order) => {
@@ -65,22 +65,22 @@ const calculatePrice = (getState, order) => {
     total += pricing[order.collection_id][i];
   }
 
-  const queues = pricing["queues"];
-  const modifiers = pricing["modifiers"];
+  // const queues = pricing["queues"];
+  // const modifiers = pricing["modifiers"];
 
-  total = total * queues[order.queue];
+  // total = total * queues[order.queue];
 
-  if (order.is_express) {
-    total = total * modifiers["express"];
-  }
+  // if (order.is_express) {
+  //   total = total * modifiers["express"];
+  // }
 
-  if (order.is_unrestricted) {
-    total = total * modifiers["unrestricted"];
-  }
+  // if (order.is_unrestricted) {
+  //   total = total * modifiers["unrestricted"];
+  // }
 
-  if (order.is_incognito) {
-    total = total * modifiers["incognito"];
-  }
+  // if (order.is_incognito) {
+  //   total = total * modifiers["incognito"];
+  // }
 
   return Math.round(total * 100) / 100;
 };

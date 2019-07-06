@@ -10,7 +10,7 @@ class BoostContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentOrder: state.boost.order,
+  currentOrder: state.boost.order.details,
   boost: state.boost
 });
 
