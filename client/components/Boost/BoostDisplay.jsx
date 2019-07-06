@@ -64,8 +64,8 @@ const BoostDisplay = props => {
             <Banner
             slider
               rank={
-                currentOrder.desired_rank
-                  ? ranksObject[currentOrder.desired_rank]
+                currentOrder.start_rank
+                  ? ranksObject[currentOrder.start_rank]
                   : {}
               }
               updateOrder={updateOrder}

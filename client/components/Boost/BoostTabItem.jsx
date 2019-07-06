@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 
 const propTypes = {
   item: PropTypes.object,
-  classes: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   isSelected: PropTypes.bool.isRequired
 };
 
 const BoostTabItem = props => {
-  const { classes, theme, item, onClick, isSelected } = props;
+  const theme = useTheme();
+  const classes = useStyles();
+  const { item, onClick, isSelected } = props;
 
   return (
     <div
@@ -27,7 +28,7 @@ const BoostTabItem = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     width: "100%",
     cursor: "pointer",
@@ -61,8 +62,8 @@ const styles = theme => ({
     margin: 0,
     fontSize: 16
   }
-});
+}));
 
 BoostTabItem.propTypes = propTypes;
 
-export default withStyles(styles, { injectTheme: true })(BoostTabItem);
+export default BoostTabItem;

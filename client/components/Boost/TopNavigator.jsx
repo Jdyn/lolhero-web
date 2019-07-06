@@ -2,23 +2,23 @@ import Link from "next/link";
 import React from "react";
 import Filter from "../Shared/Filter";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  setStage: PropTypes.func.isRequired,
+  currentStage: PropTypes.number.isRequired
 };
 
 const filters = ["Details", "Add-Ons", "set-up", "checkout"];
 
 const TopNavigator = props => {
-  const { classes, currentStage, setStage } = props;
+  const { currentStage, setStage } = props;
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Link href="/">
-        <div className={classes.logo}>
-          <h1>LoL Hero</h1>
-        </div>
+        <div className={classes.logo}>LoL Hero</div>
       </Link>
       <div className={classes.container}>
         <Filter
@@ -32,7 +32,7 @@ const TopNavigator = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
     top: 0,
     width: "100%",
@@ -60,23 +60,21 @@ const styles = theme => ({
     position: "relative",
     alignItems: "center",
     justifyContent: "center",
-    width: "200px",
+    padding: "0 45px",
     minHeight: "76px",
     cursor: "pointer",
     transitionDuration: ".15s",
     borderBottom: "3px solid #999",
+    color: theme.white,
     bottom: -3,
+    fontSize: 30,
     "&:hover": {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`
-    },
-    "& h1": {
-      margin: 0,
-      color: theme.white
     }
   }
-});
+}));
 
 TopNavigator.propTypes = propTypes;
 
-export default withStyles(styles, { link: true })(TopNavigator);
+export default TopNavigator;

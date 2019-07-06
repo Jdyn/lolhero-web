@@ -9,15 +9,7 @@ const propTypes = {
 };
 
 const Banner = props => {
-  const {
-    classes,
-    theme,
-    slider,
-    rank,
-    updateOrder,
-    currentOrder,
-    isStartingRank
-  } = props;
+  const { classes, theme, slider, rank, updateOrder, currentOrder, isStartingRank } = props;
 
   const validateDisabled = itemIndex => {
     if (!isStartingRank) {
@@ -45,7 +37,23 @@ const Banner = props => {
         }}
       >
         {slider ? (
-          <div>slide</div>
+          <>
+            <div className={classes.header}>
+              <h1>{rank.title || ""}</h1>
+              <h3>{isStartingRank ? "current rank" : "desired amount"}</h3>
+            </div>
+            <div className={classes.amount}>{currentOrder.desired_amount}</div>
+            <div className={classes.sliderWrapper}>
+              <input
+                type="range"
+                min="1"
+                max="10"
+                className={classes.slider}
+                value={currentOrder.desired_amount}
+                onInput={event => updateOrder({ desired_amount: event.target.value })}
+              />
+            </div>
+          </>
         ) : (
           <>
             <div className={classes.header}>
@@ -115,6 +123,9 @@ const styles = theme => ({
       textAlign: "center"
     }
   }),
+  amount: {
+    fontSize: 67
+  },
   header: {
     display: "flex",
     width: "100%",
@@ -135,8 +146,36 @@ const styles = theme => ({
   ranks: {
     display: "flex",
     flexWrap: "wrap",
-    width: "170px"
+    width: "170px",
+    height: "75px"
   },
+  sliderWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "170px",
+    height: "75px"
+  },
+  slider: props => ({
+    appearance: "none",
+    width: "100%",
+    height: "14px",
+    outline: "none",
+    borderRadius: 3,
+    backgroundColor: props.rank.accent || theme.grey,
+    "&::-webkit-slider-thumb": {
+      appearance: "none",
+      cursor: "pointer",
+      height: "35px",
+      width: "10px",
+      borderRadius: 3,
+      backgroundColor: theme.white,
+      transitionDuration: ".15s",
+      "&:hover": {
+        transform: "scale(1.2)"
+      }
+    }
+  }),
   wrapper: {
     width: "100%",
     height: "100px",

@@ -46,7 +46,6 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
 
   if (request.success) {
     const order = { ...getState().boost.order.details, ...newUpdate };
-
     const price = calculatePrice(getState, order);
 
     dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));

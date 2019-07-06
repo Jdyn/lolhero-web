@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import BoostTab from "./BoostTab";
-import AddonTab from "./AddonTab/AddonTab";
+import AddonTab from "./AddonTab";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
 import TopNavigator from "./TopNavigator";
 import BoostDisplay from "./BoostDisplay";
 import BottomNavigator from "./BottomNavigator";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  boost: PropTypes.object.isRequired,
+  updateOrder: PropTypes.func.isRequired,
+  currentOrder: PropTypes.object.isRequired,
+  fetchBoostPrices: PropTypes.func.isRequired
 };
 
 const Boost = props => {
-  const { classes, fetchBoostPrices, updateOrder, currentOrder, boost } = props;
+  const { fetchBoostPrices, updateOrder, currentOrder, boost } = props;
+  const classes = useStyles();
 
   const [currentStage, setStage] = useState(0);
 
@@ -43,7 +47,7 @@ const Boost = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
     position: "absolute",
     padding: "76px 0 90px 0",
@@ -63,8 +67,8 @@ const styles = theme => ({
       flexDirection: "row"
     }
   }
-});
+}));
 
 Boost.propTypes = propTypes;
 
-export default withStyles(styles)(Boost);
+export default Boost;

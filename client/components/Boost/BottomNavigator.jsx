@@ -19,11 +19,10 @@ const BottomNavigator = props => {
     switch (currentStage) {
       case 0:
       case 1:
-        return "next";
       case 2:
-        return "checkout";
+        return "next";
       case 3:
-        return "order";
+        return "checkout";
       default:
         return "next";
     }
@@ -67,10 +66,7 @@ const BottomNavigator = props => {
         <span>Purchase price</span>
       </div>
 
-      <button
-        className={classes.button}
-        onClick={() => updateStage(currentStage)}
-      >
+      <button className={classes.button} onClick={() => updateStage(currentStage)}>
         {stageText(currentStage)}
       </button>
     </div>
