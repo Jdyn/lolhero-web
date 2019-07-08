@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import ranks from "../../lib/ranks";
@@ -8,21 +8,35 @@ const propTypes = {
   classes: PropTypes.object.isRequired
 };
 
+const flatten = arr => arr.reduce((flat, next) => flat.concat(next), []);
+
 const Banner = props => {
-  const { classes, theme, slider, rank, updateOrder, currentOrder, isStartingRank } = props;
+  const {
+    classes,
+    theme,
+    slider,
+    rank,
+    updateOrder,
+    currentOrder,
+    isStartingRank
+  } = props;
+
+  const flatRanks = useMemo(() => flatten([...ranks]));
 
   const validateDisabled = itemIndex => {
-    if (!isStartingRank) {
-      if (currentOrder.start_rank !== null) {
-        return itemIndex < currentOrder.start_rank + 1;
+    if (currentOrder.collection_id === 1 || currentOrder.collection_id === 5) {
+      if (!isStartingRank) {
+        if (currentOrder.start_rank !== null) {
+          return itemIndex < currentOrder.start_rank + 1;
+        } else {
+          return false;
+        }
       } else {
-        return false;
-      }
-    } else {
-      if (currentOrder.desired_rank !== null) {
-        return itemIndex > currentOrder.desired_rank - 1;
-      } else {
-        return false;
+        if (currentOrder.desired_rank !== null) {
+          return itemIndex > currentOrder.desired_rank - 1;
+        } else {
+          return false;
+        }
       }
     }
   };
@@ -50,7 +64,9 @@ const Banner = props => {
                 max="10"
                 className={classes.slider}
                 value={currentOrder.desired_amount}
-                onInput={event => updateOrder({ desired_amount: event.target.value })}
+                onChange={event =>
+                  updateOrder({ desired_amount: parseInt(event.target.value) })
+                }
               />
             </div>
           </>
@@ -61,18 +77,16 @@ const Banner = props => {
               <h3>{isStartingRank ? "current rank" : "desired rank"}</h3>
             </div>
             <div className={classes.ranks}>
-              {ranks.map((rankList, tierIndex) =>
-                rankList.map((listItem, itemIndex) => (
-                  <BannerRankItem
-                    key={tierIndex + itemIndex}
-                    rank={ranks[tierIndex][itemIndex]}
-                    isSelected={rank.rank === listItem.rank}
-                    isStartingRank={isStartingRank}
-                    isDisabled={validateDisabled(listItem.rank)}
-                    updateOrder={updateOrder}
-                  />
-                ))
-              )}
+              {flatRanks.map((rankItem, index) => (
+                <BannerRankItem
+                  key={index}
+                  rank={rankItem}
+                  isSelected={rank.rank === rankItem.rank}
+                  isStartingRank={isStartingRank}
+                  isDisabled={validateDisabled(rankItem.rank)}
+                  updateOrder={updateOrder}
+                />
+              ))}
             </div>
           </>
         )}

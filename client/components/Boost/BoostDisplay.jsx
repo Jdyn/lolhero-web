@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Banner from "./Banner";
@@ -11,9 +11,9 @@ const propTypes = {
 const BoostDisplay = props => {
   const { classes, updateOrder, currentOrder } = props;
 
-  const [ranksObject] = useState(
+  const ranksObject = useMemo(() =>
     [].concat
-      .apply([], ranks)
+      .apply([], [...ranks])
       .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
@@ -62,7 +62,7 @@ const BoostDisplay = props => {
               />
             </div>
             <Banner
-            slider
+              slider
               rank={
                 currentOrder.start_rank
                   ? ranksObject[currentOrder.start_rank]

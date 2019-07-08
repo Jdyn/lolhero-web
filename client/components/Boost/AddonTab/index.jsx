@@ -4,6 +4,7 @@ import withStyles from "react-jss";
 import DetailsView from "./DetailsView";
 import AddonView from "./AddonView";
 import Api from "../../../services/api";
+import CheckoutView from "./CheckoutView";
 
 const propTypes = {
   classes: PropTypes.object.isRequired
@@ -13,17 +14,31 @@ const AddonTab = props => {
   const { classes, currentStage, updateOrder, currentOrder, boost } = props;
 
   const submit = () => {
-    Api.post("/checkout", boost.order).then(response => {
-      if (response.ok) {
-        Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
-          .redirectToCheckout({
-            sessionId: response.result.session.id
-          })
-          .then(result => {
-            console.log(result);
-          });
-      }
-    });
+    let order = { ...boost.order };
+
+    if (order.details.collection_id == 1 || order.details.collection_id == 5) {
+      delete order.details.desired_amount;
+    } else {
+      delete order.details.desired_rank;
+    }
+
+    console.log(order.details);
+
+    Api.post("/checkout", order)
+      .then(response => {
+        if (response.ok) {
+          Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
+            .redirectToCheckout({
+              sessionId: response.result.session.id
+            })
+            .then(result => {
+              console.log(result);
+            });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const views = {
@@ -43,8 +58,8 @@ const AddonTab = props => {
       </div>
     ),
     3: (
-      <div>
-        <button onClick={() => submit()}>ok</button>
+      <div className={classes.container}>
+        <CheckoutView currentOrder={currentOrder} />
       </div>
     )
   };

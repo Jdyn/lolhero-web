@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import BoostTabItem from "./BoostTabItem";
 
+console.log(content)
+
 const propTypes = {
   classes: PropTypes.object.isRequired,
   updateOrder: PropTypes.func.isRequired

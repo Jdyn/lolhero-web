@@ -60,8 +60,13 @@ const calculatePrice = (getState, order) => {
 
   var total = 0;
 
-  for (var i = order.start_rank; i < order.desired_rank; i++) {
-    total += pricing[order.collection_id][i];
+  if (order.collection_id == 1 || order.collection_id == 5) {
+    for (var i = order.start_rank; i < order.desired_rank; i++) {
+      total += pricing[order.collection_id][i];
+    }
+  } else {
+    const base = pricing[order.collection_id][order.start_rank];
+    total = base * order.desired_amount;
   }
 
   // const queues = pricing["queues"];

@@ -25,17 +25,17 @@ export default {
       },
       {
         description:
-          "Unrestricted Orders allow us to play any champion or role on your account to complete the order. Discount -10%",
-        title: "Unrestricted Order",
-        soloOnly: true,
-        type: "is_unrestricted"
-      },
-      {
-        description:
           "Want to be invisible to your friends? We make it appear as if you are offline to everyone on your friends list. Costs +5%",
         title: "Incognito Mode",
         soloOnly: true,
         type: "is_incognito"
+      },
+      {
+        description:
+          "Unrestricted Orders allow us to play any champion or role on your account to complete the order. Discount -10%",
+        title: "Unrestricted Order",
+        soloOnly: true,
+        type: "is_unrestricted"
       }
     ]
   }

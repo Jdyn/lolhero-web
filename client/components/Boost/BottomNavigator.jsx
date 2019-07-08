@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-
+import { formatLP } from "../../util/Helpers";
 const propTypes = {
   classes: PropTypes.object.isRequired
 };
@@ -28,25 +28,6 @@ const BottomNavigator = props => {
     }
   };
 
-  const formatLP = lp => {
-    switch (lp) {
-      case 20:
-        return "0-20";
-      case 40:
-        return "21-40";
-      case 60:
-        return "41-60";
-      case 80:
-        return "61-80";
-      case 99:
-        return "81-99";
-      case 100:
-        return "100";
-      default:
-        return "0";
-    }
-  };
-
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -66,7 +47,10 @@ const BottomNavigator = props => {
         <span>Purchase price</span>
       </div>
 
-      <button className={classes.button} onClick={() => updateStage(currentStage)}>
+      <button
+        className={classes.button}
+        onClick={() => updateStage(currentStage)}
+      >
         {stageText(currentStage)}
       </button>
     </div>

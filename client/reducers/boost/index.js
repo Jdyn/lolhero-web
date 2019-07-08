@@ -9,8 +9,11 @@ const initialState = {
       lp: 20,
       queue: "solo",
       server: "NA",
+      desired_amount: 5,
+      // start_rank: 4,
+      // desired_rank: 5,
       boost_type: null,
-      collection_id: null,
+      collection_id: 1,
       is_express: false,
       is_incognito: false,
       is_unrestricted: false
