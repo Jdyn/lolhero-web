@@ -15,7 +15,13 @@ const propTypes = {
 };
 
 const Boost = props => {
-  const { fetchBoostPrices, updateOrder, currentOrder, boost } = props;
+  const {
+    fetchBoostPrices,
+    updateOrder,
+    currentOrder,
+    boost,
+    submitOrder
+  } = props;
   const classes = useStyles();
 
   const [currentStage, setStage] = useState(3);
@@ -40,6 +46,7 @@ const Boost = props => {
       <BottomNavigator
         currentStage={currentStage}
         currentOrder={currentOrder}
+        submitOrder={submitOrder}
         setStage={setStage}
         boost={boost}
       />

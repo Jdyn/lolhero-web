@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import DetailsView from "./DetailsView";
 import AddonView from "./AddonView";
-import Api from "../../../services/api";
+import DetailsView from "./DetailsView";
 import CheckoutView from "./CheckoutView";
 
 const propTypes = {
@@ -12,34 +11,6 @@ const propTypes = {
 
 const AddonTab = props => {
   const { classes, currentStage, updateOrder, currentOrder, boost } = props;
-
-  const submit = () => {
-    let order = { ...boost.order };
-
-    if (order.details.collection_id == 1 || order.details.collection_id == 5) {
-      delete order.details.desired_amount;
-    } else {
-      delete order.details.desired_rank;
-    }
-
-    console.log(order.details);
-
-    Api.post("/checkout", order)
-      .then(response => {
-        if (response.ok) {
-          Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
-            .redirectToCheckout({
-              sessionId: response.result.session.id
-            })
-            .then(result => {
-              console.log(result);
-            });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
   const views = {
     0: (

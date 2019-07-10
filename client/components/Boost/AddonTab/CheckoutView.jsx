@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import content from "../../../lib/boostContent";
 import { createUseStyles } from "react-jss";
@@ -23,11 +23,8 @@ const CheckoutView = props => {
 
   return (
     <>
-      {/* <div className={classes.wrapper}>
-      </div> */}
-
       <div className={classes.wrapper}>
-			<h2>Order Summary</h2>
+        <h2>Order Summary</h2>
         <h2>Details</h2>
         <span>
           LP: <b>{formatLP(currentOrder.lp)}</b>
@@ -55,8 +52,8 @@ const CheckoutView = props => {
 
       <div className={classes.wrapper}>
         <h2>Add-Ons</h2>
-        {addons.addons.extras.map(extra => (
-          <span>
+        {addons.addons.extras.map((extra, index) => (
+          <span key={index}>
             {extra.title}: <b>{currentOrder[extra.type] ? "Yes" : "No"}</b>
           </span>
         ))}
@@ -90,16 +87,14 @@ const useStyes = createUseStyles(theme => ({
       marginBottom: "15px"
     },
     "& span": {
-			display: "flex",
-			flexDirection: "row",
-			// width: "100%",
-			// justifyContent: "flex-start",
+      display: "flex",
+      flexDirection: "row",
       marginBottom: "5px",
       color: theme.white,
       "& b": {
-				display: "flex",
-				flexGrow: 1,
-				justifyContent: "flex-end",
+        display: "flex",
+        flexGrow: 1,
+        justifyContent: "flex-end",
         color: theme.grey
       }
     }

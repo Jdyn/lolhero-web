@@ -6,6 +6,13 @@ import Baseline from "../components/Shared/Baseline";
 import { ThemeProvider } from "react-jss";
 import theme from "../lib/theme";
 import SEO from "../components/Shared/SEO";
+import * as Sentry from "@sentry/browser";
+
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn: "https://c0a74d302c7d426ab2870d252635b9ba@sentry.io/1499991"
+  });
+}
 
 class Application extends App {
   componentDidMount() {

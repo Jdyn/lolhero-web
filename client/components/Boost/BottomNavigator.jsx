@@ -7,10 +7,19 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { classes, currentStage, setStage, boost, currentOrder } = props;
+  const {
+    classes,
+    currentStage,
+    setStage,
+    boost,
+    currentOrder,
+    submitOrder
+  } = props;
 
   const updateStage = stage => {
-    if (stage + 1 <= 3) {
+    if (stage === 3) {
+      submitOrder();
+    } else if (stage + 1 <= 3) {
       setStage(prev => prev + 1);
     }
   };

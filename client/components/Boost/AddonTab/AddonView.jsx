@@ -11,10 +11,6 @@ const propTypes = {
 const AddonView = props => {
   const { classes, updateOrder, currentOrder } = props;
 
-  const handleClick = extra => {
-    console.log(extra);
-  };
-
   return (
     <>
       <div className={classes.wrapper}>

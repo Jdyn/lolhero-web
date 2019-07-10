@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Boost from "../components/Boost";
-import { fetchBoostPrices, updateOrder } from "../actions/BoostActions";
+import {
+  fetchBoostPrices,
+  updateOrder,
+  submitOrder
+} from "../actions/BoostActions";
 
 class BoostContainer extends Component {
   render() {
@@ -16,7 +20,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchBoostPrices: () => dispatch(fetchBoostPrices()),
-  updateOrder: newUpdate => dispatch(updateOrder(newUpdate))
+  updateOrder: newUpdate => dispatch(updateOrder(newUpdate)),
+  submitOrder: () => dispatch(submitOrder())
 });
 
 export default connect(
