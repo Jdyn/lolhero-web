@@ -75,21 +75,21 @@ const calculatePrice = (getState, order) => {
   }
 
   // const queues = pricing["queues"];
-  // const modifiers = pricing["modifiers"];
+  const modifiers = pricing["modifiers"];
 
   // total = total * queues[order.queue];
 
-  // if (order.is_express) {
-  //   total = total * modifiers["express"];
-  // }
+  if (order.is_express) {
+    total = total * modifiers["express"];
+  }
 
-  // if (order.is_unrestricted) {
-  //   total = total * modifiers["unrestricted"];
-  // }
+  if (order.is_incognito) {
+    total = total * modifiers["incognito"];
+  }
 
-  // if (order.is_incognito) {
-  //   total = total * modifiers["incognito"];
-  // }
+  if (order.is_unrestricted) {
+    total = total * modifiers["unrestricted"];
+  }
 
   return Math.round(total * 100) / 100;
 };
@@ -123,7 +123,7 @@ export const submitOrder = () => (dispatch, getState) => {
     );
     return;
   }
-  
+
   if (collection_id === 1 || collection_id === 5) {
     if (!order.details.desired_rank) {
       const error = "Must choose a desired rank";
