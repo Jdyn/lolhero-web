@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { classes, currentStage, updateOrder, currentOrder, boost } = props;
+  const { classes, currentStage, updateOrder, currentOrder } = props;
 
   const views = {
     0: (
@@ -56,12 +56,6 @@ const styles = theme => ({
     height: "100%",
     overflowY: "auto",
     color: theme.white
-  },
-  lp: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center"
   }
 });
 

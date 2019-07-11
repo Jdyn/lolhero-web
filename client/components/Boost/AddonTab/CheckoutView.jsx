@@ -90,6 +90,7 @@ const useStyes = createUseStyles(theme => ({
       display: "flex",
       flexDirection: "row",
       marginBottom: "5px",
+      fontSize: 16,
       color: theme.white,
       "& b": {
         display: "flex",

@@ -24,7 +24,7 @@ const Boost = props => {
   } = props;
   const classes = useStyles();
 
-  const [currentStage, setStage] = useState(3);
+  const [currentStage, setStage] = useState(0);
 
   useEffect(() => {
     fetchBoostPrices();

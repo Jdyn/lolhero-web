@@ -1,31 +1,24 @@
-import React, { useCallback, useMemo, useEffect } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
-import ranks from "../../lib/ranks";
+import ranks from "../../../lib/ranks";
 import BannerRankItem from "./BannerRankItem";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  type: PropTypes.oneOf(["slider", "picker"])
 };
 
 const flatten = arr => arr.reduce((flat, next) => flat.concat(next), []);
 
 const Banner = props => {
-  const {
-    classes,
-    theme,
-    slider,
-    rank,
-    updateOrder,
-    currentOrder,
-    isStartingRank
-  } = props;
+  const { classes, theme, type, rank, updateOrder, currentOrder, isStartRank } = props;
 
   const flatRanks = useMemo(() => flatten([...ranks]));
 
   const validateDisabled = itemIndex => {
     if (currentOrder.collection_id === 1 || currentOrder.collection_id === 5) {
-      if (!isStartingRank) {
+      if (!isStartRank) {
         if (currentOrder.start_rank !== null) {
           return itemIndex < currentOrder.start_rank + 1;
         } else {
@@ -41,6 +34,40 @@ const Banner = props => {
     }
   };
 
+  const renderContent = {
+    slider: (
+      <>
+        <div className={classes.amount}>{currentOrder.desired_amount}</div>
+        <div className={classes.sliderWrapper}>
+          <input
+            type="range"
+            min="1"
+            max="10"
+            className={classes.slider}
+            value={currentOrder.desired_amount}
+            onChange={event => updateOrder({ desired_amount: parseInt(event.target.value) })}
+          />
+        </div>
+      </>
+    ),
+    picker: (
+      <>
+        <div className={classes.ranks}>
+          {flatRanks.map((rankItem, index) => (
+            <BannerRankItem
+              key={index}
+              rank={rankItem}
+              isSelected={rank.rank === rankItem.rank}
+              isStartRank={isStartRank}
+              isDisabled={validateDisabled(rankItem.rank)}
+              updateOrder={updateOrder}
+            />
+          ))}
+        </div>
+      </>
+    )
+  };
+
   return (
     <div className={classes.root}>
       <div
@@ -50,46 +77,11 @@ const Banner = props => {
           borderColor: `${rank.accent || theme.tertiary}`
         }}
       >
-        {slider ? (
-          <>
-            <div className={classes.header}>
-              <h1>{rank.title || ""}</h1>
-              <h3>{isStartingRank ? "current rank" : "desired amount"}</h3>
-            </div>
-            <div className={classes.amount}>{currentOrder.desired_amount}</div>
-            <div className={classes.sliderWrapper}>
-              <input
-                type="range"
-                min="1"
-                max="10"
-                className={classes.slider}
-                value={currentOrder.desired_amount}
-                onChange={event =>
-                  updateOrder({ desired_amount: parseInt(event.target.value) })
-                }
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className={classes.header}>
-              <h1>{rank.title || ""}</h1>
-              <h3>{isStartingRank ? "current rank" : "desired rank"}</h3>
-            </div>
-            <div className={classes.ranks}>
-              {flatRanks.map((rankItem, index) => (
-                <BannerRankItem
-                  key={index}
-                  rank={rankItem}
-                  isSelected={rank.rank === rankItem.rank}
-                  isStartingRank={isStartingRank}
-                  isDisabled={validateDisabled(rankItem.rank)}
-                  updateOrder={updateOrder}
-                />
-              ))}
-            </div>
-          </>
-        )}
+        <div className={classes.header}>
+          <h1>{rank.title || ""}</h1>
+          <h3>{isStartRank ? "current rank" : "desired amount"}</h3>
+        </div>
+        {renderContent[type]}
       </div>
 
       <div className={classes.wrapper}>
@@ -115,7 +107,7 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     // height: "520px",
-    height: "65vh",
+    height: "70vh",
     maxHeight: "550px",
     justifyContent: "flex-start",
     width: "235px",
@@ -190,7 +182,7 @@ const styles = theme => ({
       }
     }
   }),
-  wrapper: {
+  wrapper: props => ({
     width: "100%",
     height: "100px",
     minHeight: "100px",
@@ -198,18 +190,17 @@ const styles = theme => ({
     fill: "transparent",
     position: "relative",
     bottom: 2,
-    zIndex: -1
-  },
-  footer: props => ({
+    zIndex: -1,
+    fill: props.rank.color || theme.secondary,
+    stroke: props.rank.accent || theme.tertiary,
+    filter: "drop-shadow(0 0px 15px rgba(0,0,0,.35))"
+  }),
+  footer: {
     width: "100%",
     height: "100px",
     position: "relative",
-    strokeWidth: 3,
-    zIndex: 0,
-    fill: props.rank.color || theme.secondary,
-    stroke: props.rank.accent || theme.tertiary,
-    filter: "drop-shadow(0 65px 15px rgba(0,0,0,.35))"
-  })
+    strokeWidth: 3
+  }
 });
 
 Banner.propTypes = propTypes;

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import Banner from "./Banner";
@@ -12,9 +12,7 @@ const BoostDisplay = props => {
   const { classes, updateOrder, currentOrder } = props;
 
   const ranksObject = useMemo(() =>
-    [].concat
-      .apply([], [...ranks])
-      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
   const renderContent = collectionId => {
@@ -25,22 +23,16 @@ const BoostDisplay = props => {
           <>
             <div className={classes.wrapper}>
               <Banner
-                isStartingRank
-                rank={
-                  currentOrder.start_rank
-                    ? ranksObject[currentOrder.start_rank]
-                    : {}
-                }
+                type="picker"
+                isStartRank
+                rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
                 currentOrder={currentOrder}
                 updateOrder={updateOrder}
               />
             </div>
             <Banner
-              rank={
-                currentOrder.desired_rank
-                  ? ranksObject[currentOrder.desired_rank]
-                  : {}
-              }
+              type="picker"
+              rank={currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -51,23 +43,16 @@ const BoostDisplay = props => {
           <>
             <div className={classes.wrapper}>
               <Banner
-                isStartingRank
-                rank={
-                  currentOrder.start_rank
-                    ? ranksObject[currentOrder.start_rank]
-                    : {}
-                }
+                type="picker"
+                isStartRank
+                rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
                 currentOrder={currentOrder}
                 updateOrder={updateOrder}
               />
             </div>
             <Banner
-              slider
-              rank={
-                currentOrder.start_rank
-                  ? ranksObject[currentOrder.start_rank]
-                  : {}
-              }
+              type="slider"
+              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -76,11 +61,7 @@ const BoostDisplay = props => {
     }
   };
 
-  return (
-    <div className={classes.root}>
-      {renderContent(currentOrder.collection_id)}
-    </div>
-  );
+  return <div className={classes.root}>{renderContent(currentOrder.collection_id)}</div>;
 };
 
 const styles = {

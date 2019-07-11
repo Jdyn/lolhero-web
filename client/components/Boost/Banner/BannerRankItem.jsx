@@ -7,10 +7,10 @@ const propTypes = {
 };
 
 const BannerRankItem = props => {
-  const { classes, rank, isStartingRank, updateOrder, theme } = props;
+  const { classes, rank, isStartRank, updateOrder, theme } = props;
 
   const handleClick = () => {
-    isStartingRank
+    isStartRank
       ? updateOrder({ start_rank: rank.rank })
       : updateOrder({ desired_rank: rank.rank });
   };

@@ -32,9 +32,9 @@ const useStyles = createUseStyles(theme => ({
   container: {
     width: "100%",
     cursor: "pointer",
-    margin: "4px 10px",
+    margin: "5px 10px",
     display: "flex",
-    padding: "25px 25px",
+    padding: "35px 25px",
     borderRadius: 8,
     flexDirection: "column",
     transitionDuration: ".15s",
