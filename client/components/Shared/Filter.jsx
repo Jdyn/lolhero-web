@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import withStyles from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import PropTypes from "prop-types";
 
 const propTypes = {
-  theme: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClick: PropTypes.func.isRequired,
   extended: PropTypes.bool,
@@ -12,7 +10,10 @@ const propTypes = {
 };
 
 const Filter = props => {
-  const { classes, theme, filters, selectedIndex, onClick } = props;
+  const { filters, selectedIndex, onClick } = props;
+
+  const classes = useStyles(props);
+  const theme = useTheme();
 
   const [state, set] = useState(selectedIndex || 0);
 
@@ -50,7 +51,7 @@ const Filter = props => {
 Filter.propTypes = propTypes;
 Filter.defaultProps = {};
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: props => ({
     margin: 0,
     padding: "20px 0 0 0",
@@ -81,6 +82,6 @@ const styles = theme => ({
       color: `${theme.accent} !important`
     }
   })
-});
+}));
 
-export default withStyles(styles, { link: true, injectTheme: true })(Filter);
+export default Filter;
