@@ -2,6 +2,7 @@ import Api from "../services/api";
 import keyMirror from "../util/keyMirror";
 import { setRequestInProcess } from "./RequestActions";
 import * as Sentry from "@sentry/browser";
+import calculatePrice from "../util/CalculatePrice";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
 
@@ -51,47 +52,14 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
 
   if (request.success) {
     const order = { ...getState().boost.order.details, ...newUpdate };
-    const price = calculatePrice(getState, order);
+    const pricing = getState().boost.pricing[order.boost_type];
+    const price = calculatePrice(order, pricing);
 
     dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
     return;
   }
 
   dispatch(setBoost({ boost: {}, details: { ...newUpdate } }));
-};
-
-const calculatePrice = (getState, order) => {
-  const pricing = getState().boost.pricing[order.boost_type];
-
-  var total = 0;
-
-  if (order.collection_id == 1 || order.collection_id == 5) {
-    for (var i = order.start_rank; i < order.desired_rank; i++) {
-      total += pricing[order.collection_id][i];
-    }
-  } else {
-    const base = pricing[order.collection_id][order.start_rank];
-    total = base * order.desired_amount;
-  }
-
-  // const queues = pricing["queues"];
-  const modifiers = pricing["modifiers"];
-
-  // total = total * queues[order.queue];
-
-  if (order.is_express) {
-    total = total * modifiers["express"];
-  }
-
-  if (order.is_incognito) {
-    total = total * modifiers["incognito"];
-  }
-
-  if (order.is_unrestricted) {
-    total = total * modifiers["unrestricted"];
-  }
-
-  return Math.round(total * 100) / 100;
 };
 
 export const submitOrder = () => (dispatch, getState) => {
@@ -105,14 +73,9 @@ export const submitOrder = () => (dispatch, getState) => {
 
   let order = { ...getState().boost.order };
 
-  const {
-    collection_id,
-    desired_amount,
-    desired_rank,
-    start_rank
-  } = order.details;
+  const { collection_id, desired_rank, start_rank } = order.details;
 
-  if (!order.details.start_rank) {
+  if (!start_rank) {
     const error = "starting rank cannot be blank";
 
     dispatch(
@@ -125,7 +88,7 @@ export const submitOrder = () => (dispatch, getState) => {
   }
 
   if (collection_id === 1 || collection_id === 5) {
-    if (!order.details.desired_rank) {
+    if (!desired_rank) {
       const error = "Must choose a desired rank";
 
       dispatch(
@@ -174,9 +137,22 @@ export const submitOrder = () => (dispatch, getState) => {
           .then(result => {
             console.log(result);
           });
+      } else {
+        dispatch(
+          setRequestInProcess(false, requestType, {
+            errored: true,
+            error: "Failed to fetch"
+          })
+        );
       }
     })
     .catch(error => {
+      dispatch(
+        setRequestInProcess(false, requestType, {
+          errored: true,
+          error: "Failed to fetch"
+        })
+      );
       Sentry.captureException(error);
     });
 };

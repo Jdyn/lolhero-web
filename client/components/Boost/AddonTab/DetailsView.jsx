@@ -49,25 +49,29 @@ const DetailsView = props => {
           );
         })}
       </div>
-      <div className={classes.wrapper}>
-        <h2>League Points</h2>
-        <p>How much LP do you have? We adjust the price based on the amount.</p>
-        <div className={classes.lp}>
-          {addons.details.lp.map((lp, index) => {
-            return (
-              <Toggle
-                key={index}
-                onClick={() => updateOrder({ lp: lp.lp })}
-                width="85px"
-                margin="5px 5px"
-                isSelected={currentOrder.lp === lp.lp}
-              >
-                {lp.title}
-              </Toggle>
-            );
-          })}
-        </div>
-      </div>
+      {currentOrder.collection_id === 1 || currentOrder.collection_id === 5 ? (
+          <div className={classes.wrapper}>
+            <h2>League Points</h2>
+            <p>
+              How much LP do you have? We adjust the price based on the amount.
+            </p>
+            <div className={classes.lp}>
+              {addons.details.lp.map((lp, index) => {
+                return (
+                  <Toggle
+                    key={index}
+                    onClick={() => updateOrder({ lp: lp.lp })}
+                    width="85px"
+                    margin="5px 5px"
+                    isSelected={currentOrder.lp === lp.lp}
+                  >
+                    {lp.title}
+                  </Toggle>
+                );
+              })}
+            </div>
+          </div>
+        ) : <div></div>}
     </>
   );
 };

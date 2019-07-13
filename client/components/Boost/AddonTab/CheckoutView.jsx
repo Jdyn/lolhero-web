@@ -4,6 +4,7 @@ import content from "../../../lib/boostContent";
 import { createUseStyles } from "react-jss";
 import { formatLP } from "../../../util/Helpers";
 import addons from "../../../lib/addonContent";
+import ranks from "../../../lib/ranks";
 
 const propTypes = {
   currentOrder: PropTypes.object.isRequired
@@ -13,6 +14,12 @@ const CheckoutView = props => {
   const { currentOrder } = props;
   const classes = useStyes();
 
+  const ranksObject = useMemo(() =>
+    [].concat
+      .apply([], [...ranks])
+      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+  );
+
   const currentCollection = useMemo(
     () =>
       content[currentOrder.boost_type || "solo"].items.filter(
@@ -21,14 +28,43 @@ const CheckoutView = props => {
     [currentOrder.boost_type, currentOrder.collection_id]
   );
 
+  const formatTitle = () => {
+    const {
+      boost_type,
+      start_rank,
+      desired_rank,
+      lp,
+      desired_amount
+    } = currentOrder;
+
+    const startRank = ranksObject[start_rank] || { title: "???" };
+    const desiredRank = ranksObject[desired_rank] || { title: "???" };
+
+    switch (currentCollection.name) {
+      case "Division Boost":
+        return `${boost_type.toUpperCase()} | ${currentCollection.name} - From ${
+          startRank.title
+        } (${formatLP(lp)} LP) to ${desiredRank.title}`;
+      default:
+        return `${boost_type.toUpperCase()} | ${desired_amount} ${
+          currentCollection.name
+        } - ${startRank.title}`;
+    }
+  };
+
   return (
     <>
       <div className={classes.wrapper}>
         <h2>Order Summary</h2>
+        <h3>{formatTitle()}</h3>
         <h2>Details</h2>
-        <span>
-          LP: <b>{formatLP(currentOrder.lp)}</b>
-        </span>
+
+        {currentCollection.name === "Division Boost" && (
+          <span>
+            LP: <b>{formatLP(currentOrder.lp)}</b>
+          </span>
+        )}
+
         <span>
           Type: <b>{currentOrder.boost_type}</b>
         </span>
@@ -84,7 +120,9 @@ const useStyes = createUseStyles(theme => ({
     },
     "& h3": {
       margin: 0,
-      marginBottom: "15px"
+      fontSize: 16,
+      marginBottom: "15px",
+      color: theme.white
     },
     "& span": {
       display: "flex",
