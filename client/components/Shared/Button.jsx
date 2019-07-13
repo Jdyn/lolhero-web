@@ -1,10 +1,9 @@
 import React from "react";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 import PropTypes from "prop-types";
 
 const propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   secondary: PropTypes.bool,
   noShadow: PropTypes.bool,
@@ -13,12 +12,11 @@ const propTypes = {
 };
 
 const Button = props => {
-  const { classes, children, secondary, onClick } = props;
+  const { children, secondary, onClick } = props;
+  const classes = useStyles(props)
+
   return (
-    <button
-      onClick={onClick}
-      className={secondary ? classes.secondary : classes.primary}
-    >
+    <button onClick={onClick} className={secondary ? classes.secondary : classes.primary}>
       {children}
     </button>
   );
@@ -31,7 +29,7 @@ Button.defaultProps = {
   minHeight: "50px"
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   button: {
     cursor: "pointer",
     outline: "none",
@@ -69,6 +67,6 @@ const styles = theme => ({
     minHeight: props => props.minHeight,
     margin: props => props.margin
   }
-});
+}));
 
-export default withStyles(styles, { link: true })(Button);
+export default Button
