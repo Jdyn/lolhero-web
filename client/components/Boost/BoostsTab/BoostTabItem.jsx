@@ -9,9 +9,10 @@ const propTypes = {
 };
 
 const BoostTabItem = props => {
+  const { item, onClick, isSelected } = props;
+
   const theme = useTheme();
   const classes = useStyles();
-  const { item, onClick, isSelected } = props;
 
   return (
     <div

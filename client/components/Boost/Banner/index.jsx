@@ -1,70 +1,37 @@
-import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
-import ranks from "../../../lib/ranks";
-import BannerRankItem from "./BannerRankItem";
+import { createUseStyles, useTheme } from "react-jss";
+import BannerRankList from "./BannerRankList";
+import BannerRankSlider from "./BannerRankSlider";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired,
-  type: PropTypes.oneOf(["slider", "picker"])
+  type: PropTypes.oneOf(["slider", "picker"]),
+  rank: PropTypes.object,
+  isStartRank: PropTypes.bool,
+  updateOrder: PropTypes.func.isRequired,
+  currentOrder: PropTypes.object.isRequired
 };
 
-const flatten = arr => arr.reduce((flat, next) => flat.concat(next), []);
-
 const Banner = props => {
-  const { classes, theme, type, rank, updateOrder, currentOrder, isStartRank } = props;
+  const { type, rank, updateOrder, currentOrder, isStartRank } = props;
 
-  const flatRanks = useMemo(() => flatten([...ranks]));
-
-  const validateDisabled = itemIndex => {
-    if (currentOrder.collection_id === 1 || currentOrder.collection_id === 5) {
-      if (!isStartRank) {
-        if (currentOrder.start_rank !== null) {
-          return itemIndex < currentOrder.start_rank + 1;
-        } else {
-          return false;
-        }
-      } else {
-        if (currentOrder.desired_rank !== null) {
-          return itemIndex > currentOrder.desired_rank - 1;
-        } else {
-          return false;
-        }
-      }
-    }
-  };
+  const theme = useTheme();
+  const classes = useStyles(props);
 
   const renderContent = {
     slider: (
-      <>
-        <div className={classes.amount}>{currentOrder.desired_amount}</div>
-        <div className={classes.sliderWrapper}>
-          <input
-            type="range"
-            min="1"
-            max="10"
-            className={classes.slider}
-            value={currentOrder.desired_amount}
-            onChange={event => updateOrder({ desired_amount: parseInt(event.target.value) })}
-          />
-        </div>
-      </>
+      <BannerRankSlider
+        rank={rank}
+        currentOrder={currentOrder}
+        updateOrder={updateOrder}
+      />
     ),
     picker: (
-      <>
-        <div className={classes.ranks}>
-          {flatRanks.map((rankItem, index) => (
-            <BannerRankItem
-              key={index}
-              rank={rankItem}
-              isSelected={rank.rank === rankItem.rank}
-              isStartRank={isStartRank}
-              isDisabled={validateDisabled(rankItem.rank)}
-              updateOrder={updateOrder}
-            />
-          ))}
-        </div>
-      </>
+      <BannerRankList
+        rank={rank}
+        isStartRank={isStartRank}
+        currentOrder={currentOrder}
+        updateOrder={updateOrder}
+      />
     )
   };
 
@@ -84,9 +51,9 @@ const Banner = props => {
         {renderContent[type]}
       </div>
 
-      <div className={classes.wrapper}>
+      <div className={classes.footer}>
         <svg
-          className={classes.footer}
+          className={classes.foot}
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
           style={{
@@ -101,12 +68,11 @@ const Banner = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
     position: "relative",
     display: "flex",
     flexDirection: "column",
-    // height: "520px",
     height: "70vh",
     maxHeight: "550px",
     justifyContent: "flex-start",
@@ -149,40 +115,7 @@ const styles = theme => ({
       fontSize: 16
     }
   },
-  ranks: {
-    display: "flex",
-    flexWrap: "wrap",
-    width: "170px",
-    height: "75px"
-  },
-  sliderWrapper: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "170px",
-    height: "75px"
-  },
-  slider: props => ({
-    appearance: "none",
-    width: "100%",
-    height: "14px",
-    outline: "none",
-    borderRadius: 3,
-    backgroundColor: props.rank.accent || theme.grey,
-    "&::-webkit-slider-thumb": {
-      appearance: "none",
-      cursor: "pointer",
-      height: "35px",
-      width: "10px",
-      borderRadius: 3,
-      backgroundColor: theme.white,
-      transitionDuration: ".15s",
-      "&:hover": {
-        transform: "scale(1.2)"
-      }
-    }
-  }),
-  wrapper: props => ({
+  footer: props => ({
     width: "100%",
     height: "100px",
     minHeight: "100px",
@@ -195,14 +128,14 @@ const styles = theme => ({
     stroke: props.rank.accent || theme.tertiary,
     filter: "drop-shadow(0 0px 15px rgba(0,0,0,.35))"
   }),
-  footer: {
+  foot: {
     width: "100%",
     height: "100px",
     position: "relative",
     strokeWidth: 3
   }
-});
+}));
 
 Banner.propTypes = propTypes;
 
-export default withStyles(styles, { link: true, injectTheme: true })(Banner);
+export default Banner;

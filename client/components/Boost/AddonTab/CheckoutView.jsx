@@ -37,8 +37,8 @@ const CheckoutView = props => {
       desired_amount
     } = currentOrder;
 
-    const startRank = ranksObject[start_rank] || { title: "???" };
-    const desiredRank = ranksObject[desired_rank] || { title: "???" };
+    const startRank = ranksObject[start_rank] || { title: "TBD" };
+    const desiredRank = ranksObject[desired_rank] || { title: "TBD" };
 
     switch (currentCollection.name) {
       case "Division Boost":

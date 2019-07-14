@@ -1,15 +1,16 @@
 import React from "react";
+import { useRouter } from "next/router";
 
-class OrderSuccess extends React.Component {
-  static async getInitialProps({query}) {
-    console.log(query);
+const OrderSuccess = props => {
+  const router = useRouter();
+  const { tracking_id } = router.query;
 
-    return {}
-  }
-
-  render() {
-    return <div>SUCCESS</div>;
-  }
-}
+  return (
+    <div>
+      <h3>Thank you for your purchase</h3>
+      <h2>{tracking_id}</h2>
+    </div>
+  );
+};
 
 export default OrderSuccess;

@@ -4,11 +4,12 @@
   "root": "/client/",
   "scripts": {
     "dev": "node server/index.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server/index.js"
+    "build": "next build client/",
+    "start": "SET NODE_ENV=production & node server/index.js"
   },
   "dependencies": {
     "@sentry/browser": "^5.5.0",
+    "express": "^4.17.1",
     "next": "^9.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

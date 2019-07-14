@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  rank: PropTypes.object,
+  isStartRank: PropTypes.bool,
+  updateOrder: PropTypes.func.isRequired
 };
 
 const BannerRankItem = props => {
-  const { classes, rank, isStartRank, updateOrder, theme } = props;
+  const { rank, isStartRank, updateOrder } = props;
+
+  const theme = useTheme();
+  const classes = useStyles(props);
 
   const handleClick = () => {
     isStartRank
@@ -28,8 +33,8 @@ const BannerRankItem = props => {
   );
 };
 
-const styles = theme => ({
-  container: ({ isSelected, rank }) => ({
+const useStyles = createUseStyles(theme => ({
+  container: ({ rank }) => ({
     width: "12px",
     border: `1px solid`,
     margin: "1.5px 1px",
@@ -45,8 +50,8 @@ const styles = theme => ({
       transform: "scale(1.5)"
     }
   })
-});
+}));
 
 BannerRankItem.propTypes = propTypes;
 
-export default withStyles(styles, {injectTheme: true})(BannerRankItem);
+export default BannerRankItem;

@@ -40,7 +40,7 @@ export default {
     description:
       "DUO means you will play alongside our booster on your own account.",
     subdescription:
-      " if you don't want to play alongside, you can select SOLO.",
+      " if you don't want to play, you can select SOLO.",
     color: "#e53935",
     items: [
       {
