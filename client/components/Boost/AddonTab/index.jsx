@@ -1,64 +1,80 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
 import AddonView from "./AddonView";
 import DetailsView from "./DetailsView";
 import CheckoutView from "./CheckoutView";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  updateOrder: PropTypes.func.isRequired,
+  currentStage: PropTypes.number.isRequired,
+  currentOrder: PropTypes.object.isRequired
 };
 
 const AddonTab = props => {
-  const { classes, currentStage, updateOrder, currentOrder } = props;
+  const { currentStage, updateOrder, currentOrder } = props;
+
+  const classes = useStyles();
 
   const views = {
-    0: (
-      <div className={classes.container}>
-        <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />
-      </div>
-    ),
-    1: (
-      <div className={classes.container}>
-        <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />
-      </div>
-    ),
-    2: (
-      <div className={classes.container}>
-        <div>set up</div>
-      </div>
-    ),
-    3: (
-      <div className={classes.container}>
-        <CheckoutView currentOrder={currentOrder} />
-      </div>
-    )
+    0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
+    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
+    2: <CheckoutView currentOrder={currentOrder} />
   };
 
-  return <div className={classes.root}>{views[currentStage]}</div>;
+  return (
+    <div className={classes.root}>
+      <div className={classes.singleDisplay}>
+        <div className={classes.container}>{views[currentStage]}</div>
+      </div>
+      <div className={classes.fullDisplay}>
+        {Object.keys(views).map((view, index) => (
+          <div key={index} className={classes.container}>
+            {views[view]}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
-    position: "relative",
+    width: "100%",
+    minHeight: "350px",
     display: "flex",
+    position: "relative",
+    boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
     borderRadius: 16,
-    padding: "10px",
+    zIndex: 15,
     flexDirection: "column",
-    height: "100%",
-    width: "400px",
-    right: 0,
-    overflow: "auto",
     backgroundColor: theme.primary,
-    boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)"
+    "@media (min-width: 1025px)": {
+      width: "400px",
+      height: "100%"
+    }
   },
   container: {
     height: "100%",
     overflowY: "auto",
     color: theme.white
+  },
+  singleDisplay: {
+    display: "none",
+    overflowY: "auto",
+    margin: "10px",
+    "@media (min-width: 1025px)": {
+      display: "inline-block"
+    }
+  },
+  fullDisplay: {
+    display: "inline-block",
+    "@media (min-width: 1025px)": {
+      display: "none"
+    }
   }
-});
+}));
 
 AddonTab.propTypes = propTypes;
 
-export default withStyles(styles)(AddonTab);
+export default AddonTab;

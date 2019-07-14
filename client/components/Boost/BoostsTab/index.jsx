@@ -70,6 +70,7 @@ const useStyles = createUseStyles(theme => ({
     position: "relative",
     boxShadow: "5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
     borderRadius: 16,
+    zIndex: 15,
     flexDirection: "column",
     backgroundColor: theme.primary,
     "@media (min-width: 1025px)": {

@@ -15,13 +15,7 @@ const propTypes = {
 };
 
 const Boost = props => {
-  const {
-    fetchBoostPrices,
-    updateOrder,
-    currentOrder,
-    boost,
-    submitOrder
-  } = props;
+  const { fetchBoostPrices, updateOrder, currentOrder, boost, submitOrder } = props;
   const classes = useStyles();
 
   const [currentStage, setStage] = useState(0);
@@ -57,21 +51,24 @@ const Boost = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     position: "absolute",
-    padding: "76px 0 90px 0",
+    paddingTop: "76px",
     height: "100%",
     minHeight: "100vh",
     overflow: "hidden",
     width: "100%",
     overflowY: "auto",
-    backgroundColor: theme.primary
+    backgroundColor: theme.primary,
+    "@media (min-width: 1025px)": {
+      padding: "76px 0 90px 0",
+    }
   },
   container: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    height: "100%",
     "@media (min-width: 1025px)": {
-      flexDirection: "row"
+      flexDirection: "row",
+      height: "100%"
     }
   }
 }));

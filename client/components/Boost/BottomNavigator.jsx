@@ -7,30 +7,19 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const {
-    classes,
-    currentStage,
-    setStage,
-    boost,
-    currentOrder,
-    submitOrder
-  } = props;
+  const { classes, currentStage, setStage, boost, currentOrder, submitOrder } = props;
 
   const updateStage = stage => {
-    if (stage === 3) {
+    if (stage === 2) {
       submitOrder();
-    } else if (stage + 1 <= 3) {
+    } else if (stage + 1 <= 2) {
       setStage(prev => prev + 1);
     }
   };
 
   const stageText = currentStage => {
     switch (currentStage) {
-      case 0:
-      case 1:
       case 2:
-        return "next";
-      case 3:
         return "checkout";
       default:
         return "next";
@@ -55,12 +44,11 @@ const BottomNavigator = props => {
         <h3>${boost.price || 0}</h3>
         <span>Purchase price</span>
       </div>
-
-      <button
-        className={classes.button}
-        onClick={() => updateStage(currentStage)}
-      >
+      <button className={classes.button} onClick={() => updateStage(currentStage)}>
         {stageText(currentStage)}
+      </button>
+      <button className={classes.checkoutButton} onClick={() => updateStage(2)}>
+        {stageText(3)}
       </button>
     </div>
   );
@@ -68,34 +56,36 @@ const BottomNavigator = props => {
 
 const styles = theme => ({
   container: {
-    position: "fixed",
     display: "flex",
+    flexWrap: "wrap",
     gridArea: "botNav",
     color: theme.white,
-    justifyContent: "flex-end",
-    height: "90px",
+    height: "auto",
     width: "100%",
+    justifyContent: "center",
     padding: "10px 0",
     bottom: 0,
     backgroundColor: theme.tertiary,
-    zIndex: 20
-  },
-  wrapper: {
-    display: "flex",
-    height: "100%",
-    padding: "0 15px"
+    zIndex: 50,
+    position: "sticky",
+    "@media (min-width: 1025px)": {
+      height: "90px",
+      position: "fixed",
+      justifyContent: "flex-end"
+    }
   },
   content: {
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    minWidth: "110px",
+    // minWidth: "112px",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     borderRight: ".7px solid #999",
     lineHeight: 1,
     flexGrow: 1,
+    padding: "15px",
     "& h3": {
       fontSize: 19,
       margin: 0,
@@ -108,18 +98,32 @@ const styles = theme => ({
     }
   },
   button: {
+    display: "none",
     outline: "none",
     border: "none",
-    width: "350px",
-    margin: "5px 25px 5px 3%",
+    margin: "15px",
+    width: "100%",
     borderRadius: 12,
+    minHeight: "55px",
     cursor: "pointer",
     color: theme.white,
     textTransform: "uppercase",
     letterSpacing: 0.8,
     fontWeight: 700,
     fontSize: 20,
-    backgroundColor: theme.accent
+    backgroundColor: theme.accent,
+    "@media (min-width: 1025px)": {
+      margin: "5px 25px 5px 3%",
+      width: "350px",
+      display: "inline-block"
+    }
+  },
+  checkoutButton: {
+    extend: "button",
+    display: "inline-block",
+    "@media (min-width: 1025px)": {
+      display: "none"
+    }
   }
 });
 

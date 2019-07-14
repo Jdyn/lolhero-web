@@ -9,7 +9,7 @@ const propTypes = {
   currentStage: PropTypes.number.isRequired
 };
 
-const filters = ["Details", "Add-Ons", "set-up", "checkout"];
+const filters = ["Details", "Add-Ons", "checkout"];
 
 const TopNavigator = props => {
   const { currentStage, setStage } = props;

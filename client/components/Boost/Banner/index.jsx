@@ -90,7 +90,7 @@ const useStyles = createUseStyles(theme => ({
     padding: "55px 24px",
     borderLeft: `6px solid`,
     borderRight: `6px solid`,
-    boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
+    // boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     "& span": {
       textAlign: "center"
     }

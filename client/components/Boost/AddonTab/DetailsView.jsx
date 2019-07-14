@@ -96,6 +96,12 @@ const styles = theme => ({
       margin: 0,
       marginBottom: "10px"
     }
+  },
+  lp: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center"
   }
 });
 

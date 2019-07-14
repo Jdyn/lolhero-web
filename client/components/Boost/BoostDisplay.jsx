@@ -66,10 +66,11 @@ const BoostDisplay = props => {
 
 const styles = {
   root: {
+    top: -10,
     display: "flex",
     position: "relative",
     flexDirection: "column",
-    paddingBottom: "110px",
+    // paddingBottom: "110px",
     justifyContent: "space-evenly",
     alignItems: "center",
     flexGrow: 1,
@@ -81,7 +82,7 @@ const styles = {
   },
   wrapper: {
     display: "flex",
-    width: "100%",
+    width: "100%",  
     zIndex: 10,
     justifyContent: "center",
     borderRadius: "0 0 12px 12px",
