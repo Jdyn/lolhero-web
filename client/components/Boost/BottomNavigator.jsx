@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "react-jss";
 import { formatLP } from "../../util/Helpers";
+
 const propTypes = {
   classes: PropTypes.object.isRequired
 };
@@ -48,7 +49,7 @@ const BottomNavigator = props => {
         {stageText(currentStage)}
       </button>
       <button className={classes.checkoutButton} onClick={() => updateStage(2)}>
-        {stageText(3)}
+        {stageText(2)}
       </button>
     </div>
   );
