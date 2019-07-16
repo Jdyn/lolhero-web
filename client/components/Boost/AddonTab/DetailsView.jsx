@@ -15,9 +15,7 @@ const DetailsView = props => {
     <>
       <div className={classes.wrapper}>
         <h2>Servers</h2>
-        <p>
-          What server are you on? We currently support the following servers.
-        </p>
+        <p>What server are you on? We currently support the following servers.</p>
         {addons.details.servers.map((server, index) => {
           return (
             <Toggle
@@ -34,8 +32,8 @@ const DetailsView = props => {
       <div className={classes.wrapper}>
         <h2>Queues</h2>
         <p>
-          What queue type do you want to play on? We currently support the
-          following queues.
+          What queue type do you want to play on? We currently support the following
+          queues.
         </p>
         {addons.details.queues.map((queue, index) => {
           return (
@@ -50,28 +48,39 @@ const DetailsView = props => {
         })}
       </div>
       {currentOrder.collection_id === 1 || currentOrder.collection_id === 5 ? (
-          <div className={classes.wrapper}>
-            <h2>League Points</h2>
-            <p>
-              How much LP do you have? We adjust the price based on the amount.
-            </p>
-            <div className={classes.lp}>
-              {addons.details.lp.map((lp, index) => {
-                return (
-                  <Toggle
-                    key={index}
-                    onClick={() => updateOrder({ lp: lp.lp })}
-                    width="85px"
-                    margin="5px 5px"
-                    isSelected={currentOrder.lp === lp.lp}
-                  >
-                    {lp.title}
-                  </Toggle>
-                );
-              })}
-            </div>
+        <div className={classes.wrapper}>
+          <h2>League Points</h2>
+          <p>How much LP do you have? We adjust the price based on the amount.</p>
+          <div className={classes.lp}>
+            {addons.details.lp.map((lp, index) => {
+              return (
+                <Toggle
+                  key={index}
+                  onClick={() => updateOrder({ lp: lp.lp })}
+                  width="85px"
+                  margin="5px 5px"
+                  isSelected={currentOrder.lp === lp.lp}
+                >
+                  {lp.title}
+                </Toggle>
+              );
+            })}
           </div>
-        ) : <div></div>}
+          {currentOrder.lp === 100 && (
+            <div className={classes.wrapper}>
+              <div className={classes.promos}>
+                {[...Array(3)].map(value => (
+                  <button key={value} className={classes.promo}>
+                    X
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div />
+      )}
     </>
   );
 };
@@ -102,6 +111,21 @@ const styles = theme => ({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center"
+  },
+  promos: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    flexDirection: "row"
+  },
+  promo: {
+    cursor: "pointer",
+    padding: "15px",
+    borderRadius: 6,
+    border: "none",
+    outline: "none",
+    display: "flex",
+    margin: "5px"
   }
 });
 
