@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 import { formatLP } from "../../util/Helpers";
-
+  
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  boost: PropTypes.object.isRequired,
+  setStage: PropTypes.func.isRequired,
+  submitOrder: PropTypes.func.isRequired,
+  currentStage: PropTypes.number.isRequired,
+  currentOrder: PropTypes.object.isRequired
 };
 
 const BottomNavigator = props => {
-  const { classes, currentStage, setStage, boost, currentOrder, submitOrder } = props;
+  const { currentStage, setStage, boost, currentOrder, submitOrder } = props;
+
+  const classes = useStyles();
 
   const updateStage = stage => {
     if (stage === 2) {
@@ -55,7 +61,7 @@ const BottomNavigator = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -79,7 +85,6 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    // minWidth: "112px",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
@@ -126,8 +131,8 @@ const styles = theme => ({
       display: "none"
     }
   }
-});
+}));
 
 BottomNavigator.propTypes = propTypes;
 
-export default withStyles(styles)(BottomNavigator);
+export default BottomNavigator;
