@@ -12,14 +12,16 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { currentStage, updateOrder, currentOrder } = props;
+  const { currentStage, updateOrder, currentOrder, submitOrderRequest } = props;
 
   const classes = useStyles();
 
   const views = {
     0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: <CheckoutView currentOrder={currentOrder} />
+    2: (
+      <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
+    )
   };
 
   return (

@@ -1,15 +1,17 @@
-import React from "react";
 import addons from "../../../lib/addonContent";
 import Toggle from "../../Shared/Toggle";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  updateOrder: PropTypes.func.isRequired,
+  currentOrder: PropTypes.object.isRequired
 };
 
 const DetailsView = props => {
-  const { classes, currentOrder, updateOrder } = props;
+  const { currentOrder, updateOrder } = props;
+
+  const classes = useStyles();
 
   return (
     <>
@@ -35,42 +37,38 @@ const DetailsView = props => {
           What queue type do you want to play on? We currently support the following
           queues.
         </p>
-        {addons.details.queues.map((queue, index) => {
-          return (
-            <Toggle
-              key={index}
-              onClick={() => updateOrder({ queue: queue.queue })}
-              isSelected={currentOrder.queue === queue.queue}
-            >
-              {queue.title}
-            </Toggle>
-          );
-        })}
+        {addons.details.queues.map((queue, index) => (
+          <Toggle
+            key={index}
+            onClick={() => updateOrder({ queue: queue.queue })}
+            isSelected={currentOrder.queue === queue.queue}
+          >
+            {queue.title}
+          </Toggle>
+        ))}
       </div>
       {currentOrder.collection_id === 1 || currentOrder.collection_id === 5 ? (
         <div className={classes.wrapper}>
           <h2>League Points</h2>
           <p>How much LP do you have? We adjust the price based on the amount.</p>
           <div className={classes.lp}>
-            {addons.details.lp.map((lp, index) => {
-              return (
-                <Toggle
-                  key={index}
-                  onClick={() => updateOrder({ lp: lp.lp })}
-                  width="85px"
-                  margin="5px 5px"
-                  isSelected={currentOrder.lp === lp.lp}
-                >
-                  {lp.title}
-                </Toggle>
-              );
-            })}
+            {addons.details.lp.map((lp, index) => (
+              <Toggle
+                key={index}
+                onClick={() => updateOrder({ lp: lp.lp })}
+                width="85px"
+                margin="5px 5px"
+                isSelected={currentOrder.lp === lp.lp}
+              >
+                {lp.title}
+              </Toggle>
+            ))}
           </div>
           {currentOrder.lp === 100 && (
             <div className={classes.wrapper}>
               <div className={classes.promos}>
-                {[...Array(3)].map(value => (
-                  <button key={value} className={classes.promo}>
+                {[...Array(3)].map((value, index) => (
+                  <button key={index} className={classes.promo}>
                     X
                   </button>
                 ))}
@@ -85,7 +83,7 @@ const DetailsView = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
@@ -127,8 +125,8 @@ const styles = theme => ({
     display: "flex",
     margin: "5px"
   }
-});
+}));
 
 DetailsView.propTypes = propTypes;
 
-export default withStyles(styles)(DetailsView);
+export default DetailsView;

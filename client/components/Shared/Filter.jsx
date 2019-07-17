@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { createUseStyles, useTheme } from "react-jss";
 import PropTypes from "prop-types";
+import { createUseStyles, useTheme } from "react-jss";
 
 const propTypes = {
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,

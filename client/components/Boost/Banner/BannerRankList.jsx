@@ -14,7 +14,9 @@ const propTypes = {
 
 const BannerRankList = props => {
   const { rank, isStartRank, currentOrder, updateOrder } = props;
+  
   const classes = useStyles();
+
   const flatRanks = useMemo(() => flatten([...ranks]));
 
   const validateDisabled = itemIndex => {

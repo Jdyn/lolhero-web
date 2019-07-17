@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Filter from "../../Shared/Filter";
 import content from "../../../lib/boostContent";
 import PropTypes from "prop-types";
@@ -20,31 +20,32 @@ const BoostTab = props => {
 
   const currentContent = useMemo(() => content[selectedFilter], [selectedFilter]);
 
-  const handleOrderUpdate = newSelectedIndex => {
-    const selectedCollection = currentContent.items[newSelectedIndex];
+  useEffect(() => {
+    if (selectedFilter !== currentOrder.boost_type) {
+      const newId = content[selectedFilter].items[selectedIndex].id;
+      handleOrderUpdate(newId, selectedIndex);
+    }
+  }, [selectedFilter]);
 
+  const handleOrderUpdate = (newSelectedId, newSelectedIndex) => {
+    setIndex(newSelectedIndex);
     updateOrder({
-      collection_id: selectedCollection.id,
+      collection_id: newSelectedId,
       boost_type: selectedFilter
     });
-
-    setIndex(newSelectedIndex);
   };
 
   const handleFilterUpdate = newIndex => {
-    switch (newIndex) {
-      case 0:
-        return setFilter("solo");
-      case 1:
-        return setFilter("duo");
-      default:
-        return setFilter("solo");
-    }
+    const boost_type = Object.keys(content)[newIndex];
+    setFilter(boost_type);
   };
 
   return (
     <div className={classes.root}>
-      <Filter filters={Object.keys(content)} onClick={handleFilterUpdate} />
+      <Filter
+        filters={Object.keys(content)}
+        onClick={index => handleFilterUpdate(index)}
+      />
       <span className={classes.notice}>
         {currentContent.description}
         <span>{currentContent.subdescription}</span>
@@ -54,8 +55,8 @@ const BoostTab = props => {
           <BoostTabItem
             key={index}
             item={item}
-            onClick={() => handleOrderUpdate(index)}
-            isSelected={selectedIndex === index}
+            onClick={() => handleOrderUpdate(currentContent.items[index].id, index)}
+            isSelected={currentContent.items[index].id === currentOrder.collection_id}
           />
         ))}
       </div>

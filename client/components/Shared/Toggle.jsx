@@ -1,27 +1,30 @@
 import React from "react";
-import withStyles from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import PropTypes from "prop-types";
 
 const propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   isSelected: PropTypes.bool
 };
 
-const Toggle = ({ classes, children, onClick, key, theme, ...props }) => (
-  <button
-    onClick={onClick}
-    className={classes.button}
-    key={key}
-    style={{
-      borderColor: props.isSelected ? theme.accent : theme.grey,
-      color: props.isSelected ? theme.accent : theme.white
-    }}
-  >
-    {children}
-  </button>
-);
+const Toggle = ({ children, onClick, ...props }) => {
+  const classes = useStyles(props);
+  const theme = useTheme();
+
+  return (
+    <button
+      onClick={onClick}
+      className={classes.button}
+      style={{
+        borderColor: props.isSelected ? theme.accent : theme.grey,
+        color: props.isSelected ? theme.accent : theme.white
+      }}
+    >
+      {children}
+    </button>
+  );
+};
 
 Toggle.propTypes = propTypes;
 Toggle.defaultProps = {
@@ -30,7 +33,7 @@ Toggle.defaultProps = {
   margin: "6px 0"
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   button: props => ({
     cursor: "pointer",
     width: props.width,
@@ -54,6 +57,6 @@ const styles = theme => ({
       transform: "translateY(2px)"
     }
   })
-});
+}));
 
-export default withStyles(styles, { injectTheme: true, link: true })(Toggle);
+export default Toggle;

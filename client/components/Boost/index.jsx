@@ -9,13 +9,15 @@ import { createUseStyles } from "react-jss";
 
 const propTypes = {
   boost: PropTypes.object.isRequired,
+  submitOrder: PropTypes.func.isRequired,
   updateOrder: PropTypes.func.isRequired,
   currentOrder: PropTypes.object.isRequired,
   fetchBoostPrices: PropTypes.func.isRequired
 };
 
 const Boost = props => {
-  const { fetchBoostPrices, updateOrder, currentOrder, boost, submitOrder } = props;
+  const { fetchBoostPrices, updateOrder, currentOrder, boost, submitOrder, submitOrderRequest } = props;
+
   const classes = useStyles();
 
   const [currentStage, setStage] = useState(0);
@@ -32,6 +34,7 @@ const Boost = props => {
         <BoostDisplay currentOrder={currentOrder} updateOrder={updateOrder} />
         <AddonTab
           boost={boost}
+          submitOrderRequest={submitOrderRequest}
           currentStage={currentStage}
           currentOrder={currentOrder}
           updateOrder={updateOrder}

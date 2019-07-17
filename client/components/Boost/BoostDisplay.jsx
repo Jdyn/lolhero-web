@@ -1,18 +1,23 @@
 import React, { useMemo } from "react";
-import PropTypes from "prop-types";
-import withStyles from "react-jss";
-import Banner from "./Banner";
 import ranks from "../../lib/ranks";
+import Banner from "./Banner";
+import PropTypes from "prop-types";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
+  updateOrder: PropTypes.func.isRequired,
+  currentOrder: PropTypes.object.isRequired
 };
 
 const BoostDisplay = props => {
-  const { classes, updateOrder, currentOrder } = props;
+  const { updateOrder, currentOrder } = props;
+
+  const classes = useStyles();
 
   const ranksObject = useMemo(() =>
-    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+    [].concat
+      .apply([], [...ranks])
+      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
   const renderContent = collectionId => {
@@ -32,7 +37,9 @@ const BoostDisplay = props => {
             </div>
             <Banner
               type="picker"
-              rank={currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}}
+              rank={
+                currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}
+              }
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -64,17 +71,15 @@ const BoostDisplay = props => {
   return <div className={classes.root}>{renderContent(currentOrder.collection_id)}</div>;
 };
 
-const styles = {
+const useStyles = createUseStyles({
   root: {
     top: -10,
     display: "flex",
     position: "relative",
     flexDirection: "column",
-    // paddingBottom: "110px",
     justifyContent: "space-evenly",
     alignItems: "center",
     flexGrow: 1,
-    // top: -6,
     "@media (min-width: 640px)": {
       flexDirection: "row",
       alignItems: "normal"
@@ -82,7 +87,7 @@ const styles = {
   },
   wrapper: {
     display: "flex",
-    width: "100%",  
+    width: "100%",
     zIndex: 10,
     justifyContent: "center",
     borderRadius: "0 0 12px 12px",
@@ -92,8 +97,8 @@ const styles = {
       width: "auto"
     }
   }
-};
+});
 
 BoostDisplay.propTypes = propTypes;
 
-export default withStyles(styles)(BoostDisplay);
+export default BoostDisplay;

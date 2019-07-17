@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
-import PropTypes from "prop-types";
-import content from "../../../lib/boostContent";
-import { createUseStyles } from "react-jss";
-import { formatLP } from "../../../util/Helpers";
-import addons from "../../../lib/addonContent";
 import ranks from "../../../lib/ranks";
+import addons from "../../../lib/addonContent";
+import content from "../../../lib/boostContent";
+import PropTypes from "prop-types";
+import { formatLP } from "../../../util/Helpers";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
   currentOrder: PropTypes.object.isRequired
 };
 
 const CheckoutView = props => {
-  const { currentOrder } = props;
+  const { currentOrder, submitOrderRequest } = props;
   const classes = useStyes();
 
   const ranksObject = useMemo(() =>
@@ -29,13 +29,7 @@ const CheckoutView = props => {
   );
 
   const formatTitle = () => {
-    const {
-      boost_type,
-      start_rank,
-      desired_rank,
-      lp,
-      desired_amount
-    } = currentOrder;
+    const { boost_type, start_rank, desired_rank, lp, desired_amount } = currentOrder;
 
     const startRank = ranksObject[start_rank] || { title: "TBD" };
     const desiredRank = ranksObject[desired_rank] || { title: "TBD" };
@@ -94,6 +88,7 @@ const CheckoutView = props => {
           </span>
         ))}
       </div>
+      {submitOrderRequest.errored && <span>{submitOrderRequest.error}</span>}
     </>
   );
 };

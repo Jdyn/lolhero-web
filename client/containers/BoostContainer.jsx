@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Boost from "../components/Boost";
-import {
-  fetchBoostPrices,
-  updateOrder,
-  submitOrder
-} from "../actions/BoostActions";
+import { fetchBoostPrices, updateOrder, submitOrder } from "../actions/BoostActions";
 
 class BoostContainer extends Component {
   render() {
@@ -14,6 +10,7 @@ class BoostContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+  submitOrderRequest: state.request.SUBMIT_ORDER || {},
   currentOrder: state.boost.order.details,
   boost: state.boost
 });
