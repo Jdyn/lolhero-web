@@ -6,11 +6,7 @@ import calculatePrice from "../util/CalculatePrice";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
 
-export const requests = keyMirror(
-  "BOOST_PRICING",
-  "BOOST_ORDER",
-  "SUBMIT_ORDER"
-);
+export const requests = keyMirror("BOOST_PRICING", "BOOST_ORDER", "SUBMIT_ORDER");
 
 const setBoostPrices = prices => ({
   type: actions.FETCH_BOOST_PRICES,
@@ -48,18 +44,15 @@ const setBoost = update => ({
 export const updateOrder = newUpdate => (dispatch, getState) => {
   if (typeof newUpdate !== "object") return;
 
-  const request = getState().request.BOOST_PRICING || {};
+  dispatch(setRequestInProcess(false, requests.SUBMIT_ORDER, {
+    errored: false,
+  }));
 
-  if (request.success) {
-    const order = { ...getState().boost.order.details, ...newUpdate };
-    const pricing = getState().boost.pricing[order.boost_type];
-    const price = calculatePrice(order, pricing);
+  const order = { ...getState().boost.order.details, ...newUpdate };
+  const pricing = getState().boost.pricing[order.boost_type];
+  const price = calculatePrice(order, pricing);
 
-    dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
-    return;
-  }
-
-  dispatch(setBoost({ boost: {}, details: { ...newUpdate } }));
+  dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
 
 export const submitOrder = () => (dispatch, getState) => {
@@ -76,7 +69,7 @@ export const submitOrder = () => (dispatch, getState) => {
   const { collection_id, desired_rank, start_rank } = order.details;
 
   if (!start_rank) {
-    const error = "starting rank cannot be blank";
+    const error = "Your starting rank cannot be blank.";
 
     dispatch(
       setRequestInProcess(false, requestType, {
@@ -87,9 +80,20 @@ export const submitOrder = () => (dispatch, getState) => {
     return;
   }
 
+  if (start_rank > desired_rank) {
+    dispatch(
+      setRequestInProcess(false, requestType, {
+        errored: true,
+        error: "Your starting rank cannot be greater than your desired rank."
+      })
+    );
+
+    return
+  }
+
   if (collection_id === 1 || collection_id === 5) {
     if (!desired_rank) {
-      const error = "Must choose a desired rank";
+      const error = "You must have a desired rank.";
 
       dispatch(
         setRequestInProcess(false, requestType, {
@@ -99,28 +103,21 @@ export const submitOrder = () => (dispatch, getState) => {
       );
       return;
     }
-  }
 
-  if (collection_id === 1 || collection_id === 5) {
     delete order.details.desired_amount;
   } else {
     delete order.details.desired_rank;
   }
 
   if (order.details.desired_amount && order.details.desired_rank) {
-    const error =
-      "desired_amount and desired_rank cannot be submitted together";
-
     dispatch(
       setRequestInProcess(false, requestType, {
         errored: true,
-        error
+        error: "Internal Error: desired_amount and desired_rank exists"
       })
     );
 
     Sentry.captureException(error);
-
-    return;
   }
 
   Api.post("/checkout", order)

@@ -26,9 +26,7 @@ const AddonTab = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.singleDisplay}>
-        <div className={classes.container}>{views[currentStage]}</div>
-      </div>
+      <div className={classes.singleDisplay}>{views[currentStage]}</div>
       <div className={classes.fullDisplay}>
         {Object.keys(views).map((view, index) => (
           <div key={index} className={classes.container}>
@@ -46,20 +44,17 @@ const useStyles = createUseStyles(theme => ({
     minHeight: "350px",
     display: "flex",
     position: "relative",
-    boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.4)",
     borderRadius: 16,
     zIndex: 15,
     flexDirection: "column",
     backgroundColor: theme.primary,
+    color: theme.white,
     "@media (min-width: 1025px)": {
       width: "400px",
-      height: "100%"
+      height: "100%",
+      boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
     }
-  },
-  container: {
-    height: "100%",
-    overflowY: "auto",
-    color: theme.white
   },
   singleDisplay: {
     display: "none",

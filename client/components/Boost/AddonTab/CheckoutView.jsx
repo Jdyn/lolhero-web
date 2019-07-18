@@ -49,9 +49,9 @@ const CheckoutView = props => {
   return (
     <>
       <div className={classes.wrapper}>
-        <h2>Order Summary</h2>
-        <h3>{formatTitle()}</h3>
-        <h2>Details</h2>
+        <h3>Order Summary</h3>
+        <h2>{formatTitle()}</h2>
+        <h3>Details</h3>
 
         {currentCollection.name === "Division Boost" && (
           <span>
@@ -78,17 +78,14 @@ const CheckoutView = props => {
               "Queue"}
           </b>
         </span>
-      </div>
-
-      <div className={classes.wrapper}>
-        <h2>Add-Ons</h2>
+        <h3>Add-Ons</h3>
         {addons.addons.extras.map((extra, index) => (
           <span key={index}>
             {extra.title}: <b>{currentOrder[extra.type] ? "Yes" : "No"}</b>
           </span>
         ))}
       </div>
-      {submitOrderRequest.errored && <span>{submitOrderRequest.error}</span>}
+      {/* {submitOrderRequest.errored && <span>{submitOrderRequest.error}</span>} */}
     </>
   );
 };
@@ -109,13 +106,13 @@ const useStyes = createUseStyles(theme => ({
       marginBottom: "15px"
     },
     "& h2": {
-      fontSize: 20,
+      fontSize: 16,
       margin: 0,
       marginBottom: "15px"
     },
     "& h3": {
-      margin: 0,
-      fontSize: 16,
+      margin: "15px 0",
+      fontSize: 20,
       marginBottom: "15px",
       color: theme.white
     },

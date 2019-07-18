@@ -2,6 +2,8 @@ export default (order, pricing) => {
   const calculateOrder = () => {
     let total = 0;
 
+    if (Object.keys(pricing).length === 0) return total;
+
     total = basePrice(total);
     total = expressOrder(total);
     total = incognitoOrder(total);
@@ -70,6 +72,7 @@ export default (order, pricing) => {
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
     if (!pricing["lp"]) return currentPrice;
+    if (!order.collection_id === 1 || !order.collection_id === 5) return currentPrice;
 
     const { start_rank, lp, collection_id } = order;
     const lpPrice = pricing["lp"][lp];
@@ -79,7 +82,6 @@ export default (order, pricing) => {
       return currentPrice;
     } else {
       const difference = base - base * lpPrice;
-      // console.log(currentPrice - Math.round(difference * 100) / 100);
       return currentPrice - Math.round(difference * 100) / 100;
     }
   };

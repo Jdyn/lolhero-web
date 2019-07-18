@@ -46,7 +46,7 @@ const Banner = props => {
       >
         <div className={classes.header}>
           <h1>{rank.title || ""}</h1>
-          <h3>{isStartRank ? "current rank" : "desired amount"}</h3>
+          <h3>{isStartRank ? "current" : "desired"}</h3>
         </div>
         {renderContent[type]}
       </div>
@@ -77,7 +77,7 @@ const useStyles = createUseStyles(theme => ({
     maxHeight: "550px",
     justifyContent: "flex-start",
     width: "235px",
-    margin: "0 15px 50px 15px",
+    marginBottom: "15px",
     zIndex: 5
   },
   container: props => ({
@@ -87,7 +87,7 @@ const useStyles = createUseStyles(theme => ({
     alignItems: "center",
     justifyContent: "space-between",
     color: "#fefefe",
-    padding: "55px 24px",
+    padding: "35px 24px",
     borderLeft: `6px solid`,
     borderRight: `6px solid`,
     // boxShadow: "0px -15px 15px rgba(0,0,0,.2)",

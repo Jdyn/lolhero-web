@@ -16,7 +16,14 @@ const propTypes = {
 };
 
 const Boost = props => {
-  const { fetchBoostPrices, updateOrder, currentOrder, boost, submitOrder, submitOrderRequest } = props;
+  const {
+    fetchBoostPrices,
+    updateOrder,
+    currentOrder,
+    boost,
+    submitOrder,
+    submitOrderRequest
+  } = props;
 
   const classes = useStyles();
 
@@ -31,10 +38,13 @@ const Boost = props => {
       <TopNavigator currentStage={currentStage} setStage={setStage} />
       <div className={classes.container}>
         <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
-        <BoostDisplay currentOrder={currentOrder} updateOrder={updateOrder} />
+        <BoostDisplay
+          currentOrder={currentOrder}
+          updateOrder={updateOrder}
+          submitOrderRequest={submitOrderRequest}
+        />
         <AddonTab
           boost={boost}
-          submitOrderRequest={submitOrderRequest}
           currentStage={currentStage}
           currentOrder={currentOrder}
           updateOrder={updateOrder}
@@ -62,7 +72,7 @@ const useStyles = createUseStyles(theme => ({
     overflowY: "auto",
     backgroundColor: theme.primary,
     "@media (min-width: 1025px)": {
-      padding: "76px 0 90px 0",
+      padding: "76px 0 90px 0"
     }
   },
   container: {

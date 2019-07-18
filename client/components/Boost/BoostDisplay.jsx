@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const BoostDisplay = props => {
-  const { updateOrder, currentOrder } = props;
+  const { updateOrder, currentOrder, submitOrderRequest } = props;
 
   const classes = useStyles();
 
@@ -68,18 +68,32 @@ const BoostDisplay = props => {
     }
   };
 
-  return <div className={classes.root}>{renderContent(currentOrder.collection_id)}</div>;
+  return (
+    <div className={classes.root}>
+      <div className={classes.container}>{renderContent(currentOrder.collection_id)}</div>
+
+      {submitOrderRequest.errored && (
+        <div className={classes.error}>
+          <span>Error: {submitOrderRequest.error}</span>
+        </div>
+      )}
+    </div>
+  );
 };
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles(theme => ({
   root: {
-    top: -10,
     display: "flex",
     position: "relative",
     flexDirection: "column",
+    flexGrow: 1
+  },
+  container: {
+    display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
     flexGrow: 1,
+    flexDirection: "column",
     "@media (min-width: 640px)": {
       flexDirection: "row",
       alignItems: "normal"
@@ -96,8 +110,17 @@ const useStyles = createUseStyles({
       boxShadow: "none",
       width: "auto"
     }
+  },
+  error: {
+    display: "flex",
+    color: theme.white,
+    borderRadius: "8px 8px 0 0",
+    backgroundColor: theme.red,
+    padding: "8px 20px 8px 20px",
+    margin: "10px 25px 0 25px",
+    border: "2px solid #f44336"
   }
-});
+}));
 
 BoostDisplay.propTypes = propTypes;
 

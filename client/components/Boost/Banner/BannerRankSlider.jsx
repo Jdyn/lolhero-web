@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 
 const propTypes = {
   rank: PropTypes.object,
@@ -9,19 +9,21 @@ const propTypes = {
 };
 
 const BannerRankSlider = props => {
-  const { currentOrder, updateOrder } = props;
+  const { rank, currentOrder, updateOrder } = props;
 
   const classes = useStyles(props);
+  const theme = useTheme();
 
   return (
     <div className={classes.container}>
-      <h3>{currentOrder.desired_amount}</h3>
-      <div className={classes.wrapper}>
+      <h3 className={classes.amount}>{currentOrder.desired_amount}</h3>
+      <div className={classes.sliderWrapper}>
         <input
           type="range"
           min="1"
           max="10"
           className={classes.slider}
+          style={{ backgroundColor: rank.accent || theme.grey }}
           value={currentOrder.desired_amount}
           onChange={event =>
             updateOrder({ desired_amount: parseInt(event.target.value) })
@@ -34,25 +36,34 @@ const BannerRankSlider = props => {
 
 const useStyles = createUseStyles(theme => ({
   container: {
+    display: "flex",
+    flexDirection: "column",
     textAlign: "center",
-    "& h3": {
-      fontSize: 67
-    }
+    flexGrow: 1
+  },
+  amount: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 65,
+    margin: 0,
+    flexGrow: 1
   },
   sliderWrapper: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     width: "170px",
-    height: "75px"
+    flex: 1,
+    marginBottom: "-20px",
+    maxHeight: "95px"
   },
-  slider: props => ({
+  slider: {
     appearance: "none",
     width: "100%",
     height: "14px",
     outline: "none",
     borderRadius: 3,
-    backgroundColor: props.rank.accent || theme.grey,
     "&::-webkit-slider-thumb": {
       appearance: "none",
       cursor: "pointer",
@@ -65,7 +76,7 @@ const useStyles = createUseStyles(theme => ({
         transform: "scale(1.2)"
       }
     }
-  })
+  }
 }));
 
 BannerRankSlider.propTypes = propTypes;
