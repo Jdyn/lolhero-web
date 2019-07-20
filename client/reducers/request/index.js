@@ -1,11 +1,12 @@
 import { actions } from "../../actions/RequestActions";
+import { actions as boostActions} from "../../actions/BoostActions"
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actions.SET_REQUEST_IN_PROCESS:
-      return setRequestInProcess(state, action);
+      return setRequestInProcess(state, action);      
     default:
       return state;
   }

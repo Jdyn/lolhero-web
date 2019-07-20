@@ -1,22 +1,19 @@
-const express = require("express");
 const next = require("next");
+const { parse } = require("url");
+const { createServer } = require("http");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
+const port = parseInt(process.env.PORT, 10) || 3000;
 const app = next({ dev, dir: "client/" });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  const server = express();
-
-  server.get("/order/success/:id", (req, res) =>
-    app.render(req, res, "/order/success", { tracking_id: req.params.id })
-  );
-
-  server.get("*", (req, res) => handle(req, res));
-
-  server.listen(port, err => {
+  createServer((req, res) => {
+    const { pathname, query } = parse(req.url, true);
+    
+    handle(req, res);
+  }).listen(port, err => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`Ready on http://localhost:${port}`);
   });
 });

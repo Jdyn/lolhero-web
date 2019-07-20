@@ -44,11 +44,18 @@ const setBoost = update => ({
 export const updateOrder = newUpdate => (dispatch, getState) => {
   if (typeof newUpdate !== "object") return;
 
-  dispatch(setRequestInProcess(false, requests.SUBMIT_ORDER, {
-    errored: false,
-  }));
+  const requestType = requests.SUBMIT_ORDER;
+  const request = getState().request[requestType] || {};
 
-  const order = { ...getState().boost.order.details, ...newUpdate };
+  if (request.errored) {
+    dispatch(
+      setRequestInProcess(false, requests.SUBMIT_ORDER, {
+        errored: false
+      })
+    );
+  }
+
+  let order = { ...getState().boost.order.details, ...newUpdate };
   const pricing = getState().boost.pricing[order.boost_type];
   const price = calculatePrice(order, pricing);
 
@@ -88,7 +95,7 @@ export const submitOrder = () => (dispatch, getState) => {
       })
     );
 
-    return
+    return;
   }
 
   if (collection_id === 1 || collection_id === 5) {

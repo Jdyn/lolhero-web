@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import addons from "../../../lib/addonContent";
 import Toggle from "../../Shared/Toggle";
 import PropTypes from "prop-types";
@@ -12,6 +13,49 @@ const DetailsView = props => {
   const { currentOrder, updateOrder } = props;
 
   const classes = useStyles();
+
+  useEffect(() => {
+    if (currentOrder.start_rank % 4 === 0) {
+      if (currentOrder.promos.length !== 5) {
+        let newPromos = [...currentOrder.promos];
+        for (let i = newPromos.length; i < 5; i++) {
+          newPromos.push("X");
+        }
+
+        updateOrder({ promos: newPromos });
+      }
+    } else {
+      if (currentOrder.promos.length !== 3) {
+        let newPromos = [...currentOrder.promos];
+        for (let i = newPromos.length; i > 3; i--) {
+          newPromos.shift();
+        }
+
+        updateOrder({ promos: newPromos });
+      }
+    }
+  }, [currentOrder.start_rank]);
+
+  const handlePromoChange = index => {
+    let newPromos = [...currentOrder.promos];
+
+    switch (newPromos[index]) {
+      case "X":
+        newPromos[index] = "W";
+        break;
+      case "W":
+        newPromos[index] = "L";
+        break;
+      case "L":
+        newPromos[index] = "X";
+        break;
+      default:
+        newPromos[index] = "X";
+        break;
+    }
+
+    updateOrder({ promos: newPromos });
+  };
 
   return (
     <>
@@ -33,10 +77,7 @@ const DetailsView = props => {
 
       <div className={classes.wrapper}>
         <h2>Queues</h2>
-        <p>
-          What queue type do you want to play on? We currently support the following
-          queues.
-        </p>
+        <p>What queue type do you want to play on? We currently support the following queues.</p>
         {addons.details.queues.map((queue, index) => (
           <Toggle
             key={index}
@@ -65,14 +106,16 @@ const DetailsView = props => {
             ))}
           </div>
           {currentOrder.lp === 100 && (
-            <div className={classes.wrapper}>
-              <div className={classes.promos}>
-                {[...Array(3)].map((value, index) => (
-                  <button key={index} className={classes.promo}>
-                    X
-                  </button>
-                ))}
-              </div>
+            <div className={classes.promos}>
+              {currentOrder.promos.map((promo, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePromoChange(index)}
+                  className={classes.promo}
+                >
+                  {promo}
+                </button>
+              ))}
             </div>
           )}
         </div>
@@ -114,16 +157,20 @@ const useStyles = createUseStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    flexDirection: "row"
+    flexDirection: "row",
+    margin: "10px"
   },
   promo: {
     cursor: "pointer",
-    padding: "15px",
-    borderRadius: 6,
+    padding: "20px 15px",
+    borderRadius: 14,
     border: "none",
     outline: "none",
     display: "flex",
-    margin: "5px"
+    margin: "5px",
+    color: theme.white,
+    border: "2px solid #999",
+    backgroundColor: theme.quartinary
   }
 }));
 

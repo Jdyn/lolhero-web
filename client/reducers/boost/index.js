@@ -14,7 +14,8 @@ const initialState = {
       collection_id: 1,
       is_express: false,
       is_incognito: false,
-      is_unrestricted: false
+      is_unrestricted: false,
+      promos: ["X", "X", "X"]
     }
   },
   pricing: {
