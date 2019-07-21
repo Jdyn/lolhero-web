@@ -112,6 +112,7 @@ const DetailsView = props => {
                   key={index}
                   onClick={() => handlePromoChange(index)}
                   className={classes.promo}
+                  styles={{}}
                 >
                   {promo}
                 </button>
@@ -170,7 +171,14 @@ const useStyles = createUseStyles(theme => ({
     margin: "5px",
     color: theme.white,
     border: "2px solid #999",
-    backgroundColor: theme.quartinary
+    backgroundColor: theme.quartinary,
+    transitionDuration: ".2s",
+    "&:hover": {
+      transform: "translateY(-2px)"
+    },
+    "&:active": {
+      transform: "translateY(2px)"
+    }
   }
 }));
 
