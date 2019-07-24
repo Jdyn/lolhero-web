@@ -62,7 +62,10 @@ const useStyles = createUseStyles(theme => ({
     margin: "10px",
     "@media (min-width: 1025px)": {
       display: "inline-block"
-    }
+    },
+    "& div:last-child": {
+      marginBottom: "10px"
+    },
   },
   fullDisplay: {
     display: "inline-block",

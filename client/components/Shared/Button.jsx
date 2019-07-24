@@ -47,7 +47,7 @@ const useStyles = createUseStyles(theme => ({
     "&:hover": {
       transform: "translateY(-2px)"
     },
-    "&::active": {
+    "&:active": {
       transform: "translateY(2px)"
     }
   },

@@ -127,7 +127,7 @@ export const submitOrder = () => (dispatch, getState) => {
     Sentry.captureException(error);
   }
 
-  Api.post("/checkout", order)
+  Api.post("/orders", order)
     .then(response => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));

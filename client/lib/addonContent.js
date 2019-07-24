@@ -33,7 +33,12 @@ export default {
           "Unrestricted Orders allow us to play any champion or role on your account to complete the order. Discount -10%",
         title: "Unrestricted Order",
         type: "is_unrestricted"
-      }
+      },
+    {
+      description: "lol",
+      title: "Coaching",
+      type: "is_coaching"
+    }
     ]
   }
 };
