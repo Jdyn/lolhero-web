@@ -8,13 +8,13 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const app = next({ dev, dir: "client/" });
 
 const handle = app.getRequestHandler();
-const route = match()
+const route = match();
 
 app.prepare().then(() => {
   createServer((req, res) => {
     const { pathname, query } = parse(req.url, true);
 
-    const params = route("/order/success/:tracking_id")(pathname)
+    const params = route("/order/success/:tracking_id")(pathname);
 
     if (params) {
       app.render(req, res, "/order/success", Object.assign(params, query));

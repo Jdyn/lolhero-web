@@ -38,12 +38,17 @@ const useStyles = createUseStyles(theme => ({
     width: "100%",
     zIndex: 20,
     display: "flex",
-    position: "fixed",
+    position: "relative",
+    marginTop: "-76px",
     justifyContent: "center",
     borderBottom: `3px solid #999`,
     backgroundColor: theme.tertiary,
+    "@media (min-width: 1025px)": {
+      position: "fixed",
+      marginTop: 0,
+    },
     "@media (min-width: 640px)": {
-      justifyContent: "flex-start"
+      justifyContent: "flex-start",
     }
   },
   container: {

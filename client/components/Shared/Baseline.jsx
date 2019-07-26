@@ -10,7 +10,7 @@ const defaultProps = {
   children: null
 };
 
-const Baseline = props => props.children;
+const Baseline = ({ children }) => children;
 
 const styles = theme => ({
   "@global": {

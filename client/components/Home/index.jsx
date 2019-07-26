@@ -50,7 +50,7 @@ const styles = theme => ({
     width: "100%",
     maxHeight: "1080px",
     minHeight: "650px",
-    padding: "110px 0",
+    padding: "60px 0",
     overflow: "hidden",
     zIndex: 1,
     backgroundColor: theme.secondary
