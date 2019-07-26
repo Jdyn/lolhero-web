@@ -77,7 +77,7 @@ const useStyles = createUseStyles(theme => ({
     position: "sticky",
     borderTop: "2px solid #999",
     "@media (min-width: 1025px)": {
-      height: "86px",
+      height: "90px",
       padding: "10px 0",
       position: "fixed",
       justifyContent: "flex-end"

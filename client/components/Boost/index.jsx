@@ -72,7 +72,7 @@ const useStyles = createUseStyles(theme => ({
     overflowY: "auto",
     backgroundColor: theme.primary,
     "@media (min-width: 1025px)": {
-      padding: "76px 0 87px 0"
+      padding: "76px 0 90px 0"
     }
   },
   container: {
