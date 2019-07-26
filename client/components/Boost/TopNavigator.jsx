@@ -41,7 +41,7 @@ const useStyles = createUseStyles(theme => ({
     position: "relative",
     marginTop: "-76px",
     justifyContent: "center",
-    borderBottom: `3px solid #999`,
+    borderBottom: `2px solid #999`,
     backgroundColor: theme.tertiary,
     "@media (min-width: 1025px)": {
       position: "fixed",
@@ -69,9 +69,9 @@ const useStyles = createUseStyles(theme => ({
     minHeight: "76px",
     cursor: "pointer",
     transitionDuration: ".15s",
-    borderBottom: "3px solid #999",
+    borderBottom: "2px solid #999",
     color: theme.white,
-    bottom: -3,
+    bottom: -2,
     fontSize: 30,
     "&:hover": {
       borderColor: `${theme.accent} !important`,

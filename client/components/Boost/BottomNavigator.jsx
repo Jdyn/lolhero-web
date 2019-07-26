@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import { formatLP } from "../../util/Helpers";
-  
+
 const propTypes = {
   boost: PropTypes.object.isRequired,
   setStage: PropTypes.func.isRequired,
@@ -70,13 +70,15 @@ const useStyles = createUseStyles(theme => ({
     height: "auto",
     width: "100%",
     justifyContent: "center",
-    padding: "10px 0",
+    padding: 0,
     bottom: 0,
     backgroundColor: theme.tertiary,
     zIndex: 50,
     position: "sticky",
+    borderTop: "2px solid #999",
     "@media (min-width: 1025px)": {
-      height: "90px",
+      height: "86px",
+      padding: "10px 0",
       position: "fixed",
       justifyContent: "flex-end"
     }

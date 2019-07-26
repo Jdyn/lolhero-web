@@ -64,7 +64,7 @@ const useStyles = createUseStyles(theme => ({
     display: "flex",
     position: "relative",
     width: `calc(100% / ${props.filters.length})`,
-    marginBottom: "-2px",
+    marginBottom: "-1px",
     justifyContent: "center",
     textTransform: "uppercase",
     letterSpacing: ".9px",
@@ -74,7 +74,7 @@ const useStyles = createUseStyles(theme => ({
     listStyle: "none",
     cursor: "pointer",
     color: theme.secondaryColor,
-    borderBottom: "3px solid",
+    borderBottom: "2px solid",
     paddingBottom: "20px",
     transitionDuration: ".15s",
     "&:hover": {
