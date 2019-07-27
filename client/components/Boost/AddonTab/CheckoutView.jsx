@@ -15,9 +15,7 @@ const CheckoutView = props => {
   const classes = useStyes();
 
   const ranksObject = useMemo(() =>
-    [].concat
-      .apply([], [...ranks])
-      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
   const currentCollection = useMemo(
@@ -40,9 +38,9 @@ const CheckoutView = props => {
           startRank.title
         } (${formatLP(lp)} LP) to ${desiredRank.title}`;
       default:
-        return `${boost_type.toUpperCase()} | ${desired_amount} ${
-          currentCollection.name
-        } - ${startRank.title}`;
+        return `${boost_type.toUpperCase()} | ${desired_amount} ${currentCollection.name} - ${
+          startRank.title
+        }`;
     }
   };
 

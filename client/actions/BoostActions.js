@@ -3,6 +3,7 @@ import keyMirror from "../util/keyMirror";
 import { setRequestInProcess } from "./RequestActions";
 import * as Sentry from "@sentry/browser";
 import calculatePrice from "../util/CalculatePrice";
+import braintree from "braintree-web";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
 
@@ -132,15 +133,28 @@ export const submitOrder = () => (dispatch, getState) => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));
 
-        const sessionId = response.result.session.id;
-
-        Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
-          .redirectToCheckout({
-            sessionId
+        braintree.client
+          .create({
+            authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf"
           })
-          .then(result => {
-            console.log(result);
+          .then(clientInstance => {
+            const options = {
+              client: clientInstance,
+              fields: {}
+            };
+
+            return braintree.hostedFields.create(options);
           });
+
+        // const sessionId = response.result.session.id;
+
+        // Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
+        //   .redirectToCheckout({
+        //     sessionId
+        //   })
+        //   .then(result => {
+        //     console.log(result);
+        //   });
       } else {
         dispatch(
           setRequestInProcess(false, requestType, {
