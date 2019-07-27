@@ -4,6 +4,7 @@ import AddonView from "./AddonView";
 import DetailsView from "./DetailsView";
 import CheckoutView from "./CheckoutView";
 import { createUseStyles } from "react-jss";
+import NewView from "./NewView";
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -12,7 +13,7 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { currentStage, updateOrder, currentOrder, submitOrderRequest } = props;
+  const { currentStage, updateOrder, currentOrder, submitOrderRequest, submitOrder } = props;
 
   const classes = useStyles();
 
@@ -21,7 +22,8 @@ const AddonTab = props => {
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
     2: (
       <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
-    )
+    ),
+    3: <NewView currentOrder={currentOrder} submitOrder={submitOrder}/>
   };
 
   return (
@@ -53,7 +55,7 @@ const useStyles = createUseStyles(theme => ({
     "@media (min-width: 1025px)": {
       width: "400px",
       height: "100%",
-      boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)",
+      boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)"
     }
   },
   singleDisplay: {
@@ -65,7 +67,7 @@ const useStyles = createUseStyles(theme => ({
     },
     "& div:last-child": {
       marginBottom: "10px"
-    },
+    }
   },
   fullDisplay: {
     display: "inline-block",

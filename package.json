@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.5.0",
-    "braintree-web": "^3.49.0",
+    "braintree-web-drop-in": "^1.19.0",
     "next": "9.0.2",
     "path-match": "^1.2.4",
     "react": "^16.8.6",

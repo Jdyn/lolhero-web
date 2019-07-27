@@ -48,6 +48,7 @@ const Boost = props => {
           currentStage={currentStage}
           currentOrder={currentOrder}
           updateOrder={updateOrder}
+          submitOrder={submitOrder}
         />
       </div>
       <BottomNavigator

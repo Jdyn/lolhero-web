@@ -1,70 +1,61 @@
-import React, { useMemo } from "react";
-import ranks from "../../../lib/ranks";
-import addons from "../../../lib/addonContent";
-import content from "../../../lib/boostContent";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { formatLP } from "../../../util/Helpers";
 import { createUseStyles } from "react-jss";
+import dropin from "braintree-web-drop-in";
+import Api from "../../../services/api";
 
-const propTypes = {
-  currentOrder: PropTypes.object.isRequired
-};
+const propTypes = {};
 
-const CheckoutView = props => {
-  const { currentOrder } = props;
+const NewView = props => {
   const classes = useStyes();
+
+  useEffect(() => {
+    Api.fetch("/token").then(response => {
+      if (response.ok) {
+        console.log(response);
+        dropin
+          .create({
+            authorization: response.result.token,
+            container: "#dropin-container",
+            paypal: {
+              flow: "vault"
+            },
+            venmo: {
+              allowNewBrowserTab: false
+            }
+          })
+          .then(instance => {
+            const button = document.getElementById("submit-button");
+            button.addEventListener("click", () => {
+              console.log(instance);
+              instance.requestPaymentMethod((error, payload) => {
+                props.submitOrder(payload.nonce);
+              });
+            });
+          })
+          .catch(error => {
+            console.log("ERROR BRO", error);
+          });
+      }
+    });
+  }, [props.currentOrder]);
 
   return (
     <>
       <div className={classes.wrapper}>
-    
+        <div id="dropin-container" />
+        <button id="submit-button">submit</button>
       </div>
     </>
   );
 };
 
 const useStyes = createUseStyles(theme => ({
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: theme.tertiary,
-    borderRadius: 12,
-    padding: "25px",
-    boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 20px 10px",
-    "& p": {
-      color: theme.grey,
-      margin: 0,
-      fontSize: 16,
-      marginBottom: "15px"
-    },
-    "& h2": {
-      fontSize: 16,
-      margin: 0,
-      marginBottom: "15px"
-    },
-    "& h3": {
-      margin: "15px 0",
-      fontSize: 20,
-      marginBottom: "15px",
-      color: theme.white
-    },
-    "& span": {
-      display: "flex",
-      flexDirection: "row",
-      marginBottom: "5px",
-      fontSize: 16,
-      color: theme.white,
-      "& b": {
-        display: "flex",
-        flexGrow: 1,
-        justifyContent: "flex-end",
-        color: theme.grey
-      }
+    wrapper: {
+        padding: "15px"
     }
-  }
 }));
 
-CheckoutView.propTypes = propTypes;
+NewView.propTypes = propTypes;
 
-export default CheckoutView;
+export default NewView;

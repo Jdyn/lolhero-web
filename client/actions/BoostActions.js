@@ -63,7 +63,7 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
 
-export const submitOrder = () => (dispatch, getState) => {
+export const submitOrder = nonce => (dispatch, getState) => {
   const requestType = requests.SUBMIT_ORDER;
 
   const requestInProcess = getState().request[requestType] || {};
@@ -128,7 +128,7 @@ export const submitOrder = () => (dispatch, getState) => {
     Sentry.captureException(error);
   }
 
-  Api.post("/orders", order)
+  Api.post("/orders", {...order, nonce})
     .then(response => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));
@@ -137,14 +137,13 @@ export const submitOrder = () => (dispatch, getState) => {
           .create({
             authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf"
           })
-          .then(clientInstance => {
-            const options = {
+          .then(clientInstance =>
+            braintree.hostedFields.create({
               client: clientInstance,
               fields: {}
-            };
-
-            return braintree.hostedFields.create(options);
-          });
+            })
+          )
+          .then();
 
         // const sessionId = response.result.session.id;
 

@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchBoostPrices: () => dispatch(fetchBoostPrices()),
   updateOrder: newUpdate => dispatch(updateOrder(newUpdate)),
-  submitOrder: () => dispatch(submitOrder())
+  submitOrder: nonce => dispatch(submitOrder(nonce))
 });
 
 export default connect(
