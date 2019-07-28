@@ -29,13 +29,13 @@ const AddonTab = props => {
   return (
     <div className={classes.root}>
       <div className={classes.singleDisplay}>{views[currentStage]}</div>
-      <div className={classes.fullDisplay}>
+      {/* <div className={classes.fullDisplay}>
         {Object.keys(views).map((view, index) => (
           <div key={index} className={classes.container}>
             {views[view]}
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

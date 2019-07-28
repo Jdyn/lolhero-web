@@ -17,8 +17,8 @@ const BottomNavigator = props => {
   const classes = useStyles();
 
   const updateStage = stage => {
-    if (stage === 2) {
-      submitOrder();
+    if (stage === 3) {
+      // submitOrder();
     } else if (stage + 1 <= 2) {
       setStage(prev => prev + 1);
     }
@@ -26,7 +26,7 @@ const BottomNavigator = props => {
 
   const stageText = currentStage => {
     switch (currentStage) {
-      case 2:
+      case 3:
         return "checkout";
       default:
         return "next";
@@ -51,11 +51,15 @@ const BottomNavigator = props => {
         <h3>${boost.price || 0}</h3>
         <span>Purchase price</span>
       </div>
-      <button className={classes.button} onClick={() => updateStage(currentStage)}>
+      <button
+        id="submit-button"
+        className={classes.button}
+        onClick={() => updateStage(currentStage)}
+      >
         {stageText(currentStage)}
       </button>
-      <button className={classes.checkoutButton} onClick={() => updateStage(2)}>
-        {stageText(2)}
+      <button id="submit-button" className={classes.checkoutButton} onClick={() => updateStage(3)}>
+        {stageText(3)}
       </button>
     </div>
   );

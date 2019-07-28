@@ -3,7 +3,6 @@ import keyMirror from "../util/keyMirror";
 import { setRequestInProcess } from "./RequestActions";
 import * as Sentry from "@sentry/browser";
 import calculatePrice from "../util/CalculatePrice";
-import braintree from "braintree-web";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
 
@@ -133,17 +132,17 @@ export const submitOrder = nonce => (dispatch, getState) => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));
 
-        braintree.client
-          .create({
-            authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf"
-          })
-          .then(clientInstance =>
-            braintree.hostedFields.create({
-              client: clientInstance,
-              fields: {}
-            })
-          )
-          .then();
+        // braintree.client
+        //   .create({
+        //     authorization: nonce
+        //   })
+        //   .then(clientInstance =>
+        //     braintree.hostedFields.create({
+        //       client: clientInstance,
+        //       fields: {}
+        //     })
+        //   )
+        //   .then();
 
         // const sessionId = response.result.session.id;
 
