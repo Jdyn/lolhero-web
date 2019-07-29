@@ -68,7 +68,8 @@ const styles = theme => ({
   },
   orderSearch: {
     display: "flex",
-    flexBasis: "250px",
+    flexGrow: 1,
+    maxWidth: "250px",
     marginLeft: "auto",
     border: "none",
     outline: "none",
@@ -95,7 +96,8 @@ const styles = theme => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    minWidth: "100px",
+    maxWidth: "100px",
+    flexGrow: 1,
     marginRight: "20px",
     padding: "10px"
     // backgroundColor: theme.accent

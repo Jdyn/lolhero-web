@@ -58,9 +58,9 @@ const BottomNavigator = props => {
       >
         {stageText(currentStage)}
       </button>
-      <button id="submit-button" className={classes.checkoutButton} onClick={() => updateStage(3)}>
-        {stageText(3)}
-      </button>
+      {/* <button id="submit-button" className={classes.checkoutButton}>
+        {stageText(currentStage)}
+      </button> */}
     </div>
   );
 };

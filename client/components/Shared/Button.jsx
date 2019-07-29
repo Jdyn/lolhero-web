@@ -13,7 +13,7 @@ const propTypes = {
 
 const Button = props => {
   const { children, secondary, onClick } = props;
-  const classes = useStyles(props)
+  const classes = useStyles(props);
 
   return (
     <button onClick={onClick} className={secondary ? classes.secondary : classes.primary}>
@@ -25,8 +25,7 @@ const Button = props => {
 Button.propTypes = propTypes;
 Button.defaultProps = {
   margin: "0",
-  width: "auto",
-  minHeight: "50px"
+  width: "auto"
 };
 
 const useStyles = createUseStyles(theme => ({
@@ -39,8 +38,7 @@ const useStyles = createUseStyles(theme => ({
     fontSize: 14,
     padding: "10px",
     borderRadius: 8,
-    maxWidth: "185px",
-    flexGrow: 1,
+    minHeight: "45px",
     letterSpacing: ".025em",
     textTransform: "uppercase",
     transitionDuration: ".15s",
@@ -56,17 +54,17 @@ const useStyles = createUseStyles(theme => ({
     backgroundClip: "border-box",
     backgroundColor: theme.accent,
     color: theme.white,
-    minHeight: props => props.minHeight,
-    margin: props => props.margin
+    margin: props => props.margin,
+    width: props => props.width
   },
   secondary: {
     extend: "button",
     backgroundClip: "border-box",
     backgroundColor: theme.green,
     color: theme.white,
-    minHeight: props => props.minHeight,
-    margin: props => props.margin
+    margin: props => props.margin,
+    width: props => props.width
   }
 }));
 
-export default Button
+export default Button;
