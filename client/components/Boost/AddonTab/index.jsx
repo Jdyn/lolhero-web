@@ -20,22 +20,23 @@ const AddonTab = props => {
   const views = {
     0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: (
-      <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
-    ),
-    3: <NewView currentOrder={currentOrder} submitOrder={submitOrder}/>
+    2: <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />,
+    3: <NewView currentOrder={currentOrder} submitOrder={submitOrder} />
   };
-
+  
   return (
     <div className={classes.root}>
-      <div className={classes.singleDisplay}>{views[currentStage]}</div>
-      {/* <div className={classes.fullDisplay}>
-        {Object.keys(views).map((view, index) => (
-          <div key={index} className={classes.container}>
-            {views[view]}
+      {Object.keys(views).map((view, index) => {
+        return (
+          <div
+            key={index}
+            className={classes.content}
+            style={{ display: currentStage === index ? "flex" : "none" }}
+          >
+            {views[index]}
           </div>
-        ))}
-      </div> */}
+        );
+      })}
     </div>
   );
 };
@@ -58,22 +59,10 @@ const useStyles = createUseStyles(theme => ({
       boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)"
     }
   },
-  singleDisplay: {
-    display: "none",
-    overflowY: "auto",
-    margin: "10px",
-    "@media (min-width: 1025px)": {
-      display: "inline-block"
-    },
-    "& div:last-child": {
-      marginBottom: "10px"
-    }
-  },
-  fullDisplay: {
-    display: "inline-block",
-    "@media (min-width: 1025px)": {
-      display: "none"
-    }
+  content: {
+    flexDirection: "column",
+    overflow: "auto",
+    margin: "10px"
   }
 }));
 
