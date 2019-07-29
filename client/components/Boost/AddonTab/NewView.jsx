@@ -9,48 +9,64 @@ const propTypes = {};
 const NewView = props => {
   const classes = useStyes();
 
-  const [currentToken, setToken] = useState(null);
-
   useEffect(() => {
-    Api.fetch("/token").then(response => {
-      if (response.ok) {
-        console.log("new token");
-        setToken(response.result.token);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    if (currentToken !== null) {
-      dropin
-        .create({
-          authorization: currentToken,
-          container: "#dropin-container",
-          paypal: {
-            flow: "vault"
-          },
-          venmo: {
-            allowNewBrowserTab: false
-          }
-        })
-        .then(instance => {
-          const button = document.getElementById("submit-button");
-          button.addEventListener("click", () => {
-            console.log("clicked");
-            instance.requestPaymentMethod((error, payload) => {
-              if (!error) {
-                props.submitOrder(payload.nonce);
-              } else {
-                console.log(error);
+    dropin
+      .create({
+        authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
+        container: "#dropin-container",
+        card: {
+          overrides: {
+            styles: {
+              input: {
+                color: "#fafafa"
+              },
+              ".label": {
+                color: "white"
+              },
+              ".number": {
+                color: "#fafafa"
+              },
+              ".expirationDate": {
+                color: "#fafafa"
+              },
+              ".cvv": {
+                color: "#fafafa"
+              },
+              ".postalCode": {
+                color: "#fafafa"
               }
-            });
+            }
+          }
+        },
+        paypal: {
+          flow: "vault",
+          buttonStyle: {
+            color: "blue",
+            shape: "rect",
+            size: "responsive"
+          }
+        },
+        venmo: {
+          allowNewBrowserTab: false
+        }
+      })
+      .then(instance => {
+        const button = document.getElementById("submit-button");
+        button.addEventListener("click", () => {
+          console.log("clicked");
+          instance.requestPaymentMethod((error, payload) => {
+            // if (!error) {
+            //   props.submitOrder(payload.nonce);
+            // } else {
+            //   console.log(error);
+            // }
           });
-        })
-        .catch(error => {
-          console.log("ERROR BRO", error);
         });
-    }
-  }, [currentToken]);
+      })
+      .catch(error => {
+        console.log("ERROR BRO", error);
+      });
+  }, []);
 
   return (
     <>
@@ -64,7 +80,11 @@ const NewView = props => {
 
 const useStyes = createUseStyles(theme => ({
   wrapper: {
-    padding: "15px"
+    padding: "15px",
+    backgroundColor: theme.tertiary,
+    borderRadius: 12,
+    margin: "10px 10px 20px 10px",
+    boxShadow: "0px 0px 15px 0px rgba(0,0,0, .2)"
   }
 }));
 

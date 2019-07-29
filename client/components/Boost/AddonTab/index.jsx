@@ -23,28 +23,20 @@ const AddonTab = props => {
     2: <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />,
     3: <NewView currentOrder={currentOrder} submitOrder={submitOrder} />
   };
-
-  console.log(currentStage);
-
+  
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
-        {Object.keys(views).map((view, index) => {
-          console.log(currentStage === index ? index : "")
-
-
-
-          return (
-            <div  
-              key={index}
-              className={classes.content}
-              style={{ display: currentStage === index ? "flex" : "none" }}
-            >
-              {views[index]}
-            </div>
-          );
-        })}
-      </div>
+      {Object.keys(views).map((view, index) => {
+        return (
+          <div
+            key={index}
+            className={classes.content}
+            style={{ display: currentStage === index ? "flex" : "none" }}
+          >
+            {views[index]}
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -53,7 +45,7 @@ const useStyles = createUseStyles(theme => ({
   root: {
     width: "100%",
     minHeight: "350px",
-    // display: "flex",
+    display: "flex",
     position: "relative",
     boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.4)",
     borderRadius: 16,
@@ -69,11 +61,8 @@ const useStyles = createUseStyles(theme => ({
   },
   content: {
     flexDirection: "column",
-    overflowY: "auto",
-  },
-  container: {
-    margin: "10px",
-    maxHeight: "100%"
+    overflow: "auto",
+    margin: "10px"
   }
 }));
 

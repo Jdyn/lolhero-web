@@ -1,27 +1,88 @@
-/* .braintree-form {
-  background-color: #292929 !important;
-  border-radius: 16px;
+[data-braintree-id="upper-container"] {
+  border-radius: 12px;
   border: none;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  color: #fafafa;
 }
 
-.braintree-sheet__text {
+[data-braintree-id="upper-container"]:before {
+  border-radius: 12px;
+  border: none;
+  color: #fafafa;
+  background-color: #323232;
+}
+
+[data-braintree-id="options"] {
+  /* display: none; */
+  color: white;
+  border-radius: 12px !important;
+}
+
+[data-braintree-id="choose-a-way-to-pay"] {
+  color: #fafafa;
+}
+
+[data-braintree-id="toggle"] {
+  background-color: #323232;
+  border-color: #999;
+  color: #fafafa;
+  outline: none;
+  transition-duration: 0.2s;
+  border-radius: 12px;
+}
+
+[data-braintree-id="toggle"]:hover {
+  background-color: #383838;
+  font-weight: normal;
+  transform: translateY(-2px);
+}
+
+[data-braintree-id="toggle"]:hover span {
+  border-color: white;
+}
+
+[data-braintree-id="toggle"]:active {
+  transform: translateY(2px);
+}
+
+[data-braintree-id="card"] {
+  background-color: #323232;
+  border-radius: 12px;
+  border: none;
+  color: #fafafa;
+}
+
+[data-braintree-id="card-sheet-header"] {
+  border-radius: 12px;
+  border: none;
+  color: #fafafa;
+}
+
+[data-braintree-id="number-field-group"] label > div {
   color: white !important;
 }
 
-.braintree-sheet__header .braintree-sheet__container {
-  border-radius: 16px;
-}
-
-.braintree-loaded .braintree-upper-container:before {
-  border-radius: 16px;
-}
-
-.braintree-sheet__content--form .braintree-form__field-group .braintree-form__label {
-  color: white;
-}
-
-.braintree-dropin * {
+[data-braintree-id="number-field-group"] label > div > div {
   border-radius: 8px;
-  border-color: #999;
-} */
+}
+
+[data-braintree-id="payment-options-container"] {
+  padding-bottom: 0;
+  border-radius: 12px !important;
+}
+
+[data-braintree-id="payment-options-container"] div {
+  background-color: #323232;
+  border: none;
+}
+
+[data-braintree-id="payment-options-container"]:first-child {
+  border-radius: 0px 0px 12px 12px !important
+}
+
+[data-braintree-id="payment-options-container"] div:hover {
+  background-color: #323232;
+}
+
+[data-braintree-id="payment-options-container"] div > div {
+  color: #fafafa !important;
+}
