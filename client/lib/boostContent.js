@@ -22,7 +22,7 @@ export default {
       {
         name: "Net Wins",
         tag: "solo",
-        id: 3,
+        id: 15,
         description:
           "We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins."
       },

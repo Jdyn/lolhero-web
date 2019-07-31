@@ -18,8 +18,8 @@ const BottomNavigator = props => {
 
   const updateStage = stage => {
     if (stage === 3) {
-      // submitOrder();
-    } else if (stage + 1 <= 2) {
+      submitOrder(boost.nonce);
+    } else if (stage + 1 <= 3 && stage != 2) {
       setStage(prev => prev + 1);
     }
   };
@@ -27,7 +27,7 @@ const BottomNavigator = props => {
   const stageText = currentStage => {
     switch (currentStage) {
       case 3:
-        return "checkout";
+        return "place order";
       default:
         return "next";
     }
@@ -58,9 +58,6 @@ const BottomNavigator = props => {
       >
         {stageText(currentStage)}
       </button>
-      {/* <button id="submit-button" className={classes.checkoutButton}>
-        {stageText(currentStage)}
-      </button> */}
     </div>
   );
 };

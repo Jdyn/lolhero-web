@@ -5,6 +5,7 @@ const initialState = {
   stage: 0,
   order: {
     type: "boost",
+    nonce: null,
     details: {
       lp: 20,
       queue: "solo",

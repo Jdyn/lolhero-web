@@ -90,6 +90,7 @@ const useStyles = createUseStyles(theme => ({
     padding: "35px 24px",
     borderLeft: `6px solid`,
     borderRight: `6px solid`,
+    transitionDuration: ".2s",
     // boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     "& span": {
       textAlign: "center"
@@ -124,11 +125,12 @@ const useStyles = createUseStyles(theme => ({
     position: "relative",
     bottom: 2,
     zIndex: -1,
-    fill: props.rank.color || theme.secondary,
-    stroke: props.rank.accent || theme.tertiary,
+    // fill: props.rank.color || theme.secondary,
+    // stroke: props.rank.accent || theme.tertiary,
     filter: "drop-shadow(0 0px 15px rgba(0,0,0,.35))"
   }),
   foot: {
+    transitionDuration: ".2s",
     width: "100%",
     height: "100px",
     position: "relative",

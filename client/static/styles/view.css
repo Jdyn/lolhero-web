@@ -18,7 +18,15 @@
 }
 
 [data-braintree-id="choose-a-way-to-pay"] {
-  color: #fafafa;
+  color: #fafafa !important;
+}
+
+[data-braintree-id="methods-label"] {
+  color: #fafafa !important;
+}
+
+[data-braintree-id="lower-container"] div {
+  color: #fafafa !important;
 }
 
 [data-braintree-id="toggle"] {
@@ -76,7 +84,7 @@
 }
 
 [data-braintree-id="payment-options-container"]:first-child {
-  border-radius: 0px 0px 12px 12px !important
+  border-radius: 0px 0px 12px 12px !important;
 }
 
 [data-braintree-id="payment-options-container"] div:hover {

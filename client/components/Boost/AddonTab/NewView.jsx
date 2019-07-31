@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
 import dropin from "braintree-web-drop-in";
-import Api from "../../../services/api";
 
 const propTypes = {};
 
 const NewView = props => {
+  const { setStage, updateOrder } = props;
   const classes = useStyes();
 
   useEffect(() => {
@@ -53,13 +53,11 @@ const NewView = props => {
       .then(instance => {
         const button = document.getElementById("submit-button");
         button.addEventListener("click", () => {
-          console.log("clicked");
           instance.requestPaymentMethod((error, payload) => {
-            // if (!error) {
-            //   props.submitOrder(payload.nonce);
-            // } else {
-            //   console.log(error);
-            // }
+            if (!error) {
+              updateOrder(payload.nonce);
+              setStage(prev => (prev === 2 ? prev + 1 : prev));
+            }
           });
         });
       })
@@ -72,7 +70,6 @@ const NewView = props => {
     <>
       <div className={classes.wrapper}>
         <div id="dropin-container" />
-        {/* <button id="submit-button">submit</button> */}
       </div>
     </>
   );

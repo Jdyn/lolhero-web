@@ -42,7 +42,10 @@ const setBoost = update => ({
 });
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (typeof newUpdate !== "object") return;
+  if (typeof newUpdate !== "object") {
+    dispatch(setBoost({ boost: { nonce: newUpdate }, details: {} }));
+    return;
+  }
 
   const requestType = requests.SUBMIT_ORDER;
   const request = getState().request[requestType] || {};
@@ -127,37 +130,17 @@ export const submitOrder = nonce => (dispatch, getState) => {
     Sentry.captureException(error);
   }
 
-  Api.post("/orders", {...order, nonce})
+  Api.post("/orders", { ...order, nonce })
     .then(response => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));
-
-        // braintree.client
-        //   .create({
-        //     authorization: nonce
-        //   })
-        //   .then(clientInstance =>
-        //     braintree.hostedFields.create({
-        //       client: clientInstance,
-        //       fields: {}
-        //     })
-        //   )
-        //   .then();
-
-        // const sessionId = response.result.session.id;
-
-        // Stripe("pk_test_zuPSlPf5Ewb5WW6o6bbc5Fs8")
-        //   .redirectToCheckout({
-        //     sessionId
-        //   })
-        //   .then(result => {
-        //     console.log(result);
-        //   });
       } else {
         dispatch(
           setRequestInProcess(false, requestType, {
             errored: true,
-            error: "Failed to fetch"
+            error:
+              response.errors[Object.keys(response.errors)[0]] ||
+              "Error placing order. Try again later."
           })
         );
       }
@@ -166,7 +149,7 @@ export const submitOrder = nonce => (dispatch, getState) => {
       dispatch(
         setRequestInProcess(false, requestType, {
           errored: true,
-          error: "Failed to fetch"
+          error: "Error placing order. Try again later or contact support."
         })
       );
       Sentry.captureException(error);

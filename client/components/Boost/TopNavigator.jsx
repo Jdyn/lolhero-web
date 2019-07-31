@@ -9,7 +9,7 @@ const propTypes = {
   currentStage: PropTypes.number.isRequired
 };
 
-const filters = ["Details", "Add-Ons", "summary", "checkout"];
+const filters = ["details", "add-ons", "payment method", "final review"];
 
 const TopNavigator = props => {
   const { currentStage, setStage } = props;
@@ -45,10 +45,10 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: theme.tertiary,
     "@media (min-width: 1025px)": {
       position: "fixed",
-      marginTop: 0,
+      marginTop: 0
     },
     "@media (min-width: 640px)": {
-      justifyContent: "flex-start",
+      justifyContent: "flex-start"
     }
   },
   container: {

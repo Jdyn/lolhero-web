@@ -27,7 +27,7 @@ const Boost = props => {
 
   const classes = useStyles();
 
-  const [currentStage, setStage] = useState(3);
+  const [currentStage, setStage] = useState(0);
 
   useEffect(() => {
     fetchBoostPrices();
@@ -46,6 +46,7 @@ const Boost = props => {
         <AddonTab
           boost={boost}
           currentStage={currentStage}
+          setStage={setStage}
           currentOrder={currentOrder}
           updateOrder={updateOrder}
           submitOrder={submitOrder}

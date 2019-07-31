@@ -13,17 +13,34 @@ const propTypes = {
 };
 
 const AddonTab = props => {
-  const { currentStage, updateOrder, currentOrder, submitOrderRequest, submitOrder } = props;
+  const {
+    currentStage,
+    updateOrder,
+    currentOrder,
+    submitOrderRequest,
+    submitOrder,
+    boost,
+    setStage
+  } = props;
 
   const classes = useStyles();
 
   const views = {
     0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />,
-    3: <NewView currentOrder={currentOrder} submitOrder={submitOrder} />
+    2: (
+      <NewView
+        currentOrder={currentOrder}
+        submitOrder={submitOrder}
+        updateOrder={updateOrder}
+        setStage={setStage}
+      />
+    ),
+    3: (
+      <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
+    )
   };
-  
+
   return (
     <div className={classes.root}>
       {Object.keys(views).map((view, index) => {
@@ -31,7 +48,7 @@ const AddonTab = props => {
           <div
             key={index}
             className={classes.content}
-            style={{ display: currentStage === index ? "flex" : "none" }}
+            style={{ display: currentStage === parseInt(view) ? "flex" : "none" }}
           >
             {views[index]}
           </div>
