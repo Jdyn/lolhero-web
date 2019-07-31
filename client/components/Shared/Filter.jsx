@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const Filter = props => {
-  const { filters, selectedIndex, onClick } = props;
+  const { filters, selectedIndex, onClick, untargetableIndices } = props;
 
   const classes = useStyles(props);
   const theme = useTheme();
@@ -31,25 +31,32 @@ const Filter = props => {
   return (
     <ul className={classes.container}>
       {Array.isArray(filters) &&
-        filters.map((filter, index) => (
-          <li
-            key={index}
-            className={classes.item}
-            onClick={() => handleClick(index)}
-            style={{
-              borderColor: state === index ? theme.accent : "#999",
-              color: state === index ? theme.accent : "#999"
-            }}
-          >
-            {filter}
-          </li>
-        ))}
+        filters.map((filter, index) => {
+          const disabled = untargetableIndices.includes(index);
+
+          return (
+            <li
+              key={index}
+              className={classes.item}
+              onClick={() => handleClick(index)}
+              style={{
+                borderColor: state === index ? theme.accent : "#999",
+                color: state === index ? theme.accent : disabled ? "#414141" : "#999",
+                pointerEvents: disabled ? "none" : "auto"
+              }}
+            >
+              {filter}
+            </li>
+          );
+        })}
     </ul>
   );
 };
 
 Filter.propTypes = propTypes;
-Filter.defaultProps = {};
+Filter.defaultProps = {
+  untargetableIndices: []
+};
 
 const useStyles = createUseStyles(theme => ({
   container: props => ({

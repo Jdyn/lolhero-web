@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import { formatLP } from "../../util/Helpers";
 
 const propTypes = {
@@ -15,6 +15,7 @@ const BottomNavigator = props => {
   const { currentStage, setStage, boost, currentOrder, submitOrder } = props;
 
   const classes = useStyles();
+  const theme = useTheme()
 
   const updateStage = stage => {
     if (stage === 3) {
@@ -33,6 +34,8 @@ const BottomNavigator = props => {
     }
   };
 
+  console.log(boost)
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -49,12 +52,13 @@ const BottomNavigator = props => {
       </div>
       <div className={classes.content}>
         <h3>${boost.price || 0}</h3>
-        <span>Purchase price</span>
+        <span>Total Price</span>
       </div>
       <button
         id="submit-button"
         className={classes.button}
         onClick={() => updateStage(currentStage)}
+        style={{backgroundColor: currentStage === 2 ? boost.paymentMethodIsSelected ? theme.accent : "#414141" : theme.accent}}
       >
         {stageText(currentStage)}
       </button>
@@ -118,9 +122,9 @@ const useStyles = createUseStyles(theme => ({
     color: theme.white,
     textTransform: "uppercase",
     letterSpacing: 0.8,
+    transitionDuration: ".2s",
     fontWeight: 700,
     fontSize: 20,
-    backgroundColor: theme.accent,
     "@media (min-width: 1025px)": {
       margin: "5px 25px 5px 3%",
       width: "350px",

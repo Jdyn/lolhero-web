@@ -78,8 +78,9 @@ const useStyles = createUseStyles(theme => ({
   },
   content: {
     flexDirection: "column",
-    overflow: "auto",
-    margin: "10px"
+    overflowY: "scroll",
+    margin: "10px 0px 10px 10px",
+    paddingRight: "10px"
   }
 }));
 

@@ -43,7 +43,11 @@ const setBoost = update => ({
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
   if (typeof newUpdate !== "object") {
-    dispatch(setBoost({ boost: { nonce: newUpdate }, details: {} }));
+    dispatch(
+      setBoost({
+        order: {nonce: newUpdate, paymentMethodIsSelected: true}
+      })
+    );
     return;
   }
 

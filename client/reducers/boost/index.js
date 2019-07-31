@@ -5,6 +5,7 @@ const initialState = {
   stage: 0,
   order: {
     type: "boost",
+    paymentMethodIsSelected: false,
     nonce: null,
     details: {
       lp: 20,
@@ -30,8 +31,10 @@ export default (state = initialState, action) => {
     case actions.UPDATE_BOOST:
       return {
         ...state,
+
         ...action.update.boost,
         order: {
+          ...action.update.order,
           ...state.order,
           details: {
             ...state.order.details,

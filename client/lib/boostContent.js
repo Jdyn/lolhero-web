@@ -7,27 +7,27 @@ export default {
     color: "#4285F4",
     items: [
       {
-        name: "Division Boost",
+        title: "Division Boost",
         tag: "solo",
         id: 1,
         description:
           "We play the required amount of games to reach the division you select."
       },
       {
-        name: "Placement Games",
+        title: "Placement Games",
         tag: "solo",
         id: 2,
         description: "We play your desired amount of placement matches."
       },
       {
-        name: "Net Wins",
+        title: "Net Wins",
         tag: "solo",
         id: 15,
         description:
           "We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins."
       },
       {
-        name: "Net Games",
+        title: "Net Games",
         tag: "solo",
         id: 4,
         description:
@@ -44,28 +44,28 @@ export default {
     color: "#e53935",
     items: [
       {
-        name: "Division Boost",
+        title: "Division Boost",
         tag: "duo",
         id: 5,
         description:
           "We play the required amount of games to reach the division you select."
       },
       {
-        name: "Net Wins",
+        title: "Net Wins",
         tag: "duo",
         id: 6,
         description: "We play your desired amount of placement matches."
       },
 
       {
-        name: "Placement Games",
+        title: "Placement Games",
         tag: "duo",
         id: 7,
         description:
           "We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins."
       },
       {
-        name: "Net Games",
+        title: "Net Games",
         tag: "duo",
         id: 8,
         description:

@@ -35,7 +35,7 @@ const Boost = props => {
 
   return (
     <div className={classes.root}>
-      <TopNavigator currentStage={currentStage} setStage={setStage} />
+      <TopNavigator currentStage={currentStage} setStage={setStage} boost={boost}/>
       <div className={classes.container}>
         <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
         <BoostDisplay

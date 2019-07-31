@@ -9,10 +9,10 @@ const propTypes = {
   currentStage: PropTypes.number.isRequired
 };
 
-const filters = ["details", "add-ons", "payment method", "final review"];
+const filters = ["details", "add-ons", "payment method", "review"];
 
 const TopNavigator = props => {
-  const { currentStage, setStage } = props;
+  const { currentStage, setStage, boost } = props;
   const classes = useStyles();
 
   return (
@@ -24,6 +24,7 @@ const TopNavigator = props => {
         <Filter
           extended
           filters={filters}
+          untargetableIndices={boost.paymentMethodIsSelected ? [] : [3]}
           selectedIndex={currentStage}
           onClick={index => setStage(index)}
         />

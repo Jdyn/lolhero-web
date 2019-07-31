@@ -34,7 +34,7 @@ const styles = theme => ({
     div: {
       "@media (min-width: 1025px)": {
         "&::-webkit-scrollbar": {
-          width: "8px"
+          width: "8px",
         },
         "&::-webkit-scrollbar-thumb": {
           backgroundColor: "#999",
@@ -43,7 +43,7 @@ const styles = theme => ({
         },
         "&::-webkit-scrollbar-track": {
           backgroundColor: theme.primary,
-          webkitBoxShadow: "inset 0 0 6px transparent"
+          webkitBoxShadow: "inset 0 0 6px transparent",
         },
         "&::-webkit-scrollbar-button": {
           width: "0",

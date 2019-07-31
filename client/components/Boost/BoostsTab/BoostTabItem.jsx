@@ -22,7 +22,7 @@ const BoostTabItem = props => {
     >
       <h2 className={classes.header}>
         <span>{item.tag}</span>
-        {` ${item.name}`}
+        {` ${item.title}`}
       </h2>
       <p className={classes.content}>{item.description}</p>
     </div>
@@ -53,6 +53,7 @@ const useStyles = createUseStyles(theme => ({
     color: theme.white,
     margin: 0,
     fontSize: 17,
+    marginBottom: "5px",
     "& span": {
       color: theme.accent,
       textTransform: "uppercase"
