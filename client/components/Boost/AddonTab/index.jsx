@@ -5,12 +5,16 @@ import DetailsView from "./DetailsView";
 import CheckoutView from "./CheckoutView";
 import { createUseStyles } from "react-jss";
 import NewView from "./NewView";
+// import useDimensions from "../../../util/useDimensions";
+import Filter from "../../Shared/Filter";
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
   currentStage: PropTypes.number.isRequired,
   currentOrder: PropTypes.object.isRequired
 };
+
+const filters = ["details", "add ons", "method", "review"];
 
 const AddonTab = props => {
   const {
@@ -43,6 +47,16 @@ const AddonTab = props => {
 
   return (
     <div className={classes.root}>
+      <div className={classes.container}>
+        <Filter
+          extended
+          filters={filters}
+          untargetableIndices={boost.paymentMethodIsSelected ? [] : [3]}
+          selectedIndex={currentStage}
+          onClick={index => setStage(index)}
+        />
+      </div>
+
       {Object.keys(views).map((view, index) => {
         return (
           <div
@@ -74,6 +88,12 @@ const useStyles = createUseStyles(theme => ({
       width: "400px",
       height: "100%",
       boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)"
+    }
+  },
+  container: {
+    display: "inherit",
+    "@media (min-width: 1025px)": {
+      display: "none"
     }
   },
   content: {

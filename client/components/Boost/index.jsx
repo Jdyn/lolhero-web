@@ -65,7 +65,7 @@ const Boost = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    position: "absolute",
+    position: "relative",
     paddingTop: "76px",
     height: "100%",
     minHeight: "100vh",
@@ -73,7 +73,9 @@ const useStyles = createUseStyles(theme => ({
     width: "100%",
     overflowY: "auto",
     backgroundColor: theme.primary,
+    WebkitOverflowScrolling: "touch",
     "@media (min-width: 1025px)": {
+      position: "absolute",
       padding: "76px 0 90px 0"
     }
   },

@@ -15,7 +15,7 @@ const BottomNavigator = props => {
   const { currentStage, setStage, boost, currentOrder, submitOrder } = props;
 
   const classes = useStyles();
-  const theme = useTheme()
+  const theme = useTheme();
 
   const updateStage = stage => {
     if (stage === 3) {
@@ -34,8 +34,6 @@ const BottomNavigator = props => {
     }
   };
 
-  console.log(boost)
-
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -52,13 +50,20 @@ const BottomNavigator = props => {
       </div>
       <div className={classes.content}>
         <h3>${boost.price || 0}</h3>
-        <span>Total Price</span>
+        <span>Total</span>
       </div>
       <button
         id="submit-button"
         className={classes.button}
         onClick={() => updateStage(currentStage)}
-        style={{backgroundColor: currentStage === 2 ? boost.paymentMethodIsSelected ? theme.accent : "#414141" : theme.accent}}
+        style={{
+          backgroundColor:
+            currentStage === 2
+              ? boost.paymentMethodIsSelected
+                ? theme.accent
+                : "#414141"
+              : theme.accent
+        }}
       >
         {stageText(currentStage)}
       </button>
@@ -79,7 +84,7 @@ const useStyles = createUseStyles(theme => ({
     bottom: 0,
     backgroundColor: theme.tertiary,
     zIndex: 50,
-    position: "sticky",
+    position: "relative",
     borderTop: "2px solid #999",
     "@media (min-width: 1025px)": {
       height: "90px",
@@ -111,7 +116,7 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   button: {
-    display: "none",
+    display: "inline-block",
     outline: "none",
     border: "none",
     margin: "15px",
@@ -129,13 +134,6 @@ const useStyles = createUseStyles(theme => ({
       margin: "5px 25px 5px 3%",
       width: "350px",
       display: "inline-block"
-    }
-  },
-  checkoutButton: {
-    extend: "button",
-    display: "inline-block",
-    "@media (min-width: 1025px)": {
-      display: "none"
     }
   }
 }));

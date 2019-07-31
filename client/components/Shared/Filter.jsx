@@ -76,6 +76,7 @@ const useStyles = createUseStyles(theme => ({
     textTransform: "uppercase",
     letterSpacing: ".9px",
     alignItems: "center",
+    textAlign: "center",
     fontSize: 16,
     fontWeight: 700,
     listStyle: "none",

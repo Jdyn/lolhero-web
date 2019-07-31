@@ -14,30 +14,6 @@ const NewView = props => {
       .create({
         authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
         container: "#dropin-container",
-        card: {
-          overrides: {
-            styles: {
-              input: {
-                color: "#fafafa"
-              },
-              ".label": {
-                color: "white"
-              },
-              ".number": {
-                color: "#fafafa"
-              },
-              ".expirationDate": {
-                color: "#fafafa"
-              },
-              ".cvv": {
-                color: "#fafafa"
-              },
-              ".postalCode": {
-                color: "#fafafa"
-              }
-            }
-          }
-        },
         paypal: {
           flow: "vault",
           buttonStyle: {
@@ -77,11 +53,13 @@ const NewView = props => {
 
 const useStyes = createUseStyles(theme => ({
   wrapper: {
-    padding: "15px",
+    display: "flex",
+    flexDirection: "column",
     backgroundColor: theme.tertiary,
     borderRadius: 12,
-    margin: "10px 10px 20px 10px",
-    boxShadow: "0px 0px 15px 0px rgba(0,0,0, .2)"
+    padding: "25px",
+    boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
+    margin: "10px 10px 20px 10px"
   }
 }));
 
