@@ -3,9 +3,9 @@ import { actions } from "../../actions/BoostActions";
 const initialState = {
   price: null,
   stage: 0,
+  paymentMethodIsSelected: false,
   order: {
     type: "boost",
-    paymentMethodIsSelected: false,
     nonce: null,
     details: {
       lp: 20,
@@ -31,11 +31,10 @@ export default (state = initialState, action) => {
     case actions.UPDATE_BOOST:
       return {
         ...state,
-
         ...action.update.boost,
         order: {
-          ...action.update.order,
           ...state.order,
+          ...action.update.order,
           details: {
             ...state.order.details,
             ...action.update.details

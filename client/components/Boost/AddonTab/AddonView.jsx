@@ -1,5 +1,5 @@
 import React from "react";
-import addons from "../../../lib/addonContent";
+import options from "../../../lib/addonContent";
 import Toggle from "../../Shared/Toggle";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
@@ -14,24 +14,17 @@ const AddonView = props => {
 
   const classes = useStyles();
 
-  return (
-    <>
-      <div className={classes.wrapper}>
-        <h2>Extras</h2>
-        {addons.addons.extras.map((extra, index) => (
-          <React.Fragment key={index}>
-            <Toggle
-              isSelected={currentOrder[extra.type]}
-              onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}
-            >
-              {extra.title}
-            </Toggle>
-            <p>{extra.description}</p>
-          </React.Fragment>
-        ))}
-      </div>
-    </>
-  );
+  return options.addons.extras.map((extra, index) => (
+    <div className={classes.wrapper} key={index}>
+      <Toggle
+        isSelected={currentOrder[extra.type]}
+        onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}
+      >
+        {extra.title}
+      </Toggle>
+      <p>{extra.description}</p>
+    </div>
+  ));
 };
 
 const useStyles = createUseStyles(theme => ({
@@ -46,8 +39,7 @@ const useStyles = createUseStyles(theme => ({
     "& p": {
       color: theme.grey,
       margin: 0,
-      fontSize: 16,
-      marginBottom: "15px"
+      fontSize: 16
     },
     "& h2": {
       fontSize: 20,

@@ -3,6 +3,7 @@ import keyMirror from "../util/keyMirror";
 import { setRequestInProcess } from "./RequestActions";
 import * as Sentry from "@sentry/browser";
 import calculatePrice from "../util/CalculatePrice";
+import Router from "next/router";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
 
@@ -45,7 +46,8 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   if (typeof newUpdate !== "object") {
     dispatch(
       setBoost({
-        order: {nonce: newUpdate, paymentMethodIsSelected: true}
+        boost: { paymentMethodIsSelected: true },
+        order: { nonce: newUpdate }
       })
     );
     return;
@@ -69,7 +71,7 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
 
-export const submitOrder = nonce => (dispatch, getState) => {
+export const submitOrder = () => (dispatch, getState) => {
   const requestType = requests.SUBMIT_ORDER;
 
   const requestInProcess = getState().request[requestType] || {};
@@ -134,10 +136,11 @@ export const submitOrder = nonce => (dispatch, getState) => {
     Sentry.captureException(error);
   }
 
-  Api.post("/orders", { ...order, nonce })
+  Api.post("/orders", order)
     .then(response => {
       if (response.ok) {
         dispatch(setRequestInProcess(false, requestType));
+        window.location.href = response.result.success_url;
       } else {
         dispatch(
           setRequestInProcess(false, requestType, {
