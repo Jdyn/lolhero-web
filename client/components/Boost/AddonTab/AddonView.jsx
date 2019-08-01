@@ -46,7 +46,7 @@ const useStyles = createUseStyles(theme => ({
       margin: 0,
       marginBottom: "10px"
     }
-    }
+  }
 }));
 
 AddonView.propTypes = propTypes;

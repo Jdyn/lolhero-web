@@ -15,15 +15,12 @@ const BoostDisplay = props => {
   const classes = useStyles();
 
   const ranksObject = useMemo(() =>
-    [].concat
-      .apply([], [...ranks])
-      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
-  const renderContent = collectionId => {
-    switch (collectionId) {
-      case 1:
-      case 5:
+  const renderContent = collectionName => {
+    switch (collectionName) {
+      case "Division Boost":
         return (
           <>
             <div className={classes.wrapper}>
@@ -35,11 +32,10 @@ const BoostDisplay = props => {
                 updateOrder={updateOrder}
               />
             </div>
+
             <Banner
               type="picker"
-              rank={
-                currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}
-              }
+              rank={currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -70,8 +66,7 @@ const BoostDisplay = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>{renderContent(currentOrder.collection_id)}</div>
-
+      <div className={classes.container}>{renderContent(currentOrder.collection_name)}</div>
       {submitOrderRequest.errored && (
         <div className={classes.error}>
           <span>Error: {submitOrderRequest.error}</span>

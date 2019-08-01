@@ -6,7 +6,6 @@ import calculatePrice from "../util/CalculatePrice";
 import Router from "next/router";
 
 export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
-
 export const requests = keyMirror("BOOST_PRICING", "BOOST_ORDER", "SUBMIT_ORDER");
 
 const setBoostPrices = prices => ({
@@ -43,7 +42,7 @@ const setBoost = update => ({
 });
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (typeof newUpdate !== "object") {
+  if (typeof newUpdate === "string") {
     dispatch(
       setBoost({
         boost: { paymentMethodIsSelected: true },
@@ -73,7 +72,6 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
 
 export const submitOrder = () => (dispatch, getState) => {
   const requestType = requests.SUBMIT_ORDER;
-
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
@@ -82,83 +80,50 @@ export const submitOrder = () => (dispatch, getState) => {
 
   let order = { ...getState().boost.order };
 
-  const { collection_id, desired_rank, start_rank } = order.details;
-
-  if (!start_rank) {
-    const error = "Your starting rank cannot be blank.";
-
+  const dispatchError = message => {
     dispatch(
       setRequestInProcess(false, requestType, {
         errored: true,
-        error
-      })
-    );
-    return;
-  }
-
-  if (start_rank > desired_rank) {
-    dispatch(
-      setRequestInProcess(false, requestType, {
-        errored: true,
-        error: "Your starting rank cannot be greater than your desired rank."
+        error: message
       })
     );
 
-    return;
+    return false;
+  };
+
+  if (validateOrder(order, dispatchError)) {
+    Api.post("/orders", order)
+      .then(response => {
+        if (response.ok) {
+          dispatch(setRequestInProcess(false, requestType));
+          window.location.href = response.result.success_url;
+        } else {
+          const errors = response.errors || [];
+          const message = errors[Object.keys(errors)[0]] || "Error placing order. Try again later.";
+
+          dispatchError(message);
+        }
+      })
+      .catch(error => {
+        dispatchError("Error placing order. Try again later or contact support.");
+        Sentry.captureException(error);
+      });
   }
+};
 
-  if (collection_id === 1 || collection_id === 5) {
-    if (!desired_rank) {
-      const error = "You must have a desired rank.";
+const validateOrder = (order, dispatchError) => {
+  const { collection_name, start_rank, desired_rank, desired_amount } = order.details;
 
-      dispatch(
-        setRequestInProcess(false, requestType, {
-          errored: true,
-          error
-        })
-      );
-      return;
-    }
+  if (!start_rank) return dispatchError("You must have a starting rank.");
 
-    delete order.details.desired_amount;
+  if (start_rank > desired_rank)
+    return dispatchError("Your starting rank cannot be greater than your desired rank.");
+
+  if (collection_name === "Division Boost") {
+    if (!desired_rank) return dispatchError("You must have a desired rank.");
   } else {
-    delete order.details.desired_rank;
+    if (!desired_amount) return dispatchError("You must have a desired amount.");
   }
 
-  if (order.details.desired_amount && order.details.desired_rank) {
-    dispatch(
-      setRequestInProcess(false, requestType, {
-        errored: true,
-        error: "Internal Error: desired_amount and desired_rank exists"
-      })
-    );
-
-    Sentry.captureException(error);
-  }
-
-  Api.post("/orders", order)
-    .then(response => {
-      if (response.ok) {
-        dispatch(setRequestInProcess(false, requestType));
-        window.location.href = response.result.success_url;
-      } else {
-        dispatch(
-          setRequestInProcess(false, requestType, {
-            errored: true,
-            error:
-              response.errors[Object.keys(response.errors)[0]] ||
-              "Error placing order. Try again later."
-          })
-        );
-      }
-    })
-    .catch(error => {
-      dispatch(
-        setRequestInProcess(false, requestType, {
-          errored: true,
-          error: "Error placing order. Try again later or contact support."
-        })
-      );
-      Sentry.captureException(error);
-    });
+  return true;
 };

@@ -22,15 +22,17 @@ const BoostTab = props => {
 
   useEffect(() => {
     if (selectedFilter !== currentOrder.boost_type) {
-      const newId = content[selectedFilter].items[selectedIndex].id;
-      handleOrderUpdate(newId, selectedIndex);
+      handleOrderUpdate(selectedIndex);
     }
   }, [selectedFilter]);
 
-  const handleOrderUpdate = (newSelectedId, newSelectedIndex) => {
+  const handleOrderUpdate = newSelectedIndex => {
+    const currentItem = currentContent.items[newSelectedIndex];
+
     setIndex(newSelectedIndex);
     updateOrder({
-      collection_id: newSelectedId,
+      collection_id: currentItem.id,
+      collection_name: currentItem.title,
       boost_type: selectedFilter
     });
   };
@@ -42,10 +44,7 @@ const BoostTab = props => {
 
   return (
     <div className={classes.root}>
-      <Filter
-        filters={Object.keys(content)}
-        onClick={index => handleFilterUpdate(index)}
-      />
+      <Filter filters={Object.keys(content)} onClick={index => handleFilterUpdate(index)} />
       <span className={classes.notice}>
         {currentContent.description}
         <span>{currentContent.subdescription}</span>
@@ -55,7 +54,7 @@ const BoostTab = props => {
           <BoostTabItem
             key={index}
             item={item}
-            onClick={() => handleOrderUpdate(currentContent.items[index].id, index)}
+            onClick={() => handleOrderUpdate(index)}
             isSelected={currentContent.items[index].id === currentOrder.collection_id}
           />
         ))}
@@ -84,7 +83,7 @@ const useStyles = createUseStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     flexGrow: 1,
-    overflow: "auto",
+    overflowY: "auto",
     flexDirection: "row",
     "@media (min-width: 1025px)": {
       flexWrap: "nowrap",

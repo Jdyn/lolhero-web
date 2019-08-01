@@ -14,6 +14,7 @@ const initialState = {
       desired_amount: 5,
       boost_type: "solo",
       collection_id: 1,
+      collection_name: "Division Boost",
       is_express: false,
       is_incognito: false,
       is_unrestricted: false,
