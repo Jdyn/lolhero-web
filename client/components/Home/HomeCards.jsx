@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 import HomeCard from "./HomeCard";
 import theme from "../../lib/theme";
 
-const propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const propTypes = {};
 
 const cards = [
   {
@@ -21,7 +19,7 @@ const cards = [
 ];
 
 const HomeCards = props => {
-  const { classes } = props;
+  const classes = useStyles(props);
 
   return (
     <div className={classes.container}>
@@ -32,22 +30,20 @@ const HomeCards = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     marginTop: "-145px",
-    // maxWidth: "345px",
-    // margin: "0 auto",
     "@media (min-width: 650px)": {
       flexDirection: "row",
-      justifyContent: "center",
+      justifyContent: "center"
     },
     backgroundColor: theme.quartinary
   }
-});
+}));
 
 HomeCards.propTypes = propTypes;
 
-export default withStyles(styles)(HomeCards);
+export default HomeCards;

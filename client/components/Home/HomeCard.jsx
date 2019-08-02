@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 
-const propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const propTypes = {};
 
 const HomeCard = props => {
-  const { classes } = props;
+  const classes = useStyles(props);
 
   return (
     <div className={classes.container}>
@@ -16,13 +14,13 @@ const HomeCard = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   container: {
     height: "475px",
     flexGrow: 1,
     "@media (min-width: 650px)": {
       maxWidth: "305px",
-      margin: "1%",
+      margin: "1%"
     },
     margin: "5%",
     zIndex: 100,
@@ -31,7 +29,7 @@ const styles = theme => ({
     borderRadius: 8,
     transitionDuration: ".15s",
     "&:hover": {
-      transform: "translateY(-4px)",
+      transform: "translateY(-4px)"
     }
   },
   header: {
@@ -40,8 +38,8 @@ const styles = theme => ({
     height: "35%",
     borderRadius: "8px 8px 0px 0px"
   }
-});
+}));
 
 HomeCard.propTypes = propTypes;
 
-export default withStyles(styles)(HomeCard);
+export default HomeCard;

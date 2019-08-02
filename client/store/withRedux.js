@@ -19,12 +19,13 @@ export default App => {
   return class WithRedux extends React.Component {
     constructor(props) {
       super(props);
+
       this.reduxStore = createStore(props.initialReduxState);
     }
 
     static async getInitialProps(appContext) {
       const reduxStore = createStore();
-
+      
       appContext.ctx.reduxStore = reduxStore;
 
       let appProps = {};

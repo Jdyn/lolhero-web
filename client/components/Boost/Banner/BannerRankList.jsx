@@ -14,7 +14,7 @@ const propTypes = {
 
 const BannerRankList = props => {
   const { rank, isStartRank, currentOrder, updateOrder } = props;
-  
+
   const classes = useStyles();
 
   const flatRanks = useMemo(() => flatten([...ranks]));
@@ -39,20 +39,20 @@ const BannerRankList = props => {
 
   return (
     <div className={classes.container}>
-    {ranks.map((rankList, index) => (
-      <div className={classes.rankWrapper}>
-        {rankList.map((rankItem, rankIndex) => (
-          <BannerRankItem
-            key={index + rankIndex}
-            rank={rankItem}
-            isSelected={rank.rank === rankItem.rank}
-            isStartRank={isStartRank}
-            isDisabled={validateDisabled(rankItem.rank)}
-            updateOrder={updateOrder}
-          />
-        ))}
-      </div>
-    ))}
+      {ranks.map((rankList, index) => (
+        <div key={index} className={classes.rankWrapper}>
+          {rankList.map((rankItem, rankIndex) => (
+            <BannerRankItem
+              rank={rankItem}
+              key={index + rankIndex}
+              isSelected={rank.rank === rankItem.rank}
+              isStartRank={isStartRank}
+              isDisabled={validateDisabled(rankItem.rank)}
+              updateOrder={updateOrder}
+            />
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
@@ -65,7 +65,7 @@ const useStyles = createUseStyles({
     flexWrap: "wrap"
   },
   rankWrapper: {
-    display: "flex",
+    display: "flex"
   }
 });
 

@@ -37,15 +37,10 @@ const login = form => (dispatch, getState) => {
   Api.post("/session", form)
     .then(response => {
       const { ok, result } = response;
-      
+
       if (ok) {
-        const jsonToken = result.user.token || null;
-
-        if (jsonToken) {
-          localStorage.setItem("token", JSON.stringify(jsonToken));
-          dispatch(setLogin(result.user));
-        }
-
+        setCurrentSession(result);
+        dispatch(setLogin(result.user));
         dispatch(setRequestInProcess(false, requestType));
       } else {
         const message = "An Error has occurred logging in. Please try again.";
@@ -136,13 +131,9 @@ export const clearSessionErrors = () => ({
   }
 });
 
-const setCurrentSession = (dispatch, response) => {
-  if (response.result.user.token) {
-    const jsonToken = response.result.user.token;
+const setCurrentSession = result => {
+  if (result.user.token) {
+    const jsonToken = result.user.token;
     localStorage.setItem("token", JSON.stringify(jsonToken));
   }
-  dispatch({
-    type: actions.AUTHENTICATION_SUCCESS,
-    response
-  });
 };
