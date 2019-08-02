@@ -1,5 +1,4 @@
-import { actions } from "../../actions/RequestActions";
-import { actions as boostActions} from "../../actions/BoostActions"
+import { actions } from "../actions/RequestActions";
 
 const initialState = {};
 

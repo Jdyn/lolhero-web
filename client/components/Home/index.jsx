@@ -1,21 +1,15 @@
-import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import Button from "../Shared/Button";
 import HomeCards from "./HomeCards";
 import Link from "next/link";
 
 const propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 const Home = props => {
-  const { classes } = props;
-
-  const handleClick = event => {
-    event.preventDefault();
-
-  };
+  const classes = useStyles(props);
+  const theme = useTheme();
 
   return (
     <>
@@ -27,13 +21,14 @@ const Home = props => {
         </form>
         <div className={classes.wrapper}>
           <Link href="/">
-            <Button secondary margin="0 25px 0 0">
+            <button className={classes.button} style={{ backgroundColor: theme.green }}>
               prebuilt order
-            </Button>
+            </button>
           </Link>
-
           <Link href="/order/boost">
-            <Button>custom order</Button>
+            <button className={classes.button} style={{ backgroundColor: theme.accent }}>
+              custom order
+            </button>
           </Link>
         </div>
       </div>
@@ -42,7 +37,7 @@ const Home = props => {
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   hero: {
     display: "flex",
     flexDirection: "column",
@@ -60,8 +55,7 @@ const styles = theme => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "35px",
-    margin: "15px",
+    margin: "10px"
   },
   form: {
     display: "flex",
@@ -70,7 +64,7 @@ const styles = theme => ({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
-    margin: "15px",
+    margin: "15px 15px 40px 15px",
     "& h1": {
       fontSize: 45,
       margin: "0 0 0 0",
@@ -93,9 +87,24 @@ const styles = theme => ({
     color: theme.white,
     fontSize: 16,
     backgroundColor: theme.quartinary
+  },
+  button: {
+    display: "flex",
+    outline: "none",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: 600,
+    color: theme.white,
+    maxWidth: "200px",
+    flexGrow: 1,
+    justifyContent: "center",
+    textTransform: "uppercase",
+    margin: "0px 15px",
+    padding: "15px 35px",
+    cursor: "pointer"
   }
-});
+}));
 
 Home.propTypes = propTypes;
 
-export default withStyles(styles)(Home);
+export default Home;

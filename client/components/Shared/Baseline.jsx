@@ -1,18 +1,21 @@
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired
 };
 
 const defaultProps = {
   children: null
 };
 
-const Baseline = ({ children }) => children;
+const Baseline = ({ children }) => {
+  useStyles();
 
-const styles = theme => ({
+  return children;
+};
+
+const useStyles = createUseStyles(theme => ({
   "@global": {
     html: {
       WebkitFontSmoothing: "antialiased",
@@ -31,10 +34,10 @@ const styles = theme => ({
       fontStyle: "normal",
       textRendering: "optimizeLegibility"
     },
-    div: {
+    "body, div": {
       "@media (min-width: 1025px)": {
         "&::-webkit-scrollbar": {
-          width: "8px",
+          width: "8px"
         },
         "&::-webkit-scrollbar-thumb": {
           backgroundColor: "#999",
@@ -43,7 +46,7 @@ const styles = theme => ({
         },
         "&::-webkit-scrollbar-track": {
           backgroundColor: theme.primary,
-          webkitBoxShadow: "inset 0 0 6px transparent",
+          webkitBoxShadow: "inset 0 0 6px transparent"
         },
         "&::-webkit-scrollbar-button": {
           width: "0",
@@ -53,9 +56,9 @@ const styles = theme => ({
       }
     }
   }
-});
+}));
 
 Baseline.propTypes = propTypes;
 Baseline.defaultProps = defaultProps;
 
-export default withStyles(styles, { link: true })(Baseline);
+export default Baseline;

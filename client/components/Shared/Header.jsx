@@ -1,41 +1,90 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import withStyles from "react-jss";
+import { createUseStyles } from "react-jss";
 import Link from "next/link";
-import Button from "../Shared/Button";
+import AuthModal from "./AuthModal";
 
-const propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const propTypes = {};
 
 const Header = props => {
-  const { classes } = props;
+  const { handleAuth, session } = props;
+  const classes = useStyles(props);
 
-  const isLoggedIn = false;
+  const [type, setType] = useState(null);
+  const [isOpen, setOpen] = useState(false);
+
+  const modalRef = useRef();
+
+  const updateModal = newType => {
+    if (isOpen) {
+      if (newType === type) {
+        setOpen(false);
+        setType(null);
+      } else {
+        setType(newType);
+      }
+    } else {
+      setOpen(true);
+      setType(newType);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = e => {
+      if (!modalRef.current.contains(e.target)) {
+        document.removeEventListener("mousedown", handleClickOutside);
+        setOpen(false);
+        setType(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <div className={classes.root}>
+    <header className={classes.root}>
       <Link href="/">
         <div className={classes.logo}>LoL Hero</div>
       </Link>
       <input className={classes.orderSearch} placeholder="Enter Tracking ID" />
-      {isLoggedIn ? (
-        <div> Logged in</div>
-      ) : (
-        <div className={classes.wrapper}>
-          <button className={classes.button} style={{ backgroundColor: "#1bb978" }}>
-            log in
-          </button>
-          <button className={classes.button} style={{ backgroundColor: "#0C7AF2" }}>
-            sign up
-          </button>
-        </div>
-      )}
-    </div>
+      {!session.isLoggedIn ? <div
+        className={classes.container}
+        ref={modalRef}
+        style={{
+          display: "grid",
+          gridTemplateRows: "79px 1fr",
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateAreas: ` 
+            'login signup'
+            'modal modal'
+            `
+        }}
+      >
+        <button
+          className={classes.button}
+          style={{ gridArea: "signup" }}
+          onClick={() => updateModal("signup")}
+        >
+          sign up
+        </button>
+        <button
+          className={classes.button}
+          style={{ gridArea: "login" }}
+          onClick={() => updateModal("login")}
+        >
+          log in
+        </button>
+        <AuthModal isOpen={isOpen} type={type} handleAuth={handleAuth} />
+      </div> : <div>yo</div>}
+    </header>
   );
 };
 
-const styles = theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
     display: "flex",
     position: "relative",
@@ -43,10 +92,22 @@ const styles = theme => ({
     width: "100%",
     height: "79px",
     borderBottom: `2px solid #999`,
-    padding: "20px 0",
+    padding: "20px 100px 20px 0px",
     top: 0,
     left: 0,
     zIndex: 5
+  },
+  container: {
+    margin: "-20px 0 -22px 0",
+    position: "relative",
+    height: "auto"
+    // display: "grid",
+    // gridTemplateRows: "79px 1fr",
+    // gridTemplateColumns: "1fr 1fr",
+    // gridTemplateAreas: `
+    // 'login signup'
+    // 'modal modal'
+    // `
   },
   logo: {
     display: "flex",
@@ -56,7 +117,7 @@ const styles = theme => ({
     padding: "0 45px",
     margin: "-20px 0 -20px 0",
     cursor: "pointer",
-    transitionDuration: ".15s",
+    transitionDuration: ".2s",
     borderBottom: "2px solid #999",
     color: theme.white,
     bottom: -2,
@@ -79,31 +140,28 @@ const styles = theme => ({
     color: theme.white,
     backgroundColor: theme.primary
   },
-  wrapper: {
-    display: "flex",
-    flexDirection: "row"
-  },
-
   button: {
     display: "flex",
     outline: "none",
     border: "none",
-    color: theme.white,
-    borderRadius: 8,
+    position: "relative",
     cursor: "pointer",
+    fontWeight: 600,
+    fontSize: 16,
+    height: "100%",
+    padding: "0px 30px",
     textTransform: "uppercase",
-    fontWeight: 700,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    maxWidth: "100px",
-    flexGrow: 1,
-    marginRight: "20px",
-    padding: "10px"
-    // backgroundColor: theme.accent
+    color: theme.grey,
+    backgroundColor: theme.tertiary,
+    borderBottom: "2px solid #999",
+    transitionDuration: ".2s",
+    "&:hover": {
+      color: theme.accent,
+      borderBottom: `2px solid ${theme.accent}`
+    }
   }
-});
+}));
 
 Header.propTypes = propTypes;
 
-export default withStyles(styles)(Header);
+export default Header;

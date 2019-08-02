@@ -38,7 +38,7 @@ const NewView = props => {
         });
       })
       .catch(error => {
-        console.log("ERROR BRO", error);
+        
       });
   }, []);
 

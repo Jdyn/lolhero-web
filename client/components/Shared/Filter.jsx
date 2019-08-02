@@ -84,7 +84,7 @@ const useStyles = createUseStyles(theme => ({
     color: theme.secondaryColor,
     borderBottom: "2px solid",
     paddingBottom: "20px",
-    transitionDuration: ".15s",
+    transitionDuration: ".25s",
     "&:hover": {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`

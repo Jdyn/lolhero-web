@@ -8,8 +8,13 @@ class HomeContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  sessionRequest: state.request.AUTHENTICATE || {}
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleAuth: (form, type) => dispatch(handleAuth(form, type))
+});
 
 export default connect(
   mapStateToProps,

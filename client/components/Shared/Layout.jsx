@@ -1,29 +1,37 @@
-import React from "react";
-import PropTypes from "prop-types";
-import withStyles from "react-jss";
 import Header from "./Header";
 import Footer from "./Footer";
-import SEO from "./SEO";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { handleAuth } from "../../actions/SessionActions";
 
 const propTypes = {
-  children: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired
 };
 
 const Layout = props => {
-  const { classes, children } = props;
+  const { children, session, handleAuth, sessionRequest } = props;
 
   return (
     <>
-      <Header />
+      <Header session={session} handleAuth={handleAuth} sessionRequest={sessionRequest} />
       {children}
       <Footer />
     </>
   );
 };
 
-const styles = {};
-
 Layout.propTypes = propTypes;
 
-export default withStyles(styles)(Layout);
+const mapStateToProps = state => ({
+  sessionRequest: state.request.AUTHENTICATE || {},
+  session: state.session
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleAuth: (form, type) => dispatch(handleAuth(form, type))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Layout);
