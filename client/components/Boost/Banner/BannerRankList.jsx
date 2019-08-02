@@ -39,16 +39,20 @@ const BannerRankList = props => {
 
   return (
     <div className={classes.container}>
-      {flatRanks.map((rankItem, index) => (
-        <BannerRankItem
-          key={index}
-          rank={rankItem}
-          isSelected={rank.rank === rankItem.rank}
-          isStartRank={isStartRank}
-          isDisabled={validateDisabled(rankItem.rank)}
-          updateOrder={updateOrder}
-        />
-      ))}
+    {ranks.map((rankList, index) => (
+      <div className={classes.rankWrapper}>
+        {rankList.map((rankItem, rankIndex) => (
+          <BannerRankItem
+            key={index + rankIndex}
+            rank={rankItem}
+            isSelected={rank.rank === rankItem.rank}
+            isStartRank={isStartRank}
+            isDisabled={validateDisabled(rankItem.rank)}
+            updateOrder={updateOrder}
+          />
+        ))}
+      </div>
+    ))}
     </div>
   );
 };
@@ -56,9 +60,12 @@ const BannerRankList = props => {
 const useStyles = createUseStyles({
   container: {
     display: "flex",
-    flexWrap: "wrap",
-    width: "170px",
-    height: "75px"
+    // width: "100%",
+    justifyContent: "center",
+    flexWrap: "wrap"
+  },
+  rankWrapper: {
+    display: "flex",
   }
 });
 

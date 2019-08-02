@@ -70,32 +70,34 @@ const Banner = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
+    zIndex: 5,
     height: "70vh",
-    maxHeight: "550px",
-    justifyContent: "flex-start",
-    width: "235px",
-    marginBottom: "15px",
-    zIndex: 5
-  },
-  container: props => ({
     display: "flex",
+    maxWidth: "235px",
+    position: "relative",
     flexGrow: 1,
+    margin: "0px 15px 0px 15px",
+    maxHeight: "550px",
+    marginBottom: "15px",
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
+  },
+  container: {
     color: "#fefefe",
-    padding: "35px 24px",
+    display: "flex",
+    padding: "35px 0px",
+    flexGrow: 1,
+    boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
+    alignItems: "center",
     borderLeft: `6px solid`,
     borderRight: `6px solid`,
+    flexDirection: "column",
+    justifyContent: "space-between",
     transitionDuration: ".2s",
-    // boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
     "& span": {
       textAlign: "center"
     }
-  }),
+  },
   amount: {
     fontSize: 67
   },

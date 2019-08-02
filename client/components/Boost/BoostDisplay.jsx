@@ -26,15 +26,13 @@ const BoostDisplay = props => {
       case 5:
         return (
           <>
-            <div className={classes.wrapper}>
-              <Banner
-                type="picker"
-                isStartRank
-                rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
-                currentOrder={currentOrder}
-                updateOrder={updateOrder}
-              />
-            </div>
+            <Banner
+              type="picker"
+              isStartRank
+              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
+              currentOrder={currentOrder}
+              updateOrder={updateOrder}
+            />
             <Banner
               type="picker"
               rank={
@@ -48,15 +46,13 @@ const BoostDisplay = props => {
       default:
         return (
           <>
-            <div className={classes.wrapper}>
-              <Banner
-                type="picker"
-                isStartRank
-                rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
-                currentOrder={currentOrder}
-                updateOrder={updateOrder}
-              />
-            </div>
+            <Banner
+              type="picker"
+              isStartRank
+              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
+              currentOrder={currentOrder}
+              updateOrder={updateOrder}
+            />
             <Banner
               type="slider"
               rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
@@ -97,18 +93,6 @@ const useStyles = createUseStyles(theme => ({
     "@media (min-width: 640px)": {
       flexDirection: "row",
       alignItems: "normal"
-    }
-  },
-  wrapper: {
-    display: "flex",
-    width: "100%",
-    zIndex: 10,
-    justifyContent: "center",
-    borderRadius: "0 0 12px 12px",
-    boxShadow: "0px 0px 15px rgb(0,0,0,.4)",
-    "@media (min-width: 640px)": {
-      boxShadow: "none",
-      width: "auto"
     }
   },
   error: {
