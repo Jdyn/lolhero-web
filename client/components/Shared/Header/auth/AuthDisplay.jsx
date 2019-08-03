@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
-import AuthModal from "./AuthModal";
-
+import AuthProfile from "./AuthProfile";
+import AuthMenu from "./AuthMenu";
 const propTypes = {};
 
 const AuthDisplay = props => {
-  const { handleAuth, session } = props;
+  const { handleAuth, session, sessionRequest } = props;
   const classes = useStyes();
 
   const [type, setType] = useState(null);
   const [isOpen, setOpen] = useState(false);
 
   const modalRef = useRef();
-
+  console.log(type, isOpen);
   const updateModal = newType => {
     if (isOpen) {
       if (newType === type) {
@@ -29,6 +29,17 @@ const AuthDisplay = props => {
   };
 
   useEffect(() => {
+    if (sessionRequest.success) {
+      setOpen(false);
+      setType(null);
+    }
+  }, [sessionRequest]);
+
+  useEffect(() => {
+    handleAuth({ username: "jdog", password: "password" }, "login");
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = e => {
       if (!modalRef.current.contains(e.target)) {
         document.removeEventListener("mousedown", handleClickOutside);
@@ -42,40 +53,25 @@ const AuthDisplay = props => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, session]);
 
   return session.isLoggedIn ? (
-    <div />
+    <AuthProfile
+      modalRef={modalRef}
+      isOpen={isOpen}
+      updateModal={updateModal}
+      session={session}
+      type={type}
+    />
   ) : (
-    <div
-      className={classes.container}
-      ref={modalRef}
-      style={{
-        display: "grid",
-        gridTemplateRows: "79px 1fr",
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateAreas: ` 
-            'login signup'
-            'modal modal'
-            `
-      }}
-    >
-      <button
-        className={classes.button}
-        style={{ gridArea: "signup" }}
-        onClick={() => updateModal("signup")}
-      >
-        sign up
-      </button>
-      <button
-        className={classes.button}
-        style={{ gridArea: "login" }}
-        onClick={() => updateModal("login")}
-      >
-        log in
-      </button>
-      <AuthModal isOpen={isOpen} type={type} handleAuth={handleAuth} />
-    </div>
+    <AuthMenu
+      handleAuth={handleAuth}
+      modalRef={modalRef}
+      isOpen={isOpen}
+      updateModal={updateModal}
+      session={session}
+      type={type}
+    />
   );
 };
 
@@ -83,7 +79,9 @@ const useStyes = createUseStyles(theme => ({
   container: {
     margin: "-20px 0 -22px 0",
     position: "relative",
-    height: "auto"
+    height: "auto",
+    width: "100%",
+    maxWidth: "250px"
   },
   button: {
     display: "flex",
@@ -91,10 +89,13 @@ const useStyes = createUseStyles(theme => ({
     border: "none",
     position: "relative",
     cursor: "pointer",
+    justifyContent: "center",
     fontWeight: 600,
     fontSize: 16,
+    flexGrow: 1,
+    maxWidth: "125px",
     height: "100%",
-    padding: "0px 30px",
+    padding: 0,
     textTransform: "uppercase",
     color: theme.grey,
     backgroundColor: theme.tertiary,

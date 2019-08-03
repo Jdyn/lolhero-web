@@ -1,12 +1,12 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
-import AuthDisplay from "./AuthDisplay";
+import AuthDisplay from "./auth/AuthDisplay";
 import { createUseStyles } from "react-jss";
 
 const propTypes = {};
 
 const Header = props => {
-  const { handleAuth, session } = props;
+  const { handleAuth, session, sessionRequest } = props;
   const classes = useStyles(props);
 
   return (
@@ -14,8 +14,16 @@ const Header = props => {
       <Link href="/">
         <div className={classes.logo}>LoL Hero</div>
       </Link>
-      <input className={classes.orderSearch} placeholder="Enter Tracking ID" />
-      <AuthDisplay handleAuth={handleAuth} session={session} />
+      <input
+        className={classes.orderSearch}
+        aria-label="search"
+        placeholder="Enter Tracking ID"
+      />
+      <AuthDisplay
+        handleAuth={handleAuth}
+        session={session}
+        sessionRequest={sessionRequest}
+      />
     </header>
   );
 };
@@ -28,7 +36,7 @@ const useStyles = createUseStyles(theme => ({
     width: "100%",
     height: "79px",
     borderBottom: `2px solid #999`,
-    padding: "20px 100px 20px 0px",
+    padding: "20px 40px 20px 0px",
     top: 0,
     left: 0,
     zIndex: 5

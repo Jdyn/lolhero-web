@@ -11,9 +11,11 @@ export default class JssDocument extends Document {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: App => props => (
-          <JssProvider registry={registry} generateId={generateId}>
-            <App {...props} />
-          </JssProvider>
+          <html lang="en">
+            <JssProvider registry={registry} generateId={generateId}>
+              <App {...props} />
+            </JssProvider>
+          </html>
         )
       });
 

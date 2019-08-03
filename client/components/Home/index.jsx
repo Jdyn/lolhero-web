@@ -17,7 +17,7 @@ const Home = props => {
         <form className={classes.form}>
           <h1>LoL Hero</h1>
           <h2>League of Legends</h2>
-          <input placeholder="Enter tracking ID" className={classes.search} />
+          <input placeholder="Enter tracking ID" aria-label="search" className={classes.search} />
         </form>
         <div className={classes.wrapper}>
           <Link href="/">

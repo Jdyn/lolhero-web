@@ -10,7 +10,8 @@ export const handleAuth = (form, type) => dispatch => {
     case "login":
       dispatch(login(form));
       break;
-    case "logout":
+    case "profile":
+      console.log("logout called");
       dispatch(logout());
       break;
     case "signup":
@@ -24,6 +25,10 @@ export const handleAuth = (form, type) => dispatch => {
 const setLogin = user => ({
   type: actions.LOG_IN,
   user
+});
+
+const setLogout = () => ({
+  type: actions.LOG_OUT
 });
 
 const login = form => (dispatch, getState) => {
@@ -63,14 +68,23 @@ const login = form => (dispatch, getState) => {
     });
 };
 
-const logout = () => dispatch => {
-  Api.delete("/signout")
+const logout = () => (dispatch, getState) => {
+  const requestType = requests.AUTHENTICATE;
+  const requestInProcess = getState().request[requestType] || {};
+
+  if (requestInProcess.isPending) return;
+
+  dispatch(setRequestInProcess(true, requestType));
+
+  Api.delete("/session")
     .then(() => {
-      dispatch({ type: "LOG_OUT" });
+      dispatch(setLogout());
+      dispatch(setRequestInProcess(false, requestType));
       localStorage.removeItem("token");
     })
     .catch(() => {
-      dispatch({ type: "LOG_OUT" });
+      dispatch(setLogout());
+      dispatch(setRequestInProcess(false, requestType, { errored: true, error: "" }));
       localStorage.removeItem("token");
     });
 };
