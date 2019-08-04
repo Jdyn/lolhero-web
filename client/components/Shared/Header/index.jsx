@@ -53,7 +53,7 @@ const useStyles = createUseStyles(theme => ({
     borderBottom: "2px solid #999",
     color: theme.white,
     bottom: -2,
-    fontSize: 30,
+    fontSize: 28,
     "&:hover": {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`

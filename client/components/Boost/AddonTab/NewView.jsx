@@ -37,9 +37,7 @@ const NewView = props => {
           });
         });
       })
-      .catch(error => {
-        
-      });
+      .catch(error => {});
   }, []);
 
   return (

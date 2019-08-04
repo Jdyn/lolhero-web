@@ -13,7 +13,7 @@ const AuthDisplay = props => {
   const [isOpen, setOpen] = useState(false);
 
   const modalRef = useRef();
-  console.log(type, isOpen);
+  
   const updateModal = newType => {
     if (isOpen) {
       if (newType === type) {

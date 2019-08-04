@@ -65,11 +65,25 @@
   color: #fafafa;
 }
 
-[data-braintree-id="number-field-group"] label > div {
-  color: white !important;
+[data-braintree-id="card-sheet-header"] div > div {
+  color: #fafafa !important;
 }
 
-[data-braintree-id="number-field-group"] label > div > div {
+[data-braintree-id="number-field-group"] label > div,
+[data-braintree-id="expiration-date-field-group"] label > div,
+[data-braintree-id="cvv-field-group"] label > div,
+[data-braintree-id="postal-code-field-group"] label > div {
+  color: #fafafa !important;
+}
+
+[data-braintree-id="number-field-group"] label > div > div,
+[data-braintree-id="expiration-date-field-group"] label > div > div,
+[data-braintree-id="cvv-field-group"] label > div > div,
+[data-braintree-id="postal-code-field-group"] label > div > div {
+  /* border-color: #999 !important;
+  border-width: 1.5px !important; */
+  background-color: #404040;
+  border: none !important;
   border-radius: 8px;
 }
 

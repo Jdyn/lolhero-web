@@ -11,8 +11,11 @@ const OrderSuccess = props => {
   return (
     <Layout>
       <div className={classes.root}>
-        <h3>Thank you for your purchase</h3>
-        <h2>{tracking_id ? tracking_id : "bad"}</h2>
+        <h1>Thank you for your purchase.</h1>
+        <h3>
+          Your Tracking ID is <b>{tracking_id || "unknown"}</b>.
+        </h3>
+        <p>Use it to review, update, and track your order across the site.</p>
       </div>
     </Layout>
   );
@@ -20,7 +23,13 @@ const OrderSuccess = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    color: theme.white
+    padding: "35px",
+    color: theme.white,
+    "& h3": {
+      "& b": {
+        color: theme.accent
+      }
+    }
   }
 }));
 

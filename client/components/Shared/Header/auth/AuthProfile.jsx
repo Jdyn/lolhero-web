@@ -8,7 +8,10 @@ const propTypes = {};
 const templates = {
   profile: {
     title: "Profile",
-    items: [{ title: "Orders", link: "/account/orders" }]
+    items: [
+      { title: "Dashboard", link: "/account/dashboard" },
+      { title: "Orders", link: "/account/orders" }
+    ]
   }
 };
 
