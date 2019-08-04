@@ -35,9 +35,9 @@ const AuthDisplay = props => {
     }
   }, [sessionRequest]);
 
-  useEffect(() => {
-    handleAuth({ username: "jdog", password: "password" }, "login");
-  }, []);
+  // useEffect(() => {
+  //   handleAuth({ username: "jdog", password: "password" }, "login");
+  // }, []);
 
   useEffect(() => {
     const handleClickOutside = e => {

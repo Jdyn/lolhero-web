@@ -14,7 +14,7 @@ const propTypes = {
   currentOrder: PropTypes.object.isRequired
 };
 
-const filters = ["details", "add ons", "method", "review"];
+const filters = ["boost", "add ons", "details", "review"];
 
 const AddonTab = props => {
   const {
