@@ -12,9 +12,7 @@ const mapStateToProps = state => ({
   sessionRequest: state.request.AUTHENTICATE || {}
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleAuth: (form, type) => dispatch(handleAuth(form, type))
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,

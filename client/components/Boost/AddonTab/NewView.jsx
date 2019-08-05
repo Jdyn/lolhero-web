@@ -1,66 +1,78 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
-import dropin from "braintree-web-drop-in";
+// import dropin from "braintree-web-drop-in";
+import Button from "../../Shared/Button";
+import Form from "../../Shared/Form";
 
 const propTypes = {};
 
-const template = {
-  fields: [
-    { title: "Username", placeholder: "Your in-game username" },
-    { title: "Email address", placeholder: "Your email adress" },
-    { title: "Confirm email address", placeholder: "Confirm email address" }
-  ]
+const templates = {
+  signup: {
+    type: "signup",
+    title: "New Account",
+    fields: ["email", "username", "password"],
+    submit: "sign up"
+  },
+  login: {
+    type: "login",
+    title: "Existing Account",
+    fields: ["username", "password"],
+    submit: "log in"
+  }
 };
 
 const NewView = props => {
-  const { setStage, updateOrder } = props;
+  const { session, handleAuth, setForm, form } = props;
   const classes = useStyes();
 
-  useEffect(() => {
-    dropin
-      .create({
-        authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
-        container: "#dropin-container",
-        paypal: {
-          flow: "vault",
-          buttonStyle: {
-            color: "blue",
-            shape: "rect",
-            size: "responsive"
-          }
-        },
-        venmo: {
-          allowNewBrowserTab: false
-        }
-      })
-      .then(instance => {
-        const button = document.getElementById("submit-button");
-        button.addEventListener("click", () => {
-          instance.requestPaymentMethod((error, payload) => {
-            if (!error) {
-              updateOrder(payload.nonce);
-              setStage(prev => (prev === 2 ? prev + 1 : prev));
-            }
-          });
-        });
-      })
-      .catch(error => {});
-  }, []);
+  const [type, setType] = useState(null);
 
   return (
     <>
       <div className={classes.wrapper}>
-        <form className={classes.form}>
-          {template.fields.map((field, index) => (
-            <React.Fragment key={index}>
-              <>
-                <span>{field.title}</span>
-                <input className={classes.input} placeholder={field.placeholder} />
-              </>
-            </React.Fragment>
-          ))}
-        </form>
+        {session.isLoggedIn ? (
+          <div className={classes.session}>
+            You are currently logged in as <b>{session.user.username}</b>.
+          </div>
+        ) : (
+          <>
+            <Button
+              secondary
+              margin="0 0 10px 0"
+              onClick={() => setType(prev => (prev === "login" ? null : "login"))}
+            >
+              {type === "login" ? "back" : "log in  "}
+            </Button>
+            <Button onClick={() => setType(prev => (prev === "signup" ? null : "signup"))}>
+              {type === "signup" ? "back" : "create account"}
+            </Button>
+            {type && (
+              <Form template={templates[type]} onSubmit={(form, type) => handleAuth(form, type)} />
+            )}
+            {!type && (
+              <div className={classes.authWrapper}>
+                <b>or</b>
+                <span>Email Address</span>
+                <input
+                  className={classes.input}
+                  value={form["email"] || ""}
+                  type="email"
+                  onChange={event => setForm(prev => ({ ...prev, email: event.target.value }))}
+                />
+                <span>Confirm Email Adress</span>
+                <input
+                  className={classes.input}
+                  value={form["email_confirmation"] || ""}
+                  type="email"
+                  onChange={event =>
+                    setForm(prev => ({ ...prev, email_confirmation: event.target.value }))
+                  }
+                />
+              </div>
+            )}
+          </>
+        )}
       </div>
       <div className={classes.wrapper}>
         <div id="dropin-container" />
@@ -79,6 +91,14 @@ const useStyes = createUseStyles(theme => ({
     boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
     margin: "10px 10px 20px 10px"
   },
+  authWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    "& b": {
+      margin: "10px 0",
+      textAlign: "center"
+    }
+  },
   form: {
     display: "flex",
     flexDirection: "column",
@@ -87,6 +107,11 @@ const useStyes = createUseStyles(theme => ({
   group: {
     display: "flex",
     flexDirection: "row"
+  },
+  session: {
+    "& b": {
+      color: theme.accent
+    }
   },
   input: {
     outline: "none",

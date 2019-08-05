@@ -71,13 +71,12 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     zIndex: 5,
-    height: "70vh",
+    maxHeight: "85%",
     display: "flex",
     maxWidth: "235px",
     position: "relative",
     flexGrow: 1,
     margin: "0px 15px 0px 15px",
-    maxHeight: "550px",
     marginBottom: "15px",
     flexDirection: "column",
     justifyContent: "flex-start",

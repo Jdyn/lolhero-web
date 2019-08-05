@@ -16,7 +16,11 @@ const Button = props => {
   const classes = useStyles(props);
 
   return (
-    <button onClick={onClick} className={secondary ? classes.secondary : classes.primary}>
+    <button
+      type="submit"
+      onClick={onClick}
+      className={secondary ? classes.secondary : classes.primary}
+    >
       {children}
     </button>
   );
@@ -30,15 +34,16 @@ Button.defaultProps = {
 
 const useStyles = createUseStyles(theme => ({
   button: {
+    // display: "flex",
     cursor: "pointer",
     outline: "none",
     border: "none",
-    fontWeight: 700,
+    fontWeight: 600,
     zIndex: 100,
-    fontSize: 14,
+    fontSize: 13,
     padding: "10px",
+    color: theme.white,
     borderRadius: 8,
-    minHeight: "45px",
     letterSpacing: ".025em",
     textTransform: "uppercase",
     transitionDuration: ".15s",
@@ -49,22 +54,20 @@ const useStyles = createUseStyles(theme => ({
       transform: "translateY(2px)"
     }
   },
-  primary: {
+  primary: props => ({
     extend: "button",
-    backgroundClip: "border-box",
     backgroundColor: theme.accent,
-    color: theme.white,
-    margin: props => props.margin,
-    width: props => props.width
-  },
-  secondary: {
+    margin: props.margin,
+    // flexGrow: props.grow ? 1 : 0,
+    width: props.width
+  }),
+  secondary: props => ({
     extend: "button",
-    backgroundClip: "border-box",
     backgroundColor: theme.green,
-    color: theme.white,
-    margin: props => props.margin,
-    width: props => props.width
-  }
+    // flexGrow: props.grow ? 1 : 0,
+    margin: props.margin,
+    width: props.width
+  })
 }));
 
 export default Button;

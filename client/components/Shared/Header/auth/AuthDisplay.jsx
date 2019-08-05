@@ -5,6 +5,19 @@ import AuthProfile from "./AuthProfile";
 import AuthMenu from "./AuthMenu";
 const propTypes = {};
 
+const templates = {
+  profile: {
+    type: "profile",
+    title: "Profile",
+    fields: {},
+    items: [
+      { title: "Dashboard", link: "/account/dashboard" },
+      { title: "Orders", link: "/account/orders" }
+    ],
+    logout: "log out"
+  }
+};
+
 const AuthDisplay = props => {
   const { handleAuth, session, sessionRequest } = props;
   const classes = useStyes();
@@ -13,7 +26,7 @@ const AuthDisplay = props => {
   const [isOpen, setOpen] = useState(false);
 
   const modalRef = useRef();
-  
+
   const updateModal = newType => {
     if (isOpen) {
       if (newType === type) {
@@ -36,7 +49,7 @@ const AuthDisplay = props => {
   }, [sessionRequest]);
 
   // useEffect(() => {
-  //   handleAuth({ username: "jdog", password: "password" }, "login");
+  //   handleAuth({ username: "test", password: "password" }, "login");
   // }, []);
 
   useEffect(() => {
@@ -57,6 +70,7 @@ const AuthDisplay = props => {
 
   return session.isLoggedIn ? (
     <AuthProfile
+      handleAuth={handleAuth}
       modalRef={modalRef}
       isOpen={isOpen}
       updateModal={updateModal}
@@ -65,6 +79,7 @@ const AuthDisplay = props => {
     />
   ) : (
     <AuthMenu
+      templates={templates}
       handleAuth={handleAuth}
       modalRef={modalRef}
       isOpen={isOpen}

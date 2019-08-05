@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
+import Form from "../../Form";
 
 const propTypes = {};
 
 const templates = {
-  login: {
-    type: "log in",
-    title: "Existing Account",
-    fields: ["username", "password"]
-  },
   signup: {
-    type: "sign up",
+    type: "signup",
     title: "New Account",
-    fields: ["email", "username", "password"]
+    fields: ["email", "username", "password"],
+    submit: "sign up"
+  },
+  login: {
+    type: "login",
+    title: "Existing Account",
+    fields: ["username", "password"],
+    submit: "log in"
   }
 };
 
 const AuthMenu = props => {
   const { modalRef, updateModal, session, isOpen, type, handleAuth } = props;
   const classes = useStyes(props);
-
-  const [form, setForm] = useState({});
-
-  const submitForm = event => {
-    event.preventDefault();
-    handleAuth(form, type);
-  };
 
   return (
     <div
@@ -59,23 +55,7 @@ const AuthMenu = props => {
       {isOpen ? (
         <div className={classes.modal}>
           {type && (
-            <form className={classes.form} onSubmit={submitForm}>
-              <h3>{templates[type].title}</h3>
-              {templates[type].fields.map((field, index) => (
-                <React.Fragment key={index}>
-                  <span>{field}</span>
-                  <input
-                    className={classes.input}
-                    value={form[field] || ""}
-                    type={field}
-                    onChange={event => setForm({ ...form, [field]: event.target.value })}
-                  />
-                </React.Fragment>
-              ))}
-              <button type="submit" className={classes.submitButton}>
-                {templates[type].type}
-              </button>
-            </form>
+            <Form template={templates[type]} onSubmit={(form, type) => handleAuth(form, type)} />
           )}
         </div>
       ) : null}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles, useTheme } from "react-jss";
 import { formatLP } from "../../util/Helpers";
@@ -12,18 +12,44 @@ const propTypes = {
 };
 
 const BottomNavigator = props => {
-  const { currentStage, setStage, boost, currentOrder, submitOrder } = props;
+  const {
+    currentStage,
+    setStage,
+    boost,
+    currentOrder,
+    submitOrder,
+    braintreeInstance,
+    updateOrder
+  } = props;
 
   const classes = useStyles();
   const theme = useTheme();
+  const [requestable, set] = useState({ payment: false, details: false });
 
   const updateStage = stage => {
     if (stage === 3) {
-      submitOrder(boost.nonce);
+      submitOrder();
+    } else if (stage === 2) {
+      if (braintreeInstance) {
+        braintreeInstance.requestPaymentMethod((error, payload) => {
+          if (!error) {
+            updateOrder(payload.nonce);
+            setStage(prev => prev + 1);
+          }
+        });
+      }
     } else if (stage + 1 <= 3 && stage != 2) {
       setStage(prev => prev + 1);
     }
   };
+
+  useEffect(() => {
+    if (braintreeInstance) {
+      braintreeInstance.on("paymentMethodRequestable", event => {
+        set(prev => ({ ...prev, payment: true }));
+      });
+    }
+  }, [braintreeInstance]);
 
   const stageText = currentStage => {
     switch (currentStage) {
@@ -58,11 +84,7 @@ const BottomNavigator = props => {
         onClick={() => updateStage(currentStage)}
         style={{
           backgroundColor:
-            currentStage === 2
-              ? boost.paymentMethodIsSelected
-                ? theme.accent
-                : "#414141"
-              : theme.accent
+            currentStage === 2 ? (requestable ? theme.accent : "#414141") : theme.accent
         }}
       >
         {stageText(currentStage)}

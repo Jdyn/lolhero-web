@@ -108,3 +108,9 @@
 [data-braintree-id="payment-options-container"] div > div {
   color: #fafafa !important;
 }
+
+[data-braintree-id="paypal"] {
+  background-color: #323232;
+  border: none;
+  border-radius: 12px
+}

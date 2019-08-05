@@ -5,19 +5,13 @@ import Link from "next/link";
 
 const propTypes = {};
 
-const templates = {
-  profile: {
-    title: "Profile",
-    items: [
-      { title: "Dashboard", link: "/account/dashboard" },
-      { title: "Orders", link: "/account/orders" }
-    ]
-  }
-};
-
 const AuthProfile = props => {
-  const { modalRef, updateModal, session, isOpen, type } = props;
+  const { modalRef, updateModal, session, isOpen, type, handleAuth, templates } = props;
   const classes = useStyes(props);
+
+  const logout = () => {
+    handleAuth({}, "logout");
+  };
 
   return (
     <div className={classes.root} ref={modalRef}>
@@ -34,6 +28,7 @@ const AuthProfile = props => {
                   <a>{item.title}</a>
                 </Link>
               ))}
+              <button onClick={() => logout()}>{templates[type].logout}</button>
             </>
           )}
         </div>

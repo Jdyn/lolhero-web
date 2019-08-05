@@ -21,6 +21,8 @@ const Boost = props => {
     updateOrder,
     currentOrder,
     boost,
+    session,
+    handleAuth,
     submitOrder,
     submitOrderRequest
   } = props;
@@ -28,6 +30,7 @@ const Boost = props => {
   const classes = useStyles();
 
   const [currentStage, setStage] = useState(0);
+  const [braintreeInstance, setBraintreeInstance] = useState(null);
 
   useEffect(() => {
     fetchBoostPrices();
@@ -35,7 +38,7 @@ const Boost = props => {
 
   return (
     <div className={classes.root}>
-      <TopNavigator currentStage={currentStage} setStage={setStage} boost={boost}/>
+      <TopNavigator currentStage={currentStage} setStage={setStage} boost={boost} />
       <div className={classes.container}>
         <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
         <BoostDisplay
@@ -44,7 +47,10 @@ const Boost = props => {
           submitOrderRequest={submitOrderRequest}
         />
         <AddonTab
+          handleAuth={handleAuth}
+          session={session}
           boost={boost}
+          setBraintreeInstance={setBraintreeInstance}
           currentStage={currentStage}
           setStage={setStage}
           currentOrder={currentOrder}
@@ -56,7 +62,9 @@ const Boost = props => {
         currentStage={currentStage}
         currentOrder={currentOrder}
         submitOrder={submitOrder}
+        updateOrder={updateOrder}
         setStage={setStage}
+        braintreeInstance={braintreeInstance}
         boost={boost}
       />
     </div>

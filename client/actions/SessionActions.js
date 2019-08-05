@@ -10,8 +10,7 @@ export const handleAuth = (form, type) => dispatch => {
     case "login":
       dispatch(login(form));
       break;
-    case "profile":
-      console.log("logout called");
+    case "logout":
       dispatch(logout());
       break;
     case "signup":
@@ -21,6 +20,11 @@ export const handleAuth = (form, type) => dispatch => {
       break;
   }
 };
+
+const setSignup = user => ({
+  type: actions.SIGN_UP,
+  user
+});
 
 const setLogin = user => ({
   type: actions.LOG_IN,
@@ -44,9 +48,10 @@ const login = form => (dispatch, getState) => {
       const { ok, result } = response;
 
       if (ok) {
-        setCurrentSession(result);
-        dispatch(setLogin(result.user));
+        const { user } = result;
+        setCurrentSession(user);
         dispatch(setRequestInProcess(false, requestType));
+        dispatch(setLogin(user));
       } else {
         const message = "An Error has occurred logging in. Please try again.";
         const error = response.error || message;
@@ -78,31 +83,52 @@ const logout = () => (dispatch, getState) => {
 
   Api.delete("/session")
     .then(() => {
-      dispatch(setLogout());
       dispatch(setRequestInProcess(false, requestType));
+      dispatch(setLogout());
       localStorage.removeItem("token");
     })
     .catch(() => {
-      dispatch(setLogout());
       dispatch(setRequestInProcess(false, requestType, { errored: true, error: "" }));
+      dispatch(setLogout());
       localStorage.removeItem("token");
     });
 };
 
-const signup = form => dispatch => {
-  Api.post("/signup", form)
+const signup = form => (dispatch, getState) => {
+  const requestType = requests.AUTHENTICATE;
+  const requestInProcess = getState().request[requestType] || {};
+
+  if (requestInProcess.isPending) return;
+
+  dispatch(setRequestInProcess(true, requestType));
+
+  Api.post("/users", form)
     .then(response => {
+      console.log(response);
       if (response.ok) {
-        setCurrentSession(dispatch, response);
+        const { user } = response.result;
+        setCurrentSession(user);
+        dispatch(setSignup(user));
+        dispatch(setRequestInProcess(false, requestType));
       } else {
-        dispatch({ type: actions.AUTHENTICATION_FAILURE, response });
+        const { errors } = response;
+
+        dispatch(
+          setRequestInProcess(false, requestType, {
+            errored: true,
+            error: errors || {}
+          })
+        );
       }
     })
     .catch(error => {
-      dispatch({
-        type: actions.AUTHENTICATION_FAILURE,
-        response: { error: "Error connecting to server" }
-      });
+      console.log("ERROR", error);
+      dispatch(
+        setRequestInProcess(false, requestType, {
+          errored: true,
+          error: "An error has occurred. Try again later."
+        })
+      );
     });
 };
 
@@ -145,9 +171,9 @@ export const clearSessionErrors = () => ({
   }
 });
 
-const setCurrentSession = result => {
-  if (result.user.token) {
-    const jsonToken = result.user.token;
+const setCurrentSession = user => {
+  if (user.token) {
+    const jsonToken = user.token;
     localStorage.setItem("token", JSON.stringify(jsonToken));
   }
 };

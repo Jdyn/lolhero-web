@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AddonView from "./AddonView";
 import DetailsView from "./DetailsView";
@@ -7,6 +7,7 @@ import { createUseStyles } from "react-jss";
 import NewView from "./NewView";
 // import useDimensions from "../../../util/useDimensions";
 import Filter from "../../Shared/Filter";
+import dropin from "braintree-web-drop-in";
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -23,26 +24,44 @@ const AddonTab = props => {
     currentOrder,
     submitOrderRequest,
     submitOrder,
+    session,
+    handleAuth,
+    setBraintreeInstance,
     boost,
     setStage
   } = props;
 
   const classes = useStyles();
+  const [form, setForm] = useState({});
+
+  useEffect(() => {
+    dropin
+      .create({
+        authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
+        container: "#dropin-container",
+        paypal: {
+          flow: "vault",
+          buttonStyle: {
+            color: "blue",
+            shape: "rect",
+            size: "responsive"
+          }
+        },
+        venmo: {
+          allowNewBrowserTab: false
+        }
+      })
+      .then(instance => {
+        setBraintreeInstance(instance);
+      })
+      .catch(error => {});
+  }, []);
 
   const views = {
     0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: (
-      <NewView
-        currentOrder={currentOrder}
-        submitOrder={submitOrder}
-        updateOrder={updateOrder}
-        setStage={setStage}
-      />
-    ),
-    3: (
-      <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
-    )
+    2: <NewView handleAuth={handleAuth} session={session} setForm={setForm} form={form} />,
+    3: <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
   };
 
   return (

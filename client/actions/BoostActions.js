@@ -92,22 +92,27 @@ export const submitOrder = () => (dispatch, getState) => {
   };
 
   if (validateOrder(order, dispatchError)) {
-    Api.post("/orders", order)
-      .then(response => {
-        if (response.ok) {
-          dispatch(setRequestInProcess(false, requestType));
-          window.location.href = response.result.success_url;
-        } else {
-          const errors = response.errors || [];
-          const message = errors[Object.keys(errors)[0]] || "Error placing order. Try again later.";
+    const finalOrder = trimOrder(order);
 
-          dispatchError(message);
-        }
-      })
-      .catch(error => {
-        dispatchError("Error placing order. Try again later or contact support.");
-        Sentry.captureException(error);
-      });
+    if (typeof finalOrder === "object") {
+      Api.post("/orders", finalOrder)
+        .then(response => {
+          if (response.ok) {
+            dispatch(setRequestInProcess(false, requestType));
+            window.location.href = response.result.success_url;
+          } else {
+            const errors = response.errors || [];
+            const message =
+              errors[Object.keys(errors)[0]] || "Error placing order. Try again later.";
+
+            dispatchError(message);
+          }
+        })
+        .catch(error => {
+          dispatchError("Error placing order. Try again later or contact support.");
+          Sentry.captureException(error);
+        });
+    }
   }
 };
 
@@ -126,4 +131,16 @@ const validateOrder = (order, dispatchError) => {
   }
 
   return true;
+};
+
+const trimOrder = order => {
+  if (!order.details.collection_name) return dispatchError("Oops");
+
+  if (order.details.collection_name === "Division Boost") {
+    delete order.details.desired_amount;
+  } else {
+    delete order.details.desired_rank;
+  }
+
+  return order;
 };
