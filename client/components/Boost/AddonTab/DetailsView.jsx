@@ -1,133 +1,89 @@
-import React, { useEffect } from "react";
-import addons from "../../../lib/addonContent";
-import Toggle from "../../Shared/Toggle";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { createUseStyles } from "react-jss";
+// import dropin from "braintree-web-drop-in";
+import Button from "../../Shared/Button";
+import Form from "../../Shared/Form";
 
-const propTypes = {
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
+const propTypes = {};
+
+const templates = {
+  signup: {
+    type: "signup",
+    title: "New Account",
+    fields: ["email", "username", "password"],
+    submit: "sign up"
+  },
+  login: {
+    type: "login",
+    title: "Existing Account",
+    fields: ["username", "password"],
+    submit: "log in"
+  }
 };
 
 const DetailsView = props => {
-  const { currentOrder, updateOrder } = props;
+  const { session, handleAuth, setForm, form } = props;
+  const classes = useStyes();
 
-  const classes = useStyles();
-
-  useEffect(() => {
-    if (currentOrder.start_rank % 4 === 0) {
-      if (currentOrder.promos.length !== 5) {
-        let newPromos = [...currentOrder.promos];
-        for (let i = newPromos.length; i < 5; i++) {
-          newPromos.push("X");
-        }
-
-        updateOrder({ promos: newPromos });
-      }
-    } else {
-      if (currentOrder.promos.length !== 3) {
-        let newPromos = [...currentOrder.promos];
-        for (let i = newPromos.length; i > 3; i--) {
-          newPromos.shift();
-        }
-
-        updateOrder({ promos: newPromos });
-      }
-    }
-  }, [currentOrder.start_rank]);
-
-  const handlePromoChange = index => {
-    let newPromos = [...currentOrder.promos];
-
-    switch (newPromos[index]) {
-      case "X":
-        newPromos[index] = "W";
-        break;
-      case "W":
-        newPromos[index] = "L";
-        break;
-      case "L":
-        newPromos[index] = "X";
-        break;
-      default:
-        newPromos[index] = "X";
-        break;
-    }
-
-    updateOrder({ promos: newPromos });
-  };
+  const [type, setType] = useState(null);
 
   return (
     <>
       <div className={classes.wrapper}>
-        <h2>Servers</h2>
-        <p>What server are you on? We currently support the following servers.</p>
-        {addons.details.servers.map((server, index) => {
-          return (
-            <Toggle
-              key={index}
-              onClick={() => updateOrder({ server: server.server })}
-              isSelected={currentOrder.server === server.server}
-            >
-              {server.title}
-            </Toggle>
-          );
-        })}
-      </div>
-
-      <div className={classes.wrapper}>
-        <h2>Queues</h2>
-        <p>What queue type do you want to play on? We currently support the following queues.</p>
-        {addons.details.queues.map((queue, index) => (
-          <Toggle
-            key={index}
-            onClick={() => updateOrder({ queue: queue.queue })}
-            isSelected={currentOrder.queue === queue.queue}
-          >
-            {queue.title}
-          </Toggle>
-        ))}
-      </div>
-      {currentOrder.collection_id === 1 || currentOrder.collection_id === 5 ? (
-        <div className={classes.wrapper}>
-          <h2>League Points</h2>
-          <p>How much LP do you have? We adjust the price based on the amount.</p>
-          <div className={classes.lp}>
-            {addons.details.lp.map((lp, index) => (
-              <Toggle
-                key={index}
-                onClick={() => updateOrder({ lp: lp.lp })}
-                width="85px"
-                margin="5px 5px"
-                isSelected={currentOrder.lp === lp.lp}
-              >
-                {lp.title}
-              </Toggle>
-            ))}
+        {session.isLoggedIn ? (
+          <div className={classes.session}>
+            You are currently logged in as <b>{session.user.username}</b>.
           </div>
-          {currentOrder.lp === 100 && (
-            <div className={classes.promos}>
-              {currentOrder.promos.map((promo, index) => (
-                <button
-                  key={index}
-                  onClick={() => handlePromoChange(index)}
-                  className={classes.promo}
-                  styles={{}}
-                >
-                  {promo}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      ) : (
-        <div />
-      )}
+        ) : (
+          <>
+            <Button
+              secondary
+              margin="0 0 10px 0"
+              onClick={() => setType(prev => (prev === "login" ? null : "login"))}
+            >
+              {type === "login" ? "back" : "log in  "}
+            </Button>
+            <Button onClick={() => setType(prev => (prev === "signup" ? null : "signup"))}>
+              {type === "signup" ? "back" : "create account"}
+            </Button>
+            {type && (
+              <Form template={templates[type]} onSubmit={(form, type) => handleAuth(form, type)} />
+            )}
+            {!type && (
+              <form id="details-form" className={classes.authWrapper}>
+                <b>or</b>
+                <span>Email Address</span>
+                <input
+                  className={classes.input}
+                  id="details-email"
+                  // value={form["email"] || ""}
+                  type="email"
+                  // onChange={event => setForm(prev => ({ ...prev, email: event.target.value }))}
+                />
+                <span>Confirm Email Adress</span>
+                <input
+                  className={classes.input}
+                  id="details-email-confirmation"
+                  // value={form["email_confirmation"] || ""}
+                  type="email"
+                  // onChange={event =>
+                  //   setForm(prev => ({ ...prev, email_confirmation: event.target.value }))
+                  // }
+                />
+              </form>
+            )}
+          </>
+        )}
+      </div>
+      <div className={classes.wrapper}>
+        <div id="dropin-container" />
+      </div>
     </>
   );
 };
 
-const useStyles = createUseStyles(theme => ({
+const useStyes = createUseStyles(theme => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
@@ -135,50 +91,38 @@ const useStyles = createUseStyles(theme => ({
     borderRadius: 12,
     padding: "25px",
     boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 20px 10px",
-    "& p": {
-      color: theme.grey,
-      margin: 0,
-      fontSize: 16,
-      marginBottom: "15px"
-    },
-    "& h2": {
-      fontSize: 20,
-      margin: 0,
-      marginBottom: "10px"
+    margin: "10px 10px 20px 10px"
+  },
+  authWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    "& b": {
+      margin: "10px 0",
+      textAlign: "center"
     }
   },
-  lp: {
+  form: {
     display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center"
+    flexDirection: "column",
+    color: theme.white
   },
-  promos: {
+  group: {
     display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
-    flexDirection: "row",
-    margin: "10px"
+    flexDirection: "row"
   },
-  promo: {
-    cursor: "pointer",
-    padding: "20px 15px",
-    borderRadius: 14,
-    border: "none",
+  session: {
+    "& b": {
+      color: theme.accent
+    }
+  },
+  input: {
     outline: "none",
-    display: "flex",
-    margin: "5px",
-    color: theme.white,
-    border: "2px solid #999",
-    backgroundColor: theme.quartinary,
-    transitionDuration: ".2s",
-    "&:hover": {
-      transform: "translateY(-2px)"
-    },
-    "&:active": {
-      transform: "translateY(2px)"
-    }
+    border: "none",
+    borderRadius: 8,
+    margin: "10px 0",
+    padding: "10px",
+    backgroundColor: theme.primary,
+    color: theme.white
   }
 }));
 

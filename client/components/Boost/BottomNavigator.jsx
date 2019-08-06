@@ -51,6 +51,16 @@ const BottomNavigator = props => {
     }
   }, [braintreeInstance]);
 
+  useEffect(() => {
+    const form = document.getElementById("details-form");
+
+    const handleKey = event => {
+      
+    };
+
+    form.addEventListener("keydown", handleKey);
+  }, [currentOrder]);
+
   const stageText = currentStage => {
     switch (currentStage) {
       case 3:

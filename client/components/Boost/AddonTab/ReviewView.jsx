@@ -10,20 +10,14 @@ const propTypes = {
   currentOrder: PropTypes.object.isRequired
 };
 
-const CheckoutView = props => {
+const ReviewView = props => {
   const { currentOrder, submitOrderRequest } = props;
   const classes = useStyes();
 
   const ranksObject = useMemo(() =>
-    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
-  );
-
-  const currentCollection = useMemo(
-    () =>
-      content[currentOrder.boost_type || "solo"].items.filter(
-        item => item.id === currentOrder.collection_id
-      )[0],
-    [currentOrder.boost_type, currentOrder.collection_id]
+    [].concat
+      .apply([], [...ranks])
+      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
   const formatTitle = () => {
@@ -32,15 +26,15 @@ const CheckoutView = props => {
     const startRank = ranksObject[start_rank] || { title: "TBD" };
     const desiredRank = ranksObject[desired_rank] || { title: "TBD" };
 
-    switch (currentCollection.name) {
+    switch (currentOrder.collection_name) {
       case "Division Boost":
-        return `${boost_type.toUpperCase()} | ${currentCollection.name} - From ${
+        return `${boost_type.toUpperCase()} | ${currentOrder.collection_name} - From ${
           startRank.title
         } (${formatLP(lp)} LP) to ${desiredRank.title}`;
       default:
-        return `${boost_type.toUpperCase()} | ${desired_amount} ${currentCollection.name} - ${
-          startRank.title
-        }`;
+        return `${boost_type.toUpperCase()} | ${desired_amount} ${
+          currentOrder.collection_name
+        } - ${startRank.title}`;
     }
   };
 
@@ -51,7 +45,7 @@ const CheckoutView = props => {
         <h2>{formatTitle()}</h2>
         <h3>Details</h3>
 
-        {currentCollection.name === "Division Boost" && (
+        {currentOrder.collection_name === "Division Boost" && (
           <span>
             LP: <b>{formatLP(currentOrder.lp)}</b>
           </span>
@@ -64,7 +58,7 @@ const CheckoutView = props => {
           Server: <b>{currentOrder.server}</b>
         </span>
         <span>
-          Boost: <b>{currentCollection.name}</b>
+          Boost: <b>{currentOrder.collection_name}</b>
         </span>
         <span>
           Queue:
@@ -130,6 +124,6 @@ const useStyes = createUseStyles(theme => ({
   }
 }));
 
-CheckoutView.propTypes = propTypes;
+ReviewView.propTypes = propTypes;
 
-export default CheckoutView;
+export default ReviewView;

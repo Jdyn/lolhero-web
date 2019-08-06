@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import AddonView from "./AddonView";
-import DetailsView from "./DetailsView";
-import CheckoutView from "./CheckoutView";
-import { createUseStyles } from "react-jss";
-import NewView from "./NewView";
-// import useDimensions from "../../../util/useDimensions";
 import Filter from "../../Shared/Filter";
 import dropin from "braintree-web-drop-in";
+import PropTypes from "prop-types";
+import AddonView from "./AddonView";
+import BoostView from "./BoostView";
+import ReviewView from "./ReviewView";
+import DetailsView from "./DetailsView";
+import dropinOptions from "../../../lib/dropinOptions";
+import { createUseStyles } from "react-jss";
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -23,7 +23,6 @@ const AddonTab = props => {
     updateOrder,
     currentOrder,
     submitOrderRequest,
-    submitOrder,
     session,
     handleAuth,
     setBraintreeInstance,
@@ -36,21 +35,7 @@ const AddonTab = props => {
 
   useEffect(() => {
     dropin
-      .create({
-        authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
-        container: "#dropin-container",
-        paypal: {
-          flow: "vault",
-          buttonStyle: {
-            color: "blue",
-            shape: "rect",
-            size: "responsive"
-          }
-        },
-        venmo: {
-          allowNewBrowserTab: false
-        }
-      })
+      .create(dropinOptions)
       .then(instance => {
         setBraintreeInstance(instance);
       })
@@ -58,15 +43,15 @@ const AddonTab = props => {
   }, []);
 
   const views = {
-    0: <DetailsView currentOrder={currentOrder} updateOrder={updateOrder} />,
+    0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: <NewView handleAuth={handleAuth} session={session} setForm={setForm} form={form} />,
-    3: <CheckoutView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
+    2: <DetailsView handleAuth={handleAuth} session={session} setForm={setForm} form={form} />,
+    3: <ReviewView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
   };
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
+      {/* <div className={classes.container}>
         <Filter
           extended
           filters={filters}
@@ -74,7 +59,7 @@ const AddonTab = props => {
           selectedIndex={currentStage}
           onClick={index => setStage(index)}
         />
-      </div>
+      </div> */}
 
       {Object.keys(views).map((view, index) => {
         return (
@@ -95,7 +80,7 @@ const useStyles = createUseStyles(theme => ({
   root: {
     width: "100%",
     minHeight: "350px",
-    display: "flex",
+    display: "flex !important",
     position: "relative",
     boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.4)",
     borderRadius: 16,
