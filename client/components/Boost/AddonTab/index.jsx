@@ -31,7 +31,6 @@ const AddonTab = props => {
   } = props;
 
   const classes = useStyles();
-  const [form, setForm] = useState({});
 
   useEffect(() => {
     dropin
@@ -45,7 +44,7 @@ const AddonTab = props => {
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    2: <DetailsView handleAuth={handleAuth} session={session} setForm={setForm} form={form} />,
+    2: <DetailsView handleAuth={handleAuth} session={session} />,
     3: <ReviewView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
   };
 

@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
-// import dropin from "braintree-web-drop-in";
-import Button from "../../Shared/Button";
-import Form from "../../Shared/Form";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
 
-const propTypes = {};
+import Button from '../../Shared/Button';
+import Form from '../../Shared/Form';
+
+const propTypes = {
+  handleAuth: PropTypes.func.isRequired,
+  session: PropTypes.shape({
+    isLoggedIn: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired
+  }).isRequired
+};
 
 const templates = {
   signup: {
-    type: "signup",
-    title: "New Account",
-    fields: ["email", "username", "password"],
-    submit: "sign up"
+    type: 'signup',
+    title: 'New Account',
+    fields: ['email', 'username', 'password'],
+    submit: 'sign up'
   },
   login: {
-    type: "login",
-    title: "Existing Account",
-    fields: ["username", "password"],
-    submit: "log in"
+    type: 'login',
+    title: 'Existing Account',
+    fields: ['username', 'password'],
+    submit: 'log in'
   }
 };
 
+let useStyles;
+
 const DetailsView = props => {
-  const { session, handleAuth, setForm, form } = props;
-  const classes = useStyes();
+  const { session, handleAuth } = props;
+  const classes = useStyles();
 
   const [type, setType] = useState(null);
 
@@ -40,31 +48,26 @@ const DetailsView = props => {
             <Button
               secondary
               margin="0 0 10px 0"
-              onClick={() => setType(prev => (prev === "login" ? null : "login"))}
+              onClick={() => setType(prev => (prev === 'login' ? null : 'login'))}
             >
-              {type === "login" ? "back" : "log in  "}
+              {type === 'login' ? 'back' : 'log in'}
             </Button>
-            <Button onClick={() => setType(prev => (prev === "signup" ? null : "signup"))}>
-              {type === "signup" ? "back" : "create account"}
+            <Button onClick={() => setType(prev => (prev === 'signup' ? null : 'signup'))}>
+              {type === 'signup' ? 'back' : 'create account'}
             </Button>
             {type && (
-              <Form template={templates[type]} onSubmit={(form, type) => handleAuth(form, type)} />
+              <Form
+                template={templates[type]}
+                onSubmit={(form, formType) => handleAuth(form, formType)}
+              />
             )}
             {!type && (
               <form id="details-form" className={classes.authWrapper}>
                 <b>or</b>
                 <span>Email Address</span>
-                <input
-                  className={classes.input}
-                  id="details-email"
-                  type="email"
-                />
+                <input className={classes.input} id="details-email" type="email" />
                 <span>Confirm Email Adress</span>
-                <input
-                  className={classes.input}
-                  id="details-email-confirmation"
-                  type="email"
-                />
+                <input className={classes.input} id="details-email-confirmation" type="email" />
               </form>
             )}
           </>
@@ -77,44 +80,44 @@ const DetailsView = props => {
   );
 };
 
-const useStyes = createUseStyles(theme => ({
+useStyles = createUseStyles(theme => ({
   wrapper: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: theme.tertiary,
     borderRadius: 12,
-    padding: "25px",
-    boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 20px 10px"
+    padding: '25px',
+    boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
+    margin: '10px 10px 20px 10px'
   },
   authWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    "& b": {
-      margin: "10px 0",
-      textAlign: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    '& b': {
+      margin: '10px 0',
+      textAlign: 'center'
     }
   },
   form: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     color: theme.white
   },
   group: {
-    display: "flex",
-    flexDirection: "row"
+    display: 'flex',
+    flexDirection: 'row'
   },
   session: {
-    "& b": {
+    '& b': {
       color: theme.accent
     }
   },
   input: {
-    outline: "none",
-    border: "none",
+    outline: 'none',
+    border: 'none',
     borderRadius: 8,
-    margin: "10px 0",
-    padding: "10px",
+    margin: '10px 0',
+    padding: '10px',
     backgroundColor: theme.primary,
     color: theme.white
   }
