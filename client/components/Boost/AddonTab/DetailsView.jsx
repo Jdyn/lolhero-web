@@ -57,19 +57,13 @@ const DetailsView = props => {
                 <input
                   className={classes.input}
                   id="details-email"
-                  // value={form["email"] || ""}
                   type="email"
-                  // onChange={event => setForm(prev => ({ ...prev, email: event.target.value }))}
                 />
                 <span>Confirm Email Adress</span>
                 <input
                   className={classes.input}
                   id="details-email-confirmation"
-                  // value={form["email_confirmation"] || ""}
                   type="email"
-                  // onChange={event =>
-                  //   setForm(prev => ({ ...prev, email_confirmation: event.target.value }))
-                  // }
                 />
               </form>
             )}

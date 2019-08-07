@@ -62,6 +62,7 @@ const Boost = props => {
         currentOrder={currentOrder}
         submitOrder={submitOrder}
         updateOrder={updateOrder}
+        session={session}
         setStage={setStage}
         braintreeInstance={braintreeInstance}
         boost={boost}

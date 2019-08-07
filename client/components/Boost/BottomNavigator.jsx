@@ -16,6 +16,7 @@ const BottomNavigator = props => {
     currentStage,
     setStage,
     boost,
+    session,
     currentOrder,
     submitOrder,
     braintreeInstance,
@@ -25,18 +26,24 @@ const BottomNavigator = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [requestable, set] = useState({ payment: false, details: false });
+  const [detailsForm, setDetailsForm] = useState({});
 
   const updateStage = stage => {
     if (stage === 3) {
       submitOrder();
     } else if (stage === 2) {
       if (braintreeInstance) {
-        braintreeInstance.requestPaymentMethod((error, payload) => {
-          if (!error) {
-            updateOrder(payload.nonce);
-            setStage(prev => prev + 1);
-          }
-        });
+        if (
+          (requestable.details && requestable.payment) ||
+          (session.isLoggedIn && requestable.payment)
+        ) {
+          braintreeInstance.requestPaymentMethod((error, payload) => {
+            if (!error) {
+              updateOrder(payload.nonce);
+              setStage(prev => prev + 1);
+            }
+          });
+        }
       }
     } else if (stage + 1 <= 3 && stage != 2) {
       setStage(prev => prev + 1);
@@ -52,14 +59,49 @@ const BottomNavigator = props => {
   }, [braintreeInstance]);
 
   useEffect(() => {
-    const form = document.getElementById("details-form");
+    const validate = string => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(string);
 
-    const handleKey = event => {
-      
+    let isEqual = false;
+    let validCount = 0;
+
+    Object.keys(detailsForm).forEach((key, index) => {
+      if (validate(detailsForm[key])) {
+        validCount += 1;
+      }
+    });
+
+    const email = detailsForm["details-email"];
+    const emailConfirmation = detailsForm["details-email-confirmation"];
+
+    if (email === emailConfirmation) {
+      isEqual = true;
+    }
+
+    if (isEqual && validCount == 2) {
+      set(prev => ({ ...prev, details: true }));
+    } else {
+      set(prev => ({ ...prev, details: false }));
+    }
+  }, [detailsForm]);
+
+  useEffect(() => {
+    const email = document.getElementById("details-email-confirmation");
+    const emailConfirmation = document.getElementById("details-form");
+
+    const handleInput = event => {
+      const input = event.target.value;
+      const id = event.target.id;
+      setDetailsForm(prev => ({ ...prev, [id]: input }));
     };
 
-    form.addEventListener("keydown", handleKey);
-  }, [currentOrder]);
+    email.addEventListener("input", handleInput);
+    emailConfirmation.addEventListener("input", handleInput);
+
+    return () => {
+      email.removeEventListener("input", handleInput);
+      emailConfirmation.removeEventListener("input", handleInput);
+    };
+  }, []);
 
   const stageText = currentStage => {
     switch (currentStage) {
@@ -94,7 +136,12 @@ const BottomNavigator = props => {
         onClick={() => updateStage(currentStage)}
         style={{
           backgroundColor:
-            currentStage === 2 ? (requestable ? theme.accent : "#414141") : theme.accent
+            currentStage === 2
+              ? (requestable.details && requestable.payment) ||
+                (requestable.payment && session.isLoggedIn)
+                ? theme.accent
+                : "#414141"
+              : theme.accent
         }}
       >
         {stageText(currentStage)}
