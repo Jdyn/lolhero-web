@@ -5,19 +5,6 @@ import AuthProfile from "./AuthProfile";
 import AuthMenu from "./AuthMenu";
 const propTypes = {};
 
-const templates = {
-  profile: {
-    type: "profile",
-    title: "Profile",
-    fields: {},
-    items: [
-      { title: "Dashboard", link: "/account/dashboard" },
-      { title: "Orders", link: "/account/orders" }
-    ],
-    logout: "log out"
-  }
-};
-
 const AuthDisplay = props => {
   const { handleAuth, session, sessionRequest } = props;
   const classes = useStyes();
@@ -79,7 +66,6 @@ const AuthDisplay = props => {
     />
   ) : (
     <AuthMenu
-      templates={templates}
       handleAuth={handleAuth}
       modalRef={modalRef}
       isOpen={isOpen}

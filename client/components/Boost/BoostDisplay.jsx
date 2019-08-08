@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
-import ranks from "../../lib/ranks";
-import Banner from "./Banner";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import React, { useMemo } from 'react';
+import ranks from '../../lib/ranks';
+import Banner from './Banner';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -20,7 +20,7 @@ const BoostDisplay = props => {
 
   const renderContent = collectionName => {
     switch (collectionName) {
-      case "Division Boost":
+      case 'Division Boost':
         return (
           <>
             <Banner
@@ -73,30 +73,30 @@ const BoostDisplay = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    display: "flex",
-    position: "relative",
-    flexDirection: "column",
+    display: 'flex',
+    position: 'relative',
+    flexDirection: 'column',
     flexGrow: 1
   },
   container: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     flexGrow: 1,
-    flexDirection: "column",
-    "@media (min-width: 640px)": {
-      flexDirection: "row",
-      alignItems: "normal"
+    flexDirection: 'column',
+    '@media (min-width: 640px)': {
+      flexDirection: 'row',
+      alignItems: 'normal'
     }
   },
   error: {
-    display: "flex",
+    display: 'flex',
     color: theme.white,
-    borderRadius: "8px 8px 0 0",
+    borderRadius: '8px 8px 0 0',
     backgroundColor: theme.red,
-    padding: "8px 20px 8px 20px",
-    margin: "10px 25px 0 25px",
-    border: "2px solid #f44336"
+    padding: '8px 20px 8px 20px',
+    margin: '10px 25px 0 25px',
+    border: '2px solid #f44336'
   }
 }));
 

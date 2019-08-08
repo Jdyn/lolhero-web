@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles, useTheme } from "react-jss";
-import { formatLP } from "../../util/Helpers";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles, useTheme } from 'react-jss';
+import { formatLP } from '../../util/Helpers';
 
 const propTypes = {
   boost: PropTypes.object.isRequired,
@@ -17,6 +17,8 @@ const BottomNavigator = props => {
     setStage,
     boost,
     session,
+    valid,
+    setValid,
     currentOrder,
     submitOrder,
     braintreeInstance,
@@ -25,7 +27,6 @@ const BottomNavigator = props => {
 
   const classes = useStyles();
   const theme = useTheme();
-  const [requestable, set] = useState({ payment: false, details: false });
   const [detailsForm, setDetailsForm] = useState({});
 
   const updateStage = stage => {
@@ -33,10 +34,7 @@ const BottomNavigator = props => {
       submitOrder();
     } else if (stage === 2) {
       if (braintreeInstance) {
-        if (
-          (requestable.details && requestable.payment) ||
-          (session.isLoggedIn && requestable.payment)
-        ) {
+        if ((valid.details && valid.payment) || (session.isLoggedIn && valid.payment)) {
           braintreeInstance.requestPaymentMethod((error, payload) => {
             if (!error) {
               updateOrder(payload.nonce);
@@ -52,8 +50,8 @@ const BottomNavigator = props => {
 
   useEffect(() => {
     if (braintreeInstance) {
-      braintreeInstance.on("paymentMethodRequestable", event => {
-        set(prev => ({ ...prev, payment: true }));
+      braintreeInstance.on('paymentMethodRequestable', event => {
+        setValid(prev => ({ ...prev, payment: true }));
       });
     }
   }, [braintreeInstance]);
@@ -70,23 +68,25 @@ const BottomNavigator = props => {
       }
     });
 
-    const email = detailsForm["details-email"];
-    const emailConfirmation = detailsForm["details-email-confirmation"];
+    const email = detailsForm['details-email'];
+    const emailConfirmation = detailsForm['details-email-confirmation'];
 
     if (email === emailConfirmation) {
       isEqual = true;
     }
 
     if (isEqual && validCount == 2) {
-      set(prev => ({ ...prev, details: true }));
+      setValid(prev => ({ ...prev, details: true }));
     } else {
-      set(prev => ({ ...prev, details: false }));
+      setValid(prev => ({ ...prev, details: false }));
     }
   }, [detailsForm]);
 
   useEffect(() => {
-    const email = document.getElementById("details-email-confirmation");
-    const emailConfirmation = document.getElementById("details-form");
+    const email = document.getElementById('details-email-confirmation');
+    const emailConfirmation = document.querySelector('details-form');
+
+    console.log(email);
 
     const handleInput = event => {
       const input = event.target.value;
@@ -94,36 +94,40 @@ const BottomNavigator = props => {
       setDetailsForm(prev => ({ ...prev, [id]: input }));
     };
 
-    email.addEventListener("input", handleInput);
-    emailConfirmation.addEventListener("input", handleInput);
+    if (email && emailConfirmation) {
+      email.addEventListener('input', handleInput);
+      emailConfirmation.addEventListener('input', handleInput);
+    }
 
     return () => {
-      email.removeEventListener("input", handleInput);
-      emailConfirmation.removeEventListener("input", handleInput);
+      if (email && emailConfirmation) {
+        email.removeEventListener('input', handleInput);
+        emailConfirmation.removeEventListener('input', handleInput);
+      }
     };
-  }, []);
+  }, [braintreeInstance, session]);
 
   const stageText = currentStage => {
     switch (currentStage) {
       case 3:
-        return "place order";
+        return 'place order';
       default:
-        return "next";
+        return 'next';
     }
   };
 
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <h3>{formatLP(currentOrder.lp) || "-"}</h3>
+        <h3>{formatLP(currentOrder.lp) || '-'}</h3>
         <span>LP</span>
       </div>
       <div className={classes.content}>
-        <h3>{currentOrder.queue || "-"}</h3>
+        <h3>{currentOrder.queue || '-'}</h3>
         <span>Queue</span>
       </div>
       <div className={classes.content}>
-        <h3>{currentOrder.server || "-"}</h3>
+        <h3>{currentOrder.server || '-'}</h3>
         <span>Server</span>
       </div>
       <div className={classes.content}>
@@ -137,10 +141,9 @@ const BottomNavigator = props => {
         style={{
           backgroundColor:
             currentStage === 2
-              ? (requestable.details && requestable.payment) ||
-                (requestable.payment && session.isLoggedIn)
+              ? (valid.details && valid.payment) || (valid.payment && session.isLoggedIn)
                 ? theme.accent
-                : "#414141"
+                : '#414141'
               : theme.accent
         }}
       >
@@ -152,67 +155,67 @@ const BottomNavigator = props => {
 
 const useStyles = createUseStyles(theme => ({
   container: {
-    display: "flex",
-    flexWrap: "wrap",
-    gridArea: "botNav",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gridArea: 'botNav',
     color: theme.white,
-    height: "auto",
-    width: "100%",
-    justifyContent: "center",
+    height: 'auto',
+    width: '100%',
+    justifyContent: 'center',
     padding: 0,
     bottom: 0,
     backgroundColor: theme.tertiary,
     zIndex: 50,
-    position: "relative",
-    borderTop: "2px solid #999",
-    "@media (min-width: 1025px)": {
-      height: "90px",
-      padding: "10px 0",
-      position: "fixed",
-      justifyContent: "flex-end"
+    position: 'relative',
+    borderTop: '2px solid #999',
+    '@media (min-width: 1025px)': {
+      height: '90px',
+      padding: '10px 0',
+      position: 'fixed',
+      justifyContent: 'flex-end'
     }
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    borderRight: ".7px solid #999",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    borderRight: '.7px solid #999',
     lineHeight: 1,
     flexGrow: 1,
-    padding: "15px",
-    "& h3": {
+    padding: '15px',
+    '& h3': {
       fontSize: 19,
       margin: 0,
-      textTransform: "uppercase"
+      textTransform: 'uppercase'
     },
-    "& span": {
+    '& span': {
       fontSize: 17,
-      marginTop: "5px",
+      marginTop: '5px',
       color: theme.grey
     }
   },
   button: {
-    display: "inline-block",
-    outline: "none",
-    border: "none",
-    margin: "15px",
-    width: "100%",
+    display: 'inline-block',
+    outline: 'none',
+    border: 'none',
+    margin: '15px',
+    width: '100%',
     borderRadius: 12,
-    minHeight: "55px",
-    cursor: "pointer",
+    minHeight: '55px',
+    cursor: 'pointer',
     color: theme.white,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     letterSpacing: 0.8,
-    transitionDuration: ".2s",
+    transitionDuration: '.2s',
     fontWeight: 700,
     fontSize: 20,
-    "@media (min-width: 1025px)": {
-      margin: "5px 25px 5px 3%",
-      width: "350px",
-      display: "inline-block"
+    '@media (min-width: 1025px)': {
+      margin: '5px 25px 5px 3%',
+      width: '350px',
+      display: 'inline-block'
     }
   }
 }));

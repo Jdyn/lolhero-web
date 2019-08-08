@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Filter from "../../Shared/Filter";
-import dropin from "braintree-web-drop-in";
-import PropTypes from "prop-types";
-import AddonView from "./AddonView";
-import BoostView from "./BoostView";
-import ReviewView from "./ReviewView";
-import DetailsView from "./DetailsView";
-import dropinOptions from "../../../lib/dropinOptions";
-import { createUseStyles } from "react-jss";
+import React, { useEffect } from 'react';
+import dropin from 'braintree-web-drop-in';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
+// import Filter from '../../Shared/Filter';
+
+import AddonView from './AddonView';
+import BoostView from './BoostView';
+import ReviewView from './ReviewView';
+import DetailsView from './DetailsView';
+import dropinOptions from '../../../lib/dropinOptions';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -15,7 +16,7 @@ const propTypes = {
   currentOrder: PropTypes.object.isRequired
 };
 
-const filters = ["boost", "add ons", "details", "review"];
+// const filters = ['boost', 'add ons', 'details', 'review'];
 
 const AddonTab = props => {
   const {
@@ -63,9 +64,11 @@ const AddonTab = props => {
       {Object.keys(views).map((view, index) => {
         return (
           <div
-            key={index}
+            key={view}
             className={classes.content}
-            style={{ display: currentStage === parseInt(view) ? "flex" : "none" }}
+            style={{
+              display: currentStage === parseInt(view, 0) ? 'flex' : 'none'
+            }}
           >
             {views[index]}
           </div>
@@ -77,33 +80,33 @@ const AddonTab = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    width: "100%",
-    minHeight: "350px",
-    display: "flex !important",
-    position: "relative",
-    boxShadow: "0px 0px 15px 0px rgba(0, 0, 0, 0.4)",
+    width: '100%',
+    minHeight: '350px',
+    display: 'flex !important',
+    position: 'relative',
+    boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.4)',
     borderRadius: 16,
     zIndex: 15,
-    flexDirection: "column",
+    flexDirection: 'column',
     backgroundColor: theme.primary,
     color: theme.white,
-    "@media (min-width: 1025px)": {
-      width: "400px",
-      height: "100%",
-      boxShadow: "-5px 0px 15px 0px rgba(0, 0, 0, 0.2)"
+    '@media (min-width: 1025px)': {
+      width: '400px',
+      height: '100%',
+      boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.2)'
     }
   },
   container: {
-    display: "inherit",
-    "@media (min-width: 1025px)": {
-      display: "none"
+    display: 'inherit',
+    '@media (min-width: 1025px)': {
+      display: 'none'
     }
   },
   content: {
-    flexDirection: "column",
-    overflowY: "scroll",
-    margin: "10px 0px 10px 10px",
-    paddingRight: "10px"
+    flexDirection: 'column',
+    overflowY: 'scroll',
+    margin: '10px 0px 10px 10px',
+    paddingRight: '10px'
   }
 }));
 

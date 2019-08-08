@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import BoostTab from "./BoostsTab";
-import AddonTab from "./AddonTab";
-import PropTypes from "prop-types";
-import TopNavigator from "./TopNavigator";
-import BoostDisplay from "./BoostDisplay";
-import BottomNavigator from "./BottomNavigator";
-import { createUseStyles } from "react-jss";
+import React, { useState, useEffect } from 'react';
+import BoostTab from './BoostsTab';
+import AddonTab from './AddonTab';
+import PropTypes from 'prop-types';
+import TopNavigator from './TopNavigator';
+import BoostDisplay from './BoostDisplay';
+import BottomNavigator from './BottomNavigator';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   boost: PropTypes.object.isRequired,
@@ -28,6 +28,7 @@ const Boost = props => {
   } = props;
 
   const classes = useStyles();
+  const [valid, setValid] = useState({ payment: false, details: false });
 
   const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
@@ -38,7 +39,13 @@ const Boost = props => {
 
   return (
     <div className={classes.root}>
-      <TopNavigator currentStage={currentStage} setStage={setStage} boost={boost} />
+      <TopNavigator
+        currentStage={currentStage}
+        setStage={setStage}
+        boost={boost}
+        valid={valid}
+        setValid={setValid}
+      />
       <div className={classes.container}>
         <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
         <BoostDisplay
@@ -62,6 +69,8 @@ const Boost = props => {
         currentOrder={currentOrder}
         submitOrder={submitOrder}
         updateOrder={updateOrder}
+        valid={valid}
+        setValid={setValid}
         session={session}
         setStage={setStage}
         braintreeInstance={braintreeInstance}
@@ -73,27 +82,27 @@ const Boost = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    position: "relative",
-    paddingTop: "76px",
-    height: "100%",
-    minHeight: "100vh",
-    overflow: "hidden",
-    width: "100%",
-    overflowY: "auto",
+    position: 'relative',
+    paddingTop: '76px',
+    height: '100%',
+    minHeight: '100vh',
+    overflow: 'hidden',
+    width: '100%',
+    overflowY: 'auto',
     backgroundColor: theme.primary,
-    WebkitOverflowScrolling: "touch",
-    "@media (min-width: 1025px)": {
-      position: "absolute",
-      padding: "76px 0 90px 0"
+    WebkitOverflowScrolling: 'touch',
+    '@media (min-width: 1025px)': {
+      position: 'absolute',
+      padding: '76px 0 90px 0'
     }
   },
   container: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    "@media (min-width: 1025px)": {
-      flexDirection: "row",
-      height: "100%"
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    '@media (min-width: 1025px)': {
+      flexDirection: 'row',
+      height: '100%'
     }
   }
 }));

@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
-import Form from "../../Form";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
+import Form from '../../Form';
 
 const propTypes = {};
 
 const templates = {
   signup: {
-    type: "signup",
-    title: "New Account",
-    fields: ["email", "username", "password"],
-    submit: "sign up"
+    type: 'signup',
+    title: 'New Account',
+    fields: ['email', 'username', 'password'],
+    submit: 'sign up'
   },
   login: {
-    type: "login",
-    title: "Existing Account",
-    fields: ["username", "password"],
-    submit: "log in"
-  }
+    type: 'login',
+    title: 'Existing Account',
+    fields: ['username', 'password'],
+    submit: 'log in'
+  },
+  profile: {}
 };
 
 const AuthMenu = props => {
@@ -29,9 +30,9 @@ const AuthMenu = props => {
       className={classes.container}
       ref={modalRef}
       style={{
-        display: "grid",
-        gridTemplateRows: "79px 1fr",
-        gridTemplateColumns: "1fr 1fr",
+        display: 'grid',
+        gridTemplateRows: '79px 1fr',
+        gridTemplateColumns: '1fr 1fr',
         gridTemplateAreas: ` 
             'login signup'
             'modal modal'
@@ -40,15 +41,15 @@ const AuthMenu = props => {
     >
       <button
         className={classes.button}
-        style={{ gridArea: "signup" }}
-        onClick={() => updateModal("signup")}
+        style={{ gridArea: 'signup' }}
+        onClick={() => updateModal('signup')}
       >
         sign up
       </button>
       <button
         className={classes.button}
-        style={{ gridArea: "login" }}
-        onClick={() => updateModal("login")}
+        style={{ gridArea: 'login' }}
+        onClick={() => updateModal('login')}
       >
         log in
       </button>
@@ -65,71 +66,71 @@ const AuthMenu = props => {
 
 const useStyes = createUseStyles(theme => ({
   container: {
-    margin: "-20px 0 -22px 0",
-    position: "relative",
-    height: "auto",
-    width: "100%",
-    maxWidth: "250px"
+    margin: '-20px 0 -22px 0',
+    position: 'relative',
+    height: 'auto',
+    width: '100%',
+    maxWidth: '250px'
   },
   button: {
-    display: "flex",
-    outline: "none",
-    border: "none",
-    position: "relative",
-    cursor: "pointer",
-    justifyContent: "center",
+    display: 'flex',
+    outline: 'none',
+    border: 'none',
+    position: 'relative',
+    cursor: 'pointer',
+    justifyContent: 'center',
     fontWeight: 600,
     fontSize: 16,
     flexGrow: 1,
-    maxWidth: "125px",
-    height: "100%",
+    maxWidth: '125px',
+    height: '100%',
     padding: 0,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     color: theme.grey,
     backgroundColor: theme.tertiary,
-    borderBottom: "2px solid #999",
-    transitionDuration: ".2s",
-    "&:hover": {
+    borderBottom: '2px solid #999',
+    transitionDuration: '.2s',
+    '&:hover': {
       color: theme.accent,
       borderBottom: `2px solid ${theme.accent}`
     }
   },
   form: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     color: theme.white
   },
   input: {
-    outline: "none",
-    border: "none",
+    outline: 'none',
+    border: 'none',
     borderRadius: 8,
-    height: "30px",
-    margin: "10px 0",
-    padding: "10px",
+    height: '30px',
+    margin: '10px 0',
+    padding: '10px',
     backgroundColor: theme.primary,
     color: theme.white
   },
   submitButton: {
-    outline: "none",
-    border: "none",
+    outline: 'none',
+    border: 'none',
     borderRadius: 8,
     backgroundColor: theme.accent,
-    fontWeight: "600",
+    fontWeight: '600',
     color: theme.white,
-    textTransform: "uppercase",
-    marginTop: "10px",
-    padding: "10px"
+    textTransform: 'uppercase',
+    marginTop: '10px',
+    padding: '10px'
   },
   modal: {
-    display: "flex",
-    padding: "25px",
-    position: "relative",
-    gridArea: "modal",
-    boxShadow: "0px 0px 20px 0px rgba(0,0,0,.4)",
-    borderRadius: "0px 0px 12px 12px",
-    flexDirection: "column",
+    display: 'flex',
+    padding: '25px',
+    position: 'relative',
+    gridArea: 'modal',
+    boxShadow: '0px 0px 20px 0px rgba(0,0,0,.4)',
+    borderRadius: '0px 0px 12px 12px',
+    flexDirection: 'column',
     backgroundColor: theme.tertiary,
-    transitionDuration: ".2s"
+    transitionDuration: '.2s'
   }
 }));
 

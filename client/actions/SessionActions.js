@@ -50,8 +50,8 @@ const login = form => (dispatch, getState) => {
       if (ok) {
         const { user } = result;
         setCurrentSession(user);
-        dispatch(setRequestInProcess(false, requestType));
         dispatch(setLogin(user));
+        dispatch(setRequestInProcess(false, requestType));
       } else {
         const message = "An Error has occurred logging in. Please try again.";
         const error = response.error || message;

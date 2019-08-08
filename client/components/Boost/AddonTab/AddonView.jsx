@@ -1,8 +1,8 @@
-import React from "react";
-import options from "../../../lib/addonContent";
-import Toggle from "../../Shared/Toggle";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import React from 'react';
+import options from '../../../lib/addonContent';
+import Toggle from '../../Shared/Toggle';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -16,35 +16,37 @@ const AddonView = props => {
 
   return options.addons.extras.map((extra, index) => (
     <div className={classes.wrapper} key={index}>
+      <h2>{extra.title}</h2>
+      <p>{extra.description}</p>
       <Toggle
         isSelected={currentOrder[extra.type]}
         onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}
       >
-        {extra.title}
+        {currentOrder[extra.type] ? 'Enabled' : 'Disabled'}
       </Toggle>
-      <p>{extra.description}</p>
     </div>
   ));
 };
 
 const useStyles = createUseStyles(theme => ({
   wrapper: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: theme.tertiary,
     borderRadius: 12,
-    padding: "25px",
-    boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 20px 10px",
-    "& p": {
+    padding: '25px',
+    boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
+    margin: '10px 10px 20px 10px',
+    '& p': {
       color: theme.grey,
       margin: 0,
+      marginBottom: '10px',
       fontSize: 16
     },
-    "& h2": {
+    '& h2': {
       fontSize: 20,
       margin: 0,
-      marginBottom: "10px"
+      marginBottom: '10px'
     }
   }
 }));

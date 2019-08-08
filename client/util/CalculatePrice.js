@@ -14,9 +14,10 @@ export default (order, pricing) => {
   };
 
   const basePrice = currentPrice => {
-    if (typeof currentPrice !== "number") return currentPrice;
-
+    if (typeof currentPrice !== 'number') return currentPrice;
     const { collection_id, start_rank, desired_rank, desired_amount } = order;
+    if (!pricing[collection_id]) return currentPrice;
+    if (Object.keys(pricing[collection_id].length === 0)) return currentPrice;
 
     if (collection_id == 1 || collection_id == 5) {
       for (var i = start_rank; i < desired_rank; i++) {
@@ -31,25 +32,27 @@ export default (order, pricing) => {
   };
 
   const expressOrder = currentPrice => {
-    if (typeof currentPrice !== "number") return currentPrice;
+    if (typeof currentPrice !== 'number') return currentPrice;
     if (!order.is_express) return currentPrice;
+    if (!pricing.modifiers) return currentPrice;
 
     const { express } = pricing.modifiers;
 
-    if (typeof express === "number") {
+    if (typeof express === 'number') {
       return currentPrice * express;
     }
 
-    return null;
+    return currentPrice;
   };
 
   const incognitoOrder = currentPrice => {
-    if (typeof currentPrice !== "number") return currentPrice;
+    if (typeof currentPrice !== 'number') return currentPrice;
     if (!order.is_incognito) return currentPrice;
+    if (!pricing.modifiers) return currentPrice;
 
     const { incognito } = pricing.modifiers;
 
-    if (typeof incognito === "number") {
+    if (typeof incognito === 'number') {
       return currentPrice * incognito;
     }
 
@@ -57,12 +60,13 @@ export default (order, pricing) => {
   };
 
   const unrestrictedOrder = currentPrice => {
-    if (typeof currentPrice !== "number") return currentPrice;
+    if (typeof currentPrice !== 'number') return currentPrice;
     if (!order.is_unrestricted) return currentPrice;
+    if (!pricing.modifiers) return currentPrice;
 
     const { unrestricted } = pricing.modifiers;
 
-    if (typeof unrestricted === "number") {
+    if (typeof unrestricted === 'number') {
       return currentPrice * unrestricted;
     }
 
@@ -71,11 +75,11 @@ export default (order, pricing) => {
 
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
-    if (!pricing["lp"]) return currentPrice;
+    if (!pricing['lp']) return currentPrice;
     if (!order.collection_id === 1 || !order.collection_id === 5) return currentPrice;
 
     const { start_rank, lp, collection_id } = order;
-    const lpPrice = pricing["lp"][lp];
+    const lpPrice = pricing['lp'][lp];
     const base = pricing[collection_id][start_rank];
 
     if (lp === 100) {
