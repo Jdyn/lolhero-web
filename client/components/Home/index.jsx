@@ -31,16 +31,14 @@ const Home = props => {
       </div>
       <div className={classes.wrapper}>
         <Link href="/order/boost">
-          <button className={classes.button} style={{ backgroundColor: theme.accent }}>
-            custom order
-          </button>
+          <Button grow maxWidth="185px" padding="15px 10px">Customize Order</Button>
         </Link>
       </div>
-      {/* <div className={classes.content}>
+      <div className={classes.content}>
         {cards.map((item, index) => (
           <HomeCard card={item} key={index} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
@@ -48,14 +46,13 @@ const Home = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    height: '100vh'
+    flexDirection: 'column'
   },
   container: {
     display: 'flex',
     position: 'relative',
     flexDirection: 'column',
-    padding: '60px 0',
+    padding: '60px 0 30px 0',
     backgroundColor: theme.secondary,
     textAlign: 'center',
     justifyContent: 'center',
@@ -77,59 +74,36 @@ const useStyles = createUseStyles(theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     alignItems: 'center',
+    padding: '30px 0 60px 0px',
     '@media (min-width: 650px)': {
       flexDirection: 'row'
     }
   },
   content: {
     display: 'flex',
-    justifyContent: 'center',
     flexDirection: 'column',
-    marginTop: '-145px',
+    justifyContent: 'center',
+    margin: '80px 0 0 0',
+    padding: '0px 0px 10px 0px',
     '@media (min-width: 650px)': {
-      flexDirection: 'row',
-      justifyContent: 'center'
+      flexDirection: 'row'
     },
-    backgroundColor: theme.quartinary
+    backgroundColor: theme.tertiary
   },
   search: {
+    display: "flex",
+    flexGrow: 1,
+    width: "100%",
+    maxWidth: '450px',
     color: theme.white,
     margin: '0 10px',
     border: 'none',
     height: '55px',
     outline: 'none',
-    display: 'flex',
     padding: '10px 16px',
-    flexGrow: 1,
-    maxWidth: '380px',
     fontSize: 16,
     borderRadius: '8px',
     backgroundColor: theme.quartinary
-  },
-  button: {
-    display: 'flex',
-    outline: 'none',
-    border: 'none',
-    borderRadius: 8,
-    fontWeight: 600,
-    boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
-    color: theme.white,
-    maxWidth: '200px',
-    flexGrow: 1,
-    justifyContent: 'center',
-    textTransform: 'uppercase',
-    margin: '10px',
-    padding: '15px 35px',
-    cursor: 'pointer',
-    transitionDuration: '.2s',
-    '&:hover': {
-      transform: 'translateY(2px)',
-      boxShadow: 'none' //'0px 2px 6px 0px rgba(0,0,0,.2)',
-    },
-    '&:active': {
-      transform: 'translateY(2)',
-      boxShadow: 'none' //'0px 2px 6px 0px rgba(0,0,0,.2)',
-    }
   }
 }));
 

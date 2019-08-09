@@ -23,7 +23,8 @@ const useStyles = createUseStyles(theme => ({
       boxSizing: "border-box"
     },
     "*, *::before, *::after, div": {
-      boxSizing: "inherit"
+      boxSizing: "inherit",
+      fontFamily: "Museo Sans Rounded",
     },
     body: {
       margin: 0,

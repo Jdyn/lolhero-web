@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import Link from 'next/link';
+import Button from '../../../Shared/Button';
 
 const propTypes = {};
 
@@ -35,14 +36,14 @@ const AuthProfile = props => {
       {isOpen ? (
         <div className={classes.modal}>
           {type === 'profile' && (
-            <>
+            <ul className={classes.modalList}>
               {templates[type].items.map((item, index) => (
                 <Link key={index} href={item.link}>
-                  <a>{item.title}</a>
+                  <li className={classes.modalListItem}>{item.title}</li>
                 </Link>
               ))}
-              <button onClick={() => logout()}>{templates[type].logout}</button>
-            </>
+              <Button onClick={() => logout()}>{templates[type].logout}</Button>
+            </ul>
           )}
         </div>
       ) : null}
@@ -79,8 +80,7 @@ const useStyes = createUseStyles(theme => ({
     margin: '0px 25px',
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
-      flexGrow: 1,
-
+      flexGrow: 1
     },
     '&:hover': {
       color: theme.accent,
@@ -101,7 +101,7 @@ const useStyes = createUseStyles(theme => ({
     backgroundColor: theme.primary,
     '@media (min-width: 650px)': {
       display: 'flex',
-      flexGrow: 1,
+      flexGrow: 1
     }
   },
   portrait: {
@@ -120,21 +120,42 @@ const useStyes = createUseStyles(theme => ({
     flexDirection: 'column',
     // overflow: "hidden",
     zIndex: 1000,
-    backgroundColor: theme.white,
+    padding: '25px',
+    backgroundColor: theme.primary,
     '@media (min-width: 650px)': {
       display: 'flex',
+      padding: '0',
       position: 'relative',
       gridArea: 'modal',
-      padding: '25px',
-      margin: '0px 25px',
       width: 'auto',
       height: 'auto',
       boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
       borderRadius: '0px 0px 12px 12px',
       flexDirection: 'column',
-      backgroundColor: theme.tertiary,
       transitionDuration: '.2s'
     }
+  },
+  modalList: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: theme.tertiary,
+    boxShadow: '0px 2px 6px 0px rgba(0,0,0,.2)',
+    padding: '24px',
+    margin: 0,
+    borderRadius: 12,
+    listStyle: 'none',
+    '@media (min-width: 650px)': {
+      borderRadius: "0 0 12px 12px"
+    }
+  },
+  modalListItem: {
+    display: 'flex',
+    padding: '10px',
+    backgroundColor: theme.primary,
+    borderRadius: 8,
+    marginBottom: '10px',
+    color: theme.white,
+    cursor: 'pointer'
   }
 }));
 

@@ -15,7 +15,19 @@ const Layout = props => {
   const classes = useStyles(props);
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{
+        display: 'grid',
+        gridTemplateRows: 'min-content 1fr min-content',
+        gridTemplateColumns: '1fr',
+        gridTemplateAreas: `
+    'header'
+    'component'
+    'footer'
+    `
+      }}
+    >
       <Header session={session} handleAuth={handleAuth} sessionRequest={sessionRequest} />
       {children}
       <Footer />
@@ -27,14 +39,14 @@ Layout.propTypes = propTypes;
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    display: 'grid',
-    gridTemplateRows: 'min-content 1fr min-content',
-    gridTemplateColumns: '1fr',
-    gridTemplateAreas: `
-    'header'
-    'component'
-    'footer'
-    `
+    // display: 'grid',
+    // gridTemplateRows: 'min-content 1fr min-content',
+    // gridTemplateColumns: '1fr',
+    // gridTemplateAreas: `
+    // 'header'
+    // 'component'
+    // 'footer'
+    // `
   }
 }));
 

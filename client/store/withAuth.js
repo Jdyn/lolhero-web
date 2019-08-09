@@ -39,7 +39,6 @@ function withAuth(Child) {
 
     syncLogout(event) {
       if (event.key === 'logout') {
-        console.log('logged out from storage!');
         Router.push('/login');
       }
     }

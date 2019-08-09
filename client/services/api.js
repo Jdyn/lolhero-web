@@ -7,7 +7,7 @@ const API_URL =
 
 function headers() {
   const token = cookie.get('token');
-  console.log("FORM API", token)
+  
   return {
     Accept: "application/json",
     "Content-Type": "application/json",

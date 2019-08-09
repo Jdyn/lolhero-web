@@ -86,8 +86,6 @@ const BottomNavigator = props => {
     const email = document.getElementById('details-email-confirmation');
     const emailConfirmation = document.querySelector('details-form');
 
-    console.log(email);
-
     const handleInput = event => {
       const input = event.target.value;
       const id = event.target.id;

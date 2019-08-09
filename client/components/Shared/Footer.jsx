@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 
-const propTypes = {
-  classes: PropTypes.object.isRequired
-};
+const propTypes = {};
 
 const Footer = props => {
   const classes = useStyles(props);

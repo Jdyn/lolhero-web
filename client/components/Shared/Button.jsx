@@ -1,52 +1,53 @@
-import React from "react";
-import { createUseStyles } from "react-jss";
-import PropTypes from "prop-types";
+import React from 'react';
+import { createUseStyles } from 'react-jss';
+import PropTypes from 'prop-types';
 
 const propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
   secondary: PropTypes.bool,
-  noShadow: PropTypes.bool,
-  margin: PropTypes.string,
-  green: PropTypes.bool
+  margin: PropTypes.string
 };
 
-const Button = props => {
+const Button = React.forwardRef((props, ref) => {
   const { children, secondary, onClick } = props;
+
   const classes = useStyles(props);
 
   return (
     <button
       type="submit"
+      ref={ref}
       onClick={onClick}
       className={secondary ? classes.secondary : classes.primary}
     >
       {children}
     </button>
   );
-};
+});
 
 Button.propTypes = propTypes;
 Button.defaultProps = {
-  margin: "0",
-  width: "auto"
+  margin: '0',
+  width: 'auto',
+  padding: '10px 15px'
 };
 
 const useStyles = createUseStyles(theme => ({
   button: {
-    // display: "flex",
-    cursor: "pointer",
-    outline: "none",
-    border: "none",
+    display: 'flex',
+    cursor: 'pointer',
+    outline: 'none',
+    border: 'none',
     fontWeight: 600,
     fontSize: 13,
-    padding: "15px 10px",
     color: theme.white,
     borderRadius: 8,
-    letterSpacing: ".025em",
-    textTransform: "uppercase",
+    letterSpacing: '.025em',
+    textTransform: 'uppercase',
+    justifyContent: 'center',
     transitionDuration: '.2s',
-    boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
+    boxShadow: '0px 2px 6px 0px rgba(0,0,0,.2)',
     '&:hover': {
       transform: 'translateY(2px)',
       boxShadow: 'none'
@@ -55,27 +56,22 @@ const useStyles = createUseStyles(theme => ({
       transform: 'translateY(2)',
       boxShadow: 'none'
     }
-    // transitionDuration: ".15s",
-    // "&:hover": {
-    //   transform: "translateY(-2px)"
-    // },
-    // "&:active": {
-    //   transform: "translateY(2px)"
-    // }
   },
   primary: props => ({
-    extend: "button",
+    extend: 'button',
     backgroundColor: theme.accent,
     margin: props.margin,
-    // flexGrow: props.grow ? 1 : 0,
-    width: props.width
+    width: props.width,
+    maxWidth: props.maxWidth,
+    padding: props.padding,
+    flexGrow: props.grow ? 1 : 0
   }),
   secondary: props => ({
-    extend: "button",
+    extend: 'button',
     backgroundColor: theme.green,
-    // flexGrow: props.grow ? 1 : 0,
     margin: props.margin,
-    width: props.width
+    width: props.width,
+    padding: props.padding
   })
 }));
 
