@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
-import AuthProfile from "./AuthProfile";
-import AuthMenu from "./AuthMenu";
+import React, { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
+import AuthProfile from './AuthProfile';
+import AuthMenu from './AuthMenu';
 const propTypes = {};
 
 const AuthDisplay = props => {
@@ -42,20 +42,22 @@ const AuthDisplay = props => {
   useEffect(() => {
     const handleClickOutside = e => {
       if (!modalRef.current.contains(e.target)) {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
         setOpen(false);
         setType(null);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, session]);
 
-  return session.isLoggedIn ? (
+  return session.isLoggedIn === null ? (
+    <div className={classes.loading}></div>
+  ) : session.isLoggedIn ? (
     <AuthProfile
       handleAuth={handleAuth}
       modalRef={modalRef}
@@ -78,31 +80,36 @@ const AuthDisplay = props => {
 
 const useStyes = createUseStyles(theme => ({
   container: {
-    margin: "-20px 0 -22px 0",
-    position: "relative",
-    height: "auto",
-    width: "100%",
+    margin: '-20px 0 -22px 0',
+    position: 'relative',
+    height: 'auto',
+    width: '100%',
+    maxWidth: '250px'
+  },
+  loading: {
+    display: "flex",
+    flexGrow: 1,
     maxWidth: "250px"
   },
   button: {
-    display: "flex",
-    outline: "none",
-    border: "none",
-    position: "relative",
-    cursor: "pointer",
-    justifyContent: "center",
+    display: 'flex',
+    outline: 'none',
+    border: 'none',
+    position: 'relative',
+    cursor: 'pointer',
+    justifyContent: 'center',
     fontWeight: 600,
     fontSize: 16,
     flexGrow: 1,
-    maxWidth: "125px",
-    height: "100%",
+    maxWidth: '125px',
+    height: '100%',
     padding: 0,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     color: theme.grey,
     backgroundColor: theme.tertiary,
-    borderBottom: "2px solid #999",
-    transitionDuration: ".2s",
-    "&:hover": {
+    borderBottom: '2px solid #999',
+    transitionDuration: '.2s',
+    '&:hover': {
       color: theme.accent,
       borderBottom: `2px solid ${theme.accent}`
     }

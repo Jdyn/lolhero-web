@@ -1,10 +1,13 @@
+import cookie from 'js-cookie';
+
 const API_URL =
-  process.env.NODE_ENV === "production"
-    ? "http://localhost:4000/api/v1"
-    : "http://localhost:4000/api/v1";
+  process.env.NODE_ENV === 'production'
+    ? 'http://localhost:4000/api/v1'
+    : 'http://localhost:4000/api/v1';
 
 function headers() {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = cookie.get('token');
+  console.log("FORM API", token)
   return {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -22,14 +25,14 @@ function parseResponse(response) {
 function queryString(params) {
   const query = Object.keys(params)
     .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
-    .join("&");
-  return `${query.length ? "?" : ""}${query}`;
+    .join('&');
+  return `${query.length ? '?' : ''}${query}`;
 }
 
 export default {
   fetch(url, params = {}) {
     return fetch(`${API_URL}${url}${queryString(params)}`, {
-      method: "GET",
+      method: 'GET',
       headers: headers()
     })
       .then(parseResponse)
@@ -39,7 +42,7 @@ export default {
   post(url, data) {
     const body = JSON.stringify(data);
     return fetch(`${API_URL}${url}`, {
-      method: "POST",
+      method: 'POST',
       headers: headers(),
       body
     }).then(parseResponse);
@@ -49,7 +52,7 @@ export default {
     const body = JSON.stringify(data);
 
     return fetch(`${API_URL}${url}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: headers(),
       body
     }).then(parseResponse);
@@ -57,7 +60,7 @@ export default {
 
   delete(url) {
     return fetch(`${API_URL}${url}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: headers()
     }).then(parseResponse);
   }

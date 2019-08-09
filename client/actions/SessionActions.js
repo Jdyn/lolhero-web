@@ -1,38 +1,22 @@
-import Api from "../services/api";
-import keyMirror from "../util/keyMirror";
-import { setRequestInProcess } from "./RequestActions";
+import cookie from 'js-cookie';
+import Api from '../services/api';
+import keyMirror from '../util/keyMirror';
+import { setRequestInProcess } from './RequestActions';
+import Router from 'next/router';
 
-export const actions = keyMirror("LOG_IN", "SIGN_UP", "LOG_OUT");
-export const requests = keyMirror("AUTHENTICATE");
+export const actions = keyMirror('LOG_IN', 'SIGN_UP', 'LOG_OUT', 'REFRESH');
+export const requests = keyMirror('AUTHENTICATE');
 
-export const handleAuth = (form, type) => dispatch => {
-  switch (type) {
-    case "login":
-      dispatch(login(form));
-      break;
-    case "logout":
-      dispatch(logout());
-      break;
-    case "signup":
-      dispatch(signup(form));
-      break;
-    default:
-      break;
+const setCurrentSession = user => {
+  if (user.token) {
+    const jsonToken = user.token;
+    cookie.set('token', jsonToken, { expires: 7 });
   }
 };
-
-const setSignup = user => ({
-  type: actions.SIGN_UP,
-  user
-});
 
 const setLogin = user => ({
   type: actions.LOG_IN,
   user
-});
-
-const setLogout = () => ({
-  type: actions.LOG_OUT
 });
 
 const login = form => (dispatch, getState) => {
@@ -43,7 +27,7 @@ const login = form => (dispatch, getState) => {
 
   dispatch(setRequestInProcess(true, requestType));
 
-  Api.post("/session", form)
+  Api.post('/session', form)
     .then(response => {
       const { ok, result } = response;
 
@@ -53,7 +37,7 @@ const login = form => (dispatch, getState) => {
         dispatch(setLogin(user));
         dispatch(setRequestInProcess(false, requestType));
       } else {
-        const message = "An Error has occurred logging in. Please try again.";
+        const message = 'An Error has occurred logging in. Please try again.';
         const error = response.error || message;
         dispatch(
           setRequestInProcess(false, requestType, {
@@ -63,15 +47,19 @@ const login = form => (dispatch, getState) => {
         );
       }
     })
-    .catch(error => {
+    .catch(() => {
       dispatch(
         setRequestInProcess(false, requestType, {
           errored: true,
-          error: "Error connecting to server. Try again later."
+          error: 'Error connecting to server. Try again later.'
         })
       );
     });
 };
+
+const setLogout = () => ({
+  type: actions.LOG_OUT
+});
 
 const logout = () => (dispatch, getState) => {
   const requestType = requests.AUTHENTICATE;
@@ -81,18 +69,27 @@ const logout = () => (dispatch, getState) => {
 
   dispatch(setRequestInProcess(true, requestType));
 
-  Api.delete("/session")
+  Api.delete('/session')
     .then(() => {
       dispatch(setRequestInProcess(false, requestType));
       dispatch(setLogout());
-      localStorage.removeItem("token");
+      cookie.remove('token');
+      window.localStorage.setItem('logout', Date.now());
+      Router.push('/');
     })
     .catch(() => {
-      dispatch(setRequestInProcess(false, requestType, { errored: true, error: "" }));
+      dispatch(setRequestInProcess(false, requestType, { errored: true, error: '' }));
       dispatch(setLogout());
-      localStorage.removeItem("token");
+      cookie.remove('token');
+      window.localStorage.setItem('logout', Date.now());
+      Router.push('/');
     });
 };
+
+const setSignup = user => ({
+  type: actions.SIGN_UP,
+  user
+});
 
 const signup = form => (dispatch, getState) => {
   const requestType = requests.AUTHENTICATE;
@@ -102,9 +99,8 @@ const signup = form => (dispatch, getState) => {
 
   dispatch(setRequestInProcess(true, requestType));
 
-  Api.post("/users", form)
+  Api.post('/users', form)
     .then(response => {
-      console.log(response);
       if (response.ok) {
         const { user } = response.result;
         setCurrentSession(user);
@@ -122,58 +118,84 @@ const signup = form => (dispatch, getState) => {
       }
     })
     .catch(error => {
-      console.log("ERROR", error);
+      console.log('ERROR', error);
       dispatch(
         setRequestInProcess(false, requestType, {
           errored: true,
-          error: "An error has occurred. Try again later."
+          error: 'An error has occurred. Try again later.'
         })
       );
     });
 };
 
-const authenticate = () => dispatch => {
-  dispatch({ type: actions.AUTHENTICATION_REQUEST });
-  Api.fetch("/refresh")
+export const handleAuth = (form, type) => dispatch => {
+  switch (type) {
+    case 'login':
+      dispatch(login(form));
+      break;
+    case 'logout':
+      dispatch(logout());
+      break;
+    case 'signup':
+      dispatch(signup(form));
+      break;
+    default:
+      break;
+  }
+};
+
+const setRefresh = update => ({
+  type: actions.REFRESH,
+  update
+});
+
+export const authenticate = givenToken => (dispatch, getState) => {
+  const requestType = requests.AUTHENTICATE;
+  const requestInProcess = getState().request[requestType] || {};
+
+  if (requestInProcess.isPending) return;
+
+  dispatch(setRequestInProcess(true, requestType));
+
+  Api.fetch('/session/refresh')
     .then(response => {
       if (response.ok) {
-        if (response.result.token) {
-          const jsonToken = response.result.token;
-          localStorage.setItem("token", JSON.stringify(jsonToken));
-        }
-        dispatch({
-          type: actions.AUTHENTICATION_SUCCESS,
-          response
-        });
+        const { user } = response.result;
+        setCurrentSession(user);
+
+        const update = {
+          isLoggedIn: true,
+          user
+        };
+
+        dispatch(setRefresh(update));
+        dispatch(setRequestInProcess(false, requestType));
       } else {
-        localStorage.removeItem("token");
-        dispatch({
-          type: actions.AUTHENTICATION_FAILURE,
-          response: { error: "invalid token" }
-        });
+        cookie.remove('token');
+
+        const update = {
+          isLoggedIn: false,
+          user: {}
+        };
+
+        dispatch(setRefresh(update));
+        dispatch(setRequestInProcess(false, requestType));
       }
     })
-    .catch(error => {
-      localStorage.removeItem("token");
+    .catch(() => {
+      localStorage.removeItem('token');
       dispatch({
         type: actions.AUTHENTICATION_FAILURE,
-        response: { error: "Error Connecting to server" }
+        response: { error: 'Error Connecting to server' }
       });
     });
 };
 
 export const clearSessionErrors = () => ({
-  type: "CLEAR_SESSION_ERRORS",
+  type: 'CLEAR_SESSION_ERRORS',
   payload: {
-    error: "",
+    error: '',
     errors: {},
     errored: false
   }
 });
-
-const setCurrentSession = user => {
-  if (user.token) {
-    const jsonToken = user.token;
-    localStorage.setItem("token", JSON.stringify(jsonToken));
-  }
-};

@@ -1,8 +1,8 @@
-import React from "react";
-import initializeStore from ".";
+import React from 'react';
+import initializeStore from '.';
 
-const isServer = typeof window === "undefined";
-const NEXT_STORE = "__NEXT_REDUX_STORE__";
+const isServer = typeof window === 'undefined';
+const NEXT_STORE = '__NEXT_REDUX_STORE__';
 
 const createStore = initialState => {
   if (isServer) {
@@ -25,11 +25,11 @@ export default App => {
 
     static async getInitialProps(appContext) {
       const reduxStore = createStore();
-      
+
       appContext.ctx.reduxStore = reduxStore;
 
       let appProps = {};
-      if (typeof App.getInitialProps === "function") {
+      if (typeof App.getInitialProps === 'function') {
         appProps = await App.getInitialProps(appContext);
       }
 

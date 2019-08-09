@@ -1,7 +1,7 @@
-import { actions } from "../actions/SessionActions";
+import { actions } from '../actions/SessionActions';
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: null,
   user: {}
 };
 
@@ -24,6 +24,12 @@ export default (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
         user: {}
+      };
+    case actions.REFRESH:
+      return {
+        ...state,
+        isLoggedIn: action.update.isLoggedIn,
+        user: action.update.user
       };
     default:
       return state;

@@ -18,21 +18,21 @@ export default {
     extras: [
       {
         description:
-          'Express Order ensures your order gets heavily prioritized over others and will get completed sooner. Costs +20%',
-        title: 'Express',
-        type: 'is_express'
+          "Ensures your order gets heavily prioritized over others and is completed sooner. Costs +20%",
+        title: "Express",
+        type: "is_express"
       },
       {
         description:
-          'Want to be invisible to your friends? We make it appear as if you are offline to everyone on your friends list. Costs +5%',
-        title: 'Incognito',
-        type: 'is_incognito'
+          "Appear as if you are offline to everyone on your friends list. Costs +5%",
+        title: "Incognito",
+        type: "is_incognito"
       },
       {
         description:
-          'Unrestricted Orders allow us to play any champion or role on your account to complete the order. Discount -10%',
-        title: 'Unrestricted',
-        type: 'is_unrestricted'
+          "Enable us to play any champion or role on your account during the service. Discount -10%",
+        title: "Unrestricted",
+        type: "is_unrestricted"
       }
     ]
   }
