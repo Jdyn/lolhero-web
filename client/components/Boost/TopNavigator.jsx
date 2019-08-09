@@ -37,7 +37,7 @@ const useStyles = createUseStyles(theme => ({
   root: {
     top: 0,
     width: '100%',
-    zIndex: 20,
+    zIndex: 50,
     display: 'flex',
     position: 'relative',
     marginTop: '-76px',
@@ -73,7 +73,7 @@ const useStyles = createUseStyles(theme => ({
     borderBottom: '2px solid #999',
     color: theme.white,
     bottom: -2,
-    fontSize: 30,
+    fontSize: 28,
     '&:hover': {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`

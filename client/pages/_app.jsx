@@ -7,7 +7,6 @@ import { ThemeProvider } from 'react-jss';
 import theme from '../lib/theme';
 import SEO from '../components/Shared/SEO';
 import * as Sentry from '@sentry/browser';
-import cookie from 'js-cookie';
 import nextCookie from 'next-cookies';
 import { authenticate } from '../actions/SessionActions';
 
@@ -34,8 +33,12 @@ class Application extends App {
     const style = document.getElementById('server-side-styles');
 
     const { pageProps, store } = this.props;
-
-    authenticate(pageProps.token)(store.dispatch, store.getState);
+    
+    if (pageProps.token) {
+      authenticate(pageProps.token)(store.dispatch, store.getState);
+    } else {
+      store.dispatch({ type: 'REFRESH', update: { isLoggedIn: false, user: {} } });
+    }
 
     if (style) {
       style.parentNode.removeChild(style);

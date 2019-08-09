@@ -43,7 +43,6 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: theme.primary,
     color: props.isSelected ? theme.accent : theme.white,
     fontWeight: 700,
-    zIndex: 50,
     fontSize: 13,
     padding: "10px",
     borderRadius: 14,

@@ -126,7 +126,7 @@ const useStyes = createUseStyles(theme => ({
     padding: '25px',
     position: 'relative',
     gridArea: 'modal',
-    boxShadow: '0px 0px 20px 0px rgba(0,0,0,.4)',
+    boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
     borderRadius: '0px 0px 12px 12px',
     flexDirection: 'column',
     backgroundColor: theme.tertiary,

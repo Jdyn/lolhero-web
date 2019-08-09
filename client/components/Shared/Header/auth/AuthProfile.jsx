@@ -7,14 +7,14 @@ const propTypes = {};
 
 const templates = {
   profile: {
-    type: "profile",
-    title: "Profile",
+    type: 'profile',
+    title: 'Profile',
     fields: {},
     items: [
-      { title: "Dashboard", link: "/account/dashboard" },
-      { title: "Orders", link: "/account/orders" }
+      { title: 'Dashboard', link: '/account/dashboard' },
+      { title: 'Orders', link: '/account/orders' }
     ],
-    logout: "log out"
+    logout: 'log out'
   }
 };
 
@@ -52,28 +52,36 @@ const AuthProfile = props => {
 
 const useStyes = createUseStyles(theme => ({
   root: {
-    margin: '-20px 0 -22px 0',
+    margin: '-20px 0 -22px auto',
     position: 'relative',
     height: 'auto',
-    width: '100%',
+    // width: '100%',
     maxWidth: '250px',
-    display: 'grid',
-    gridTemplateRows: '79px 1fr',
-    gridTemplateColumns: '1fr',
-    gridTemplateAreas: ` 
-      'profile profile'
-      'modal modal'
-    `
+    '@media (min-width: 650px)': {
+      margin: '-20px 0 -22px 0',
+      flex: 1,
+      display: 'grid',
+      gridTemplateRows: '79px 1fr',
+      gridTemplateColumns: '1fr',
+      gridTemplateAreas: `
+        'profile profile'
+        'modal modal'
+      `
+    }
   },
   container: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    flexGrow: 1,
     cursor: 'pointer',
     maxWidth: '200px',
+    height: '100%',
     margin: '0px 25px',
     borderBottom: '2px solid #999',
+    '@media (min-width: 650px)': {
+      flexGrow: 1,
+
+    },
     '&:hover': {
       color: theme.accent,
       borderBottom: `2px solid ${theme.accent}`
@@ -82,16 +90,19 @@ const useStyes = createUseStyles(theme => ({
   wrapper: {
     color: theme.white,
     height: '100%',
-    display: 'flex',
+    display: 'none',
     padding: '8px 22px 8px 10px',
-    flexGrow: 1,
     maxHeight: '37px',
     alignItems: 'center',
     fontWeight: 600,
     marginRight: '-20px',
     borderRadius: '8px 0px 0px 8px',
     justifyContent: 'center',
-    backgroundColor: theme.primary
+    backgroundColor: theme.primary,
+    '@media (min-width: 650px)': {
+      display: 'flex',
+      flexGrow: 1,
+    }
   },
   portrait: {
     width: '44px',
@@ -102,15 +113,28 @@ const useStyes = createUseStyles(theme => ({
   },
   modal: {
     display: 'flex',
-    padding: '25px',
-    position: 'relative',
-    gridArea: 'modal',
-    margin: '0px 25px',
-    boxShadow: '0px 0px 20px 0px rgba(0,0,0,.4)',
-    borderRadius: '0px 0px 12px 12px',
+    position: 'fixed',
+    right: 0,
+    width: '100vw',
+    height: '100vh',
     flexDirection: 'column',
-    backgroundColor: theme.tertiary,
-    transitionDuration: '.2s'
+    // overflow: "hidden",
+    zIndex: 1000,
+    backgroundColor: theme.white,
+    '@media (min-width: 650px)': {
+      display: 'flex',
+      position: 'relative',
+      gridArea: 'modal',
+      padding: '25px',
+      margin: '0px 25px',
+      width: 'auto',
+      height: 'auto',
+      boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
+      borderRadius: '0px 0px 12px 12px',
+      flexDirection: 'column',
+      backgroundColor: theme.tertiary,
+      transitionDuration: '.2s'
+    }
   }
 }));
 

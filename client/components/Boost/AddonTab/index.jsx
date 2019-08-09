@@ -86,7 +86,6 @@ const useStyles = createUseStyles(theme => ({
     position: 'relative',
     boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.4)',
     borderRadius: 16,
-    zIndex: 15,
     flexDirection: 'column',
     backgroundColor: theme.primary,
     color: theme.white,

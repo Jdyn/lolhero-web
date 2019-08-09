@@ -41,10 +41,12 @@ const AuthDisplay = props => {
 
   useEffect(() => {
     const handleClickOutside = e => {
-      if (!modalRef.current.contains(e.target)) {
-        document.removeEventListener('mousedown', handleClickOutside);
-        setOpen(false);
-        setType(null);
+      if (modalRef.current) {
+        if (!modalRef.current.contains(e.target)) {
+          document.removeEventListener('mousedown', handleClickOutside);
+          setOpen(false);
+          setType(null);
+        }
       }
     };
 
@@ -87,9 +89,9 @@ const useStyes = createUseStyles(theme => ({
     maxWidth: '250px'
   },
   loading: {
-    display: "flex",
+    display: 'flex',
     flexGrow: 1,
-    maxWidth: "250px"
+    maxWidth: '250px'
   },
   button: {
     display: 'flex',

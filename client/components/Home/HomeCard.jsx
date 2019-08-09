@@ -23,7 +23,6 @@ const useStyles = createUseStyles(theme => ({
       margin: "1%"
     },
     margin: "5%",
-    zIndex: 100,
     boxShadow: "0 5px 15px rgb(0,0,0,.3)",
     backgroundColor: theme.primary,
     borderRadius: 8,

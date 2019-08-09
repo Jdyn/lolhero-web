@@ -2,8 +2,8 @@ import cookie from 'js-cookie';
 
 const API_URL =
   process.env.NODE_ENV === 'production'
-    ? 'http://localhost:4000/api/v1'
-    : 'http://localhost:4000/api/v1';
+    ? 'http://192.168.1.215:4000/api/v1'
+    : 'http://192.168.1.215:4000/api/v1';
 
 function headers() {
   const token = cookie.get('token');

@@ -46,7 +46,6 @@ const useStyles = createUseStyles(theme => ({
     transitionDuration: ".05s",
     backgroundColor: rank.color,
     "&:hover": {
-      zIndex: 10,
       transform: "scale(1.5)"
     }
   })

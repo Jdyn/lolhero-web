@@ -71,6 +71,7 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     zIndex: 5,
+    // minHeight: "500px",
     maxHeight: "85%",
     display: "flex",
     maxWidth: "235px",
@@ -126,8 +127,6 @@ const useStyles = createUseStyles(theme => ({
     position: "relative",
     bottom: 2,
     zIndex: -1,
-    // fill: props.rank.color || theme.secondary,
-    // stroke: props.rank.accent || theme.tertiary,
     filter: "drop-shadow(0 0px 15px rgba(0,0,0,.35))"
   }),
   foot: {

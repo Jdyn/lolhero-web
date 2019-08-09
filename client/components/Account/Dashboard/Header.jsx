@@ -41,31 +41,39 @@ useStyles = createUseStyles(theme => ({
     width: '100%'
   },
   content: {
-
+    margin: '0 auto',
+    padding: 0,
+    // padding: '0 15px',
+    bottom: -1,
+    '& div': {
+      display: 'flex',
+      padding: 0,
+      alignItems: 'flex-end',
+      justifyContent: 'center'
+    }
   },
   wrapper: {
     display: 'flex',
     position: 'relative',
-    margin: "0 auto",
-    padding: "0 15px",
-    bottom: -1,
-    '& div': {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+    flexGrow: 1,
+    '@media (min-width: 650px)': {
+      paddingLeft: '250px',
     }
   },
   portrait: {
     display: 'flex',
     flex: 1,
-    zIndex: 5,
+    justifyContent: 'center',
     padding: '0 100px',
+    '@media (min-width: 650px)': {
+      justifyContent: 'flex-start'
+    },
     '& div': {
       display: 'flex',
       width: '150px',
       height: '150px',
       backgroundColor: theme.tertiary,
-      marginBottom: '-40px',
+      marginBottom: '-24px',
       borderRadius: '50%',
       border: `2px solid ${theme.grey}`
     }

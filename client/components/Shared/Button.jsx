@@ -39,20 +39,29 @@ const useStyles = createUseStyles(theme => ({
     outline: "none",
     border: "none",
     fontWeight: 600,
-    zIndex: 100,
     fontSize: 13,
-    padding: "10px",
+    padding: "15px 10px",
     color: theme.white,
     borderRadius: 8,
     letterSpacing: ".025em",
     textTransform: "uppercase",
-    transitionDuration: ".15s",
-    "&:hover": {
-      transform: "translateY(-2px)"
+    transitionDuration: '.2s',
+    boxShadow: '0px 4px 6px 0px rgba(0,0,0,.2)',
+    '&:hover': {
+      transform: 'translateY(2px)',
+      boxShadow: 'none'
     },
-    "&:active": {
-      transform: "translateY(2px)"
+    '&:active': {
+      transform: 'translateY(2)',
+      boxShadow: 'none'
     }
+    // transitionDuration: ".15s",
+    // "&:hover": {
+    //   transform: "translateY(-2px)"
+    // },
+    // "&:active": {
+    //   transform: "translateY(2px)"
+    // }
   },
   primary: props => ({
     extend: "button",
