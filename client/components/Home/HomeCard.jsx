@@ -16,12 +16,14 @@ const HomeCard = props => {
 
 const useStyles = createUseStyles(theme => ({
   container: {
+    display: 'flex',
     height: '475px',
     flexGrow: 1,
-    margin: "10px 10px 10px 10px",
+    width: '100%',
+    margin: '10px 20px 10px 20px',
+    maxWidth: '295px',
     '@media (min-width: 650px)': {
-      maxWidth: '295px',
-      margin: "-60px 10px 10px 10px",
+      margin: '-60px 10px 10px 10px'
     },
     boxShadow: '0 2px 6px rgb(0,0,0,.2)',
     backgroundColor: theme.primary,
@@ -32,7 +34,7 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   header: {
-    backgroundColor: theme.tertiary, //"#EEEEEE",
+    backgroundColor: theme.tertiary,
     width: '100%',
     height: '35%',
     borderRadius: '8px 8px 0px 0px'

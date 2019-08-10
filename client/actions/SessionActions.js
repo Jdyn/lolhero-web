@@ -183,11 +183,15 @@ export const authenticate = givenToken => (dispatch, getState) => {
       }
     })
     .catch(() => {
-      localStorage.removeItem('token');
-      dispatch({
-        type: actions.AUTHENTICATION_FAILURE,
-        response: { error: 'Error Connecting to server' }
-      });
+      cookie.remove('token');
+
+      const update = {
+        isLoggedIn: false,
+        user: {}
+      };
+
+      dispatch(setRefresh(update));
+      dispatch(setRequestInProcess(false, requestType));
     });
 };
 

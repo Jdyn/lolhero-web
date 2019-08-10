@@ -8,7 +8,9 @@ class DashboardContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  session: state.session
+});
 
 const mapDispatchToProps = dispatch => ({});
 

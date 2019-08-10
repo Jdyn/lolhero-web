@@ -1,81 +1,92 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import Filter from '../../Shared/Filter';
 
-const propTypes = {};
+const propTypes = {
+  session: PropTypes.shape({
+    isLoggedIn: PropTypes.bool,
+    user: PropTypes.shape({
+      username: PropTypes.string
+    }).isRequired
+  }).isRequired
+};
 
 let useStyles;
 
 const DashboardHeader = props => {
+  const { session } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <div className={classes.portrait}>
-        <div />
-      </div>
       <div className={classes.container}>
-        <div className={classes.wrapper}>
-          <div>username</div>
-        </div>
+        <div className={classes.portrait} />
+        <div className={classes.content}>{session.user.username || 'unknown'}</div>
       </div>
+      <div className={classes.filter} />
     </div>
   );
 };
 
 useStyles = createUseStyles(theme => ({
   root: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: theme.secondary,
-    padding: '80px 0 0px 0'
+    backgroundColor: theme.secondary
   },
   container: {
-    display: 'flex',
-    backgroundColor: theme.quartinary,
-    // flex: 1,
-    padding: '24px 0',
-    borderBottom: `2px solid ${theme.grey}`,
-    height: '100px',
-    width: '100%'
-  },
-  content: {
+    zIndex: 20,
+    width: '100%',
     margin: '0 auto',
-    padding: 0,
-    // padding: '0 15px',
-    bottom: -1,
-    '& div': {
-      display: 'flex',
-      padding: 0,
-      alignItems: 'flex-end',
-      justifyContent: 'center'
+    display: 'flex',
+    padding: '50px 0 0px 0',
+    maxWidth: '935px',
+    flexGrow: 1,
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    '@media (min-width: 650px)': {
+      padding: '50px 100px 0px 100px',
+      alignItems: 'flex-start',
+      flexDirection: 'row'
     }
   },
-  wrapper: {
+  filter: {
+    margin: 0,
+    height: '90px',
     display: 'flex',
     position: 'relative',
-    flexGrow: 1,
+    // boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)',
+    backgroundColor: theme.quartinary,
     '@media (min-width: 650px)': {
-      paddingLeft: '250px',
+      marginTop: '-50px'
     }
   },
   portrait: {
+    width: '150px',
+    height: '150px',
+    border: `2px solid ${theme.grey}`,
     display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    padding: '0 100px',
+    borderRadius: '24px',
+    backgroundColor: theme.tertiary,
     '@media (min-width: 650px)': {
+      alignItems: 'flex-start',
       justifyContent: 'flex-start'
-    },
-    '& div': {
-      display: 'flex',
-      width: '150px',
-      height: '150px',
-      backgroundColor: theme.tertiary,
-      marginBottom: '-24px',
-      borderRadius: '50%',
-      border: `2px solid ${theme.grey}`
+    }
+  },
+  content: {
+    color: theme.white,
+    margin: '15px 0',
+    display: 'flex',
+    flexGrow: 1,
+    fontSize: 16,
+    fontWeight: 700,
+    flexDirection: 'column',
+    '@media (min-width: 650px)': {
+      height: '100px',
+      margin: 0,
+      paddingLeft: '50px'
     }
   }
 }));

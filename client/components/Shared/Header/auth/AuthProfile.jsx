@@ -12,8 +12,8 @@ const templates = {
     title: 'Profile',
     fields: {},
     items: [
-      { title: 'Dashboard', link: '/account/dashboard' },
-      { title: 'Orders', link: '/account/orders' }
+      { title: 'My Dashboard', link: '/account/dashboard' },
+      { title: 'My Orders', link: '/account/orders' }
     ],
     logout: 'log out'
   }
@@ -59,8 +59,8 @@ const useStyes = createUseStyles(theme => ({
     // width: '100%',
     maxWidth: '250px',
     '@media (min-width: 650px)': {
-      margin: '-20px 0 -22px 0',
       flex: 1,
+      margin: '-20px 0 -22px 0',
       display: 'grid',
       gridTemplateRows: '79px 1fr',
       gridTemplateColumns: '1fr',
@@ -91,17 +91,18 @@ const useStyes = createUseStyles(theme => ({
     color: theme.white,
     height: '100%',
     display: 'none',
+    flexGrow: 1,
     padding: '8px 22px 8px 10px',
     maxHeight: '37px',
     alignItems: 'center',
+    textAlign: 'center',
     fontWeight: 600,
     marginRight: '-20px',
     borderRadius: '8px 0px 0px 8px',
     justifyContent: 'center',
     backgroundColor: theme.primary,
     '@media (min-width: 650px)': {
-      display: 'flex',
-      flexGrow: 1
+      display: 'flex'
     }
   },
   portrait: {
@@ -145,7 +146,7 @@ const useStyes = createUseStyles(theme => ({
     borderRadius: 12,
     listStyle: 'none',
     '@media (min-width: 650px)': {
-      borderRadius: "0 0 12px 12px"
+      borderRadius: '0 0 12px 12px'
     }
   },
   modalListItem: {

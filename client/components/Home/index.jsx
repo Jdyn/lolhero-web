@@ -31,7 +31,9 @@ const Home = props => {
       </div>
       <div className={classes.wrapper}>
         <Link href="/order/boost">
-          <Button grow maxWidth="185px" padding="15px 10px">Customize Order</Button>
+          <Button grow maxWidth="185px" padding="15px 10px">
+            Customize Order
+          </Button>
         </Link>
       </div>
       <div className={classes.content}>
@@ -52,7 +54,7 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     position: 'relative',
     flexDirection: 'column',
-    padding: '60px 0 30px 0',
+    padding: '60px 10px 30px 10px',
     backgroundColor: theme.secondary,
     textAlign: 'center',
     justifyContent: 'center',
@@ -83,17 +85,18 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     margin: '80px 0 0 0',
-    padding: '0px 0px 10px 0px',
+    padding: '10px',
     '@media (min-width: 650px)': {
       flexDirection: 'row'
     },
     backgroundColor: theme.tertiary
   },
   search: {
-    display: "flex",
+    display: 'flex',
     flexGrow: 1,
-    width: "100%",
+    width: '100%',
     maxWidth: '450px',
     color: theme.white,
     margin: '0 10px',

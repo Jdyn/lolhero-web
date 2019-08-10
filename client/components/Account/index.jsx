@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {};
 
 const Account = props => {
+  const { session } = props;
   const classes = useStyes();
 
   return (
