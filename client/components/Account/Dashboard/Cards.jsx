@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 
 const propTypes = {};
@@ -8,17 +8,18 @@ let useStyles;
 
 const cards = [
   {
-    title: 'Total Orders'
-  },
-  {
     title: 'Active Orders'
   },
+
   {
     title: 'Complete Orders'
+  },
+  {
+    title: 'Total Orders'
   }
 ];
 
-const DashboardCards = props => {
+const DashboardCards = () => {
   const classes = useStyles();
 
   return (
@@ -40,8 +41,8 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     margin: '0 auto',
     display: 'flex',
-    padding: '50px 0 0px 0',
-    maxWidth: '935px',
+    padding: '30px',
+    maxWidth: '795px',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -49,12 +50,10 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     display: 'grid',
     gridGap: '10px',
-    padding: '10px 30px',
     gridTemplateRows: '1fr 1fr 1fr',
     gridTemplateColumns: '1fr',
     '@media (min-width: 650px)': {
       gridGap: '25px',
-      padding: '10px 100px',
       gridTemplateRows: '1fr',
       gridTemplateColumns: '1fr 1fr 1fr'
     }
@@ -67,9 +66,9 @@ useStyles = createUseStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     fontWeight: 600,
-    borderRadius: 12,
-    backgroundColor: theme.tertiary,
-    boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)',
+    borderRadius: 24,
+    backgroundColor: theme.quartinary,
+    boxShadow: '0px 2px 6px 0px rgba(0,0,0,.2)',
     textAlign: 'center',
     '@media (min-width: 650px)': {
       flexDirection: 'column',

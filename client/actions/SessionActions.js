@@ -157,7 +157,7 @@ export const authenticate = givenToken => (dispatch, getState) => {
 
   dispatch(setRequestInProcess(true, requestType));
 
-  Api.fetch('/session/refresh')
+  Api.fetch('/session')
     .then(response => {
       if (response.ok) {
         const { user } = response.result;

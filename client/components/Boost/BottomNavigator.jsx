@@ -29,6 +29,8 @@ const BottomNavigator = props => {
   const theme = useTheme();
   const [detailsForm, setDetailsForm] = useState({});
 
+  console.log(detailsForm)
+
   const updateStage = stage => {
     if (stage === 3) {
       submitOrder();
@@ -84,11 +86,11 @@ const BottomNavigator = props => {
 
   useEffect(() => {
     const email = document.getElementById('details-email-confirmation');
-    const emailConfirmation = document.querySelector('details-form');
+    const emailConfirmation = document.getElementById('details-form');
 
     const handleInput = event => {
       const input = event.target.value;
-      const id = event.target.id;
+      const { id } = event.target;
       setDetailsForm(prev => ({ ...prev, [id]: input }));
     };
 

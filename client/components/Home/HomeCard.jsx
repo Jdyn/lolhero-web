@@ -4,6 +4,8 @@ import { createUseStyles } from 'react-jss';
 
 const propTypes = {};
 
+let useStyles;
+
 const HomeCard = props => {
   const classes = useStyles(props);
 
@@ -14,7 +16,7 @@ const HomeCard = props => {
   );
 };
 
-const useStyles = createUseStyles(theme => ({
+useStyles = createUseStyles(theme => ({
   container: {
     display: 'flex',
     height: '475px',

@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
-import ranks from "../../../lib/ranks";
-import flatten from "../../../util/Flatten";
-import PropTypes from "prop-types";
-import BannerRankItem from "./BannerRankItem";
-import { createUseStyles } from "react-jss";
+import React, { useMemo } from 'react';
+import ranks from '../../../lib/ranks';
+import flatten from '../../../util/Flatten';
+import PropTypes from 'prop-types';
+import BannerRankItem from './BannerRankItem';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   rank: PropTypes.object,
@@ -20,19 +20,15 @@ const BannerRankList = props => {
   const flatRanks = useMemo(() => flatten([...ranks]));
 
   const validateDisabled = itemIndex => {
-    if (currentOrder.collection_id === 1 || currentOrder.collection_id === 5) {
+    if (currentOrder.collection_name === 'Division Boost') {
       if (!isStartRank) {
         if (currentOrder.start_rank !== null) {
           return itemIndex < currentOrder.start_rank + 1;
-        } else {
-          return false;
         }
+      } else if (currentOrder.desired_rank !== null) {
+        return itemIndex > currentOrder.desired_rank - 1;
       } else {
-        if (currentOrder.desired_rank !== null) {
-          return itemIndex > currentOrder.desired_rank - 1;
-        } else {
-          return false;
-        }
+        return false;
       }
     }
   };
@@ -59,13 +55,13 @@ const BannerRankList = props => {
 
 const useStyles = createUseStyles({
   container: {
-    display: "flex",
+    display: 'flex',
     // width: "100%",
-    justifyContent: "center",
-    flexWrap: "wrap"
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
   rankWrapper: {
-    display: "flex"
+    display: 'flex'
   }
 });
 

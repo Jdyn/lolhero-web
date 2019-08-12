@@ -95,7 +95,7 @@ const useStyles = createUseStyles(theme => ({
     borderRadius: '8px 8px 0 0',
     backgroundColor: theme.red,
     padding: '8px 20px 8px 20px',
-    margin: '10px 25px 0 25px',
+    margin: '10px auto 0 auto',
     border: '2px solid #f44336'
   }
 }));

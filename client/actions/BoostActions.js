@@ -1,12 +1,12 @@
-import Api from "../services/api";
-import keyMirror from "../util/keyMirror";
-import { setRequestInProcess } from "./RequestActions";
-import * as Sentry from "@sentry/browser";
-import calculatePrice from "../util/CalculatePrice";
-import Router from "next/router";
+import Api from '../services/api';
+import keyMirror from '../util/keyMirror';
+import { setRequestInProcess } from './RequestActions';
+import * as Sentry from '@sentry/browser';
+import calculatePrice from '../util/CalculatePrice';
+import Router from 'next/router';
 
-export const actions = keyMirror("FETCH_BOOST_PRICES", "UPDATE_BOOST");
-export const requests = keyMirror("BOOST_PRICING", "BOOST_ORDER", "SUBMIT_ORDER");
+export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');
+export const requests = keyMirror('BOOST_PRICING', 'BOOST_ORDER', 'SUBMIT_ORDER');
 
 const setBoostPrices = prices => ({
   type: actions.FETCH_BOOST_PRICES,
@@ -21,7 +21,7 @@ export const fetchBoostPrices = () => (dispatch, getState) => {
 
   dispatch(setRequestInProcess(true, requestType));
 
-  Api.fetch("/prices").then(response => {
+  Api.fetch('/prices').then(response => {
     if (response.ok) {
       dispatch(setBoostPrices(response.result));
       dispatch(setRequestInProcess(false, requestType));
@@ -29,7 +29,7 @@ export const fetchBoostPrices = () => (dispatch, getState) => {
       dispatch(
         setRequestInProcess(false, requestType, {
           errored: true,
-          error: "Failed to Fetch"
+          error: 'Failed to Fetch'
         })
       );
     }
@@ -42,7 +42,7 @@ const setBoost = update => ({
 });
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (typeof newUpdate === "string") {
+  if (typeof newUpdate === 'string') {
     dispatch(
       setBoost({
         boost: { paymentMethodIsSelected: true },
@@ -63,9 +63,11 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
     );
   }
 
-  let order = { ...getState().boost.order.details, ...newUpdate };
+  const order = { ...getState().boost.order.details, ...newUpdate };
   const pricing = getState().boost.pricing[order.boost_type];
   const price = calculatePrice(order, pricing);
+
+  console.log(price);
 
   dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
@@ -94,8 +96,8 @@ export const submitOrder = () => (dispatch, getState) => {
   if (validateOrder(order, dispatchError)) {
     const finalOrder = trimOrder(order);
 
-    if (typeof finalOrder === "object") {
-      Api.post("/orders", finalOrder)
+    if (typeof finalOrder === 'object') {
+      Api.post('/orders', finalOrder)
         .then(response => {
           if (response.ok) {
             dispatch(setRequestInProcess(false, requestType));
@@ -103,13 +105,13 @@ export const submitOrder = () => (dispatch, getState) => {
           } else {
             const errors = response.errors || [];
             const message =
-              errors[Object.keys(errors)[0]] || "Error placing order. Try again later.";
+              errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
 
             dispatchError(message);
           }
         })
         .catch(error => {
-          dispatchError("Error placing order. Try again later or contact support.");
+          dispatchError('Error placing order. Try again later or contact support.');
           Sentry.captureException(error);
         });
     }
@@ -119,24 +121,24 @@ export const submitOrder = () => (dispatch, getState) => {
 const validateOrder = (order, dispatchError) => {
   const { collection_name, start_rank, desired_rank, desired_amount } = order.details;
 
-  if (!start_rank) return dispatchError("You must have a starting rank.");
+  if (!start_rank) return dispatchError('You must have a starting rank.');
 
   if (start_rank > desired_rank)
-    return dispatchError("Your starting rank cannot be greater than your desired rank.");
+    return dispatchError('Your starting rank cannot be greater than your desired rank.');
 
-  if (collection_name === "Division Boost") {
-    if (!desired_rank) return dispatchError("You must have a desired rank.");
+  if (collection_name === 'Division Boost') {
+    if (!desired_rank) return dispatchError('You must have a desired rank.');
   } else {
-    if (!desired_amount) return dispatchError("You must have a desired amount.");
+    if (!desired_amount) return dispatchError('You must have a desired amount.');
   }
 
   return true;
 };
 
 const trimOrder = order => {
-  if (!order.details.collection_name) return dispatchError("Oops");
+  if (!order.details.collection_name) return dispatchError('Oops');
 
-  if (order.details.collection_name === "Division Boost") {
+  if (order.details.collection_name === 'Division Boost') {
     delete order.details.desired_amount;
   } else {
     delete order.details.desired_rank;

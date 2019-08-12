@@ -32,6 +32,7 @@ useStyles = createUseStyles(theme => ({
   root: {
     width: '100%',
     display: 'flex',
+    padding: '50px 0 0 0',
     flexDirection: 'column',
     backgroundColor: theme.secondary
   },
@@ -40,14 +41,13 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     margin: '0 auto',
     display: 'flex',
-    padding: '50px 0 0px 0',
-    maxWidth: '935px',
+    padding: '50px 30px 0 30px',
+    maxWidth: '795px',
     flexGrow: 1,
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
     '@media (min-width: 650px)': {
-      padding: '50px 100px 0px 100px',
       alignItems: 'flex-start',
       flexDirection: 'row'
     }
@@ -68,6 +68,7 @@ useStyles = createUseStyles(theme => ({
     height: '150px',
     border: `2px solid ${theme.grey}`,
     display: 'flex',
+    boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)',
     borderRadius: '24px',
     backgroundColor: theme.tertiary,
     '@media (min-width: 650px)': {
@@ -80,13 +81,13 @@ useStyles = createUseStyles(theme => ({
     margin: '15px 0',
     display: 'flex',
     flexGrow: 1,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 700,
     flexDirection: 'column',
     '@media (min-width: 650px)': {
       height: '100px',
       margin: 0,
-      paddingLeft: '50px'
+      padding: '30px 0px 0px 50px'
     }
   }
 }));

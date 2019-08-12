@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import ranks from "../../../lib/ranks";
-import addons from "../../../lib/addonContent";
-import content from "../../../lib/boostContent";
-import PropTypes from "prop-types";
-import { formatLP } from "../../../util/Helpers";
-import { createUseStyles } from "react-jss";
+import React, { useMemo } from 'react';
+import ranks from '../../../lib/ranks';
+import addons from '../../../lib/addonContent';
+import content from '../../../lib/boostContent';
+import PropTypes from 'prop-types';
+import { formatLP } from '../../../util/Helpers';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   currentOrder: PropTypes.object.isRequired
@@ -15,26 +15,24 @@ const ReviewView = props => {
   const classes = useStyes();
 
   const ranksObject = useMemo(() =>
-    [].concat
-      .apply([], [...ranks])
-      .reduce((obj, item) => ((obj[item.rank] = item), obj), {})
+    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
   );
 
   const formatTitle = () => {
     const { boost_type, start_rank, desired_rank, lp, desired_amount } = currentOrder;
 
-    const startRank = ranksObject[start_rank] || { title: "TBD" };
-    const desiredRank = ranksObject[desired_rank] || { title: "TBD" };
+    const startRank = ranksObject[start_rank] || { title: 'TBD' };
+    const desiredRank = ranksObject[desired_rank] || { title: 'TBD' };
 
     switch (currentOrder.collection_name) {
-      case "Division Boost":
+      case 'Division Boost':
         return `${boost_type.toUpperCase()} | ${currentOrder.collection_name} - From ${
           startRank.title
         } (${formatLP(lp)} LP) to ${desiredRank.title}`;
       default:
-        return `${boost_type.toUpperCase()} | ${desired_amount} ${
-          currentOrder.collection_name
-        } - ${startRank.title}`;
+        return `${boost_type.toUpperCase()} | ${desired_amount} ${currentOrder.collection_name} - ${
+          startRank.title
+        }`;
     }
   };
 
@@ -45,7 +43,7 @@ const ReviewView = props => {
         <h2>{formatTitle()}</h2>
         <h3>Details</h3>
 
-        {currentOrder.collection_name === "Division Boost" && (
+        {currentOrder.collection_name === 'Division Boost' && (
           <span>
             LP: <b>{formatLP(currentOrder.lp)}</b>
           </span>
@@ -63,17 +61,14 @@ const ReviewView = props => {
         <span>
           Queue:
           <b>
-            {" " +
-              currentOrder.queue.charAt(0).toUpperCase() +
-              currentOrder.queue.slice(1) +
-              " " +
-              "Queue"}
+            {` ${currentOrder.queue.charAt(0).toUpperCase()}${currentOrder.queue.slice(1)} ` +
+              `Queue`}
           </b>
         </span>
         <h3>Add-Ons</h3>
         {addons.addons.extras.map((extra, index) => (
           <span key={index}>
-            {extra.title}: <b>{currentOrder[extra.type] ? "Yes" : "No"}</b>
+            {extra.title}: <b>{currentOrder[extra.type] ? 'Yes' : 'No'}</b>
           </span>
         ))}
       </div>
@@ -84,40 +79,40 @@ const ReviewView = props => {
 
 const useStyes = createUseStyles(theme => ({
   wrapper: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: theme.tertiary,
     borderRadius: 12,
-    padding: "25px",
-    boxShadow: "0 0 15px 0 rgba(0,0,0,.2)",
-    margin: "10px 10px 20px 10px",
-    "& p": {
+    padding: '25px',
+    boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
+    margin: '10px 10px 20px 10px',
+    '& p': {
       color: theme.grey,
       margin: 0,
       fontSize: 16,
-      marginBottom: "15px"
+      marginBottom: '15px'
     },
-    "& h2": {
+    '& h2': {
       fontSize: 16,
       margin: 0,
-      marginBottom: "15px"
+      marginBottom: '15px'
     },
-    "& h3": {
-      margin: "15px 0",
+    '& h3': {
+      margin: '15px 0',
       fontSize: 20,
-      marginBottom: "15px",
+      marginBottom: '15px',
       color: theme.white
     },
-    "& span": {
-      display: "flex",
-      flexDirection: "row",
-      marginBottom: "5px",
+    '& span': {
+      display: 'flex',
+      flexDirection: 'row',
+      marginBottom: '5px',
       fontSize: 16,
       color: theme.white,
-      "& b": {
-        display: "flex",
+      '& b': {
+        display: 'flex',
         flexGrow: 1,
-        justifyContent: "flex-end",
+        justifyContent: 'flex-end',
         color: theme.grey
       }
     }

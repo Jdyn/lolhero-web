@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import DashboardHeader from './Header';
 import DashboardCards from './Cards';
+import DashboardList from './DashboardList';
 
 const propTypes = {
   session: PropTypes.shape({
@@ -17,10 +18,13 @@ const Dashboard = props => {
   const { session } = props;
   const classes = useStyles();
 
+  useEffect(() => {}, []);
+
   return (
     <div className={classes.root}>
       <DashboardHeader session={session} />
       <DashboardCards />
+      <DashboardList />
     </div>
   );
 };
