@@ -6,8 +6,10 @@ import { createUseStyles } from 'react-jss';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
+  currentOrder: PropTypes.objectOf(PropTypes.string).isRequired
 };
+
+let useStyles;
 
 const BoostDisplay = props => {
   const { updateOrder, currentOrder, submitOrderRequest } = props;
@@ -71,7 +73,7 @@ const BoostDisplay = props => {
   );
 };
 
-const useStyles = createUseStyles(theme => ({
+useStyles = createUseStyles(theme => ({
   root: {
     display: 'flex',
     position: 'relative',
