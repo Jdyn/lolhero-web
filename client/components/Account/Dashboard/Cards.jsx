@@ -19,18 +19,22 @@ const cards = [
   }
 ];
 
-const DashboardCards = () => {
+const DashboardCards = props => {
+  const { account } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        {cards.map(card => (
-          <div key={card.title} className={classes.card}>
-            <h3>{card.title}</h3>
-            <span>0</span>
-          </div>
-        ))}
+        {Object.keys(account.orders).map((orderKey, index) => {
+          const order = account.orders[orderKey];
+          return (
+            <div key={index} className={classes.card}>
+              <h3>{order.title}</h3>
+              <span>{order.count}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

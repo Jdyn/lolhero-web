@@ -1,9 +1,11 @@
-import boost from "./boost";
-import request from "./request";
-import session from "./session";
-import { combineReducers } from "redux";
+import boost from './BoostReducers';
+import request from './RequestReducers';
+import session from './SessionReducers';
+import account from './AccountReducers';
+import { combineReducers } from 'redux';
 
 export default combineReducers({
+  account,
   session,
   request,
   boost

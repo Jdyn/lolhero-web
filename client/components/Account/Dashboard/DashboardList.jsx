@@ -27,7 +27,7 @@ useStyles = createUseStyles(theme => ({
     height: '500px',
     display: 'flex',
     backgroundColor: theme.quartinary,
-    borderRadius: 12,
+    borderRadius: 24,
     boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)'
   }
 }));

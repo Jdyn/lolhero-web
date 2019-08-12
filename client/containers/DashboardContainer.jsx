@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
+import { fetchAccountOrders } from '../actions/AccountActions';
 
 class DashboardContainer extends PureComponent {
   render() {
@@ -9,10 +10,13 @@ class DashboardContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  session: state.session
+  session: state.session,
+  account: state.account
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  fetchAccountOrders: () => dispatch(fetchAccountOrders())
+});
 
 export default connect(
   mapStateToProps,

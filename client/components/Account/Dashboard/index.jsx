@@ -15,15 +15,17 @@ const propTypes = {
 let useStyles;
 
 const Dashboard = props => {
-  const { session } = props;
+  const { session, fetchAccountOrders, account } = props;
   const classes = useStyles();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchAccountOrders();
+  }, []);
 
   return (
     <div className={classes.root}>
       <DashboardHeader session={session} />
-      <DashboardCards />
+      <DashboardCards account={account} />
       <DashboardList />
     </div>
   );
