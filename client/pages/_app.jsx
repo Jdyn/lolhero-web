@@ -33,7 +33,7 @@ class Application extends App {
     const style = document.getElementById('server-side-styles');
 
     const { pageProps, store } = this.props;
-    
+
     if (pageProps.token) {
       authenticate(pageProps.token)(store.dispatch, store.getState);
     } else {

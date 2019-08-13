@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 import { formatLP } from '../../util/Helpers';
+import Router from 'next/Router';
 
 const propTypes = {
   boost: PropTypes.object.isRequired,
@@ -29,7 +30,7 @@ const BottomNavigator = props => {
   const theme = useTheme();
   const [detailsForm, setDetailsForm] = useState({});
 
-  console.log(detailsForm)
+  console.log(detailsForm);
 
   const updateStage = stage => {
     if (stage === 3) {

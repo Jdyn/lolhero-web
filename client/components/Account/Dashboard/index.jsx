@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import DashboardHeader from './Header';
@@ -18,6 +18,8 @@ const Dashboard = props => {
   const { session, fetchAccountOrders, account } = props;
   const classes = useStyles();
 
+  const [selectedFilter, setFilter] = useState('active');
+
   useEffect(() => {
     fetchAccountOrders();
   }, []);
@@ -25,8 +27,8 @@ const Dashboard = props => {
   return (
     <div className={classes.root}>
       <DashboardHeader session={session} />
-      <DashboardCards account={account} />
-      <DashboardList />
+      <DashboardCards account={account} setFilter={setFilter} selectedFilter={selectedFilter} />
+      <DashboardList orders={account.orders} selectedFilter={selectedFilter} />
     </div>
   );
 };

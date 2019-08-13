@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const propTypes = {};
 
@@ -20,8 +20,13 @@ const cards = [
 ];
 
 const DashboardCards = props => {
-  const { account } = props;
+  const { account, setFilter, selectedFilter } = props;
   const classes = useStyles();
+  const theme = useTheme();
+
+  const handleFilterChange = orderKey => {
+    setFilter(orderKey);
+  };
 
   return (
     <div className={classes.root}>
@@ -29,8 +34,13 @@ const DashboardCards = props => {
         {Object.keys(account.orders).map((orderKey, index) => {
           const order = account.orders[orderKey];
           return (
-            <div key={index} className={classes.card}>
-              <h3>{order.title}</h3>
+            <div
+              key={index}
+              className={classes.card}
+              onClick={() => handleFilterChange(orderKey)}
+              style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
+            >
+              <h3>{order.title || "..."}</h3>
               <span>{order.count}</span>
             </div>
           );
@@ -72,8 +82,15 @@ useStyles = createUseStyles(theme => ({
     fontWeight: 600,
     borderRadius: 24,
     backgroundColor: theme.quartinary,
-    boxShadow: '0px 2px 6px 0px rgba(0,0,0,.2)',
+    boxShadow: '0px 5px 10px 0px rgba(0,0,0,.2)',
     textAlign: 'center',
+    cursor: 'pointer',
+    border: '2px solid #999',
+    transitionDuration: '.2s',
+    '&:hover': {
+      transform: 'translateY(2px)',
+      boxShadow: '0px 0px 5px 0px rgba(0,0,0,.2)'
+    },
     '@media (min-width: 650px)': {
       flexDirection: 'column',
       justifyContent: 'center'

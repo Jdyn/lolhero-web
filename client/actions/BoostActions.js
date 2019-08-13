@@ -101,7 +101,7 @@ export const submitOrder = () => (dispatch, getState) => {
         .then(response => {
           if (response.ok) {
             dispatch(setRequestInProcess(false, requestType));
-            window.location.href = response.result.success_url;
+            Router.push(response.result.success_url)
           } else {
             const errors = response.errors || [];
             const message =

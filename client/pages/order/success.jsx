@@ -15,7 +15,7 @@ const OrderSuccess = props => {
         <h3>
           Your Tracking ID is <b>{tracking_id || "unknown"}</b>.
         </h3>
-        <p>Use it to review, update, and track your order across the site.</p>
+        <p>Please review the email we have sent you detailing the next steps.</p>
       </div>
     </Layout>
   );
@@ -24,6 +24,8 @@ const OrderSuccess = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     padding: "35px",
+    maxWidth: "975px",
+    margin: "0 auto",
     color: theme.white,
     "& h3": {
       "& b": {
