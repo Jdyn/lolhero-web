@@ -7,19 +7,16 @@ const API_URL =
 
 function headers() {
   const token = cookie.get('token');
-  
+
   return {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token ? token : ""}`
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token ? token : ''}`
   };
 }
 
 function parseResponse(response) {
-  if (response.ok) {
-    return response.json().then(json => json);
-  }
-  return response;
+  return response.json().then(json => json);
 }
 
 function queryString(params) {

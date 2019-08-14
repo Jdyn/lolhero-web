@@ -1,10 +1,11 @@
-import PropTypes from "prop-types";
-import { createUseStyles, useTheme } from "react-jss";
-import BannerRankList from "./BannerRankList";
-import BannerRankSlider from "./BannerRankSlider";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles, useTheme } from 'react-jss';
+import BannerRankList from './BannerRankList';
+import BannerRankSlider from './BannerRankSlider';
 
 const propTypes = {
-  type: PropTypes.oneOf(["slider", "picker"]),
+  type: PropTypes.oneOf(['slider', 'picker']),
   rank: PropTypes.object,
   isStartRank: PropTypes.bool,
   updateOrder: PropTypes.func.isRequired,
@@ -18,13 +19,7 @@ const Banner = props => {
   const classes = useStyles(props);
 
   const renderContent = {
-    slider: (
-      <BannerRankSlider
-        rank={rank}
-        currentOrder={currentOrder}
-        updateOrder={updateOrder}
-      />
-    ),
+    slider: <BannerRankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
     picker: (
       <BannerRankList
         rank={rank}
@@ -45,8 +40,8 @@ const Banner = props => {
         }}
       >
         <div className={classes.header}>
-          <h1>{rank.title || ""}</h1>
-          <h3>{isStartRank ? "current" : "desired"}</h3>
+          <h1>{rank.title || ''}</h1>
+          <h3>{isStartRank ? 'current' : 'desired'}</h3>
         </div>
         {renderContent[type]}
       </div>
@@ -72,68 +67,68 @@ const useStyles = createUseStyles(theme => ({
   root: {
     zIndex: 5,
     // minHeight: "500px",
-    maxHeight: "85%",
-    display: "flex",
-    maxWidth: "235px",
-    position: "relative",
+    maxHeight: '85%',
+    display: 'flex',
+    maxWidth: '235px',
+    position: 'relative',
     flexGrow: 1,
-    margin: "0px 15px 0px 15px",
-    marginBottom: "15px",
-    flexDirection: "column",
-    justifyContent: "flex-start",
+    margin: '0px 15px 0px 15px',
+    marginBottom: '15px',
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
   },
   container: {
-    color: "#fefefe",
-    display: "flex",
-    padding: "35px 0px",
+    color: '#fefefe',
+    display: 'flex',
+    padding: '35px 0px',
     flexGrow: 1,
-    boxShadow: "0px -15px 15px rgba(0,0,0,.2)",
-    alignItems: "center",
+    boxShadow: '0px -15px 15px rgba(0,0,0,.2)',
+    alignItems: 'center',
     borderLeft: `6px solid`,
     borderRight: `6px solid`,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    transitionDuration: ".2s",
-    "& span": {
-      textAlign: "center"
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    transitionDuration: '.2s',
+    '& span': {
+      textAlign: 'center'
     }
   },
   amount: {
     fontSize: 67
   },
   header: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
-    justifyContent: "center",
-    textAlign: "center",
-    "& h1": {
-      margin: "10px 0",
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
+    '& h1': {
+      margin: '10px 0',
       fontSize: 30,
-      height: "36px"
+      height: '36px'
     },
-    "& h3": {
+    '& h3': {
       margin: 0,
       color: theme.white,
       fontSize: 16
     }
   },
   footer: props => ({
-    width: "100%",
-    height: "100px",
-    minHeight: "100px",
-    backgroundColor: "transparent",
-    fill: "transparent",
-    position: "relative",
+    width: '100%',
+    height: '100px',
+    minHeight: '100px',
+    backgroundColor: 'transparent',
+    fill: 'transparent',
+    position: 'relative',
     bottom: 2,
     zIndex: -1,
-    filter: "drop-shadow(0 0px 15px rgba(0,0,0,.35))"
+    filter: 'drop-shadow(0 0px 15px rgba(0,0,0,.35))'
   }),
   foot: {
-    transitionDuration: ".2s",
-    width: "100%",
-    height: "100px",
-    position: "relative",
+    transitionDuration: '.2s',
+    width: '100%',
+    height: '100px',
+    position: 'relative',
     strokeWidth: 3
   }
 }));

@@ -5,7 +5,7 @@ export default (order, pricing) => {
     const { collection_id, start_rank, desired_rank, desired_amount, collection_name } = order;
 
     if (!pricing[collection_id]) return currentPrice;
-    if (Object.keys(pricing[collection_id]).length === 0) return currentPrice;
+    // if (Object.keys(pricing[collection_id]).length === 0) return currentPrice;
 
     if (collection_name === 'Division Boost') {
       for (var i = start_rank; i < desired_rank; i++) {
@@ -63,8 +63,8 @@ export default (order, pricing) => {
 
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
-    if (!pricing.lp) return currentPrice;
-    if (!order.collection_id === 1 || !order.collection_id === 5) return currentPrice;
+    if (Object.keys(pricing.lp).length === 0) return currentPrice;
+    if (!order.collection_name === 'Division Boost') return currentPrice;
 
     const { start_rank, lp, collection_id } = order;
     const lpPrice = pricing.lp[lp];

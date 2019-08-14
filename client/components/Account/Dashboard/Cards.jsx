@@ -43,10 +43,13 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     margin: '0 auto',
     display: 'flex',
-    padding: '30px',
     maxWidth: '795px',
+    padding: '30px 15px',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media (min-width: 650px)': {
+      padding: '30px'
+    }
   },
   container: {
     width: '100%',

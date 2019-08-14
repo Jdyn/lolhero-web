@@ -65,6 +65,7 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
 
   const order = { ...getState().boost.order.details, ...newUpdate };
   const pricing = getState().boost.pricing[order.boost_type];
+  console.log(pricing)
   const price = calculatePrice(order, pricing);
 
   console.log(price);
