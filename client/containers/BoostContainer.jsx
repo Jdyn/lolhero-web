@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Boost from "../components/Boost";
-import { fetchBoostPrices, updateOrder, submitOrder } from "../actions/BoostActions";
-import { handleAuth } from "../actions/SessionActions";
+import React from 'react';
+import { connect } from 'react-redux';
+import Boost from '../components/Boost';
+import { fetchBoostPrices, updateOrder, submitOrder } from '../actions/BoostActions';
+import { handleAuth } from '../actions/SessionActions';
 
-class BoostContainer extends Component {
+class BoostContainer extends React.PureComponent {
   render() {
     return <Boost {...this.props} />;
   }
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleAuth: (form, type) => dispatch(handleAuth(form, type)),
+  handleAuth: (type, form) => dispatch(handleAuth(type, form)),
   fetchBoostPrices: () => dispatch(fetchBoostPrices()),
   updateOrder: newUpdate => dispatch(updateOrder(newUpdate)),
   submitOrder: nonce => dispatch(submitOrder(nonce))

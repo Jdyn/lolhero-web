@@ -8,7 +8,7 @@ import Form from '../../Shared/Form';
 const propTypes = {
   handleAuth: PropTypes.func.isRequired,
   session: PropTypes.shape({
-    isLoggedIn: PropTypes.bool.isRequired,
+    isLoggedIn: PropTypes.bool,
     user: PropTypes.object.isRequired
   }).isRequired
 };
@@ -58,7 +58,7 @@ const DetailsView = props => {
             {type && (
               <Form
                 template={templates[type]}
-                onSubmit={(form, formType) => handleAuth(form, formType)}
+                onSubmit={(formType, form) => handleAuth(formType, form)}
               />
             )}
             {!type && (

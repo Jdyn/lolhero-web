@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
-import Button from "./Button";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
+import Button from './Button';
 
 const propTypes = {
   onSubmit: PropTypes.func.isRequired,
@@ -16,7 +16,7 @@ const Form = props => {
 
   const submitForm = event => {
     event.preventDefault();
-    onSubmit(form, template.type);
+    onSubmit(template.type, form);
   };
 
   return (
@@ -27,7 +27,7 @@ const Form = props => {
           <span>{field}</span>
           <input
             className={classes.input}
-            value={form[field] || ""}
+            value={form[field] || ''}
             type={field}
             onChange={event => setForm({ ...form, [field]: event.target.value })}
           />
@@ -40,17 +40,17 @@ const Form = props => {
 
 const useStyles = createUseStyles(theme => ({
   form: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     color: theme.white
   },
   input: {
-    outline: "none",
-    border: "none",
+    outline: 'none',
+    border: 'none',
     borderRadius: 8,
-    height: "30px",
-    margin: "10px 0",
-    padding: "10px",
+    height: '30px',
+    margin: '10px 0',
+    padding: '10px',
     backgroundColor: theme.primary,
     color: theme.white
   }

@@ -6,19 +6,6 @@ const propTypes = {};
 
 let useStyles;
 
-const cards = [
-  {
-    title: 'Active Orders'
-  },
-
-  {
-    title: 'Complete Orders'
-  },
-  {
-    title: 'Total Orders'
-  }
-];
-
 const DashboardCards = props => {
   const { account, setFilter, selectedFilter } = props;
   const classes = useStyles();
@@ -31,18 +18,19 @@ const DashboardCards = props => {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        {Object.keys(account.orders).map((orderKey, index) => {
+        {Object.keys(account.orders).map(orderKey => {
           const order = account.orders[orderKey];
           return (
-            <div
-              key={index}
+            <button
+              type="button"
+              key={orderKey}
               className={classes.card}
               onClick={() => handleFilterChange(orderKey)}
               style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
             >
-              <h3>{order.title || "..."}</h3>
+              <h3>{order.title || '...'}</h3>
               <span>{order.count}</span>
-            </div>
+            </button>
           );
         })}
       </div>
@@ -76,6 +64,7 @@ useStyles = createUseStyles(theme => ({
     color: theme.white,
     display: 'flex',
     padding: '24px',
+    outline: 'none',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

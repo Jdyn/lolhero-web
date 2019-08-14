@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import PropTypes from 'prop-types';
@@ -56,7 +57,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleAuth: (form, type) => dispatch(handleAuth(form, type))
+  handleAuth: (type, form) => dispatch(handleAuth(type, form))
 });
 
 export default connect(

@@ -1,25 +1,25 @@
-import { actions } from "../actions/RequestActions";
+import { actions } from '../actions/RequestActions';
 
 const initialState = {};
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case actions.SET_REQUEST_IN_PROCESS:
-      return setRequestInProcess(state, action);      
-    default:
-      return state;
-  }
-};
-
-const setRequestInProcess = (state, action) => {
-  const { inProcess, requestType, errorObject } = action;
+const setRequest = (state, action) => {
+  const { isPending, requestType, errorObject } = action;
   const requestObject = {};
 
   requestObject[requestType] = {
-    isPending: inProcess,
-    success: !errorObject && !inProcess ? true : false,
+    isPending,
+    success: !!(!errorObject && !isPending),
     ...(!errorObject ? { errored: false, error: null } : errorObject)
   };
 
   return { ...state, ...requestObject };
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case actions.SET_REQUEST:
+      return setRequest(state, action);
+    default:
+      return state;
+  }
 };

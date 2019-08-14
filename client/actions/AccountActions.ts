@@ -1,25 +1,25 @@
-import keyMirror from '../util/keyMirror';
-import { setRequestInProcess } from './RequestActions';
+import { actions, requests, AccountActions, Orders } from '../reducers/account/types';
+import { setRequest } from './RequestActions';
 import Api from '../services/api';
 
-export const actions = keyMirror('FETCH_ACCOUNT_ORDERS');
-export const requests = keyMirror('ACCOUNT_ORDERS');
-
-const setAccountOrders = orders => ({
+export const setAccountOrders = (orders: Orders): AccountActions => ({
   type: actions.FETCH_ACCOUNT_ORDERS,
   orders
 });
 
-export const fetchAccountOrders = () => (dispatch, getState) => {
+export const fetchAccountOrders = (): ((dispatch, getState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = requests.ACCOUNT_ORDERS;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || {};
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.fetch('/account/orders')
-    .then(response => {
+    .then((response): void => {
       if (response.ok) {
         const { completed, active, total } = response.result;
 
@@ -32,19 +32,19 @@ export const fetchAccountOrders = () => (dispatch, getState) => {
         };
 
         dispatch(setAccountOrders(payload));
-        dispatch(setRequestInProcess(false, requestType));
+        dispatch(setRequest(false, requestType));
       } else {
         dispatch(
-          setRequestInProcess(false, requestType, {
+          setRequest(false, requestType, {
             errored: true,
             error: 'Error fetching account orders.'
           })
         );
       }
     })
-    .catch(error => {
+    .catch((): void => {
       dispatch(
-        setRequestInProcess(false, requestType, {
+        setRequest(false, requestType, {
           errored: true,
           error: 'Error fetching account orders.'
         })

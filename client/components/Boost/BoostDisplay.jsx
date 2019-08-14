@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
-import ranks from '../../lib/ranks';
-import Banner from './Banner';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
+import ranks from '../../lib/ranks';
+import Banner from './Banner';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.objectOf(PropTypes.string).isRequired
+  currentOrder: PropTypes.shape({}).isRequired
 };
 
 let useStyles;

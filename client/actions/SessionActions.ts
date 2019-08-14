@@ -1,55 +1,55 @@
 import cookie from 'js-cookie';
+import Router from 'next/router';
 import Api from '../services/api';
 import keyMirror from '../util/keyMirror';
-import { setRequestInProcess } from './RequestActions';
-import Router from 'next/router';
+import { setRequest } from './RequestActions';
 
 export const actions = keyMirror('LOG_IN', 'SIGN_UP', 'LOG_OUT', 'REFRESH');
 export const requests = keyMirror('AUTHENTICATE');
 
-const setCurrentSession = user => {
+const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
     const jsonToken = user.token;
     cookie.set('token', jsonToken, { expires: 7 });
   }
 };
 
-const setLogin = user => ({
+const setLogin = (user: object): object => ({
   type: actions.LOG_IN,
   user
 });
 
-const login = form => (dispatch, getState) => {
+const login = (form: object): ((dispatch, getState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.post('/session', form)
-    .then(response => {
+    .then((response): void => {
       const { ok, result } = response;
 
       if (ok) {
         const { user } = result;
         setCurrentSession(user);
         dispatch(setLogin(user));
-        dispatch(setRequestInProcess(false, requestType));
+        dispatch(setRequest(false, requestType));
       } else {
         const message = 'An Error has occurred logging in. Please try again.';
         const error = response.error || message;
         dispatch(
-          setRequestInProcess(false, requestType, {
+          setRequest(false, requestType, {
             errored: true,
             error
           })
         );
       }
     })
-    .catch(() => {
+    .catch((): void => {
       dispatch(
-        setRequestInProcess(false, requestType, {
+        setRequest(false, requestType, {
           errored: true,
           error: 'Error connecting to server. Try again later.'
         })
@@ -57,70 +57,71 @@ const login = form => (dispatch, getState) => {
     });
 };
 
-const setLogout = () => ({
+const setLogout = (): object => ({
   type: actions.LOG_OUT
 });
 
-const logout = () => (dispatch, getState) => {
+const logout = (): ((dispatch, getState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.delete('/session')
-    .then(() => {
-      dispatch(setRequestInProcess(false, requestType));
+    .then((): void => {
+      dispatch(setRequest(false, requestType));
       dispatch(setLogout());
       cookie.remove('token');
-      window.localStorage.setItem('logout', Date.now());
+      window.localStorage.setItem('logout', JSON.stringify(Date.now()));
       Router.push('/');
     })
-    .catch(() => {
-      dispatch(setRequestInProcess(false, requestType, { errored: true, error: '' }));
+    .catch((): void => {
+      dispatch(setRequest(false, requestType, { errored: true, error: '' }));
       dispatch(setLogout());
       cookie.remove('token');
-      window.localStorage.setItem('logout', Date.now());
+      window.localStorage.setItem('logout', JSON.stringify(Date.now()));
       Router.push('/');
     });
 };
 
-const setSignup = user => ({
+const setSignup = (user: object): object => ({
   type: actions.SIGN_UP,
   user
 });
 
-const signup = form => (dispatch, getState) => {
+const signup = (form: object): Function => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.post('/users', form)
-    .then(response => {
-      if (response.ok) {
-        const { user } = response.result;
-        setCurrentSession(user);
-        dispatch(setSignup(user));
-        dispatch(setRequestInProcess(false, requestType));
-      } else {
-        const { errors } = response;
+    .then(
+      (response: { ok: boolean; errors: object; result: { user: { token: string } } }): void => {
+        if (response.ok) {
+          const { user } = response.result;
+          setCurrentSession(user);
+          dispatch(setSignup(user));
+          dispatch(setRequest(false, requestType));
+        } else {
+          const { errors } = response;
 
-        dispatch(
-          setRequestInProcess(false, requestType, {
-            errored: true,
-            error: errors || {}
-          })
-        );
+          dispatch(
+            setRequest(false, requestType, {
+              errored: true,
+              error: errors || {}
+            })
+          );
+        }
       }
-    })
-    .catch(error => {
-      console.log('ERROR', error);
+    )
+    .catch((): void => {
       dispatch(
-        setRequestInProcess(false, requestType, {
+        setRequest(false, requestType, {
           errored: true,
           error: 'An error has occurred. Try again later.'
         })
@@ -128,7 +129,9 @@ const signup = form => (dispatch, getState) => {
     });
 };
 
-export const handleAuth = (form, type) => dispatch => {
+export const handleAuth = (type: string, form: object): ((dispatch) => void) => (
+  dispatch
+): void => {
   switch (type) {
     case 'login':
       dispatch(login(form));
@@ -144,21 +147,21 @@ export const handleAuth = (form, type) => dispatch => {
   }
 };
 
-const setRefresh = update => ({
+const setRefresh = (update: object): object => ({
   type: actions.REFRESH,
   update
 });
 
-export const authenticate = givenToken => (dispatch, getState) => {
+export const authenticate = (): ((dispatch, getState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.fetch('/session')
-    .then(response => {
+    .then((response): void => {
       if (response.ok) {
         const { user } = response.result;
         setCurrentSession(user);
@@ -169,7 +172,7 @@ export const authenticate = givenToken => (dispatch, getState) => {
         };
 
         dispatch(setRefresh(update));
-        dispatch(setRequestInProcess(false, requestType));
+        dispatch(setRequest(false, requestType));
       } else {
         cookie.remove('token');
 
@@ -179,10 +182,10 @@ export const authenticate = givenToken => (dispatch, getState) => {
         };
 
         dispatch(setRefresh(update));
-        dispatch(setRequestInProcess(false, requestType));
+        dispatch(setRequest(false, requestType));
       }
     })
-    .catch(() => {
+    .catch((): void => {
       cookie.remove('token');
 
       const update = {
@@ -191,11 +194,11 @@ export const authenticate = givenToken => (dispatch, getState) => {
       };
 
       dispatch(setRefresh(update));
-      dispatch(setRequestInProcess(false, requestType));
+      dispatch(setRequest(false, requestType));
     });
 };
 
-export const clearSessionErrors = () => ({
+export const clearSessionErrors = (): object => ({
   type: 'CLEAR_SESSION_ERRORS',
   payload: {
     error: '',

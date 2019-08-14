@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import Form from '../../Form';
 
-const propTypes = {};
+const propTypes = {
+  handleAuth: PropTypes.func.isRequired,
+  modalRef: PropTypes.shape({}).isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  session: PropTypes.shape({}).isRequired,
+  updateModal: PropTypes.func.isRequired
+};
 
 const templates = {
   signup: {
@@ -21,9 +28,11 @@ const templates = {
   profile: {}
 };
 
+let useStyles;
+
 const AuthMenu = props => {
-  const { modalRef, updateModal, session, isOpen, type, handleAuth } = props;
-  const classes = useStyes(props);
+  const { modalRef, updateModal, isOpen, type, handleAuth } = props;
+  const classes = useStyles(props);
 
   return (
     <div
@@ -40,6 +49,7 @@ const AuthMenu = props => {
       }}
     >
       <button
+        type="button"
         className={classes.button}
         style={{ gridArea: 'signup' }}
         onClick={() => updateModal('signup')}
@@ -47,6 +57,7 @@ const AuthMenu = props => {
         sign up
       </button>
       <button
+        type="button"
         className={classes.button}
         style={{ gridArea: 'login' }}
         onClick={() => updateModal('login')}
@@ -56,7 +67,10 @@ const AuthMenu = props => {
       {isOpen ? (
         <div className={classes.modal}>
           {type && (
-            <Form template={templates[type]} onSubmit={(form, type) => handleAuth(form, type)} />
+            <Form
+              template={templates[type]}
+              onSubmit={(formType, form) => handleAuth(formType, form)}
+            />
           )}
         </div>
       ) : null}
@@ -64,7 +78,7 @@ const AuthMenu = props => {
   );
 };
 
-const useStyes = createUseStyles(theme => ({
+useStyles = createUseStyles(theme => ({
   container: {
     margin: '-20px 0 -22px 0',
     position: 'relative',

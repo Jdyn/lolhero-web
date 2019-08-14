@@ -1,23 +1,23 @@
-import { actions } from '../actions/AccountActions';
+import { AccountState, AccountActions, actions } from './types';
 
-const initialState = {
+const initialState: AccountState = {
   orders: {
     total: {
       orders: [],
-      count: null
+      count: 0
     },
     active: {
       orders: [],
-      count: null
+      count: 0
     },
     completed: {
       orders: [],
-      count: null
+      count: 0
     }
   }
 };
 
-export default (state = initialState, action) => {
+export default (state: AccountState = initialState, action: AccountActions): AccountState => {
   switch (action.type) {
     case actions.FETCH_ACCOUNT_ORDERS:
       return {

@@ -1,9 +1,9 @@
+import * as Sentry from '@sentry/browser';
+import Router from 'next/router';
 import Api from '../services/api';
 import keyMirror from '../util/keyMirror';
-import { setRequestInProcess } from './RequestActions';
-import * as Sentry from '@sentry/browser';
+import { setRequest } from './RequestActions';
 import calculatePrice from '../util/CalculatePrice';
-import Router from 'next/router';
 
 export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');
 export const requests = keyMirror('BOOST_PRICING', 'BOOST_ORDER', 'SUBMIT_ORDER');
@@ -19,15 +19,15 @@ export const fetchBoostPrices = () => (dispatch, getState) => {
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   Api.fetch('/prices').then(response => {
     if (response.ok) {
       dispatch(setBoostPrices(response.result));
-      dispatch(setRequestInProcess(false, requestType));
+      dispatch(setRequest(false, requestType));
     } else {
       dispatch(
-        setRequestInProcess(false, requestType, {
+        setRequest(false, requestType, {
           errored: true,
           error: 'Failed to Fetch'
         })
@@ -57,7 +57,7 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
 
   if (request.errored) {
     dispatch(
-      setRequestInProcess(false, requests.SUBMIT_ORDER, {
+      setRequest(false, requests.SUBMIT_ORDER, {
         errored: false
       })
     );
@@ -78,13 +78,13 @@ export const submitOrder = () => (dispatch, getState) => {
 
   if (requestInProcess.isPending) return;
 
-  dispatch(setRequestInProcess(true, requestType));
+  dispatch(setRequest(true, requestType));
 
   let order = { ...getState().boost.order };
 
   const dispatchError = message => {
     dispatch(
-      setRequestInProcess(false, requestType, {
+      setRequest(false, requestType, {
         errored: true,
         error: message
       })
@@ -100,8 +100,8 @@ export const submitOrder = () => (dispatch, getState) => {
       Api.post('/orders', finalOrder)
         .then(response => {
           if (response.ok) {
-            dispatch(setRequestInProcess(false, requestType));
-            Router.push(response.result.success_url)
+            dispatch(setRequest(false, requestType));
+            Router.push(response.result.success_url);
           } else {
             const errors = response.errors || [];
             const message =

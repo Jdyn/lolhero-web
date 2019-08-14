@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import Link from 'next/link';
-import Button from '../../../Shared/Button';
+import Button from '../../Button';
 
-const propTypes = {};
+const propTypes = {
+  handleAuth: PropTypes.func.isRequired,
+  modalRef: PropTypes.shape({}).isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  updateModal: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  session: PropTypes.shape({}).isRequired
+};
 
 const templates = {
   profile: {
@@ -21,18 +28,18 @@ const templates = {
 
 const AuthProfile = props => {
   const { modalRef, updateModal, session, isOpen, type, handleAuth } = props;
-  const classes = useStyes(props);
+  const classes = useStyles(props);
 
   const logout = () => {
-    handleAuth({}, 'logout');
+    handleAuth('logout', {});
   };
 
   return (
     <div className={classes.root} ref={modalRef}>
-      <div className={classes.container} onClick={() => updateModal('profile')}>
+      <button className={classes.container} type="button" onClick={() => updateModal('profile')}>
         <div className={classes.wrapper}>{session.user.username}</div>
         <div className={classes.portrait} />
-      </div>
+      </button>
       {isOpen ? (
         <div className={classes.modal}>
           {type === 'profile' && (
@@ -51,12 +58,11 @@ const AuthProfile = props => {
   );
 };
 
-const useStyes = createUseStyles(theme => ({
+const useStyles = createUseStyles(theme => ({
   root: {
     margin: '-20px 0 -22px auto',
     position: 'relative',
     height: 'auto',
-    // width: '100%',
     maxWidth: '250px',
     '@media (min-width: 650px)': {
       flex: 1,
@@ -74,6 +80,9 @@ const useStyes = createUseStyles(theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'transparent',
     cursor: 'pointer',
     maxWidth: '200px',
     height: '100%',

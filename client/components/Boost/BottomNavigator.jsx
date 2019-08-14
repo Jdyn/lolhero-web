@@ -30,8 +30,6 @@ const BottomNavigator = props => {
   const theme = useTheme();
   const [detailsForm, setDetailsForm] = useState({});
 
-  console.log(detailsForm);
-
   const updateStage = stage => {
     if (stage === 3) {
       submitOrder();

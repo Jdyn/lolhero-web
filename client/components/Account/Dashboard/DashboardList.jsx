@@ -10,8 +10,6 @@ const DashboardCards = props => {
   const { orders, selectedFilter } = props;
   const classes = useStyles();
 
-  console.log(orders);
-
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -27,8 +25,8 @@ const DashboardCards = props => {
             </thead>
             <tbody>
               {orders[selectedFilter].orders.map(order => (
-                <tr key={orders.title} onClick={() => console.log(order)}>
-                  <td>{order.tracking_id}</td>
+                <tr key={order.trackingId} onClick={() => console.log(order)}>
+                  <td>{order.trackingId}</td>
                   <td>{order.title}</td>
                   <td>ok</td>
                   <td>{order.status}</td>
