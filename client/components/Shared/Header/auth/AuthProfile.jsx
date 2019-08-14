@@ -84,9 +84,9 @@ const useStyles = createUseStyles(theme => ({
     outline: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
-    maxWidth: '200px',
+    maxWidth: '250px',
     height: '100%',
-    margin: '0px 25px',
+    padding: '0px 25px',
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
       flexGrow: 1

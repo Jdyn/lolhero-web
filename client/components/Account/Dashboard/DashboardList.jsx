@@ -14,26 +14,28 @@ const DashboardCards = props => {
     <div className={classes.root}>
       <div className={classes.container}>
         {orders && (
-          <table className={classes.table}>
-            <thead>
-              <tr>
-                <th>Tracking ID</th>
-                <th>Service</th>
-                <th>Purchase Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders[selectedFilter].orders.map(order => (
-                <tr key={order.trackingId} onClick={() => console.log(order)}>
-                  <td>{order.trackingId}</td>
-                  <td>{order.title}</td>
-                  <td>ok</td>
-                  <td>{order.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className={classes.grid}>
+            {orders[selectedFilter].orders.map(order => (
+              <div className={classes.gridItem} key={Math.random()}>
+                <span>
+                  <div>Serivce:</div>
+                  <b>{order.title}</b>
+                </span>
+                <span>
+                  <div>Tracking ID:</div>
+                  <b>{order.trackingId}</b>
+                </span>
+                <span>
+                  <div>Status:</div>
+                  <b>{order.status}</b>
+                </span>
+                <span>
+                  <div>Purchase Date:</div>
+                  <b>{new Date(order.createdAt).toUTCString()}</b>
+                </span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -48,40 +50,47 @@ useStyles = createUseStyles(theme => ({
     margin: '0 auto'
   },
   container: {
-    height: '500px',
     display: 'flex',
+    position: 'relative',
+    padding: '15px 15px',
+    height: '650px',
     backgroundColor: theme.quartinary,
     borderRadius: 24,
-    boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)',
-    padding: '30px 20px'
+    boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)'
   },
-  table: {
-    display: 'table',
+  grid: {
+    display: 'grid',
     width: '100%',
-    borderCollapse: 'collapse',
-    // height: '100%',
     color: theme.white,
-    '& thead': {
-      display: 'table-header-group',
-      textAlign: 'left',
-      '& tr': {
-        '& th': {
-          padding: '15px',
-          fontSize: 14
-        }
-      }
-    },
-    '& tbody': {
-      '& tr': {
-        padding: "15px 0",
-        borderCollapse: 'collapse',
-        transitionDuration: '.2s',
-        cursor: 'pointer',
-        '&:hover': {
-          boxShadow: '0px 2px 2px 0px rgba(0,0,0,.1)'
-        },
-        '& td': {
-          padding: '15px'
+    overflowY: 'auto',
+    padding: '15px',
+    gridTemplateColumns: '1fr'
+  },
+  gridItem: {
+    marginBottom: '30px',
+    backgroundColor: theme.secondary,
+    padding: '20px',
+    borderRadius: 12,
+    '& span': {
+      display: 'flex',
+      marginBottom: '10px',
+      flexDirection: 'column',
+      textAlign: 'center',
+      '@media (min-width: 650px)': {
+        flexDirection: 'row'
+      },
+      '& div': {
+        textAlign: 'center',
+        margin: '10px 0',
+        color: theme.grey
+      },
+      '& b': {
+        display: 'flex',
+        flexGrow: 1,
+        justifyContent: 'center',
+        '@media (min-width: 650px)': {
+          marginLeft: '5px',
+          justifyContent: 'flex-end'
         }
       }
     }
