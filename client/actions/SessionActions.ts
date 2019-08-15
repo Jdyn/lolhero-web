@@ -109,6 +109,7 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
   Api.post('/users', form)
     .then(
       (response: { ok: boolean; errors: object; result: { user: { token: string } } }): void => {
+        console.log(response);
         if (response.ok) {
           const { user } = response.result;
           setCurrentSession(user);
