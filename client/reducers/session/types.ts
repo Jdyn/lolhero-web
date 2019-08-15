@@ -30,19 +30,19 @@ export interface SessionState {
 interface SetLogin {
   type: typeof actions.LOG_IN;
   user: User;
-  isLoggedIn: never;
+  isLoggedIn?: never;
 }
 
 interface SetLogout {
   type: typeof actions.LOG_OUT;
-  user: never;
-  isLoggedIn: never;
+  user?: never;
+  isLoggedIn?: never;
 }
 
 interface SetSignup {
   type: typeof actions.SIGN_UP;
-  user: never;
-  isLoggedIn: never;
+  user?: never;
+  isLoggedIn?: never;
 }
 
 interface SetRefresh {
