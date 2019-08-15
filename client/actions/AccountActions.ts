@@ -1,4 +1,5 @@
 import { actions, requests, AccountActions, Orders } from '../reducers/account/types';
+import { AppState } from '../reducers';
 import { setRequest } from './RequestActions';
 import Api from '../services/api';
 
@@ -7,7 +8,7 @@ export const setAccountOrders = (orders: Orders): AccountActions => ({
   orders
 });
 
-export const fetchAccountOrders = (): ((dispatch, getState) => void) => (
+export const fetchAccountOrders = (): ((dispatch: Function, getState: () => AppState) => void) => (
   dispatch,
   getState
 ): void => {

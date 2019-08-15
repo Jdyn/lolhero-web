@@ -10,5 +10,5 @@
  * @return {Object}
  */
 export default (...keys) => {
-  return keys.reduce((obj, key) => ({ ...obj, [key]: key }), {})
-}
+  return keys.reduce((obj, key) => ({ ...obj, [key]: key }), {});
+};

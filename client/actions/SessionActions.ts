@@ -3,6 +3,7 @@ import Router from 'next/router';
 import Api from '../services/api';
 import keyMirror from '../util/keyMirror';
 import { setRequest } from './RequestActions';
+import { AppState } from '../reducers';
 
 export const actions = keyMirror('LOG_IN', 'SIGN_UP', 'LOG_OUT', 'REFRESH');
 export const requests = keyMirror('AUTHENTICATE');
@@ -19,7 +20,10 @@ const setLogin = (user: object): object => ({
   user
 });
 
-const login = (form: object): ((dispatch, getState) => void) => (dispatch, getState): void => {
+const login = (form: object): ((dispatch: Function, getState: () => AppState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
@@ -61,7 +65,10 @@ const setLogout = (): object => ({
   type: actions.LOG_OUT
 });
 
-const logout = (): ((dispatch, getState) => void) => (dispatch, getState): void => {
+const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
@@ -91,7 +98,7 @@ const setSignup = (user: object): object => ({
   user
 });
 
-const signup = (form: object): Function => (dispatch, getState): void => {
+const signup = (form: object): Function => (dispatch: Function, getState: () => AppState): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
@@ -129,9 +136,7 @@ const signup = (form: object): Function => (dispatch, getState): void => {
     });
 };
 
-export const handleAuth = (type: string, form: object): ((dispatch) => void) => (
-  dispatch
-): void => {
+export const handleAuth = (type: string, form: object) => (dispatch: Function): void => {
   switch (type) {
     case 'login':
       dispatch(login(form));
@@ -152,7 +157,10 @@ const setRefresh = (update: object): object => ({
   update
 });
 
-export const authenticate = (): ((dispatch, getState) => void) => (dispatch, getState): void => {
+export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = requests.AUTHENTICATE;
   const requestInProcess = getState().request[requestType] || {};
 
