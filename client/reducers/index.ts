@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import boost from './BoostReducers';
 import request from './RequestReducers';
-import session from './SessionReducers';
+import session from './session/session';
 import account from './account';
 
 const root = combineReducers({

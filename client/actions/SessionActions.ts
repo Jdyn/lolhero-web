@@ -1,12 +1,9 @@
 import cookie from 'js-cookie';
 import Router from 'next/router';
 import Api from '../services/api';
-import keyMirror from '../util/keyMirror';
 import { setRequest } from './RequestActions';
 import { AppState } from '../reducers';
-
-export const actions = keyMirror('LOG_IN', 'SIGN_UP', 'LOG_OUT', 'REFRESH');
-export const requests = keyMirror('AUTHENTICATE');
+import { actions, requests, SessionActionTypes, User } from '../reducers/session/types';
 
 const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
@@ -15,7 +12,7 @@ const setCurrentSession = (user: { token: string }): void => {
   }
 };
 
-const setLogin = (user: object): object => ({
+const setLogin = (user: User): SessionActionTypes => ({
   type: actions.LOG_IN,
   user
 });
@@ -61,7 +58,7 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
     });
 };
 
-const setLogout = (): object => ({
+const setLogout = (): SessionActionTypes => ({
   type: actions.LOG_OUT
 });
 
@@ -93,7 +90,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
     });
 };
 
-const setSignup = (user: object): object => ({
+const setSignup = (user: User): SessionActionTypes => ({
   type: actions.SIGN_UP,
   user
 });
@@ -107,26 +104,23 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
   dispatch(setRequest(true, requestType));
 
   Api.post('/users', form)
-    .then(
-      (response: { ok: boolean; errors: object; result: { user: { token: string } } }): void => {
-        console.log(response);
-        if (response.ok) {
-          const { user } = response.result;
-          setCurrentSession(user);
-          dispatch(setSignup(user));
-          dispatch(setRequest(false, requestType));
-        } else {
-          const { errors } = response;
+    .then((response): void => {
+      if (response.ok) {
+        const { user } = response.result;
+        setCurrentSession(user);
+        dispatch(setSignup(user));
+        dispatch(setRequest(false, requestType));
+      } else {
+        const { errors } = response;
 
-          dispatch(
-            setRequest(false, requestType, {
-              errored: true,
-              error: errors || {}
-            })
-          );
-        }
+        dispatch(
+          setRequest(false, requestType, {
+            errored: true,
+            error: errors || {}
+          })
+        );
       }
-    )
+    })
     .catch((): void => {
       dispatch(
         setRequest(false, requestType, {
@@ -137,7 +131,9 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
     });
 };
 
-export const handleAuth = (type: string, form: object) => (dispatch: Function): void => {
+export const handleAuth = (type: string, form: object): ((dispatch: Function) => void) => (
+  dispatch
+): void => {
   switch (type) {
     case 'login':
       dispatch(login(form));
@@ -153,9 +149,10 @@ export const handleAuth = (type: string, form: object) => (dispatch: Function): 
   }
 };
 
-const setRefresh = (update: object): object => ({
+const setRefresh = (update: { user: User; isLoggedIn: boolean }): SessionActionTypes => ({
   type: actions.REFRESH,
-  update
+  user: update.user,
+  isLoggedIn: update.isLoggedIn
 });
 
 export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
@@ -175,22 +172,26 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
         const { user } = response.result;
         setCurrentSession(user);
 
-        const update = {
+        const payload = {
           isLoggedIn: true,
           user
         };
 
-        dispatch(setRefresh(update));
+        dispatch(setRefresh(payload));
         dispatch(setRequest(false, requestType));
       } else {
         cookie.remove('token');
 
-        const update = {
+        const payload = {
           isLoggedIn: false,
-          user: {}
+          user: {
+            email: null,
+            token: null,
+            username: null
+          }
         };
 
-        dispatch(setRefresh(update));
+        dispatch(setRefresh(payload));
         dispatch(setRequest(false, requestType));
       }
     })
@@ -199,7 +200,11 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
 
       const update = {
         isLoggedIn: false,
-        user: {}
+        user: {
+          email: null,
+          token: null,
+          username: null
+        }
       };
 
       dispatch(setRefresh(update));

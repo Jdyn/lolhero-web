@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 import formatTime from '../../../util/formatTime';
 
 const propTypes = {};
@@ -10,14 +10,20 @@ let useStyles;
 const DashboardCards = props => {
   const { orders, selectedFilter } = props;
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
         {orders && (
           <div className={classes.grid}>
-            {orders[selectedFilter].orders.map(order => (
-              <div type="button" className={classes.gridItem} key={order.trackingId}>
+            {orders[selectedFilter].orders.map((order, index) => (
+              <div
+                type="button"
+                className={classes.gridItem}
+                key={order.trackingId}
+                style={{ backgroundColor: index % 2 === 0 ? theme.tertiary : theme.primary }}
+              >
                 <span>{order.trackingId}</span>
                 <span>{order.title}</span>
                 <span>{order.status}</span>
@@ -55,7 +61,7 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     minWidth: 0,
     minHeight: 0,
-    color: theme.white,
+    color: theme.secondaryWhite,
     // overflowY: 'auto',
     padding: '0px 10px',
     gridTemplateColumns: '1fr',
@@ -65,20 +71,20 @@ useStyles = createUseStyles(theme => ({
     display: 'inline-grid',
     gridTemplateColumns: '1fr 3fr 0.5fr 1fr',
     // gridTemplateRows: 'min-content',
-    marginBottom: '5px',
+    // marginBottom: '5px',
     // backgroundColor: theme.secondary,
-    padding: '15px 0px',
-    borderRadius: 12,
+    padding: '15px 10px',
+    borderRadius: 8,
     cursor: 'pointer',
     transitionDuration: '.2s',
     '& span': {
       padding: '5px',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     },
     '&:hover': {
-      transform: 'translateY(2px)',
+      // transform: 'translateY(2px)',
       boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)'
     }
   }

@@ -28,4 +28,9 @@ interface FetchAccountOrders {
   orders: Orders;
 }
 
-export type AccountActions = FetchAccountOrders;
+interface Test {
+  type: string;
+  orders: Orders;
+}
+
+export type AccountActions = FetchAccountOrders | Test;

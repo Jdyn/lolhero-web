@@ -18,10 +18,7 @@ const templates = {
     type: 'profile',
     title: 'Profile',
     fields: {},
-    items: [
-      { title: 'My Dashboard', link: '/account/dashboard' },
-      { title: 'My Orders', link: '/account/orders' }
-    ],
+    items: [{ title: 'My Dashboard', link: '/account/dashboard' }],
     logout: 'log out'
   }
 };
@@ -86,7 +83,7 @@ const useStyles = createUseStyles(theme => ({
     cursor: 'pointer',
     maxWidth: '250px',
     height: '100%',
-    padding: '0px 25px',
+    margin: '0px 25px',
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
       flexGrow: 1
