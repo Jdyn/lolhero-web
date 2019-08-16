@@ -2,26 +2,28 @@ export default (order, pricing) => {
   const basePrice = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
 
-    const { collection_id, start_rank, desired_rank, desired_amount, collection_name } = order;
+    const { collectionId, startRank, desiredRank, desiredAmount, collectionName } = order;
 
-    if (!pricing[collection_id]) return currentPrice;
-    // if (Object.keys(pricing[collection_id]).length === 0) return currentPrice;
+    if (!pricing[collectionId]) return currentPrice;
+    // if (Object.keys(pricing[collectionId]).length === 0) return currentPrice;
 
-    if (collection_name === 'Division Boost') {
-      for (var i = start_rank; i < desired_rank; i++) {
-        currentPrice += pricing[collection_id][i];
+    let total = currentPrice;
+
+    if (collectionName === 'Division Boost') {
+      for (let i = startRank; i < desiredRank; i += 1) {
+        total += pricing[collectionId][i];
       }
     } else {
-      const price = pricing[collection_id][start_rank];
-      currentPrice = price * desired_amount;
+      const price = pricing[collectionId][startRank];
+      total = price * desiredAmount;
     }
 
-    return currentPrice;
+    return total;
   };
 
   const expressOrder = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
-    if (!order.is_express) return currentPrice;
+    if (!order.isExpress) return currentPrice;
     if (!pricing.modifiers) return currentPrice;
 
     const { express } = pricing.modifiers;
@@ -35,7 +37,7 @@ export default (order, pricing) => {
 
   const incognitoOrder = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
-    if (!order.is_incognito) return currentPrice;
+    if (!order.isIncognito) return currentPrice;
     if (!pricing.modifiers) return currentPrice;
 
     const { incognito } = pricing.modifiers;
@@ -49,7 +51,7 @@ export default (order, pricing) => {
 
   const unrestrictedOrder = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
-    if (!order.is_unrestricted) return currentPrice;
+    if (!order.isUnrestricted) return currentPrice;
     if (!pricing.modifiers) return currentPrice;
 
     const { unrestricted } = pricing.modifiers;
@@ -64,11 +66,11 @@ export default (order, pricing) => {
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
     if (Object.keys(pricing.lp).length === 0) return currentPrice;
-    if (!order.collection_name === 'Division Boost') return currentPrice;
+    if (!order.collectionName === 'Division Boost') return currentPrice;
 
-    const { start_rank, lp, collection_id } = order;
+    const { startRank, lp, collectionId } = order;
     const lpPrice = pricing.lp[lp];
-    const base = pricing[collection_id][start_rank];
+    const base = pricing[collectionId][startRank];
 
     if (lp === 100) {
       return currentPrice;

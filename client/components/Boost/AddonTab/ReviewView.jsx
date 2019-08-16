@@ -12,27 +12,18 @@ const propTypes = {
 
 const ReviewView = props => {
   const { currentOrder, submitOrderRequest } = props;
-  const classes = useStyes();
-
-  const ranksObject = useMemo(() =>
-    [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {})
-  );
+  const classes = useStyles();
 
   const formatTitle = () => {
-    const { boost_type, start_rank, desired_rank, lp, desired_amount } = currentOrder;
+    const { boostType, startRank, desiredRank, lp, desiredAmount, collectionName } = currentOrder;
 
-    const startRank = ranksObject[start_rank] || { title: 'TBD' };
-    const desiredRank = ranksObject[desired_rank] || { title: 'TBD' };
-
-    switch (currentOrder.collection_name) {
+    switch (collectionName) {
       case 'Division Boost':
-        return `${boost_type.toUpperCase()} | ${currentOrder.collection_name} - From ${
-          startRank.title
-        } (${formatLP(lp)} LP) to ${desiredRank.title}`;
+        return `${boostType.toUpperCase()} | ${collectionName} - From ${startRank ||
+          'TBD'} (${formatLP(lp)} LP) to ${desiredRank || 'TBD'}`;
       default:
-        return `${boost_type.toUpperCase()} | ${desired_amount} ${currentOrder.collection_name} - ${
-          startRank.title
-        }`;
+        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${startRank ||
+          'TBD'}`;
     }
   };
 
@@ -43,20 +34,20 @@ const ReviewView = props => {
         <h2>{formatTitle()}</h2>
         <h3>Details</h3>
 
-        {currentOrder.collection_name === 'Division Boost' && (
+        {currentOrder.collectionName === 'Division Boost' && (
           <span>
             LP: <b>{formatLP(currentOrder.lp)}</b>
           </span>
         )}
 
         <span>
-          Type: <b>{currentOrder.boost_type}</b>
+          Type: <b>{currentOrder.boostType}</b>
         </span>
         <span>
           Server: <b>{currentOrder.server}</b>
         </span>
         <span>
-          Boost: <b>{currentOrder.collection_name}</b>
+          Boost: <b>{currentOrder.collectionName}</b>
         </span>
         <span>
           Queue:
@@ -77,7 +68,7 @@ const ReviewView = props => {
   );
 };
 
-const useStyes = createUseStyles(theme => ({
+const useStyles = createUseStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',

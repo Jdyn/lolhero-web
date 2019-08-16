@@ -20,18 +20,18 @@ export default {
         description:
           'Ensures your order is heavily prioritized over others and is completed sooner. Costs +20%',
         title: 'Express',
-        type: 'is_express'
+        type: 'isExpress'
       },
       {
         description: 'Appear as if you are offline to everyone on your friends list. Costs +5%',
         title: 'Incognito',
-        type: 'is_incognito'
+        type: 'isIncognito'
       },
       {
         description:
           'Enable us to play any champion or role on your account during the service. Discount -10%',
         title: 'Unrestricted',
-        type: 'is_unrestricted'
+        type: 'isUnrestricted'
       }
     ]
   }

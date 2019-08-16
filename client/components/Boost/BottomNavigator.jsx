@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 import { formatLP } from '../../util/Helpers';
-import Router from 'next/Router';
 
 const propTypes = {
   boost: PropTypes.object.isRequired,
@@ -38,7 +37,12 @@ const BottomNavigator = props => {
         if ((valid.details && valid.payment) || (session.isLoggedIn && valid.payment)) {
           braintreeInstance.requestPaymentMethod((error, payload) => {
             if (!error) {
-              updateOrder(payload.nonce);
+              updateOrder({
+                boost: {
+                  nonce: payload.nonce,
+                  email: detailsForm['details-email'] || session.user.email
+                }
+              });
               setStage(prev => prev + 1);
             }
           });

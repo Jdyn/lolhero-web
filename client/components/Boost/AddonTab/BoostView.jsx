@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import addons from '../../../lib/addonContent';
 import Toggle from '../../Shared/Toggle';
 import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const propTypes = {
   updateOrder: PropTypes.func.isRequired,
@@ -13,26 +13,19 @@ const BoostView = props => {
   const { currentOrder, updateOrder } = props;
 
   const classes = useStyles();
+  const theme = useTheme();
 
   useEffect(() => {
-    if (currentOrder.start_rank % 4 === 0) {
-      if (currentOrder.promos.length !== 5) {
-        let newPromos = [...currentOrder.promos];
-        for (let i = newPromos.length; i < 5; i++) {
-          newPromos.push('X');
-        }
-
-        updateOrder({ promos: newPromos });
+    if (currentOrder.lp === 100) {
+      if (currentOrder.startRank % 4 === 0) {
+        updateOrder({ promos: ['X', 'X', 'X', 'X'] });
+      } else {
+        updateOrder({ promos: ['X', 'X'] });
       }
-    } else if (currentOrder.promos.length !== 3) {
-      let newPromos = [...currentOrder.promos];
-      for (let i = newPromos.length; i > 3; i--) {
-        newPromos.shift();
-      }
-
-      updateOrder({ promos: newPromos });
+    } else {
+      updateOrder({ promos: null });
     }
-  }, [currentOrder.start_rank]);
+  }, [currentOrder.startRank, currentOrder.lp]);
 
   const handlePromoChange = index => {
     let newPromos = [...currentOrder.promos];
@@ -53,6 +46,21 @@ const BoostView = props => {
     }
 
     updateOrder({ promos: newPromos });
+  };
+
+  const promoColor = promo => {
+    switch (promo) {
+      case 'X':
+        return theme.secondaryWhite;
+      case 'W':
+        return 'green';
+
+      case 'L':
+        return 'red';
+
+      default:
+        return theme.secondaryWhite;
+    }
   };
 
   return (
@@ -86,7 +94,7 @@ const BoostView = props => {
           </Toggle>
         ))}
       </div>
-      {currentOrder.collection_name === 'Division Boost' ? (
+      {currentOrder.collectionName === 'Division Boost' && (
         <div className={classes.wrapper}>
           <h2>League Points</h2>
           <p>How much LP do you have? We adjust the price based on the amount.</p>
@@ -105,21 +113,21 @@ const BoostView = props => {
           </div>
           {currentOrder.lp === 100 && (
             <div className={classes.promos}>
-              {currentOrder.promos.map((promo, index) => (
-                <button
-                  key={index}
-                  onClick={() => handlePromoChange(index)}
-                  className={classes.promo}
-                  styles={{}}
-                >
-                  {promo}
-                </button>
-              ))}
+              {currentOrder.promos &&
+                currentOrder.promos.map((promo, index) => (
+                  <button
+                    type="button"
+                    key={index}
+                    onClick={() => handlePromoChange(index)}
+                    className={classes.promo}
+                    style={{ color: promoColor(promo) }}
+                  >
+                    {promo}
+                  </button>
+                ))}
             </div>
           )}
         </div>
-      ) : (
-        <div />
       )}
     </>
   );
@@ -166,10 +174,11 @@ const useStyles = createUseStyles(theme => ({
     border: 'none',
     outline: 'none',
     display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'center',
     margin: '5px',
-    color: theme.white,
-    border: '2px solid #999',
-    backgroundColor: theme.quartinary,
+    fontWeight: 700,
+    backgroundColor: theme.primary,
     transitionDuration: '.2s',
     '&:hover': {
       transform: 'translateY(-2px)'

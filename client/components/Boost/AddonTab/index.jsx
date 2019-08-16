@@ -51,16 +51,6 @@ const AddonTab = props => {
 
   return (
     <div className={classes.root}>
-      {/* <div className={classes.container}>
-        <Filter
-          extended
-          filters={filters}
-          untargetableIndices={boost.paymentMethodIsSelected ? [] : [3]}
-          selectedIndex={currentStage}
-          onClick={index => setStage(index)}
-        />
-      </div> */}
-
       {Object.keys(views).map((view, index) => {
         return (
           <div

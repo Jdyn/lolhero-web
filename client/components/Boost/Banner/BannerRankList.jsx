@@ -20,13 +20,13 @@ const BannerRankList = props => {
   const flatRanks = useMemo(() => flatten([...ranks]));
 
   const validateDisabled = itemIndex => {
-    if (currentOrder.collection_name === 'Division Boost') {
+    if (currentOrder.collectionName === 'Division Boost') {
       if (!isStartRank) {
-        if (currentOrder.start_rank !== null) {
-          return itemIndex < currentOrder.start_rank + 1;
+        if (currentOrder.startRank !== null) {
+          return itemIndex < currentOrder.startRank + 1;
         }
-      } else if (currentOrder.desired_rank !== null) {
-        return itemIndex > currentOrder.desired_rank - 1;
+      } else if (currentOrder.desiredRank !== null) {
+        return itemIndex > currentOrder.desiredRank - 1;
       } else {
         return false;
       }

@@ -1,12 +1,12 @@
 export default {
-  authorization: "sandbox_7brmzhhx_cfcsbff65qmxzrgf",
-  container: "#dropin-container",
+  authorization: 'sandbox_7brmzhhx_cfcsbff65qmxzrgf',
+  container: '#dropin-container',
   paypal: {
-    flow: "vault",
+    flow: 'vault',
     buttonStyle: {
-      color: "blue",
-      shape: "rect",
-      size: "responsive"
+      color: 'blue',
+      shape: 'rect',
+      size: 'responsive'
     }
   },
   venmo: {

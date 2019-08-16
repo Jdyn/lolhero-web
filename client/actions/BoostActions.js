@@ -42,11 +42,10 @@ const setBoost = update => ({
 });
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (typeof newUpdate === 'string') {
+  if (newUpdate.boost) {
     dispatch(
       setBoost({
-        boost: { paymentMethodIsSelected: true },
-        order: { nonce: newUpdate }
+        order: { ...newUpdate.boost }
       })
     );
     return;
@@ -63,12 +62,14 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
     );
   }
 
-  const order = { ...getState().boost.order.details, ...newUpdate };
-  const pricing = getState().boost.pricing[order.boost_type];
-  console.log(pricing)
+  let order = { ...getState().boost.order.details, ...newUpdate };
+  const pricing = getState().boost.pricing[order.boostType];
+
   const price = calculatePrice(order, pricing);
 
-  console.log(price);
+  if (order.lp !== 100) {
+    order.promos = null;
+  }
 
   dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
@@ -104,6 +105,7 @@ export const submitOrder = () => (dispatch, getState) => {
             dispatch(setRequest(false, requestType));
             Router.push(response.result.success_url);
           } else {
+            console.log(response);
             const errors = response.errors || [];
             const message =
               errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
@@ -112,6 +114,7 @@ export const submitOrder = () => (dispatch, getState) => {
           }
         })
         .catch(error => {
+          console.log(error);
           dispatchError('Error placing order. Try again later or contact support.');
           Sentry.captureException(error);
         });
@@ -120,29 +123,32 @@ export const submitOrder = () => (dispatch, getState) => {
 };
 
 const validateOrder = (order, dispatchError) => {
-  const { collection_name, start_rank, desired_rank, desired_amount } = order.details;
+  const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
 
-  if (!start_rank) return dispatchError('You must have a starting rank.');
+  if (!startRank) return dispatchError('You must have a starting rank.');
 
-  if (start_rank > desired_rank)
+  if (startRank > desiredRank)
     return dispatchError('Your starting rank cannot be greater than your desired rank.');
 
-  if (collection_name === 'Division Boost') {
-    if (!desired_rank) return dispatchError('You must have a desired rank.');
+  if (collectionName === 'Division Boost') {
+    if (!desiredRank) return dispatchError('You must have a desired rank.');
   } else {
-    if (!desired_amount) return dispatchError('You must have a desired amount.');
+    if (!desiredAmount) return dispatchError('You must have a desired amount.');
   }
 
   return true;
 };
 
 const trimOrder = order => {
-  if (!order.details.collection_name) return dispatchError('Oops');
+  if (!order.details.collectionName) return dispatchError('Oops');
 
-  if (order.details.collection_name === 'Division Boost') {
-    delete order.details.desired_amount;
+  if (order.lp !== 99) {
+  }
+
+  if (order.details.collectionName === 'Division Boost') {
+    delete order.details.desiredAmount;
   } else {
-    delete order.details.desired_rank;
+    delete order.details.desiredRank;
   }
 
   return order;

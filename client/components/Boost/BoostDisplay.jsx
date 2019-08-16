@@ -28,13 +28,13 @@ const BoostDisplay = props => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
+              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="picker"
-              rank={currentOrder.desired_rank ? ranksObject[currentOrder.desired_rank] : {}}
+              rank={currentOrder.desiredRank ? ranksObject[currentOrder.desiredRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -46,13 +46,13 @@ const BoostDisplay = props => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
+              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="slider"
-              rank={currentOrder.start_rank ? ranksObject[currentOrder.start_rank] : {}}
+              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -63,7 +63,7 @@ const BoostDisplay = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>{renderContent(currentOrder.collection_name)}</div>
+      <div className={classes.container}>{renderContent(currentOrder.collectionName)}</div>
       {submitOrderRequest.errored && (
         <div className={classes.error}>
           <span>Error: {submitOrderRequest.error}</span>
@@ -97,7 +97,7 @@ useStyles = createUseStyles(theme => ({
     borderRadius: '8px 8px 0 0',
     backgroundColor: theme.red,
     padding: '8px 20px 8px 20px',
-    margin: '10px auto 0 auto',
+    margin: '10px 15px 0 15px',
     border: '2px solid #f44336'
   }
 }));

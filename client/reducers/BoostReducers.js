@@ -1,24 +1,24 @@
-import { actions } from "../actions/BoostActions";
+import { actions } from '../actions/BoostActions';
 
 const initialState = {
   price: null,
   stage: 0,
-  paymentMethodIsSelected: false,
   order: {
-    type: "boost",
+    type: 'boost',
     nonce: null,
+    email: null,
     details: {
       lp: 20,
-      queue: "solo",
-      server: "NA",
-      desired_amount: 5,
-      boost_type: "solo",
-      collection_id: 1,
-      collection_name: "Division Boost",
-      is_express: false,
-      is_incognito: false,
-      is_unrestricted: false,
-      promos: ["X", "X", "X"]
+      queue: 'solo',
+      server: 'NA',
+      desiredAmount: 5,
+      boostType: 'solo',
+      collectionId: 1,
+      collectionName: 'Division Boost',
+      isExpress: false,
+      isIncognito: false,
+      isUnrestricted: false,
+      promos: null
     }
   },
   pricing: {
