@@ -100,6 +100,20 @@ export default (order, pricing) => {
     return currentPrice - Math.round(difference * 100) / 100;
   };
 
+  const calculateQueues = currentPrice => {
+    if (Object.keys(pricing.queues).length === 0) return currentPrice;
+
+    const { queue } = order;
+
+    const queuePrice = pricing.queues[queue];
+
+    if (queuePrice) {
+      return currentPrice * queuePrice;
+    }
+
+    return currentPrice;
+  };
+
   const calculateOrder = () => {
     let total = 0;
 
@@ -109,6 +123,7 @@ export default (order, pricing) => {
     total = expressOrder(total);
     total = incognitoOrder(total);
     total = unrestrictedOrder(total);
+    total = calculateQueues(total);
     total = calculateLP(total);
 
     return Math.round(total * 100) / 100;

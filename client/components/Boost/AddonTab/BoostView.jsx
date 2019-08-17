@@ -33,21 +33,6 @@ const BoostView = props => {
     }
   };
 
-  const promoColor = promo => {
-    switch (promo) {
-      case 'X':
-        return theme.secondaryWhite;
-      case 'W':
-        return 'green';
-
-      case 'L':
-        return 'red';
-
-      default:
-        return theme.secondaryWhite;
-    }
-  };
-
   const handleLpChange = selectedLp => {
     if (selectedLp !== currentOrder.lp) {
       if (selectedLp === 100) {
@@ -62,6 +47,44 @@ const BoostView = props => {
         updateOrder({ lp: selectedLp });
       }
     }
+  };
+
+  const validateDisabled = type => {
+    let maxWins;
+    let maxLosses;
+
+    if (currentOrder.startRank % 4 === 0) {
+      maxWins = 2;
+      maxLosses = 2;
+    } else {
+      maxWins = 1;
+      maxLosses = 1;
+    }
+
+    let totalWins = 0;
+    let totalLosses = 0;
+
+    currentOrder.promos.forEach(promo => {
+      if (promo === 'W') {
+        totalWins += 1;
+      } else if (promo === 'L') {
+        totalLosses += 1;
+      }
+    });
+
+    if (totalWins >= maxWins) {
+      if (type === 'W') {
+        return true;
+      }
+    }
+
+    if (totalLosses >= maxLosses) {
+      if (type === 'L') {
+        return true;
+      }
+    }
+
+    return false;
   };
 
   return (
@@ -120,15 +143,16 @@ const BoostView = props => {
                 <>
                   <div className={classes.promoSection}>
                     <span>-</span>
-                    <span>Loss</span>
                     <span>Win</span>
+                    <span>Loss</span>
                   </div>
                   {currentOrder.promos.map((promo, index) => (
                     <div className={classes.promoSection}>
-                      {['X', 'L', 'W'].map(type => (
+                      {['X', 'W', 'L'].map(type => (
                         <button
                           className={classes.promo}
                           type="button"
+                          disabled={validateDisabled(type)}
                           style={{ backgroundColor: promo === type ? theme.accent : theme.primary }}
                           onClick={() => handlePromoChange(type, index)}
                         />
