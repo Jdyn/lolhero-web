@@ -1,6 +1,6 @@
-import React from "react";
-import { createUseStyles, useTheme } from "react-jss";
-import PropTypes from "prop-types";
+import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
+import PropTypes from 'prop-types';
 
 const propTypes = {
   children: PropTypes.node,
@@ -14,10 +14,11 @@ const Toggle = ({ children, onClick, ...props }) => {
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={classes.button}
       style={{
-        borderColor: props.isSelected ? theme.accent : theme.grey,
+        // backgroundColor: props.isSelected ? theme.accent : theme.primary,
         color: props.isSelected ? theme.accent : theme.white
       }}
     >
@@ -28,32 +29,34 @@ const Toggle = ({ children, onClick, ...props }) => {
 
 Toggle.propTypes = propTypes;
 Toggle.defaultProps = {
-  width: "100%",
-  height: "auto",
-  margin: "6px 0"
+  width: '100%',
+  height: 'auto',
+  margin: '6px 0',
+  padding: '10px',
+  borderRadius: '14px'
 };
 
 const useStyles = createUseStyles(theme => ({
   button: props => ({
-    cursor: "pointer",
+    cursor: 'pointer',
     width: props.width,
     height: props.height,
-    outline: "none",
+    outline: 'none',
     border: `none`,
     backgroundColor: theme.primary,
-    color: props.isSelected ? theme.accent : theme.white,
+    color: theme.white, //props.isSelected ? theme.accent : theme.white,
     fontWeight: 700,
     fontSize: 13,
-    padding: "10px",
-    borderRadius: 14,
-    letterSpacing: ".025em",
+    padding: props.padding,
+    borderRadius: props.borderRadius,
+    letterSpacing: '.025em',
     margin: props.margin,
-    transitionDuration: ".15s",
-    "&:hover": {
-      transform: "translateY(-2px)"
+    transitionDuration: '.15s',
+    '&:hover': {
+      transform: 'translateY(-2px)'
     },
-    "&:active": {
-      transform: "translateY(2px)"
+    '&:active': {
+      transform: 'translateY(2px)'
     }
   })
 }));

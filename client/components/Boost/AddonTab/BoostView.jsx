@@ -22,30 +22,15 @@ const BoostView = props => {
       } else {
         updateOrder({ promos: ['X', 'X'] });
       }
-    } else {
-      updateOrder({ promos: null });
     }
-  }, [currentOrder.startRank, currentOrder.lp]);
+  }, [currentOrder.startRank]);
 
-  const handlePromoChange = index => {
-    let newPromos = [...currentOrder.promos];
-
-    switch (newPromos[index]) {
-      case 'X':
-        newPromos[index] = 'W';
-        break;
-      case 'W':
-        newPromos[index] = 'L';
-        break;
-      case 'L':
-        newPromos[index] = 'X';
-        break;
-      default:
-        newPromos[index] = 'X';
-        break;
+  const handlePromoChange = (type, index) => {
+    const newPromos = [...currentOrder.promos];
+    if (type !== newPromos[index]) {
+      newPromos[index] = type;
+      updateOrder({ promos: newPromos });
     }
-
-    updateOrder({ promos: newPromos });
   };
 
   const promoColor = promo => {
@@ -60,6 +45,22 @@ const BoostView = props => {
 
       default:
         return theme.secondaryWhite;
+    }
+  };
+
+  const handleLpChange = selectedLp => {
+    if (selectedLp !== currentOrder.lp) {
+      if (selectedLp === 100) {
+        if (currentOrder.startRank % 4 === 0) {
+          updateOrder({ lp: selectedLp, promos: ['X', 'X', 'X', 'X'] });
+        } else {
+          updateOrder({ lp: selectedLp, promos: ['X', 'X'] });
+        }
+      } else if (currentOrder.promos !== null) {
+        updateOrder({ lp: selectedLp, promos: null });
+      } else {
+        updateOrder({ lp: selectedLp });
+      }
     }
   };
 
@@ -102,9 +103,10 @@ const BoostView = props => {
             {addons.details.lp.map((lp, index) => (
               <Toggle
                 key={index}
-                onClick={() => updateOrder({ lp: lp.lp })}
+                onClick={() => handleLpChange(lp.lp)}
                 width="85px"
                 margin="5px 5px"
+                borderRadius="8px"
                 isSelected={currentOrder.lp === lp.lp}
               >
                 {lp.title}
@@ -113,18 +115,28 @@ const BoostView = props => {
           </div>
           {currentOrder.lp === 100 && (
             <div className={classes.promos}>
-              {currentOrder.promos &&
-                currentOrder.promos.map((promo, index) => (
-                  <button
-                    type="button"
-                    key={index}
-                    onClick={() => handlePromoChange(index)}
-                    className={classes.promo}
-                    style={{ color: promoColor(promo) }}
-                  >
-                    {promo}
-                  </button>
-                ))}
+              <h2>Promotion Series</h2>
+              {currentOrder.promos && (
+                <>
+                  <div className={classes.promoSection}>
+                    <span>-</span>
+                    <span>Loss</span>
+                    <span>Win</span>
+                  </div>
+                  {currentOrder.promos.map((promo, index) => (
+                    <div className={classes.promoSection}>
+                      {['X', 'L', 'W'].map(type => (
+                        <button
+                          className={classes.promo}
+                          type="button"
+                          style={{ backgroundColor: promo === type ? theme.accent : theme.primary }}
+                          onClick={() => handlePromoChange(type, index)}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           )}
         </div>
@@ -163,27 +175,42 @@ const useStyles = createUseStyles(theme => ({
   promos: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     flexDirection: 'row',
-    margin: '10px'
+    margin: '25px 0 0px 0',
+    '& h2': {
+      fontSize: 20,
+      margin: 0,
+      width: '100%',
+      marginBottom: '10px'
+    }
+  },
+  promoSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    margin: '0 35px',
+    '& span': {
+      margin: '5px',
+      width: '45px',
+      textAlign: 'center'
+    }
   },
   promo: {
     cursor: 'pointer',
-    padding: '20px 15px',
-    borderRadius: 14,
+    height: '32px',
+    width: '32px',
+    borderRadius: 8,
     border: 'none',
     outline: 'none',
     display: 'flex',
-    flexGrow: 1,
-    justifyContent: 'center',
     margin: '5px',
+    padding: 0,
+    justifyContent: 'center',
     fontWeight: 700,
-    backgroundColor: theme.primary,
     transitionDuration: '.2s',
     '&:hover': {
-      transform: 'translateY(-2px)'
-    },
-    '&:active': {
       transform: 'translateY(2px)'
     }
   }

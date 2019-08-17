@@ -73,6 +73,26 @@ export default (order, pricing) => {
     const base = pricing[collectionId][startRank];
 
     if (lp === 100) {
+      if (order.promos) {
+        let total = 0;
+        order.promos.forEach(promo => {
+          switch (promo) {
+            case 'W':
+              total += 1;
+              break;
+            case 'L':
+              total -= 1;
+              break;
+            default:
+              total += 0;
+          }
+        });
+
+        const promoPrice = pricing.promotions[total];
+
+        const difference = base - base * promoPrice;
+        return currentPrice - Math.round(difference * 100) / 100;
+      }
       return currentPrice;
     }
 

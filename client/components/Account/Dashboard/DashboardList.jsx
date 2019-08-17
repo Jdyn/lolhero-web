@@ -65,7 +65,8 @@ useStyles = createUseStyles(theme => ({
     // overflowY: 'auto',
     padding: '0px 10px',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: 'min-content'
+    gridTemplateRows: 'min-content',
+    gridAutoRows: 'min-content'
   },
   gridItem: {
     display: 'inline-grid',
