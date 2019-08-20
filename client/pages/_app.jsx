@@ -37,7 +37,15 @@ class Application extends App {
     if (pageProps.token) {
       authenticate(pageProps.token)(store.dispatch, store.getState);
     } else {
-      store.dispatch({ type: 'REFRESH', update: { isLoggedIn: false, user: {} } });
+      store.dispatch({
+        type: 'REFRESH',
+        isLoggedIn: false,
+        user: {
+          username: null,
+          email: null,
+          token: null
+        }
+      });
     }
 
     if (style) {

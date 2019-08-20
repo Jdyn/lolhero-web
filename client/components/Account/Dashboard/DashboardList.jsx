@@ -15,6 +15,12 @@ const DashboardCards = props => {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
+        <div className={classes.header}>
+          <span>tracking ID</span>
+          <span>Service</span>
+          <span>status</span>
+          <span>Order Date</span>
+        </div>
         {orders && (
           <div className={classes.grid}>
             {orders[selectedFilter].orders.map((order, index) => (
@@ -47,13 +53,23 @@ useStyles = createUseStyles(theme => ({
       padding: '0px 30px 30px 30px'
     }
   },
+  header: {
+    display: 'inline-grid',
+    gridTemplateColumns: '1fr 3fr 0.5fr 1fr',
+    padding: '15px 10px',
+    color: theme.white,
+    '& span': {
+      padding: '5px'
+    }
+  },
   container: {
     display: 'flex',
+    flexDirection: 'column',
     position: 'relative',
     padding: '10px 10px',
     minHeight: '500px',
     backgroundColor: theme.quartinary,
-    borderRadius: 24,
+    borderRadius: 8,
     boxShadow: '0px 2px 6px 0px rgba(0,0,0, .2)'
   },
   grid: {
@@ -62,8 +78,6 @@ useStyles = createUseStyles(theme => ({
     minWidth: 0,
     minHeight: 0,
     color: theme.secondaryWhite,
-    // overflowY: 'auto',
-    padding: '0px 10px',
     gridTemplateColumns: '1fr',
     gridTemplateRows: 'min-content',
     gridAutoRows: 'min-content'
@@ -71,9 +85,7 @@ useStyles = createUseStyles(theme => ({
   gridItem: {
     display: 'inline-grid',
     gridTemplateColumns: '1fr 3fr 0.5fr 1fr',
-    // gridTemplateRows: 'min-content',
-    // marginBottom: '5px',
-    // backgroundColor: theme.secondary,
+    marginBottom: '5px',
     padding: '15px 10px',
     borderRadius: 8,
     cursor: 'pointer',

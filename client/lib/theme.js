@@ -7,7 +7,7 @@ export default {
   dark: {
     white: '#fafafa',
     secondaryWhite: '#C9C9C9',
-    accent: '#6772e5',
+    accent: '#2979ff',
     green: '#1bb978',
     primary: '#353535',
     secondary: '#323232',

@@ -79,7 +79,7 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   container: {
-    margin: '10px 10px',
+    margin: '0 10px 3px 10px',
     display: 'flex',
     flexWrap: 'wrap',
     flexGrow: 1,

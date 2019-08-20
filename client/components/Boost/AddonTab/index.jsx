@@ -94,7 +94,7 @@ const useStyles = createUseStyles(theme => ({
   content: {
     flexDirection: 'column',
     overflowY: 'scroll',
-    margin: '10px 0px 10px 10px',
+    margin: '0 0 3px 10px',
     paddingRight: '10px'
   }
 }));

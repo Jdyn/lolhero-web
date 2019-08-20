@@ -7,7 +7,7 @@ const propTypes = {
   handleAuth: PropTypes.func.isRequired,
   modalRef: PropTypes.shape({}).isRequired,
   isOpen: PropTypes.bool.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   session: PropTypes.shape({}).isRequired,
   updateModal: PropTypes.func.isRequired
 };

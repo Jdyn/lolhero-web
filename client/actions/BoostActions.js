@@ -103,7 +103,10 @@ export const submitOrder = () => (dispatch, getState) => {
         .then(response => {
           if (response.ok) {
             dispatch(setRequest(false, requestType));
-            Router.push(response.result.success_url);
+            Router.push({
+              pathname: response.result.success_url,
+              query: { order: response.result }
+            });
           } else {
             console.log(response);
             const errors = response.errors || [];
@@ -132,9 +135,9 @@ const validateOrder = (order, dispatchError) => {
 
   if (collectionName === 'Division Boost') {
     if (!desiredRank) return dispatchError('You must have a desired rank.');
-  } else {
-    if (!desiredAmount) return dispatchError('You must have a desired amount.');
   }
+
+  if (!desiredAmount) return dispatchError('You must have a desired amount.');
 
   return true;
 };

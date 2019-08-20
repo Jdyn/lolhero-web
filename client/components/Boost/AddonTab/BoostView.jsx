@@ -146,15 +146,16 @@ const BoostView = props => {
                     <span>Win</span>
                     <span>Loss</span>
                   </div>
-                  {currentOrder.promos.map((promo, index) => (
-                    <div className={classes.promoSection}>
+                  {currentOrder.promos.map((promo, rowIndex) => (
+                    <div key={rowIndex} className={classes.promoSection}>
                       {['X', 'W', 'L'].map(type => (
                         <button
                           className={classes.promo}
                           type="button"
+                          key={type}
                           disabled={validateDisabled(type)}
                           style={{ backgroundColor: promo === type ? theme.accent : theme.primary }}
-                          onClick={() => handlePromoChange(type, index)}
+                          onClick={() => handlePromoChange(type, rowIndex)}
                         />
                       ))}
                     </div>
