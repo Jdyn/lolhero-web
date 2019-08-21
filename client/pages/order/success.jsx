@@ -6,15 +6,14 @@ import Layout from '../../components/Shared/Layout';
 const OrderSuccess = props => {
   const router = useRouter();
   const classes = useStyles();
-  const { tracking_id } = router.query;
-  console.log(props, router);
+  const { trackingId } = router.query;
 
   return (
     <Layout>
       <div className={classes.root}>
         <h1>Thank you for your purchase.</h1>
         <h3>
-          Your Tracking ID is <b>{tracking_id || 'unknown'}</b>.
+          Your Tracking ID is <b>{trackingId || 'unknown'}</b>.
         </h3>
         <p>Please review the email we have sent you detailing the next steps.</p>
       </div>

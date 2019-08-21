@@ -93,7 +93,6 @@ export default (order, pricing) => {
         const difference = base - base * promoPrice;
         return currentPrice - Math.round(difference * 100) / 100;
       }
-      return currentPrice;
     }
 
     const difference = base - base * lpPrice;

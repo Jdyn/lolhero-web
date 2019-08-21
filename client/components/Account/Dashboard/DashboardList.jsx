@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { createUseStyles, useTheme } from 'react-jss';
 import formatTime from '../../../util/formatTime';
 
@@ -24,17 +25,19 @@ const DashboardCards = props => {
         {orders && (
           <div className={classes.grid}>
             {orders[selectedFilter].orders.map((order, index) => (
-              <div
-                type="button"
-                className={classes.gridItem}
-                key={order.trackingId}
-                style={{ backgroundColor: index % 2 === 0 ? theme.tertiary : theme.primary }}
-              >
-                <span>{order.trackingId}</span>
-                <span>{order.title}</span>
-                <span>{order.status}</span>
-                <span>{formatTime(order.createdAt)}</span>
-              </div>
+              <Link href={`/account/order/${order.trackingId}`}>
+                <div
+                  type="button"
+                  className={classes.gridItem}
+                  key={order.trackingId}
+                  style={{ backgroundColor: index % 2 === 0 ? theme.tertiary : theme.primary }}
+                >
+                  <span>{order.trackingId}</span>
+                  <span>{order.title}</span>
+                  <span>{order.status}</span>
+                  <span>{formatTime(order.createdAt)}</span>
+                </div>
+              </Link>
             ))}
           </div>
         )}

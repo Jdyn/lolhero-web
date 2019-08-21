@@ -44,7 +44,7 @@ const AddonTab = props => {
 
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
+    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} boost={boost} />,
     2: <DetailsView handleAuth={handleAuth} session={session} />,
     3: <ReviewView currentOrder={currentOrder} submitOrderRequest={submitOrderRequest} />
   };

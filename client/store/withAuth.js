@@ -9,13 +9,13 @@ const auth = ctx => {
    * Additionally if there's no token it means the user is not logged in.
    */
   if (ctx.req && !token) {
-    ctx.res.writeHead(302, { Location: '/login' });
+    ctx.res.writeHead(302, { Location: '/' });
     ctx.res.end();
   }
 
   // We already checked for server. This should only happen on client.
   if (!token) {
-    Router.push('/login');
+    Router.push('/');
   }
 
   return token;
@@ -37,12 +37,6 @@ function withAuth(Child) {
       this.syncLogout = this.syncLogout.bind(this);
     }
 
-    syncLogout(event) {
-      if (event.key === 'logout') {
-        Router.push('/login');
-      }
-    }
-
     componentDidMount() {
       window.addEventListener('storage', this.syncLogout);
     }
@@ -50,6 +44,12 @@ function withAuth(Child) {
     componentWillUnmount() {
       window.removeEventListener('storage', this.syncLogout);
       window.localStorage.removeItem('logout');
+    }
+
+    syncLogout(event) {
+      if (event.key === 'logout') {
+        Router.push('/');
+      }
     }
 
     render() {

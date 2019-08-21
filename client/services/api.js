@@ -1,4 +1,5 @@
 import cookie from 'js-cookie';
+import 'isomorphic-unfetch';
 
 const API_URL =
   process.env.NODE_ENV === 'production'
@@ -11,7 +12,7 @@ function headers() {
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${token ? token : ''}`
+    Authorization: `Bearer ${token || ''}`
   };
 }
 
@@ -27,10 +28,10 @@ function queryString(params) {
 }
 
 export default {
-  fetch(url, params = {}) {
+  fetch(url, params = {}, opts) {
     return fetch(`${API_URL}${url}${queryString(params)}`, {
       method: 'GET',
-      headers: headers()
+      headers: { ...headers(), ...opts }
     })
       .then(parseResponse)
       .catch(error => error);
