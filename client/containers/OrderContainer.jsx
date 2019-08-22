@@ -8,7 +8,9 @@ class OrderContainer extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  session: state.session
+});
 
 const mapDispatchToProps = dispatch => ({});
 

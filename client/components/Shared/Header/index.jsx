@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import AuthDisplay from './auth/AuthDisplay';
+import Router from 'next/router';
 
 const propTypes = {};
 
@@ -10,12 +11,30 @@ const Header = props => {
   const { handleAuth, session, sessionRequest } = props;
   const classes = useStyles(props);
 
+  const [form, setForm] = useState({
+    trackingId: ''
+  });
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    Router.push(`/order/${form.trackingId}`);
+  };
+
   return (
     <header className={classes.root}>
       <Link href="/">
         <div className={classes.logo}>LoL Hero</div>
       </Link>
-      <input className={classes.orderSearch} aria-label="search" placeholder="Enter Tracking ID" />
+      <form className={classes.searchForm} onSubmit={handleSubmit}>
+        <input
+          value={form.trackingId || ''}
+          onChange={event => setForm({ trackingId: event.target.value })}
+          className={classes.orderSearch}
+          aria-label="search"
+          placeholder="Enter Tracking ID"
+        />
+      </form>
+
       <AuthDisplay handleAuth={handleAuth} session={session} sessionRequest={sessionRequest} />
     </header>
   );
@@ -59,23 +78,26 @@ const useStyles = createUseStyles(theme => ({
       color: `${theme.accent} !important`
     }
   },
-  orderSearch: {
+  searchForm: {
     display: 'none',
     flex: 1,
+    justifyContent: 'flex-end',
+    '@media (min-width: 650px)': {
+      display: 'flex'
+    }
+  },
+  orderSearch: {
+    display: 'flex',
+    flex: 1,
     maxWidth: '250px',
-    marginLeft: 'auto',
+    minWidth: 0,
     width: '100%',
     border: 'none',
     outline: 'none',
     borderRadius: 8,
-    margin: '0 0 0 auto',
     padding: '15px',
     color: theme.white,
-    backgroundColor: theme.primary,
-    '@media (min-width: 650px)': {
-      display: 'flex'
-      // margin: '0 15px 0 auto'
-    }
+    backgroundColor: theme.primary
   }
 }));
 

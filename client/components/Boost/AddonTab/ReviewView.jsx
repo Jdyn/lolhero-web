@@ -63,7 +63,6 @@ const ReviewView = props => {
           </span>
         ))}
       </div>
-      {/* {submitOrderRequest.errored && <span>{submitOrderRequest.error}</span>} */}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import DashboardHeader from './Header';
+import DashboardHeader from '../Header';
 import DashboardCards from './Cards';
 import DashboardList from './DashboardList';
 
