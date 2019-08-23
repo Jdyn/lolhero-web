@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Order from '../components/Order';
 
-class OrderContainer extends React.PureComponent {
-  render() {
-    return <Order {...this.props} />;
-  }
-}
+const OrderContainer = props => {
+  return <Order {...props} />;
+};
 
 const mapStateToProps = state => ({
-  session: state.session
+  session: state.session,
+  OrderRequest: state.request
 });
 
 const mapDispatchToProps = dispatch => ({});

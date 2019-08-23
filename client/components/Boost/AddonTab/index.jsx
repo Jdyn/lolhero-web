@@ -93,9 +93,12 @@ const useStyles = createUseStyles(theme => ({
   },
   content: {
     flexDirection: 'column',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     margin: '0 0 3px 10px',
-    paddingRight: '10px'
+    paddingRight: '10px',
+    '@media (max-width: 1025px)': {
+      display: 'flex !important'
+    }
   }
 }));
 

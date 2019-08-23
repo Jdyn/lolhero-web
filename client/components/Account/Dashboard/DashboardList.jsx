@@ -25,7 +25,10 @@ const DashboardCards = props => {
         {orders && (
           <div className={classes.grid}>
             {orders[selectedFilter].orders.map((order, index) => (
-              <Link href={`/account/order/${order.trackingId}`}>
+              <Link
+                href={{ pathname: '/account/order', query: { trackingId: order.trackingId } }}
+                as={`/account/order/${order.trackingId}`}
+              >
                 <div
                   type="button"
                   className={classes.gridItem}

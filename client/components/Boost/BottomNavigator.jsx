@@ -80,7 +80,7 @@ const BottomNavigator = props => {
       isEqual = true;
     }
 
-    if (isEqual && validCount == 2) {
+    if (isEqual && validCount === 2) {
       setValid(prev => ({ ...prev, details: true }));
     } else {
       setValid(prev => ({ ...prev, details: false }));
@@ -138,8 +138,25 @@ const BottomNavigator = props => {
         <span>Total</span>
       </div>
       <button
+        type="button"
         id="submit-button"
         className={classes.button}
+        onClick={() => updateStage(currentStage)}
+        style={{
+          backgroundColor:
+            currentStage === 2
+              ? (valid.details && valid.payment) || (valid.payment && session.isLoggedIn)
+                ? theme.accent
+                : '#414141'
+              : theme.accent
+        }}
+      >
+        {stageText(currentStage)}
+      </button>
+      <button
+        type="button"
+        id="submit-button"
+        className={classes.checkout}
         onClick={() => updateStage(currentStage)}
         style={{
           backgroundColor:
@@ -201,7 +218,7 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   button: {
-    display: 'inline-block',
+    display: 'none',
     outline: 'none',
     border: 'none',
     margin: '15px',
@@ -219,6 +236,13 @@ const useStyles = createUseStyles(theme => ({
       margin: '5px 25px 5px 3%',
       width: '350px',
       display: 'inline-block'
+    }
+  },
+  checkout: {
+    extend: 'button',
+    display: 'inline-block',
+    '@media (min-width: 1025px)': {
+      display: 'none'
     }
   }
 }));

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import DashboardHeader from '../Account/Header';
-// import { formatLP } from '../../util/Helpers';
+import { formatLP } from '../../util/Helpers';
 import addons from '../../lib/addonContent';
-import content from '../../lib/boostContent';
 
 const propTypes = {};
 
@@ -24,9 +23,9 @@ const Order = props => {
           <h2>{order.title}</h2>
           <h3>Details</h3>
 
-          {order.collectionName === 'Division Boost' && (
-            <span>{/* LP: <b>{formatLP(order.lp)}</b> */}</span>
-          )}
+          <span>
+            LP: <b>{formatLP(order.lp)}</b>
+          </span>
 
           <span>
             Type: <b>{order.details.boostType}</b>

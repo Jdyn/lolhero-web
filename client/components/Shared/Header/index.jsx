@@ -17,7 +17,10 @@ const Header = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    Router.push(`/order/${form.trackingId}`);
+    Router.push(
+      { pathname: '/order/order', query: { trackingId: form.trackingId } },
+      `/track/${form.trackingId}`
+    );
   };
 
   return (

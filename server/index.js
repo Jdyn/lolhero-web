@@ -16,7 +16,7 @@ app.prepare().then(() => {
 
     const orderSuccess = route('/order/success/:trackingId')(pathname);
     const accountOrder = route('/account/order/:trackingId')(pathname);
-    const guestOrder = route('/order/:tracking_id')(pathname);
+    const guestOrder = route('/track/:trackingId')(pathname);
 
     if (orderSuccess) {
       app.render(req, res, '/order/success', Object.assign(orderSuccess, query));
@@ -24,7 +24,7 @@ app.prepare().then(() => {
     }
 
     if (guestOrder) {
-      app.render(req, res, '/order/order', Object.assign(orderSuccess, query));
+      app.render(req, res, '/order/order', Object.assign(guestOrder, query));
       return;
     }
 

@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "util/keyMirror.js"
+    "**/*.tsx", "util/keyMirror.js", "pages/order/order.jsx"
   ]
 }
