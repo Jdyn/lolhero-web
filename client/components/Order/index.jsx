@@ -13,42 +13,23 @@ const Order = props => {
   const classes = useStyles();
   const { order, session } = props;
 
+  const { server, queue, lp, boostType, collectionName } = order.details;
+
   return (
     <div className={classes.root}>
       <DashboardHeader order={order} />
-
       {order && (
-        <div className={classes.wrapper}>
-          <h3>Order Summary</h3>
-          <h2>{order.title}</h2>
-          <h3>Details</h3>
-
-          <span>
-            LP: <b>{formatLP(order.lp)}</b>
-          </span>
-
-          <span>
-            Type: <b>{order.details.boostType}</b>
-          </span>
-          <span>
-            Server: <b>{order.details.server}</b>
-          </span>
-          <span>
-            Boost: <b>{order.details.collectionName}</b>
-          </span>
-          <span>
-            Queue:
-            <b>
-              {` ${order.details.queue.charAt(0).toUpperCase()}${order.details.queue.slice(1)} ` +
-                `Queue`}
-            </b>
-          </span>
-          <h3>Add-Ons</h3>
-          {addons.addons.extras.map((extra, index) => (
-            <span key={index}>
-              {extra.title}: <b>{order.details[extra.type] ? 'Yes' : 'No'}</b>
-            </span>
-          ))}
+        <div className={classes.container}>
+          <div className={classes.hero}>
+            <h3>{boostType} {collectionName}</h3>
+            {Object.keys(order.details).map(detailKey => (
+              <div>
+                {detailKey}: {order.details[detailKey]}
+              </div>
+            ))}
+          </div>
+          <div> ok</div>
+          <div> ok</div>
         </div>
       )}
     </div>
@@ -56,7 +37,33 @@ const Order = props => {
 };
 
 useStyles = createUseStyles(theme => ({
-  root: {}
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  container: {
+    display: 'grid',
+    gridTemplateRows: 'min-content 1fr',
+    gridTemplateColumns: '2fr 1fr',
+    gridTemplateAreas: `
+    'hero hero'
+    '. .'
+    `,
+    flexDirection: 'column',
+    maxWidth: '1000px',
+    width: '100%',
+    flex: 1,
+    margin: '0 auto',
+    padding: '30px 30px'
+  },
+  hero: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    gridArea: 'hero',
+    padding: '30px',
+    backgroundColor: theme.quartinary
+  }
 }));
 
 Order.propTypes = propTypes;

@@ -2,8 +2,8 @@ export default {
   details: {
     servers: [{ server: 'NA', title: 'North America', type: 'servers' }],
     queues: [
-      { queue: 'solo', title: 'Solo Queue', type: 'queues' },
-      { queue: 'flex', title: 'Flex Queue', type: 'queues' }
+      { queue: 'Solo', title: 'Solo Queue', type: 'queues' },
+      { queue: 'Flex', title: 'Flex Queue', type: 'queues' }
     ],
     lp: [
       { lp: 20, title: '0 - 20', type: 'lp' },

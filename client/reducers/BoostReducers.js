@@ -9,10 +9,10 @@ const initialState = {
     email: null,
     details: {
       lp: 20,
-      queue: 'solo',
+      queue: 'Solo',
       server: 'NA',
       desiredAmount: 5,
-      boostType: 'solo',
+      boostType: 'Solo',
       collectionId: 1,
       collectionName: 'Division Boost',
       isExpress: false,
@@ -22,8 +22,8 @@ const initialState = {
     }
   },
   pricing: {
-    solo: {},
-    duo: {}
+    Solo: {},
+    Duo: {}
   }
 };
 

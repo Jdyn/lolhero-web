@@ -135,9 +135,7 @@ const validateOrder = (order, dispatchError) => {
 
   if (collectionName === 'Division Boost') {
     if (!desiredRank) return dispatchError('You must have a desired rank.');
-  }
-
-  if (!desiredAmount) return dispatchError('You must have a desired amount.');
+  } else if (!desiredAmount) return dispatchError('You must have a desired amount.');
 
   return true;
 };

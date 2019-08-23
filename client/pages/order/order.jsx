@@ -98,12 +98,10 @@ const useStyles = createUseStyles(theme => ({
     flexDirection: 'row',
     flex: 1,
     width: '100%',
-    // maxWidth: '450px',
     borderRadius: '8px',
     backgroundColor: theme.primary,
     padding: '10px 16px',
     minWidth: 0
-    // height: '55px'
   },
   formSubmit: {
     backgroundColor: theme.primary,
