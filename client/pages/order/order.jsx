@@ -21,7 +21,17 @@ const Order = props => {
     event.preventDefault();
 
     setError(null);
-    Api.post(`/track/${trackingId}`, form).then(response => {
+    Api.post(`/order/${trackingId}`, form).then(response => {
+      if (response.ok) {
+        setOrder(response.result.order);
+      } else {
+        setError(response.error);
+      }
+    });
+  };
+
+  const updateOrder = payload => {
+    Api.patch(`/order/${trackingId}`, { ...form, ...payload }).then(response => {
       if (response.ok) {
         setOrder(response.result.order);
       } else {
@@ -33,20 +43,23 @@ const Order = props => {
   return (
     <Layout>
       {order ? (
-        <OrderContainer trackingId={trackingId} order={order} />
+        <OrderContainer trackingId={trackingId} order={order} updateOrder={updateOrder} />
       ) : (
         <div className={classes.root}>
           <div className={classes.container}>
             <h3>{trackingId}</h3>
             <span>Tracking ID</span>
-            <p>Please allow us to verify it is you by providing the email you used to purchase the order.</p>
+            <p>
+              Please allow us to verify it is you by providing the email you used to purchase the
+              order.
+            </p>
             <form className={classes.form} onSubmit={handleOrderSearch}>
               <input
                 value={form.email}
                 className={classes.search}
                 onChange={event => setForm({ email: event.target.value })}
                 aria-label="search"
-                placeholder="email"
+                placeholder="Verify Email"
               />
               <button className={classes.formSubmit} type="submit">
                 Go
@@ -100,7 +113,7 @@ const useStyles = createUseStyles(theme => ({
     width: '100%',
     borderRadius: '8px',
     backgroundColor: theme.primary,
-    padding: '10px 16px',
+    padding: '5px 16px',
     minWidth: 0
   },
   formSubmit: {

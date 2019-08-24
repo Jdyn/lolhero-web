@@ -130,11 +130,10 @@ const validateOrder = (order, dispatchError) => {
 
   if (!startRank) return dispatchError('You must have a starting rank.');
 
-  if (startRank > desiredRank)
-    return dispatchError('Your starting rank cannot be greater than your desired rank.');
-
   if (collectionName === 'Division Boost') {
     if (!desiredRank) return dispatchError('You must have a desired rank.');
+    if (startRank > desiredRank)
+      return dispatchError('Your starting rank cannot be greater than your desired rank.');
   } else if (!desiredAmount) return dispatchError('You must have a desired amount.');
 
   return true;

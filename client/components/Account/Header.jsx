@@ -28,7 +28,7 @@ const DashboardHeader = props => {
                 {order.details.server} <span>Server</span>
               </div>
               <div>
-                {order.details.summonerName || 'unknown'} <span>Summoner Name</span>
+                {order.details.summonerName || 'Not Set'} <span>Summoner Name</span>
               </div>
             </div>
           )}

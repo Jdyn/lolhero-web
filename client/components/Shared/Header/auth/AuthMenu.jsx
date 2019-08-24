@@ -9,7 +9,8 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   type: PropTypes.string,
   session: PropTypes.shape({}).isRequired,
-  updateModal: PropTypes.func.isRequired
+  updateModal: PropTypes.func.isRequired,
+  sessionRequest: PropTypes.shape({})
 };
 
 const templates = {
@@ -31,7 +32,7 @@ const templates = {
 let useStyles;
 
 const AuthMenu = props => {
-  const { modalRef, updateModal, isOpen, type, handleAuth } = props;
+  const { modalRef, updateModal, isOpen, type, handleAuth, sessionRequest } = props;
   const classes = useStyles(props);
 
   return (
@@ -72,6 +73,7 @@ const AuthMenu = props => {
               onSubmit={(formType, form) => handleAuth(formType, form)}
             />
           )}
+          {sessionRequest.errored && <span>{sessionRequest.error}</span>}
         </div>
       ) : null}
     </div>
@@ -144,7 +146,12 @@ useStyles = createUseStyles(theme => ({
     borderRadius: '0px 0px 12px 12px',
     flexDirection: 'column',
     backgroundColor: theme.tertiary,
-    transitionDuration: '.2s'
+    transitionDuration: '.2s',
+    '& span': {
+      textAlign: 'center',
+      marginTop: '5px',
+      color: theme.white
+    }
   }
 }));
 

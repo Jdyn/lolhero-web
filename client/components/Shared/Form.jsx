@@ -20,10 +20,14 @@ const Form = props => {
   };
 
   return (
-    <form className={classes.form} onSubmit={submitForm}>
+    <form
+      className={classes.form}
+      onSubmit={submitForm}
+      style={{ flexDirection: props.row ? 'row' : 'column' }}
+    >
       <h3>{template.title}</h3>
       {template.fields.map((field, index) => (
-        <React.Fragment key={index}>
+        <div className={classes.container} key={index}>
           <span>{field}</span>
           <input
             className={classes.input}
@@ -31,7 +35,7 @@ const Form = props => {
             type={field}
             onChange={event => setForm({ ...form, [field]: event.target.value })}
           />
-        </React.Fragment>
+        </div>
       ))}
       <Button>{template.submit}</Button>
     </form>
@@ -43,6 +47,16 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     color: theme.white
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    margin: 0,
+    textAlign: 'left',
+    '& span': {
+      textAlign: 'left !important'
+    }
   },
   input: {
     outline: 'none',

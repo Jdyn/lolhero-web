@@ -19,6 +19,7 @@ const Banner = props => {
   const classes = useStyles(props);
 
   const renderContent = {
+    default: <></>,
     slider: <BannerRankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
     picker: (
       <BannerRankList
@@ -66,7 +67,7 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     zIndex: 5,
-    // minHeight: "500px",
+    minHeight: "450px",
     maxHeight: '85%',
     display: 'flex',
     maxWidth: '235px',
@@ -105,7 +106,7 @@ const useStyles = createUseStyles(theme => ({
     '& h1': {
       margin: '10px 0',
       fontSize: 30,
-      height: '36px'
+      minHeight: '36px'
     },
     '& h3': {
       margin: 0,

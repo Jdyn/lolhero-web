@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode;
   session: { isLoggedIn: boolean | null; user: object };
   handleAuth: (type: string, form: object) => void;
-  sessionRequest: { success: boolean };
+  sessionRequest: { success: boolean; errored: boolean; error: string | null };
 }
 
 let useStyles;
@@ -86,6 +86,7 @@ const AuthDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             isOpen={isOpen}
             updateModal={updateModal}
             session={session}
+            sessionRequest={sessionRequest}
             type={type}
           />
         );
