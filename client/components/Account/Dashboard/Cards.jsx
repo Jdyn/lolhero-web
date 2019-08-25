@@ -19,20 +19,20 @@ const DashboardCards = props => {
     <div className={classes.root}>
       <div className={classes.container}>
         {Object.keys(account.orders).map(orderKey => {
-          const order = account.orders[orderKey];
-          return (
-            <button
-              type="button"
-              key={orderKey}
-              className={classes.card}
-              onClick={() => handleFilterChange(orderKey)}
-              style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
-            >
-              <h3>{order.title || '...'}</h3>
-              <span>{order.count}</span>
-            </button>
-          );
-        })}
+            const order = account.orders[orderKey];
+            return (
+              <button
+                type="button"
+                key={orderKey}
+                className={classes.card}
+                onClick={() => handleFilterChange(orderKey)}
+                style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
+              >
+                <h3>{order.title || '...'}</h3>
+                <span>{order.count}</span>
+              </button>
+            );
+          })}
       </div>
     </div>
   );

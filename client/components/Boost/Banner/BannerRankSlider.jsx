@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
+import content from '../../../lib/boostContent';
 
 const propTypes = {
   rank: PropTypes.object,
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
+  updateOrder: PropTypes.func,
+  currentOrder: PropTypes.object
 };
 
 const BannerRankSlider = props => {
@@ -14,6 +15,21 @@ const BannerRankSlider = props => {
   const classes = useStyles(props);
   const theme = useTheme();
 
+  const currentCollection = useMemo(
+    () =>
+      content[currentOrder.boostType].items.filter(
+        item => item.title === currentOrder.collectionName
+      )[0],
+    [currentOrder.collectionId]
+  );
+
+  // Update the value if the collection was changed and the desiredAmount was greater than the new collections maximum amount.
+  useEffect(() => {
+    if (currentOrder.desiredAmount > currentCollection.maxAmount) {
+      updateOrder({ desiredAmount: parseInt(currentCollection.maxAmount) });
+    }
+  }, [currentCollection]);
+
   return (
     <div className={classes.container}>
       <h3 className={classes.amount}>{currentOrder.desiredAmount}</h3>
@@ -21,7 +37,7 @@ const BannerRankSlider = props => {
         <input
           type="range"
           min="1"
-          max="10"
+          max={currentCollection.maxAmount}
           className={classes.slider}
           style={{ backgroundColor: rank.accent || theme.grey }}
           value={currentOrder.desiredAmount}

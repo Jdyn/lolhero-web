@@ -28,15 +28,11 @@ const OrderHero = props => {
   const classes = useStyles(props);
   const theme = useTheme();
   const { order, updateOrder } = props;
-
-  console.log(order);
-
+  const { primaryRole, secondaryRole } = order.details;
   const ranksObject = useMemo(
     () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
     [order]
   );
-
-  console.log(ranksObject[1]);
 
   const [form, setForm] = useState({
     details: {
@@ -103,8 +99,6 @@ const OrderHero = props => {
     setForm(prev => ({ ...prev, accountDetails: { ...prev.accountDetails, ...formUpdate } }));
   };
 
-  console.log(form);
-
   return (
     <div className={classes.root}>
       {order.isEditable ? (
@@ -163,10 +157,24 @@ const OrderHero = props => {
           </div>
         </div>
       ) : (
-        <div className={classes.root}>
-          <div className={classes.container}>
-            <Banner type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+        <div className={classes.container}>
+          <Banner type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+          <div className={classes.wrapper}>
             <h3>Order Details</h3>
+            <div className={classes.rolesWrapper}>
+              <div className={classes.rolesDisplay}>
+                <span>Primary Role</span>
+                <img
+                  src={addons.addons.roles.filter(role => role.title === primaryRole)[0].image}
+                ></img>
+              </div>
+            </div>
+            <div className={classes.rolesDisplay}>
+              <span>Secondary Role</span>
+              <img
+                src={addons.addons.roles.filter(role => role.title === secondaryRole)[0].image}
+              ></img>
+            </div>
           </div>
         </div>
       )}
@@ -182,7 +190,8 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    flexGrow: 1,
+    // flexGrow: 1,
+    // flexBasis: '550px',
     width: '100%',
     gridArea: 'hero',
     padding: '24px',
@@ -206,8 +215,12 @@ const useStyles = createUseStyles(theme => ({
   },
   wrapper: {
     display: 'flex',
+    flex: 1,
+    justifyContent: 'flex-start',
     flexDirection: 'column',
-    paddingLeft: '15px'
+    paddingLeft: '15px',
+    width: '100%',
+    height: '100%'
   },
   form: {
     display: 'flex',
@@ -283,6 +296,19 @@ const useStyles = createUseStyles(theme => ({
     color: theme.white,
     backgroundColor: theme.primary,
     height: '100px'
+  },
+  rolesDisplay: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '0 40px 15px 0',
+    alignItems: 'center',
+    '& span': {
+      width: '100%',
+      margin: 0
+    },
+    '& img': {
+      width: '20px'
+    }
   }
 }));
 

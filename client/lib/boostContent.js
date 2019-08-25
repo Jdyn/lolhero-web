@@ -8,18 +8,21 @@ export default {
       {
         title: 'Division Boost',
         tag: 'Solo',
+        maxAmount: '1',
         id: 1,
         description: 'We play the required amount of games to reach the division you select.'
       },
       {
         title: 'Placement Games',
         tag: 'Solo',
+        maxAmount: '8',
         id: 2,
         description: 'We play your desired amount of placement matches.'
       },
       {
         title: 'Net Wins',
         tag: 'Solo',
+        maxAmount: '10',
         id: 3,
         description:
           'We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins.'
@@ -27,6 +30,7 @@ export default {
       {
         title: 'Net Games',
         tag: 'Solo',
+        maxAmount: '25',
         id: 4,
         description: 'Low cost, guaranteeing high performance without a specific win rate'
       }
@@ -41,12 +45,14 @@ export default {
       {
         title: 'Division Boost',
         tag: 'duo',
+        maxAmount: '1',
         id: 9,
         description: 'We play the required amount of games to reach the division you select.'
       },
       {
         title: 'Net Wins',
         tag: 'duo',
+        maxAmount: '10',
         id: 10,
         description: 'We play your desired amount of placement matches.'
       },
@@ -54,6 +60,7 @@ export default {
       {
         title: 'Placement Games',
         tag: 'duo',
+        maxAmount: '8',
         id: 11,
         description:
           'We guarantee a win/loss ratio of 2:1 where each loss would add an additional 2 wins.'
@@ -61,6 +68,7 @@ export default {
       {
         title: 'Net Games',
         tag: 'duo',
+        maxAmount: '25',
         id: 12,
         description: 'Low cost, guaranteeing high performance without a specific win rate'
       }

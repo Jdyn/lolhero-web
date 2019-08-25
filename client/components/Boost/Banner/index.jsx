@@ -5,11 +5,11 @@ import BannerRankList from './BannerRankList';
 import BannerRankSlider from './BannerRankSlider';
 
 const propTypes = {
-  type: PropTypes.oneOf(['slider', 'picker']),
+  type: PropTypes.oneOf(['slider', 'picker', 'default']),
   rank: PropTypes.object,
   isStartRank: PropTypes.bool,
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
+  updateOrder: PropTypes.func,
+  currentOrder: PropTypes.object
 };
 
 const Banner = props => {
@@ -67,8 +67,8 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     zIndex: 5,
-    minHeight: "450px",
-    maxHeight: '85%',
+    height: '100%',
+    maxHeight: '550px',
     display: 'flex',
     maxWidth: '235px',
     position: 'relative',

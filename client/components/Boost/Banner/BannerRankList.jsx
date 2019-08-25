@@ -8,8 +8,8 @@ import { createUseStyles } from 'react-jss';
 const propTypes = {
   rank: PropTypes.object,
   isStartRank: PropTypes.bool,
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
+  updateOrder: PropTypes.func,
+  currentOrder: PropTypes.object
 };
 
 const BannerRankList = props => {

@@ -18,9 +18,9 @@ const AddonView = props => {
     const mod = modifier.toLowerCase();
 
     const { price, pricing } = boost;
+    const { modifiers } = pricing[currentOrder.boostType];
 
-    if (pricing[currentOrder.boostType].length !== 0) {
-      const { modifiers } = pricing[currentOrder.boostType];
+    if (modifiers) {
       if (typeof boost.price === 'number') {
         if (!isSelected) {
           const total = modifiers[mod] * price - price;

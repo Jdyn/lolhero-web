@@ -8,7 +8,7 @@ const propTypes = {};
 
 let useStyles;
 
-const DashboardCards = props => {
+const DashboardList = props => {
   const { orders, selectedFilter } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -26,6 +26,7 @@ const DashboardCards = props => {
           <div className={classes.grid}>
             {orders[selectedFilter].orders.map((order, index) => (
               <Link
+                key={order.trackingId}
                 href={{ pathname: '/account/order', query: { trackingId: order.trackingId } }}
                 as={`/account/order/${order.trackingId}`}
               >
@@ -109,6 +110,6 @@ useStyles = createUseStyles(theme => ({
   }
 }));
 
-DashboardCards.propTypes = propTypes;
+DashboardList.propTypes = propTypes;
 
-export default DashboardCards;
+export default DashboardList;

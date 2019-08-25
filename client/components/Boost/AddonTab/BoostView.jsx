@@ -96,7 +96,7 @@ const BoostView = props => {
           return (
             <Toggle
               key={index}
-              onClick={() => updateOrder({ server: server.server })}
+              onClick={() => currentOrder.server !== server.server && updateOrder({ server: server.server })}
               isSelected={currentOrder.server === server.server}
             >
               {server.title}
@@ -104,14 +104,15 @@ const BoostView = props => {
           );
         })}
       </div>
-
       <div className={classes.wrapper}>
         <h2>Queues</h2>
         <p>What queue type do you want to play on? We currently support the following queues.</p>
         {addons.details.queues.map((queue, index) => (
           <Toggle
             key={index}
-            onClick={() => updateOrder({ queue: queue.queue })}
+            onClick={() =>
+              currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
+            }
             isSelected={currentOrder.queue === queue.queue}
           >
             {queue.title}

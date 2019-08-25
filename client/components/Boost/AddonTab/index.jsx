@@ -75,7 +75,7 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex !important',
     position: 'relative',
     boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.4)',
-    borderRadius: 16,
+    // borderRadius: 16,
     flexDirection: 'column',
     backgroundColor: theme.primary,
     color: theme.white,
@@ -94,7 +94,7 @@ const useStyles = createUseStyles(theme => ({
   content: {
     flexDirection: 'column',
     overflowY: 'auto',
-    margin: '0 0 3px 10px',
+    margin: '0 0 0 10px',
     paddingRight: '10px',
     '@media (max-width: 1025px)': {
       display: 'flex !important'

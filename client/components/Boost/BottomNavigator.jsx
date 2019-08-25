@@ -204,7 +204,7 @@ const useStyles = createUseStyles(theme => ({
     textAlign: 'center',
     borderRight: '.7px solid #999',
     lineHeight: 1,
-    flexGrow: 1,
+    flex: 1,
     padding: '15px',
     '& h3': {
       fontSize: 19,
