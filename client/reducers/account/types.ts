@@ -5,6 +5,7 @@ export const requests = keyMirror('ACCOUNT_ORDERS');
 
 export interface Order {
   count: number;
+  title: string;
   orders: {
     createdAt: string;
     status: string;

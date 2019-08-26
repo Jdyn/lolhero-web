@@ -140,8 +140,6 @@ const validateOrder = (order, dispatchError) => {
 };
 
 const trimOrder = order => {
-  if (!order.details.collectionName) return dispatchError('Oops');
-
   if (order.details.collectionName === 'Division Boost') {
     delete order.details.desiredAmount;
   } else {

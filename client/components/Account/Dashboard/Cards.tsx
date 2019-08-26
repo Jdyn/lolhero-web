@@ -1,17 +1,21 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
+import { AccountState, Order } from '../../../reducers/account/types';
 
-const propTypes = {};
+interface Props {
+  account: AccountState;
+  setFilter: Function;
+  selectedFilter: string;
+}
 
 let useStyles;
 
-const DashboardCards = props => {
+const DashboardCards = (props: Props): JSX.Element => {
   const { account, setFilter, selectedFilter } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  const theme: any = useTheme();
 
-  const handleFilterChange = orderKey => {
+  const handleFilterChange = (orderKey: string): void => {
     setFilter(orderKey);
   };
 
@@ -19,20 +23,20 @@ const DashboardCards = props => {
     <div className={classes.root}>
       <div className={classes.container}>
         {Object.keys(account.orders).map(orderKey => {
-            const order = account.orders[orderKey];
-            return (
-              <button
-                type="button"
-                key={orderKey}
-                className={classes.card}
-                onClick={() => handleFilterChange(orderKey)}
-                style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
-              >
-                <h3>{order.title || '...'}</h3>
-                <span>{order.count}</span>
-              </button>
-            );
-          })}
+          const order: Order = account.orders[orderKey];
+          return (
+            <button
+              type="button"
+              key={orderKey}
+              className={classes.card}
+              onClick={(): void => handleFilterChange(orderKey)}
+              style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
+            >
+              <h3>{order.title}</h3>
+              <span>{order.count}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -96,7 +100,5 @@ useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-DashboardCards.propTypes = propTypes;
 
 export default DashboardCards;

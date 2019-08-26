@@ -26,8 +26,8 @@ const Form = props => {
       style={{ flexDirection: props.row ? 'row' : 'column' }}
     >
       <h3>{template.title}</h3>
-      {template.fields.map((field, index) => (
-        <div className={classes.container} key={index}>
+      {template.fields.map((field) => (
+        <div className={classes.container} key={field}>
           <span>{field}</span>
           <input
             className={classes.input}
@@ -37,7 +37,7 @@ const Form = props => {
           />
         </div>
       ))}
-      <Button>{template.submit}</Button>
+      <Button margin="5px 0 0 0">{template.submit}</Button>
     </form>
   );
 };

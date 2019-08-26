@@ -150,7 +150,8 @@ useStyles = createUseStyles(theme => ({
     '& span': {
       textAlign: 'center',
       marginTop: '5px',
-      color: theme.white
+      fontSize: 14,
+      color: theme.secondaryWhite
     }
   }
 }));

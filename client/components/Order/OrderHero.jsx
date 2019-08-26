@@ -103,7 +103,7 @@ const OrderHero = props => {
     <div className={classes.root}>
       {order.isEditable ? (
         <div className={classes.container}>
-          <Banner type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+          <Banner height="450px" type="default" rank={ranksObject[order.details.desiredRank] || {}} />
           <div className={classes.wrapper}>
             <h3>Order Details</h3>
             <div className={classes.rolesContainer}>
@@ -114,6 +114,7 @@ const OrderHero = props => {
                     {item.roles.map(role => (
                       <div
                         className={classes.role}
+                        key={role.title}
                         onClick={() => handleFormUpdate({ [item.text]: role.title })}
                         style={{
                           backgroundColor:
@@ -158,7 +159,7 @@ const OrderHero = props => {
         </div>
       ) : (
         <div className={classes.container}>
-          <Banner type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+          <Banner height="450px" type="default" rank={ranksObject[order.details.desiredRank] || {}} />
           <div className={classes.wrapper}>
             <h3>Order Details</h3>
             <div className={classes.rolesWrapper}>

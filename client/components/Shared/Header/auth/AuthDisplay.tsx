@@ -63,9 +63,6 @@ const AuthDisplay: React.FC<Props> = (props: Props): JSX.Element => {
 
   const renderContent = (isLoggedIn: boolean | null): JSX.Element => {
     switch (isLoggedIn) {
-      case null:
-        return <div className={classes.loading} />;
-
       case true:
         return (
           <AuthProfile
@@ -92,16 +89,7 @@ const AuthDisplay: React.FC<Props> = (props: Props): JSX.Element => {
         );
 
       default:
-        return (
-          <AuthMenu
-            handleAuth={handleAuth}
-            modalRef={modalRef}
-            isOpen={isOpen}
-            updateModal={updateModal}
-            session={session}
-            type={type}
-          />
-        );
+        return <div className={classes.loading} />;
     }
   };
 
@@ -109,13 +97,6 @@ const AuthDisplay: React.FC<Props> = (props: Props): JSX.Element => {
 };
 
 useStyles = createUseStyles({
-  container: {
-    margin: '-20px 0 -22px 0',
-    position: 'relative',
-    height: 'auto',
-    width: '100%',
-    maxWidth: '250px'
-  },
   loading: {
     display: 'flex',
     flexGrow: 1,

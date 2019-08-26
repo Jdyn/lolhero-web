@@ -6,6 +6,7 @@ import BannerRankSlider from './BannerRankSlider';
 
 const propTypes = {
   type: PropTypes.oneOf(['slider', 'picker', 'default']),
+  height: PropTypes.string,
   rank: PropTypes.object,
   isStartRank: PropTypes.bool,
   updateOrder: PropTypes.func,
@@ -65,9 +66,9 @@ const Banner = props => {
 };
 
 const useStyles = createUseStyles(theme => ({
-  root: {
+  root: props => ({
     zIndex: 5,
-    height: '100%',
+    height: props.height || '100%',
     maxHeight: '550px',
     display: 'flex',
     maxWidth: '235px',
@@ -77,7 +78,7 @@ const useStyles = createUseStyles(theme => ({
     marginBottom: '15px',
     flexDirection: 'column',
     justifyContent: 'flex-start'
-  },
+  }),
   container: {
     color: '#fefefe',
     display: 'flex',
