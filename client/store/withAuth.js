@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 
-const auth = ctx => {
+const auth = (ctx, opts) => {
   const { token } = nextCookie(ctx);
+  const { requireAdmin } = opts;
+
+  if (requireAdmin === true) {
+    //TODO
+  }
   /*
    * If `ctx.req` is available it means we are on the server.
    * Additionally if there's no token it means the user is not logged in.
@@ -21,10 +26,10 @@ const auth = ctx => {
   return token;
 };
 
-function withAuth(Child) {
+function withAuth(Child, opts = {}) {
   return class extends Component {
     static async getInitialProps(ctx) {
-      const token = auth(ctx);
+      const token = auth(ctx, opts);
 
       const componentProps = Child.getInitialProps && (await Child.getInitialProps(ctx));
 
