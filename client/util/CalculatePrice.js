@@ -66,7 +66,8 @@ export default (order, pricing) => {
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
     if (Object.keys(pricing.lp).length === 0) return currentPrice;
-    if (!order.collectionName === 'Division Boost') return currentPrice;
+    console.log(order.collectionName)
+    if (order.collectionName !== 'Division Boost') return currentPrice;
 
     const { startRank, lp, collectionId } = order;
     const lpPrice = pricing.lp[lp];

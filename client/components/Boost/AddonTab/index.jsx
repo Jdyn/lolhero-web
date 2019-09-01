@@ -34,6 +34,7 @@ const AddonTab = props => {
   const classes = useStyles();
 
   useEffect(() => {
+    console.log("called")
     dropin
       .create(dropinOptions)
       .then(instance => {
@@ -94,8 +95,7 @@ const useStyles = createUseStyles(theme => ({
   content: {
     flexDirection: 'column',
     overflowY: 'auto',
-    margin: '0 0 0 10px',
-    paddingRight: '10px',
+    margin: '0 10px 0 10px',
     '@media (max-width: 1025px)': {
       display: 'flex !important'
     }

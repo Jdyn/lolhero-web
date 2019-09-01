@@ -63,6 +63,7 @@ const useStyles = createUseStyles(theme => ({
     border: 'none',
     borderRadius: 8,
     height: '30px',
+    fontSize: 14,
     margin: '10px 0',
     padding: '10px',
     backgroundColor: theme.primary,

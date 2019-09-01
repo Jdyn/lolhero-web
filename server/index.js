@@ -5,7 +5,7 @@ const match = require('path-match');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 3000;
-const app = next({ dev, dir: 'client/' });
+const app = next({ dev: true, dir: 'client/' });
 
 const handle = app.getRequestHandler();
 const route = match();

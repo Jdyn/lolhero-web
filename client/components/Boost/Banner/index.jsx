@@ -82,7 +82,7 @@ const useStyles = createUseStyles(theme => ({
   container: {
     color: '#fefefe',
     display: 'flex',
-    padding: '35px 0px',
+    padding: '35px 10px',
     flexGrow: 1,
     boxShadow: '0px -15px 15px rgba(0,0,0,.2)',
     alignItems: 'center',
