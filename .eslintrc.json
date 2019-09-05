@@ -2,6 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier",
@@ -16,19 +17,15 @@
     "node": true
   },
   "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
-  "rules": {
+  "rules": {  
     "jsx-a11y/href-no-hash": ["off"],
-    // "@typescript-eslint/explicit-function-return-type": "off",
-    "react/jsx-filename-extension": [
-      "warn",
-      { "extensions": [".js", ".jsx", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "max-len": [
       "warn",
       {
-        "code": 100,
+        "code": 80,
         "tabWidth": 2,
-        "comments": 100,
+        "comments": 80,
         "ignoreComments": false,
         "ignoreTrailingComments": true,
         "ignoreUrls": true,
@@ -39,13 +36,13 @@
     ]
   },
   "settings": {
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".ts", ".jsx", ".tsx"]
       }
     }
   }

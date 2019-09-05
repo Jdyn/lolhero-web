@@ -30,7 +30,10 @@ const DashboardCards = (props: Props): JSX.Element => {
               key={orderKey}
               className={classes.card}
               onClick={(): void => handleFilterChange(orderKey)}
-              style={{ borderColor: selectedFilter === orderKey ? theme.grey : theme.quartinary }}
+              style={{
+                borderColor:
+                  selectedFilter === orderKey ? theme.grey : theme.quartinary
+              }}
             >
               <h3>{order.title}</h3>
               <span>{order.count}</span>

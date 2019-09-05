@@ -2,7 +2,13 @@ export default (order, pricing) => {
   const basePrice = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
 
-    const { collectionId, startRank, desiredRank, desiredAmount, collectionName } = order;
+    const {
+      collectionId,
+      startRank,
+      desiredRank,
+      desiredAmount,
+      collectionName
+    } = order;
 
     if (!pricing[collectionId]) return currentPrice;
     // if (Object.keys(pricing[collectionId]).length === 0) return currentPrice;
@@ -66,7 +72,6 @@ export default (order, pricing) => {
   const calculateLP = currentPrice => {
     if (currentPrice <= 0) return currentPrice;
     if (Object.keys(pricing.lp).length === 0) return currentPrice;
-    console.log(order.collectionName)
     if (order.collectionName !== 'Division Boost') return currentPrice;
 
     const { startRank, lp, collectionId } = order;

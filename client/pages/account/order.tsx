@@ -43,7 +43,10 @@ class Order extends React.PureComponent<Props> {
     return (
       <Layout>
         {response.ok ? (
-          <OrderContainer trackingId={trackingId} order={response.result.order} />
+          <OrderContainer
+            trackingId={trackingId}
+            order={response.result.order}
+          />
         ) : (
           <div>{response.error}</div>
         )}

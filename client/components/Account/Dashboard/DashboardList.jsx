@@ -27,14 +27,19 @@ const DashboardList = props => {
             {orders[selectedFilter].orders.map((order, index) => (
               <Link
                 key={order.trackingId}
-                href={{ pathname: '/account/order', query: { trackingId: order.trackingId } }}
+                href={{
+                  pathname: '/account/order',
+                  query: { trackingId: order.trackingId }
+                }}
                 as={`/account/order/${order.trackingId}`}
               >
                 <div
-                  type="button"
                   className={classes.gridItem}
                   key={order.trackingId}
-                  style={{ backgroundColor: index % 2 === 0 ? theme.tertiary : theme.primary }}
+                  style={{
+                    backgroundColor:
+                      index % 2 === 0 ? theme.tertiary : theme.primary
+                  }}
                 >
                   <span>{order.trackingId}</span>
                   <span>{order.title}</span>

@@ -15,7 +15,9 @@ const OrderSuccess = props => {
         <h3>
           Your Tracking ID is <b>{trackingId || 'unknown'}</b>.
         </h3>
-        <p>Please review the email we have sent you detailing the next steps.</p>
+        <p>
+          Please review the email we have sent you detailing the next steps.
+        </p>
       </div>
     </Layout>
   );

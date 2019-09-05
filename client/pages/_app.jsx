@@ -48,15 +48,14 @@ class Application extends App {
       };
 
       store.dispatch(payload);
-    } 
+    }
 
     const { session } = store.getState();
-    console.log(session)
+    console.log(session);
 
     function onTidioChatApiReady() {
       const { session } = store.getState();
       const { user } = session;
-      console.log(session)
 
       const metadata = {
         email: user.email,
