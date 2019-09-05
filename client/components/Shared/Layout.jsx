@@ -31,7 +31,7 @@ const Layout = props => {
     >
       <Header session={session} handleAuth={handleAuth} sessionRequest={sessionRequest} />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
