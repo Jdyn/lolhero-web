@@ -68,7 +68,7 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: props => ({
     zIndex: 5,
-    height: props.height || '100%',
+    height: props.height || '95%',
     maxHeight: '550px',
     display: 'flex',
     maxWidth: '235px',

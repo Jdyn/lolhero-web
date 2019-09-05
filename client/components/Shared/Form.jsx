@@ -26,7 +26,7 @@ const Form = props => {
       style={{ flexDirection: props.row ? 'row' : 'column' }}
     >
       <h3>{template.title}</h3>
-      {template.fields.map((field) => (
+      {template.fields.map(field => (
         <div className={classes.container} key={field}>
           <span>{field}</span>
           <input
@@ -59,11 +59,11 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   input: {
+    display: 'flex',
+    flexGrow: 1,
     outline: 'none',
     border: 'none',
     borderRadius: 8,
-    height: '30px',
-    fontSize: 14,
     margin: '10px 0',
     padding: '10px',
     backgroundColor: theme.primary,

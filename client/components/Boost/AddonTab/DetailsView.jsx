@@ -52,7 +52,10 @@ const DetailsView = props => {
             >
               {type === 'login' ? 'back' : 'log in'}
             </Button>
-            <Button onClick={() => setType(prev => (prev === 'signup' ? null : 'signup'))}>
+            <Button
+              margin="0 0 20px 0"
+              onClick={() => setType(prev => (prev === 'signup' ? null : 'signup'))}
+            >
               {type === 'signup' ? 'back' : 'create account'}
             </Button>
             {type && (
@@ -76,6 +79,11 @@ const DetailsView = props => {
       <div className={classes.wrapper}>
         <div id="dropin-container" />
       </div>
+      <div className={classes.wrapper}>
+        <h3>Promotion Code</h3>
+        <input className={classes.input} placeholder="Enter promo code"></input>
+        <Button>check</Button>
+      </div>
     </>
   );
 };
@@ -88,13 +96,18 @@ useStyles = createUseStyles(theme => ({
     borderRadius: 12,
     padding: '25px',
     boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
-    margin: '10px 10px 20px 10px'
+    margin: '10px 10px 20px 10px',
+    '& h3': {
+      margin: '0 0 10px 0',
+      fontSize: 16,
+      fontWeight: 500
+    }
   },
   authWrapper: {
     display: 'flex',
     flexDirection: 'column',
     '& b': {
-      margin: '10px 0',
+      margin: '0 0 10px 0',
       textAlign: 'center'
     }
   },
@@ -113,6 +126,8 @@ useStyles = createUseStyles(theme => ({
     }
   },
   input: {
+    display: 'flex',
+    flexGrow: 1,
     outline: 'none',
     border: 'none',
     borderRadius: 8,
