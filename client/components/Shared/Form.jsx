@@ -33,7 +33,9 @@ const Form = props => {
             className={classes.input}
             value={form[field] || ''}
             type={field}
-            onChange={event => setForm({ ...form, [field]: event.target.value })}
+            onChange={event =>
+              setForm({ ...form, [field]: event.target.value })
+            }
           />
         </div>
       ))}

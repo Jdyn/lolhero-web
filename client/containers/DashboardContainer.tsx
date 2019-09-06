@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchAccountOrders } from '../actions/AccountActions';
+import { fetchAccountOrders } from '../actions/account/actions';
 import { AccountState } from '../reducers/account/types';
 import { AppState } from '../reducers';
 import Dashboard from '../components/Account/Dashboard';

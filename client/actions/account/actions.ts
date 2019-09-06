@@ -1,17 +1,20 @@
-import { actions, requests, AccountActions, Orders } from '../reducers/account/types';
-import { AppState } from '../reducers';
-import { setRequest } from './RequestActions';
-import Api from '../services/api';
+import { Dispatch } from 'redux';
+import Api from '../../services/api';
+import { AppState } from '../../reducers';
+import { setRequest } from '../RequestActions';
+import {
+  actions,
+  requests,
+  AccountActions,
+  Orders
+} from '../../reducers/account/types';
 
-export const setAccountOrders = (orders: Orders): AccountActions => ({
+const setAccountOrders = (orders: Orders): AccountActions => ({
   type: actions.FETCH_ACCOUNT_ORDERS,
   orders
 });
 
-export const fetchAccountOrders = (): ((dispatch: Function, getState: () => AppState) => void) => (
-  dispatch,
-  getState
-): void => {
+export const fetchAccountOrders = () => (dispatch, getState) => {
   const requestType = requests.ACCOUNT_ORDERS;
   const request = getState().request[requestType] || {};
 
