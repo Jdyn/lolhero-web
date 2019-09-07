@@ -1,10 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { createUseStyles, useTheme } from 'react-jss';
 import formatTime from '../../../util/formatTime';
 
-const propTypes = {};
+const propTypes = {
+  orders: PropTypes.shape({}),
+  selectedFilter: PropTypes.string.isRequired
+};
 
 let useStyles;
 

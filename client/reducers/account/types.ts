@@ -1,7 +1,18 @@
-import keyMirror from '../../util/keyMirror';
+interface AccountRequests {
+  ACCOUNT_ORDERS: string;
+}
 
-export const actions = keyMirror('FETCH_ACCOUNT_ORDERS');
-export const requests = keyMirror('ACCOUNT_ORDERS');
+export const requests: AccountRequests = {
+  ACCOUNT_ORDERS: 'ACCOUNT_ORDERS'
+};
+
+interface AccountActions {
+  FETCH_ACCOUNT_ORDERS: string;
+}
+
+export const actions: AccountActions = {
+  FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS'
+};
 
 export interface Order {
   count: number;
@@ -29,9 +40,4 @@ interface FetchAccountOrders {
   orders: Orders;
 }
 
-interface Test {
-  type: string;
-  orders: Orders;
-}
-
-export type AccountActions = FetchAccountOrders | Test;
+export type AccountActionTypes = FetchAccountOrders;

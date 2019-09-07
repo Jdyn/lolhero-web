@@ -1,0 +1,6 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--secondary-grey);
+}

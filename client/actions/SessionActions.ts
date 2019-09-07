@@ -3,7 +3,12 @@ import Router from 'next/router';
 import Api from '../services/api';
 import { setRequest } from './RequestActions';
 import { AppState } from '../reducers';
-import { actions, requests, SessionActionTypes, User } from '../reducers/session/types';
+import {
+  actions,
+  requests,
+  SessionActionTypes,
+  User
+} from '../reducers/session/types';
 
 const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
@@ -17,14 +22,16 @@ const setLogin = (user: User): SessionActionTypes => ({
   user
 });
 
-const login = (form: object): ((dispatch: Function, getState: () => AppState) => void) => (
+const login = (
+  form: object
+): ((dispatch: Function, getState: () => AppState) => void) => (
   dispatch,
   getState
 ): void => {
   const requestType = requests.AUTHENTICATE;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
@@ -67,9 +74,9 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
   getState
 ): void => {
   const requestType = requests.AUTHENTICATE;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
@@ -95,11 +102,14 @@ const setSignup = (user: User): SessionActionTypes => ({
   user
 });
 
-const signup = (form: object): Function => (dispatch: Function, getState: () => AppState): void => {
+const signup = (form: object): Function => (
+  dispatch: Function,
+  getState: () => AppState
+): void => {
   const requestType = requests.AUTHENTICATE;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
@@ -131,9 +141,10 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
     });
 };
 
-export const handleAuth = (type: string, form: object): ((dispatch: Function) => void) => (
-  dispatch
-): void => {
+export const handleAuth = (
+  type: string,
+  form: object
+): ((dispatch: Function) => void) => (dispatch): void => {
   switch (type) {
     case 'login':
       dispatch(login(form));
@@ -149,20 +160,23 @@ export const handleAuth = (type: string, form: object): ((dispatch: Function) =>
   }
 };
 
-const setRefresh = (update: { user: User; isLoggedIn: boolean }): SessionActionTypes => ({
+const setRefresh = (update: {
+  user: User;
+  isLoggedIn: boolean;
+}): SessionActionTypes => ({
   type: actions.REFRESH,
   user: update.user,
   isLoggedIn: update.isLoggedIn
 });
 
-export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
-  dispatch,
-  getState
-): void => {
+export const authenticate = (): ((
+  dispatch: Function,
+  getState: () => AppState
+) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 

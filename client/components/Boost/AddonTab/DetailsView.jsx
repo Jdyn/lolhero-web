@@ -82,7 +82,7 @@ const DetailsView = props => {
       <div className={classes.wrapper}>
         <h3>Promotion Code</h3>
         <input className={classes.input} placeholder="Enter promo code"></input>
-        <Button>check</Button>
+        <Button margin="10px 0 0 0">check</Button>
       </div>
     </>
   );

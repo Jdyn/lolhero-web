@@ -50,9 +50,6 @@ class Application extends App {
       store.dispatch(payload);
     }
 
-    const { session } = store.getState();
-    console.log(session);
-
     function onTidioChatApiReady() {
       const { session } = store.getState();
       const { user } = session;

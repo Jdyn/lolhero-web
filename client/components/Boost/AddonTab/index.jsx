@@ -34,7 +34,6 @@ const AddonTab = props => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("called")
     dropin
       .create(dropinOptions)
       .then(instance => {

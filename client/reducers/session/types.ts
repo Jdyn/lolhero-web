@@ -1,20 +1,24 @@
-import keyMirror from '../../util/keyMirror';
-
-interface Actions {
+interface SessionActions {
   LOG_IN: string;
   SIGN_UP: string;
   LOG_OUT: string;
   REFRESH: string;
 }
 
-export const actions: Actions = {
+export const actions: SessionActions = {
   LOG_IN: 'LOG_IN',
   SIGN_UP: 'SIGN_UP',
   LOG_OUT: 'LOG_OUT',
   REFRESH: 'REFRESH'
 };
 
-export const requests = keyMirror('AUTHENTICATE');
+export interface SessionRequests {
+  AUTHENTICATE: 'AUTHENTICATE';
+}
+
+export const requests: SessionRequests = {
+  AUTHENTICATE: 'AUTHENTICATE'
+};
 
 export interface User {
   email: string | null;

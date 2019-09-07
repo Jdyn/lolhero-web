@@ -17,8 +17,9 @@
     "node": true
   },
   "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
-  "rules": {  
+  "rules": {
     "jsx-a11y/href-no-hash": ["off"],
+    "import/prefer-default-export": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "max-len": [
       "warn",

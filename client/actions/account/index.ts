@@ -1,4 +1,4 @@
-import { fetchAccountOrders } from './actions';
+import { fetchAccountOrders } from './account';
 
 export default {
   fetchAccountOrders

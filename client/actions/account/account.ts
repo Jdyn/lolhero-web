@@ -5,18 +5,21 @@ import { setRequest } from '../RequestActions';
 import {
   actions,
   requests,
-  AccountActions,
+  AccountActionTypes,
   Orders
 } from '../../reducers/account/types';
 
-const setAccountOrders = (orders: Orders): AccountActions => ({
+export const setAccountOrders = (orders: Orders): AccountActionTypes => ({
   type: actions.FETCH_ACCOUNT_ORDERS,
   orders
 });
 
-export const fetchAccountOrders = () => (dispatch, getState) => {
+export const fetchAccountOrders = () => (
+  dispatch: Dispatch,
+  getState: () => AppState
+): void => {
   const requestType = requests.ACCOUNT_ORDERS;
-  const request = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
 

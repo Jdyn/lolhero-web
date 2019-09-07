@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
-import DashboardHeader from '../Account/Header';
+import DashboardHeader from '../Account/Dashboard/Header/Header';
 import { formatLP } from '../../util/Helpers';
 import addons from '../../lib/addonContent';
 import OrderHero from './OrderHero';
@@ -16,7 +16,7 @@ const Order = props => {
 
   return (
     <div className={classes.root}>
-      <DashboardHeader order={order} />
+      <DashboardHeader session={session} order={order} />
       <OrderHero order={order} updateOrder={updateOrder} />
     </div>
   );
