@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
-import DashboardHeader from '../Account/Dashboard/Header/Header';
+import DashboardHeader from '../Account/Dashboard/DashboardHeader/DashboardHeader';
 import { formatLP } from '../../util/Helpers';
 import addons from '../../lib/addonContent';
 import OrderHero from './OrderHero';

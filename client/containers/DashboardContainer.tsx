@@ -7,14 +7,14 @@ import Dashboard from '../components/Account/Dashboard';
 import actions from '../actions/account';
 
 interface Props {
-  account: AccountState;
-  session: SessionState;
-  fetchAccountOrders: () => void;
+  account?: AccountState;
+  session?: SessionState;
+  fetchAccountOrders?: () => void;
 }
 
-class DashboardContainer extends React.PureComponent<Props> {
+class DashboardContainer extends React.PureComponent<Props, undefined> {
   public render(): JSX.Element {
-    const { account, session, fetchAccountOrders } = this.props;
+    const { session, account, fetchAccountOrders } = this.props;
 
     return (
       <Dashboard
@@ -26,12 +26,12 @@ class DashboardContainer extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: AppState): object => ({
+const mapStateToProps = (state: AppState): any => ({
   session: state.session,
   account: state.account
 });
 
-const mapDispatchToProps = (dispatch): object => ({
+const mapDispatchToProps = (dispatch): any => ({
   fetchAccountOrders: (): void => dispatch(actions.fetchAccountOrders())
 });
 

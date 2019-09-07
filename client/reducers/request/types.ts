@@ -6,12 +6,12 @@ export const actions: RequestActions = {
   SET_REQUEST: 'SET_REQUEST'
 };
 
-interface ErrorObject {
+export interface ErrorObject {
   errored: boolean;
-  erorr: string;
+  error: string;
 }
 
-interface Request {
+export interface Request {
   type: typeof actions.SET_REQUEST;
   requestType: string;
   isPending: boolean;

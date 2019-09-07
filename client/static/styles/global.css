@@ -23,6 +23,7 @@
 :root {
   --white: #fafafa;
   --grey: #999;
+  --quartinary-grey: #252525;
   --tertiary-grey: #292929;
   --secondary-grey: #323232;
 }
@@ -38,13 +39,14 @@ body {
   background-color: #292929;
   color: #f0f0f0;
   font-size: 100%;
+  min-height: 100vh;
   font-family: 'Museo Sans Rounded', 'Open Sans', 'Segoe UI', 'sans-serif';
   font-weight: normal;
   font-style: normal;
   text-rendering: optimizeLegibility;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 650px) {
   ::-webkit-scrollbar {
     width: 8px;
   }

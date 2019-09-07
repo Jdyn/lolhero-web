@@ -10,7 +10,7 @@ const SEO = props => {
       <meta name="description" content="LoL - League Of Legends Boosting" />
       <link href="/static/styles/global.css" rel="stylesheet" />
       <link href="/static/styles/braintree.css" rel="stylesheet" />
-      <script src="//code.tidio.co/i4tp3ur4r5c93thomdqgluh8fcvzexqf.js"></script>
+      {/* <script src="//code.tidio.co/i4tp3ur4r5c93thomdqgluh8fcvzexqf.js"></script> */}
     </Head>
   );
 };

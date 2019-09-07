@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { SessionState } from '../../../reducers/session/types';
 import { AccountState } from '../../../reducers/account/types';
-import DashboardHeader from './Header';
-import DashboardCards from './Cards';
-import DashboardList from './DashboardList';
+import DashboardHeader from './DashboardHeader';
+import DashboardFilter from './DashboardFilter';
+import DashboardTable from './DashboardTable/DashboardTable';
 import styles from './styles.css';
 
 interface Props {
@@ -24,8 +24,12 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <DashboardHeader session={session} />
-      {/* <DashboardCards account={account} setFilter={setFilter} filter={filter} /> */}
-      <DashboardList orders={account.orders} selectedFilter={filter} />
+      <DashboardFilter
+        orders={account.orders}
+        setFilter={setFilter}
+        filter={filter}
+      />
+      <DashboardTable orders={account.orders} filter={filter} />
     </div>
   );
 };

@@ -42,7 +42,7 @@ const AuthProfile = props => {
           {type === 'profile' && (
             <ul className={classes.modalList}>
               {templates[type].items.map((item, index) => (
-                <Link key={index} href={item.link}>
+                <Link key={item.title} href={item.link}>
                   <li className={classes.modalListItem}>{item.title}</li>
                 </Link>
               ))}

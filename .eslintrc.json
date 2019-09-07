@@ -40,10 +40,10 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".css"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".jsx", ".tsx"]
+        "extensions": [".js", ".ts", ".jsx", ".tsx", ".css"]
       }
     }
   }

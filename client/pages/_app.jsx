@@ -9,6 +9,7 @@ import SEO from '../components/Shared/SEO';
 import * as Sentry from '@sentry/browser';
 import nextCookie from 'next-cookies';
 import { authenticate } from '../actions/SessionActions';
+import '../static/styles/empty.css';
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({
@@ -30,8 +31,6 @@ class Application extends App {
   }
 
   componentDidMount() {
-    const style = document.getElementById('server-side-styles');
-
     const { pageProps, store } = this.props;
 
     if (pageProps.token) {
@@ -51,8 +50,7 @@ class Application extends App {
     }
 
     function onTidioChatApiReady() {
-      const { session } = store.getState();
-      const { user } = session;
+      const { user } = store.getState().session;
 
       const metadata = {
         email: user.email,
@@ -62,10 +60,6 @@ class Application extends App {
 
       document.tidioIdentify = metadata;
       tidioChatApi.setVisitorData(metadata);
-
-      // if (session.isLoggedIn && user.username !== null) {
-      //   tidioChatApi.messageFromOperator(`Hey ${user.username}, need anything?`);
-      // }
     }
 
     if (window.tidioChatApi) {
@@ -74,6 +68,7 @@ class Application extends App {
       document.addEventListener('tidioChat-ready', onTidioChatApiReady);
     }
 
+    const style = document.getElementById('server-side-styles');
     if (style) {
       style.parentNode.removeChild(style);
     }

@@ -110,7 +110,7 @@ const useStyles = createUseStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '80px 0 300px 0',
+    margin: '80px 0 0px 0',
     padding: '10px 10px 30px 10px',
     '@media (min-width: 650px)': {
       flexDirection: 'row'
