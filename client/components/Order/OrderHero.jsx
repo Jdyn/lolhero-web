@@ -30,7 +30,10 @@ const OrderHero = props => {
   const { order, updateOrder } = props;
   const { primaryRole, secondaryRole } = order.details;
   const ranksObject = useMemo(
-    () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
+    () =>
+      [].concat
+        .apply([], [...ranks])
+        .reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
     [order]
   );
 
@@ -60,8 +63,14 @@ const OrderHero = props => {
 
     if (primaryRole || secondaryRole) {
       const { details } = form;
-      if (details.primaryRole !== undefined && details.secondaryRole !== undefined) {
-        if (primaryRole === details.secondaryRole || secondaryRole === details.primaryRole) {
+      if (
+        details.primaryRole !== undefined &&
+        details.secondaryRole !== undefined
+      ) {
+        if (
+          primaryRole === details.secondaryRole ||
+          secondaryRole === details.primaryRole
+        ) {
           setForm(prev => ({
             ...prev,
             details: {
@@ -71,15 +80,14 @@ const OrderHero = props => {
             }
           }));
           return;
-        } else {
-          setForm({
-            ...form,
-            details: {
-              ...details,
-              ...formUpdate
-            }
-          });
         }
+        setForm({
+          ...form,
+          details: {
+            ...details,
+            ...formUpdate
+          }
+        });
       }
 
       return;
@@ -96,26 +104,36 @@ const OrderHero = props => {
       return;
     }
 
-    setForm(prev => ({ ...prev, accountDetails: { ...prev.accountDetails, ...formUpdate } }));
+    setForm(prev => ({
+      ...prev,
+      accountDetails: { ...prev.accountDetails, ...formUpdate }
+    }));
   };
 
   return (
     <div className={classes.root}>
       {order.isEditable ? (
         <div className={classes.container}>
-          <Banner height="450px" type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+          <Banner
+            height="450px"
+            type="default"
+            rank={ranksObject[order.details.desiredRank] || {}}
+          />
           <div className={classes.wrapper}>
             <h3>Order Details</h3>
             <div className={classes.rolesContainer}>
               {content.map(item => (
-                <div className={classes.rolesWrapper}>
+                <div key={item.title} className={classes.rolesWrapper}>
                   <span>{item.title}</span>
                   <div className={classes.roles}>
                     {item.roles.map(role => (
-                      <div
+                      <button
+                        type="button"
                         className={classes.role}
                         key={role.title}
-                        onClick={() => handleFormUpdate({ [item.text]: role.title })}
+                        onClick={() =>
+                          handleFormUpdate({ [item.text]: role.title })
+                        }
                         style={{
                           backgroundColor:
                             form.details[item.text] === role.title
@@ -124,7 +142,7 @@ const OrderHero = props => {
                         }}
                       >
                         <img src={role.image}></img>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -132,14 +150,18 @@ const OrderHero = props => {
             </div>
             <form className={classes.form}>
               {fields.map(field => (
-                <div className={classes.formWrapper}>
+                <div key={field.title} className={classes.formWrapper}>
                   <span>{field.title}</span>
                   <input
                     type={field.type}
                     value={
-                      field.text === 'summonerName' ? form[field.text] : form.details[field.text]
+                      field.text === 'summonerName'
+                        ? form[field.text]
+                        : form.details[field.text]
                     }
-                    onChange={event => handleFormUpdate({ [field.text]: event.target.value })}
+                    onChange={event =>
+                      handleFormUpdate({ [field.text]: event.target.value })
+                    }
                     className={classes.formInput}
                   />
                 </div>
@@ -159,22 +181,36 @@ const OrderHero = props => {
         </div>
       ) : (
         <div className={classes.container}>
-          <Banner height="450px" type="default" rank={ranksObject[order.details.desiredRank] || {}} />
+          <Banner
+            height="450px"
+            type="default"
+            rank={ranksObject[order.details.desiredRank] || {}}
+          />
           <div className={classes.wrapper}>
             <h3>Order Details</h3>
             <div className={classes.rolesWrapper}>
               <div className={classes.rolesDisplay}>
                 <span>Primary Role</span>
                 <img
-                  src={addons.addons.roles.filter(role => role.title === primaryRole)[0].image}
-                ></img>
+                  alt="role"
+                  src={
+                    addons.addons.roles.filter(
+                      role => role.title === primaryRole
+                    )[0].image
+                  }
+                />
               </div>
             </div>
             <div className={classes.rolesDisplay}>
               <span>Secondary Role</span>
               <img
-                src={addons.addons.roles.filter(role => role.title === secondaryRole)[0].image}
-              ></img>
+                alt="role"
+                src={
+                  addons.addons.roles.filter(
+                    role => role.title === secondaryRole
+                  )[0].image
+                }
+              />
             </div>
           </div>
         </div>
@@ -274,6 +310,8 @@ const useStyles = createUseStyles(theme => ({
     minWidth: '36px',
     height: '36px',
     // padding: '15px 10px',
+    outline: 'none',
+    border: 'none',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '50%',

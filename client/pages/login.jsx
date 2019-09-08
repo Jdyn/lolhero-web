@@ -1,10 +1,11 @@
-import React from "react";
-import Layout from "../components/Shared/Layout";
+import React from 'react';
+import Layout from '../components/Shared/Layout';
 
-const login = () => {
+const login = props => {
+  console.log(props);
   return (
     <Layout>
-        <LoginContainer></LoginContainer>
+      <div>login</div>
     </Layout>
   );
 };

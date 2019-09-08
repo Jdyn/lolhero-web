@@ -48,13 +48,17 @@ const DetailsView = props => {
             <Button
               secondary
               margin="0 0 10px 0"
-              onClick={() => setType(prev => (prev === 'login' ? null : 'login'))}
+              onClick={() =>
+                setType(prev => (prev === 'login' ? null : 'login'))
+              }
             >
               {type === 'login' ? 'back' : 'log in'}
             </Button>
             <Button
               margin="0 0 20px 0"
-              onClick={() => setType(prev => (prev === 'signup' ? null : 'signup'))}
+              onClick={() =>
+                setType(prev => (prev === 'signup' ? null : 'signup'))
+              }
             >
               {type === 'signup' ? 'back' : 'create account'}
             </Button>
@@ -68,21 +72,29 @@ const DetailsView = props => {
               <form id="details-form" className={classes.authWrapper}>
                 <b>or</b>
                 <span>Email Address</span>
-                <input className={classes.input} id="details-email" type="email" />
+                <input
+                  className={classes.input}
+                  id="details-email"
+                  type="email"
+                />
                 <span>Confirm Email Adress</span>
-                <input className={classes.input} id="details-email-confirmation" type="email" />
+                <input
+                  className={classes.input}
+                  id="details-email-confirmation"
+                  type="email"
+                />
               </form>
             )}
           </>
         )}
       </div>
       <div className={classes.wrapper}>
-        <div id="dropin-container" />
+        <h3>Promotion Code</h3>
+        <input className={classes.input} />
+        <Button margin="10px 0 0 0">check</Button>
       </div>
       <div className={classes.wrapper}>
-        <h3>Promotion Code</h3>
-        <input className={classes.input} placeholder="Enter promo code"></input>
-        <Button margin="10px 0 0 0">check</Button>
+        <div id="dropin-container" />
       </div>
     </>
   );
@@ -98,7 +110,7 @@ useStyles = createUseStyles(theme => ({
     boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
     margin: '10px 10px 20px 10px',
     '& h3': {
-      margin: '0 0 10px 0',
+      margin: '0 0 0 0',
       fontSize: 16,
       fontWeight: 500
     }

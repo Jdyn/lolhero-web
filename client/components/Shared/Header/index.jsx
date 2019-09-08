@@ -38,7 +38,11 @@ const Header = props => {
         />
       </form>
 
-      <AuthDisplay handleAuth={handleAuth} session={session} sessionRequest={sessionRequest} />
+      <AuthDisplay
+        handleAuth={handleAuth}
+        session={session}
+        sessionRequest={sessionRequest}
+      />
     </header>
   );
 };

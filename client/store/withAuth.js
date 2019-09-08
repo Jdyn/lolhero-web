@@ -3,20 +3,20 @@ import React, { Component } from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 
-const auth = (ctx) => {
+const auth = ctx => {
   const { token } = nextCookie(ctx);
   /*
    * If `ctx.req` is available it means we are on the server.
    * Additionally if there's no token it means the user is not logged in.
    */
   if (ctx.req && !token) {
-    ctx.res.writeHead(302, { Location: '/error' });
+    ctx.res.writeHead(302, { Location: '/login' });
     ctx.res.end();
   }
 
   // We already checked for server. This should only happen on client.
   if (!token) {
-    Router.push('/error');
+    Router.push({ pathname: '/login' });
   }
 
   return token;
@@ -26,7 +26,7 @@ function withAuth(Child) {
   return class extends Component {
     static async getInitialProps(ctx) {
       const token = auth(ctx);
-      
+
       const componentProps =
         Child.getInitialProps && (await Child.getInitialProps(ctx));
 
