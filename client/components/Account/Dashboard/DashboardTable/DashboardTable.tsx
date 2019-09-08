@@ -16,9 +16,9 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <span>tracking ID</span>
+          <span>Tracking ID</span>
           <span>Service</span>
-          <span>status</span>
+          <span>Status</span>
           <span>Order Date</span>
         </div>
         {orders && (

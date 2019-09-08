@@ -12,7 +12,7 @@ const DashboardHeader: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <div className={styles.portrait} />
-      {session && <h3 className={styles.container}>{session.user.username}</h3>}
+      <h3 className={styles.container}>{session.user.username}</h3>
     </div>
   );
 };

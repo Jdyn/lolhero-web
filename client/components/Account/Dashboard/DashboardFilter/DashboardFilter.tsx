@@ -9,7 +9,7 @@ interface Props {
 }
 
 const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
-  const { orders, setFilter } = props;
+  const { orders, setFilter, filter } = props;
 
   return (
     <div className={styles.root}>
@@ -20,7 +20,7 @@ const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
             <button
               type="button"
               key={orderKey}
-              className={styles.filter}
+              className={`${styles.filter} ${filter === orderKey && styles.selected}`}
               onClick={(): void => setFilter(orderKey)}
             >
               <h3>{order.title || '...'}</h3>
