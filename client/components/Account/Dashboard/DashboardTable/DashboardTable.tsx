@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import formatTime from '../../../../util/formatTime';
-import { Orders } from '../../../../reducers/account/types';
+import { Orders, BaseOrder } from '../../../../reducers/account/types';
 import styles from './styles.css';
 
 interface Props {
@@ -23,30 +23,28 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
         </div>
         {orders && (
           <div className={styles.grid}>
-            {orders[filter].orders.map(order => (
-              <Link
-                key={order.trackingId}
-                href={{
-                  pathname: '/account/order',
-                  query: { trackingId: order.trackingId }
-                }}
-                as={`/account/order/${order.trackingId}`}
-              >
-                <div
-                  className={styles.gridItem}
+            {orders[filter].orders.map(
+              (order: BaseOrder, index: number): JSX.Element => (
+                <Link
                   key={order.trackingId}
-                  // style={{
-                  //   backgroundColor:
-                  //     index % 2 === 0 ? theme.tertiary : theme.primary
-                  // }}
+                  href={{
+                    pathname: '/account/order',
+                    query: { trackingId: order.trackingId }
+                  }}
+                  as={`/account/order/${order.trackingId}`}
                 >
-                  <span>{order.trackingId}</span>
-                  <span>{order.title}</span>
-                  <span>{order.status}</span>
-                  <span>{formatTime(order.createdAt)}</span>
-                </div>
-              </Link>
-            ))}
+                  <div
+                    className={`${styles.gridItem} ${index % 2 === 0 && styles.selected}`}
+                    key={order.trackingId}
+                  >
+                    <span>{order.trackingId}</span>
+                    <span>{order.title}</span>
+                    <span>{order.status}</span>
+                    <span>{formatTime(order.createdAt)}</span>
+                  </div>
+                </Link>
+              )
+            )}
           </div>
         )}
       </div>

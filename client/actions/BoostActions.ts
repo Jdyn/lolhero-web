@@ -6,11 +6,32 @@ import { setRequest } from './RequestActions';
 import calculatePrice from '../util/CalculatePrice';
 
 export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');
-export const requests = keyMirror(
-  'BOOST_PRICING',
-  'BOOST_ORDER',
-  'SUBMIT_ORDER'
-);
+export const requests = keyMirror('BOOST_PRICING', 'BOOST_ORDER', 'SUBMIT_ORDER');
+
+const validateOrder = (order, dispatchError) => {
+  const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
+
+  if (!startRank) return dispatchError('You must have a starting rank.');
+
+  if (collectionName === 'Division Boost') {
+    if (!desiredRank) return dispatchError('You must have a desired rank.');
+    if (startRank > desiredRank)
+      return dispatchError('Your starting rank cannot be greater than your desired rank.');
+  } else if (!desiredAmount) return dispatchError('You must have a desired amount.');
+
+  return true;
+};
+
+const trimOrder = order => {
+  const newOrder = { ...order };
+  if (order.details.collectionName === 'Division Boost') {
+    delete newOrder.details.desiredAmount;
+  } else {
+    delete newOrder.details.desiredRank;
+  }
+
+  return newOrder;
+};
 
 const setBoostPrices = prices => ({
   type: actions.FETCH_BOOST_PRICES,
@@ -61,7 +82,8 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   if (request.errored) {
     dispatch(
       setRequest(false, requests.SUBMIT_ORDER, {
-        errored: false
+        errored: false,
+        error: ''
       })
     );
   }
@@ -86,7 +108,7 @@ export const submitOrder = () => (dispatch, getState) => {
 
   dispatch(setRequest(true, requestType));
 
-  let order = { ...getState().boost.order };
+  const order = { ...getState().boost.order };
 
   const dispatchError = message => {
     dispatch(
@@ -114,50 +136,15 @@ export const submitOrder = () => (dispatch, getState) => {
           } else {
             const errors = response.errors || [];
             const message =
-              errors[Object.keys(errors)[0]] ||
-              'Error placing order. Try again later.';
+              errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
 
             dispatchError(message);
           }
         })
         .catch(error => {
-          dispatchError(
-            'Error placing order. Try again later or contact support.'
-          );
+          dispatchError('Error placing order. Try again later or contact support.');
           Sentry.captureException(error);
         });
     }
   }
-};
-
-const validateOrder = (order, dispatchError) => {
-  const {
-    collectionName,
-    startRank,
-    desiredRank,
-    desiredAmount
-  } = order.details;
-
-  if (!startRank) return dispatchError('You must have a starting rank.');
-
-  if (collectionName === 'Division Boost') {
-    if (!desiredRank) return dispatchError('You must have a desired rank.');
-    if (startRank > desiredRank)
-      return dispatchError(
-        'Your starting rank cannot be greater than your desired rank.'
-      );
-  } else if (!desiredAmount)
-    return dispatchError('You must have a desired amount.');
-
-  return true;
-};
-
-const trimOrder = order => {
-  if (order.details.collectionName === 'Division Boost') {
-    delete order.details.desiredAmount;
-  } else {
-    delete order.details.desiredRank;
-  }
-
-  return order;
 };

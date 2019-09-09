@@ -14,15 +14,17 @@ export const actions: AccountActions = {
   FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS'
 };
 
+export interface BaseOrder {
+  createdAt: string;
+  status: string;
+  title: string;
+  trackingId: string;
+}
+
 export interface Order {
   count: number;
   title: string;
-  orders: {
-    createdAt: string;
-    status: string;
-    title: string;
-    trackingId: string;
-  }[];
+  orders: BaseOrder[];
 }
 
 export interface Orders {

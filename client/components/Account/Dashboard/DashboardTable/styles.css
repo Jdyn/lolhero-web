@@ -45,7 +45,12 @@
   padding: 15px 10px;
   border-radius: 8px;
   cursor: pointer;
+  background-color: var(--primary-grey);
   transition-duration: 0.2s;
+}
+
+.selected {
+  background-color: var(--tertiary-grey);
 }
 
 .gridItem:hover {
