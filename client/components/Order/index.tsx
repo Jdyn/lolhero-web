@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import OrderHero from './OrderHero';
 import { SessionState } from '../../reducers/session/types';
-import OrderHeader from './OrderHeader';
+import OrderHeader from './OrderHeader/OrderHeader';
 
 interface Props {
   order: any;
