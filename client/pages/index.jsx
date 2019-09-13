@@ -1,6 +1,6 @@
-import React from "react";
-import HomeContainer from "../containers/HomeContainer";
-import Layout from "../components/Shared/Layout";
+import React from 'react';
+import HomeContainer from '../containers/HomeContainer';
+import Layout from '../components/Shared/Layout';
 
 const index = () => {
   return (

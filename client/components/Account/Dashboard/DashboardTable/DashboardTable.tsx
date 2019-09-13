@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import formatTime from '../../../../util/formatTime';
-import { Orders, BaseOrder } from '../../../../reducers/account/types';
+import { Orders, BaseOrder } from '../../../../store/reducers/account/types';
 import styles from './styles.css';
 
 interface Props {

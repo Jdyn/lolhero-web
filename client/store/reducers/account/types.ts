@@ -2,7 +2,7 @@ interface AccountRequests {
   ACCOUNT_ORDERS: string;
 }
 
-export const requests: AccountRequests = {
+export const accountRequests: AccountRequests = {
   ACCOUNT_ORDERS: 'ACCOUNT_ORDERS'
 };
 

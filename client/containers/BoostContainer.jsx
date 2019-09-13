@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Boost from '../components/Boost';
-import { fetchBoostPrices, updateOrder, submitOrder } from '../actions/BoostActions';
-import { handleAuth } from '../actions/SessionActions';
+import { fetchBoostPrices, updateOrder, submitOrder, handleAuth } from '../store';
 
 class BoostContainer extends React.PureComponent {
   render() {

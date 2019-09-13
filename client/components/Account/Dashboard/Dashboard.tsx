@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SessionState } from '../../../reducers/session/types';
-import { AccountState } from '../../../reducers/account/types';
+import { SessionState } from '../../../store/reducers/session/types';
+import { AccountState } from '../../../store/reducers/account/types';
 import DashboardHeader from './DashboardHeader';
 import DashboardFilter from './DashboardFilter';
 import DashboardTable from './DashboardTable/DashboardTable';

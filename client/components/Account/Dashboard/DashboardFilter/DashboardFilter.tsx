@@ -1,5 +1,5 @@
 import React from 'react';
-import { Order, Orders } from '../../../../reducers/account/types';
+import { Order, Orders } from '../../../../store/reducers/account/types';
 import styles from './styles.css';
 
 interface Props {

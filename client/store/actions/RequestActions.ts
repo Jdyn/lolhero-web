@@ -1,4 +1,4 @@
-import keyMirror from '../util/keyMirror';
+import keyMirror from '../../util/keyMirror';
 import { ErrorObject, Request } from '../reducers/request/types';
 
 export const actions = keyMirror('SET_REQUEST');

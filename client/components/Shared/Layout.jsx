@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { handleAuth } from '../../actions/SessionActions';
 import { createUseStyles } from 'react-jss';
+import Header from './Header';
+import Footer from './Footer';
+import { handleAuth } from '../../store/actions/SessionActions';
 
 const propTypes = {
   children: PropTypes.object.isRequired

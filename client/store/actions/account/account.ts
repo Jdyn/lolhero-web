@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import Api from '../../services/api';
+import Api from '../../../services/api';
 import { AppState } from '../../reducers';
 import { setRequest } from '../RequestActions';
 import {

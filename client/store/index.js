@@ -1,10 +1,25 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
+import { fetchAccountOrders } from './actions/account';
+import { AccountState } from './reducers/account/types';
 
-const isWindow = typeof window !== 'undefined';
+import { SessionState } from './reducers/session/types';
+import { handleAuth } from './actions/SessionActions';
 
-const composeEnhancers = (isWindow && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+import { fetchBoostPrices, updateOrder, submitOrder } from './actions/BoostActions';
 
-export default initalState =>
-  createStore(rootReducer, initalState, composeEnhancers(applyMiddleware(thunk)));
+import { setRequest } from './actions/RequestActions';
+
+import { AppState } from './reducers';
+
+// Account Store
+export { AccountState, fetchAccountOrders };
+
+// Session Store
+export { SessionState, handleAuth };
+
+// Boost Store
+export { fetchBoostPrices, updateOrder, submitOrder };
+
+// Request Store
+export { setRequest };
+
+export { AppState };

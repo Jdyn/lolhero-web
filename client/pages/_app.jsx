@@ -1,14 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import App from 'next/app';
+import nextCookie from 'next-cookies';
+import * as Sentry from '@sentry/browser';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'react-jss';
+import { authenticate } from '../store/actions/SessionActions';
 import withRedux from '../store/withRedux';
 import Baseline from '../components/Shared/Baseline';
-import { ThemeProvider } from 'react-jss';
 import theme from '../lib/theme';
 import SEO from '../components/Shared/SEO';
-import * as Sentry from '@sentry/browser';
-import nextCookie from 'next-cookies';
-import { authenticate } from '../actions/SessionActions';
 import '../static/styles/empty.css';
 
 if (process.env.NODE_ENV === 'production') {

@@ -1,16 +1,16 @@
 import React from 'react';
-import initializeStore from '.';
+import createStore from './createStore';
 
 const isServer = typeof window === 'undefined';
 const NEXT_STORE = '__NEXT_REDUX_STORE__';
 
-const createStore = initialState => {
+const initializeStore = initialState => {
   if (isServer) {
-    return initializeStore(initialState);
+    return createStore(initialState);
   }
 
   if (!window[NEXT_STORE]) {
-    window[NEXT_STORE] = initializeStore(initialState);
+    window[NEXT_STORE] = createStore(initialState);
   }
   return window[NEXT_STORE];
 };
@@ -20,11 +20,11 @@ export default App => {
     constructor(props) {
       super(props);
 
-      this.reduxStore = createStore(props.initialReduxState);
+      this.reduxStore = initializeStore(props.initialReduxState);
     }
 
     static async getInitialProps(appContext) {
-      const reduxStore = createStore();
+      const reduxStore = initializeStore();
 
       appContext.ctx.reduxStore = reduxStore;
 

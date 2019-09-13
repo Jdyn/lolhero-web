@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/browser';
 import Router from 'next/router';
-import Api from '../services/api';
-import keyMirror from '../util/keyMirror';
+import Api from '../../services/api';
+import keyMirror from '../../util/keyMirror';
 import { setRequest } from './RequestActions';
-import calculatePrice from '../util/CalculatePrice';
+import calculatePrice from '../../util/CalculatePrice';
 
 export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');
 export const requests = keyMirror('BOOST_PRICING', 'BOOST_ORDER', 'SUBMIT_ORDER');
