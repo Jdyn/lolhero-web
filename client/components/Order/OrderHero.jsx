@@ -30,11 +30,8 @@ const OrderHero = props => {
   const { order, updateOrder } = props;
   const { primaryRole, secondaryRole } = order.details;
   const ranksObject = useMemo(
-    () =>
-      [].concat
-        .apply([], [...ranks])
-        .reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
-    [order]
+    () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
+    []
   );
 
   const [form, setForm] = useState({
@@ -63,14 +60,8 @@ const OrderHero = props => {
 
     if (primaryRole || secondaryRole) {
       const { details } = form;
-      if (
-        details.primaryRole !== undefined &&
-        details.secondaryRole !== undefined
-      ) {
-        if (
-          primaryRole === details.secondaryRole ||
-          secondaryRole === details.primaryRole
-        ) {
+      if (details.primaryRole !== undefined && details.secondaryRole !== undefined) {
+        if (primaryRole === details.secondaryRole || secondaryRole === details.primaryRole) {
           setForm(prev => ({
             ...prev,
             details: {
@@ -131,9 +122,7 @@ const OrderHero = props => {
                         type="button"
                         className={classes.role}
                         key={role.title}
-                        onClick={() =>
-                          handleFormUpdate({ [item.text]: role.title })
-                        }
+                        onClick={() => handleFormUpdate({ [item.text]: role.title })}
                         style={{
                           backgroundColor:
                             form.details[item.text] === role.title
@@ -155,13 +144,9 @@ const OrderHero = props => {
                   <input
                     type={field.type}
                     value={
-                      field.text === 'summonerName'
-                        ? form[field.text]
-                        : form.details[field.text]
+                      field.text === 'summonerName' ? form[field.text] : form.details[field.text]
                     }
-                    onChange={event =>
-                      handleFormUpdate({ [field.text]: event.target.value })
-                    }
+                    onChange={event => handleFormUpdate({ [field.text]: event.target.value })}
                     className={classes.formInput}
                   />
                 </div>
@@ -193,11 +178,7 @@ const OrderHero = props => {
                 <span>Primary Role</span>
                 <img
                   alt="role"
-                  src={
-                    addons.addons.roles.filter(
-                      role => role.title === primaryRole
-                    )[0].image
-                  }
+                  src={addons.addons.roles.filter(role => role.title === primaryRole)[0].image}
                 />
               </div>
             </div>
@@ -205,11 +186,7 @@ const OrderHero = props => {
               <span>Secondary Role</span>
               <img
                 alt="role"
-                src={
-                  addons.addons.roles.filter(
-                    role => role.title === secondaryRole
-                  )[0].image
-                }
+                src={addons.addons.roles.filter(role => role.title === secondaryRole)[0].image}
               />
             </div>
           </div>
