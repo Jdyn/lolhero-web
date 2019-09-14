@@ -1,5 +1,5 @@
 import React from 'react';
-import { SessionState } from '../../../reducers/session/types';
+import { SessionState } from '../../../store';
 import styles from './styles.css';
 
 interface Props {

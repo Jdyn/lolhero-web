@@ -1,5 +1,11 @@
+import {
+  AccountState,
+  Orders,
+  accountActions,
+  accountRequests,
+  AccountActionTypes
+} from './reducers/account/types';
 import { fetchAccountOrders } from './actions/account';
-import { AccountState } from './reducers/account/types';
 
 import { SessionState } from './reducers/session/types';
 import { handleAuth } from './actions/SessionActions';
@@ -11,7 +17,14 @@ import { setRequest } from './actions/RequestActions';
 import { AppState } from './reducers';
 
 // Account Store
-export { AccountState, fetchAccountOrders };
+export {
+  AccountState,
+  fetchAccountOrders,
+  Orders,
+  AccountActionTypes,
+  accountRequests,
+  accountActions
+};
 
 // Session Store
 export { SessionState, handleAuth };

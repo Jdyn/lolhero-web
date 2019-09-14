@@ -10,7 +10,7 @@ interface AccountActions {
   FETCH_ACCOUNT_ORDERS: string;
 }
 
-export const actions: AccountActions = {
+export const accountActions: AccountActions = {
   FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS'
 };
 
@@ -38,7 +38,7 @@ export interface AccountState {
 }
 
 interface FetchAccountOrders {
-  type: typeof actions.FETCH_ACCOUNT_ORDERS;
+  type: typeof accountActions.FETCH_ACCOUNT_ORDERS;
   orders: Orders;
 }
 

@@ -2,23 +2,15 @@ import { Dispatch } from 'redux';
 import Api from '../../../services/api';
 import { AppState } from '../../reducers';
 import { setRequest } from '../RequestActions';
-import {
-  actions,
-  requests,
-  AccountActionTypes,
-  Orders
-} from '../../reducers/account/types';
+import { accountActions, accountRequests, AccountActionTypes, Orders } from '../../reducers/account/types';
 
 export const setAccountOrders = (orders: Orders): AccountActionTypes => ({
-  type: actions.FETCH_ACCOUNT_ORDERS,
+  type: accountActions.FETCH_ACCOUNT_ORDERS,
   orders
 });
 
-export const fetchAccountOrders = () => (
-  dispatch: Dispatch,
-  getState: () => AppState
-): void => {
-  const requestType = requests.ACCOUNT_ORDERS;
+export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => AppState): void => {
+  const requestType = accountRequests.ACCOUNT_ORDERS;
   const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
