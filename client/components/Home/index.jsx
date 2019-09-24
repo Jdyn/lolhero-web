@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import Router from 'next/router';
-import { createUseStyles, useTheme } from 'react-jss';
-import Button from '../Shared/Button';
 import Link from 'next/link';
+import Router from 'next/router';
+import { createUseStyles } from 'react-jss';
+import Button from '../Shared/Button';
 import HomeCard from './HomeCard';
 
 const propTypes = {};
@@ -22,7 +21,6 @@ const cards = [
 
 const Home = props => {
   const classes = useStyles(props);
-  const theme = useTheme();
 
   const [form, setForm] = useState({ trackingId: '' });
 
@@ -50,7 +48,9 @@ const Home = props => {
             aria-label="search"
             className={classes.search}
           />
-          <button className={classes.formSubmit}>Go</button>
+          <button type="button" className={classes.formSubmit}>
+            Go
+          </button>
         </form>
       </div>
       <div className={classes.wrapper}>
@@ -61,8 +61,8 @@ const Home = props => {
         </Link>
       </div>
       <div className={classes.content}>
-        {cards.map((item, index) => (
-          <HomeCard card={item} key={index} />
+        {cards.map(item => (
+          <HomeCard card={item} key={item.title} />
         ))}
       </div>
     </div>
