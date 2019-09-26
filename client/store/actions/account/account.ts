@@ -2,7 +2,12 @@ import { Dispatch } from 'redux';
 import Api from '../../../services/api';
 import { AppState } from '../../reducers';
 import { setRequest } from '../RequestActions';
-import { accountActions, accountRequests, AccountActionTypes, Orders } from '../../reducers/account/types';
+import {
+  accountActions,
+  accountRequests,
+  AccountActionTypes,
+  Orders
+} from '../../reducers/account/types';
 
 export const setAccountOrders = (orders: Orders): AccountActionTypes => ({
   type: accountActions.FETCH_ACCOUNT_ORDERS,

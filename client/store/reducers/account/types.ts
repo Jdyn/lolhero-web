@@ -33,13 +33,13 @@ export interface Orders {
   completed: Order;
 }
 
-export interface AccountState {
-  orders: Orders;
-}
-
 interface FetchAccountOrders {
   type: typeof accountActions.FETCH_ACCOUNT_ORDERS;
   orders: Orders;
 }
 
 export type AccountActionTypes = FetchAccountOrders;
+
+export interface AccountState {
+  orders: Orders;
+}

@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
-import { fetchAccountOrders, AccountState, SessionState, AppState } from '../store';
+import { fetchAccountOrders } from '../store/actions/account';
+import { AccountState } from '../store/reducers/account/types';
+import { SessionState } from '../store/reducers/session/types';
+import { AppState } from '../store/reducers';
 
 interface Props {
   account?: AccountState;

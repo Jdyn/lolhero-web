@@ -95,6 +95,7 @@ useStyles = createUseStyles(theme => ({
     position: 'relative',
     cursor: 'pointer',
     justifyContent: 'center',
+    alignItems: 'center',
     fontWeight: 600,
     fontSize: 16,
     flexGrow: 1,

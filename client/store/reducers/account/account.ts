@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { AccountState, actions, AccountActionTypes } from './types';
+import { AccountState, accountActions, AccountActionTypes } from './types';
 
 const initialState: AccountState = {
   orders: {
@@ -26,7 +26,7 @@ const reducer: Reducer<AccountState, AccountActionTypes> = (
   action: AccountActionTypes
 ): AccountState => {
   switch (action.type) {
-    case actions.FETCH_ACCOUNT_ORDERS:
+    case accountActions.FETCH_ACCOUNT_ORDERS:
       return {
         ...state,
         orders: action.orders

@@ -62,11 +62,15 @@ class Application extends App {
       tidioChatApi.setVisitorData(metadata);
     }
 
-    if (window.tidioChatApi) {
-      window.tidioChatApi.on('ready', onTidioChatApiReady);
-    } else {
-      document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-    }
+    // if (window.tidioChatApi) {
+    //   setTimeout(() => {
+    //     window.tidioChatApi.on('ready', onTidioChatApiReady);
+    //   }, 10000);
+    // } else {
+    //   setTimeout(() => {
+    //     document.addEventListener('tidioChat-ready', onTidioChatApiReady);
+    //   }, 10000);
+    // }
 
     const style = document.getElementById('server-side-styles');
     if (style) {

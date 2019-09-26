@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import OrderHero from './OrderHero';
-import { SessionState } from '../../store';
+import { SessionState } from '../../store/reducers/session/types';
 import OrderHeader from './OrderHeader/OrderHeader';
 
 interface Props {

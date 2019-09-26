@@ -41,7 +41,7 @@ const useStyles = createUseStyles(theme => ({
     border: 'none',
     fontWeight: 600,
     fontSize: 13,
-    color: theme.white,
+    color: '#fff',
     borderRadius: 8,
     letterSpacing: '.025em',
     textTransform: 'uppercase',
