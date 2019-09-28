@@ -18,6 +18,8 @@
 *::before,
 *::after {
   box-sizing: inherit;
+  scrollbar-color: #999 #353535;
+  scrollbar-width: thin;
 }
 
 :root {

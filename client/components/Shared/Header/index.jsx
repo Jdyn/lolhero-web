@@ -26,7 +26,7 @@ const Header = props => {
   return (
     <header className={classes.root}>
       <Link href="/">
-        <div className={classes.logo}>LoL Hero</div>
+        <div className={classes.logo}>lolHero</div>
       </Link>
       <form className={classes.searchForm} onSubmit={handleSubmit}>
         <input
@@ -61,20 +61,19 @@ const useStyles = createUseStyles(theme => ({
     left: 0
   },
   logo: {
+    flex: 1,
     display: 'flex',
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '0px 10px 0px 10px',
-    margin: '-20px 0 -20px 0',
+    margin: '-20px 0 -22px 0',
     cursor: 'pointer',
-    flex: 1,
-    width: '100%',
+    // width: '100%',
     maxWidth: '200px',
     transitionDuration: '.2s',
     borderBottom: '2px solid #999',
     color: theme.white,
-    bottom: -2,
     fontSize: 28,
     '&:hover': {
       borderColor: `${theme.accent} !important`,

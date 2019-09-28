@@ -3,7 +3,7 @@ import DashboardContainer from '../../containers/DashboardContainer';
 import Layout from '../../components/Shared/Layout';
 import withAuth from '../../store/withAuth';
 
-const Dashboard = () => {
+const Dashboard = props => {
   return (
     <Layout>
       <DashboardContainer />

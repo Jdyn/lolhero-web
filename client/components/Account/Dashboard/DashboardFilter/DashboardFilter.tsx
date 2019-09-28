@@ -20,7 +20,7 @@ const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
             <button
               type="button"
               key={orderKey}
-              className={`${styles.filter} ${filter === orderKey && styles.selected}`}
+              className={`${styles.filter} ${filter === orderKey ? styles.selected : ''}`}
               onClick={(): void => setFilter(orderKey)}
             >
               <h3>{order.title || '...'}</h3>

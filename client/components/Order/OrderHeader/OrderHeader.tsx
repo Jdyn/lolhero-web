@@ -7,7 +7,7 @@ interface Props {
   order: any;
 }
 
-const DashboardHeader: React.FC<Props> = (props: Props): JSX.Element => {
+const OrderHeader: React.FC<Props> = (props: Props): JSX.Element => {
   const { session, order } = props;
 
   return (
@@ -36,4 +36,4 @@ const DashboardHeader: React.FC<Props> = (props: Props): JSX.Element => {
   );
 };
 
-export default DashboardHeader;
+export default OrderHeader;

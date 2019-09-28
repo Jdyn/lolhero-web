@@ -3,7 +3,7 @@ import { SessionState } from '../../../store/reducers/session/types';
 import { AccountState } from '../../../store/reducers/account/types';
 import DashboardHeader from './DashboardHeader';
 import DashboardFilter from './DashboardFilter';
-import DashboardTable from './DashboardTable/DashboardTable';
+import DashboardTable from './DashboardTable';
 import styles from './styles.css';
 
 interface Props {

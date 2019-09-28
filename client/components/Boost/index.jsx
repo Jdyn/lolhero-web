@@ -30,7 +30,7 @@ const Boost = props => {
   const classes = useStyles();
   const [valid, setValid] = useState({ payment: false, details: false });
 
-  const [currentStage, setStage] = useState(2);
+  const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
 
   useEffect(() => {

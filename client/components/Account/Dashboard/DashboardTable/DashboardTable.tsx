@@ -33,10 +33,7 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
                   }}
                   as={`/account/order/${order.trackingId}`}
                 >
-                  <div
-                    className={`${styles.gridItem} ${index % 2 === 0 && styles.selected}`}
-                    key={order.trackingId}
-                  >
+                  <div className={styles.gridItem} key={order.trackingId}>
                     <span>{order.trackingId}</span>
                     <span>{order.title}</span>
                     <span>{order.status}</span>
