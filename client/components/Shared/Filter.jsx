@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { createUseStyles, useTheme } from "react-jss";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const propTypes = {
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -22,7 +22,7 @@ const Filter = props => {
   }, [selectedIndex, filters]);
 
   const handleClick = index => {
-    if (typeof onClick === "function") {
+    if (typeof onClick === 'function') {
       onClick(index);
     }
     set(index);
@@ -40,9 +40,9 @@ const Filter = props => {
               className={classes.item}
               onClick={() => handleClick(index)}
               style={{
-                borderColor: state === index ? theme.accent : "#999",
-                color: state === index ? theme.accent : disabled ? "#414141" : "#999",
-                pointerEvents: disabled ? "none" : "auto"
+                borderColor: state === index ? theme.accent : '#999',
+                color: state === index ? theme.accent : disabled ? '#414141' : '#999',
+                pointerEvents: disabled ? 'none' : 'auto'
               }}
             >
               {filter}
@@ -61,31 +61,30 @@ Filter.defaultProps = {
 const useStyles = createUseStyles(theme => ({
   container: props => ({
     margin: 0,
-    padding: "20px 0 0 0",
-    display: "flex",
+    padding: '20px 0 0 0',
+    display: 'flex',
     flexGrow: props.extended ? 1 : 0,
-    position: "relative",
-    flexDirection: "row"
+    position: 'relative',
+    flexDirection: 'row'
   }),
   item: props => ({
-    display: "flex",
-    position: "relative",
+    display: 'flex',
+    position: 'relative',
     width: `calc(100% / ${props.filters.length})`,
-    marginBottom: "-1px",
-    justifyContent: "center",
-    textTransform: "uppercase",
-    letterSpacing: ".9px",
-    alignItems: "center",
-    textAlign: "center",
+    justifyContent: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: '.9px',
+    alignItems: 'center',
+    textAlign: 'center',
     fontSize: 16,
     fontWeight: 700,
-    listStyle: "none",
-    cursor: "pointer",
+    listStyle: 'none',
+    cursor: 'pointer',
     color: theme.secondaryColor,
-    borderBottom: "2px solid",
-    paddingBottom: "20px",
-    transitionDuration: ".25s",
-    "&:hover": {
+    borderBottom: '2px solid',
+    paddingBottom: '20px',
+    transitionDuration: '.25s',
+    '&:hover': {
       borderColor: `${theme.accent} !important`,
       color: `${theme.accent} !important`
     }

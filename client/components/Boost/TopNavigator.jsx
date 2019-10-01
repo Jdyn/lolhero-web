@@ -40,7 +40,8 @@ const useStyles = createUseStyles(theme => ({
     zIndex: 50,
     display: 'flex',
     position: 'relative',
-    marginTop: '-76px',
+    height: '76px',
+    // marginTop: '-76px',
     justifyContent: 'center',
     borderBottom: `2px solid #999`,
     backgroundColor: theme.tertiary,
@@ -56,7 +57,7 @@ const useStyles = createUseStyles(theme => ({
     display: 'none',
     position: 'relative',
     flexGrow: 1,
-    bottom: -1,
+    marginBottom: '-2px',
     '@media (min-width: 1025px)': {
       display: 'flex'
     }
@@ -67,12 +68,11 @@ const useStyles = createUseStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: '0 45px',
-    minHeight: '76px',
+    marginBottom: '-2px',
     cursor: 'pointer',
     transitionDuration: '.15s',
     borderBottom: '2px solid #999',
     color: theme.white,
-    bottom: -2,
     fontSize: 28,
     '&:hover': {
       borderColor: `${theme.accent} !important`,

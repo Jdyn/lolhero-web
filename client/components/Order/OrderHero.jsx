@@ -210,7 +210,7 @@ const useStyles = createUseStyles(theme => ({
     gridArea: 'hero',
     padding: '24px',
     maxWidth: '750px',
-    margin: '30px auto',
+    margin: '0 auto 30px auto',
     borderRadius: 18,
     backgroundColor: theme.quartinary,
     color: theme.white,

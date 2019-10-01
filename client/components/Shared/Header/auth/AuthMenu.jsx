@@ -36,19 +36,7 @@ const AuthMenu = props => {
   const classes = useStyles(props);
 
   return (
-    <div
-      className={classes.container}
-      ref={modalRef}
-      style={{
-        display: 'grid',
-        gridTemplateRows: '79px 1fr',
-        gridTemplateColumns: '1fr 1fr',
-        gridTemplateAreas: ` 
-            'login signup'
-            'modal modal'
-            `
-      }}
-    >
+    <div className={classes.container} ref={modalRef}>
       <button
         type="button"
         className={classes.button}
@@ -82,11 +70,18 @@ const AuthMenu = props => {
 
 useStyles = createUseStyles(theme => ({
   container: {
-    margin: '-20px 0 -22px auto',
+    margin: '-20px 0 -20px auto',
     position: 'relative',
     height: 'auto',
     width: '100%',
-    maxWidth: '250px'
+    maxWidth: '250px',
+    display: 'grid',
+    gridTemplateRows: '76px 1fr',
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateAreas: ` 
+        'login signup'
+        'modal modal'
+        `
   },
   button: {
     display: 'flex',

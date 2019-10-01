@@ -41,7 +41,7 @@ const AuthProfile = props => {
         <div className={classes.modal}>
           {type === 'profile' && (
             <ul className={classes.modalList}>
-              {templates[type].items.map((item, index) => (
+              {templates[type].items.map(item => (
                 <Link key={item.title} href={item.link}>
                   <li className={classes.modalListItem}>{item.title}</li>
                 </Link>
@@ -57,7 +57,7 @@ const AuthProfile = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    margin: '-20px 0 -22px auto',
+    margin: '-20px 0 -20px auto',
     position: 'relative',
     height: 'auto',
     maxWidth: '250px',
@@ -65,7 +65,7 @@ const useStyles = createUseStyles(theme => ({
       flex: 1,
       margin: '-20px 0 -22px 0',
       display: 'grid',
-      gridTemplateRows: '79px 1fr',
+      gridTemplateRows: '76px 1fr',
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `
         'profile profile'
