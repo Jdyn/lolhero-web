@@ -11,8 +11,10 @@ const DashboardHeader: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.portrait} />
-      <h3 className={styles.container}>{session.user.username}</h3>
+      <div className={styles.container}>
+        <div className={styles.portrait} />
+        <h3 className={styles.username}>{session.user.username}</h3>
+      </div>
     </div>
   );
 };
