@@ -23,7 +23,7 @@ const templates = {
   login: {
     type: 'login',
     title: 'Existing Account',
-    fields: ['Username', 'Password'],
+    fields: ['username', 'password'],
     submit: 'log in'
   }
 };

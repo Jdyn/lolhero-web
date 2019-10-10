@@ -92,7 +92,7 @@ const useStyles = createUseStyles(theme => ({
   },
   notice: {
     color: theme.white,
-    margin: '20px 10px 10px 10px',
+    margin: '10px',
     padding: '25px',
     fontSize: 16,
     boxShadow: '0px 0px 15px rgb(0,0,0,.12)',

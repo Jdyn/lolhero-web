@@ -67,10 +67,10 @@ const setBoost = update => ({
 });
 
 export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (newUpdate.boost) {
+  if (newUpdate.order) {
     dispatch(
       setBoost({
-        order: { ...newUpdate.boost }
+        order: { ...newUpdate.order }
       })
     );
     return;

@@ -38,7 +38,8 @@ const BottomNavigator = props => {
           braintreeInstance.requestPaymentMethod((error, payload) => {
             if (!error) {
               updateOrder({
-                boost: {
+                order: {
+                  paymentMethodIsSelected: true,
                   nonce: payload.nonce,
                   email: detailsForm['details-email'] || session.user.email
                 }
@@ -48,7 +49,7 @@ const BottomNavigator = props => {
           });
         }
       }
-    } else if (stage + 1 <= 3 && stage != 2) {
+    } else if (stage + 1 <= 3 && stage !== 2) {
       setStage(prev => prev + 1);
     }
   };

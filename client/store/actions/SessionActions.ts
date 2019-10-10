@@ -134,6 +134,7 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
 export const handleAuth = (type: string, form: object): ((dispatch: Function) => void) => (
   dispatch
 ): void => {
+  
   switch (type) {
     case 'login':
       dispatch(login(form));

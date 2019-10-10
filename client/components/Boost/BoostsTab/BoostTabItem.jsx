@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createUseStyles, useTheme } from "react-jss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const propTypes = {
   item: PropTypes.object,
@@ -31,21 +31,21 @@ const BoostTabItem = props => {
 
 const useStyles = createUseStyles(theme => ({
   container: {
-    width: "100%",
-    cursor: "pointer",
-    margin: "5px 10px",
-    display: "flex",
-    padding: "35px 25px",
+    width: '100%',
+    cursor: 'pointer',
+    margin: '0px 10px 10px 10px',
+    display: 'flex',
+    padding: '25px 25px',
     borderRadius: 8,
-    flexDirection: "column",
-    transitionDuration: ".15s",
-    "@media (min-width: 640px)": {
-      width: "45%"
+    flexDirection: 'column',
+    transitionDuration: '.15s',
+    '@media (min-width: 640px)': {
+      width: '45%'
     },
-    "@media (min-width: 1025px)": {
-      width: "auto"
+    '@media (min-width: 1025px)': {
+      width: 'auto'
     },
-    "&:hover": {
+    '&:hover': {
       backgroundColor: `${theme.tertiary} !important`
     }
   },
@@ -53,10 +53,10 @@ const useStyles = createUseStyles(theme => ({
     color: theme.white,
     margin: 0,
     fontSize: 17,
-    marginBottom: "5px",
-    "& span": {
+    marginBottom: '5px',
+    '& span': {
       color: theme.accent,
-      textTransform: "uppercase"
+      textTransform: 'uppercase'
     }
   },
   content: {

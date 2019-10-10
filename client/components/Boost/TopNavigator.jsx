@@ -24,7 +24,9 @@ const TopNavigator = props => {
         <Filter
           extended
           filters={filters}
-          untargetableIndices={valid.details && boost.paymentMethodisSelected ? [] : [3]}
+          untargetableIndices={
+            valid.payment && valid.details && boost.order.paymentMethodIsSelected ? [] : [3]
+          }
           selectedIndex={currentStage}
           onClick={index => setStage(index)}
         />
