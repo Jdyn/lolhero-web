@@ -31,33 +31,27 @@ const Order = props => {
   };
 
   const updateOrder = payload => {
-    Api.patch(`/order/${trackingId}`, { ...form, ...payload }).then(
-      response => {
-        if (response.ok) {
-          setOrder(response.result.order);
-        } else {
-          setError(response.error);
-        }
+    Api.patch(`/order/${trackingId}`, { ...form, ...payload }).then(response => {
+      if (response.ok) {
+        setOrder(response.result.order);
+      } else {
+        setError(response.error);
       }
-    );
+    });
   };
 
   return (
     <Layout>
       {order ? (
-        <OrderContainer
-          trackingId={trackingId}
-          order={order}
-          updateOrder={updateOrder}
-        />
+        <OrderContainer trackingId={trackingId} order={order} updateOrder={updateOrder} />
       ) : (
         <div className={classes.root}>
           <div className={classes.container}>
             <h3>{trackingId}</h3>
             <span>Tracking ID</span>
             <p>
-              Please allow us to verify it is you by providing the email you
-              used to purchase the order.
+              Please allow us to verify it is you by providing the email you used to purchase the
+              order.
             </p>
             <form className={classes.form} onSubmit={handleOrderSearch}>
               <input

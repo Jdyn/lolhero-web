@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 const AdminPanel = props => {
   const classes = useStyles(props);
-  
+
   return <div>admin panel</div>;
 };
 
