@@ -3,7 +3,7 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier",
     "prettier/react",
@@ -16,7 +16,7 @@
     "jest": true,
     "node": true
   },
-  "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
+  "plugins": ["react", "jsx-a11y", "import", "prettier"],
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
     "import/prefer-default-export": 0,

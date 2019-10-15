@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import { createUseStyles } from "react-jss";
+import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss';
 
 const propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 const defaultProps = {
@@ -16,43 +16,43 @@ const Baseline = ({ children }) => {
 };
 
 const useStyles = createUseStyles(theme => ({
-  "@global": {
+  '@global': {
     html: {
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
-      boxSizing: "border-box"
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
+      boxSizing: 'border-box'
     },
-    "*, *::before, *::after, div": {
-      boxSizing: "inherit",
-      fontFamily: "Museo Sans Rounded",
+    '*, *::before, *::after, div': {
+      boxSizing: 'inherit',
+      fontFamily: 'Museo Sans Rounded'
     },
     body: {
       margin: 0,
       backgroundColor: theme.secondary,
-      fontSize: "100%",
-      fontFamily: "Museo Sans Rounded",
-      fontWeight: "normal",
-      fontStyle: "normal",
-      textRendering: "optimizeLegibility"
+      fontSize: '100%',
+      fontFamily: 'Museo Sans Rounded',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      textRendering: 'optimizeLegibility'
     },
-    "body, div": {
-      "@media (min-width: 1025px)": {
-        "&::-webkit-scrollbar": {
-          width: "8px"
+    'body, div': {
+      '@media (min-width: 1025px)': {
+        '&::-webkit-scrollbar': {
+          width: '8px'
         },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "#999",
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: '#999',
           borderRadius: 6,
-          webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,.2)"
+          webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,.2)'
         },
-        "&::-webkit-scrollbar-track": {
+        '&::-webkit-scrollbar-track': {
           backgroundColor: theme.primary,
-          webkitBoxShadow: "inset 0 0 6px transparent"
+          webkitBoxShadow: 'inset 0 0 6px transparent'
         },
-        "&::-webkit-scrollbar-button": {
-          width: "0",
-          height: "0",
-          display: "none"
+        '&::-webkit-scrollbar-button': {
+          width: '0',
+          height: '0',
+          display: 'none'
         }
       }
     }

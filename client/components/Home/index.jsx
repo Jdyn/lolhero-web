@@ -52,10 +52,8 @@ const Home = props => {
             Go
           </button>
         </form>
-      </div>
-      <div className={classes.wrapper}>
         <Link href="/order/boost">
-          <Button grow maxWidth="185px" padding="15px 10px">
+          <Button grow maxWidth="185px" padding="15px 10px" margin="60px 0 0 0">
             Customize Order
           </Button>
         </Link>
@@ -78,7 +76,10 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     position: 'relative',
     flexDirection: 'column',
-    padding: '60px 10px 30px 10px',
+    padding: '60px 15px',
+    maxWidth: '970px',
+    width: '100%',
+    margin: '0 auto',
     backgroundColor: theme.secondary,
     textAlign: 'center',
     justifyContent: 'center',
@@ -92,17 +93,6 @@ const useStyles = createUseStyles(theme => ({
       color: theme.white,
       margin: '0 0 25px 0',
       fontSize: 32
-    }
-  },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: '30px 0 60px 0px',
-    '@media (min-width: 650px)': {
-      flexDirection: 'row'
     }
   },
   content: {

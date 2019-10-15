@@ -12,20 +12,20 @@ interface Props {
 
 let useStyles;
 
-const AuthDisplay: React.FC<Props> = (props: Props): JSX.Element => {
+const AuthDisplay: React.FC<Props> = (props: Props) => {
   const { handleAuth, session, sessionRequest } = props;
   const classes = useStyles();
 
-  const [type, setType] = useState(null);
+  const [type, setType] = useState("");
   const [isOpen, setOpen] = useState(false);
 
-  const modalRef: React.RefObject<HTMLDivElement> = useRef();
+  const modalRef: React.MutableRefObject<HTMLDivElement> = useRef();
 
   const updateModal = (newType: string): void => {
     if (isOpen) {
       if (newType === type) {
         setOpen(false);
-        setType(null);
+        setType("");
       } else {
         setType(newType);
       }
