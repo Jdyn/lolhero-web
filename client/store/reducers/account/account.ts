@@ -3,17 +3,17 @@ import { AccountState, accountActions, AccountActionTypes } from './types';
 
 const initialState: AccountState = {
   orders: {
-    total: {
+    active: {
       title: 'Active Orders',
       count: 0,
       orders: []
     },
-    active: {
+    completed: {
       title: 'Completed Orders',
       count: 0,
       orders: []
     },
-    completed: {
+    total: {
       title: 'Total Orders',
       count: 0,
       orders: []

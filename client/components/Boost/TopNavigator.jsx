@@ -12,7 +12,7 @@ const propTypes = {
 const filters = ['boost', 'add-ons', 'details', 'review'];
 
 const TopNavigator = props => {
-  const { currentStage, setStage, boost, valid } = props;
+  const { currentStage, setStage, boost, valid, session } = props;
   const classes = useStyles();
 
   return (
@@ -25,7 +25,10 @@ const TopNavigator = props => {
           extended
           filters={filters}
           untargetableIndices={
-            valid.payment && valid.details && boost.order.paymentMethodIsSelected ? [] : [3]
+            (valid.payment && valid.details && boost.order.paymentMethodIsSelected) ||
+            (session.isLoggedIn && boost.order.paymentMethodIsSelected)
+              ? []
+              : [3]
           }
           selectedIndex={currentStage}
           onClick={index => setStage(index)}

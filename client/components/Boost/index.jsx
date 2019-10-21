@@ -42,6 +42,7 @@ const Boost = props => {
       <TopNavigator
         currentStage={currentStage}
         setStage={setStage}
+        session={session}
         boost={boost}
         valid={valid}
         setValid={setValid}
