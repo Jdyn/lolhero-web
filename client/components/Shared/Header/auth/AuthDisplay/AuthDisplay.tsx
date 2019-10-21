@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { createUseStyles } from 'react-jss';
-import AuthProfile from './AuthProfile';
-import AuthMenu from './AuthMenu';
+import AuthProfile from '../AuthProfile';
+import AuthMenu from '../AuthMenu';
+import styles from './styles.css';
 
 interface Props {
   children?: React.ReactNode;
@@ -10,22 +10,19 @@ interface Props {
   sessionRequest: { success: boolean; errored: boolean; error: string | null };
 }
 
-let useStyles;
-
 const AuthDisplay: React.FC<Props> = (props: Props) => {
   const { handleAuth, session, sessionRequest } = props;
-  const classes = useStyles();
 
-  const [type, setType] = useState("");
+  const [type, setType] = useState('');
   const [isOpen, setOpen] = useState(false);
 
-  const modalRef: React.MutableRefObject<HTMLDivElement> = useRef();
+  const modalRef: React.MutableRefObject<HTMLElement | undefined> = useRef();
 
   const updateModal = (newType: string): void => {
     if (isOpen) {
       if (newType === type) {
         setOpen(false);
-        setType("");
+        setType('');
       } else {
         setType(newType);
       }
@@ -35,14 +32,14 @@ const AuthDisplay: React.FC<Props> = (props: Props) => {
     }
   };
 
-  useEffect((): void | (() => void) => {
+  useEffect(() => {
     const handleClickOutside = (event: Event): void => {
       if (modalRef.current) {
         const { target } = event;
         if (!modalRef.current.contains(target as Node)) {
           document.removeEventListener('mousedown', handleClickOutside);
           setOpen(false);
-          setType(null);
+          setType('');
         }
       }
     };
@@ -54,12 +51,12 @@ const AuthDisplay: React.FC<Props> = (props: Props) => {
     };
   }, [isOpen, session]);
 
-  useEffect((): void | (() => void) => {
+  useEffect(() => {
     if (sessionRequest.success) {
       setOpen(false);
-      setType(null);
+      setType('');
     }
-  }, [sessionRequest]);
+  }, [sessionRequest.success]);
 
   const renderContent = (isLoggedIn: boolean | null): JSX.Element => {
     switch (isLoggedIn) {
@@ -89,19 +86,11 @@ const AuthDisplay: React.FC<Props> = (props: Props) => {
         );
 
       default:
-        return <div className={classes.loading} />;
+        return <div className={styles.loading} />;
     }
   };
 
   return renderContent(session.isLoggedIn);
 };
-
-useStyles = createUseStyles({
-  loading: {
-    display: 'flex',
-    flexGrow: 1,
-    maxWidth: '250px'
-  }
-});
 
 export default AuthDisplay;

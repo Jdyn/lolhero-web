@@ -67,7 +67,6 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '170px',
     flex: 1,
     marginBottom: '-20px',
     maxHeight: '95px'

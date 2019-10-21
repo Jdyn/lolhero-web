@@ -3,7 +3,7 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
-    // "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier",
     "prettier/react",
@@ -16,11 +16,13 @@
     "jest": true,
     "node": true
   },
-  "plugins": ["react", "jsx-a11y", "import", "prettier"],
+  "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
   "rules": {
     "jsx-a11y/href-no-hash": ["off"],
-    "import/prefer-default-export": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      "warn",
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
     "max-len": [
       "warn",
       {
@@ -37,13 +39,13 @@
     ]
   },
   "settings": {
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".css"],
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".css"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".jsx", ".tsx", ".css"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".css"]
       }
     }
   }

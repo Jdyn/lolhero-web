@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import AuthDisplay from './auth/AuthDisplay';
+import AuthDisplay from './auth/AuthDisplay/AuthDisplay';
 import Router from 'next/router';
 
 const propTypes = {};
