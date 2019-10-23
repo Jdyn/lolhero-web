@@ -24,6 +24,7 @@ export interface User {
   email: string | null;
   token: string | null;
   username: string | null;
+  isAdmin: boolean;
 }
 
 export interface SessionState {
@@ -31,28 +32,23 @@ export interface SessionState {
   user: User;
 }
 
-interface SetLogin {
+export interface SetLogin {
   type: typeof actions.LOG_IN;
   user: User;
-  isLoggedIn?: never;
 }
 
-interface SetLogout {
+export interface SetLogout {
   type: typeof actions.LOG_OUT;
-  user?: never;
-  isLoggedIn?: never;
 }
 
-interface SetSignup {
+export interface SetSignup {
   type: typeof actions.SIGN_UP;
-  user?: never;
-  isLoggedIn?: never;
+  user: User;
 }
 
-interface SetRefresh {
+export interface SetRefresh {
   type: typeof actions.REFRESH;
   user: User;
-  isLoggedIn: boolean;
 }
 
 export type SessionActionTypes = SetLogout | SetLogin | SetSignup | SetRefresh;

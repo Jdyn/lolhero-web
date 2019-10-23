@@ -14,7 +14,10 @@ export const setAccountOrders = (orders: Orders): AccountActionTypes => ({
   orders
 });
 
-export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => AppState): void => {
+export const fetchAccountOrders = (): ((dispatch: Dispatch, getState: () => AppState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = accountRequests.ACCOUNT_ORDERS;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -22,7 +25,9 @@ export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => App
 
   dispatch(setRequest(true, requestType));
 
-  Api.fetch('/account/orders')
+  const { isAdmin } = getState().session.user;
+
+  Api.fetch(`${isAdmin ? '/admin' : ''}/account/orders`)
     .then((response): void => {
       if (response.ok) {
         const { completed, active, total } = response.result;

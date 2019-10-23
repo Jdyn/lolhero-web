@@ -3,7 +3,15 @@ import Router from 'next/router';
 import Api from '../../services/api';
 import { setRequest } from './RequestActions';
 import { AppState } from '../reducers';
-import { actions, requests, SessionActionTypes, User } from '../reducers/session/types';
+import {
+  actions,
+  requests,
+  User,
+  SetLogout,
+  SetRefresh,
+  SetSignup,
+  SetLogin
+} from '../reducers/session/types';
 
 const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
@@ -12,7 +20,7 @@ const setCurrentSession = (user: { token: string }): void => {
   }
 };
 
-const setLogin = (user: User): SessionActionTypes => ({
+const setLogin = (user: User): SetLogin => ({
   type: actions.LOG_IN,
   user
 });
@@ -58,7 +66,7 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
     });
 };
 
-const setLogout = (): SessionActionTypes => ({
+const setLogout = (): SetLogout => ({
   type: actions.LOG_OUT
 });
 
@@ -90,12 +98,15 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
     });
 };
 
-const setSignup = (user: User): SessionActionTypes => ({
+const setSignup = (user: User): SetSignup => ({
   type: actions.SIGN_UP,
   user
 });
 
-const signup = (form: object): Function => (dispatch: Function, getState: () => AppState): void => {
+const signup = (form: object): ((dispatch: Function, getState: () => AppState) => void) => (
+  dispatch,
+  getState
+): void => {
   const requestType = requests.AUTHENTICATE;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -134,7 +145,6 @@ const signup = (form: object): Function => (dispatch: Function, getState: () => 
 export const handleAuth = (type: string, form: object): ((dispatch: Function) => void) => (
   dispatch
 ): void => {
-  
   switch (type) {
     case 'login':
       dispatch(login(form));
@@ -150,10 +160,9 @@ export const handleAuth = (type: string, form: object): ((dispatch: Function) =>
   }
 };
 
-const setRefresh = (update: { user: User; isLoggedIn: boolean }): SessionActionTypes => ({
+const setRefresh = (update: { user: User | null; isLoggedIn: boolean }): SetRefresh => ({
   type: actions.REFRESH,
-  user: update.user,
-  isLoggedIn: update.isLoggedIn
+  user: update.user || { token: null, username: null, email: null, isAdmin: false }
 });
 
 export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
@@ -185,11 +194,7 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
 
         const payload = {
           isLoggedIn: false,
-          user: {
-            email: null,
-            token: null,
-            username: null
-          }
+          user: null
         };
 
         dispatch(setRefresh(payload));
@@ -201,11 +206,7 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
 
       const update = {
         isLoggedIn: false,
-        user: {
-          email: null,
-          token: null,
-          username: null
-        }
+        user: null
       };
 
       dispatch(setRefresh(update));
