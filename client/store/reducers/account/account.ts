@@ -1,7 +1,7 @@
-import { Reducer } from 'redux';
 import { AccountState, accountActions, AccountActionTypes } from './types';
 
 const initialState: AccountState = {
+  selectedOrder: null,
   orders: {
     active: {
       title: 'Active Orders',
@@ -21,17 +21,18 @@ const initialState: AccountState = {
   }
 };
 
-const reducer: Reducer<AccountState, AccountActionTypes> = (
-  state: AccountState = initialState,
-  action: AccountActionTypes
-): AccountState => {
+const reducer = (state = initialState, action: AccountActionTypes): AccountState => {
   switch (action.type) {
     case accountActions.FETCH_ACCOUNT_ORDERS:
       return {
         ...state,
         orders: action.orders
       };
-
+    case accountActions.UPDATE_ACCOUNT_ORDER_DETAILS:
+      return {
+        ...state,
+        selectedOrder: action.order
+      };
     default:
       return state;
   }

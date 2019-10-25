@@ -19,27 +19,17 @@ app.prepare().then(() => {
     const guestOrder = route('/track/:trackingId')(pathname);
 
     if (orderSuccess) {
-      app.render(
-        req,
-        res,
-        '/order/success',
-        Object.assign(orderSuccess, query)
-      );
+      app.render(req, res, '/order/success', Object.assign(orderSuccess, query));
       return;
     }
 
     if (guestOrder) {
-      app.render(req, res, '/order/order', Object.assign(guestOrder, query));
+      app.render(req, res, '/order/track', Object.assign(guestOrder, query));
       return;
     }
 
     if (accountOrder) {
-      app.render(
-        req,
-        res,
-        '/account/order',
-        Object.assign(accountOrder, query)
-      );
+      app.render(req, res, '/account/order', Object.assign(accountOrder, query));
       return;
     }
 

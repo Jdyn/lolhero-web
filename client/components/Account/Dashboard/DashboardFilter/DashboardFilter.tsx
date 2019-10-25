@@ -1,9 +1,9 @@
 import React from 'react';
-import { Order, Orders } from '../../../../store/reducers/account/types';
+import { ListOrder, OrderList } from '../../../../store/reducers/account/types';
 import styles from './styles.css';
 
 interface Props {
-  orders: Orders;
+  orders: OrderList;
   setFilter: Function;
   filter: string;
 }
@@ -15,7 +15,7 @@ const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <div className={styles.container}>
         {Object.keys(orders).map(orderKey => {
-          const order: Order = orders[orderKey];
+          const order: ListOrder = orders[orderKey];
           return (
             <button
               type="button"

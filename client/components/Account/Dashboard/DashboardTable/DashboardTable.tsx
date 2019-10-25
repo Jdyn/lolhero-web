@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import formatTime from '../../../../util/formatTime';
-import { Orders, BaseOrder } from '../../../../store/reducers/account/types';
+import { OrderList, ListBaseOrder } from '../../../../store/reducers/account/types';
 import styles from './styles.css';
 
 interface Props {
-  orders: Orders;
+  orders: OrderList;
   filter: string;
 }
 
@@ -24,7 +24,7 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
         {orders && (
           <div className={styles.grid}>
             {orders[filter].orders.map(
-              (order: BaseOrder, index: number): JSX.Element => (
+              (order: ListBaseOrder, index: number): JSX.Element => (
                 <Link
                   key={order.trackingId}
                   href={{

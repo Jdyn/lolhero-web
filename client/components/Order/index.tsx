@@ -3,16 +3,17 @@ import { createUseStyles } from 'react-jss';
 import OrderHero from './OrderHero';
 import { SessionState } from '../../store/reducers/session/types';
 import OrderHeader from './OrderHeader/OrderHeader';
+import { Order } from '../../store/reducers/account/types';
 
 interface Props {
-  order: any;
+  order: Order;
   session: SessionState;
   updateOrder: () => void;
 }
 
 let useStyles;
 
-const Order: React.FC<Props> = (props: Props): JSX.Element => {
+const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const classes = useStyles();
   const { order, session, updateOrder } = props;
 
@@ -24,11 +25,11 @@ const Order: React.FC<Props> = (props: Props): JSX.Element => {
   );
 };
 
-useStyles = createUseStyles(theme => ({
+useStyles = createUseStyles({
   root: {
     display: 'flex',
     flexDirection: 'column'
   }
-}));
+});
 
-export default Order;
+export default BoostOrder;

@@ -29,6 +29,7 @@ const OrderHero = props => {
   const theme = useTheme();
   const { order, updateOrder } = props;
   const { primaryRole, secondaryRole } = order.details;
+
   const ranksObject = useMemo(
     () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
     []
