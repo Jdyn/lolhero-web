@@ -1,26 +1,33 @@
 import { Reducer } from 'redux';
-import { SessionState, SessionActionTypes, actions } from './types';
+import { SessionState, SessionActionTypes, actions, SetSignup } from './types';
 
 const initialState: SessionState = {
   isLoggedIn: null,
   user: {
     email: null,
     token: null,
-    username: null
+    username: null,
+    isAdmin: false
   }
 };
 
-const reducer: Reducer<SessionState, SessionActionTypes> = (
-  state = initialState,
-  action: SessionActionTypes
-): SessionState => {
+const emptyUser = {
+  email: null,
+  token: null,
+  username: null,
+  isAdmin: false
+};
+
+const signup = (state: SessionState, action: SetSignup): SessionState => ({
+  ...state,
+  isLoggedIn: true,
+  user: action.user
+});
+
+const reducer = (state = initialState, action: SessionActionTypes): SessionState => {
   switch (action.type) {
     case actions.SIGN_UP:
-      return {
-        ...state,
-        isLoggedIn: true,
-        user: action.user
-      };
+      return signup(state, action as SetSignup);
     case actions.LOG_IN:
       return {
         ...state,
@@ -31,16 +38,12 @@ const reducer: Reducer<SessionState, SessionActionTypes> = (
       return {
         ...state,
         isLoggedIn: false,
-        user: {
-          email: null,
-          token: null,
-          username: null
-        }
+        user: emptyUser
       };
     case actions.REFRESH:
       return {
         ...state,
-        isLoggedIn: action.isLoggedIn,
+        isLoggedIn: true,
         user: action.user
       };
     default:
