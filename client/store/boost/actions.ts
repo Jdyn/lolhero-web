@@ -100,7 +100,7 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
   dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
 };
 
-export const submitOrder = () => (dispatch, getState) => {
+export const submitOrder = () => (dispatch, getState): void => {
   const requestType = requests.SUBMIT_ORDER;
   const requestInProcess = getState().request[requestType] || {};
 

@@ -2,9 +2,9 @@ import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import { AppState } from '../root';
 import { setRequest } from '../request/actions';
-import { accountActions, accountRequests, AccountActionTypes, OrderList, Order } from './types';
+import { accountActions, accountRequests, AccountActions, OrderList, Order } from './types';
 
-export const setAccountOrders = (orders: OrderList): AccountActionTypes => ({
+export const setAccountOrders = (orders: OrderList): AccountActions => ({
   type: accountActions.FETCH_ACCOUNT_ORDERS,
   orders
 });
@@ -53,8 +53,8 @@ export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => App
     });
 };
 
-const updateAccountOrderDetails = (order: Order): AccountActionTypes => ({
-  type: accountActions.UPDATE_ACCOUNT_ORDER_DETAILS,
+const setOrderDetails = (order: Order): AccountActions => ({
+  type: accountActions.SET_CURRENT_ORDER,
   order
 });
 
@@ -69,7 +69,7 @@ export const fetchAccountOrderDetails = (trackingId: number) => (
 
   Api.patch(`/account/order/${trackingId}`).then(response => {
     if (response.ok) {
-      dispatch(updateAccountOrderDetails(response.result.order));
+      dispatch(setOrderDetails(response.result.order));
       dispatch(setRequest(false, requestType));
     } else {
       dispatch(
@@ -82,7 +82,7 @@ export const fetchAccountOrderDetails = (trackingId: number) => (
   });
 };
 
-const setInitialOrder = (order: Order): AccountActionTypes => ({
+const setInitialOrder = (order: Order): AccountActions => ({
   type: accountActions.INITIATE_ACCOUNT_ORDER,
   order
 });

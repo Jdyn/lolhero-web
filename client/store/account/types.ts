@@ -1,27 +1,5 @@
-interface AccountRequests {
-  ACCOUNT_ORDERS: string;
-  ACCOUNT_ORDER_DETAILS: string;
-}
-
-export const accountRequests: AccountRequests = {
-  ACCOUNT_ORDERS: 'ACCOUNT_ORDERS',
-  ACCOUNT_ORDER_DETAILS: 'ACCOUNT_ORDER_DETAILS'
-};
-
-interface AccountActions {
-  FETCH_ACCOUNT_ORDERS: string;
-  INITIATE_ACCOUNT_ORDER: string;
-  UPDATE_ACCOUNT_ORDER_DETAILS: string;
-}
-
-export const accountActions: AccountActions = {
-  FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS',
-  INITIATE_ACCOUNT_ORDER: 'INITIATE_ACCOUNT_ORDER',
-  UPDATE_ACCOUNT_ORDER_DETAILS: 'UPDATE_ACCOUNT_ORDER_DETAILS'
-};
-
 export interface AccountState {
-  selectedOrder: Order | null;
+  currentOrder: Order | null;
   orders: OrderList;
 }
 
@@ -72,14 +50,25 @@ export interface Order {
   };
 }
 
-interface FetchAccountOrdersAction {
-  type: string;
+export const accountActions = {
+  FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS',
+  INITIATE_ACCOUNT_ORDER: 'INITIATE_ACCOUNT_ORDER',
+  SET_CURRENT_ORDER: 'UPDATE_ORDER_DETAILS'
+};
+
+export const accountRequests = {
+  ACCOUNT_ORDERS: 'ACCOUNT_ORDERS',
+  ACCOUNT_ORDER_DETAILS: 'ACCOUNT_ORDER_DETAILS'
+};
+
+interface FetchOrderAction {
+  type: typeof accountActions.FETCH_ACCOUNT_ORDERS;
   orders: OrderList;
 }
 
-interface UpdateAccountOrderDetailsAction {
-  type: string;
+interface UpdateOrderDetailsAction {
+  type: typeof accountActions.SET_CURRENT_ORDER;
   order: Order;
 }
 
-export type AccountActionTypes = UpdateAccountOrderDetailsAction | FetchAccountOrdersAction;
+export type AccountActions = FetchOrderAction | UpdateOrderDetailsAction;
