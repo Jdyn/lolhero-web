@@ -27,27 +27,27 @@ export interface User {
   isAdmin: boolean;
 }
 
-export interface SessionState {
-  isLoggedIn: boolean;
-  user: User;
-}
-
-export interface SetLogin {
+interface SetLogin {
   type: typeof actions.LOG_IN;
   user: User;
 }
 
-export interface SetLogout {
+interface SetLogout {
   type: typeof actions.LOG_OUT;
 }
 
-export interface SetSignup {
+interface SetSignup {
   type: typeof actions.SIGN_UP;
   user: User;
 }
 
-export interface SetRefresh {
+interface SetRefresh {
   type: typeof actions.REFRESH;
+  user: User;
+}
+
+export interface SessionState {
+  isLoggedIn: boolean;
   user: User;
 }
 

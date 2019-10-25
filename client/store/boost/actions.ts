@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/browser';
 import Router from 'next/router';
 import Api from '../../services/api';
 import keyMirror from '../../util/keyMirror';
-import { setRequest } from './RequestActions';
+import { setRequest } from '../request/actions';
 import calculatePrice from '../../util/CalculatePrice';
 
 export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');

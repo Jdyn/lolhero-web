@@ -1,4 +1,4 @@
-import { actions } from '../actions/BoostActions';
+import { actions } from './actions';
 
 const initialState = {
   price: null,

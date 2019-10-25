@@ -1,12 +1,8 @@
-import { Reducer } from 'redux';
-import { RequestState, RequestActionTypes, actions } from './types';
+import { RequestState, RequestActionTypes, requestActions } from './types';
 
 const initialState = {};
 
-const setRequest = (
-  state: RequestState,
-  action: RequestActionTypes
-): RequestState => {
+const setRequest = (state: RequestState, action: RequestActionTypes): RequestState => {
   const { isPending, requestType, errorObject } = action;
   const requestObject = {};
 
@@ -19,12 +15,9 @@ const setRequest = (
   return { ...state, ...requestObject };
 };
 
-const reducer: Reducer<RequestState, RequestActionTypes> = (
-  state: RequestState = initialState,
-  action: RequestActionTypes
-): RequestState => {
+const reducer = (state: RequestState = initialState, action: RequestActionTypes): RequestState => {
   switch (action.type) {
-    case actions.SET_REQUEST:
+    case requestActions.SET_REQUEST:
       return setRequest(state, action);
     default:
       return state;

@@ -1,5 +1,4 @@
-import { Reducer } from 'redux';
-import { SessionState, SessionActionTypes, actions, SetSignup } from './types';
+import { SessionState, SessionActionTypes, actions } from './types';
 
 const initialState: SessionState = {
   isLoggedIn: null,
@@ -18,16 +17,14 @@ const emptyUser = {
   isAdmin: false
 };
 
-const signup = (state: SessionState, action: SetSignup): SessionState => ({
-  ...state,
-  isLoggedIn: true,
-  user: action.user
-});
-
 const reducer = (state = initialState, action: SessionActionTypes): SessionState => {
   switch (action.type) {
     case actions.SIGN_UP:
-      return signup(state, action as SetSignup);
+      return {
+        ...state,
+        isLoggedIn: true,
+        user: action.user
+      };
     case actions.LOG_IN:
       return {
         ...state,

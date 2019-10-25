@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListOrder, OrderList } from '../../../../store/reducers/account/types';
+import { ListOrder, OrderList } from '../../../../store/account/types';
 import styles from './styles.css';
 
 interface Props {

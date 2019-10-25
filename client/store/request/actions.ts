@@ -1,5 +1,5 @@
 import keyMirror from '../../util/keyMirror';
-import { ErrorObject, Request } from '../reducers/request/types';
+import { ErrorObject, Request } from './types';
 
 export const actions = keyMirror('SET_REQUEST');
 

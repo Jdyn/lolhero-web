@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { createUseStyles } from 'react-jss';
 import Header from './Header';
 import Footer from './Footer';
-import { handleAuth } from '../../store/actions/SessionActions';
+import { handleAuth } from '../../store/session/actions';
 
 const propTypes = {
   children: PropTypes.object.isRequired

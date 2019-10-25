@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
 import { fetchAccountOrders } from '../store/actions/account';
-import { AccountState } from '../store/reducers/account/types';
-import { SessionState } from '../store/reducers/session/types';
-import { AppState } from '../store/reducers';
+import { AccountState } from '../store/account/types';
+import { SessionState } from '../store/session/types';
+import { AppState } from '../store/root';
 
 interface Props {
   account?: AccountState;

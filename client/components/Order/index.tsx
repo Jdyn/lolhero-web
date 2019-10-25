@@ -1,9 +1,9 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import OrderHero from './OrderHero';
-import { SessionState } from '../../store/reducers/session/types';
+import { SessionState } from '../../store/session/types';
 import OrderHeader from './OrderHeader/OrderHeader';
-import { Order } from '../../store/reducers/account/types';
+import { Order } from '../../store/account/types';
 
 interface Props {
   order: Order;

@@ -1,17 +1,9 @@
 import cookie from 'js-cookie';
 import Router from 'next/router';
 import Api from '../../services/api';
-import { setRequest } from './RequestActions';
-import { AppState } from '../reducers';
-import {
-  actions,
-  requests,
-  User,
-  SetLogout,
-  SetRefresh,
-  SetSignup,
-  SetLogin
-} from '../reducers/session/types';
+import { setRequest } from '../request/actions';
+import { AppState } from '../root';
+import { actions, requests, User, SessionActionTypes } from './types';
 
 const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
@@ -20,7 +12,7 @@ const setCurrentSession = (user: { token: string }): void => {
   }
 };
 
-const setLogin = (user: User): SetLogin => ({
+const setLogin = (user: User): SessionActionTypes => ({
   type: actions.LOG_IN,
   user
 });
@@ -66,7 +58,7 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
     });
 };
 
-const setLogout = (): SetLogout => ({
+const setLogout = (): SessionActionTypes => ({
   type: actions.LOG_OUT
 });
 
@@ -98,7 +90,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
     });
 };
 
-const setSignup = (user: User): SetSignup => ({
+const setSignup = (user: User): SessionActionTypes => ({
   type: actions.SIGN_UP,
   user
 });
@@ -160,7 +152,7 @@ export const handleAuth = (type: string, form: object): ((dispatch: Function) =>
   }
 };
 
-const setRefresh = (update: { user: User | null; isLoggedIn: boolean }): SetRefresh => ({
+const setRefresh = (update: { user: User | null; isLoggedIn: boolean }): SessionActionTypes => ({
   type: actions.REFRESH,
   user: update.user || { token: null, username: null, email: null, isAdmin: false }
 });

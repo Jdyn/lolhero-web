@@ -1,24 +1,15 @@
 import { Dispatch } from 'redux';
-import Api from '../../../services/api';
-import { AppState } from '../../reducers';
-import { setRequest } from '../RequestActions';
-import {
-  accountActions,
-  accountRequests,
-  AccountActionTypes,
-  OrderList,
-  Order
-} from '../../reducers/account/types';
+import Api from '../../services/api';
+import { AppState } from '../root';
+import { setRequest } from '../request/actions';
+import { accountActions, accountRequests, AccountActionTypes, OrderList, Order } from './types';
 
 export const setAccountOrders = (orders: OrderList): AccountActionTypes => ({
   type: accountActions.FETCH_ACCOUNT_ORDERS,
   orders
 });
 
-export const fetchAccountOrders = (): ((dispatch: Dispatch, getState: () => AppState) => void) => (
-  dispatch,
-  getState
-): void => {
+export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => AppState): void => {
   const requestType = accountRequests.ACCOUNT_ORDERS;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -102,7 +93,6 @@ export const initializeOrder = (payload: object, trackingId: number) => (
   Api.patch(`/order/${trackingId}`, payload).then(response => {
     if (response.ok) {
       dispatch(setInitialOrder(response.result.order));
-    } else {
     }
   });
 };
