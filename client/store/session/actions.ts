@@ -14,6 +14,7 @@ const setCurrentSession = (user: { token: string }): void => {
 
 const setLogin = (user: User): SessionActionTypes => ({
   type: actions.LOG_IN,
+  isLoggedIn: true,
   user
 });
 
@@ -92,6 +93,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
 
 const setSignup = (user: User): SessionActionTypes => ({
   type: actions.SIGN_UP,
+  isLoggedIn: true,
   user
 });
 
@@ -152,9 +154,10 @@ export const handleAuth = (type: string, form: object): ((dispatch: Function) =>
   }
 };
 
-const setRefresh = (update: { user: User | null; isLoggedIn: boolean }): SessionActionTypes => ({
+const setRefresh = (user: User | null, isLoggedIn: boolean): SessionActionTypes => ({
   type: actions.REFRESH,
-  user: update.user || { token: null, username: null, email: null, isAdmin: false }
+  isLoggedIn,
+  user
 });
 
 export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
@@ -174,34 +177,19 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
         const { user } = response.result;
         setCurrentSession(user);
 
-        const payload = {
-          isLoggedIn: true,
-          user
-        };
-
-        dispatch(setRefresh(payload));
+        dispatch(setRefresh(user, true));
         dispatch(setRequest(false, requestType));
       } else {
         cookie.remove('token');
 
-        const payload = {
-          isLoggedIn: false,
-          user: null
-        };
-
-        dispatch(setRefresh(payload));
+        dispatch(setRefresh(null, false));
         dispatch(setRequest(false, requestType));
       }
     })
     .catch((): void => {
       cookie.remove('token');
 
-      const update = {
-        isLoggedIn: false,
-        user: null
-      };
-
-      dispatch(setRefresh(update));
+      dispatch(setRefresh(null, false));
       dispatch(setRequest(false, requestType));
     });
 };

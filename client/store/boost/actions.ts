@@ -3,14 +3,7 @@ import Router from 'next/router';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import calculatePrice from '../../util/CalculatePrice';
-import {
-  boostActions,
-  boostRequests,
-  BoostActionTypes,
-  BoostOrderDetails,
-  BoostOrder,
-  BoostPricing
-} from './types';
+import { boostActions, boostRequests, BoostActionTypes, BoostOrder, BoostPricing } from './types';
 import { setRequest } from '../request/actions';
 import { AppState } from '../root';
 
@@ -112,11 +105,11 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
 };
 
-export const submitOrder = () => (dispatch, getState): void => {
+export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState): void => {
   const requestType = boostRequests.SUBMIT_ORDER;
-  const requestInProcess = getState().request[requestType] || {};
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 

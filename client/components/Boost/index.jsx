@@ -35,7 +35,7 @@ const Boost = props => {
 
   useEffect(() => {
     fetchBoostPrices();
-  }, []);
+  }, [fetchBoostPrices]);
 
   return (
     <div className={classes.root}>

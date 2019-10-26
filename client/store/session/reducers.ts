@@ -22,13 +22,13 @@ const reducer = (state = initialState, action: SessionActionTypes): SessionState
     case actions.SIGN_UP:
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: action.isLoggedIn,
         user: action.user
       };
     case actions.LOG_IN:
       return {
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: action.isLoggedIn,
         user: action.user
       };
     case actions.LOG_OUT:
@@ -40,8 +40,8 @@ const reducer = (state = initialState, action: SessionActionTypes): SessionState
     case actions.REFRESH:
       return {
         ...state,
-        isLoggedIn: true,
-        user: action.user
+        isLoggedIn: action.isLoggedIn,
+        user: action.user || emptyUser
       };
     default:
       return state;

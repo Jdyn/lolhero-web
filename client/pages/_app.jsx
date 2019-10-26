@@ -37,13 +37,9 @@ class Application extends App {
       authenticate(pageProps.token)(store.dispatch, store.getState);
     } else {
       const payload = {
-        type: 'REFRESH',
+        type: 'session/REFRESH',
         isLoggedIn: false,
-        user: {
-          username: null,
-          email: null,
-          token: null
-        }
+        user: null
       };
 
       store.dispatch(payload);

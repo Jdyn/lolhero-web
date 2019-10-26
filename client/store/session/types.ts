@@ -29,6 +29,7 @@ export interface User {
 
 interface SetLogin {
   type: typeof actions.LOG_IN;
+  isLoggedIn: boolean;
   user: User;
 }
 
@@ -38,11 +39,13 @@ interface SetLogout {
 
 interface SetSignup {
   type: typeof actions.SIGN_UP;
+  isLoggedIn: boolean;
   user: User;
 }
 
 interface SetRefresh {
   type: typeof actions.REFRESH;
+  isLoggedIn: boolean;
   user: User;
 }
 
