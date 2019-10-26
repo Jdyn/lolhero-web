@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import addons from '../../lib/addonContent';
-import Button from '../Shared/Button';
+import Button from '../reusable/Button';
 import Banner from '../Boost/Banner';
 import ranks from '../../lib/ranks';
 

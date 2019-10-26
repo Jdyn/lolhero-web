@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import Filter from '../../Shared/Filter';
+import Filter from '../../reusable/Filter';
 import content from '../../../lib/boostContent';
 import PropTypes from 'prop-types';
 import BoostTabItem from './BoostTabItem';

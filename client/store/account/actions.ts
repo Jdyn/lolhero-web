@@ -2,24 +2,22 @@ import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import { AppState } from '../root';
 import { setRequest } from '../request/actions';
-import { accountActions, accountRequests, AccountActions, OrderList, Order } from './types';
+import { accountActions, accountRequests, AccountActionTypes, OrderList, Order } from './types';
 
-export const setAccountOrders = (orders: OrderList): AccountActions => ({
-  type: accountActions.FETCH_ACCOUNT_ORDERS,
+export const setOrderList = (orders: OrderList): AccountActionTypes => ({
+  type: accountActions.ORDER_LIST,
   orders
 });
 
-export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => AppState): void => {
-  const requestType = accountRequests.ACCOUNT_ORDERS;
+export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => AppState): void => {
+  const requestType = accountRequests.FETCH_ACCOUNT_ORDER_LIST;
   const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
-  const { isAdmin } = getState().session.user;
-
-  Api.fetch(`${isAdmin ? '/admin' : ''}/account/orders`)
+  Api.fetch(`/account/orders`)
     .then((response): void => {
       if (response.ok) {
         const { completed, active, total } = response.result;
@@ -32,7 +30,7 @@ export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => App
           }
         };
 
-        dispatch(setAccountOrders(payload));
+        dispatch(setOrderList(payload));
         dispatch(setRequest(false, requestType));
       } else {
         dispatch(
@@ -53,16 +51,16 @@ export const fetchAccountOrders = () => (dispatch: Dispatch, getState: () => App
     });
 };
 
-const setOrderDetails = (order: Order): AccountActions => ({
+const setOrderDetails = (order: Order): AccountActionTypes => ({
   type: accountActions.SET_CURRENT_ORDER,
   order
 });
 
-export const fetchAccountOrderDetails = (trackingId: number) => (
+export const fetchAccountOrder = (trackingId: number) => (
   dispatch: Dispatch,
   getState: () => AppState
 ): void => {
-  const requestType = accountRequests.ACCOUNT_ORDER_DETAILS;
+  const requestType = accountRequests.FETCH_ACCOUNT_ORDER;
   const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
@@ -82,8 +80,8 @@ export const fetchAccountOrderDetails = (trackingId: number) => (
   });
 };
 
-const setInitialOrder = (order: Order): AccountActions => ({
-  type: accountActions.INITIATE_ACCOUNT_ORDER,
+const setInitialOrder = (order: Order): AccountActionTypes => ({
+  type: accountActions.INITIATE_ORDER,
   order
 });
 

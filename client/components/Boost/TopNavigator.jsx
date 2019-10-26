@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import Filter from '../Shared/Filter';
+import Filter from '../reusable/Filter';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 

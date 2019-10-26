@@ -1,5 +1,5 @@
 export interface AccountState {
-  currentOrder: Order | null;
+  selectedOrder: Order | null;
   orders: OrderList;
 }
 
@@ -50,25 +50,39 @@ export interface Order {
   };
 }
 
-export const accountActions = {
-  FETCH_ACCOUNT_ORDERS: 'FETCH_ACCOUNT_ORDERS',
-  INITIATE_ACCOUNT_ORDER: 'INITIATE_ACCOUNT_ORDER',
-  SET_CURRENT_ORDER: 'UPDATE_ORDER_DETAILS'
+interface AccountActions {
+  ORDER_LIST: 'account/ORDER_LIST';
+  INITIATE_ORDER: 'account/INITIATE_ORDER';
+  SET_CURRENT_ORDER: 'account/SET_CURRENT_ORDER';
+}
+
+export const accountActions: AccountActions = {
+  ORDER_LIST: 'account/ORDER_LIST',
+  INITIATE_ORDER: 'account/INITIATE_ORDER',
+  SET_CURRENT_ORDER: 'account/SET_CURRENT_ORDER'
 };
 
-export const accountRequests = {
-  ACCOUNT_ORDERS: 'ACCOUNT_ORDERS',
-  ACCOUNT_ORDER_DETAILS: 'ACCOUNT_ORDER_DETAILS'
+export const accountRequests: {
+  FETCH_ACCOUNT_ORDER_LIST: 'FETCH_ACCOUNT_ORDER_LIST';
+  FETCH_ACCOUNT_ORDER: 'FETCH_ACCOUNT_ORDER';
+} = {
+  FETCH_ACCOUNT_ORDER_LIST: 'FETCH_ACCOUNT_ORDER_LIST',
+  FETCH_ACCOUNT_ORDER: 'FETCH_ACCOUNT_ORDER'
 };
 
-interface FetchOrderAction {
-  type: typeof accountActions.FETCH_ACCOUNT_ORDERS;
+interface SetOrderList {
+  type: typeof accountActions.ORDER_LIST;
   orders: OrderList;
 }
 
-interface UpdateOrderDetailsAction {
+interface InitiateOrder {
+  type: typeof accountActions.INITIATE_ORDER;
+  order: Order;
+}
+
+interface SetCurrentOrder {
   type: typeof accountActions.SET_CURRENT_ORDER;
   order: Order;
 }
 
-export type AccountActions = FetchOrderAction | UpdateOrderDetailsAction;
+export type AccountActionTypes = SetOrderList | SetCurrentOrder | InitiateOrder;

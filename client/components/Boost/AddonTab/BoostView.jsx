@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import addons from '../../../lib/addonContent';
-import Toggle from '../../Shared/Toggle';
+import Toggle from '../../reusable/Toggle';
 import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -96,7 +96,9 @@ const BoostView = props => {
           return (
             <Toggle
               key={index}
-              onClick={() => currentOrder.server !== server.server && updateOrder({ server: server.server })}
+              onClick={() =>
+                currentOrder.server !== server.server && updateOrder({ server: server.server })
+              }
               isSelected={currentOrder.server === server.server}
             >
               {server.title}

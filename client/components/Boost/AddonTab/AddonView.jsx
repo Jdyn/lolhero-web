@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import options from '../../../lib/addonContent';
-import Toggle from '../../Shared/Toggle';
+import Toggle from '../../reusable/Toggle';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 

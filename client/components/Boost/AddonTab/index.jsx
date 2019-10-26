@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import dropin from 'braintree-web-drop-in';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-// import Filter from '../../Shared/Filter';
+// import Filter from '../../reusable/Filter';
 
 import AddonView from './AddonView';
 import BoostView from './BoostView';

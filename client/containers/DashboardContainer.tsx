@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
-import { fetchAccountOrders } from '../store/actions/account';
+import { fetchAccountOrderList } from '../store/account/actions';
 import { AccountState } from '../store/account/types';
 import { SessionState } from '../store/session/types';
 import { AppState } from '../store/root';
@@ -28,7 +28,7 @@ const mapStateToProps = (state: AppState): any => ({
 });
 
 const mapDispatchToProps = (dispatch): any => ({
-  fetchAccountOrders: (): void => dispatch(fetchAccountOrders())
+  fetchAccountOrders: (): void => dispatch(fetchAccountOrderList())
 });
 
 export default connect(

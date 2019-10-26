@@ -20,6 +20,7 @@
   "rules": {
     "import/prefer-default-export": "off",
     "jsx-a11y/href-no-hash": ["off"],
+    "@typescript-eslint/explicit-function-return-type": "off",
     "react/jsx-filename-extension": [
       "warn",
       { "extensions": [".js", ".jsx", ".tsx"] }

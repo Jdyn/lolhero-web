@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 
-import Button from '../../Shared/Button';
-import Form from '../../Shared/Form';
+import Button from '../../reusable/Button';
+import Form from '../../reusable/Form';
 
 const propTypes = {
   handleAuth: PropTypes.func.isRequired,

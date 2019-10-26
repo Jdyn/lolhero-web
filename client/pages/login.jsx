@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Shared/Layout';
+import Layout from '../components/reusable/Layout';
 
 const login = props => {
   return (

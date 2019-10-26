@@ -4,11 +4,11 @@ export interface ErrorObject {
 }
 
 interface RequestActions {
-  SET_REQUEST: string;
+  SET_REQUEST: 'request/SET_REQUEST';
 }
 
 export const requestActions: RequestActions = {
-  SET_REQUEST: 'SET_REQUEST'
+  SET_REQUEST: 'request/SET_REQUEST'
 };
 
 export interface Request {

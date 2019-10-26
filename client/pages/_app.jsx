@@ -4,11 +4,11 @@ import nextCookie from 'next-cookies';
 import * as Sentry from '@sentry/browser';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'react-jss';
-import { authenticate } from '../store/actions/SessionActions';
+import { authenticate } from '../store/session/actions';
 import withRedux from '../store/withRedux';
-import Baseline from '../components/Shared/Baseline';
+import Baseline from '../components/reusable/Baseline';
 import theme from '../lib/theme';
-import SEO from '../components/Shared/SEO';
+import SEO from '../components/reusable/SEO';
 import '../static/styles/empty.css';
 
 if (process.env.NODE_ENV === 'production') {

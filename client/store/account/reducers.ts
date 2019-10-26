@@ -1,7 +1,7 @@
-import { AccountState, accountActions, AccountActions } from './types';
+import { AccountState, accountActions, AccountActionTypes } from './types';
 
-const initialState = {
-  currentOrder: null,
+const initialState: AccountState = {
+  selectedOrder: null,
   orders: {
     active: {
       title: 'Active Orders',
@@ -21,17 +21,22 @@ const initialState = {
   }
 };
 
-const reducer = (state: AccountState = initialState, action: AccountActions): AccountState => {
+const reducer = (state = initialState, action: AccountActionTypes): AccountState => {
   switch (action.type) {
-    case accountActions.FETCH_ACCOUNT_ORDERS:
+    case accountActions.ORDER_LIST:
       return {
         ...state,
         orders: action.orders
       };
+    case accountActions.INITIATE_ORDER:
+      return {
+        ...state,
+        selectedOrder: action.order
+      };
     case accountActions.SET_CURRENT_ORDER:
       return {
         ...state,
-        currentOrder: action.order
+        selectedOrder: action.order
       };
     default:
       return state;

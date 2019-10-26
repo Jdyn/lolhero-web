@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardContainer from '../../containers/DashboardContainer';
-import Layout from '../../components/Shared/Layout';
+import Layout from '../../components/reusable/Layout';
 import withAuth from '../../store/withAuth';
 
 const Dashboard = props => {

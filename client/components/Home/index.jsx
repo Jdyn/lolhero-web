@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { createUseStyles } from 'react-jss';
-import Button from '../Shared/Button';
+import Button from '../reusable/Button';
 import HomeCard from './HomeCard';
 
 const propTypes = {};
