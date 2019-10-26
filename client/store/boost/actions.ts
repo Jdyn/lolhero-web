@@ -1,28 +1,45 @@
 import * as Sentry from '@sentry/browser';
 import Router from 'next/router';
+import { Dispatch } from 'redux';
 import Api from '../../services/api';
-import keyMirror from '../../util/keyMirror';
-import { setRequest } from '../request/actions';
 import calculatePrice from '../../util/CalculatePrice';
+import {
+  boostActions,
+  boostRequests,
+  BoostActionTypes,
+  BoostOrderDetails,
+  BoostOrder,
+  BoostPricing
+} from './types';
+import { setRequest } from '../request/actions';
+import { AppState } from '../root';
 
-export const actions = keyMirror('FETCH_BOOST_PRICES', 'UPDATE_BOOST');
-export const requests = keyMirror('BOOST_PRICING', 'BOOST_ORDER', 'SUBMIT_ORDER');
-
-const validateOrder = (order, dispatchError) => {
+const validateOrder = (order: BoostOrder, dispatchError: (message: string) => void): boolean => {
   const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
 
-  if (!startRank) return dispatchError('You must have a starting rank.');
+  if (!startRank) {
+    dispatchError('You must have a starting rank.');
+    return false;
+  }
 
   if (collectionName === 'Division Boost') {
-    if (!desiredRank) return dispatchError('You must have a desired rank.');
-    if (startRank > desiredRank)
-      return dispatchError('Your starting rank cannot be greater than your desired rank.');
-  } else if (!desiredAmount) return dispatchError('You must have a desired amount.');
+    if (!desiredRank) {
+      dispatchError('You must have a desired rank.');
+      return false;
+    }
+    if (startRank > desiredRank) {
+      dispatchError('Your starting rank cannot be greater than your desired rank.');
+      return false;
+    }
+  } else if (!desiredAmount) {
+    dispatchError('You must have a desired amount.');
+    return false;
+  }
 
   return true;
 };
 
-const trimOrder = order => {
+const trimOrder = (order: BoostOrder): BoostOrder => {
   const newOrder = { ...order };
   if (order.details.collectionName === 'Division Boost') {
     delete newOrder.details.desiredAmount;
@@ -33,16 +50,16 @@ const trimOrder = order => {
   return newOrder;
 };
 
-const setBoostPrices = prices => ({
-  type: actions.FETCH_BOOST_PRICES,
+const setBoostPrices = (prices: BoostPricing): BoostActionTypes => ({
+  type: boostActions.FETCH_BOOST_PRICES,
   prices
 });
 
-export const fetchBoostPrices = () => (dispatch, getState) => {
-  const requestType = requests.BOOST_PRICING;
-  const requestInProcess = getState().request[requestType] || {};
+export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppState): void => {
+  const requestType = boostRequests.BOOST_PRICING;
+  const request = getState().request[requestType] || { isPending: false };
 
-  if (requestInProcess.isPending) return;
+  if (request.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
@@ -61,27 +78,31 @@ export const fetchBoostPrices = () => (dispatch, getState) => {
   });
 };
 
-const setBoost = update => ({
-  type: actions.UPDATE_BOOST,
+const setBoost = (newPrice: number, update: object): BoostActionTypes => ({
+  type: boostActions.UPDATE_BOOST,
+  newPrice,
   update
 });
 
-export const updateOrder = newUpdate => (dispatch, getState) => {
-  if (newUpdate.order) {
-    dispatch(
-      setBoost({
-        order: { ...newUpdate.order }
-      })
-    );
-    return;
-  }
+export const updateOrder = (newUpdate: BoostOrderDetails) => (
+  dispatch: Dispatch,
+  getState: () => AppState
+): void => {
+  // if (newUpdate.order) {
+  //   dispatch(
+  //     setBoost({
+  //       order: { ...newUpdate.order }
+  //     })
+  //   );
+  //   return;
+  // }
 
-  const requestType = requests.SUBMIT_ORDER;
-  const request = getState().request[requestType] || {};
+  const requestType = boostRequests.SUBMIT_ORDER;
+  const request = getState().request[requestType].errorObject || { errored: false };
 
   if (request.errored) {
     dispatch(
-      setRequest(false, requests.SUBMIT_ORDER, {
+      setRequest(false, boostRequests.SUBMIT_ORDER, {
         errored: false,
         error: ''
       })
@@ -97,11 +118,11 @@ export const updateOrder = newUpdate => (dispatch, getState) => {
     order.promos = null;
   }
 
-  dispatch(setBoost({ boost: { price }, details: { ...newUpdate } }));
+  dispatch(setBoost(price, { ...newUpdate }));
 };
 
 export const submitOrder = () => (dispatch, getState): void => {
-  const requestType = requests.SUBMIT_ORDER;
+  const requestType = boostRequests.SUBMIT_ORDER;
   const requestInProcess = getState().request[requestType] || {};
 
   if (requestInProcess.isPending) return;
@@ -110,15 +131,13 @@ export const submitOrder = () => (dispatch, getState): void => {
 
   const order = { ...getState().boost.order };
 
-  const dispatchError = message => {
+  const dispatchError = (message: string): void => {
     dispatch(
       setRequest(false, requestType, {
         errored: true,
         error: message
       })
     );
-
-    return false;
   };
 
   if (validateOrder(order, dispatchError)) {

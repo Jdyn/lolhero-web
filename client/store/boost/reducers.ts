@@ -1,6 +1,6 @@
-import { actions } from './actions';
+import { BoostState, boostActions, BoostActionTypes } from './types';
 
-const initialState = {
+const initialState: BoostState = {
   price: null,
   stage: 0,
   order: {
@@ -11,6 +11,8 @@ const initialState = {
       lp: 20,
       queue: 'Solo',
       server: 'NA',
+      startRank: null,
+      desiredRank: null,
       desiredAmount: 5,
       boostType: 'Solo',
       collectionId: 1,
@@ -27,22 +29,18 @@ const initialState = {
   }
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: BoostActionTypes): BoostState => {
   switch (action.type) {
-    case actions.UPDATE_BOOST:
+    case boostActions.UPDATE_BOOST:
       return {
         ...state,
-        ...action.update.boost,
+        price: action.newPrice,
         order: {
           ...state.order,
-          ...action.update.order,
-          details: {
-            ...state.order.details,
-            ...action.update.details
-          }
+          ...action.update
         }
       };
-    case actions.FETCH_BOOST_PRICES:
+    case boostActions.FETCH_BOOST_PRICES:
       return {
         ...state,
         pricing: {

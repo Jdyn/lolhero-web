@@ -40,7 +40,7 @@ const AddonTab = props => {
         setBraintreeInstance(instance);
       })
       .catch(error => {});
-  }, []);
+  }, [setBraintreeInstance]);
 
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
