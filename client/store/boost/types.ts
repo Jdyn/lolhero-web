@@ -66,7 +66,8 @@ interface SetBoostPrices {
 interface UpdateBoost {
   type: typeof boostActions.UPDATE_BOOST;
   newPrice: number;
-  update: object;
+  detailsUpdate: object;
+  orderUpdate: object;
 }
 
 export type BoostActionTypes = SetBoostPrices | UpdateBoost;

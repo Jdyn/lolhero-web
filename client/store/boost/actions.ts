@@ -78,29 +78,25 @@ export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppSt
   });
 };
 
-const setBoost = (newPrice: number, update: object): BoostActionTypes => ({
+const setBoost = (
+  newPrice: number,
+  detailsUpdate: object,
+  orderUpdate: object
+): BoostActionTypes => ({
   type: boostActions.UPDATE_BOOST,
   newPrice,
-  update
+  detailsUpdate,
+  orderUpdate
 });
 
-export const updateOrder = (newUpdate: BoostOrderDetails) => (
+export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch: Dispatch,
   getState: () => AppState
 ): void => {
-  // if (newUpdate.order) {
-  //   dispatch(
-  //     setBoost({
-  //       order: { ...newUpdate.order }
-  //     })
-  //   );
-  //   return;
-  // }
-
   const requestType = boostRequests.SUBMIT_ORDER;
-  const request = getState().request[requestType].errorObject || { errored: false };
+  const request = getState().request[requestType] || { errorObject: { errored: false } };
 
-  if (request.errored) {
+  if (request.errorObject.errored) {
     dispatch(
       setRequest(false, boostRequests.SUBMIT_ORDER, {
         errored: false,
@@ -109,16 +105,11 @@ export const updateOrder = (newUpdate: BoostOrderDetails) => (
     );
   }
 
-  const order = { ...getState().boost.order.details, ...newUpdate };
+  const order = { ...getState().boost.order.details, ...detailsUpdate };
   const pricing = getState().boost.pricing[order.boostType];
-
   const price = calculatePrice(order, pricing);
 
-  if (order.lp !== 100) {
-    order.promos = null;
-  }
-
-  dispatch(setBoost(price, { ...newUpdate }));
+  dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
 };
 
 export const submitOrder = () => (dispatch, getState): void => {

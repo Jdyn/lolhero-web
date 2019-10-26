@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleAuth: (type, form) => dispatch(handleAuth(type, form)),
   fetchBoostPrices: () => dispatch(fetchBoostPrices()),
-  updateOrder: newUpdate => dispatch(updateOrder(newUpdate)),
+  updateOrder: (detailsUpdate, OrderUpdate) => dispatch(updateOrder(detailsUpdate, OrderUpdate)),
   submitOrder: nonce => dispatch(submitOrder(nonce))
 });
 

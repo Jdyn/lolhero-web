@@ -37,13 +37,14 @@ const BottomNavigator = props => {
         if ((valid.details && valid.payment) || (session.isLoggedIn && valid.payment)) {
           braintreeInstance.requestPaymentMethod((error, payload) => {
             if (!error) {
-              updateOrder({
-                order: {
+              updateOrder(
+                {},
+                {
                   paymentMethodIsSelected: true,
                   nonce: payload.nonce,
                   email: detailsForm['details-email'] || session.user.email
                 }
-              });
+              );
               setStage(prev => prev + 1);
             }
           });

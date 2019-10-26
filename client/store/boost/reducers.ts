@@ -37,7 +37,11 @@ export default (state = initialState, action: BoostActionTypes): BoostState => {
         price: action.newPrice,
         order: {
           ...state.order,
-          ...action.update
+          ...action.orderUpdate,
+          details: {
+            ...state.order.details,
+            ...action.detailsUpdate
+          }
         }
       };
     case boostActions.FETCH_BOOST_PRICES:
