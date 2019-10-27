@@ -55,7 +55,7 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: theme.tertiary,
-    borderRadius: 12,
+    borderRadius: 8,
     padding: '25px',
     boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
     margin: '10px 10px 20px 10px',

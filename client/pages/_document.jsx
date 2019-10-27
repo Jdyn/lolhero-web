@@ -1,7 +1,6 @@
 import React from 'react';
 import Document from 'next/document';
 import { SheetsRegistry, JssProvider, createGenerateId } from 'react-jss';
-import '../static/styles/empty.css';
 
 export default class JssDocument extends Document {
   static async getInitialProps(ctx) {

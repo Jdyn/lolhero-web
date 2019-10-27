@@ -24,7 +24,7 @@ const useStyles = createUseStyles(theme => ({
     },
     '*, *::before, *::after, div': {
       boxSizing: 'inherit',
-      fontFamily: 'Museo Sans Rounded'
+      fontFamily: 'Museo Sans Rounded, Helvetica Neue'
     },
     body: {
       margin: 0,

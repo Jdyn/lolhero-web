@@ -39,7 +39,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #292929;
+  background-color: var(--secondary-grey);
   color: #f0f0f0;
   font-size: 100%;
   min-height: 100vh;
@@ -49,7 +49,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 1025px) {
   ::-webkit-scrollbar {
     width: 8px;
   }

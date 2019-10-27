@@ -45,18 +45,18 @@ class Application extends App {
       store.dispatch(payload);
     }
 
-    function onTidioChatApiReady() {
-      const { user } = store.getState().session;
+    // function onTidioChatApiReady() {
+    //   const { user } = store.getState().session;
 
-      const metadata = {
-        email: user.email,
-        name: user.username,
-        distinct_id: user.id
-      };
+    //   const metadata = {
+    //     email: user.email,
+    //     name: user.username,
+    //     distinct_id: user.id
+    //   };
 
-      document.tidioIdentify = metadata;
-      tidioChatApi.setVisitorData(metadata);
-    }
+    //   document.tidioIdentify = metadata;
+    //   tidioChatApi.setVisitorData(metadata);
+    // }
 
     // if (window.tidioChatApi) {
     //   setTimeout(() => {
@@ -82,7 +82,7 @@ class Application extends App {
         <ThemeProvider theme={theme.dark}>
           <Baseline>
             <SEO />
-            <Component {...pageProps} />
+            <Component token={pageProps.token} />
           </Baseline>
         </ThemeProvider>
       </Provider>

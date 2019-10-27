@@ -13,11 +13,7 @@ interface Props {
 }
 
 const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
-  const {
-    session,
-    fetchAccountOrders,
-    account: { orders }
-  } = props;
+  const { session, fetchAccountOrders, account } = props;
 
   const [filter, setFilter] = useState('active');
 
@@ -28,8 +24,8 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <DashboardHeader session={session} />
-      <DashboardFilter orders={orders} setFilter={setFilter} filter={filter} />
-      <DashboardTable orders={orders} filter={filter} />
+      <DashboardFilter orders={account.orders} setFilter={setFilter} filter={filter} />
+      <DashboardTable orders={account.orders} filter={filter} />
     </div>
   );
 };
