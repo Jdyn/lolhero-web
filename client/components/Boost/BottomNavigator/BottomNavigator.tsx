@@ -137,37 +137,25 @@ const BottomNavigator = (props: Props): JSX.Element => {
     return '#4285F4';
   };
 
+  const navItems = {
+    LP: formatLP(currentOrder.lp) || '-',
+    Queue: currentOrder.queue,
+    Server: currentOrder.server,
+    Total: `$${boost.price || 0}`
+  };
+
   return (
     <div className={styles.root}>
-      <div className={styles.container}>
-        <h3>{formatLP(currentOrder.lp) || '-'}</h3>
-        <span>LP</span>
-      </div>
-      <div className={styles.container}>
-        <h3>{currentOrder.queue || '-'}</h3>
-        <span>Queue</span>
-      </div>
-      <div className={styles.container}>
-        <h3>{currentOrder.server || '-'}</h3>
-        <span>Server</span>
-      </div>
-      <div className={styles.container}>
-        <h3>${boost.price || 0}</h3>
-        <span>Total</span>
-      </div>
+      {Object.keys(navItems).map(key => (
+        <div className={styles.container}>
+          <h3>{navItems[key]}</h3>
+          <span>{key}</span>
+        </div>
+      ))}
       <button
         type="button"
         id="submit-button"
         className={styles.button}
-        onClick={(): void => updateStage(currentStage)}
-        style={{ backgroundColor: buttonColor() }}
-      >
-        {stageText(currentStage)}
-      </button>
-      <button
-        type="button"
-        id="submit-button"
-        className={styles.checkout}
         onClick={(): void => updateStage(currentStage)}
         style={{ backgroundColor: buttonColor() }}
       >

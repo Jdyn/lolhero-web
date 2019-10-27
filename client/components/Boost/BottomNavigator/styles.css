@@ -40,23 +40,6 @@
 }
 
 .button {
-  display: none;
-  outline: none;
-  border: none;
-  margin: 15px;
-  width: 100%;
-  border-radius: 12px;
-  min-height: 55px;
-  cursor: pointer;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition-duration: 0.2s;
-  font-weight: 700;
-  font-size: 20px;
-}
-
-.checkout {
   display: inline-block;
   outline: none;
   border: none;
@@ -85,9 +68,5 @@
     margin: 5px 25px 5px 3%;
     width: 350px;
     display: inline-block;
-  }
-
-  .checkout {
-    display: 'none';
   }
 }
