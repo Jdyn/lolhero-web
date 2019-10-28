@@ -1,4 +1,4 @@
-import { SessionState, SessionActionTypes, actions } from './types';
+import { SessionState, SessionActionTypes, actions, User } from './types';
 
 const initialState: SessionState = {
   isLoggedIn: null,
@@ -10,7 +10,7 @@ const initialState: SessionState = {
   }
 };
 
-const emptyUser = {
+const emptyUser: User = {
   email: null,
   token: null,
   username: null,

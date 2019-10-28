@@ -56,7 +56,7 @@ const setOrderDetails = (order: Order): AccountActionTypes => ({
   order
 });
 
-export const fetchAccountOrder = (trackingId: number) => (
+export const fetchOrder = (trackingId: string, email: string) => (
   dispatch: Dispatch,
   getState: () => AppState
 ): void => {
@@ -65,7 +65,31 @@ export const fetchAccountOrder = (trackingId: number) => (
 
   if (request.isPending) return;
 
-  Api.patch(`/account/order/${trackingId}`).then(response => {
+  Api.post(`/order/${trackingId}`, { email }).then(response => {
+    if (response.ok) {
+      dispatch(setOrderDetails(response.result.order));
+      dispatch(setRequest(false, requestType));
+    } else {
+      dispatch(
+        setRequest(false, requestType, {
+          errored: true,
+          error: response.error
+        })
+      );
+    }
+  });
+};
+
+export const fetchAccountOrder = (trackingId: string) => (
+  dispatch: Dispatch,
+  getState: () => AppState
+): void => {
+  const requestType = accountRequests.FETCH_ACCOUNT_ORDER;
+  const request = getState().request[requestType] || { isPending: false };
+
+  if (request.isPending) return;
+
+  Api.fetch(`/account/order/${trackingId}`).then(response => {
     if (response.ok) {
       dispatch(setOrderDetails(response.result.order));
       dispatch(setRequest(false, requestType));

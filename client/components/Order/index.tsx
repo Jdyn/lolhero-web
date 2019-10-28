@@ -3,25 +3,28 @@ import { createUseStyles } from 'react-jss';
 import OrderHero from './OrderHero';
 import { SessionState } from '../../store/session/types';
 import OrderHeader from './OrderHeader/OrderHeader';
-import { Order } from '../../store/account/types';
+import { AccountState, Order } from '../../store/account/types';
 
 interface Props {
-  order: Order;
+  account: AccountState;
   session: SessionState;
-  updateOrder: () => void;
+  order: Order;
+  fetchAccountOrder: (trackingId: string) => void;
 }
 
 let useStyles;
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const classes = useStyles();
-  const { order, session, updateOrder } = props;
+  const { session, order } = props;
 
-  return (
+  return order ? (
     <div className={classes.root}>
       <OrderHeader session={session} order={order} />
-      <OrderHero order={order} updateOrder={updateOrder} />
+      <OrderHero order={order} />
     </div>
+  ) : (
+    <div>ok</div>
   );
 };
 
