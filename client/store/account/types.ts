@@ -30,6 +30,10 @@ export interface Order {
     collectionName: string;
     desiredAmount?: number;
     isExpress: boolean;
+    primaryRole?: string;
+    secondaryRole?: string;
+    summonerName: string;
+    note?: string;
     isIncognito: boolean;
     isUnrestricted: boolean;
     lp: number;

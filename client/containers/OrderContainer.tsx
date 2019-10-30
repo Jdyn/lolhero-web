@@ -10,6 +10,7 @@ import {
 } from '../store/account/actions';
 import BoostOrder from '../components/Order';
 import OrderAuth from '../components/reusable/OrderAuth';
+import { Request } from '../store/request/types';
 
 interface Props {
   requireAuth?: boolean;
@@ -17,10 +18,11 @@ interface Props {
   account?: AccountState;
   fetchAccountOrder?: (trackingId: string) => void;
   fetchOrder?: (trackingId: string, email: string) => void;
+  orderRequest?: Request;
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { requireAuth, account, session, fetchAccountOrder, fetchOrder } = props;
+  const { requireAuth, account, session, fetchAccountOrder, fetchOrder, orderRequest } = props;
 
   const router = useRouter();
 
@@ -45,13 +47,15 @@ const OrderContainer = (props: Props): JSX.Element => {
       session={session}
       fetchAccountOrder={fetchAccountOrder}
       order={account.selectedOrder}
+      orderRequest={orderRequest}
     />
   );
 };
 
 const mapState = (state: AppState): object => ({
   session: state.session,
-  account: state.account
+  account: state.account,
+  orderRequest: state.request.FETCH_ACCOUNT_ORDER
 });
 
 const mapDispatch = (dispatch): object => ({

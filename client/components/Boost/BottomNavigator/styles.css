@@ -21,6 +21,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: var(--secondary-white);
   border-right: 0.7px solid #999;
   line-height: 1;
   flex: 1;
@@ -36,7 +37,6 @@
 .container > span {
   font-size: 17px;
   margin-top: 5px;
-  color: var(--primary-grey);
 }
 
 .button {
@@ -67,6 +67,8 @@
   .button {
     margin: 5px 25px 5px 3%;
     width: 350px;
-    display: inline-block;
+    display: flex;
+    flex: 1.5;
+    justify-content: center;
   }
 }

@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import addons from '../../lib/addonContent';
-import Button from '../reusable/Button';
-import Banner from '../Boost/Banner';
-import ranks from '../../lib/ranks';
+import addons from '../../../lib/addonContent';
+import Button from '../../reusable/Button';
+import Banner from '../../Boost/Banner';
+import ranks from '../../../lib/ranks';
+import { Order } from '../../../store/account/types';
 
 const fields = [
   { type: 'text', title: 'LoL Username', text: 'username' },
@@ -24,11 +25,12 @@ const content = [
   }
 ];
 
-const OrderHero = props => {
-  const classes = useStyles(props);
-  const theme = useTheme();
-  const { order, updateOrder } = props;
-  const { primaryRole, secondaryRole } = order.details;
+interface Props {
+  order?: Order;
+}
+
+const OrderDetails = (props: Props): JSX.Element => {
+  const { order } = props;
 
   const ranksObject = useMemo(
     () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
@@ -48,15 +50,15 @@ const OrderHero = props => {
   });
 
   const handleOrderUpdate = () => {
-    const { primaryRole, secondaryRole, summonerName } = form.details;
     const { username, password } = form.accountDetails;
+    const { primaryRole, secondaryRole, summonerName, note } = order.details;
 
     if (primaryRole && secondaryRole && summonerName && username && password) {
       updateOrder(form);
     }
   };
 
-  const handleFormUpdate = formUpdate => {
+  const handleFormUpdate = (formUpdate: Order['details']): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
 
     if (primaryRole || secondaryRole) {
@@ -329,4 +331,4 @@ const useStyles = createUseStyles(theme => ({
   }
 }));
 
-export default OrderHero;
+export default OrderDetails;

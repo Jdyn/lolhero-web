@@ -14,6 +14,7 @@ export const requestActions: RequestActions = {
 export interface Request {
   type: typeof requestActions.SET_REQUEST;
   requestType: string;
+  success?: boolean;
   isPending: boolean;
   errorObject: ErrorObject;
 }
