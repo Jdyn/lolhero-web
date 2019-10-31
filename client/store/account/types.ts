@@ -34,6 +34,7 @@ export interface Order {
     secondaryRole?: string;
     summonerName: string;
     note?: string;
+    desiredRank?: number;
     isIncognito: boolean;
     isUnrestricted: boolean;
     lp: number;

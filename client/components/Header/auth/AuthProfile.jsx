@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import Link from 'next/link';
-import Button from '../../Button';
+import Button from '../../reusable/Button';
 
 const propTypes = {
   handleAuth: PropTypes.func.isRequired,

@@ -1,4 +1,3 @@
-import keyMirror from '../../util/keyMirror';
 import { ErrorObject, Request, requestActions } from './types';
 
 export const setRequest = (

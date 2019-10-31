@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
 import { createUseStyles } from 'react-jss';
-import Header from './Header';
+import Header from '../Header';
 import Footer from './Footer';
 import { handleAuth } from '../../store/session/actions';
 

@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
-  secondary: PropTypes.bool,
-  margin: PropTypes.string
+  secondary: PropTypes.bool
 };
 
 const Button = React.forwardRef((props, ref) => {
@@ -28,9 +27,9 @@ const Button = React.forwardRef((props, ref) => {
 
 Button.propTypes = propTypes;
 Button.defaultProps = {
-  margin: '0',
-  width: 'auto',
-  padding: '10px 15px'
+  children: null,
+  secondary: false,
+  onClick: null
 };
 
 const useStyles = createUseStyles(theme => ({

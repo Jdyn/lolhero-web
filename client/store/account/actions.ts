@@ -89,6 +89,8 @@ export const fetchAccountOrder = (trackingId: string) => (
 
   if (request.isPending) return;
 
+  dispatch(setRequest(true, requestType));
+
   Api.fetch(`/account/order/${trackingId}`).then(response => {
     if (response.ok) {
       dispatch(setOrderDetails(response.result.order));

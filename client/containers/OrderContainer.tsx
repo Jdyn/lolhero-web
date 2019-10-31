@@ -42,13 +42,17 @@ const OrderContainer = (props: Props): JSX.Element => {
   return requireAuth ? (
     <OrderAuth trackingId={trackingId as string} onSubmit={verifyOrder} />
   ) : (
-    <BoostOrder
-      account={account}
-      session={session}
-      fetchAccountOrder={fetchAccountOrder}
-      order={account.selectedOrder}
-      orderRequest={orderRequest}
-    />
+    <>
+      {orderRequest && !orderRequest.isPending && account.selectedOrder && (
+        <BoostOrder
+          account={account}
+          session={session}
+          fetchAccountOrder={fetchAccountOrder}
+          order={account.selectedOrder}
+          orderRequest={orderRequest}
+        />
+      )}
+    </>
   );
 };
 

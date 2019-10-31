@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import Form from '../../Form';
+import Form from '../../reusable/Form';
 
 const propTypes = {
   handleAuth: PropTypes.func.isRequired,
