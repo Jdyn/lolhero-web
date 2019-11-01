@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/browser';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'react-jss';
 import { authenticate } from '../store/session/actions';
-import withRedux from '../store/withRedux';
+import withRedux from '../lib/withRedux';
 import Baseline from '../components/reusable/Baseline';
 import theme from '../lib/theme';
 import SEO from '../components/reusable/SEO';

@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardContainer from '../../containers/DashboardContainer';
 import Layout from '../../components/reusable/Layout';
-import withAuth from '../../store/withAuth';
+import withAuth from '../../lib/withAuth';
 
 const Dashboard = props => {
   return (

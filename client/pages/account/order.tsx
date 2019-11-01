@@ -2,7 +2,7 @@ import React from 'react';
 import nextCookie from 'next-cookies';
 import { NextPageContext } from 'next';
 import Layout from '../../components/reusable/Layout';
-import withAuth from '../../store/withAuth';
+import withAuth from '../../lib/withAuth';
 import Api from '../../services/api';
 import OrderContainer from '../../containers/OrderContainer';
 
