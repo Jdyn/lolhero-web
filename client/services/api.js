@@ -1,4 +1,5 @@
 import cookie from 'js-cookie';
+import nextCookie from 'next-cookies';
 import 'isomorphic-unfetch';
 
 const API_URL =
@@ -16,6 +17,17 @@ function headers() {
   };
 }
 
+function nextAuth(ctx) {
+  if (ctx) {
+    const { token } = nextCookie(ctx);
+    return {
+      Authorization: `Bearer ${token || ''}`
+    };
+  }
+
+  return {};
+}
+
 function parseResponse(response) {
   return response.json().then(json => json);
 }
@@ -28,10 +40,10 @@ function queryString(params) {
 }
 
 export default {
-  fetch(url, params = {}, opts) {
+  fetch(url, opts = {}, params = {}) {
     return fetch(`${API_URL}${url}${queryString(params)}`, {
       method: 'GET',
-      headers: { ...headers(), ...opts }
+      headers: { ...headers(), ...nextAuth(opts.ctx) }
     })
       .then(parseResponse)
       .catch(error => error);

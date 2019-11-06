@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { NextPageContext } from 'next';
 import Api from '../../services/api';
 import { AppState } from '../root';
 import { setRequest } from '../request/actions';
@@ -80,18 +81,18 @@ export const fetchOrder = (trackingId: string, email: string) => (
   });
 };
 
-export const fetchAccountOrder = (trackingId: string) => (
+export const fetchAccountOrder = (trackingId: string, context: NextPageContext) => (
   dispatch: Dispatch,
   getState: () => AppState
-): void => {
+): Promise<void> => {
   const requestType = accountRequests.FETCH_ACCOUNT_ORDER;
   const request = getState().request[requestType] || { isPending: false };
 
-  if (request.isPending) return;
+  if (request.isPending) return null;
 
   dispatch(setRequest(true, requestType));
 
-  Api.fetch(`/account/order/${trackingId}`).then(response => {
+  return Api.fetch(`/account/order/${trackingId}`, { ctx: context }).then(response => {
     if (response.ok) {
       dispatch(setOrderDetails(response.result.order));
       dispatch(setRequest(false, requestType));

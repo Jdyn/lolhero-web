@@ -1,46 +1,29 @@
 import React from 'react';
-import nextCookie from 'next-cookies';
-import { NextPageContext } from 'next';
 import Layout from '../../components/reusable/Layout';
 import withAuth from '../../lib/withAuth';
-import Api from '../../services/api';
 import OrderContainer from '../../containers/OrderContainer';
-
-interface OrderResponse {
-  ok: boolean;
-  error?: string;
-  result: {
-    order?: object;
-  };
-}
+import { fetchAccountOrder } from '../../store/account/actions';
 
 interface Props {
-  trackingId: string | string[];
-  response: OrderResponse;
+  trackingId: string;
 }
 
 class Order extends React.PureComponent<Props> {
-  public static async getInitialProps(ctx: NextPageContext): Promise<Props> {
-    const { token } = nextCookie(ctx);
-    const { trackingId } = ctx.query;
+  public static async getInitialProps(ctx): Promise<object> {
+    const {
+      reduxStore: { dispatch, getState },
+      query: { trackingId }
+    } = ctx;
 
-    const response: OrderResponse = await Api.fetch(
-      `/account/order/${trackingId}`,
-      {},
-      { Authorization: `bearer ${token}` }
-    );
-
-    if (response.ok) {
-      return { trackingId, response };
-    }
-
-    return { trackingId, response };
+    await fetchAccountOrder(trackingId, ctx)(dispatch, getState);
+    return { trackingId };
   }
 
   public render(): JSX.Element {
+    const { trackingId } = this.props;
     return (
       <Layout>
-        <OrderContainer />
+        <OrderContainer requireAuth={false} trackingId={trackingId} />
       </Layout>
     );
   }
