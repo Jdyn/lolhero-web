@@ -33,7 +33,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
 useStyles = createUseStyles({
   root: {
     display: 'flex',
-    height: 'calc(100vh - 76px)',
+    // height: 'calc(100vh - 76px)',
     flexDirection: 'column'
   }
 });
