@@ -2,12 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import AuthProfile from '../AuthProfile';
 import AuthMenu from '../AuthMenu';
 import styles from './styles.css';
+import { Request } from '../../../../store/request/types';
 
 interface Props {
   children?: React.ReactNode;
   session: { isLoggedIn: boolean | null; user: object };
   handleAuth: (type: string, form: object) => void;
-  sessionRequest: { success: boolean; errored: boolean; error: string | null };
+  sessionRequest: Request;
 }
 
 const AuthDisplay: React.FC<Props> = (props: Props) => {
