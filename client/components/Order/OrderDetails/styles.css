@@ -45,6 +45,10 @@
   margin-top: 20px;
 }
 
+.formWrapper:nth-child(1) {
+  margin-right: 5px !important;
+}
+
 .formInput {
   outline: none;
   border: none;
@@ -59,8 +63,12 @@
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 0 5px;
+  margin: 5px 0px 5px 0px;
   text-align: left;
+}
+
+.formWrapper > span {
+  margin-bottom: 5px;
 }
 
 .rolesContainer {
@@ -75,6 +83,11 @@
   display: flex;
   flex-direction: column;
   color: var(--secondary-white);
+  font-size: 16px;
+}
+
+.rolesWrapper > span {
+  margin: 0 0 5px 5px;
 }
 
 .roles {
@@ -137,6 +150,24 @@
   color: var(--white);
   background-color: var(--primary-grey);
   height: 100px;
+}
+
+.button {
+  display: inline-block;
+  outline: none;
+  border: none;
+  margin: 15px 0px;
+  /* width: 100%; */
+  border-radius: 12px;
+  min-height: 45px;
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  transition-duration: 0.2s;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 @media (min-width: 650px) {

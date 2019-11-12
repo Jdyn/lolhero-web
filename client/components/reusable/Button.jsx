@@ -3,13 +3,13 @@ import { createUseStyles } from 'react-jss';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.string,
   onClick: PropTypes.func,
   secondary: PropTypes.bool
 };
 
 const Button = React.forwardRef((props, ref) => {
-  const { children, secondary, onClick } = props;
+  const { secondary, onClick } = props;
 
   const classes = useStyles(props);
 
@@ -20,14 +20,17 @@ const Button = React.forwardRef((props, ref) => {
       onClick={onClick}
       className={secondary ? classes.secondary : classes.primary}
     >
-      {children}
+      {props.children}
     </button>
   );
 });
 
 Button.propTypes = propTypes;
 Button.defaultProps = {
-  children: null,
+  margin: '0',
+  width: 'auto',
+  padding: '10px 15px',
+  children: '',
   secondary: false,
   onClick: null
 };

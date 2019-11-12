@@ -49,16 +49,14 @@ const OrderDetails = (props: Props): JSX.Element => {
     }
   });
 
-  const handleOrderUpdate = (): void => {
-    const { username, password } = form.accountDetails;
-    const { primaryRole, secondaryRole, summonerName } = order.details;
-
-    if (primaryRole && secondaryRole && summonerName && username && password) {
-      // updateOrder(form);
-    }
+  const UpdateDetails = (): void => {
+    // const { username, password } = form.accountDetails;
+    // const { primaryRole, secondaryRole, summonerName } = order.details;
+    // if (primaryRole && secondaryRole && summonerName && username && password) {
+    // }
   };
 
-  const handleFormUpdate = (formUpdate: Order['details'] | any): void => {
+  const handleFormUpdate = (formUpdate: any): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
 
     if (primaryRole || secondaryRole) {
@@ -160,9 +158,9 @@ const OrderDetails = (props: Props): JSX.Element => {
               className={styles.notes}
               placeholder="Please enter your preferred champions here while we work on a better solution."
             />
-            {/* <Button onClick={handleOrderUpdate} margin="15px 0px 0px auto">
+            <button onClick={UpdateDetails} className={styles.button} type="submit">
               save
-            </Button> */}
+            </button>
           </div>
         </div>
       ) : (

@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { Component } from 'react';
+import React from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
 
@@ -11,7 +10,7 @@ const auth = ctx => {
     ctx.res.end();
   }
 
-  // We already checked for server. This should only happen on client.
+  // Client-side Check
   if (!token) {
     Router.push({ pathname: '/' });
   }
@@ -20,14 +19,19 @@ const auth = ctx => {
 };
 
 function withAuth(Child) {
-  return class extends Component {
+  return class extends React.Component {
     static async getInitialProps(ctx) {
       const token = auth(ctx);
 
-      const componentProps =
-        Child.getInitialProps && (await Child.getInitialProps(ctx));
+      const componentProps = Child.getInitialProps && (await Child.getInitialProps(ctx));
 
       return { ...componentProps, token };
+    }
+
+    static syncLogout(event) {
+      if (event.key === 'logout') {
+        Router.push('/');
+      }
     }
 
     constructor(props) {
@@ -43,12 +47,6 @@ function withAuth(Child) {
     componentWillUnmount() {
       window.removeEventListener('storage', this.syncLogout);
       window.localStorage.removeItem('logout');
-    }
-
-    syncLogout(event) {
-      if (event.key === 'logout') {
-        Router.push('/');
-      }
     }
 
     render() {
