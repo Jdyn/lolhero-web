@@ -147,7 +147,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       {Object.keys(navItems).map(key => (
-        <div className={styles.container}>
+        <div key={key} className={styles.container}>
           <h3>{navItems[key]}</h3>
           <span>{key}</span>
         </div>

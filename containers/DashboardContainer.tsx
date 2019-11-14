@@ -31,7 +31,4 @@ const mapDispatchToProps = (dispatch): any => ({
   fetchAccountOrders: (): void => dispatch(fetchAccountOrderList())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

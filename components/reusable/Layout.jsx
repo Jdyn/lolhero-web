@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import { createUseStyles } from 'react-jss';
 import Header from '../Header';
 import Footer from './Footer';
@@ -30,15 +29,6 @@ const Layout = props => {
     `
       }}
     >
-      {/* <Head>
-        {process.env.NODE_ENV !== 'production' && (
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href={'/_next/static/css/styles.chunk.css?v=' + Date.now()}
-          />
-        )}
-      </Head> */}
       <Header session={session} handleAuth={handleAuth} sessionRequest={sessionRequest} />
       {children}
       <Footer />
@@ -70,7 +60,4 @@ const mapDispatchToProps = dispatch => ({
   handleAuth: (type, form) => dispatch(handleAuth(type, form))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

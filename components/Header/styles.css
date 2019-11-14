@@ -55,6 +55,10 @@
 }
 
 @media (min-width: 650px) {
+  .root {
+    padding: 0px 30px;
+  }
+
   .searchForm {
     display: flex;
   }

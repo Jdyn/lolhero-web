@@ -24,7 +24,4 @@ const mapDispatchToProps = dispatch => ({
   submitOrder: nonce => dispatch(submitOrder(nonce))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BoostContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(BoostContainer);

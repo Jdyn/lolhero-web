@@ -27,10 +27,7 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
               (order): JSX.Element => (
                 <Link
                   key={order.trackingId}
-                  href={{
-                    pathname: '/account/order',
-                    query: { trackingId: order.trackingId }
-                  }}
+                  href="/account/order/[trackingId]"
                   as={`/account/order/${order.trackingId}`}
                 >
                   <div className={styles.gridItem} key={order.trackingId}>

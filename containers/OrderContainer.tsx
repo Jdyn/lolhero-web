@@ -8,7 +8,7 @@ import BoostOrder from '../components/Order';
 import OrderAuth from '../components/reusable/OrderAuth';
 
 interface Props {
-  requireAuth: boolean;
+  requireAuth?: boolean;
   session?: SessionState;
   account?: AccountState;
   trackingId: string;
@@ -39,7 +39,4 @@ const mapDispatch = (dispatch): object => ({
   fetchOrder: (trackingId: string, email: string): void => dispatch(getOrder(trackingId, email))
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(OrderContainer);
+export default connect(mapState, mapDispatch)(OrderContainer);

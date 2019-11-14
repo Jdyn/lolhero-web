@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/reusable/Layout';
-import withAuth from '../../lib/withAuth';
-import OrderContainer from '../../containers/OrderContainer';
-import { fetchAccountOrder } from '../../store/account/actions';
+import Layout from '../../../components/reusable/Layout';
+import withAuth from '../../../lib/withAuth';
+import OrderContainer from '../../../containers/OrderContainer';
+import { fetchAccountOrder } from '../../../store/account/actions';
 
 interface Props {
   trackingId: string;
@@ -23,7 +23,7 @@ class Order extends React.PureComponent<Props> {
     const { trackingId } = this.props;
     return (
       <Layout>
-        <OrderContainer requireAuth={false} trackingId={trackingId} />
+        <OrderContainer trackingId={trackingId} />
       </Layout>
     );
   }

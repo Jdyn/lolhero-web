@@ -57,13 +57,11 @@ const AuthProfile = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    margin: '-20px 0 -20px auto',
     position: 'relative',
-    height: 'auto',
+    height: '100%',
     maxWidth: '250px',
     '@media (min-width: 650px)': {
       flex: 1,
-      margin: '-20px 0 -22px 0',
       display: 'grid',
       gridTemplateRows: '76px 1fr',
       gridTemplateColumns: '1fr',
@@ -82,7 +80,7 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: 'transparent',
     cursor: 'pointer',
     maxWidth: '250px',
-    height: '100%',
+    // height: '100%',
     margin: '0px 25px',
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
