@@ -1,17 +1,16 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import PropTypes from 'prop-types';
 
-const propTypes = {
-  children: PropTypes.string,
-  onClick: PropTypes.func,
-  secondary: PropTypes.bool
-};
+interface Props {
+  children?: React.ReactNode;
+  onClick: (event: React.MouseEvent) => void;
+  secondary: boolean;
+}
 
-const Button = React.forwardRef((props, ref) => {
+const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonElement>) => {
   const { secondary, onClick } = props;
 
-  const classes = useStyles(props);
+  const classes: any = useStyles(props);
 
   return (
     <button
@@ -25,7 +24,6 @@ const Button = React.forwardRef((props, ref) => {
   );
 });
 
-Button.propTypes = propTypes;
 Button.defaultProps = {
   margin: '0',
   width: 'auto',
@@ -33,7 +31,7 @@ Button.defaultProps = {
   children: '',
   secondary: false,
   onClick: null
-};
+} as Partial<Props>;
 
 const useStyles = createUseStyles(theme => ({
   button: {
