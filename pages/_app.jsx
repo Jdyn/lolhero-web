@@ -1,6 +1,6 @@
 import React from 'react';
 import App from 'next/app';
-import nextCookie from 'next-cookies';
+import cookies from 'next-cookies';
 import * as Sentry from '@sentry/browser';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'react-jss';
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 
 class Application extends App {
   static async getInitialProps({ Component, ctx }) {
-    const { token } = nextCookie(ctx);
+    const { token } = cookies(ctx);
 
     let pageProps = { token: token || null };
 
@@ -31,10 +31,13 @@ class Application extends App {
   }
 
   componentDidMount() {
-    const { pageProps, store } = this.props;
+    const {
+      pageProps: { token },
+      store: { dispatch, getState }
+    } = this.props;
 
-    if (pageProps.token) {
-      authenticate(pageProps.token)(store.dispatch, store.getState);
+    if (token) {
+      authenticate(token)(dispatch, getState);
     } else {
       const payload = {
         type: 'session/REFRESH',
@@ -42,7 +45,7 @@ class Application extends App {
         user: null
       };
 
-      store.dispatch(payload);
+      dispatch(payload);
     }
 
     // function onTidioChatApiReady() {

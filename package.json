@@ -4,8 +4,8 @@
   "root": "/client/",
   "scripts": {
     "dev": "next",
-    "build": "next build client/",
-    "start": "set NODE_ENV=production&&node server/index.js"
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@sentry/browser": "^5.9.0",
@@ -40,7 +40,6 @@
     "eslint-plugin-prettier": "3.1.1",
     "eslint-plugin-react": "7.16.0",
     "eslint-plugin-react-hooks": "2.2.0",
-    "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
     "typescript": "^3.7.2"
   }

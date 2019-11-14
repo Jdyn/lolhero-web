@@ -1,10 +1,10 @@
-import React from "react";
-import BoostContainer from "../../containers/BoostContainer";
+import React from 'react';
+import BoostContainer from '../../containers/BoostContainer';
 
-class customBoost extends React.Component {
+class CustomBoost extends React.PureComponent {
   render() {
     return <BoostContainer />;
   }
 }
 
-export default customBoost;
+export default CustomBoost;

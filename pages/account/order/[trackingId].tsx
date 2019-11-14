@@ -11,7 +11,7 @@ interface Props {
 class Order extends React.PureComponent<Props> {
   public static async getInitialProps(ctx): Promise<object> {
     const {
-      reduxStore: { dispatch, getState },
+      store: { dispatch, getState },
       query: { trackingId }
     } = ctx;
 
