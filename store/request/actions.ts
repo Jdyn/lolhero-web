@@ -3,10 +3,10 @@ import { ErrorObject, Request, requestActions } from './types';
 export const setRequest = (
   isPending: boolean,
   requestType: string,
-  errorObject?: ErrorObject
+  error?: ErrorObject
 ): Request => ({
   type: requestActions.SET_REQUEST,
   requestType,
   isPending,
-  errorObject
+  error
 });

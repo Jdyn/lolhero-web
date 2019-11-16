@@ -39,12 +39,12 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
         dispatch(setLogin(user));
         dispatch(setRequest(false, requestType));
       } else {
-        const message = 'An Error has occurred logging in. Please try again.';
-        const error = response.error || message;
+        const error = 'An Error has occurred logging in. Please try again.';
+        const message = response.error || error;
         dispatch(
           setRequest(false, requestType, {
             errored: true,
-            error
+            message
           })
         );
       }
@@ -53,7 +53,7 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
       dispatch(
         setRequest(false, requestType, {
           errored: true,
-          error: 'Error connecting to server. Try again later.'
+          message: 'Error connecting to server. Try again later.'
         })
       );
     });
@@ -83,7 +83,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
       Router.push('/');
     })
     .catch((): void => {
-      dispatch(setRequest(false, requestType, { errored: true, error: '' }));
+      dispatch(setRequest(false, requestType, { errored: true, message: '' }));
       dispatch(setLogout());
       cookie.remove('token');
       window.localStorage.setItem('logout', JSON.stringify(Date.now()));
@@ -121,7 +121,7 @@ const signup = (form: object): ((dispatch: Function, getState: () => AppState) =
         dispatch(
           setRequest(false, requestType, {
             errored: true,
-            error: errors || {}
+            message: errors || {}
           })
         );
       }
@@ -130,7 +130,7 @@ const signup = (form: object): ((dispatch: Function, getState: () => AppState) =
       dispatch(
         setRequest(false, requestType, {
           errored: true,
-          error: 'An error has occurred. Try again later.'
+          message: 'An error has occurred. Try again later.'
         })
       );
     });
@@ -197,7 +197,7 @@ export const authenticate = (): ((dispatch: Function, getState: () => AppState) 
 export const clearSessionErrors = (): object => ({
   type: 'CLEAR_SESSION_ERRORS',
   payload: {
-    error: '',
+    message: '',
     errors: {},
     errored: false
   }

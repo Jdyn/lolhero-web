@@ -1,0 +1,32 @@
+.root {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: var(--secondary-grey);
+  flex-grow: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.error {
+  display: flex;
+  color: var(--white);
+  border-radius: 8px 8px 0 0;
+  background-color: var(--red);
+  padding: 8px 20px 8px 20px;
+  margin: 10px 15px 0 15px;
+  border: 2px solid #f44336;
+}
+
+@media (min-width: 640px) {
+  .container {
+    flex-direction: row;
+    align-items: normal;
+  }
+}

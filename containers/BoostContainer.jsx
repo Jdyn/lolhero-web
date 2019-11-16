@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Boost from '../components/Boost';
 import { fetchBoostPrices, updateOrder, submitOrder } from '../store/boost/actions';
 import { handleAuth } from '../store/session/actions';
-
 class BoostContainer extends React.PureComponent {
   render() {
     return <Boost {...this.props} />;
@@ -12,7 +11,7 @@ class BoostContainer extends React.PureComponent {
 
 const mapStateToProps = state => ({
   session: state.session,
-  submitOrderRequest: state.request.SUBMIT_ORDER || {},
+  purchaseOrderRequest: state.request.PURCHASE_ORDER || { error: { errored: false, message: '' } },
   currentOrder: state.boost.order.details,
   boost: state.boost
 });

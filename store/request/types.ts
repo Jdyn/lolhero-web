@@ -1,6 +1,6 @@
 export interface ErrorObject {
   errored: boolean;
-  error: string;
+  message: string;
 }
 
 interface RequestActions {
@@ -16,7 +16,7 @@ export interface Request {
   requestType: string;
   success?: boolean;
   isPending: boolean;
-  errorObject: ErrorObject;
+  error: ErrorObject;
 }
 
 export interface RequestState {

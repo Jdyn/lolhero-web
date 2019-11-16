@@ -22,6 +22,12 @@
   scrollbar-width: thin;
 }
 
+/* --primary-grey: #353535;
+--secondary-grey: #303030;
+--tertiary-grey: #252525;
+--quartinary-grey: #202020;
+--accent: #4285f4; */
+
 :root {
   --white: #fafafa;
   --grey: #999;

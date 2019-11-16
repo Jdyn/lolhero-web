@@ -11,7 +11,7 @@
   background-color: var(--tertiary-grey);
   z-index: 50;
   position: relative;
-  border-top: 2px solid #999;
+  border-top: 2px solid var(--grey);
 }
 
 .container {
@@ -22,7 +22,7 @@
   align-items: center;
   text-align: center;
   color: var(--secondary-white);
-  border-right: 0.7px solid #999;
+  border-right: 1px solid var(--grey);
   line-height: 1;
   flex: 1;
   padding: 15px;
@@ -37,6 +37,7 @@
 .container > span {
   font-size: 17px;
   margin-top: 5px;
+  color: var(--grey);
 }
 
 .button {
@@ -66,9 +67,8 @@
 
   .button {
     margin: 5px 25px 5px 3%;
-    width: 350px;
     display: flex;
-    flex: 1.5;
+    flex: 1.2;
     justify-content: center;
   }
 }

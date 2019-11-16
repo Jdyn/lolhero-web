@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import BoostTab from './BoostsTab';
 import AddonTab from './AddonTab';
 import PropTypes from 'prop-types';
-import TopNavigator from './TopNavigator';
-import BoostDisplay from './BoostDisplay';
+import TopNavigator from './TopNavigator/TopNavigator';
+import BoostDisplay from './BoostDisplay/BoostDisplay';
 import BottomNavigator from './BottomNavigator';
 import { createUseStyles } from 'react-jss';
 
@@ -24,7 +24,7 @@ const Boost = props => {
     session,
     handleAuth,
     submitOrder,
-    submitOrderRequest
+    purchaseOrderRequest
   } = props;
 
   const classes = useStyles();
@@ -52,7 +52,7 @@ const Boost = props => {
         <BoostDisplay
           currentOrder={currentOrder}
           updateOrder={updateOrder}
-          submitOrderRequest={submitOrderRequest}
+          purchaseOrderRequest={purchaseOrderRequest}
         />
         <AddonTab
           handleAuth={handleAuth}

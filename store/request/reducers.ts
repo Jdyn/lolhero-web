@@ -3,13 +3,13 @@ import { RequestState, RequestActionTypes, requestActions } from './types';
 const initialState = {};
 
 const setRequest = (state: RequestState, action: RequestActionTypes): RequestState => {
-  const { isPending, requestType, errorObject } = action;
+  const { isPending, requestType, error } = action;
   const requestObject = {};
 
   requestObject[requestType] = {
     isPending,
-    success: !errorObject && !isPending,
-    ...(!errorObject ? { errored: false, error: null } : errorObject)
+    success: !error && !isPending,
+    ...(!error ? { errored: false, message: null } : error)
   };
 
   return { ...state, ...requestObject };

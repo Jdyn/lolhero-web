@@ -37,7 +37,7 @@ export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => 
         dispatch(
           setRequest(false, requestType, {
             errored: true,
-            error: 'Error fetching account orders.'
+            message: 'Error fetching account orders.'
           })
         );
       }
@@ -46,7 +46,7 @@ export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => 
       dispatch(
         setRequest(false, requestType, {
           errored: true,
-          error: 'Error fetching account orders.'
+          message: 'Error fetching account orders.'
         })
       );
     });
@@ -74,7 +74,7 @@ export const fetchOrder = (trackingId: string, email: string) => (
       dispatch(
         setRequest(false, requestType, {
           errored: true,
-          error: response.error
+          message: response.error
         })
       );
     }
@@ -101,7 +101,7 @@ export const fetchAccountOrder = (trackingId: string, context: NextPageContext) 
     dispatch(
       setRequest(false, requestType, {
         errored: true,
-        error: response.error
+        message: response.error
       })
     );
   }

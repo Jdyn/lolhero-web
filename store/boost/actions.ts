@@ -64,7 +64,7 @@ export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppSt
       dispatch(
         setRequest(false, requestType, {
           errored: true,
-          error: 'Failed to Fetch'
+          message: 'Failed to Fetch'
         })
       );
     }
@@ -86,14 +86,14 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch: Dispatch,
   getState: () => AppState
 ): void => {
-  const requestType = boostRequests.SUBMIT_ORDER;
-  const request = getState().request[requestType] || { errorObject: { errored: false } };
+  const requestType = boostRequests.PURCHASE_ORDER;
+  const request = getState().request[requestType] || { error: { errored: false } };
 
-  if (request.errorObject.errored) {
+  if (request.error.errored) {
     dispatch(
-      setRequest(false, boostRequests.SUBMIT_ORDER, {
+      setRequest(false, boostRequests.PURCHASE_ORDER, {
         errored: false,
-        error: ''
+        message: ''
       })
     );
   }
@@ -106,7 +106,7 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
 };
 
 export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState): void => {
-  const requestType = boostRequests.SUBMIT_ORDER;
+  const requestType = boostRequests.PURCHASE_ORDER;
   const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
@@ -119,7 +119,7 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
     dispatch(
       setRequest(false, requestType, {
         errored: true,
-        error: message
+        message
       })
     );
   };

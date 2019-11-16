@@ -14,6 +14,7 @@ export interface BoostOrder {
   type: string;
   nonce: string | null;
   email: string | null;
+  paymentMethodIsSelected: boolean;
   details: BoostOrderDetails;
 }
 
@@ -36,13 +37,13 @@ export interface BoostOrderDetails {
 interface BoostRequests {
   BOOST_PRICING: 'BOOST_PRICING';
   BOOST_ORDER: 'BOOST_ORDER';
-  SUBMIT_ORDER: 'SUBMIT_ORDER';
+  PURCHASE_ORDER: 'PURCHASE_ORDER';
 }
 
 export const boostRequests: BoostRequests = {
   BOOST_PRICING: 'BOOST_PRICING',
   BOOST_ORDER: 'BOOST_ORDER',
-  SUBMIT_ORDER: 'SUBMIT_ORDER'
+  PURCHASE_ORDER: 'PURCHASE_ORDER'
 };
 
 interface BoostActions {
