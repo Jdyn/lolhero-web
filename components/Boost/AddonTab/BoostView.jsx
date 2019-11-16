@@ -1,13 +1,7 @@
 import React, { useEffect } from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 import addons from '../../../lib/addonContent';
 import Toggle from '../../reusable/Toggle';
-import PropTypes from 'prop-types';
-import { createUseStyles, useTheme } from 'react-jss';
-
-const propTypes = {
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
-};
 
 const BoostView = props => {
   const { currentOrder, updateOrder } = props;
@@ -91,11 +85,11 @@ const BoostView = props => {
     <>
       <div className={classes.wrapper}>
         <h2>Servers</h2>
-        <p>What server are you on? We currently support the following servers.</p>
-        {addons.details.servers.map((server, index) => {
+        <p>We currently support the following servers</p>
+        {addons.details.servers.map(server => {
           return (
             <Toggle
-              key={index}
+              key={server.server}
               onClick={() =>
                 currentOrder.server !== server.server && updateOrder({ server: server.server })
               }
@@ -108,10 +102,10 @@ const BoostView = props => {
       </div>
       <div className={classes.wrapper}>
         <h2>Queues</h2>
-        <p>What queue type do you want to play on? We currently support the following queues.</p>
-        {addons.details.queues.map((queue, index) => (
+        <p>We currently support the following queues types</p>
+        {addons.details.queues.map(queue => (
           <Toggle
-            key={index}
+            key={queue.queue}
             onClick={() =>
               currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
             }
@@ -124,7 +118,7 @@ const BoostView = props => {
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={classes.wrapper}>
           <h2>League Points</h2>
-          <p>How much LP do you have? We adjust the price based on the amount.</p>
+          <p>How much LP do you have?</p>
           <div className={classes.lp}>
             {addons.details.lp.map((lp, index) => (
               <Toggle
@@ -186,7 +180,7 @@ const useStyles = createUseStyles(theme => ({
       color: theme.grey,
       margin: 0,
       fontSize: 16,
-      marginBottom: '15px'
+      marginBottom: '10px'
     },
     '& h2': {
       fontSize: 20,
@@ -243,7 +237,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-BoostView.propTypes = propTypes;
 
 export default BoostView;

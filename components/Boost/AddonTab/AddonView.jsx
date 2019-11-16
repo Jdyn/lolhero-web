@@ -39,7 +39,7 @@ const AddonView = props => {
     <div className={classes.wrapper} key={index}>
       <h2>{extra.title}</h2>
       <p>{extra.description}</p>
-      <span>{calculatePriceIncrease(extra.title, currentOrder[extra.type])}</span>
+      {/* <span>{calculatePriceIncrease(extra.title, currentOrder[extra.type])}</span> */}
       <Toggle
         isSelected={currentOrder[extra.type]}
         onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}
@@ -58,7 +58,7 @@ const useStyles = createUseStyles(theme => ({
     borderRadius: 8,
     padding: '25px',
     boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
-    margin: '10px 10px 20px 10px',
+    margin: '10px 10px 10px 10px',
     '& p': {
       color: theme.grey,
       margin: 0,

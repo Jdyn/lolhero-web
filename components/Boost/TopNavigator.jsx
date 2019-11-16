@@ -44,7 +44,7 @@ const useStyles = createUseStyles(theme => ({
     width: '100%',
     zIndex: 50,
     display: 'flex',
-    position: 'relative',
+    position: 'fixed',
     height: '76px',
     // marginTop: '-76px',
     justifyContent: 'center',

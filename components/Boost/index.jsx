@@ -58,6 +58,7 @@ const Boost = props => {
           handleAuth={handleAuth}
           session={session}
           boost={boost}
+          valid={valid}
           setBraintreeInstance={setBraintreeInstance}
           currentStage={currentStage}
           setStage={setStage}

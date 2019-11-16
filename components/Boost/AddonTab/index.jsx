@@ -1,22 +1,14 @@
 import React, { useEffect } from 'react';
 import dropin from 'braintree-web-drop-in';
-import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-// import Filter from '../../reusable/Filter';
-
+import Filter from '../../reusable/Filter';
 import AddonView from './AddonView';
 import BoostView from './BoostView';
 import ReviewView from './ReviewView';
 import DetailsView from './DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
 
-const propTypes = {
-  updateOrder: PropTypes.func.isRequired,
-  currentStage: PropTypes.number.isRequired,
-  currentOrder: PropTypes.object.isRequired
-};
-
-// const filters = ['boost', 'add ons', 'details', 'review'];
+const filters = ['boost', 'add ons', 'details', 'review'];
 
 const AddonTab = props => {
   const {
@@ -28,6 +20,7 @@ const AddonTab = props => {
     handleAuth,
     setBraintreeInstance,
     boost,
+    valid,
     setStage
   } = props;
 
@@ -51,6 +44,20 @@ const AddonTab = props => {
 
   return (
     <div className={classes.root}>
+      <div className={classes.filter}>
+        <Filter
+          extended
+          filters={filters}
+          untargetableIndices={
+            (valid.payment && valid.details && boost.order.paymentMethodIsSelected) ||
+            (session.isLoggedIn && boost.order.paymentMethodIsSelected)
+              ? []
+              : [3]
+          }
+          selectedIndex={currentStage}
+          onClick={index => setStage(index)}
+        />
+      </div>
       {Object.keys(views).map((view, index) => {
         return (
           <div
@@ -85,6 +92,12 @@ const useStyles = createUseStyles(theme => ({
       boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.2)'
     }
   },
+  filter: {
+    display: 'flex',
+    '@media (min-width: 1025px)': {
+      display: 'none'
+    }
+  },
   container: {
     display: 'inherit',
     '@media (min-width: 1025px)': {
@@ -94,13 +107,8 @@ const useStyles = createUseStyles(theme => ({
   content: {
     flexDirection: 'column',
     overflowY: 'auto',
-    margin: '0 10px 0 10px',
-    '@media (max-width: 1025px)': {
-      display: 'flex !important'
-    }
+    margin: '0 10px 0 10px'
   }
 }));
-
-AddonTab.propTypes = propTypes;
 
 export default AddonTab;

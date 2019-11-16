@@ -120,6 +120,8 @@ const BottomNavigator = (props: Props): JSX.Element => {
     switch (stage) {
       case 3:
         return 'place order';
+      case 2:
+        return 'review';
       default:
         return 'next';
     }

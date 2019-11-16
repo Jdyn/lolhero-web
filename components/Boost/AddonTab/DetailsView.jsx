@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-
 import Button from '../../reusable/Button';
 import Form from '../../reusable/Form';
-
-const propTypes = {
-  handleAuth: PropTypes.func.isRequired,
-  session: PropTypes.shape({
-    isLoggedIn: PropTypes.bool,
-    user: PropTypes.object.isRequired
-  }).isRequired
-};
 
 const templates = {
   signup: {
@@ -96,7 +86,7 @@ useStyles = createUseStyles(theme => ({
     borderRadius: 8,
     padding: '25px',
     boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
-    margin: '10px 10px 20px 10px',
+    margin: '10px 10px 10px 10px',
     '& h3': {
       margin: '0 0 10px 0',
       // textAlign: 'center',
@@ -138,7 +128,5 @@ useStyles = createUseStyles(theme => ({
     color: theme.white
   }
 }));
-
-DetailsView.propTypes = propTypes;
 
 export default DetailsView;
