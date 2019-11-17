@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const ReviewView = props => {
-  const { currentOrder, submitOrderRequest } = props;
+  const { currentOrder, boost } = props;
   const classes = useStyles();
 
   const formatTitle = () => {
@@ -19,11 +19,12 @@ const ReviewView = props => {
 
     switch (collectionName) {
       case 'Division Boost':
-        return `${boostType.toUpperCase()} | ${collectionName} - From ${startRank ||
-          'TBD'} (${formatLP(lp)} LP) to ${desiredRank || 'TBD'}`;
-      default:
-        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${startRank ||
+        return `${boostType.toUpperCase()} | ${collectionName} - From ${boost.order
+          .startRankTitle || 'TBD'} (${formatLP(lp)} LP) to ${boost.order.desiredRankTitle ||
           'TBD'}`;
+      default:
+        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${boost.order
+          .startRankTitle || 'TBD'}`;
     }
   };
 

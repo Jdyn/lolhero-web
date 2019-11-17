@@ -15,7 +15,11 @@ const BannerRankItem = props => {
   const classes = useStyles(props);
 
   const handleClick = () => {
-    isStartRank ? updateOrder({ startRank: rank.rank }) : updateOrder({ desiredRank: rank.rank });
+    if (isStartRank) {
+      updateOrder({ startRank: rank.rank }, { startRankTitle: rank.title });
+    } else {
+      updateOrder({ desiredRank: rank.rank }, { desiredRankTitle: rank.title });
+    }
   };
 
   return (
