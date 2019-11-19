@@ -41,21 +41,11 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
       } else {
         const error = 'An Error has occurred logging in. Please try again.';
         const message = response.error || error;
-        dispatch(
-          setRequest(false, requestType, {
-            errored: true,
-            message
-          })
-        );
+        dispatch(setRequest(false, requestType, message));
       }
     })
     .catch((): void => {
-      dispatch(
-        setRequest(false, requestType, {
-          errored: true,
-          message: 'Error connecting to server. Try again later.'
-        })
-      );
+      dispatch(setRequest(false, requestType, 'Error connecting to server. Try again later.'));
     });
 };
 
@@ -83,7 +73,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
       Router.push('/');
     })
     .catch((): void => {
-      dispatch(setRequest(false, requestType, { errored: true, message: '' }));
+      dispatch(setRequest(false, requestType, ''));
       dispatch(setLogout());
       cookie.remove('token');
       window.localStorage.setItem('logout', JSON.stringify(Date.now()));
@@ -118,21 +108,12 @@ const signup = (form: object): ((dispatch: Function, getState: () => AppState) =
       } else {
         const { errors } = response;
 
-        dispatch(
-          setRequest(false, requestType, {
-            errored: true,
-            message: errors || {}
-          })
-        );
+        // Fix this
+        dispatch(setRequest(false, requestType, errors));
       }
     })
     .catch((): void => {
-      dispatch(
-        setRequest(false, requestType, {
-          errored: true,
-          message: 'An error has occurred. Try again later.'
-        })
-      );
+      dispatch(setRequest(false, requestType, 'An error has occurred. Try again later.'));
     });
 };
 

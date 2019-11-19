@@ -63,9 +63,9 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>{renderContent(currentOrder.collectionName)}</div>
-      {purchaseOrderRequest.error.errored && (
+      {purchaseOrderRequest.errored && (
         <div className={styles.error}>
-          <span>Error: {purchaseOrderRequest.error.message}</span>
+          <span>Error: {purchaseOrderRequest.error}</span>
         </div>
       )}
     </div>

@@ -34,21 +34,11 @@ export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => 
         dispatch(setOrderList(payload));
         dispatch(setRequest(false, requestType));
       } else {
-        dispatch(
-          setRequest(false, requestType, {
-            errored: true,
-            message: 'Error fetching account orders.'
-          })
-        );
+        dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
       }
     })
     .catch((): void => {
-      dispatch(
-        setRequest(false, requestType, {
-          errored: true,
-          message: 'Error fetching account orders.'
-        })
-      );
+      dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
     });
 };
 
@@ -71,12 +61,7 @@ export const fetchOrder = (trackingId: string, email: string) => (
       dispatch(setOrderDetails(response.result.order));
       dispatch(setRequest(false, requestType));
     } else {
-      dispatch(
-        setRequest(false, requestType, {
-          errored: true,
-          message: response.error
-        })
-      );
+      dispatch(setRequest(false, requestType, response.error));
     }
   });
 };
@@ -98,12 +83,7 @@ export const fetchAccountOrder = (trackingId: string, context: NextPageContext) 
     dispatch(setOrderDetails(response.result.order));
     dispatch(setRequest(false, requestType));
   } else {
-    dispatch(
-      setRequest(false, requestType, {
-        errored: true,
-        message: response.error
-      })
-    );
+    dispatch(setRequest(false, requestType, response.error));
   }
 };
 

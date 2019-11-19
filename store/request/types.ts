@@ -1,8 +1,3 @@
-export interface ErrorObject {
-  errored: boolean;
-  message: string;
-}
-
 interface RequestActions {
   SET_REQUEST: 'request/SET_REQUEST';
 }
@@ -16,7 +11,8 @@ export interface Request {
   requestType: string;
   success?: boolean;
   isPending: boolean;
-  error: ErrorObject;
+  errored: boolean;
+  error: string;
 }
 
 export interface RequestState {

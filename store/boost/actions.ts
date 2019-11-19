@@ -61,12 +61,7 @@ export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppSt
       dispatch(setBoostPrices(response.result));
       dispatch(setRequest(false, requestType));
     } else {
-      dispatch(
-        setRequest(false, requestType, {
-          errored: true,
-          message: 'Failed to Fetch'
-        })
-      );
+      dispatch(setRequest(false, requestType, 'Failed to Fetch'));
     }
   });
 };
@@ -87,15 +82,10 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   getState: () => AppState
 ): void => {
   const requestType = boostRequests.PURCHASE_ORDER;
-  const request = getState().request[requestType] || { error: { errored: false } };
+  const request = getState().request[requestType] || { errored: false };
 
-  if (request.error.errored) {
-    dispatch(
-      setRequest(false, boostRequests.PURCHASE_ORDER, {
-        errored: false,
-        message: ''
-      })
-    );
+  if (request.errored) {
+    dispatch(setRequest(false, requestType));
   }
 
   const order = { ...getState().boost.order.details, ...detailsUpdate };
@@ -115,13 +105,8 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
 
   const order = { ...getState().boost.order };
 
-  const dispatchError = (message: string): void => {
-    dispatch(
-      setRequest(false, requestType, {
-        errored: true,
-        message
-      })
-    );
+  const dispatchError = (error: string): void => {
+    dispatch(setRequest(false, requestType, error));
   };
 
   if (validateOrder(order, dispatchError)) {
