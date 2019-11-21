@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useRouter } from 'next/router';
 import { AppState } from '../store/root';
 import { SessionState } from '../store/session/types';
 import { AccountState } from '../store/account/types';
@@ -11,16 +12,17 @@ interface Props {
   requireAuth?: boolean;
   session?: SessionState;
   account?: AccountState;
-  trackingId: string;
   fetchOrder?: (trackingId: string, email: string) => void;
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { requireAuth, account, session, fetchOrder, trackingId } = props;
+  const { requireAuth, account, session, fetchOrder } = props;
+
+  const router = useRouter();
+  const { trackingId } = router.query;
 
   const verifyOrder = (email: string): void => {
-    const id = trackingId as string;
-    fetchOrder(id, email);
+    fetchOrder(trackingId as string, email);
   };
 
   return requireAuth ? (

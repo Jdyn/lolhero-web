@@ -1,13 +1,7 @@
 import React, { useMemo } from 'react';
+import { createUseStyles } from 'react-jss';
 import options from '../../../lib/addonContent';
 import Toggle from '../../reusable/Toggle';
-import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss';
-
-const propTypes = {
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
-};
 
 const AddonView = props => {
   const { updateOrder, currentOrder, boost } = props;
@@ -35,8 +29,8 @@ const AddonView = props => {
     return '$0';
   };
 
-  return options.addons.extras.map((extra, index) => (
-    <div className={classes.wrapper} key={index}>
+  return options.addons.extras.map(extra => (
+    <div className={classes.wrapper} key={extra.title}>
       <h2>{extra.title}</h2>
       <p>{extra.description}</p>
       {/* <span>{calculatePriceIncrease(extra.title, currentOrder[extra.type])}</span> */}
@@ -76,7 +70,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-AddonView.propTypes = propTypes;
 
 export default AddonView;

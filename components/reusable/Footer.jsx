@@ -1,12 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-
-const propTypes = {};
-
-const list = {
-
-}
 
 const Footer = props => {
   const classes = useStyles(props);
@@ -82,7 +75,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-Footer.propTypes = propTypes;
 
 export default Footer;

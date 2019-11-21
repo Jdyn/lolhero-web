@@ -20,7 +20,7 @@ const Header = (props: Props): JSX.Element => {
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    Router.push({ pathname: '/order/order', query: { trackingId } }, `/track/${trackingId}`);
+    Router.push('/order/[trackingId]', `/order/${trackingId}`);
   };
 
   return (

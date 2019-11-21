@@ -32,7 +32,7 @@
   display: none;
   flex: 2;
   justify-content: flex-end;
-  padding: 20px 40px 20px 0px;
+  padding: 20px 0px 20px 0px;
 }
 
 .searchInput {
@@ -54,11 +54,13 @@
   color: var(--accent);
 }
 
-@media (min-width: 650px) {
+@media (min-width: 1024px) {
   .root {
     padding: 0px 30px;
   }
+}
 
+@media (min-width: 650px) {
   .searchForm {
     display: flex;
   }
