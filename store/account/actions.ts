@@ -10,7 +10,10 @@ export const setOrderList = (orders: OrderList): AccountActionTypes => ({
   orders
 });
 
-export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => AppState): void => {
+export const fetchAccountOrderList = (context?: NextPageContext) => async (
+  dispatch: Dispatch,
+  getState: () => AppState
+): Promise<void> => {
   const requestType = accountRequests.FETCH_ACCOUNT_ORDER_LIST;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -18,28 +21,24 @@ export const fetchAccountOrderList = () => (dispatch: Dispatch, getState: () => 
 
   dispatch(setRequest(true, requestType));
 
-  Api.fetch(`/account/orders`)
-    .then((response): void => {
-      if (response.ok) {
-        const { completed, active, total } = response.result;
+  const response = await Api.fetch(`/account/orders`, { ctx: context });
 
-        const payload = {
-          ...response.result,
-          total: {
-            ...total,
-            orders: [...completed.orders, ...active.orders]
-          }
-        };
+  if (response.ok) {
+    const { completed, active, total } = response.result;
 
-        dispatch(setOrderList(payload));
-        dispatch(setRequest(false, requestType));
-      } else {
-        dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
+    const payload = {
+      ...response.result,
+      total: {
+        ...total,
+        orders: [...completed.orders, ...active.orders]
       }
-    })
-    .catch((): void => {
-      dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
-    });
+    };
+
+    dispatch(setOrderList(payload));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
+  }
 };
 
 const setOrderDetails = (order: Order): AccountActionTypes => ({
@@ -66,7 +65,7 @@ export const fetchOrder = (trackingId: string, email: string) => (
   });
 };
 
-export const fetchAccountOrder = (trackingId: string, context: NextPageContext) => async (
+export const fetchAccountOrder = (trackingId: string, context?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
 ): Promise<void> => {

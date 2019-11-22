@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { createUseStyles } from 'react-jss';
 import BoostTab from './BoostsTab';
 import AddonTab from './AddonTab';
-import PropTypes from 'prop-types';
 import TopNavigator from './TopNavigator/TopNavigator';
 import BoostDisplay from './BoostDisplay/BoostDisplay';
 import BottomNavigator from './BottomNavigator';
-import { createUseStyles } from 'react-jss';
-
-const propTypes = {
-  boost: PropTypes.object.isRequired,
-  submitOrder: PropTypes.func.isRequired,
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired,
-  fetchBoostPrices: PropTypes.func.isRequired
-};
 
 const Boost = props => {
   const {
-    fetchBoostPrices,
     updateOrder,
     currentOrder,
     boost,
@@ -32,10 +22,6 @@ const Boost = props => {
 
   const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
-
-  useEffect(() => {
-    fetchBoostPrices();
-  }, [fetchBoostPrices]);
 
   return (
     <div className={classes.root}>
@@ -108,7 +94,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-Boost.propTypes = propTypes;
 
 export default Boost;

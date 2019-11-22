@@ -6,6 +6,7 @@ import calculatePrice from '../../util/CalculatePrice';
 import { boostActions, boostRequests, BoostActionTypes, BoostOrder, BoostPricing } from './types';
 import { setRequest } from '../request/actions';
 import { AppState } from '../root';
+import { NextPageContext } from 'next';
 
 const validateOrder = (order: BoostOrder, dispatchError: (message: string) => void): boolean => {
   const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
@@ -48,7 +49,10 @@ const setBoostPrices = (prices: BoostPricing): BoostActionTypes => ({
   prices
 });
 
-export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppState): void => {
+export const fetchBoostPrices = (context?: NextPageContext) => async (
+  dispatch: Dispatch,
+  getState: () => AppState
+): Promise<void> => {
   const requestType = boostRequests.BOOST_PRICING;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -56,14 +60,14 @@ export const fetchBoostPrices = () => (dispatch: Dispatch, getState: () => AppSt
 
   dispatch(setRequest(true, requestType));
 
-  Api.fetch('/prices').then(response => {
-    if (response.ok) {
-      dispatch(setBoostPrices(response.result));
-      dispatch(setRequest(false, requestType));
-    } else {
-      dispatch(setRequest(false, requestType, 'Failed to Fetch'));
-    }
-  });
+  const response = await Api.fetch('/prices', { ctx: context });
+
+  if (response.ok) {
+    dispatch(setBoostPrices(response.result));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, 'Failed to Fetch'));
+  }
 };
 
 const setBoost = (

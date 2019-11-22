@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
-import { fetchAccountOrderList } from '../store/account/actions';
 import { AccountState } from '../store/account/types';
 import { SessionState } from '../store/session/types';
 import { AppState } from '../store/root';
@@ -9,26 +8,21 @@ import { AppState } from '../store/root';
 interface Props {
   account?: AccountState;
   session?: SessionState;
-  fetchAccountOrders?: () => void;
 }
 
-class DashboardContainer extends React.PureComponent<Props, undefined> {
+class DashboardContainer extends React.PureComponent<Props> {
   public render(): JSX.Element {
-    const { session, account, fetchAccountOrders } = this.props;
+    const { session, account } = this.props;
 
-    return (
-      <Dashboard session={session} account={account} fetchAccountOrders={fetchAccountOrders} />
-    );
+    return <Dashboard session={session} account={account} />;
   }
 }
 
-const mapStateToProps = (state: AppState): any => ({
+const mapStateToProps = (state: AppState): Partial<AppState> => ({
   session: state.session,
   account: state.account
 });
 
-const mapDispatchToProps = (dispatch): any => ({
-  fetchAccountOrders: (): void => dispatch(fetchAccountOrderList())
-});
+const mapDispatchToProps = (): object => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
