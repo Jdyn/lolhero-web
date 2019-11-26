@@ -1,4 +1,7 @@
-import { AccountState, accountActions, AccountActionTypes } from './types';
+/* eslint-disable no-param-reassign */
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AccountState, SetOrderList, OrderUpdate } from './types';
 
 const initialState: AccountState = {
   selectedOrder: null,
@@ -21,26 +24,20 @@ const initialState: AccountState = {
   }
 };
 
-const reducer = (state = initialState, action: AccountActionTypes): AccountState => {
-  switch (action.type) {
-    case accountActions.ORDER_LIST:
-      return {
-        ...state,
-        orders: action.orders
-      };
-    case accountActions.INITIATE_ORDER:
-      return {
-        ...state,
-        selectedOrder: action.order
-      };
-    case accountActions.SET_CURRENT_ORDER:
-      return {
-        ...state,
-        selectedOrder: action.order
-      };
-    default:
-      return state;
+const reducers = {
+  orderListFetched: (state: AccountState, action: PayloadAction<SetOrderList>): void => {
+    state.orders = action.payload.orders;
+  },
+  orderUpdated: (state: AccountState, action: PayloadAction<OrderUpdate>): void => {
+    state.selectedOrder = action.payload.order;
   }
 };
 
-export default reducer;
+const account = createSlice({
+  name: 'account',
+  initialState,
+  reducers
+});
+
+export const { orderListFetched, orderUpdated } = account.actions;
+export default account.reducer;

@@ -3,14 +3,10 @@ import { NextPageContext } from 'next';
 import Api from '../../services/api';
 import { AppState } from '..';
 import { setRequest } from '../request/actions';
-import { accountActions, accountRequests, AccountActionTypes, OrderList, Order } from './types';
+import { accountRequests } from './types';
+import { orderListFetched, orderUpdated } from './reducers';
 
-export const setOrderList = (orders: OrderList): AccountActionTypes => ({
-  type: accountActions.ORDER_LIST,
-  orders
-});
-
-export const fetchAccountOrderList = (context?: NextPageContext) => async (
+export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
 ): Promise<void> => {
@@ -21,12 +17,12 @@ export const fetchAccountOrderList = (context?: NextPageContext) => async (
 
   dispatch(setRequest(true, requestType));
 
-  const response = await Api.fetch(`/account/orders`, { ctx: context });
+  const response = await Api.fetch(`/account/orders`, { ctx });
 
   if (response.ok) {
     const { completed, active, total } = response.result;
 
-    const payload = {
+    const orders = {
       ...response.result,
       total: {
         ...total,
@@ -34,17 +30,12 @@ export const fetchAccountOrderList = (context?: NextPageContext) => async (
       }
     };
 
-    dispatch(setOrderList(payload));
+    dispatch(orderListFetched({ orders }));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, 'Error fetching account orders.'));
   }
 };
-
-export const setOrderDetails = (order: Order): AccountActionTypes => ({
-  type: accountActions.SET_CURRENT_ORDER,
-  order
-});
 
 export const fetchOrder = (trackingId: string, email: string) => (
   dispatch: Dispatch,
@@ -57,7 +48,7 @@ export const fetchOrder = (trackingId: string, email: string) => (
 
   Api.post(`/order/${trackingId}`, { email }).then(response => {
     if (response.ok) {
-      dispatch(setOrderDetails(response.result.order));
+      dispatch(orderUpdated({ order: response.result.order }));
       dispatch(setRequest(false, requestType));
     } else {
       dispatch(setRequest(false, requestType, response.error));
@@ -65,7 +56,7 @@ export const fetchOrder = (trackingId: string, email: string) => (
   });
 };
 
-export const fetchAccountOrder = (trackingId: string, context?: NextPageContext) => async (
+export const fetchAccountOrder = (trackingId: string, ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
 ): Promise<void> => {
@@ -76,27 +67,22 @@ export const fetchAccountOrder = (trackingId: string, context?: NextPageContext)
 
   dispatch(setRequest(true, requestType));
 
-  const response = await Api.fetch(`/account/order/${trackingId}`, { ctx: context });
+  const response = await Api.fetch(`/account/order/${trackingId}`, { ctx });
 
   if (response.ok) {
-    dispatch(setOrderDetails(response.result.order));
+    dispatch(orderUpdated({ order: response.result.order }));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, response.error));
   }
 };
 
-const setInitialOrder = (order: Order): AccountActionTypes => ({
-  type: accountActions.INITIATE_ORDER,
-  order
-});
-
 export const initializeOrder = (payload: object, trackingId: number) => (
   dispatch: Dispatch
 ): void => {
   Api.patch(`/order/${trackingId}`, payload).then(response => {
     if (response.ok) {
-      dispatch(setInitialOrder(response.result.order));
+      dispatch(orderUpdated({ order: response.result.order }));
     }
   });
 };

@@ -55,18 +55,6 @@ export interface Order {
   };
 }
 
-interface AccountActions {
-  ORDER_LIST: 'account/fetchedOrderList';
-  INITIATE_ORDER: 'account/initializedOrder';
-  SET_CURRENT_ORDER: 'account/updatedCurrentOrder';
-}
-
-export const accountActions: AccountActions = {
-  ORDER_LIST: 'account/fetchedOrderList',
-  INITIATE_ORDER: 'account/initializedOrder',
-  SET_CURRENT_ORDER: 'account/updatedCurrentOrder'
-};
-
 export const accountRequests: {
   FETCH_ACCOUNT_ORDER_LIST: 'FETCH_ACCOUNT_ORDER_LIST';
   FETCH_ACCOUNT_ORDER: 'FETCH_ACCOUNT_ORDER';
@@ -75,19 +63,10 @@ export const accountRequests: {
   FETCH_ACCOUNT_ORDER: 'FETCH_ACCOUNT_ORDER'
 };
 
-interface SetOrderList {
-  type: typeof accountActions.ORDER_LIST;
+export interface SetOrderList {
   orders: OrderList;
 }
 
-interface InitiateOrder {
-  type: typeof accountActions.INITIATE_ORDER;
+export interface OrderUpdate {
   order: Order;
 }
-
-interface SetCurrentOrder {
-  type: typeof accountActions.SET_CURRENT_ORDER;
-  order: Order;
-}
-
-export type AccountActionTypes = SetOrderList | SetCurrentOrder | InitiateOrder;
