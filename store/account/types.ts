@@ -56,15 +56,15 @@ export interface Order {
 }
 
 interface AccountActions {
-  ORDER_LIST: 'account/ORDER_LIST';
-  INITIATE_ORDER: 'account/INITIATE_ORDER';
-  SET_CURRENT_ORDER: 'account/SET_CURRENT_ORDER';
+  ORDER_LIST: 'account/fetchedOrderList';
+  INITIATE_ORDER: 'account/initializedOrder';
+  SET_CURRENT_ORDER: 'account/updatedCurrentOrder';
 }
 
 export const accountActions: AccountActions = {
-  ORDER_LIST: 'account/ORDER_LIST',
-  INITIATE_ORDER: 'account/INITIATE_ORDER',
-  SET_CURRENT_ORDER: 'account/SET_CURRENT_ORDER'
+  ORDER_LIST: 'account/fetchedOrderList',
+  INITIATE_ORDER: 'account/initializedOrder',
+  SET_CURRENT_ORDER: 'account/updatedCurrentOrder'
 };
 
 export const accountRequests: {

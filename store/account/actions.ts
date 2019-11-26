@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { NextPageContext } from 'next';
 import Api from '../../services/api';
-import { AppState } from '../root';
+import { AppState } from '..';
 import { setRequest } from '../request/actions';
 import { accountActions, accountRequests, AccountActionTypes, OrderList, Order } from './types';
 
@@ -41,7 +41,7 @@ export const fetchAccountOrderList = (context?: NextPageContext) => async (
   }
 };
 
-const setOrderDetails = (order: Order): AccountActionTypes => ({
+export const setOrderDetails = (order: Order): AccountActionTypes => ({
   type: accountActions.SET_CURRENT_ORDER,
   order
 });

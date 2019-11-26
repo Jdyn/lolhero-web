@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 import Router from 'next/router';
 import Api from '../../services/api';
 import { setRequest } from '../request/actions';
-import { AppState } from '../root';
+import { AppState } from '..';
 import { actions, requests, User, SessionActionTypes } from './types';
 
 const setCurrentSession = (user: { token: string }): void => {

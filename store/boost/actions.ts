@@ -1,12 +1,12 @@
 import * as Sentry from '@sentry/browser';
+import { NextPageContext } from 'next';
 import Router from 'next/router';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import calculatePrice from '../../util/CalculatePrice';
 import { boostActions, boostRequests, BoostActionTypes, BoostOrder, BoostPricing } from './types';
 import { setRequest } from '../request/actions';
-import { AppState } from '../root';
-import { NextPageContext } from 'next';
+import { AppState } from '..';
 
 const validateOrder = (order: BoostOrder, dispatchError: (message: string) => void): boolean => {
   const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
