@@ -1,0 +1,14 @@
+.root {
+  max-width: 765px;
+  width: 100%;
+  margin: 15px auto;
+}
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  background-color: var(--quartinary-grey);
+  padding: 15px;
+  border-radius: 16px;
+}

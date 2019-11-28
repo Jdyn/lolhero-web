@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
+import OrderStatus from './OrderStatus';
 import { SessionState } from '../../store/session/types';
 import { AccountState } from '../../store/account/types';
 
@@ -18,6 +19,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
       {account.selectedOrder ? (
         <>
           <OrderHeader session={session} order={account.selectedOrder} />
+          <OrderStatus />
           <OrderDetails order={account.selectedOrder} />
         </>
       ) : (
