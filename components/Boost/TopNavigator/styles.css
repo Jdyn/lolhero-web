@@ -4,9 +4,8 @@
   z-index: 50;
   display: flex;
   position: fixed;
-  height: 76px;
+  height: 75px;
   justify-content: center;
-  border-bottom: 2px solid var(--tertiary-grey);
   background-color: var(--tertiary-grey);
 }
 
@@ -14,7 +13,6 @@
   display: none;
   position: relative;
   flex-grow: 1;
-  margin-bottom: -1px;
 }
 
 .logo {
@@ -23,7 +21,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 45px;
-  margin-bottom: -1px;
+  height: 100%;
   cursor: pointer;
   transition-duration: 0.15s;
   border-bottom: 2px solid var(--grey);

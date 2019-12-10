@@ -70,10 +70,8 @@ const AuthMenu = props => {
 
 useStyles = createUseStyles(theme => ({
   container: {
-    // margin: '-20px 0 -20px auto',
-    // bottom: '-2px',
     position: 'relative',
-    height: 'auto',
+    height: '75px',
     width: '100%',
     maxWidth: '250px',
     display: 'grid',

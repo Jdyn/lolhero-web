@@ -5,6 +5,7 @@ import AuthDisplay from './auth/AuthDisplay/AuthDisplay';
 import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.css';
+import ProgressBar from '../reusable/ProgressBar';
 
 interface Props {
   handleAuth: () => void;
@@ -25,6 +26,7 @@ const Header = (props: Props): JSX.Element => {
 
   return (
     <header className={styles.root}>
+      <ProgressBar options={{ showSpinner: false }} />
       <Link href="/">
         <div className={styles.logo}>LoL Hero</div>
       </Link>
@@ -37,7 +39,6 @@ const Header = (props: Props): JSX.Element => {
           placeholder="Enter Tracking ID"
         />
       </form>
-
       <AuthDisplay handleAuth={handleAuth} session={session} sessionRequest={sessionRequest} />
     </header>
   );

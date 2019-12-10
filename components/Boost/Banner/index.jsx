@@ -86,8 +86,8 @@ const useStyles = createUseStyles(theme => ({
     flexGrow: 1,
     boxShadow: '0px -15px 15px rgba(0,0,0,.2)',
     alignItems: 'center',
-    borderLeft: `6px solid`,
-    borderRight: `6px solid`,
+    borderLeft: `8px solid`,
+    borderRight: `8px solid`,
     flexDirection: 'column',
     justifyContent: 'space-between',
     transitionDuration: '.2s',
@@ -131,7 +131,7 @@ const useStyles = createUseStyles(theme => ({
     width: '100%',
     height: '100px',
     position: 'relative',
-    strokeWidth: 3
+    strokeWidth: 4
   }
 }));
 

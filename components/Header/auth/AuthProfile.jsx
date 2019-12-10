@@ -63,7 +63,7 @@ const useStyles = createUseStyles(theme => ({
     '@media (min-width: 650px)': {
       flex: 1,
       display: 'grid',
-      gridTemplateRows: '76px 1fr',
+      gridTemplateRows: '75px 1fr',
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `
         'profile profile'
@@ -80,7 +80,6 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: 'transparent',
     cursor: 'pointer',
     maxWidth: '250px',
-    // height: '100%',
     margin: '0px 25px',
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {

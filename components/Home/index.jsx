@@ -53,7 +53,7 @@ const Home = props => {
           </button>
         </form>
         <Link href="/boost">
-          <Button grow maxWidth="185px" padding="15px 10px" margin="60px 0 0 0">
+          <Button padding="15px 20px" margin="60px 0 0 0">
             Customize Order
           </Button>
         </Link>

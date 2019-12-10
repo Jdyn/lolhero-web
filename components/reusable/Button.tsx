@@ -3,8 +3,12 @@ import { createUseStyles } from 'react-jss';
 
 interface Props {
   children?: React.ReactNode;
-  onClick: (event: React.MouseEvent) => void;
-  secondary: boolean;
+  onClick?: (event: React.MouseEvent) => void;
+  secondary?: boolean;
+  margin?: string;
+  grow?: boolean;
+  maxWidth?: string;
+  padding?: string;
 }
 
 const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonElement>) => {
@@ -71,7 +75,9 @@ const useStyles = createUseStyles(theme => ({
     backgroundColor: theme.green,
     margin: props.margin,
     width: props.width,
-    padding: props.padding
+    maxWidth: props.maxWidth,
+    padding: props.padding,
+    flexGrow: props.grow ? 1 : 0
   })
 }));
 
