@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styles from './styles.css';
 
 interface Props {
-  trackingId: string | number;
+  trackingId: string | string[];
   errorMessage?: string;
-  onSubmit: (email: string) => void;
+  onSubmit: (trackingId: string | string[], email: string) => void;
 }
 
 const OrderAuth = (props: Props): JSX.Element => {
@@ -15,7 +15,7 @@ const OrderAuth = (props: Props): JSX.Element => {
   const submitEmail = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    onSubmit(email);
+    onSubmit(trackingId, email);
   };
 
   return (

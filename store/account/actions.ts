@@ -3,7 +3,7 @@ import { NextPageContext } from 'next';
 import Api from '../../services/api';
 import { AppState } from '..';
 import { setRequest } from '../request/actions';
-import { accountRequests } from './types';
+import { accountRequests, Order } from './types';
 import { orderListFetched, orderUpdated } from './reducers';
 
 export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
@@ -37,23 +37,25 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   }
 };
 
-export const fetchOrder = (trackingId: string, email: string) => (
+export const fetchOrder = (trackingId: string, email: string) => async (
   dispatch: Dispatch,
   getState: () => AppState
-): void => {
-  const requestType = accountRequests.FETCH_ACCOUNT_ORDER;
+): Promise<void> => {
+  const requestType = accountRequests.FETCH_ORDER;
   const request = getState().request[requestType] || { isPending: false };
 
   if (request.isPending) return;
 
-  Api.post(`/order/${trackingId}`, { email }).then(response => {
-    if (response.ok) {
-      dispatch(orderUpdated({ order: response.result.order }));
-      dispatch(setRequest(false, requestType));
-    } else {
-      dispatch(setRequest(false, requestType, response.error));
-    }
-  });
+  dispatch(setRequest(true, requestType));
+
+  const response = await Api.post(`/order/${trackingId}`, { email });
+
+  if (response.ok) {
+    dispatch(orderUpdated({ order: response.result.order }));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, response.error));
+  }
 };
 
 export const fetchAccountOrder = (trackingId: string, ctx?: NextPageContext) => async (
