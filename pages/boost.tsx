@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'next-cookies';
 import BoostContainer from '../containers/BoostContainer';
 import { fetchBoostPrices } from '../store/boost/actions';
 
@@ -8,9 +9,11 @@ class CustomBoost extends React.PureComponent {
       store: { dispatch, getState }
     } = ctx;
 
+    const { token } = cookies(ctx);
+
     await fetchBoostPrices(ctx)(dispatch, getState);
 
-    return {};
+    return { token };
   }
 
   render(): JSX.Element {

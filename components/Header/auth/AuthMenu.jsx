@@ -75,7 +75,7 @@ useStyles = createUseStyles(theme => ({
     width: '100%',
     maxWidth: '250px',
     display: 'grid',
-    gridTemplateRows: '76px 1fr',
+    gridTemplateRows: '75px 1fr',
     gridTemplateColumns: '1fr 1fr',
     gridTemplateAreas: ` 
         'login signup'

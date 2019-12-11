@@ -1,34 +1,34 @@
-[data-braintree-id="upper-container"] {
+[data-braintree-id='upper-container'] {
   border-radius: 12px;
   border: none;
   color: #fafafa;
 }
 
-[data-braintree-id="upper-container"]:before {
+[data-braintree-id='upper-container']:before {
   border-radius: 12px;
   border: none;
   color: #fafafa;
   background-color: #323232;
 }
 
-[data-braintree-id="options"] {
+[data-braintree-id='options'] {
   color: white;
   border-radius: 12px !important;
 }
 
-[data-braintree-id="choose-a-way-to-pay"] {
+[data-braintree-id='choose-a-way-to-pay'] {
   color: #fafafa !important;
 }
 
-[data-braintree-id="methods-label"] {
+[data-braintree-id='methods-label'] {
   color: #fafafa !important;
 }
 
-[data-braintree-id="lower-container"] div {
+[data-braintree-id='lower-container'] div {
   color: #fafafa !important;
 }
 
-[data-braintree-id="toggle"] {
+[data-braintree-id='toggle'] {
   background-color: #323232;
   border-color: #999;
   color: #fafafa;
@@ -37,77 +37,82 @@
   border-radius: 12px;
 }
 
-[data-braintree-id="toggle"]:hover {
+[data-braintree-id='toggle']:hover {
   background-color: #383838;
   font-weight: normal;
   transform: translateY(-2px);
 }
 
-[data-braintree-id="toggle"]:hover span {
+[data-braintree-id='toggle']:hover span {
   border-color: white;
 }
 
-[data-braintree-id="toggle"]:active {
+[data-braintree-id='toggle']:active {
   transform: translateY(2px);
 }
 
-[data-braintree-id="card"] {
+[data-braintree-id='card'] {
   background-color: #323232;
   border-radius: 12px;
   border: none;
   color: #fafafa;
 }
 
-[data-braintree-id="card-sheet-header"] {
+[data-braintree-id='card-sheet-header'] {
   border-radius: 12px;
   border: none;
   color: #fafafa;
 }
 
-[data-braintree-id="card-sheet-header"] div > div {
+[data-braintree-id='card-sheet-header'] div > div {
   color: #fafafa !important;
 }
 
-[data-braintree-id="number-field-group"] label > div,
-[data-braintree-id="expiration-date-field-group"] label > div,
-[data-braintree-id="cvv-field-group"] label > div,
-[data-braintree-id="postal-code-field-group"] label > div {
+[data-braintree-id='number-field-group'] label > div,
+[data-braintree-id='expiration-date-field-group'] label > div,
+[data-braintree-id='cvv-field-group'] label > div,
+[data-braintree-id='postal-code-field-group'] label > div {
   color: #fafafa !important;
 }
 
-[data-braintree-id="number-field-group"] label > div > div,
-[data-braintree-id="expiration-date-field-group"] label > div > div,
-[data-braintree-id="cvv-field-group"] label > div > div,
-[data-braintree-id="postal-code-field-group"] label > div > div {
+[data-braintree-id='number-field-group'] label > div > div,
+[data-braintree-id='expiration-date-field-group'] label > div > div,
+[data-braintree-id='cvv-field-group'] label > div > div,
+[data-braintree-id='postal-code-field-group'] label > div > div {
   background-color: #404040;
   border: none !important;
   border-radius: 8px;
 }
 
-[data-braintree-id="payment-options-container"] {
+[data-braintree-id='payment-options-container'] {
   padding-bottom: 0;
   border-radius: 12px !important;
 }
 
-[data-braintree-id="payment-options-container"] div {
+[data-braintree-id='payment-options-container'] div {
   background-color: #323232;
   border: none;
 }
 
-[data-braintree-id="payment-options-container"]:first-child {
+[data-braintree-id='payment-options-container']:first-child {
   border-radius: 0px 0px 12px 12px !important;
 }
 
-[data-braintree-id="payment-options-container"] div:hover {
+[data-braintree-id='payment-options-container'] div:hover {
   background-color: #323232;
 }
 
-[data-braintree-id="payment-options-container"] div > div {
+[data-braintree-id='payment-options-container'] div > div {
   color: #fafafa !important;
 }
 
-[data-braintree-id="paypal"] {
+[data-braintree-id='paypal'] {
   background-color: #323232;
   border: none;
-  border-radius: 12px
+  border-radius: 12px;
+}
+
+[data-braintree-id='methods-container'] div {
+  background-color: #323232;
+  color: var(--white) !important;
 }

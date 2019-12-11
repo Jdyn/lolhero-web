@@ -21,7 +21,7 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
           <thead>
             <tr>
               {labels.map(label => (
-                <th>
+                <th key={label}>
                   <div>{label}</div>
                 </th>
               ))}
