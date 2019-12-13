@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
-import AuthDisplay from './auth/AuthDisplay/AuthDisplay';
+import Dropdown from './Dropdown/AuthDisplay';
 import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.css';
@@ -39,7 +39,7 @@ const Header = (props: Props): JSX.Element => {
           placeholder="Enter Tracking ID"
         />
       </form>
-      <AuthDisplay handleAuth={handleAuth} session={session} sessionRequest={sessionRequest} />
+      <Dropdown handleAuth={handleAuth} session={session} sessionRequest={sessionRequest} />
     </header>
   );
 };
