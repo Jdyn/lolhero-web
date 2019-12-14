@@ -3,7 +3,7 @@ import ranks from '../../../lib/ranks';
 import addons from '../../../lib/addonContent';
 import content from '../../../lib/boostContent';
 import PropTypes from 'prop-types';
-import { formatLP } from '../../../util/Helpers';
+import { formatLP } from '../../../util/helpers';
 import { createUseStyles } from 'react-jss';
 
 const propTypes = {

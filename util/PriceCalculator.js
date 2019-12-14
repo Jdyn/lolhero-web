@@ -2,16 +2,9 @@ export default (order, pricing) => {
   const basePrice = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
 
-    const {
-      collectionId,
-      startRank,
-      desiredRank,
-      desiredAmount,
-      collectionName
-    } = order;
+    const { collectionId, startRank, desiredRank, desiredAmount, collectionName } = order;
 
     if (!pricing[collectionId]) return currentPrice;
-    // if (Object.keys(pricing[collectionId]).length === 0) return currentPrice;
 
     let total = currentPrice;
 
@@ -119,7 +112,7 @@ export default (order, pricing) => {
     return currentPrice;
   };
 
-  const calculateOrder = () => {
+  const calculate = () => {
     let total = 0;
 
     if (Object.keys(pricing).length === 0) return total;
@@ -134,5 +127,5 @@ export default (order, pricing) => {
     return Math.round(total * 100) / 100;
   };
 
-  return calculateOrder();
+  return calculate();
 };

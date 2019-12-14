@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import ranks from '../../../lib/ranks';
-import flatten from '../../../util/Flatten';
+import { flatten } from '../../../util/helpers';
 import PropTypes from 'prop-types';
 import BannerRankItem from './BannerRankItem';
 import { createUseStyles } from 'react-jss';

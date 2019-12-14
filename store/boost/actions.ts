@@ -3,7 +3,7 @@ import { NextPageContext } from 'next';
 import Router from 'next/router';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
-import calculatePrice from '../../util/CalculatePrice';
+import PriceCalculator from '../../util/PriceCalculator';
 import { boostActions, boostRequests, BoostActionTypes, BoostOrder, BoostPricing } from './types';
 import { setRequest } from '../request/actions';
 import { AppState } from '..';
@@ -94,7 +94,7 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
 
   const order = { ...getState().boost.order.details, ...detailsUpdate };
   const pricing = getState().boost.pricing[order.boostType];
-  const price = calculatePrice(order, pricing);
+  const price = PriceCalculator(order, pricing);
 
   dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
 };

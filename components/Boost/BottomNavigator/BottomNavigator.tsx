@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dropin } from 'braintree-web-drop-in';
-import { formatLP } from '../../../util/Helpers';
+import { formatLP } from '../../../util/helpers';
 import { BoostState, BoostOrderDetails } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import styles from './styles.css';

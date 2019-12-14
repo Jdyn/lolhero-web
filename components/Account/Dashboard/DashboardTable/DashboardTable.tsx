@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import formatTime from '../../../../util/formatTime';
+import { formatTime } from '../../../../util/helpers';
 import { OrderList } from '../../../../store/account/types';
 import styles from './styles.css';
 
