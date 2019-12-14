@@ -8,14 +8,35 @@
   flex-grow: 1;
   max-width: 765px;
   width: 100%;
-  padding: 25px;
+  padding: 20px;
   margin: 15px auto;
+  flex-direction: column;
   background-color: var(--quartinary-grey);
   border-radius: 16px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .status {
   display: flex;
   flex-grow: 1;
-  margin: 0;
+  margin: 0px 0px 15px 0px;
+  justify-content: center;
+}
+
+@media (min-width: 650px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .status {
+    margin: 0;
+    justify-content: flex-start;
+  }
 }

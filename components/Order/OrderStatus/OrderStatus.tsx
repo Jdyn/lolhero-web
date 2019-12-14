@@ -27,19 +27,21 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <div className={styles.container}>
         <h3 className={styles.status}>{orderStatus(order.status)}</h3>
-        <Button
-          grow
-          secondary
-          maxWidth="125px"
-          onClick={onPauseOrder}
-          margin="0px 5px"
-          padding="15px"
-        >
-          Pause Order
-        </Button>
-        <Button grow maxWidth="125px" onClick={onEditOrder} margin="0px 5px" padding="15px">
-          Edit Order
-        </Button>
+        <div className={styles.wrapper}>
+          <Button
+            grow
+            secondary
+            maxWidth="125px"
+            onClick={onPauseOrder}
+            margin="0px 5px"
+            padding="15px"
+          >
+            Pause Order
+          </Button>
+          <Button grow maxWidth="125px" onClick={onEditOrder} margin="0px 5px" padding="15px">
+            Edit Order
+          </Button>
+        </div>
       </div>
     </div>
   );

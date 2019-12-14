@@ -79,6 +79,7 @@ const useStyles = createUseStyles(theme => ({
     outline: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
+    height: '75px',
     maxWidth: '250px',
     margin: '0px 25px',
     borderBottom: '2px solid #999',
