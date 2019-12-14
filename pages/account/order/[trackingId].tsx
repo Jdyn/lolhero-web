@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../../components/reusable/Layout';
 import withAuth from '../../../lib/withAuth';
 import OrderContainer from '../../../containers/OrderContainer';
-import { fetchAccountOrder } from '../../../store/account/actions';
+import { fetchOrder } from '../../../store/account/actions';
 
 interface Props {
   trackingId: string;
@@ -15,7 +15,7 @@ class Order extends React.PureComponent<Props> {
       query: { trackingId }
     } = ctx;
 
-    await fetchAccountOrder(trackingId, ctx)(dispatch, getState);
+    await fetchOrder(trackingId, null, ctx)(dispatch, getState);
 
     return {};
   }

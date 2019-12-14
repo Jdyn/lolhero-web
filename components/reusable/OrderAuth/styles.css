@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex: 1;
-  min-height: 90vh;
+  min-height: 70vh;
   justify-content: center;
   align-items: center;
   height: 100%;

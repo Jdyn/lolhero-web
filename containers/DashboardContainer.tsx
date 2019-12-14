@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Dashboard from '../components/Account/Dashboard';
 import { AccountState } from '../store/account/types';

@@ -85,7 +85,7 @@ class Application extends App {
         <ThemeProvider theme={theme.dark}>
           <Baseline>
             <SEO />
-            <Component {...pageProps} />
+            <Component {...pageProps} store={store} />
           </Baseline>
         </ThemeProvider>
       </Provider>

@@ -4,23 +4,24 @@ import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
 import OrderStatus from './OrderStatus';
 import { SessionState } from '../../store/session/types';
-import { AccountState } from '../../store/account/types';
+import { AccountState, Order } from '../../store/account/types';
 
 interface Props {
   account: AccountState;
   session: SessionState;
+  order?: Order;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
-  const { session, account } = props;
+  const { session, account, order } = props;
 
   return (
     <div className={styles.root}>
-      {account.selectedOrder ? (
+      {order || account.selectedOrder ? (
         <>
-          <OrderHeader session={session} order={account.selectedOrder} />
-          <OrderStatus order={account.selectedOrder} />
-          <OrderDetails order={account.selectedOrder} />
+          <OrderHeader session={session} order={order || account.selectedOrder} />
+          <OrderStatus order={order || account.selectedOrder} />
+          <OrderDetails order={order || account.selectedOrder} />
         </>
       ) : (
         <div>Order does not exist</div>

@@ -27,11 +27,10 @@ const Home = props => {
   const handleOrderSearch = event => {
     event.preventDefault();
 
+    const { trackingId } = form;
+
     if (form.trackingId) {
-      Router.push(
-        { pathname: '/order/order', query: { trackingId: form.trackingId } },
-        `/track/${form.trackingId}`
-      );
+      Router.push('/order/[trackingId]', `/order/${trackingId}`);
     }
   };
 
@@ -48,7 +47,7 @@ const Home = props => {
             aria-label="search"
             className={classes.search}
           />
-          <button type="button" className={classes.formSubmit}>
+          <button type="submit" className={classes.formSubmit}>
             Go
           </button>
         </form>

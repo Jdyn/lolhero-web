@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.css';
+import Api from '../../../services/api';
+import OrderContainer from '../../../containers/OrderContainer';
 
 interface Props {
   trackingId: string | string[];
@@ -8,17 +10,31 @@ interface Props {
 }
 
 const OrderAuth = (props: Props): JSX.Element => {
-  const { trackingId, onSubmit, errorMessage } = props;
+  const { trackingId } = props;
 
   const [email, setEmail] = useState('');
+  const [order, setOrder] = useState(null);
+  const [error, setError] = useState(null);
+
+  const fetchOrder = (): void => {
+    Api.post(`/order/${trackingId}`, { email }).then(response => {
+      if (response.ok) {
+        setOrder(response.result.order);
+      } else {
+        setError(response.error);
+      }
+    });
+  };
 
   const submitEmail = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    onSubmit(trackingId, email);
+    fetchOrder();
   };
 
-  return (
+  return order ? (
+    <OrderContainer order={order} />
+  ) : (
     <div className={styles.root}>
       <div className={styles.container}>
         <h3>{trackingId}</h3>
@@ -38,7 +54,7 @@ const OrderAuth = (props: Props): JSX.Element => {
             Go
           </button>
         </form>
-        {errorMessage && <span className={styles.error}>{errorMessage}</span>}
+        {error && <span className={styles.error}>{error}</span>}
       </div>
     </div>
   );

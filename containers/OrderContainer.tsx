@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AppState } from '../store';
 import { SessionState } from '../store/session/types';
-import { AccountState } from '../store/account/types';
+import { AccountState, Order } from '../store/account/types';
+import { orderUpdated } from '../store/account/reducers';
 import BoostOrder from '../components/Order';
 
 interface Props {
   session?: SessionState;
   account?: AccountState;
+  updateOrder?: (order: object | null) => void;
+  order?: Order;
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { account, session } = props;
+  const { account, session, updateOrder, order } = props;
 
-  return <BoostOrder account={account} session={session} />;
+  useEffect(() => {
+    return (): void => {
+      updateOrder(null);
+    };
+  }, [updateOrder]);
+
+  return <BoostOrder account={account} session={session} order={order} />;
 };
 
 const mapState = (state: AppState): object => ({
@@ -21,6 +30,8 @@ const mapState = (state: AppState): object => ({
   account: state.account
 });
 
-const mapDispatch = (dispatch): object => ({});
+const mapDispatch = (dispatch): object => ({
+  updateOrder: (order): void => dispatch(orderUpdated({ order }))
+});
 
 export default connect(mapState, mapDispatch)(OrderContainer);
