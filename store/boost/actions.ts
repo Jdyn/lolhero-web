@@ -35,7 +35,8 @@ const validateOrder = (order: BoostOrder, dispatchError: (message: string) => vo
 
 const trimOrder = (order: BoostOrder): BoostOrder => {
   const newOrder = { ...order };
-  if (order.details.collectionName === 'Division Boost') {
+
+  if (newOrder.details.collectionName === 'Division Boost') {
     delete newOrder.details.desiredAmount;
   } else {
     delete newOrder.details.desiredRank;

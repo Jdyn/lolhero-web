@@ -35,11 +35,6 @@
   flex-wrap: wrap;
   width: 100%;
   color: var(--secondary-white);
-  margin-top: 20px;
-}
-
-.formWrapper:nth-child(1) {
-  margin-right: 10px !important;
 }
 
 .formInput {
@@ -47,21 +42,9 @@
   border: none;
   border-radius: 8px;
   padding: 10px;
+  width: 100%;
   background-color: var(--primary-grey);
   color: var(--white);
-}
-
-.formWrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 5px 0px 5px 0px;
-  text-align: left;
-}
-
-.formWrapper > span {
-  margin-bottom: 5px;
 }
 
 .rolesContainer {
@@ -72,23 +55,13 @@
   width: 100%;
 }
 
-.rolesWrapper {
-  display: flex;
-  flex-direction: column;
-  color: var(--secondary-white);
-  font-size: 16px;
-}
-
-.rolesWrapper > span {
-  margin: 0 0 5px 5px;
-}
-
 .roles {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   background-color: var(--primary-grey);
-  margin-right: 10px;
   padding: 3px;
+  width: 100%;
   border-radius: 8px;
 }
 
@@ -144,6 +117,15 @@
   background-color: var(--quartinary-grey);
 }
 
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin: 10px 0px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .notes {
   font-size: 14px;
   line-height: 24px;
@@ -163,13 +145,15 @@
   margin: 5px 0px;
   border-radius: 8px;
   padding: 15px 10px;
+  min-height: 100px;
+  max-height: 150px;
+  overflow: auto;
   background-color: var(--primary-grey);
 }
 
 .promotions {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
 }
 
 .promotions > div {
@@ -180,40 +164,16 @@
 }
 
 .promo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 800;
   width: 32px;
   height: 32px;
   border-radius: 8px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-}
-
-.W {
-  background-color: var(--green);
-}
-
-.L {
-  background-color: var(--red);
-}
-
-.X {
   background-color: var(--primary-grey);
-}
-
-.button {
-  display: inline-block;
-  outline: none;
-  border: none;
-  margin: 15px 0px;
-  /* width: 100%; */
-  border-radius: 12px;
-  min-height: 45px;
-  cursor: pointer;
-  color: var(--white);
-  background-color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition-duration: 0.2s;
-  font-weight: 700;
-  font-size: 20px;
 }
 
 @media (min-width: 650px) {

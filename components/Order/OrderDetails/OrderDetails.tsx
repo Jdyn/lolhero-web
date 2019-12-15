@@ -4,13 +4,14 @@ import Banner from '../../Boost/Banner';
 import { flatRanks } from '../../../lib/ranks';
 import { Order } from '../../../store/account/types';
 import styles from './styles.css';
+import Button from '../../reusable/Button';
 
 const ranks = flatRanks();
 
 const fields = [
+  { type: 'text', title: 'Summoner Name', text: 'summonerName' },
   { type: 'text', title: 'LoL Username', text: 'username' },
-  { type: 'password', title: 'LoL Password', text: 'password' },
-  { type: 'text', title: 'Summoner Name', text: 'summonerName' }
+  { type: 'password', title: 'LoL Password', text: 'password' }
 ];
 
 const content = [
@@ -97,7 +98,7 @@ const OrderEdit = (props: Props): JSX.Element => {
     }));
   };
 
-  return (
+  return !order.isEditable ? (
     <div className={styles.root}>
       <h3>Order Details</h3>
       <div className={styles.wrapper}>
@@ -142,7 +143,7 @@ const OrderEdit = (props: Props): JSX.Element => {
             <span>Promotions</span>
             <div>
               {order.details.promos.map((promo: string) => (
-                <div className={`${styles.promo} ${styles[promo]}`} />
+                <div className={styles.promo}>{promo}</div>
               ))}
             </div>
           </div>
@@ -153,90 +154,90 @@ const OrderEdit = (props: Props): JSX.Element => {
         </div>
       </div>
     </div>
-    // <div className={styles.root}>
-    //   {order.isEditable ? (
-    //     <div className={styles.container}>
-    //       <Banner height="450px" type="default" rank={ranks[order.details.desiredRank] || {}} />
-    //       <div className={styles.wrapper}>
-    //         <h3>Order Details</h3>
-    //         <div className={styles.rolesContainer}>
-    //           {content.map(item => (
-    //             <div key={item.title} className={styles.rolesWrapper}>
-    //               <span>{item.title}</span>
-    //               <div className={styles.roles}>
-    //                 {item.roles.map(role => (
-    //                   <button
-    //                     type="button"
-    //                     className={` ${styles.role} ${
-    //                       form.details[item.text] === role.title ? styles.roleSelected : ''
-    //                     }`}
-    //                     key={role.title}
-    //                     onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
-    //                   >
-    //                     <img alt="role" src={role.image} />
-    //                   </button>
-    //                 ))}
-    //               </div>
-    //             </div>
-    //           ))}
-    //         </div>
-    //         <form className={styles.form}>
-    //           {fields.map(field => (
-    //             <div key={field.title} className={styles.formWrapper}>
-    //               <span>{field.title}</span>
-    //               <input
-    //                 type={field.type}
-    //                 value={
-    //                   field.text === 'summonerName' ? form[field.text] : form.details[field.text]
-    //                 }
-    //                 onChange={(event): void =>
-    //                   handleFormUpdate({ [field.text]: event.target.value })
-    //                 }
-    //                 className={styles.formInput}
-    //               />
-    //             </div>
-    //           ))}
-    //         </form>
-    //         <span>Notes</span>
-    //         <textarea
-    //           value={form.note || ''}
-    //           onChange={(event): void => setForm({ ...form, note: event.target.value })}
-    //           className={styles.notes}
-    //           placeholder="Please enter your preferred champions here while we work on a better solution."
-    //         />
-    //         <button onClick={UpdateDetails} className={styles.button} type="submit">
-    //           save
-    //         </button>
-    //       </div>
-    //     </div>
-    //   ) : (
-    //     <div className={styles.container}>
-    //       <div className={styles.wrapper}>
-    //         <h3>Order Details</h3>
-    //         <div className={styles.rolesWrapper}>
-    //           <div className={styles.rolesDisplay}>
-    //             <span>Primary Role</span>
-    //             <img
-    //               alt="role"
-    //               src={
-    //                 addons.roles.filter(role => role.title === order.details.primaryRole)[0].image
-    //               }
-    //             />
-    //           </div>
-    //         </div>
-    //         <div className={styles.rolesDisplay}>
-    //           <span>Secondary Role</span>
-    //           <img
-    //             alt="role"
-    //             src={
-    //               addons.roles.filter(role => role.title === order.details.secondaryRole)[0].image
-    //             }
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
+  ) : (
+    <div className={styles.root}>
+      {order.isEditable ? (
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <h3>Order Details</h3>
+            <div className={styles.rolesContainer}>
+              {content.map(item => (
+                <>
+                  <span className={styles.title}>{item.title}</span>
+                  <div className={styles.roles}>
+                    {item.roles.map(role => (
+                      <button
+                        type="button"
+                        className={` ${styles.role} ${
+                          form.details[item.text] === role.title ? styles.roleSelected : ''
+                        }`}
+                        key={role.title}
+                        onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
+                      >
+                        <img alt="role" src={role.image} />
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ))}
+            </div>
+            <form className={styles.form}>
+              {fields.map(field => (
+                <>
+                  <span className={styles.title}>{field.title}</span>
+                  <input
+                    className={styles.formInput}
+                    type={field.type}
+                    value={
+                      field.text === 'summonerName' ? form[field.text] : form.details[field.text]
+                    }
+                    onChange={(event): void =>
+                      handleFormUpdate({ [field.text]: event.target.value })
+                    }
+                  />
+                </>
+              ))}
+            </form>
+            <span className={styles.title}>Notes</span>
+            <textarea
+              value={form.note || ''}
+              className={styles.notes}
+              onChange={(event): void => setForm({ ...form, note: event.target.value })}
+              placeholder="Please enter your preferred champions here."
+            />
+          </div>
+          <Button width="100%" margin="15px 0px 0px 0px" onClick={UpdateDetails}>
+            save
+          </Button>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <h3>Order Details</h3>
+            <div className={styles.rolesWrapper}>
+              <div className={styles.rolesDisplay}>
+                <span>Primary Role</span>
+                <img
+                  alt="role"
+                  src={
+                    addons.roles.filter(role => role.title === order.details.primaryRole)[0].image
+                  }
+                />
+              </div>
+            </div>
+            <div className={styles.rolesDisplay}>
+              <span>Secondary Role</span>
+              <img
+                alt="role"
+                src={
+                  addons.roles.filter(role => role.title === order.details.secondaryRole)[0].image
+                }
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

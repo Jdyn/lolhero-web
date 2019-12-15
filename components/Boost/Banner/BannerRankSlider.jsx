@@ -26,9 +26,9 @@ const BannerRankSlider = props => {
   // Update the value if the collection was changed and the desiredAmount was greater than the new collections maximum amount.
   useEffect(() => {
     if (currentOrder.desiredAmount > currentCollection.maxAmount) {
-      updateOrder({ desiredAmount: parseInt(currentCollection.maxAmount) });
+      updateOrder({ desiredAmount: parseInt(currentCollection.maxAmount, 0) });
     }
-  }, [currentCollection]);
+  }, [currentCollection, updateOrder, currentOrder.desiredAmount]);
 
   return (
     <div className={classes.container}>
@@ -41,7 +41,7 @@ const BannerRankSlider = props => {
           className={classes.slider}
           style={{ backgroundColor: rank.accent || theme.grey }}
           value={currentOrder.desiredAmount}
-          onChange={event => updateOrder({ desiredAmount: parseInt(event.target.value) })}
+          onChange={event => updateOrder({ desiredAmount: parseInt(event.target.value, 0) })}
         />
       </div>
     </div>

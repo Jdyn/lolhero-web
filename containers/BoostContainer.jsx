@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
   handleAuth: (type, form) => dispatch(handleAuth(type, form)),
   fetchBoostPrices: () => dispatch(fetchBoostPrices()),
   updateOrder: (detailsUpdate, OrderUpdate) => dispatch(updateOrder(detailsUpdate, OrderUpdate)),
-  submitOrder: nonce => dispatch(submitOrder(nonce))
+  submitOrder: () => dispatch(submitOrder())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoostContainer);
