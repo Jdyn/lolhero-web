@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import Layout from '../../components/reusable/Layout';
+import Layout from '../../../components/reusable/Layout';
 
 const OrderSuccess = props => {
   const router = useRouter();
   const classes = useStyles();
+
   const { trackingId } = router.query;
 
   return (
@@ -15,7 +16,7 @@ const OrderSuccess = props => {
         <h3>
           Your Tracking ID is <b>{trackingId || 'unknown'}</b>.
         </h3>
-        <p>Please review the email we have sent you detailing the next steps.</p>
+        <p>Please check the email associated with your order for further instructions.</p>
       </div>
     </Layout>
   );
@@ -24,6 +25,7 @@ const OrderSuccess = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     padding: '35px',
+    height: '85vh',
     maxWidth: '975px',
     margin: '0 auto',
     color: theme.white,

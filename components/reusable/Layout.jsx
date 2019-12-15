@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header';
-import Footer from './Footer';
+import Footer from '../Footer';
 import { handleAuth } from '../../store/session/actions';
 
 const Layout = props => {
