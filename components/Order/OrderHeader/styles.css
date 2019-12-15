@@ -6,23 +6,26 @@
   display: flex;
   max-width: 795px;
   padding: 25px 15px;
-  margin: 30px auto;
+  margin: 30px auto 10px auto;
   flex-direction: column;
   z-index: 20;
-  flex-grow: 1;
+  height: 100%;
+  flex: 1;
   align-items: center;
   justify-content: center;
 }
 
 .wrapper {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  flex: 1;
   font-weight: 500;
   margin: 0 0 10px 0;
   font-size: 23px;
   text-align: center;
   color: var(--white);
   margin: 15px 0;
-  display: flex;
-  width: 100%;
   flex: 1;
   flex-direction: column;
 }

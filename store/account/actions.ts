@@ -64,10 +64,10 @@ export const fetchOrder = (id: string, email: string, ctx?: NextPageContext) => 
   }
 };
 
-export const initializeOrder = (payload: object, trackingId: number) => (
+export const initializeOrder = (payload: object, trackingId: string) => (
   dispatch: Dispatch
 ): void => {
-  Api.patch(`/order/${trackingId}`, payload).then(response => {
+  Api.patch(`/account/order/${trackingId}`, payload).then(response => {
     if (response.ok) {
       dispatch(orderUpdated({ order: response.result.order }));
     }

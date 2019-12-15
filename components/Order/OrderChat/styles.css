@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  grid-area: chat;
+  width: 100%;
+  padding: 24px;
+  max-width: 765px;
+  border-radius: 16px;
+  background-color: var(--quartinary-grey);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  color: var(--white);
+}
+
+.root > h3 {
+  margin: 0 0 30px 0;
+}

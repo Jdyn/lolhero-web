@@ -1,16 +1,11 @@
 .root {
-  width: 100%;
-  padding: 0 25px;
-}
-
-.container {
   display: flex;
   flex-grow: 1;
-  max-width: 765px;
+  grid-area: status;
+  /* max-width: 795px; */
   width: 100%;
   padding: 20px;
-  margin: 15px auto;
-  flex-direction: column;
+  flex-direction: row;
   background-color: var(--quartinary-grey);
   border-radius: 16px;
 }
@@ -20,12 +15,12 @@
   width: 100%;
   flex: 1;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .status {
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   margin: 0px 0px 15px 0px;
   justify-content: center;
 }
