@@ -68,12 +68,12 @@ const Banner = props => {
 const useStyles = createUseStyles(theme => ({
   root: props => ({
     zIndex: 5,
-    height: props.height || '95%',
-    maxHeight: '550px',
+    height: props.height || '90%',
+    maxHeight: '500px',
     display: 'flex',
-    maxWidth: '235px',
+    maxWidth: '245px',
     position: 'relative',
-    flexGrow: 1,
+    flex: 1,
     margin: '0px 15px 0px 15px',
     marginBottom: '15px',
     flexDirection: 'column',

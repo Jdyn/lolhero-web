@@ -16,7 +16,9 @@
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
+    flex: 1;
+    /* min-height: 450px; */
     justify-content: center;
     width: 100%;
     margin: 0px auto;

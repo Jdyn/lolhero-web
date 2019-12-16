@@ -38,20 +38,17 @@
 
 .form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
   width: 100%;
   border-radius: 8px;
-  background-color: var(--primary-grey);
   padding: 5px 16px;
   min-width: 0;
 }
 
 .formSubmit {
-  background-color: var(--primary-grey);
   border: none;
   outline: none;
-  border-radius: 50%;
   height: 40px;
   width: 40px;
   transition-duration: 0.2s;
@@ -59,21 +56,19 @@
   color: var(--white);
 }
 
-.formSubmit:hover {
-  background-color: var(--quartinary-grey);
-}
-
-.search {
+.input {
   display: flex;
   flex: 1;
+  background-color: var(--primary-grey);
+  border-radius: 8px;
   color: var(--white);
-  margin: 0 10px;
+  padding: 10px;
+  margin: 10px 0px 0px 0px;
   border: none;
   outline: none;
   min-width: 0;
   width: 100%;
   font-size: 16px;
-  background-color: transparent;
 }
 
 .error {

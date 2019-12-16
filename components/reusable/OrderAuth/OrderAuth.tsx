@@ -2,22 +2,28 @@ import React, { useState } from 'react';
 import styles from './styles.css';
 import Api from '../../../services/api';
 import OrderContainer from '../../../containers/OrderContainer';
+import Button from '../Button';
 
 interface Props {
+  fullAuth?: boolean;
   trackingId: string | string[];
   errorMessage?: string;
   onSubmit: (trackingId: string | string[], email: string) => void;
 }
 
 const OrderAuth = (props: Props): JSX.Element => {
-  const { trackingId } = props;
+  const { trackingId, fullAuth } = props;
 
-  const [email, setEmail] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    trackingId: trackingId || ''
+  });
+
   const [order, setOrder] = useState(null);
   const [error, setError] = useState(null);
 
   const fetchOrder = (): void => {
-    Api.post(`/order/${trackingId}`, { email }).then(response => {
+    Api.post(`/order/${form.trackingId}`, { email: form.email }).then(response => {
       if (response.ok) {
         setOrder(response.result.order);
       } else {
@@ -36,26 +42,51 @@ const OrderAuth = (props: Props): JSX.Element => {
     <OrderContainer order={order} />
   ) : (
     <div className={styles.root}>
-      <div className={styles.container}>
-        <h3>{trackingId}</h3>
-        <span>Tracking ID</span>
-        <p>
-          Please allow us to verify it is you by providing the email you used to purchase the order.
-        </p>
-        <form className={styles.form} onSubmit={submitEmail}>
-          <input
-            value={email}
-            className={styles.search}
-            onChange={(event): void => setEmail(event.target.value)}
-            aria-label="search"
-            placeholder="Verify Email"
-          />
-          <button className={styles.formSubmit} type="submit">
-            Go
-          </button>
-        </form>
-        {error && <span className={styles.error}>{error}</span>}
-      </div>
+      {fullAuth ? (
+        <div className={styles.container}>
+          <h3>{form.trackingId}</h3>
+          <span>Tracking ID</span>
+          <p>Please provide your Tracking ID and the Email associated with your order. </p>
+          <form className={styles.form} onSubmit={submitEmail}>
+            <input
+              value={form.trackingId}
+              className={styles.input}
+              onChange={(event): void => setForm({ ...form, trackingId: event.target.value })}
+              aria-label="search"
+              placeholder="Tracking ID"
+            />
+            <input
+              value={form.email}
+              className={styles.input}
+              onChange={(event): void => setForm({ ...form, email: event.target.value })}
+              aria-label="search"
+              placeholder="Email"
+            />
+            <Button margin="10px 0 0 0">search</Button>
+          </form>
+          {error && <span className={styles.error}>{error}</span>}
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <h3>{trackingId}</h3>
+          <span>Tracking ID</span>
+          <p>
+            Please allow us to verify it is you by providing the email you used to purchase the
+            order.
+          </p>
+          <form className={styles.form} onSubmit={submitEmail}>
+            <input
+              value={form.email}
+              className={styles.input}
+              onChange={(event): void => setForm({ ...form, email: event.target.value })}
+              aria-label="search"
+              placeholder="Verify Email"
+            />
+            <Button margin="10px 0 0 0">search</Button>
+          </form>
+          {error && <span className={styles.error}>{error}</span>}
+        </div>
+      )}
     </div>
   );
 };
