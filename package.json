@@ -1,7 +1,7 @@
 {
   "name": "lolhero",
   "version": "0.0.1",
-  "root": ".",
+  "private": true,
   "scripts": {
     "dev": "next",
     "build": "next build",
