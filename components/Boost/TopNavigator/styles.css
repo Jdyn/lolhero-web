@@ -22,6 +22,7 @@
   justify-content: center;
   padding: 0 45px;
   height: 100%;
+  width: 100%;
   cursor: pointer;
   transition-duration: 0.15s;
   border-bottom: 2px solid var(--grey);
@@ -38,6 +39,10 @@
   .root {
     position: fixed;
     margin-top: 0;
+  }
+
+  .logo {
+    max-width: 205px;
   }
 
   .container {

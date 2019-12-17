@@ -74,13 +74,16 @@ useStyles = createUseStyles(theme => ({
     height: '75px',
     width: '100%',
     maxWidth: '250px',
-    display: 'grid',
+    display: 'none',
     gridTemplateRows: '75px 1fr',
     gridTemplateColumns: '1fr 1fr',
     gridTemplateAreas: ` 
         'login signup'
         'modal modal'
-        `
+        `,
+    '@media (min-width: 650px)': {
+      display: 'grid'
+    }
   },
   button: {
     display: 'flex',

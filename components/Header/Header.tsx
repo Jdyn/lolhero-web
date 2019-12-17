@@ -28,7 +28,7 @@ const Header = (props: Props): JSX.Element => {
     <header className={styles.root}>
       <ProgressBar options={{ showSpinner: false }} />
       <Link href="/">
-        <div className={styles.logo}>LoL Hero</div>
+        <div className={styles.logo}>LoLHero</div>
       </Link>
       <form className={styles.searchForm} onSubmit={handleSubmit}>
         <input
