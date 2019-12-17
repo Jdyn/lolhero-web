@@ -11,7 +11,7 @@ class CustomBoost extends React.PureComponent {
 
     const { token } = cookies(ctx);
 
-    await fetchBoostPrices(ctx)(dispatch, getState);
+    // await fetchBoostPrices(ctx)(dispatch, getState);
 
     return { token };
   }
