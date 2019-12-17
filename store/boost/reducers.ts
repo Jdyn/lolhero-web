@@ -15,7 +15,7 @@ const initialState: BoostState = {
       startRank: null,
       desiredRank: null,
       desiredAmount: 5,
-      boostType: 'Duo',
+      boostType: 'Solo',
       collectionId: 1,
       collectionName: 'Division Boost',
       isExpress: false,

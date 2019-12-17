@@ -33,7 +33,7 @@ const Banner = props => {
       >
         <div className={classes.header}>
           <h1>{rank.title || ''}</h1>
-          <h3>{isStartRank ? 'Start' : 'End'}</h3>
+          <h3>{isStartRank ? 'Current' : 'Desired'}</h3>
         </div>
         {renderContent[type]}
       </div>
