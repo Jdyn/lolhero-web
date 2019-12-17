@@ -39,7 +39,7 @@ const OrderAuth = (props: Props): JSX.Element => {
   };
 
   return order ? (
-    <OrderContainer order={order} setOrder={setOrder} />
+    <OrderContainer order={order} />
   ) : (
     <div className={styles.root}>
       {fullAuth ? (
