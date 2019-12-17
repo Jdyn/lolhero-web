@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import BoostTab from './BoostsTab';
 import AddonTab from './AddonTab';
+import { flatRanks } from '../../lib/ranks';
 import TopNavigator from './TopNavigator/TopNavigator';
 import BoostDisplay from './BoostDisplay/BoostDisplay';
 import BottomNavigator from './BottomNavigator';
+
+const ranks = flatRanks();
 
 const Boost = props => {
   const {
@@ -36,6 +39,7 @@ const Boost = props => {
       <div className={classes.container}>
         <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
         <BoostDisplay
+          ranks={ranks}
           currentOrder={currentOrder}
           updateOrder={updateOrder}
           purchaseOrderRequest={purchaseOrderRequest}

@@ -1,21 +1,14 @@
-import React, { useMemo } from 'react';
-import ranks from '../../../lib/ranks';
-import addons from '../../../lib/addonContent';
-import content from '../../../lib/boostContent';
-import PropTypes from 'prop-types';
-import { formatLP } from '../../../util/helpers';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
-
-const propTypes = {
-  currentOrder: PropTypes.object.isRequired
-};
+import addons from '../../../lib/addonContent';
+import { formatLP } from '../../../util/helpers';
 
 const ReviewView = props => {
   const { currentOrder, boost } = props;
   const classes = useStyles();
 
   const formatTitle = () => {
-    const { boostType, startRank, desiredRank, lp, desiredAmount, collectionName } = currentOrder;
+    const { boostType, lp, desiredAmount, collectionName } = currentOrder;
 
     switch (collectionName) {
       case 'Division Boost':
@@ -109,7 +102,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-ReviewView.propTypes = propTypes;
 
 export default ReviewView;

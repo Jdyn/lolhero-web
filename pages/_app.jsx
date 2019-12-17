@@ -21,7 +21,7 @@ class Application extends App {
   static async getInitialProps({ Component, ctx }) {
     const { token } = cookies(ctx);
 
-    let pageProps = { token: token || null };
+    let pageProps = { token };
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);

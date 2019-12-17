@@ -17,7 +17,7 @@ const BoostView = props => {
         updateOrder({ promos: ['X', 'X'] });
       }
     }
-  }, [currentOrder.startRank]);
+  }, [currentOrder.startRank, currentOrder.lp, updateOrder]);
 
   const handlePromoChange = (type, index) => {
     const newPromos = [...currentOrder.promos];
@@ -149,6 +149,7 @@ const BoostView = props => {
                         <button
                           className={classes.promo}
                           type="button"
+                          aria-label="promotion"
                           key={type}
                           disabled={validateDisabled(type)}
                           style={{ backgroundColor: promo === type ? theme.accent : theme.primary }}

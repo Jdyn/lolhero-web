@@ -1,13 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 import content from '../../../lib/boostContent';
-
-const propTypes = {
-  rank: PropTypes.object,
-  updateOrder: PropTypes.func,
-  currentOrder: PropTypes.object
-};
 
 const BannerRankSlider = props => {
   const { rank, currentOrder, updateOrder } = props;
@@ -91,7 +84,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-BannerRankSlider.propTypes = propTypes;
 
 export default BannerRankSlider;

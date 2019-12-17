@@ -1,17 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 import BannerRankList from './BannerRankList';
 import BannerRankSlider from './BannerRankSlider';
-
-const propTypes = {
-  type: PropTypes.oneOf(['slider', 'picker', 'default']),
-  height: PropTypes.string,
-  rank: PropTypes.object,
-  isStartRank: PropTypes.bool,
-  updateOrder: PropTypes.func,
-  currentOrder: PropTypes.object
-};
 
 const Banner = props => {
   const { type, rank, updateOrder, currentOrder, isStartRank } = props;
@@ -69,7 +59,7 @@ const useStyles = createUseStyles(theme => ({
   root: props => ({
     zIndex: 5,
     height: props.height || '90%',
-    maxHeight: '500px',
+    maxHeight: '545px',
     display: 'flex',
     maxWidth: '245px',
     position: 'relative',
@@ -134,7 +124,5 @@ const useStyles = createUseStyles(theme => ({
     strokeWidth: 4
   }
 }));
-
-Banner.propTypes = propTypes;
 
 export default Banner;

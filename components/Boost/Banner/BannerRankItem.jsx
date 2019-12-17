@@ -1,39 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
-
-const propTypes = {
-  rank: PropTypes.object,
-  isStartRank: PropTypes.bool,
-  updateOrder: PropTypes.func.isRequired
-};
-
-const BannerRankItem = props => {
-  const { rank, isStartRank, updateOrder } = props;
-
-  const theme = useTheme();
-  const classes = useStyles(props);
-
-  const handleClick = () => {
-    if (isStartRank) {
-      updateOrder({ startRank: rank.rank }, { startRankTitle: rank.title });
-    } else {
-      updateOrder({ desiredRank: rank.rank }, { desiredRankTitle: rank.title });
-    }
-  };
-
-  return (
-    <button
-      className={classes.container}
-      disabled={props.isDisabled}
-      onClick={handleClick}
-      style={{
-        opacity: props.isDisabled ? '0.4' : '1',
-        borderColor: props.isSelected ? theme.white : rank.accent
-      }}
-    />
-  );
-};
 
 const useStyles = createUseStyles(theme => ({
   container: ({ rank }) => ({
@@ -53,6 +19,33 @@ const useStyles = createUseStyles(theme => ({
   })
 }));
 
-BannerRankItem.propTypes = propTypes;
+const BannerRankItem = props => {
+  const { rank, isStartRank, updateOrder, isSelected, isDisabled } = props;
+
+  const theme = useTheme();
+  const classes = useStyles(props);
+
+  const handleClick = () => {
+    if (isStartRank) {
+      updateOrder({ startRank: rank.rank }, { startRankTitle: rank.title });
+    } else {
+      updateOrder({ desiredRank: rank.rank }, { desiredRankTitle: rank.title });
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      aria-label="rank"
+      className={classes.container}
+      disabled={isDisabled}
+      onClick={handleClick}
+      style={{
+        opacity: isDisabled ? '0.4' : '1',
+        borderColor: isSelected ? theme.white : rank.accent
+      }}
+    />
+  );
+};
 
 export default BannerRankItem;

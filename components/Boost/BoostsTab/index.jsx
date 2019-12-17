@@ -1,14 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { createUseStyles } from 'react-jss';
 import Filter from '../../reusable/Filter';
 import content from '../../../lib/boostContent';
-import PropTypes from 'prop-types';
 import BoostTabItem from './BoostTabItem';
-import { createUseStyles } from 'react-jss';
-
-const propTypes = {
-  updateOrder: PropTypes.func.isRequired,
-  currentOrder: PropTypes.object.isRequired
-};
 
 const BoostTab = props => {
   const { currentOrder, updateOrder } = props;
@@ -69,7 +63,6 @@ const useStyles = createUseStyles(theme => ({
     display: 'flex',
     position: 'relative',
     boxShadow: '5px 0px 15px 0px rgba(0, 0, 0, 0.2)',
-    // borderRadius: 16,
     zIndex: 30,
     flexDirection: 'column',
     backgroundColor: theme.primary,
@@ -103,7 +96,5 @@ const useStyles = createUseStyles(theme => ({
     }
   }
 }));
-
-BoostTab.propTypes = propTypes;
 
 export default BoostTab;

@@ -1,9 +1,11 @@
-import React, { useMemo } from 'react';
-import ranks from '../../../lib/ranks';
+import React from 'react';
+import { flatRanks } from '../../../lib/ranks';
 import Banner from '../Banner';
 import styles from './styles.css';
 import { BoostOrderDetails } from '../../../store/boost/types';
 import { Request } from '../../../store/request/types';
+
+const ranks = flatRanks();
 
 interface Props {
   updateOrder: () => void;
@@ -14,11 +16,6 @@ interface Props {
 const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   const { updateOrder, currentOrder, purchaseOrderRequest } = props;
 
-  const ranksObject = useMemo(
-    () => [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {}),
-    []
-  );
-
   const renderContent = (collectionName: string): JSX.Element => {
     switch (collectionName) {
       case 'Division Boost':
@@ -27,13 +24,13 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
+              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="picker"
-              rank={currentOrder.desiredRank ? ranksObject[currentOrder.desiredRank] : {}}
+              rank={currentOrder.desiredRank ? ranks[currentOrder.desiredRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -45,13 +42,13 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
+              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="slider"
-              rank={currentOrder.startRank ? ranksObject[currentOrder.startRank] : {}}
+              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />

@@ -1,12 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
-
-const propTypes = {
-  item: PropTypes.object,
-  onClick: PropTypes.func,
-  isSelected: PropTypes.bool.isRequired
-};
 
 const BoostTabItem = props => {
   const { item, onClick, isSelected } = props;
@@ -65,7 +58,5 @@ const useStyles = createUseStyles(theme => ({
     fontSize: 16
   }
 }));
-
-BoostTabItem.propTypes = propTypes;
 
 export default BoostTabItem;
