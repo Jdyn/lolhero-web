@@ -37,7 +37,7 @@ const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <Link href="/">
-        <div className={styles.logo}>LoL Hero</div>
+        <div className={styles.logo}>LoLHero</div>
       </Link>
       <div className={styles.container}>
         <Filter

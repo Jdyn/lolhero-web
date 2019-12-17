@@ -3,7 +3,7 @@
   width: 100%;
   z-index: 50;
   display: flex;
-  position: fixed;
+  position: relative;
   height: 75px;
   justify-content: center;
   background-color: var(--tertiary-grey);

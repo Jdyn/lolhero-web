@@ -75,7 +75,7 @@ const Boost = props => {
 const useStyles = createUseStyles(theme => ({
   root: {
     position: 'relative',
-    paddingTop: '76px',
+    padding: '0',
     height: '100%',
     minHeight: '100vh',
     overflow: 'hidden',
