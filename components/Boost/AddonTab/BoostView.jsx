@@ -83,41 +83,9 @@ const BoostView = props => {
 
   return (
     <>
-      <div className={classes.wrapper}>
-        <h2>Servers</h2>
-        <p>We currently support the following servers</p>
-        {addons.details.servers.map(server => {
-          return (
-            <Toggle
-              key={server.server}
-              onClick={() =>
-                currentOrder.server !== server.server && updateOrder({ server: server.server })
-              }
-              isSelected={currentOrder.server === server.server}
-            >
-              {server.title}
-            </Toggle>
-          );
-        })}
-      </div>
-      <div className={classes.wrapper}>
-        <h2>Queues</h2>
-        <p>We currently support the following queues types</p>
-        {addons.details.queues.map(queue => (
-          <Toggle
-            key={queue.queue}
-            onClick={() =>
-              currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
-            }
-            isSelected={currentOrder.queue === queue.queue}
-          >
-            {queue.title}
-          </Toggle>
-        ))}
-      </div>
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={classes.wrapper}>
-          <h2>League Points</h2>
+          <h2>Current LP</h2>
           <p>How much LP do you have?</p>
           <div className={classes.lp}>
             {addons.details.lp.map((lp, index) => (
@@ -164,6 +132,38 @@ const BoostView = props => {
           )}
         </div>
       )}
+      <div className={classes.wrapper}>
+        <h2>Server</h2>
+        <p>We currently support the following servers</p>
+        {addons.details.servers.map(server => {
+          return (
+            <Toggle
+              key={server.server}
+              onClick={() =>
+                currentOrder.server !== server.server && updateOrder({ server: server.server })
+              }
+              isSelected={currentOrder.server === server.server}
+            >
+              {server.title}
+            </Toggle>
+          );
+        })}
+      </div>
+      <div className={classes.wrapper}>
+        <h2>Queue</h2>
+        <p>We currently support the following queues types</p>
+        {addons.details.queues.map(queue => (
+          <Toggle
+            key={queue.queue}
+            onClick={() =>
+              currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
+            }
+            isSelected={currentOrder.queue === queue.queue}
+          >
+            {queue.title}
+          </Toggle>
+        ))}
+      </div>
     </>
   );
 };

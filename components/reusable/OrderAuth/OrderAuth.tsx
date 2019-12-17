@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.css';
 import Api from '../../../services/api';
 import OrderContainer from '../../../containers/OrderContainer';
@@ -14,13 +14,13 @@ interface Props {
 const OrderAuth = (props: Props): JSX.Element => {
   const { trackingId, fullAuth } = props;
 
+  const [order, setOrder] = useState(null);
+  const [error, setError] = useState(null);
+
   const [form, setForm] = useState({
     email: '',
     trackingId: trackingId || ''
   });
-
-  const [order, setOrder] = useState(null);
-  const [error, setError] = useState(null);
 
   const fetchOrder = (): void => {
     Api.post(`/order/${form.trackingId}`, { email: form.email }).then(response => {
@@ -39,7 +39,7 @@ const OrderAuth = (props: Props): JSX.Element => {
   };
 
   return order ? (
-    <OrderContainer order={order} />
+    <OrderContainer order={order} setOrder={setOrder} />
   ) : (
     <div className={styles.root}>
       {fullAuth ? (

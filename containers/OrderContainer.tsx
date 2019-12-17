@@ -16,13 +16,7 @@ interface Props {
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { account, session, updateOrder, order, initializeOrder } = props;
-
-  // useEffect(() => {
-  //   return (): void => {
-  //     updateOrder(null);
-  //   };
-  // }, [updateOrder]);
+  const { account, session, order, initializeOrder } = props;
 
   return (
     <BoostOrder

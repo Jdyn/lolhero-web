@@ -15,7 +15,6 @@ const AddonTab = props => {
     currentStage,
     updateOrder,
     currentOrder,
-    submitOrderRequest,
     session,
     handleAuth,
     setBraintreeInstance,
@@ -42,18 +41,30 @@ const AddonTab = props => {
     3: <ReviewView currentOrder={currentOrder} boost={boost} />
   };
 
+  const validateView = () => {
+    const { payment, details } = valid;
+    const { isLoggedIn } = session;
+    const {
+      order: { paymentMethodIsSelected }
+    } = boost;
+
+    const confirmedLoggedIn = isLoggedIn && paymentMethodIsSelected;
+    const confirmedEmail = payment && details && paymentMethodIsSelected;
+
+    if (confirmedLoggedIn || confirmedEmail) {
+      return [];
+    }
+
+    return [3];
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.filter}>
         <Filter
           extended
           filters={filters}
-          untargetableIndices={
-            (valid.payment && valid.details && boost.order.paymentMethodIsSelected) ||
-            (session.isLoggedIn && boost.order.paymentMethodIsSelected)
-              ? []
-              : [3]
-          }
+          untargetableIndices={validateView()}
           selectedIndex={currentStage}
           onClick={index => setStage(index)}
         />

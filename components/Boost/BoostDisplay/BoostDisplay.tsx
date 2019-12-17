@@ -16,7 +16,9 @@ interface Props {
 const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   const { updateOrder, currentOrder, purchaseOrderRequest } = props;
 
-  const renderContent = (collectionName: string): JSX.Element => {
+  const renderContent = (): JSX.Element => {
+    const { startRank, desiredRank, collectionName } = currentOrder;
+
     switch (collectionName) {
       case 'Division Boost':
         return (
@@ -24,13 +26,13 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
+              rank={startRank ? ranks[startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="picker"
-              rank={currentOrder.desiredRank ? ranks[currentOrder.desiredRank] : {}}
+              rank={desiredRank ? ranks[desiredRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -42,13 +44,13 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             <Banner
               type="picker"
               isStartRank
-              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
+              rank={startRank ? ranks[startRank] : {}}
               currentOrder={currentOrder}
               updateOrder={updateOrder}
             />
             <Banner
               type="slider"
-              rank={currentOrder.startRank ? ranks[currentOrder.startRank] : {}}
+              rank={startRank ? ranks[startRank] : {}}
               updateOrder={updateOrder}
               currentOrder={currentOrder}
             />
@@ -59,7 +61,7 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.container}>{renderContent(currentOrder.collectionName)}</div>
+      <div className={styles.container}>{renderContent()}</div>
       {purchaseOrderRequest.errored && (
         <div className={styles.error}>
           <span>Error: {purchaseOrderRequest.error}</span>

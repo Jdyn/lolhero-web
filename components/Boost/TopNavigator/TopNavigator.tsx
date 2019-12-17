@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import styles from './styles.css';
 import Filter from '../../reusable/Filter';
@@ -6,7 +6,6 @@ import { BoostState } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 
 const filters = ['boost', 'add-ons', 'details', 'review'];
-
 interface Props {
   boost: BoostState;
   valid: { payment: boolean; details: boolean };
@@ -18,22 +17,22 @@ interface Props {
 const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
   const { boost, valid, session, setStage, currentStage } = props;
 
-  const [untargetable, setUntargetable] = useState([]);
-
-  useEffect(() => {
+  const validateView = (): number[] => {
     const { payment, details } = valid;
     const { isLoggedIn } = session;
-    const { paymentMethodIsSelected } = boost.order;
+    const {
+      order: { paymentMethodIsSelected }
+    } = boost;
 
-    if (
-      (payment && details && paymentMethodIsSelected) ||
-      (isLoggedIn && paymentMethodIsSelected)
-    ) {
-      setUntargetable([]);
-    } else {
-      setUntargetable([3]);
+    const confirmedLoggedIn = isLoggedIn && paymentMethodIsSelected;
+    const confirmedEmail = payment && details && paymentMethodIsSelected;
+
+    if (confirmedLoggedIn || confirmedEmail) {
+      return [];
     }
-  }, [valid, session, boost]);
+
+    return [3];
+  };
 
   return (
     <div className={styles.root}>
@@ -46,7 +45,7 @@ const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
           extended
           filters={filters}
           selectedIndex={currentStage}
-          untargetableIndices={untargetable}
+          untargetableIndices={validateView()}
         />
       </div>
     </div>

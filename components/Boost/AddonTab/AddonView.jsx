@@ -8,32 +8,34 @@ const AddonView = props => {
 
   const classes = useStyles();
 
-  const calculatePriceIncrease = (modifier, isSelected) => {
-    const mod = modifier.toLowerCase();
-
+  const calculatePriceIncrease = (mod, isSelected) => {
     const { price, pricing } = boost;
     const { modifiers } = pricing[currentOrder.boostType];
 
-    if (modifiers) {
-      if (typeof boost.price === 'number') {
-        if (!isSelected) {
-          const total = modifiers[mod] * price - price;
-          return `$${Math.round(total * 100) / 100}`;
-        }
-        const originalPrice = price / modifiers[mod];
-        const total = modifiers[mod] * originalPrice - originalPrice;
-        return `$${Math.round(total * 100) / 100}`;
-      }
-    }
+    const cost = Math.round((modifiers[mod] - 1) * 100);
 
-    return '$0';
+    return `${cost}%`;
+
+    // if (modifiers) {
+    //   if (typeof boost.price === 'number') {
+    //     if (!isSelected) {
+    //       const total = modifiers[mod] * price - price;
+    //       return `$${Math.round(total * 100) / 100}`;
+    //     }
+    //     const originalPrice = price / modifiers[mod];
+    //     const total = modifiers[mod] * originalPrice - originalPrice;
+    //     return `$${Math.round(total * 100) / 100}`;
+    //   }
+    // }
+
+    // return '$0';
   };
 
   return options.addons.extras.map(extra => (
     <div className={classes.wrapper} key={extra.title}>
       <h2>{extra.title}</h2>
+      <span>{calculatePriceIncrease(extra.tag, currentOrder[extra.type])}</span>
       <p>{extra.description}</p>
-      {/* <span>{calculatePriceIncrease(extra.title, currentOrder[extra.type])}</span> */}
       <Toggle
         isSelected={currentOrder[extra.type]}
         onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}

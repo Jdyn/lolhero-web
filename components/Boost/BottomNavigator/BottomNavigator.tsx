@@ -140,9 +140,9 @@ const BottomNavigator = (props: Props): JSX.Element => {
   };
 
   const navItems = {
-    LP: formatLP(currentOrder.lp) || '-',
     Queue: currentOrder.queue,
     Server: currentOrder.server,
+    LP: formatLP(currentOrder.lp) || '-',
     Total: `$${boost.price || 0}`
   };
 

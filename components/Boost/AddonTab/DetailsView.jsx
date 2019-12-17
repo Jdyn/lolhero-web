@@ -66,11 +66,11 @@ const DetailsView = props => {
           </>
         )}
       </div>
-      <div className={classes.wrapper}>
+      {/* <div className={classes.wrapper}>
         <h3>Promotion Code</h3>
         <input className={classes.input} />
         <Button margin="10px 0 0 0">check</Button>
-      </div>
+      </div> */}
       <div className={classes.wrapper}>
         <div id="dropin-container" />
       </div>

@@ -1,9 +1,7 @@
 import React from 'react';
-import { flatRanks } from '../../../lib/ranks';
+import ranks from '../../../lib/ranks';
 import BannerRankItem from './BannerRankItem';
 import { createUseStyles } from 'react-jss';
-
-const ranks = flatRanks();
 
 const BannerRankList = props => {
   const { rank, isStartRank, currentOrder, updateOrder } = props;
