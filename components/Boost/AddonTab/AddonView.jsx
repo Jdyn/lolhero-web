@@ -9,13 +9,10 @@ const AddonView = props => {
   const classes = useStyles();
 
   const calculatePriceIncrease = (mod, isSelected) => {
-    const { price, pricing } = boost;
-    const { modifiers } = pricing[currentOrder.boostType];
-
-    const cost = Math.round((modifiers[mod] - 1) * 100);
-
-    return `${cost}%`;
-
+    // const { price, pricing } = boost;
+    // const { modifiers } = pricing[currentOrder.boostType];
+    // const cost = Math.round((modifiers[mod] - 1) * 100);
+    // return `${cost}%`;
     // if (modifiers) {
     //   if (typeof boost.price === 'number') {
     //     if (!isSelected) {
@@ -27,7 +24,6 @@ const AddonView = props => {
     //     return `$${Math.round(total * 100) / 100}`;
     //   }
     // }
-
     // return '$0';
   };
 
