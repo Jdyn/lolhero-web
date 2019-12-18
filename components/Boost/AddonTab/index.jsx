@@ -31,7 +31,7 @@ const AddonTab = props => {
       .then(instance => {
         setBraintreeInstance(instance);
       })
-      .catch(error => {});
+      .catch();
   }, [setBraintreeInstance]);
 
   const views = {

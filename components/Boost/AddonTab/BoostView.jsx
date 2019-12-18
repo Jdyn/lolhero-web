@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import addons from '../../../lib/addonContent';
+import content from '../../../lib/addonContent';
 import Toggle from '../../reusable/Toggle';
 
 const BoostView = props => {
@@ -88,7 +88,7 @@ const BoostView = props => {
           <h2>Current LP</h2>
           <p>How much LP do you have?</p>
           <div className={classes.lp}>
-            {addons.details.lp.map((lp, index) => (
+            {content.boosts.lp.map((lp, index) => (
               <Toggle
                 key={index}
                 onClick={() => handleLpChange(lp.lp)}
@@ -135,7 +135,7 @@ const BoostView = props => {
       <div className={classes.wrapper}>
         <h2>Server</h2>
         <p>We currently support the following servers</p>
-        {addons.details.servers.map(server => {
+        {content.boosts.servers.map(server => {
           return (
             <Toggle
               key={server.server}
@@ -152,7 +152,7 @@ const BoostView = props => {
       <div className={classes.wrapper}>
         <h2>Queue</h2>
         <p>We currently support the following queues types</p>
-        {addons.details.queues.map(queue => (
+        {content.boosts.queues.map(queue => (
           <Toggle
             key={queue.queue}
             onClick={() =>

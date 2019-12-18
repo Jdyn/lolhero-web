@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import addons from '../../../lib/addonContent';
+import content from '../../../lib/addonContent';
 import { formatLP } from '../../../util/helpers';
 
 const ReviewView = props => {
@@ -51,7 +51,7 @@ const ReviewView = props => {
           </b>
         </span>
         <h3>Add-Ons</h3>
-        {addons.addons.extras.map((extra, index) => (
+        {content.addons.extras.map((extra, index) => (
           <span key={index}>
             {extra.title}: <b>{currentOrder[extra.type] ? 'Yes' : 'No'}</b>
           </span>

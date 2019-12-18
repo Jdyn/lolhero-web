@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import options from '../../../lib/addonContent';
+import content from '../../../lib/addonContent';
 import Toggle from '../../reusable/Toggle';
 
 const AddonView = props => {
@@ -27,7 +27,7 @@ const AddonView = props => {
     // return '$0';
   };
 
-  return options.addons.extras.map(extra => (
+  return content.addons.extras.map(extra => (
     <div className={classes.wrapper} key={extra.title}>
       <h2>{extra.title}</h2>
       <span>{calculatePriceIncrease(extra.tag, currentOrder[extra.type])}</span>
