@@ -36,7 +36,7 @@ const AddonView = props => {
         isSelected={currentOrder[extra.type]}
         onClick={() => updateOrder({ [extra.type]: !currentOrder[extra.type] })}
       >
-        {currentOrder[extra.type] ? 'Enabled' : 'Disabled'}
+        {currentOrder[extra.type] ? 'Added' : 'Add'}
       </Toggle>
     </div>
   ));

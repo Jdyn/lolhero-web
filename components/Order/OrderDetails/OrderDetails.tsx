@@ -132,11 +132,11 @@ const OrderEdit = (props: Props): JSX.Element => {
         </div>
         <div className={styles.content}>
           <span>Boost Type</span>
-          <h3>{order.details.boostType} Boost</h3>
+          <h3>{order.details.boostType}</h3>
         </div>
         <div className={styles.content}>
           <span>Queue Type</span>
-          <h3>{order.details.queue} Queue</h3>
+          <h3>{order.details.queue}</h3>
         </div>
         {order.details.promos && (
           <div className={styles.promotions}>
