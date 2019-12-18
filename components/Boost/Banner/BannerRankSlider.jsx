@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import content from '../../../lib/boostContent';
+import content from '../../../lib/boosts';
 
 const BannerRankSlider = props => {
   const { rank, currentOrder, updateOrder } = props;

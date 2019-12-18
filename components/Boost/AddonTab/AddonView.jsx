@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import content from '../../../lib/addonContent';
+import content from '../../../lib/content';
 import Toggle from '../../reusable/Toggle';
 
 const AddonView = props => {

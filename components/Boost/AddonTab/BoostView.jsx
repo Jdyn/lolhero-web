@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import content from '../../../lib/addonContent';
+import content from '../../../lib/content';
 import Toggle from '../../reusable/Toggle';
 
 const BoostView = props => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import addons from '../../../lib/addonContent';
+import addons from '../../../lib/content';
 import Banner from '../../Boost/Banner';
 import { flatRanks } from '../../../lib/ranks';
 import { Order } from '../../../store/account/types';

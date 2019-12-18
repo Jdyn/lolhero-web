@@ -4,7 +4,7 @@
 }
 
 .container {
-  padding: 0px 25px;
+  padding: 0px 20px;
 }
 
 .wrapper {
@@ -12,11 +12,23 @@
   max-width: 1075px;
   margin: 0px auto 30px auto;
   gap: 20px;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: min-content 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content min-content min-content min-content;
   grid-template-areas:
-    'details status  status'
-    'details display chat';
+    'status'
+    'display'
+    'details'
+    'chat';
+}
+
+@media (min-width: 640px) {
+  .wrapper {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-template-areas:
+      'details status  status'
+      'details display chat';
+  }
 }
 
 .error {

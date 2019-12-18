@@ -1,25 +1,31 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 25px;
-    border-radius: 16px;
-    background-color: var(--quartinary-grey);
-    box-shadow: 0 0 15px 0 rgba(0,0,0,.2);
-    color: var(--white);
-    grid-area: display;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 25px;
+  border-radius: 16px;
+  background-color: var(--quartinary-grey);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  grid-area: display;
 }
 
 .root > h3 {
-    margin: 0px 0px 30px 0px
+  margin: 0px 0px 30px 0px;
 }
 
 .container {
-    display: flex;
-    flex-direction: row; 
-    flex: 1;
-    /* min-height: 450px; */
-    justify-content: center;
-    width: 100%;
-    margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* min-height: 450px; */
+  justify-content: center;
+  width: 100%;
+  margin: 0px auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    flex-direction: row;
+  }
 }

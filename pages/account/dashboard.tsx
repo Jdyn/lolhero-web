@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardContainer from '../../containers/DashboardContainer';
 import Layout from '../../components/reusable/Layout';
-import withAuth from '../../lib/withAuth';
+import withAuth from '../../util/withAuth';
 import { fetchAccountOrderList } from '../../store/account/actions';
 
 class Dashboard extends React.PureComponent<{}> {

@@ -5,7 +5,7 @@
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   width: 100%;
   padding: 20px;
-  flex-direction: row;
+  flex-direction: column;
   background-color: var(--quartinary-grey);
   border-radius: 16px;
 }
@@ -26,7 +26,7 @@
 }
 
 @media (min-width: 650px) {
-  .container {
+  .root {
     flex-direction: row;
   }
 
