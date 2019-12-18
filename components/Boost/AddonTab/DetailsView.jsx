@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import Button from '../../reusable/Button';
-import Form from '../../reusable/Form';
+import Form from '../../reusable/Form/Form';
 
 const templates = {
   signup: {
     type: 'signup',
     title: 'New Account',
-    fields: ['Email', 'Username', 'Password'],
+    fields: ['email', 'username', 'password'],
     submit: 'sign up'
   },
   login: {

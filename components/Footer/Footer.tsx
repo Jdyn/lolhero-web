@@ -28,6 +28,14 @@ const Footer = (): JSX.Element => {
               <li>Create Order</li>
             </Link>
           </ul>
+          <ul>
+            <Link href="/login">
+              <li>Log In</li>
+            </Link>
+            <Link href="/signup">
+              <li>Sign Up</li>
+            </Link>
+          </ul>
         </div>
       </div>
     </footer>

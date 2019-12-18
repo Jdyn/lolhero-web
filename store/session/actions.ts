@@ -18,10 +18,10 @@ const setLogin = (user: User): SessionActionTypes => ({
   user
 });
 
-const login = (form: object): ((dispatch: Function, getState: () => AppState) => void) => (
-  dispatch,
-  getState
-): void => {
+const login = (
+  form: object,
+  redirect: boolean
+): ((dispatch: Function, getState: () => AppState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -38,6 +38,9 @@ const login = (form: object): ((dispatch: Function, getState: () => AppState) =>
         setCurrentSession(user);
         dispatch(setLogin(user));
         dispatch(setRequest(false, requestType));
+        if (redirect) {
+          Router.push('/');
+        }
       } else {
         const error = 'An Error has occurred logging in. Please try again.';
         const message = response.error || error;
@@ -87,10 +90,10 @@ const setSignup = (user: User): SessionActionTypes => ({
   user
 });
 
-const signup = (form: object): ((dispatch: Function, getState: () => AppState) => void) => (
-  dispatch,
-  getState
-): void => {
+const signup = (
+  form: object,
+  redirect: boolean
+): ((dispatch: Function, getState: () => AppState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -100,15 +103,20 @@ const signup = (form: object): ((dispatch: Function, getState: () => AppState) =
 
   Api.post('/users', form)
     .then((response): void => {
-      if (response.ok) {
-        const { user } = response.result;
+      const { ok, result } = response;
+
+      if (ok) {
+        const { user } = result;
         setCurrentSession(user);
         dispatch(setSignup(user));
         dispatch(setRequest(false, requestType));
+        if (redirect) {
+          Router.push('/');
+        }
       } else {
         const { errors } = response;
 
-        // Fix this
+        // Fix this... This send an array[] of errors
         dispatch(setRequest(false, requestType, errors));
       }
     })
@@ -117,18 +125,20 @@ const signup = (form: object): ((dispatch: Function, getState: () => AppState) =
     });
 };
 
-export const handleAuth = (type: string, form: object): ((dispatch: Function) => void) => (
-  dispatch
-): void => {
+export const handleAuth = (
+  type: 'login' | 'logout' | 'signup',
+  form: object,
+  redirect?: boolean
+): ((dispatch: Function) => void) => (dispatch): void => {
   switch (type) {
     case 'login':
-      dispatch(login(form));
+      dispatch(login(form, redirect));
       break;
     case 'logout':
       dispatch(logout());
       break;
     case 'signup':
-      dispatch(signup(form));
+      dispatch(signup(form, redirect));
       break;
     default:
       break;
