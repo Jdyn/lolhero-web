@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Form from '../../../reusable/Form/Form';
 import { Request } from '../../../../store/request/types';
 import styles from './styles.css';
@@ -16,20 +17,26 @@ const templates = {
     fields: ['username', 'password'],
     submit: 'log in'
   },
-  profile: {
-    type: 'login',
-    title: 'Existing Account',
+  menu: {
+    type: 'menu',
+    title: 'Menu',
     fields: [],
-    submit: 'log in'
+    items: [
+      { title: 'Log In', link: '/login' },
+      { title: 'Sign Up', link: '/signup' }
+    ],
+    submit: 'ok'
   }
 };
+
+export type Types = 'login' | 'signup' | 'profile' | 'menu' | '';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;
   modalRef: React.RefObject<HTMLDivElement>;
   isOpen: boolean;
-  type: 'login' | 'signup' | '' | 'profile';
-  updateModal: (newType: 'login' | 'signup' | '' | 'profile') => void;
+  type: Types;
+  updateModal: (newType: Types) => void;
   sessionRequest: Request;
 }
 
@@ -38,17 +45,14 @@ const AuthMenu = (props: Props): JSX.Element => {
 
   return (
     <>
-      <div className={styles.mobileContainer} ref={modalRef} onClick={() => updateModal('login')}>
-        <button type="button" className={styles.menuWrapper}>
+      <div className={styles.container} ref={modalRef}>
+        <button
+          type="button"
+          className={styles.menuWrapper}
+          onClick={(): void => updateModal('menu')}
+        >
           <div className={styles.menu} />
         </button>
-        {isOpen ? (
-          <div className={styles.modal}>
-            {sessionRequest.errored && <span>{sessionRequest.error}</span>}
-          </div>
-        ) : null}
-      </div>
-      <div className={styles.container} ref={modalRef}>
         <button
           type="button"
           className={styles.button}
@@ -66,15 +70,31 @@ const AuthMenu = (props: Props): JSX.Element => {
           log in
         </button>
         {isOpen ? (
-          <div className={styles.modal}>
-            {type && (
-              <Form
-                template={templates[type]}
-                onSubmit={(formType, form): void => handleAuth(formType, form)}
-              />
-            )}
-            {sessionRequest.errored && <span>{sessionRequest.error}</span>}
-          </div>
+          <>
+            <div className={styles.modal}>
+              <div className={styles.form}>
+                {type === 'menu' ? (
+                  <>
+                    <ul className={styles.modalList}>
+                      {templates[type].items.map(item => (
+                        <Link key={item.title} href={item.link}>
+                          <li className={styles.modalListItem}>{item.title}</li>
+                        </Link>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <Form
+                      template={templates[type]}
+                      onSubmit={(formType, form): void => handleAuth(formType, form)}
+                    />
+                    {sessionRequest.errored && <span>{sessionRequest.error}</span>}
+                  </>
+                )}
+              </div>
+            </div>
+          </>
         ) : null}
       </div>
     </>

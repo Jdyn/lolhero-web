@@ -11,28 +11,25 @@ interface Props {
   sessionRequest: Request;
 }
 
+export type Types = 'login' | 'signup' | 'profile' | 'menu' | '';
+
 const AuthDisplay: React.FC<Props> = (props: Props) => {
   const { handleAuth, session, sessionRequest } = props;
 
-  const [type, setType] = useState<'login' | 'signup' | '' | 'profile'>('');
+  const [type, setType] = useState<Types>('');
   const [isOpen, setOpen] = useState(false);
 
   const modalRef: React.RefObject<HTMLDivElement> = useRef();
 
-  const updateModal = (newType: 'login' | 'signup' | '' | 'profile'): void => {
-    console.log(isOpen);
+  const updateModal = (newType: Types): void => {
     if (isOpen) {
-      console.log('already open');
       if (newType === type) {
-        console.log('new type is type');
         setOpen(false);
         setType('');
       } else {
-        console.log('did set new');
         setType(newType);
       }
     } else {
-      console.log('is now open');
       setOpen(true);
       setType(newType);
     }

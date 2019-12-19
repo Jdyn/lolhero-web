@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import addons from '../../../lib/content';
-import Banner from '../../Boost/Banner';
-import { flatRanks } from '../../../lib/ranks';
 import { Order } from '../../../store/account/types';
 import styles from './styles.css';
 import Button from '../../reusable/Button';
-
-const ranks = flatRanks();
 
 const fields = [
   { type: 'text', title: 'Summoner Name', text: 'summonerName' },
@@ -143,7 +139,9 @@ const OrderEdit = (props: Props): JSX.Element => {
             <span>Promotions</span>
             <div>
               {order.details.promos.map((promo: string) => (
-                <div className={styles.promo}>{promo}</div>
+                <div key={promo} className={styles.promo}>
+                  {promo}
+                </div>
               ))}
             </div>
           </div>

@@ -134,7 +134,7 @@ const useStyles = createUseStyles(theme => ({
     height: '100vh',
     flexDirection: 'column',
     zIndex: 50,
-    padding: '25px',
+    padding: '15px',
     backgroundColor: theme.primary,
     '@media (min-width: 650px)': {
       display: 'flex',
