@@ -8,7 +8,7 @@ import styles from './styles.css';
 import ProgressBar from '../reusable/ProgressBar';
 
 interface Props {
-  handleAuth: () => void;
+  handleAuth: (type: string, form: object) => void;
   session: SessionState;
   sessionRequest: Request;
 }

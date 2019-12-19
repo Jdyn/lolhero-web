@@ -23,13 +23,12 @@
 
 @media (min-width: 640px) {
   .wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content min-content min-content;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
-      'status'
-      'display'
-      'details'
-      'chat';
+      'details status'
+      'details display'
+      'chat chat'
   }
 }
 

@@ -10,7 +10,7 @@ class Dashboard extends React.PureComponent<{}> {
       store: { dispatch, getState }
     } = ctx;
 
-    // await fetchAccountOrderList(ctx)(dispatch, getState);
+    await fetchAccountOrderList(ctx)(dispatch, getState);
 
     return {};
   }
