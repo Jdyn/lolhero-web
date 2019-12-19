@@ -60,12 +60,13 @@ const useStyles = createUseStyles(theme => ({
     // display: 'flex',
     position: 'absolute',
     height: '100%',
-    maxWidth: '250px',
+    maxWidth: '200px',
     right: 0,
+    margin: '0px 0px 0px 25px',
     width: '64px',
     '@media (min-width: 650px)': {
       position: 'relative',
-      flex: 1,
+      flex: 1.5,
       display: 'grid',
       gridTemplateRows: '75px 1fr',
       gridTemplateColumns: '1fr',
@@ -92,7 +93,6 @@ const useStyles = createUseStyles(theme => ({
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
       flexGrow: 1,
-      margin: '0px 25px',
       maxWidth: '250px',
       width: 'auto'
     },
@@ -154,7 +154,7 @@ const useStyles = createUseStyles(theme => ({
     flexDirection: 'column',
     backgroundColor: theme.tertiary,
     boxShadow: '0px 2px 6px 0px rgba(0,0,0,.2)',
-    padding: '24px',
+    padding: '25px',
     margin: 0,
     borderRadius: 12,
     listStyle: 'none',

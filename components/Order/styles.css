@@ -23,6 +23,18 @@
 
 @media (min-width: 640px) {
   .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content min-content;
+    grid-template-areas:
+      'status'
+      'display'
+      'details'
+      'chat';
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: min-content 1fr;
     grid-template-areas:
