@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import AuthProfile from '../AuthProfile';
-import AuthMenu from '../AuthMenu';
+import AuthMenu from '../AuthMenu/AuthMenu';
 import styles from './styles.css';
 import { Request } from '../../../../store/request/types';
 
@@ -14,20 +14,25 @@ interface Props {
 const AuthDisplay: React.FC<Props> = (props: Props) => {
   const { handleAuth, session, sessionRequest } = props;
 
-  const [type, setType] = useState('');
+  const [type, setType] = useState<'login' | 'signup' | '' | 'profile'>('');
   const [isOpen, setOpen] = useState(false);
 
-  const modalRef: React.MutableRefObject<HTMLElement | undefined> = useRef();
+  const modalRef: React.RefObject<HTMLDivElement> = useRef();
 
-  const updateModal = (newType: string): void => {
+  const updateModal = (newType: 'login' | 'signup' | '' | 'profile'): void => {
+    console.log(isOpen);
     if (isOpen) {
+      console.log('already open');
       if (newType === type) {
+        console.log('new type is type');
         setOpen(false);
         setType('');
       } else {
+        console.log('did set new');
         setType(newType);
       }
     } else {
+      console.log('is now open');
       setOpen(true);
       setType(newType);
     }
@@ -46,6 +51,24 @@ const AuthDisplay: React.FC<Props> = (props: Props) => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+
+    if (typeof window !== 'undefined') {
+      if (isOpen) {
+        if (window.innerWidth < 650) {
+          document.body.style.position = 'fixed';
+          if (typeof window !== 'undefined') {
+            document.body.style.top = `-${window.scrollY}px`;
+          }
+        }
+      } else {
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        if (typeof window !== 'undefined') {
+          window.scrollTo(0, parseInt(scrollY || '0', 0) * -1);
+        }
+      }
+    }
 
     return (): void => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -80,7 +103,6 @@ const AuthDisplay: React.FC<Props> = (props: Props) => {
             modalRef={modalRef}
             isOpen={isOpen}
             updateModal={updateModal}
-            session={session}
             sessionRequest={sessionRequest}
             type={type}
           />

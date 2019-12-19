@@ -42,6 +42,7 @@
 }
 
 .list > ul > li {
+  color: var(--secondary-white);
   margin: 10px 0px;
   cursor: pointer;
 }

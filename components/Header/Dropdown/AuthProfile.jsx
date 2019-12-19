@@ -57,10 +57,14 @@ const AuthProfile = props => {
 
 const useStyles = createUseStyles(theme => ({
   root: {
-    position: 'relative',
+    // display: 'flex',
+    position: 'absolute',
     height: '100%',
     maxWidth: '250px',
+    right: 0,
+    width: '64px',
     '@media (min-width: 650px)': {
+      position: 'relative',
       flex: 1,
       display: 'grid',
       gridTemplateRows: '75px 1fr',
@@ -75,16 +79,22 @@ const useStyles = createUseStyles(theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
     cursor: 'pointer',
     height: '75px',
     maxWidth: '250px',
-    margin: '0px 25px',
+    width: '100%',
+    margin: '0',
+    padding: 0,
     borderBottom: '2px solid #999',
     '@media (min-width: 650px)': {
-      flexGrow: 1
+      flexGrow: 1,
+      margin: '0px 25px',
+      maxWidth: '250px',
+      width: 'auto'
     },
     '&:hover': {
       color: theme.accent,
@@ -123,8 +133,7 @@ const useStyles = createUseStyles(theme => ({
     width: '100vw',
     height: '100vh',
     flexDirection: 'column',
-    // overflow: "hidden",
-    zIndex: 1000,
+    zIndex: 50,
     padding: '25px',
     backgroundColor: theme.primary,
     '@media (min-width: 650px)': {

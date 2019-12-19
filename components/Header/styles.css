@@ -18,7 +18,7 @@
   align-items: center;
   height: 75px;
   justify-content: center;
-  padding: 0px 45px;
+  margin: 0px 64px;
   cursor: pointer;
   width: 100%;
   transition-duration: 0.2s;
@@ -66,5 +66,6 @@
 
   .logo {
     max-width: 205px;
+    margin: 0px 45px;
   }
 }
