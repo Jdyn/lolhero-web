@@ -2,6 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './styles.css';
 
+const boostOptions = {
+  solo: [
+    { title: 'Solo Division', url: '/boost?type=solo-divisions' },
+    { title: 'Solo Net Wins', url: '/boost?type=solo-net-wins' },
+    { title: 'Solo Net Games', url: '/boost?type=solo-net-games' },
+    { title: 'Solo Placements', url: '/boost?type=solo-placements' }
+  ],
+  duo: [
+    { title: 'Duo Division', url: '/boost?type=duo-divisions' },
+    { title: 'Duo Net Wins', url: '/boost?type=duo-net-wins' },
+    { title: 'Duo Net Games', url: '/boost?type=duo-net-games' },
+    { title: 'Duo Placements', url: '/boost?type=duo-placements' }
+  ]
+};
+
 const Footer = (): JSX.Element => {
   return (
     <footer className={styles.root}>
@@ -14,6 +29,20 @@ const Footer = (): JSX.Element => {
           <span>© 2019 lolhero.gg | All Rights Reserved</span>
         </div>
         <div className={styles.list}>
+          <ul>
+            {boostOptions.solo.map(item => (
+              <Link href={`${item.url}`} key={item.title}>
+                <li>{item.title}</li>
+              </Link>
+            ))}
+          </ul>
+          <ul>
+            {boostOptions.duo.map(item => (
+              <Link href={`${item.url}`} key={item.title}>
+                <li>{item.title}</li>
+              </Link>
+            ))}
+          </ul>
           <ul>
             <li>F.A.Q</li>
             <li>Privacy Policy</li>
@@ -37,6 +66,7 @@ const Footer = (): JSX.Element => {
             </Link>
           </ul>
         </div>
+        <div />
       </div>
     </footer>
   );

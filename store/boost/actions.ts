@@ -95,7 +95,7 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
 
   const order = { ...getState().boost.order.details, ...detailsUpdate };
   const pricing = getState().boost.pricing[order.boostType];
-  const price = PriceCalculator(order, pricing);
+  const price = 0; // PriceCalculator(order, pricing);
 
   dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
 };

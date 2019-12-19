@@ -46,6 +46,7 @@ const BoostTab = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <Filter
         filters={contentKeys}
+        selectedIndex={currentType === 'Solo' ? 0 : 1}
         onClick={(index: number): void => setType(contentKeys[index])}
       />
       <div className={styles.notice}>
@@ -59,6 +60,7 @@ const BoostTab = (props: Props): JSX.Element => {
             <button
               type="button"
               aria-label="boost-type"
+              key={item.id}
               className={`${styles.button} ${isSelected ? styles.selected : ''}`}
               onClick={(): void => handleOrderUpdate(index)}
             >
