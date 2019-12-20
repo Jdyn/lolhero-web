@@ -60,7 +60,7 @@ const useStyles = createUseStyles(theme => ({
     // display: 'flex',
     position: 'absolute',
     height: '100%',
-    maxWidth: '200px',
+    maxWidth: '220px',
     right: 0,
     margin: '0px 0px 0px 25px',
     width: '64px',

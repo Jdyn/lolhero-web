@@ -7,18 +7,19 @@ import Button from '../Button';
 interface Props {
   fullAuth?: boolean;
   trackingId: string | string[];
+  email?: string;
   errorMessage?: string;
   onSubmit: (trackingId: string | string[], email: string) => void;
 }
 
 const OrderAuth = (props: Props): JSX.Element => {
-  const { trackingId, fullAuth } = props;
+  const { trackingId, fullAuth, email } = props;
 
   const [order, setOrder] = useState(null);
   const [error, setError] = useState(null);
 
   const [form, setForm] = useState({
-    email: '',
+    email: email || '',
     trackingId: trackingId || ''
   });
 

@@ -43,7 +43,7 @@ const Home = (): JSX.Element => {
     <div className={styles.root}>
       <div className={styles.container}>
         <h1>LoL Hero</h1>
-        <h2>LoL Coaching Services</h2>
+        <h2>League Of Legends</h2>
         <form className={styles.form} onSubmit={handleOrderSearch}>
           <input
             value={form.trackingId}

@@ -5,11 +5,11 @@ import OrderAuth from '../../components/reusable/OrderAuth';
 
 const TrackOrder = props => {
   const router = useRouter();
-  const { trackingId } = router.query;
+  const { trackingId, email } = router.query;
 
   return (
     <Layout>
-      <OrderAuth trackingId={trackingId} />
+      <OrderAuth trackingId={trackingId} email={email} />
     </Layout>
   );
 };

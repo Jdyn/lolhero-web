@@ -28,6 +28,10 @@
   padding: 15px;
 }
 
+.container:nth-child(4) {
+  border-right: none;
+}
+
 .container > h3 {
   font-size: 19px;
   margin: 0;
@@ -70,5 +74,9 @@
     display: flex;
     flex: 1.2;
     justify-content: center;
+  }
+
+  .container:nth-child(4) {
+    border-right: 1px solid var(--grey);
   }
 }
