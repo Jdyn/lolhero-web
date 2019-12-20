@@ -44,7 +44,7 @@
   margin-bottom: 10px;
 }
 
-.promoSelection {
+.promoSection {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -52,7 +52,7 @@
   margin: 0 35px;
 }
 
-.promoSelection > span {
+.promoSection > span {
   margin: 5px;
   width: 45px;
   text-align: center;
@@ -70,6 +70,7 @@
   padding: 0;
   justify-content: center;
   font-weight: 700;
+  background-color: var(--primary-grey);
   transition-duration: 0.2s;
 }
 
@@ -78,5 +79,5 @@
 }
 
 .selected {
-  color: var(--accent);
+  background-color: var(--accent);
 }

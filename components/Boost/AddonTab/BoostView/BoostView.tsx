@@ -118,7 +118,7 @@ const BoostView = (props: Props): JSX.Element => {
                     <div key={rowIndex} className={styles.promoSection}>
                       {['X', 'W', 'L'].map(type => (
                         <button
-                          className={`${styles.promo} ${promo === type ? styles.selected : ''}`}
+                          className={`${styles.promo} ${promo === type && styles.selected}`}
                           type="button"
                           aria-label="promotion"
                           key={type}
