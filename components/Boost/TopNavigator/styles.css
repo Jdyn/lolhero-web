@@ -26,7 +26,7 @@
   width: 100%;
   cursor: pointer;
   transition-duration: 0.15s;
-  border-bottom: 2px solid var(--tertiary-grey);
+  border-bottom: 2px solid var(--border);
   color: var(--secondary-white);
   font-size: 28px;
 }

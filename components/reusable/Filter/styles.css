@@ -27,8 +27,7 @@
   border: none;
   background-color: transparent;
   color: var(--secondary-white);
-  border-bottom: 2px solid;
-  border-color: var(--tertiary-grey);
+  border-bottom: 2px solid var(--border);
   padding-bottom: 20px;
   transition-duration: 0.25s;
   pointer-events: all;
@@ -46,6 +45,5 @@
 
 .disabled {
   pointer-events: none;
-  color: var(--grey);
-  border-color: var(--tertiary-grey);
+  color: var(--primary-grey);
 }

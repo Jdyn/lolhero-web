@@ -6,8 +6,8 @@
   z-index: 30;
   flex-direction: column;
   background-color: var(--primary-grey);
-  border-right: 2px solid var(--tertiary-grey);
-  border-left: 2px solid var(--tertiary-grey);
+  border-right: 2px solid var(--border);
+  /* border-left: 2px solid var(--tertiary-grey); */
 }
 
 .container {
@@ -36,7 +36,7 @@
 .button {
   width: 100%;
   cursor: pointer;
-  margin: 0px 10px 10px 10px;
+  margin: 0px 15px 10px 15px;
   display: flex;
   padding: 25px 25px;
   border-radius: 8px;

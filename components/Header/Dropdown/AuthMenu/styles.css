@@ -173,7 +173,7 @@
     text-transform: uppercase;
     color: var(--secondary-white);
     background-color: var(--secondary-grey);
-    border-bottom: 2px solid var(--tertiary-grey);
+    border-bottom: 2px solid var(--border);
     transition-duration: 0.2s;
   }
 }

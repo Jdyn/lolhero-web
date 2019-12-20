@@ -7,8 +7,8 @@
   flex-direction: column;
   background-color: var(--primary-grey);
   color: var(--secondary-white);
-  border-left: 2px solid var(--tertiary-grey);
-  border-right: 2px solid var(--tertiary-grey);
+  border-left: 2px solid var(--border);
+  /* border-right: 2px solid var(--grey); */
 }
 
 .filter {

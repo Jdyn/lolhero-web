@@ -23,6 +23,7 @@
 }
 
 :root {
+  --border: #6f7071;
   --primary-grey: #303030;
   --secondary-grey: #252525;
   --tertiary-grey: #202020;
