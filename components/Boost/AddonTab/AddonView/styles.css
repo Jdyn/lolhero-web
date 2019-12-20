@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  background-color: var(--field);
+  background-color: var(--secondary-grey);
   border-radius: 8px;
   padding: 25px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);

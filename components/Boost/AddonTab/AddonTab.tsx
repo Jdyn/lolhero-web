@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import dropin from 'braintree-web-drop-in';
-import Filter from '../../reusable/Filter';
+import Filter from '../../reusable/Filter/Filter';
 import AddonView from './AddonView';
 import BoostView from './BoostView';
 import ReviewView from './ReviewView/ReviewView';

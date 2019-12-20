@@ -23,15 +23,13 @@
 }
 
 :root {
+  --primary-grey: #303030;
+  --secondary-grey: #252525;
+  --tertiary-grey: #202020;
+  --quartinary-grey: #151515;
   --white: #fafafa;
   --secondary-white: #d7dadc;
-  --grey: #999; 
-  --primary-grey: #343536;
-  --quartinary-grey: #252525;
-  --field: #272729;
-  --tertiary-grey: #1a1a1b;
-  --secondary-grey: #323232;
-  --highlight: #17232d;
+  --grey: #999;
   --accent: #3273dc;
   --green: #0f9d58;
   --red: #ef5350;

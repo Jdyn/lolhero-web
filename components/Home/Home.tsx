@@ -50,7 +50,7 @@ const Home = (): JSX.Element => {
           <input
             value={form.trackingId}
             onChange={(event): void => setForm({ trackingId: event.target.value })}
-            placeholder="Enter tracking ID"
+            placeholder="Enter Tracking ID"
             aria-label="search"
             className={styles.search}
           />

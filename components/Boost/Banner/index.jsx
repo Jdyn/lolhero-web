@@ -27,8 +27,8 @@ const Banner = props => {
       <div
         className={classes.container}
         style={{
-          backgroundColor: rank.color || theme.field,
-          borderColor: `${rank.accent || theme.tertiary}`
+          backgroundColor: rank.color || theme.primary,
+          borderColor: `${rank.accent || theme.secondary}`
         }}
       >
         <div className={classes.header}>
@@ -44,8 +44,8 @@ const Banner = props => {
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
           style={{
-            fill: rank.color || theme.field,
-            stroke: rank.accent || theme.tertiary
+            fill: rank.color || theme.primary,
+            stroke: rank.accent || theme.secondary
           }}
         >
           <path d="M0 0 L50 100 L100 0 Z" />

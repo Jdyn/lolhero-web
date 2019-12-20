@@ -44,14 +44,14 @@
   width: 100%;
   max-width: 450px;
   border-radius: 8px;
-  background-color: var(--quartinary-grey);
+  background-color: var(--tertiary-grey);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   padding: 10px 16px;
   min-width: 0;
 }
 
 .formSubmit {
-  background-color: var(--quartinary-grey);
+  background-color: var(--tertiary-grey);
   border: none;
   outline: none;
   border-radius: 50%;

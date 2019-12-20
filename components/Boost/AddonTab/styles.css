@@ -5,9 +5,10 @@
   position: relative;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.4);
   flex-direction: column;
-  background-color: var(--tertiary-grey);
+  background-color: var(--primary-grey);
   color: var(--secondary-white);
-  border-left: 1px solid var(--field);
+  border-left: 2px solid var(--tertiary-grey);
+  border-right: 2px solid var(--tertiary-grey);
 }
 
 .filter {
@@ -26,7 +27,7 @@
 
 @media (min-width: 1025px) {
   .root {
-    width: 400px;
+    /* width: 400px; */
     height: 100%;
     box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.2);
   }

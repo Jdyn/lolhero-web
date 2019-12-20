@@ -5,8 +5,9 @@
   box-shadow: 5px 0px 15px 0px rgba(0, 0, 0, 0.2);
   z-index: 30;
   flex-direction: column;
-  background-color: var(--tertiary-grey);
-  border-right: 1px solid var(--field);
+  background-color: var(--primary-grey);
+  border-right: 2px solid var(--tertiary-grey);
+  border-left: 2px solid var(--tertiary-grey);
 }
 
 .container {
@@ -25,7 +26,7 @@
   font-size: 15px;
   box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.12);
   border-radius: 8px;
-  background-color: var(--field);
+  background-color: var(--secondary-grey);
 }
 
 .notice > span {
@@ -41,26 +42,26 @@
   border-radius: 8px;
   outline: none;
   border: none;
-  background-color: var(--tertiary-grey);
+  background-color: var(--primary-grey);
   flex-direction: column;
   transition-duration: 0.15s;
 }
 
 .selected {
-  background-color: var(--field);
+  background-color: var(--secondary-grey);
 }
 
 .button:hover {
-  background-color: var(--field);
+  background-color: var(--secondary-grey);
 }
 
 .header {
   display: flex;
-  color: var(--white);
+  color: var(--secondary-white);
   margin: 0;
   width: 100%;
   font-size: 17px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   transition-duration: 0.15s;
 }
 
@@ -76,7 +77,7 @@
 .header > h2 {
   margin: 0;
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .header > h3 {
@@ -88,7 +89,7 @@
 }
 
 .button > p {
-  color: var(--secondary-white);
+  color: var(--grey);
   margin: 0;
   text-align: left;
   font-size: 16px;
@@ -102,7 +103,7 @@
 
 @media (min-width: 1025px) {
   .root {
-    width: 400px;
+    /* width: 400px; */
     height: 100%;
   }
 

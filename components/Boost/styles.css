@@ -1,0 +1,30 @@
+.root {
+  position: relative;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #1a1a1b;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content 1fr 1fr;
+}
+
+@media (min-width: 1025px) {
+  .root {
+    position: absolute;
+    padding: 76px 0 90px 0;
+  }
+
+  .container {
+    grid-template-columns: 1.2fr 2fr 1.2fr;
+    grid-template-rows: 100%;
+  }
+}

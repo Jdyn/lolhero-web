@@ -7,11 +7,11 @@ import styles from './styles.css';
 
 interface Props {
   currentStage: number;
-  setStage: (prev: (state: number) => void) => void;
+  setStage: (state: number) => void;
   boost: BoostState;
   session: SessionState;
   valid: { details: boolean; payment: boolean };
-  setValid: (prev: (state: object) => void) => void;
+  setValid: (state: object) => void;
   currentOrder: BoostOrderDetails;
   submitOrder: () => void;
   braintreeInstance: Dropin;
@@ -42,7 +42,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
         if ((valid.details && valid.payment) || (session.isLoggedIn && valid.payment)) {
           braintreeInstance.requestPaymentMethod((error, payload) => {
             if (!error) {
-              setStage(prev => prev + 1);
+              setStage(currentStage + 1);
               updateOrder(
                 {},
                 {
@@ -56,7 +56,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
         }
       }
     } else if (stage + 1 <= 3 && stage !== 2) {
-      setStage(prev => prev + 1);
+      setStage(currentStage + 1);
     }
   };
 

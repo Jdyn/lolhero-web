@@ -16,7 +16,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  border-bottom: 1px solid #999;
+  border-bottom: 2px solid var(--tertiary-grey);
   cursor: pointer;
   height: 75px;
   max-width: 250px;
@@ -46,7 +46,7 @@
 
 .button:hover {
   color: var(--accent);
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
 }
 
 .form {
@@ -60,7 +60,7 @@
   height: 30px;
   margin: 10px 0;
   padding: 10px;
-  background-color: var(--field);
+  background-color: var(--primary-grey);
   color: var(--white);
 }
 
@@ -148,7 +148,7 @@
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2);
     border-radius: 0px 0px 12px 12px;
     flex-direction: column;
-    background-color: var(--tertiary-grey);
+    background-color: var(--secondary-grey);
     transition-duration: 0.2s;
   }
 
@@ -172,8 +172,8 @@
     padding: 0;
     text-transform: uppercase;
     color: var(--secondary-white);
-    background-color: var(--tertiary-grey);
-    border-bottom: 1px solid var(--quartinary-grey);
+    background-color: var(--secondary-grey);
+    border-bottom: 2px solid var(--tertiary-grey);
     transition-duration: 0.2s;
   }
 }
