@@ -33,18 +33,6 @@ const validateOrder = (order: BoostOrder, dispatchError: (message: string) => vo
   return true;
 };
 
-const trimOrder = (order: BoostOrder): BoostOrder => {
-  const newOrder = { ...order };
-
-  if (newOrder.details.collectionName === 'Division Boost') {
-    delete newOrder.details.desiredAmount;
-  } else {
-    delete newOrder.details.desiredRank;
-  }
-
-  return newOrder;
-};
-
 const setBoostPrices = (prices: BoostPricing): BoostActionTypes => ({
   type: boostActions.FETCH_BOOST_PRICES,
   prices
@@ -115,29 +103,24 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
   };
 
   if (validateOrder(order, dispatchError)) {
-    const finalOrder = trimOrder(order);
+    Api.post('/orders', order)
+      .then(response => {
+        if (response.ok) {
+          dispatch(setRequest(false, requestType));
+          Router.push({
+            pathname: response.result.success_url,
+            query: { order: response.result }
+          });
+        } else {
+          const errors = response.errors || [];
+          const message = errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
 
-    if (typeof finalOrder === 'object') {
-      Api.post('/orders', finalOrder)
-        .then(response => {
-          if (response.ok) {
-            dispatch(setRequest(false, requestType));
-            Router.push({
-              pathname: response.result.success_url,
-              query: { order: response.result }
-            });
-          } else {
-            const errors = response.errors || [];
-            const message =
-              errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
-
-            dispatchError(message);
-          }
-        })
-        .catch(error => {
-          dispatchError('Error placing order. Try again later or contact support.');
-          Sentry.captureException(error);
-        });
-    }
+          dispatchError(message);
+        }
+      })
+      .catch(error => {
+        dispatchError('Error placing order. Try again later or contact support.');
+        Sentry.captureException(error);
+      });
   }
 };

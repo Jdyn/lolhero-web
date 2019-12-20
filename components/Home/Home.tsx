@@ -4,6 +4,7 @@ import Router from 'next/router';
 import Button from '../reusable/Button';
 import HomeCard from './Cards/HomeCard';
 import styles from './styles.css';
+import Stripes from '../reusable/Stripes';
 
 const cards = [
   {
@@ -41,13 +42,14 @@ const Home = (): JSX.Element => {
 
   return (
     <div className={styles.root}>
+      <Stripes />
       <div className={styles.container}>
         <h1>LoL Hero</h1>
         <h2>League Of Legends</h2>
         <form className={styles.form} onSubmit={handleOrderSearch}>
           <input
             value={form.trackingId}
-            onChange={event => setForm({ trackingId: event.target.value })}
+            onChange={(event): void => setForm({ trackingId: event.target.value })}
             placeholder="Enter tracking ID"
             aria-label="search"
             className={styles.search}

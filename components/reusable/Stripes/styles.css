@@ -1,0 +1,44 @@
+.stripes {
+  display: grid;
+  position: absolute;
+  grid: repeat(4, 180px) / repeat(7, 1fr);
+  top: 75px;
+  z-index: -5;
+  width: 100%;
+  overflow: hidden;
+  transform-origin: 0;
+  background: linear-gradient(150deg,#202020 15%,#343434 70%,#474747 94%);
+  transform: skewY(-6deg);
+}
+
+.stripes span:first-child {
+  grid-column: span 1;
+  background: #222222;
+}
+
+.stripes span:nth-child(2) {
+  grid-column: span 2;
+  background: #252525;
+}
+
+.stripes span:nth-child(3) {
+  grid-column: span 4;
+  background: #282828;
+}
+
+.stripes span:nth-child(4) {
+  grid-column: 7;
+  grid-row: 3;
+  border-radius: 16px 0 0 16px;
+  background: #454545;
+}
+
+.stripes span:nth-child(5) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  grid-column: span 3;
+  grid-row: 4;
+  background: #353535;
+  border-radius: 0 16px 0 0;
+}

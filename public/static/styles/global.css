@@ -22,12 +22,6 @@
   scrollbar-width: thin;
 }
 
-/* --primary-grey: #353535;
---secondary-grey: #303030;
---tertiary-grey: #252525;
---quartinary-grey: #202020;
---accent: #4285f4; */
-
 :root {
   --white: #fafafa;
   --grey: #999;
@@ -48,7 +42,6 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--secondary-grey);
   color: #f0f0f0;
   font-size: 100%;
   min-height: 100vh;
@@ -62,6 +55,7 @@ body {
   ::-webkit-scrollbar {
     width: 8px;
   }
+
   ::-webkit-scrollbar-thumb {
     background-color: #999;
     border-radius: 6px;
