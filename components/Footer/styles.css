@@ -1,7 +1,7 @@
 .root {
   display: flex;
   grid-area: footer;
-  background-color: var(--tertiary-grey);
+  background-color: var(--quartinary-grey);
   bottom: 0;
   color: var(--secondary-white);
 }

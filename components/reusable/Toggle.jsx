@@ -43,7 +43,7 @@ const useStyles = createUseStyles(theme => ({
     height: props.height,
     outline: 'none',
     border: `none`,
-    backgroundColor: theme.primary,
+    backgroundColor: '#373739',
     color: theme.white, //props.isSelected ? theme.accent : theme.white,
     fontWeight: 700,
     fontSize: 13,
@@ -51,7 +51,7 @@ const useStyles = createUseStyles(theme => ({
     borderRadius: props.borderRadius,
     letterSpacing: '.025em',
     margin: props.margin,
-    transitionDuration: '.15s',
+    transitionDuration: '.3s',
     '&:hover': {
       transform: 'translateY(-2px)'
     },

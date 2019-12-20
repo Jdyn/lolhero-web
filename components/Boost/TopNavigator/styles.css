@@ -7,6 +7,7 @@
   height: 75px;
   justify-content: center;
   background-color: var(--tertiary-grey);
+  box-shadow: 5px 0px 20px rgb(0, 0, 0, 0.3);
 }
 
 .container {
@@ -25,7 +26,7 @@
   width: 100%;
   cursor: pointer;
   transition-duration: 0.15s;
-  border-bottom: 2px solid var(--grey);
+  border-bottom: 1px solid var(--quartinary-grey);
   color: var(--secondary-white);
   font-size: 28px;
 }

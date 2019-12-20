@@ -40,7 +40,7 @@ const Filter = props => {
               className={classes.item}
               onClick={() => handleClick(index)}
               style={{
-                borderColor: state === index ? theme.accent : '#999',
+                borderColor: state === index ? theme.accent : theme.quartinary,
                 color: state === index ? theme.accent : disabled ? '#414141' : '#999',
                 pointerEvents: disabled ? 'none' : 'auto'
               }}
@@ -81,7 +81,7 @@ const useStyles = createUseStyles(theme => ({
     listStyle: 'none',
     cursor: 'pointer',
     color: theme.secondaryColor,
-    borderBottom: '2px solid',
+    borderBottom: '1px solid',
     paddingBottom: '20px',
     transitionDuration: '.25s',
     '&:hover': {

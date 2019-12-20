@@ -1,0 +1,44 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tertiary-grey);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px 10px 20px 10px;
+}
+
+.root > p {
+  color: var(--secondary-white);
+  margin: 0;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.root > h2 {
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.root > h3 {
+  margin: 15px 0;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--secondary-white);
+}
+
+.root > span {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: var(--secondary-white);
+}
+
+.root > span > b {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  color: var(--secondary-white);
+}

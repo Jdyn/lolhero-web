@@ -90,7 +90,7 @@ const useStyles = createUseStyles(theme => ({
     width: '100%',
     margin: '0',
     padding: 0,
-    borderBottom: '2px solid #999',
+    borderBottom: `1px solid ${theme.quartinary}`,
     '@media (min-width: 650px)': {
       flexGrow: 1,
       maxWidth: '250px',
@@ -98,7 +98,7 @@ const useStyles = createUseStyles(theme => ({
     },
     '&:hover': {
       color: theme.accent,
-      borderBottom: `2px solid ${theme.accent}`
+      borderBottom: `1px solid ${theme.accent}`
     }
   },
   wrapper: {
@@ -106,7 +106,7 @@ const useStyles = createUseStyles(theme => ({
     height: '100%',
     display: 'none',
     flexGrow: 1,
-    padding: '8px 22px 8px 10px',
+    padding: '10px 22px 10px 10px',
     maxHeight: '37px',
     alignItems: 'center',
     textAlign: 'center',

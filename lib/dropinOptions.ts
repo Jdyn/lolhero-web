@@ -1,4 +1,6 @@
-export default {
+import { Options } from 'braintree-web-drop-in';
+
+const options: Options = {
   authorization: 'sandbox_7brmzhhx_cfcsbff65qmxzrgf', // process.env.NODE_ENV === 'production' ? '' : 'sandbox_7brmzhhx_cfcsbff65qmxzrgf',
   container: '#dropin-container',
   card: {
@@ -34,3 +36,5 @@ export default {
     allowNewBrowserTab: false
   }
 };
+
+export default options;

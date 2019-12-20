@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--field);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px 10px 10px 10px;
+}
+
+.root > p {
+  color: var(--secondary-white);
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.root > h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.root > span {
+  color: var(--secondary-white);
+  margin-bottom: 10px;
+}

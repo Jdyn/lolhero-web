@@ -16,7 +16,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  border-bottom: 2px solid #999;
+  border-bottom: 1px solid #999;
   cursor: pointer;
   height: 75px;
   max-width: 250px;
@@ -26,7 +26,7 @@
 }
 
 .menuWrapper:hover {
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
 }
 
 .menu {
@@ -45,8 +45,8 @@
 }
 
 .button:hover {
-  color: 'theme.accent';
-  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
 }
 
 .form {
@@ -60,7 +60,7 @@
   height: 30px;
   margin: 10px 0;
   padding: 10px;
-  background-color: var(--primary-grey);
+  background-color: var(--field);
   color: var(--white);
 }
 
@@ -171,9 +171,9 @@
     height: 100%;
     padding: 0;
     text-transform: uppercase;
-    color: var(--grey);
+    color: var(--secondary-white);
     background-color: var(--tertiary-grey);
-    border-bottom: 2px solid #999;
+    border-bottom: 1px solid var(--quartinary-grey);
     transition-duration: 0.2s;
   }
 }

@@ -27,7 +27,7 @@ const Banner = props => {
       <div
         className={classes.container}
         style={{
-          backgroundColor: rank.color || theme.secondary,
+          backgroundColor: rank.color || theme.field,
           borderColor: `${rank.accent || theme.tertiary}`
         }}
       >
@@ -44,7 +44,7 @@ const Banner = props => {
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
           style={{
-            fill: rank.color || theme.secondary,
+            fill: rank.color || theme.field,
             stroke: rank.accent || theme.tertiary
           }}
         >

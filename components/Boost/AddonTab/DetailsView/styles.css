@@ -1,0 +1,48 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--field);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px 10px 10px 10px;
+}
+
+.root > h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.authWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.authWrapper > b {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  color: var(--secondary-white);
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+}
+
+.input {
+  display: flex;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--primary-grey);
+  color: var(--secondary-white);
+}

@@ -113,7 +113,7 @@ ProgressBar.defaultProps = {
   color: '#3273dc',
   startPosition: 0.3,
   stopDelayMs: 200,
-  height: 2
+  height: 1
 } as Partial<Props>;
 
 export default ProgressBar;

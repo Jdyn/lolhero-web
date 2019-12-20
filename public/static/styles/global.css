@@ -24,11 +24,14 @@
 
 :root {
   --white: #fafafa;
-  --grey: #999;
-  --primary-grey: #353535;
+  --secondary-white: #d7dadc;
+  --grey: #999; 
+  --primary-grey: #343536;
   --quartinary-grey: #252525;
-  --tertiary-grey: #292929;
+  --field: #272729;
+  --tertiary-grey: #1a1a1b;
   --secondary-grey: #323232;
+  --highlight: #17232d;
   --accent: #3273dc;
   --green: #0f9d58;
   --red: #ef5350;

@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
-import content from '../../../lib/content';
-import Toggle from '../../reusable/Toggle';
+import content from '../../../../lib/content';
+import Toggle from '../../../reusable/Toggle';
+import { BoostOrderDetails } from '../../../../store/boost/types';
+import styles from './styles.css';
 
-const BoostView = props => {
+interface Props {
+  currentOrder: BoostOrderDetails;
+  updateOrder: (boostUpdate: object) => void;
+}
+
+const BoostView = (props: Props): JSX.Element => {
   const { currentOrder, updateOrder } = props;
-
-  const classes = useStyles();
-  const theme = useTheme();
 
   useEffect(() => {
     if (currentOrder.lp === 100) {
@@ -19,7 +22,7 @@ const BoostView = props => {
     }
   }, [currentOrder.startRank, currentOrder.lp, updateOrder]);
 
-  const handlePromoChange = (type, index) => {
+  const handlePromoChange = (type: string, index: number): void => {
     const newPromos = [...currentOrder.promos];
     if (type !== newPromos[index]) {
       newPromos[index] = type;
@@ -27,7 +30,7 @@ const BoostView = props => {
     }
   };
 
-  const handleLpChange = selectedLp => {
+  const handleLpChange = (selectedLp: number): void => {
     if (selectedLp !== currentOrder.lp) {
       if (selectedLp === 100) {
         if (currentOrder.startRank % 4 === 0) {
@@ -43,9 +46,9 @@ const BoostView = props => {
     }
   };
 
-  const validateDisabled = type => {
-    let maxWins;
-    let maxLosses;
+  const validateDisabled = (type: string): boolean => {
+    let maxWins: number;
+    let maxLosses: number;
 
     if (currentOrder.startRank % 4 === 0) {
       maxWins = 2;
@@ -84,14 +87,14 @@ const BoostView = props => {
   return (
     <>
       {currentOrder.collectionName === 'Division Boost' && (
-        <div className={classes.wrapper}>
+        <div className={styles.root}>
           <h2>Current LP</h2>
           <p>How much LP do you have?</p>
-          <div className={classes.lp}>
-            {content.boosts.lp.map((lp, index) => (
+          <div className={styles.lp}>
+            {content.boosts.lp.map(lp => (
               <Toggle
-                key={index}
-                onClick={() => handleLpChange(lp.lp)}
+                key={lp.title}
+                onClick={(): void => handleLpChange(lp.lp)}
                 width="85px"
                 margin="5px 5px"
                 borderRadius="8px"
@@ -102,26 +105,25 @@ const BoostView = props => {
             ))}
           </div>
           {currentOrder.lp === 100 && (
-            <div className={classes.promos}>
+            <div className={styles.promos}>
               <h2>Promotion Series</h2>
               {currentOrder.promos && (
                 <>
-                  <div className={classes.promoSection}>
+                  <div className={styles.promoSection}>
                     <span>-</span>
                     <span>Win</span>
                     <span>Loss</span>
                   </div>
                   {currentOrder.promos.map((promo, rowIndex) => (
-                    <div key={rowIndex} className={classes.promoSection}>
+                    <div key={rowIndex} className={styles.promoSection}>
                       {['X', 'W', 'L'].map(type => (
                         <button
-                          className={classes.promo}
+                          className={`${styles.promo} ${promo === type ? styles.selected : ''}`}
                           type="button"
                           aria-label="promotion"
                           key={type}
                           disabled={validateDisabled(type)}
-                          style={{ backgroundColor: promo === type ? theme.accent : theme.primary }}
-                          onClick={() => handlePromoChange(type, rowIndex)}
+                          onClick={(): void => handlePromoChange(type, rowIndex)}
                         />
                       ))}
                     </div>
@@ -132,14 +134,14 @@ const BoostView = props => {
           )}
         </div>
       )}
-      <div className={classes.wrapper}>
+      <div className={styles.root}>
         <h2>Server</h2>
         <p>We currently support the following servers</p>
         {content.boosts.servers.map(server => {
           return (
             <Toggle
               key={server.server}
-              onClick={() =>
+              onClick={(): void =>
                 currentOrder.server !== server.server && updateOrder({ server: server.server })
               }
               isSelected={currentOrder.server === server.server}
@@ -149,13 +151,13 @@ const BoostView = props => {
           );
         })}
       </div>
-      <div className={classes.wrapper}>
+      <div className={styles.root}>
         <h2>Queue</h2>
         <p>We currently support the following queues types</p>
         {content.boosts.queues.map(queue => (
           <Toggle
             key={queue.queue}
-            onClick={() =>
+            onClick={(): void =>
               currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
             }
             isSelected={currentOrder.queue === queue.queue}
@@ -167,76 +169,5 @@ const BoostView = props => {
     </>
   );
 };
-
-const useStyles = createUseStyles(theme => ({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: theme.tertiary,
-    borderRadius: 8,
-    padding: '25px',
-    boxShadow: '0 0 15px 0 rgba(0,0,0,.2)',
-    margin: '10px 10px 10px 10px',
-    '& p': {
-      color: theme.grey,
-      margin: 0,
-      fontSize: 16,
-      marginBottom: '10px'
-    },
-    '& h2': {
-      fontSize: 20,
-      margin: 0,
-      marginBottom: '10px'
-    }
-  },
-  lp: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
-  },
-  promos: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    margin: '25px 0 0px 0',
-    '& h2': {
-      fontSize: 20,
-      margin: 0,
-      width: '100%',
-      marginBottom: '10px'
-    }
-  },
-  promoSection: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-evenly',
-    margin: '0 35px',
-    '& span': {
-      margin: '5px',
-      width: '45px',
-      textAlign: 'center'
-    }
-  },
-  promo: {
-    cursor: 'pointer',
-    height: '32px',
-    width: '32px',
-    borderRadius: 8,
-    border: 'none',
-    outline: 'none',
-    display: 'flex',
-    margin: '5px',
-    padding: 0,
-    justifyContent: 'center',
-    fontWeight: 700,
-    transitionDuration: '.2s',
-    '&:hover': {
-      transform: 'translateY(2px)'
-    }
-  }
-}));
 
 export default BoostView;

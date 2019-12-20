@@ -1,16 +1,30 @@
 import React, { useEffect } from 'react';
 import dropin from 'braintree-web-drop-in';
-import { createUseStyles } from 'react-jss';
 import Filter from '../../reusable/Filter';
 import AddonView from './AddonView';
 import BoostView from './BoostView';
-import ReviewView from './ReviewView';
-import DetailsView from './DetailsView';
+import ReviewView from './ReviewView/ReviewView';
+import DetailsView from './DetailsView/DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
+import styles from './styles.css';
+import { BoostOrderDetails, BoostState } from '../../../store/boost/types';
+import { SessionState } from '../../../store/session/types';
 
 const filters = ['boost', 'add ons', 'details', 'review'];
 
-const AddonTab = props => {
+interface Props {
+  currentStage: number;
+  updateOrder: (detailsUpdate: object) => void;
+  currentOrder: BoostOrderDetails;
+  session: SessionState;
+  handleAuth: (type: string, form: object) => void;
+  setBraintreeInstance: (instance: object) => void;
+  boost: BoostState;
+  valid: { payment: boolean; details: boolean };
+  setStage: (newStage: number) => void;
+}
+
+const AddonTab = (props: Props): JSX.Element => {
   const {
     currentStage,
     updateOrder,
@@ -23,8 +37,6 @@ const AddonTab = props => {
     setStage
   } = props;
 
-  const classes = useStyles();
-
   useEffect(() => {
     dropin
       .create(dropinOptions)
@@ -36,12 +48,12 @@ const AddonTab = props => {
 
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} boost={boost} />,
+    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} />,
     2: <DetailsView handleAuth={handleAuth} session={session} />,
     3: <ReviewView currentOrder={currentOrder} boost={boost} />
   };
 
-  const validateView = () => {
+  const validateView = (): number[] => {
     const { payment, details } = valid;
     const { isLoggedIn } = session;
     const {
@@ -59,21 +71,21 @@ const AddonTab = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.filter}>
+    <div className={styles.root}>
+      <div className={styles.filter}>
         <Filter
           extended
           filters={filters}
           untargetableIndices={validateView()}
           selectedIndex={currentStage}
-          onClick={index => setStage(index)}
+          onClick={(index: number): void => setStage(index)}
         />
       </div>
       {Object.keys(views).map((view, index) => {
         return (
           <div
             key={view}
-            className={classes.content}
+            className={styles.content}
             style={{
               display: currentStage === parseInt(view, 0) ? 'flex' : 'none'
             }}
@@ -85,41 +97,5 @@ const AddonTab = props => {
     </div>
   );
 };
-
-const useStyles = createUseStyles(theme => ({
-  root: {
-    width: '100%',
-    minHeight: '350px',
-    display: 'flex !important',
-    position: 'relative',
-    boxShadow: '0px 0px 15px 0px rgba(0, 0, 0, 0.4)',
-    // borderRadius: 16,
-    flexDirection: 'column',
-    backgroundColor: theme.primary,
-    color: theme.white,
-    '@media (min-width: 1025px)': {
-      width: '400px',
-      height: '100%',
-      boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.2)'
-    }
-  },
-  filter: {
-    display: 'flex',
-    '@media (min-width: 1025px)': {
-      display: 'none'
-    }
-  },
-  container: {
-    display: 'inherit',
-    '@media (min-width: 1025px)': {
-      display: 'none'
-    }
-  },
-  content: {
-    flexDirection: 'column',
-    overflowY: 'auto',
-    margin: '0 10px 0 10px'
-  }
-}));
 
 export default AddonTab;

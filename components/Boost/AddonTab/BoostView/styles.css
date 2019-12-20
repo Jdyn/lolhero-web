@@ -1,0 +1,81 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--field);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px 10px 10px 10px;
+}
+
+.root > p {
+  color: var(--secondary-white);
+  margin: 0;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.root > h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.lp {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.promos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  margin: 25px 0 0px 0;
+}
+
+.promos > h2 {
+  font-size: 20px;
+  margin: 0;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.promoSelection {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 0 35px;
+}
+
+.promoSelection > span {
+  margin: 5px;
+  width: 45px;
+  text-align: center;
+}
+
+.promo {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  display: flex;
+  margin: 5px;
+  padding: 0;
+  justify-content: center;
+  font-weight: 700;
+  transition-duration: 0.2s;
+}
+
+.promo:hover {
+  transform: translateY(2px);
+}
+
+.selected {
+  color: var(--accent);
+}

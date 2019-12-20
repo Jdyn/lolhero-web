@@ -1,13 +1,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  color: var(--white);
+  color: var(--secondary-white);
 }
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  color: var(--secondary-white);
   margin: 0;
   text-align: left;
 }
@@ -21,9 +22,9 @@
   flex-grow: 1;
   outline: none;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 10px 0;
   padding: 10px;
   background-color: var(--primary-grey);
-  color: var(--white);
+  color: var(--secondary-white);
 }

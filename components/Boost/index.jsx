@@ -81,7 +81,7 @@ const useStyles = createUseStyles(theme => ({
     overflow: 'hidden',
     width: '100%',
     overflowY: 'auto',
-    backgroundColor: theme.primary,
+    backgroundColor: '#1a1a1b',
     WebkitOverflowScrolling: 'touch',
     '@media (min-width: 1025px)': {
       position: 'absolute',

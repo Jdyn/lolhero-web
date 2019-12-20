@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  background-color: var(--secondary-grey);
+  background-color: var(--tertiary-grey);
   flex-grow: 1;
 }
 

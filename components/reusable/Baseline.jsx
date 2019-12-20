@@ -28,7 +28,7 @@ const useStyles = createUseStyles(theme => ({
     },
     body: {
       margin: 0,
-      backgroundColor: theme.secondary,
+      backgroundColor: theme.tertiary,
       fontSize: '100%',
       fontFamily: 'Museo Sans Rounded',
       fontWeight: 'normal',
