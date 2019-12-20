@@ -44,11 +44,14 @@ const BoostTab = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <Filter
-        filters={contentKeys}
-        selectedIndex={currentType === 'Solo' ? 0 : 1}
-        onClick={(index: number): void => setType(contentKeys[index])}
-      />
+      <div className={styles.filter}>
+        <Filter
+          filters={contentKeys}
+          selectedIndex={currentType === 'Solo' ? 0 : 1}
+          onClick={(index: number): void => setType(contentKeys[index])}
+        />
+      </div>
+
       <div className={styles.notice}>
         {currentContent.description}
         <span>{currentContent.subdescription}</span>
