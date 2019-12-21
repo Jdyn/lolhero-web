@@ -5,7 +5,7 @@ import Filter from '../../Reusable/Filter/Filter';
 import { BoostState } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 
-const filters = ['boost', 'add-ons', 'details', 'review'];
+const filters = ['boost', 'extras', 'details', 'review'];
 interface Props {
   boost: BoostState;
   valid: { payment: boolean; details: boolean };

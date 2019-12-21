@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 import Button from '../../Reusable/Button';
 import { Order } from '../../../store/account/types';
+import Loader from '../../Reusable/Loader';
 
 interface Props {
   children?: React.ReactNode;
@@ -19,9 +20,9 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
   const orderStatus = (status: string): string => {
     switch (status) {
       case 'open':
-        return 'Waiting for order setup...';
+        return 'Waiting for order setup . . .';
       case 'initialized':
-        return 'Waiting for a booster...';
+        return 'Looking for a booster . . .';
       default:
         return 'status';
     }
@@ -29,10 +30,19 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <h3 className={styles.status}>{orderStatus(order.status)}</h3>
+      <div className={styles.status}>
+        <Loader width="64px" height="64px" />
+        <h3>{orderStatus(order.status)}</h3>
+      </div>
       {order.isEditable ? (
         <div className={styles.wrapper}>
-          <Button grow maxWidth="200px" margin="0px 5px" padding="15px" onClick={onInitializeOrder}>
+          <Button
+            grow
+            maxWidth="200px"
+            margin="15px 5px"
+            padding="15px"
+            onClick={onInitializeOrder}
+          >
             initialize order
           </Button>
         </div>
@@ -43,7 +53,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
             secondary
             maxWidth="200px"
             // onClick={onPauseOrder}
-            margin="0px 5px"
+            margin="10px 5px"
             padding="15px"
           >
             Pause Order

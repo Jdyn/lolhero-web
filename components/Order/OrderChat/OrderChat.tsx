@@ -91,10 +91,10 @@ const OrderChat = (props: Props): JSX.Element => {
         <div className={styles.list}>
           <div className={styles.scroll}>
             <div className={styles.wrapper}>
-              <h3>{orderForm.details.primaryRole}</h3>
+              <h3>{order.details.primaryRole}</h3>
               {order.details.champions ? (
                 order.details.champions.map((champion, index) =>
-                  champion.position === orderForm.details.primaryRole ? (
+                  champion.position === order.details.primaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
                       <img
                         alt="champion-icon"
@@ -110,10 +110,10 @@ const OrderChat = (props: Props): JSX.Element => {
               )}
             </div>
             <div className={styles.wrapper}>
-              <h3>{orderForm.details.secondaryRole}</h3>
+              <h3>{order.details.secondaryRole}</h3>
               {order.details.champions ? (
                 order.details.champions.map((champion, index) =>
-                  champion.position === orderForm.details.secondaryRole ? (
+                  champion.position === order.details.secondaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
                       <img
                         alt="champion-icon"

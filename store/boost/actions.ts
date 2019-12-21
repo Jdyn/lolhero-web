@@ -113,13 +113,17 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
           });
         } else {
           const errors = response.errors || [];
-          const message = errors[Object.keys(errors)[0]] || 'Error placing order. Try again later.';
+          const message =
+            errors[Object.keys(errors)[0]] ||
+            'There was an error placing your order. Please try again later or contact support.';
 
           dispatchError(message);
         }
       })
       .catch(error => {
-        dispatchError('Error placing order. Try again later or contact support.');
+        dispatchError(
+          'There was an error placing your order. Please try again later or contact support.'
+        );
         Sentry.captureException(error);
       });
   }

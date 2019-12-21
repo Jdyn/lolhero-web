@@ -14,7 +14,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: 100%;
-  grid-template-rows: min-content 1fr 1fr;
+  grid-template-rows: min-content 900px 1fr;
   background: linear-gradient(0deg, #353535 20%, #303030 50%, #202020 95%)
 }
 

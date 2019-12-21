@@ -23,7 +23,7 @@
 .content {
   flex-direction: column;
   overflow-y: auto;
-  margin: 10px;
+  margin: 15px;
 }
 
 @media (min-width: 1025px) {

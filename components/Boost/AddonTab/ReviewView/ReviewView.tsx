@@ -3,29 +3,31 @@ import content from '../../../../lib/content';
 import { formatLP } from '../../../../util/helpers';
 import { BoostOrderDetails, BoostState } from '../../../../store/boost/types';
 import styles from './styles.css';
+import { Request } from '../../../../store/request/types';
+import Loader from '../../../Reusable/Loader';
 
 interface Props {
   currentOrder: BoostOrderDetails;
   boost: BoostState;
+  purchaseOrderRequest: Request;
 }
 
 const ReviewView = (props: Props): JSX.Element => {
-  const { currentOrder, boost } = props;
+  const { currentOrder, boost, purchaseOrderRequest } = props;
 
-  const formatTitle = () => {
+  const formatTitle = (): string => {
     const { boostType, lp, desiredAmount, collectionName } = currentOrder;
-    return '';
-    // switch (collectionName) {
-    //   case 'Division Boost':
-    //     return `${boostType.toUpperCase()} | ${collectionName} - From ${boost.order
-    //       .startRankTitle || 'TBD'} (${formatLP(lp)} LP) to ${boost.order.desiredRankTitle ||
-    //       'TBD'}`;
-    //   default:
-    //     return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${boost.order
-    //       .startRankTitle || 'TBD'}`;
-    // }
+    switch (collectionName) {
+      case 'Division Boost':
+        return `${boostType.toUpperCase()} | ${collectionName} - From ${boost.order
+          .startRankTitle || 'TBD'} (${formatLP(lp)} LP) to ${boost.order.desiredRankTitle ||
+          'TBD'}`;
+      default:
+        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${boost.order
+          .startRankTitle || 'TBD'}`;
+    }
   };
-
+  console.log(purchaseOrderRequest);
   return (
     <>
       <div className={styles.root}>
@@ -71,6 +73,11 @@ const ReviewView = (props: Props): JSX.Element => {
         <span>
           Summoner Spell Select : <b>FREE</b>
         </span>
+        {purchaseOrderRequest.isPending && (
+          <div className={styles.loader}>
+            <Loader width="64px" height="64px" />
+          </div>
+        )}
       </div>
     </>
   );

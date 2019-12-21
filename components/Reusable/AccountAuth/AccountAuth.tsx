@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './styles.css';
 import Form from '../Form';
+import { Request } from '../../../store/request/types';
+import Loader from '../Loader';
 
 const templates = {
   signup: {
@@ -20,10 +22,11 @@ const templates = {
 interface Props {
   type: 'login' | 'signup';
   authenticate: (type: string, form: object, redirect: boolean) => void;
+  sessionRequest: Request;
 }
 
 const AccountAuth = (props: Props): JSX.Element => {
-  const { authenticate, type } = props;
+  const { authenticate, type, sessionRequest } = props;
 
   return (
     <div className={styles.root}>
@@ -32,6 +35,12 @@ const AccountAuth = (props: Props): JSX.Element => {
           template={templates[type]}
           onSubmit={(formType, form): void => authenticate(formType, form, true)}
         />
+        <div className={styles.loader}>
+          {sessionRequest.isPending && <Loader width="64px" height="64px" />}
+        </div>
+        <div className={styles.loader}>
+          {sessionRequest.errored && <p>{sessionRequest.error}</p>}
+        </div>
       </div>
     </div>
   );
