@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from './styles.css';
 import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
@@ -17,14 +18,16 @@ interface Props {
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const { session, account, order, initializeOrder } = props;
+  const router = useRouter();
+  const { trackingId } = router.query;
 
   const [orderForm, setOrderForm] = useState({
-    champions: [],
     note: '',
     details: {
       primaryRole: 'Middle',
       secondaryRole: 'Bottom',
-      summonerName: ''
+      summonerName: '',
+      champions: []
     },
     accountDetails: {
       username: '',
@@ -32,6 +35,9 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
+  const onInitializeOrder = (): void => {
+    initializeOrder(orderForm, trackingId as string);
+  };
 
   return (
     <div className={styles.root}>
@@ -40,7 +46,10 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
           <OrderHeader session={session} order={order || account.selectedOrder} />
           <div className={styles.container}>
             <div className={styles.wrapper}>
-              <OrderStatus order={order || account.selectedOrder} />
+              <OrderStatus
+                order={order || account.selectedOrder}
+                onInitializeOrder={onInitializeOrder}
+              />
               <OrderDetails
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
@@ -51,7 +60,11 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
               />
-              <OrderChat orderForm={orderForm} setOrderForm={setOrderForm} />
+              <OrderChat
+                orderForm={orderForm}
+                setOrderForm={setOrderForm}
+                order={order || account.selectedOrder}
+              />
             </div>
           </div>
         </>

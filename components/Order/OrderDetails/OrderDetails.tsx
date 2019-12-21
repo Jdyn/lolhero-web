@@ -4,8 +4,7 @@ import { Order } from '../../../store/account/types';
 import styles from './styles.css';
 
 const fields = [
-  { type: 'text', title: 'Summoner Name', text: 'summonerName' },
-  { type: 'text', title: 'LoL Username', text: 'username' },
+  { type: 'username', title: 'LoL Username', text: 'username' },
   { type: 'password', title: 'LoL Password', text: 'password' }
 ];
 
@@ -49,7 +48,7 @@ const OrderDetails = (props: Props): JSX.Element => {
           return;
         }
 
-        const champs = orderForm.champions.filter(champ => {
+        const champs = orderForm.details.champions.filter(champ => {
           const primRole = primaryRole || orderForm.details.primaryRole;
           const secRole = secondaryRole || orderForm.details.secondaryRole;
           return champ.position === primRole || champ.position === secRole;
@@ -57,10 +56,10 @@ const OrderDetails = (props: Props): JSX.Element => {
 
         setOrderForm({
           ...orderForm,
-          champions: champs,
           details: {
             ...details,
-            ...formUpdate
+            ...formUpdate,
+            champions: champs
           }
         });
       }
@@ -170,31 +169,38 @@ const OrderDetails = (props: Props): JSX.Element => {
                 </div>
               ))}
             </div>
-            <form className={styles.form}>
-              {fields.map(field => (
-                <div key={field.text}>
-                  <span className={styles.title}>{field.title}</span>
-                  <input
-                    className={styles.formInput}
-                    type={field.type}
-                    value={
-                      field.text === 'summonerName'
-                        ? orderForm[field.text]
-                        : orderForm.details[field.text]
-                    }
-                    onChange={(event): void =>
-                      handleFormUpdate({ [field.text]: event.target.value })
-                    }
-                  />
-                </div>
-              ))}
-            </form>
+            <div>
+              <span className={styles.title}>Summoner Name</span>
+              <input
+                className={styles.formInput}
+                type="text"
+                value={orderForm.summonerName}
+                onChange={(event): void => handleFormUpdate({ summonerName: event.target.value })}
+              />
+            </div>
+            {order.details.boostType !== 'Duo' && (
+              <form className={styles.form}>
+                {fields.map(field => (
+                  <div key={field.text}>
+                    <span className={styles.title}>{field.title}</span>
+                    <input
+                      className={styles.formInput}
+                      type={field.type}
+                      value={orderForm.details[field.text]}
+                      onChange={(event): void =>
+                        handleFormUpdate({ [field.text]: event.target.value })
+                      }
+                    />
+                  </div>
+                ))}
+              </form>
+            )}
             <span className={styles.title}>Notes</span>
             <textarea
               value={orderForm.note || ''}
               className={styles.notes}
               onChange={(event): void => setOrderForm({ ...orderForm, note: event.target.value })}
-              placeholder="Please enter your preferred champions here."
+              placeholder="Anything we should know?"
             />
           </div>
         </div>

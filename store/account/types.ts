@@ -1,3 +1,5 @@
+import { Champion } from '../boost/types';
+
 export interface AccountState {
   selectedOrder: Order | null;
   orders: OrderList;
@@ -38,6 +40,7 @@ export interface Order {
     isIncognito: boolean;
     isUnrestricted: boolean;
     lp: number;
+    champions: Champion[];
     promos: [] | null;
     queue: string;
     server: string;

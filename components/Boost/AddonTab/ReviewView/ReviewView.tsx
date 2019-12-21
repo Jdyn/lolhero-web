@@ -28,7 +28,7 @@ const ReviewView = (props: Props): JSX.Element => {
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.root}>
         <h3>Order Summary</h3>
         <h2>{formatTitle()}</h2>
         <h3>Details</h3>
@@ -40,7 +40,7 @@ const ReviewView = (props: Props): JSX.Element => {
         )}
 
         <span>
-          Type: <b>{currentOrder.boostType}</b>
+          Type: <b>{currentOrder.boostType} Boost</b>
         </span>
         <span>
           Server: <b>{currentOrder.server}</b>
@@ -55,12 +55,22 @@ const ReviewView = (props: Props): JSX.Element => {
               `Queue`}
           </b>
         </span>
-        <h3>Add-Ons</h3>
+        <h3>Extras</h3>
         {content.addons.extras.map(extra => (
           <span key={extra.title}>
             {extra.title}: <b>{currentOrder[extra.type] ? 'Yes' : 'No'}</b>
           </span>
         ))}
+        <h3>Add-Ons</h3>
+        <span>
+          VPN Protection: <b>FREE</b>
+        </span>
+        <span>
+          Champion & Role Select: <b>FREE</b>
+        </span>
+        <span>
+          Summoner Spell Select : <b>FREE</b>
+        </span>
       </div>
     </>
   );

@@ -13,7 +13,7 @@
 
 .root > span {
   margin: 10px 0 10px 0;
-  color: var(--secondaryWhite);
+  color: var(--white);
 }
 
 .root > h3 {
@@ -36,7 +36,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  color: var(--secondary-white);
+  color: var(--white);
 }
 
 .form > div {

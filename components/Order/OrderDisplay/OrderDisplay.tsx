@@ -16,6 +16,7 @@ interface Props {
 
 const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   const { order, orderForm, setOrderForm } = props;
+
   const filters = [
     orderForm.details.primaryRole || 'Role 1',
     orderForm.details.secondaryRole || 'Role 2'
@@ -33,14 +34,17 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   const handleClick = (newChampion: any): void => {
     const champion = { ...newChampion, position: currentFilter };
 
-    const contains = orderForm.champions.some(
+    const contains = orderForm.details.champions.some(
       champ => JSON.stringify(champ) === JSON.stringify(champion)
     );
 
     if (!contains) {
       setOrderForm({
         ...orderForm,
-        champions: [...orderForm.champions, champion]
+        details: {
+          ...orderForm.details,
+          champions: [...orderForm.details.champions, champion]
+        }
       });
     }
   };
@@ -50,39 +54,41 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
     setFilter(filters[index]);
   };
 
-  return (
-    <div className={styles.root}>
-      {/* <h3>{order.title}</h3> */}
-      {order.isEditable ? (
-        <>
-          <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
-          <div className={styles.championContainer}>
-            <div className={styles.championWrapper}>
-              {champions.map(champion => (
-                <button
-                  className={styles.championButton}
-                  key={champion.name}
-                  type="button"
-                  onClick={(): void => handleClick(champion)}
-                >
-                  <img alt="champion-icon" className={styles.championImage} src={champion.img} />
-                  {/* <span>{champion.name}</span> */}
-                </button>
-              ))}
-            </div>
-          </div>
-        </>
-      ) : (
-        <div className={styles.container}>
-          <Banner
-            isStartRank
-            height="375px"
-            type="default"
-            rank={ranks[order.details.startRank] || {}}
-          />
-          <Banner height="375px" type="default" rank={ranks[order.details.desiredRank] || {}} />
+  return order.isEditable && order.details.boostType === 'Solo' ? (
+    <div className={styles.editRoot}>
+      <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
+      <p className={styles.tip}>
+        Select the champions you wish to be played by alternating between the roles above and
+        clicking the champion portraits.
+      </p>
+      <div className={styles.championContainer}>
+        <div className={styles.championWrapper}>
+          {champions.map(champion => (
+            <button
+              className={styles.championButton}
+              key={champion.name}
+              type="button"
+              onClick={(): void => handleClick(champion)}
+            >
+              <img alt="champion-icon" className={styles.championImage} src={champion.img} />
+              {/* <span>{champion.name}</span> */}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
+    </div>
+  ) : (
+    <div className={styles.displayRoot}>
+      <h3>{order.title}</h3>
+      <div className={styles.container}>
+        <Banner
+          isStartRank
+          height="375px"
+          type="default"
+          rank={ranks[order.details.startRank] || {}}
+        />
+        <Banner height="375px" type="default" rank={ranks[order.details.desiredRank] || {}} />
+      </div>
     </div>
   );
 };

@@ -16,19 +16,19 @@
   grid-template-rows: min-content min-content min-content min-content;
   grid-template-areas:
     'status'
-    'display'
     'details'
-    'chat';
+    'chat'
+    'display';
 }
 
 @media (min-width: 640px) {
   .wrapper {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-rows: min-content min-content 1fr;
     grid-template-areas:
       'details status'
+      'details chat'
       'details display'
-      'chat chat'
   }
 }
 

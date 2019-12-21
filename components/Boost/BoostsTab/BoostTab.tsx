@@ -16,7 +16,7 @@ const BoostTab = (props: Props): JSX.Element => {
 
   const [selectedIndex, setIndex] = useState(0);
   const [currentType, setType] = useState(currentOrder.boostType);
-
+  console.log(currentType);
   const currentContent = useMemo(() => content[currentType], [currentType]);
 
   useEffect(() => {

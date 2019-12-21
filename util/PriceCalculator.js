@@ -71,7 +71,7 @@ export default (order, pricing) => {
     const lpPrice = pricing.lp[lp];
     const base = pricing[collectionId][startRank];
 
-    if (lp === 100) {
+    if (lp === 100 && pricing.promotions) {
       if (order.promos) {
         let total = 0;
         order.promos.forEach(promo => {
@@ -123,7 +123,7 @@ export default (order, pricing) => {
     total = unrestrictedOrder(total);
     total = calculateQueues(total);
     total = calculateLP(total);
-
+    console.log(total);
     return Math.round(total * 100) / 100;
   };
 
