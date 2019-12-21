@@ -11,6 +11,10 @@
   flex: 1;
 }
 
+.rouned {
+  /* border-radius: 0 18px 0 18px; */
+}
+
 .item {
   display: flex;
   position: relative;

@@ -34,7 +34,7 @@ const DetailsView = (props: Props): JSX.Element => {
       <div className={styles.root}>
         {session.isLoggedIn ? (
           <div className={styles.session}>
-            You are currently logged in as <b>{session.user.username}</b>.
+            You are currently logged in as <span>{session.user.username}</span>.
           </div>
         ) : (
           <>

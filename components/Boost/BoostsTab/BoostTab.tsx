@@ -47,6 +47,7 @@ const BoostTab = (props: Props): JSX.Element => {
       <div className={styles.filter}>
         <Filter
           filters={contentKeys}
+          rounded
           selectedIndex={currentType === 'Solo' ? 0 : 1}
           onClick={(index: number): void => setType(contentKeys[index])}
         />

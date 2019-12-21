@@ -14,6 +14,10 @@
   font-weight: 700;
 }
 
+.session > span {
+  color: var(--accent);
+}
+
 .authWrapper {
   display: flex;
   flex-direction: column;

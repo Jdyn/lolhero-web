@@ -9,7 +9,7 @@
 }
 
 .container {
-  margin: 0 10px 3px 10px;
+  margin: 0 10px 10px 10px;
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
@@ -27,7 +27,7 @@
   padding: 25px;
   font-size: 15px;
   box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.12);
-  border-radius: 8px;
+  border-radius: 16px;
   background-color: var(--secondary-grey);
 }
 
@@ -41,7 +41,7 @@
   margin: 0px 10px 10px 10px;
   display: flex;
   padding: 25px 25px;
-  border-radius: 8px;
+  border-radius: 16px;
   outline: none;
   border: none;
   background-color: var(--primary-grey);
@@ -106,7 +106,8 @@
 @media (min-width: 1025px) {
   .root {
     height: 100%;
-    border-right: 2px solid var(--border);
+    /* border-right: 2px solid var(--border); */
+    border-radius: 0 18px 18px 0;
   }
 
   .container {
@@ -116,5 +117,9 @@
 
   .button {
     width: auto;
+  }
+
+  .filter {
+    border-radius: 0 18px 0 0;
   }
 }

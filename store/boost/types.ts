@@ -15,6 +15,8 @@ export interface BoostOrder {
   nonce: string | null;
   email: string | null;
   paymentMethodIsSelected: boolean;
+  startRankTitle: string;
+  desiredRankTitle: string;
   details: BoostOrderDetails;
 }
 

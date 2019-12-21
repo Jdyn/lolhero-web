@@ -5,12 +5,13 @@ interface Props {
   filters: string[];
   selectedIndex?: number;
   extended?: boolean;
+  rounded?: boolean;
   onClick: (currentIndex?: number) => void;
   untargetableIndices: number[];
 }
 
 const Filter = (props: Props): JSX.Element => {
-  const { filters, selectedIndex, onClick, untargetableIndices, extended } = props;
+  const { filters, selectedIndex, onClick, untargetableIndices, extended, rounded } = props;
 
   const [state, set] = useState(selectedIndex || 0);
 
@@ -26,7 +27,11 @@ const Filter = (props: Props): JSX.Element => {
   };
 
   return (
-    <ul className={`${styles.root} ${extended ? styles.extended : ''}`}>
+    <ul
+      className={`${styles.root} ${extended ? styles.extended : ''} ${
+        rounded ? styles.rounded : ''
+      }`}
+    >
       {Array.isArray(filters) &&
         filters.map((filter, index) => {
           const disabled = untargetableIndices.includes(index);
