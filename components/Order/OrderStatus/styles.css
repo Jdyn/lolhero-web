@@ -6,7 +6,8 @@
   width: 100%;
   padding: 20px;
   flex-direction: column;
-  background-color: var(--quartinary-grey);
+  background-color: var(--secondary-grey);
+  border: 2px solid var(--tertiary-grey);
   border-radius: 16px;
 }
 

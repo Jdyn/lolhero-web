@@ -64,7 +64,7 @@
   display: flex;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
-  background-color: var(--tertiary-grey);
+  background-color: var(--secondary-grey);
 }
 
 @media (min-width: 650px) {

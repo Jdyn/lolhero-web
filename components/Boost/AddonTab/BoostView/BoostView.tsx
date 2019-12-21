@@ -88,7 +88,7 @@ const BoostView = (props: Props): JSX.Element => {
     <>
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={styles.root}>
-          <h2>Current LP</h2>
+          <h2>League Points</h2>
           <p>How much LP do you have?</p>
           <div className={styles.lp}>
             {content.boosts.lp.map(lp => (

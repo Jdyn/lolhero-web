@@ -2,5 +2,5 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: var(--secondary-grey);
+  background-color: var(--primary-grey);
 }

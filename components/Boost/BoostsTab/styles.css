@@ -6,8 +6,6 @@
   z-index: 30;
   flex-direction: column;
   background-color: var(--primary-grey);
-  /* border-right: 2px solid var(--border); */
-  /* border-left: 2px solid var(--tertiary-grey); */
 }
 
 .container {

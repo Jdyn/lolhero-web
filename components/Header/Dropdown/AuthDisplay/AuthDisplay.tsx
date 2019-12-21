@@ -3,10 +3,11 @@ import AuthProfile from '../AuthProfile';
 import AuthMenu from '../AuthMenu/AuthMenu';
 import styles from './styles.css';
 import { Request } from '../../../../store/request/types';
+import { SessionState } from '../../../../store/session/types';
 
 interface Props {
   children?: React.ReactNode;
-  session: { isLoggedIn: boolean | null; user: object };
+  session: SessionState;
   handleAuth: (type: string, form: object) => void;
   sessionRequest: Request;
 }
