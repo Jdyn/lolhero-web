@@ -39,6 +39,10 @@
   color: var(--secondary-white);
 }
 
+.form > div {
+  width: 100%;
+}
+
 .formInput {
   outline: none;
   border: none;
@@ -54,6 +58,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  width: 100%;
+}
+
+.rolesContainer > div {
   width: 100%;
 }
 

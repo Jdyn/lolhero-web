@@ -22,11 +22,13 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   ];
 
   const [currentFilter, setFilter] = useState(filters[0]);
-  const [selectedIndex, setIndex] = useState(filters[0]);
+  const [selectedIndex, setIndex] = useState(0);
 
   useEffect(() => {
-    setFilter(filters[selectedIndex]);
-  }, [selectedIndex, filters]);
+    if (filters[selectedIndex] !== currentFilter) {
+      setFilter(filters[selectedIndex]);
+    }
+  }, [selectedIndex, filters, currentFilter]);
 
   const handleClick = (newChampion: any): void => {
     const champion = { ...newChampion, position: currentFilter };

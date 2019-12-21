@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import addons from '../../../lib/content';
 import { Order } from '../../../store/account/types';
 import styles from './styles.css';
@@ -48,8 +48,18 @@ const OrderDetails = (props: Props): JSX.Element => {
           }));
           return;
         }
+
+        const champs = orderForm.champions.filter(champ => {
+          const primRole = primaryRole || orderForm.details.primaryRole;
+          const secRole = secondaryRole || orderForm.details.secondaryRole;
+          return champ.position === primRole || champ.position === secRole;
+        });
+
+        console.log(champs);
+
         setOrderForm({
           ...orderForm,
+          champions: champs,
           details: {
             ...details,
             ...formUpdate

@@ -32,7 +32,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
-  console.log(orderForm);
 
   return (
     <div className={styles.root}>
