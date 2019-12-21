@@ -55,8 +55,6 @@ const OrderDetails = (props: Props): JSX.Element => {
           return champ.position === primRole || champ.position === secRole;
         });
 
-        console.log(champs);
-
         setOrderForm({
           ...orderForm,
           champions: champs,
