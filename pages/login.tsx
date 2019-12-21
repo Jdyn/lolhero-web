@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Layout from '../components/reusable/Layout';
+import Layout from '../components/Reusable/Layout';
 import { handleAuth } from '../store/session/actions';
 import { AppState } from '../store';
-import AccountAuth from '../components/reusable/AccountAuth';
+import AccountAuth from '../components/Reusable/AccountAuth';
 
 interface Props {
   authenticate?: (type: string, form: object) => void;

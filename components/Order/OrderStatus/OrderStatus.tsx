@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
-import Button from '../../reusable/Button';
+import Button from '../../Reusable/Button';
 import { Order } from '../../../store/account/types';
 
 interface Props {

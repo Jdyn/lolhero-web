@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../../../reusable/Button';
-import Form from '../../../reusable/Form/Form';
+import Button from '../../../Reusable/Button';
+import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.css';
 

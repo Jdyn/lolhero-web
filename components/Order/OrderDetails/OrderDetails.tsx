@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import addons from '../../../lib/content';
 import { Order } from '../../../store/account/types';
 import styles from './styles.css';
-import Button from '../../reusable/Button';
 
 const fields = [
   { type: 'text', title: 'Summoner Name', text: 'summonerName' },
@@ -25,37 +24,21 @@ const content = [
 
 interface Props {
   order?: Order;
-  initializeOrder: (payload: object, trackingId: string) => void;
+  orderForm: any;
+  setOrderForm: (update: object) => void;
 }
 
-const OrderEdit = (props: Props): JSX.Element => {
-  const { order, initializeOrder } = props;
-
-  const [form, setForm] = useState({
-    note: '',
-    details: {
-      primaryRole: null,
-      secondaryRole: null,
-      summonerName: ''
-    },
-    accountDetails: {
-      username: '',
-      password: ''
-    }
-  });
-
-  const UpdateDetails = (): void => {
-    initializeOrder(form, order.trackingId);
-  };
+const OrderDetails = (props: Props): JSX.Element => {
+  const { order, orderForm, setOrderForm } = props;
 
   const handleFormUpdate = (formUpdate): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
 
     if (primaryRole || secondaryRole) {
-      const { details } = form;
+      const { details } = orderForm;
       if (details.primaryRole !== undefined && details.secondaryRole !== undefined) {
         if (primaryRole === details.secondaryRole || secondaryRole === details.primaryRole) {
-          setForm(prev => ({
+          setOrderForm(prev => ({
             ...prev,
             details: {
               ...prev.details,
@@ -65,8 +48,8 @@ const OrderEdit = (props: Props): JSX.Element => {
           }));
           return;
         }
-        setForm({
-          ...form,
+        setOrderForm({
+          ...orderForm,
           details: {
             ...details,
             ...formUpdate
@@ -78,7 +61,7 @@ const OrderEdit = (props: Props): JSX.Element => {
     }
 
     if (summonerName || note) {
-      setForm(prev => ({
+      setOrderForm(prev => ({
         ...prev,
         details: {
           ...prev.details,
@@ -88,7 +71,7 @@ const OrderEdit = (props: Props): JSX.Element => {
       return;
     }
 
-    setForm(prev => ({
+    setOrderForm(prev => ({
       ...prev,
       accountDetails: { ...prev.accountDetails, ...formUpdate }
     }));
@@ -160,14 +143,14 @@ const OrderEdit = (props: Props): JSX.Element => {
             <h3>Order Details</h3>
             <div className={styles.rolesContainer}>
               {content.map(item => (
-                <>
+                <div key={item.text}>
                   <span className={styles.title}>{item.title}</span>
                   <div className={styles.roles}>
                     {item.roles.map(role => (
                       <button
                         type="button"
                         className={` ${styles.role} ${
-                          form.details[item.text] === role.title ? styles.roleSelected : ''
+                          orderForm.details[item.text] === role.title ? styles.roleSelected : ''
                         }`}
                         key={role.title}
                         onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
@@ -176,37 +159,36 @@ const OrderEdit = (props: Props): JSX.Element => {
                       </button>
                     ))}
                   </div>
-                </>
+                </div>
               ))}
             </div>
             <form className={styles.form}>
               {fields.map(field => (
-                <>
+                <div key={field.text}>
                   <span className={styles.title}>{field.title}</span>
                   <input
                     className={styles.formInput}
                     type={field.type}
                     value={
-                      field.text === 'summonerName' ? form[field.text] : form.details[field.text]
+                      field.text === 'summonerName'
+                        ? orderForm[field.text]
+                        : orderForm.details[field.text]
                     }
                     onChange={(event): void =>
                       handleFormUpdate({ [field.text]: event.target.value })
                     }
                   />
-                </>
+                </div>
               ))}
             </form>
             <span className={styles.title}>Notes</span>
             <textarea
-              value={form.note || ''}
+              value={orderForm.note || ''}
               className={styles.notes}
-              onChange={(event): void => setForm({ ...form, note: event.target.value })}
+              onChange={(event): void => setOrderForm({ ...orderForm, note: event.target.value })}
               placeholder="Please enter your preferred champions here."
             />
           </div>
-          <Button width="100%" margin="15px 0px 0px 0px" onClick={UpdateDetails}>
-            save
-          </Button>
         </div>
       ) : (
         <div className={styles.container}>
@@ -239,4 +221,4 @@ const OrderEdit = (props: Props): JSX.Element => {
   );
 };
 
-export default OrderEdit;
+export default OrderDetails;

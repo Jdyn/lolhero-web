@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Button from '../../../reusable/Button';
+import Button from '../../../Reusable/Button';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.css';
 

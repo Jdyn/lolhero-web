@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.css';
 import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
@@ -18,6 +18,22 @@ interface Props {
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const { session, account, order, initializeOrder } = props;
 
+  const [orderForm, setOrderForm] = useState({
+    champions: [],
+    note: '',
+    details: {
+      primaryRole: 'Middle',
+      secondaryRole: 'Bottom',
+      summonerName: ''
+    },
+    accountDetails: {
+      username: '',
+      password: ''
+    }
+  });
+
+  console.log(orderForm);
+
   return (
     <div className={styles.root}>
       {order || account.selectedOrder ? (
@@ -27,11 +43,16 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
             <div className={styles.wrapper}>
               <OrderStatus order={order || account.selectedOrder} />
               <OrderDetails
+                orderForm={orderForm}
+                setOrderForm={setOrderForm}
                 order={order || account.selectedOrder}
-                initializeOrder={initializeOrder}
               />
-              <OrderDisplay order={order || account.selectedOrder} />
-              <OrderChat />
+              <OrderDisplay
+                order={order || account.selectedOrder}
+                orderForm={orderForm}
+                setOrderForm={setOrderForm}
+              />
+              <OrderChat orderForm={orderForm} setOrderForm={setOrderForm} />
             </div>
           </div>
         </>

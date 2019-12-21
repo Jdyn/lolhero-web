@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../../components/reusable/Layout';
-import OrderAuth from '../../components/reusable/OrderAuth';
+import Layout from '../../components/Reusable/Layout';
+import OrderAuth from '../../components/Reusable/OrderAuth';
 
 const TrackOrder = () => {
   return (

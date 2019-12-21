@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
-import Form from '../Form/Form';
+import Form from '../Form';
 
 const templates = {
   signup: {

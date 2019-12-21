@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './styles.css';
-import Filter from '../../reusable/Filter/Filter';
+import Filter from '../../Reusable/Filter/Filter';
 import { BoostState } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 

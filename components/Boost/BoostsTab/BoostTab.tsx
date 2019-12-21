@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import Filter from '../../reusable/Filter/Filter';
+import Filter from '../../Reusable/Filter/Filter';
 import content from '../../../lib/boosts';
 import { BoostOrderDetails } from '../../../store/boost/types';
 import styles from './styles.css';

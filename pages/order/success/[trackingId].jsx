@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import Layout from '../../../components/reusable/Layout';
+import Layout from '../../../components/Reusable/Layout';
 
 const OrderSuccess = props => {
   const router = useRouter();

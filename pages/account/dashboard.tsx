@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardContainer from '../../containers/DashboardContainer';
-import Layout from '../../components/reusable/Layout';
+import Layout from '../../components/Reusable/Layout';
 import withAuth from '../../util/withAuth';
 import { fetchAccountOrderList } from '../../store/account/actions';
 

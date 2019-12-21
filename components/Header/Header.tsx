@@ -5,7 +5,7 @@ import Dropdown from './Dropdown/AuthDisplay';
 import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.css';
-import ProgressBar from '../reusable/ProgressBar';
+import ProgressBar from '../Reusable/ProgressBar';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../../components/reusable/Layout';
+import Layout from '../../../components/Reusable/Layout';
 import withAuth from '../../../util/withAuth';
 import OrderContainer from '../../../containers/OrderContainer';
 import { fetchOrder } from '../../../store/account/actions';

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import content from '../../../../lib/content';
-import Toggle from '../../../reusable/Toggle';
+import Toggle from '../../../Reusable/Toggle';
 import { BoostOrderDetails } from '../../../../store/boost/types';
 import styles from './styles.css';
 

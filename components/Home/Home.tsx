@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import Button from '../reusable/Button';
+import Button from '../Reusable/Button';
 import HomeCard from './Cards/HomeCard';
 import styles from './styles.css';
-import Stripes from '../reusable/Stripes';
+import Stripes from '../Reusable/Stripes';
 
 const cards = [
   {
