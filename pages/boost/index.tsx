@@ -1,5 +1,6 @@
 import React from 'react';
 import cookies from 'next-cookies';
+import Head from 'next/head';
 import BoostContainer from '../../containers/BoostContainer';
 import { fetchBoostPrices, updateOrder } from '../../store/boost/actions';
 import boosts from '../../lib/boosts';
@@ -43,7 +44,14 @@ class CustomBoost extends React.Component<Props> {
   }
 
   render(): JSX.Element {
-    return <BoostContainer />;
+    return (
+      <>
+        <Head>
+          <title>LoLHero.gg - Custom LoL ELO Boost Order</title>
+        </Head>
+        <BoostContainer />
+      </>
+    );
   }
 }
 

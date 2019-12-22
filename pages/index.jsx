@@ -4,7 +4,7 @@ import Layout from '../components/Reusable/Layout';
 
 const index = () => {
   return (
-    <Layout>
+    <Layout title="Professional LoL ELO Boosting Services">
       <HomeContainer />
     </Layout>
   );

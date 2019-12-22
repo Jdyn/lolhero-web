@@ -43,7 +43,7 @@
   padding: 25px 25px;
   border-radius: 16px;
   outline: none;
-  border: none;
+  border: 2px solid transparent;
   background-color: var(--primary-grey);
   flex-direction: column;
   transition-duration: 0.15s;
@@ -51,10 +51,12 @@
 
 .selected {
   background-color: var(--secondary-grey);
+  border: 2px solid var(--tertiary-grey);
 }
 
 .button:hover {
   background-color: var(--secondary-grey);
+  border: 2px solid var(--tertiary-grey);
 }
 
 .header {

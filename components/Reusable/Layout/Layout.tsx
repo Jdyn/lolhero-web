@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { connect } from 'react-redux';
 import Header from '../../Header';
 import Footer from '../../Footer';
@@ -13,13 +14,22 @@ interface Props {
   session?: SessionState;
   authenticate?: (type: string, form: object) => void;
   sessionRequest?: Request;
+  title?: string;
+  description?: string;
 }
 
 const Layout = (props: Props): JSX.Element => {
-  const { children, session, authenticate, sessionRequest } = props;
+  const { children, session, authenticate, sessionRequest, title, description } = props;
 
   return (
     <div className={styles.root}>
+      <Head>
+        <title>LoLHero.gg - {title}</title>
+        <meta
+          name="description"
+          content={`${description || ''}Professional League Of Legends Ranked Boosting Services`}
+        />
+      </Head>
       <Header session={session} handleAuth={authenticate} sessionRequest={sessionRequest} />
       {children}
       <Footer />
