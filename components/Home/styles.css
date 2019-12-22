@@ -3,14 +3,17 @@
   flex-direction: column;
 }
 
+.header {
+  padding: 0px 15px
+}
+
 .container {
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 60px 15px;
   max-width: 970px;
   width: 100%;
-  margin: 0 auto;
+  margin: 60px auto;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -47,6 +50,7 @@
   background-color: var(--tertiary-grey);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   padding: 10px 16px;
+  margin-bottom: 60px;
   min-width: 0;
 }
 

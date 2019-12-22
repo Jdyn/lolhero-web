@@ -37,8 +37,6 @@ const AccountAuth = (props: Props): JSX.Element => {
         />
         <div className={styles.loader}>
           {sessionRequest.isPending && <Loader width="64px" height="64px" />}
-        </div>
-        <div className={styles.loader}>
           {sessionRequest.errored && <p>{sessionRequest.error}</p>}
         </div>
       </div>

@@ -115,9 +115,10 @@ const signup = (
         }
       } else {
         const { errors } = response;
-
-        // Fix this... This send an array[] of errors
-        dispatch(setRequest(false, requestType, errors));
+        if (Object.keys(errors).length > 0) {
+          const firstKey = Object.keys(errors)[0];
+          dispatch(setRequest(false, requestType, `${firstKey} ${errors[firstKey][0]}`));
+        }
       }
     })
     .catch((): void => {
