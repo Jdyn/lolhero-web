@@ -24,7 +24,7 @@ const Layout = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <Head>
-        <title>LoLHero.gg - {title}</title>
+        <title>{title || 'LOL ELO Boosting Services'} - LoLHero</title>
         <meta
           name="description"
           content={`${description || ''}Professional League Of Legends Ranked Boosting Services`}

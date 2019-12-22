@@ -92,7 +92,7 @@ const OrderChat = (props: Props): JSX.Element => {
           <div className={styles.scroll}>
             <div className={styles.wrapper}>
               <h3>{order.details.primaryRole}</h3>
-              {order.details.champions ? (
+              {order.details.champions && order.details.champions.length > 0 ? (
                 order.details.champions.map((champion, index) =>
                   champion.position === order.details.primaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
@@ -103,7 +103,9 @@ const OrderChat = (props: Props): JSX.Element => {
                       />
                       <span>{champion.name}</span>
                     </div>
-                  ) : null
+                  ) : (
+                    <div>None</div>
+                  )
                 )
               ) : (
                 <div>None</div>
@@ -111,7 +113,7 @@ const OrderChat = (props: Props): JSX.Element => {
             </div>
             <div className={styles.wrapper}>
               <h3>{order.details.secondaryRole}</h3>
-              {order.details.champions ? (
+              {order.details.champions && order.details.champions.length > 0 ? (
                 order.details.champions.map((champion, index) =>
                   champion.position === order.details.secondaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
@@ -122,7 +124,9 @@ const OrderChat = (props: Props): JSX.Element => {
                       />
                       <span>{champion.name}</span>
                     </div>
-                  ) : null
+                  ) : (
+                    <div>None</div>
+                  )
                 )
               ) : (
                 <div>None</div>

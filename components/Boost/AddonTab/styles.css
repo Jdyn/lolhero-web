@@ -3,7 +3,6 @@
   min-height: 350px;
   display: flex !important;
   position: relative;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.4);
   flex-direction: column;
   background-color: var(--primary-grey);
   color: var(--secondary-white);
@@ -31,7 +30,7 @@
     /* width: 400px; */
     height: 100%;
     /* border-left: 2px solid var(--border); */
-    box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.3);
     border-radius: 18px 0 0 18px ;
   }
 

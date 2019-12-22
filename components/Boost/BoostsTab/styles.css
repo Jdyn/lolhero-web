@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   position: relative;
-  box-shadow: 5px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 0px 15px 0px rgba(0, 0, 0, 0.3);
   z-index: 30;
   flex-direction: column;
   background-color: var(--primary-grey);
