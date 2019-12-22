@@ -14,7 +14,7 @@ interface Props {
 const SignUp = (props: Props): JSX.Element => {
   const { authenticate, sessionRequest } = props;
   return (
-    <Layout>
+    <Layout title="Sign Up">
       <AccountAuth type="signup" authenticate={authenticate} sessionRequest={sessionRequest} />
     </Layout>
   );

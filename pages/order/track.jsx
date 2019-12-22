@@ -4,7 +4,7 @@ import OrderAuth from '../../components/Reusable/OrderAuth';
 
 const TrackOrder = () => {
   return (
-    <Layout>
+    <Layout title="Track Order">
       <OrderAuth fullAuth />
     </Layout>
   );

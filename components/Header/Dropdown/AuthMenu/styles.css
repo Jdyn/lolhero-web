@@ -16,7 +16,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  border-bottom: 2px solid var(--tertiary-grey);
+  border-bottom: 2px solid var(--bordrr);
   cursor: pointer;
   height: 75px;
   max-width: 250px;
@@ -26,7 +26,7 @@
 }
 
 .menuWrapper:hover {
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
 }
 
 .menu {

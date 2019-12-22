@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: var(--secondary-grey);
+  background-color: var(--primary-grey);
 }
 
 .container {
@@ -18,7 +18,7 @@
   flex: 1;
   width: 100%;
   max-width: 300px;
-  background-color: var(--quartinary-grey);
+  background-color: var(--secondary-grey);
   border-radius: 16px;
   box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.2);
 }
