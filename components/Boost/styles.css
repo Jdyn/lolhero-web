@@ -21,11 +21,11 @@
 @media (min-width: 1025px) {
   .root {
     position: absolute;
-    padding: 76px 0 90px 0;
+    padding: 75px 0 90px 0;
   }
 
   .container {
-    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 100%;
   }
 }

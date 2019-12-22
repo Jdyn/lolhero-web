@@ -10,13 +10,13 @@ const cards = [
   {
     title: 'It Begins With Choosing Your Service',
     description:
-      'Fully customize your order from the ground up with custom options tailored to your needs.',
+      'Customize your order from the ground up based on your goals. We offer the most in-depth order customizations.',
     step: 'step 1'
   },
   {
     title: 'Next, Choose Your Payment Method',
     description:
-      'We work with the most trusted payment processors like PayPal to ensure your order is secure.',
+      'We work with the most trusted payment processors to ensure your order and payment is secure.',
     step: 'step 2'
   },
   {
@@ -45,7 +45,7 @@ const Home = (): JSX.Element => {
       <Stripes />
       <div className={styles.container}>
         <h1>LoL Hero</h1>
-        <h2>League Of Legends</h2>
+        <h2>Boosting Services</h2>
         <form className={styles.form} onSubmit={handleOrderSearch}>
           <input
             value={form.trackingId}

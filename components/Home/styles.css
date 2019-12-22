@@ -19,7 +19,7 @@
 .container > h1 {
   font-size: 45px;
   margin: 0;
-  color: var(--secondary-white);
+  color: var(--white);
 }
 
 .container > h2 {

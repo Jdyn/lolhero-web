@@ -5,7 +5,7 @@
   flex-grow: 1;
   width: 100%;
   margin: 10px 20px 10px 20px;
-  max-width: 275px;
+  max-width: 280px;
   box-shadow: 0 2px 15px rgb(0, 0, 0, 0.2);
   background-color: var(--primary-grey);
   border-radius: 8px;
