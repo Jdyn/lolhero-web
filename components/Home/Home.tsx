@@ -10,19 +10,19 @@ const cards = [
   {
     title: 'First, begin By Choosing Your Service',
     description:
-      'Customize your order from the ground up based on your goals. We offer the most in-depth order customization.',
+      'Customize your order from the ground up based on your goals. We offer the most in-depth order customizations.',
     step: 'step 1'
   },
   {
     title: 'Next, Choosing Your Payment Method',
     description:
-      'We work with the most trusted payment processors to ensure your order and payment is secure.',
+      'We work with the most trusted payment processors, allowing us to confidently offer the most popular payment methods like Venmo, Paypal, and more.',
     step: 'step 2'
   },
   {
     title: 'Finally, Begin Tracking Your Order',
     description:
-      'After your purchase, you will recieve detailed instructions on how to track and further set-up your order.',
+      'After your purchase, you will recieve detailed instructions on how to further set-up and track your order.',
     step: 'step 3'
   }
 ];
@@ -43,8 +43,8 @@ const Home = (): JSX.Element => {
   return (
     <div className={styles.root}>
       <Stripes />
-      <div className={styles.header}>
-        <div className={styles.container}>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
           <h1>LoL Hero</h1>
           <h2>Boosting Services</h2>
           <form className={styles.form} onSubmit={handleOrderSearch}>
@@ -64,12 +64,16 @@ const Home = (): JSX.Element => {
           </Link>
         </div>
       </div>
-
-      <div className={styles.content}>
-        {cards.map(item => (
-          <HomeCard card={item} key={item.title} />
-        ))}
+      <div className={styles.container}>
+        <div className={styles.cardsContainer}>
+          {cards.map(item => (
+            <HomeCard card={item} key={item.title} />
+          ))}
+        </div>
       </div>
+      {/* <div className={styles.infoContainer}>
+        <div className={styles.stripe} />
+      </div> */}
     </div>
   );
 };

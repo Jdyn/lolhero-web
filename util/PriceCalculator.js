@@ -123,7 +123,7 @@ export default (order, pricing) => {
     total = unrestrictedOrder(total);
     total = calculateQueues(total);
     total = calculateLP(total);
-    console.log(total);
+
     return Math.round(total * 100) / 100;
   };
 

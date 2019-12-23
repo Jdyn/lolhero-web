@@ -27,7 +27,7 @@ const ReviewView = (props: Props): JSX.Element => {
           .startRankTitle || 'TBD'}`;
     }
   };
-  console.log(purchaseOrderRequest);
+
   return (
     <>
       <div className={styles.root}>

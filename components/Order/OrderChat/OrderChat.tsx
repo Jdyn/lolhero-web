@@ -103,9 +103,7 @@ const OrderChat = (props: Props): JSX.Element => {
                       />
                       <span>{champion.name}</span>
                     </div>
-                  ) : (
-                    <div>None</div>
-                  )
+                  ) : null
                 )
               ) : (
                 <div>None</div>
@@ -124,9 +122,7 @@ const OrderChat = (props: Props): JSX.Element => {
                       />
                       <span>{champion.name}</span>
                     </div>
-                  ) : (
-                    <div>None</div>
-                  )
+                  ) : null
                 )
               ) : (
                 <div>None</div>

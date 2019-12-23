@@ -57,10 +57,10 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   return order.isEditable && order.details.boostType === 'Solo' ? (
     <div className={styles.editRoot}>
       <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
-      <p className={styles.tip}>
+      {/* <p className={styles.tip}>
         Select the champions you wish to be played by alternating between the roles above and
         clicking the champion portraits.
-      </p>
+      </p> */}
       <div className={styles.championContainer}>
         <div className={styles.championWrapper}>
           {champions.map(champion => (

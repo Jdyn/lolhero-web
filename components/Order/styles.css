@@ -9,7 +9,7 @@
 
 .wrapper {
   display: grid;
-  max-width: 1150px;
+  max-width: 1100px;
   margin: 0px auto 30px auto;
   gap: 20px;
   grid-template-columns: 1fr;
@@ -34,7 +34,7 @@
 
 @media (min-width: 1024px) {
   .wrapper {
-    grid-template-columns: 300px 1fr 300px;
+    grid-template-columns: 275px 2fr 275px;
     grid-template-rows: min-content 1fr;
     grid-template-areas:
       'details status  status'

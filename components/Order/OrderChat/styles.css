@@ -40,7 +40,7 @@
   }
 
   .wrapper {
-    margin: 10px 0 0 0;
+    margin: 0;
   }
 }
 
@@ -59,8 +59,8 @@
   padding: 15px;
   border-radius: 16px;
   flex-basis: 200px;
-  height: 190px;
-  max-height: 190px;
+  height: 180px;
+  max-height: 180px;
   margin-bottom: 20px;
   /* overflow-y: auto; */
 }
@@ -102,7 +102,7 @@
 .championItem > span {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .cancel {
@@ -110,7 +110,7 @@
   border: none;
   background-color: transparent;
   margin-left: auto;
-  width: 48px;
+  width: 32px;
   padding: 0;
   cursor: pointer;
 }

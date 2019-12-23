@@ -31,6 +31,10 @@
   overflow: auto; */
 }
 
+.wrapper > h3 {
+  margin: 0 0 15px 0;
+}
+
 .form {
   display: flex;
   flex-direction: row;
