@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Boost from '../components/Boost';
 import { fetchBoostPrices, updateOrder as orderUpdate, submitOrder } from '../store/boost/actions';
 import { handleAuth } from '../store/session/actions';
-import boosts from '../lib/boosts';
+import { AppState } from '../store';
 
 interface Props {
   type?: string;
@@ -16,7 +16,7 @@ class BoostContainer extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppState): object => ({
   session: state.session,
   purchaseOrderRequest: state.request.PURCHASE_ORDER || { error: { errored: false, message: '' } },
   currentOrder: state.boost.order.details,

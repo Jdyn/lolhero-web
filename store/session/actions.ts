@@ -8,7 +8,7 @@ import { actions, requests, User, SessionActionTypes } from './types';
 const setCurrentSession = (user: { token: string }): void => {
   if (user.token) {
     const jsonToken = user.token;
-    cookie.set('token', jsonToken, { expires: 7 });
+    cookie.set('token', jsonToken);
   }
 };
 

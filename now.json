@@ -1,8 +1,7 @@
-  
 {
-    "version": 2,
-    "builds": [{ "src": "package.json", "use": "@now/next" }],
-    "github": {
-      "silent": true
-    }
+  "version": 2,
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
+  "github": {
+    "silent": true
   }
+}

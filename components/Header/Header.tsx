@@ -6,6 +6,7 @@ import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.css';
 import ProgressBar from '../Reusable/ProgressBar';
+import Filter from '../Reusable/Filter';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;
@@ -30,6 +31,9 @@ const Header = (props: Props): JSX.Element => {
       <Link href="/">
         <div className={styles.logo}>LoLHero</div>
       </Link>
+      {/* <div className={styles.nav}>
+        <Filter filters={['home']} />
+      </div> */}
       <form className={styles.searchForm} onSubmit={handleSubmit}>
         <input
           value={trackingId}

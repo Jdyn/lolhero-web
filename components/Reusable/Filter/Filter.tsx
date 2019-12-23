@@ -6,12 +6,21 @@ interface Props {
   selectedIndex?: number;
   extended?: boolean;
   rounded?: boolean;
+  stealth?: boolean;
   onClick: (currentIndex?: number) => void;
   untargetableIndices: number[];
 }
 
 const Filter = (props: Props): JSX.Element => {
-  const { filters, selectedIndex, onClick, untargetableIndices, extended, rounded } = props;
+  const {
+    filters,
+    selectedIndex,
+    onClick,
+    untargetableIndices,
+    extended,
+    rounded,
+    stealth
+  } = props;
 
   const [state, set] = useState(selectedIndex || 0);
 
