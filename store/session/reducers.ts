@@ -6,6 +6,7 @@ const initialState: SessionState = {
     email: null,
     token: null,
     username: null,
+    role: null,
     isAdmin: false
   }
 };
@@ -14,6 +15,7 @@ const emptyUser: User = {
   email: null,
   token: null,
   username: null,
+  role: null,
   isAdmin: false
 };
 

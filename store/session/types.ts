@@ -24,6 +24,7 @@ export interface User {
   email: string | null;
   token: string | null;
   username: string | null;
+  role: 'user' | 'booster' | 'admin' | null;
   isAdmin: boolean;
 }
 

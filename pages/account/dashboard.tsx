@@ -17,7 +17,7 @@ class Dashboard extends React.PureComponent<{}> {
 
   render(): JSX.Element {
     return (
-      <Layout>
+      <Layout title="Dashboard">
         <DashboardContainer />
       </Layout>
     );

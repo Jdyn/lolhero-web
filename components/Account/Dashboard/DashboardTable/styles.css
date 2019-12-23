@@ -1,6 +1,6 @@
 .root {
   width: 100%;
-  max-width: 795px;
+  max-width: 900px;
   padding: 30px 15px;
   margin: 0 auto;
 }
@@ -43,4 +43,14 @@
   height: 59px;
   border: none;
   padding: 0;
+}
+
+@media (min-width: 640px) {
+  .table > tbody > tr > td {
+    padding: 0 10px;
+  }
+
+  .table > thead > tr > th > div {
+    padding: 0px 10px;
+  }
 }

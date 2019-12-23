@@ -17,14 +17,21 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
 
   // const onEditOrder = () => {};
 
-  const orderStatus = (status: string): string => {
+  const orderStatus = (status: string): JSX.Element => {
     switch (status) {
       case 'open':
-        return 'Waiting for order setup . . .';
+        return <span>Waiting for order setup . . .</span>;
       case 'initialized':
-        return 'Looking for a booster . . .';
+        if (order.booster) {
+          return (
+            <span>
+              Current booster: <b>{order.booster.username}</b>
+            </span>
+          );
+        }
+        return <span>Looking for a booster . . .</span>;
       default:
-        return 'status';
+        return <span>status</span>;
     }
   };
 

@@ -31,6 +31,10 @@
   margin: 0 0 0 15px;
 }
 
+.status > h3 > span > b {
+  color: var(--accent);
+}
+
 @media (min-width: 650px) {
   .root {
     flex-direction: row;

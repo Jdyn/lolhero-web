@@ -17,12 +17,13 @@ class Order extends React.PureComponent<Props> {
 
     await fetchOrder(trackingId, null, ctx)(dispatch, getState);
 
-    return {};
+    return { trackingId };
   }
 
   public render(): JSX.Element {
+    const { trackingId } = this.props;
     return (
-      <Layout>
+      <Layout title={`Order ${trackingId}`}>
         <OrderContainer />
       </Layout>
     );
