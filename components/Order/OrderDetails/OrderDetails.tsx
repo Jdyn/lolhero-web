@@ -97,7 +97,7 @@ const OrderDetails = (props: Props): JSX.Element => {
           <h3>{order.details.server}</h3>
         </div> */}
         {addons.addons.extras.map(item => (
-          <div className={styles.content}>
+          <div key={item.title} className={styles.content}>
             <span>{item.title}</span>
             <h3>{order[item.type] === true ? 'Yes' : 'No'}</h3>
           </div>

@@ -35,8 +35,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
-  console.log(orderForm);
-
   const onInitializeOrder = (): void => {
     initializeOrder(orderForm, trackingId as string);
   };
