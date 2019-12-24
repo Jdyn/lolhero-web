@@ -48,7 +48,7 @@ const login = (
       }
     })
     .catch((): void => {
-      dispatch(setRequest(false, requestType, 'Error connecting to server. Try again later.'));
+      dispatch(setRequest(false, requestType, 'Error connecting to the server.'));
     });
 };
 

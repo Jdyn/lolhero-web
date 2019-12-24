@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import Button from '../Reusable/Button';
+import Button from '../Reusable/Button/Button';
 import HomeCard from './Cards/HomeCard';
 import styles from './styles.module.css';
 import Stripes from '../Reusable/Stripes';

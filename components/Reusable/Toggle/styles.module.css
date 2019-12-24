@@ -1,0 +1,19 @@
+.button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: var(--primary-grey);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.045em;
+  transition-duration: 0.3s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(2px);
+}

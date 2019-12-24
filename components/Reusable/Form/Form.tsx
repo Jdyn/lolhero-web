@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Button from '../Button';
+import Button from '../Button/Button';
 import styles from './styles.module.css';
+import Loader from '../Loader';
 
 interface Props {
   row?: boolean;
   onSubmit: (type: string, form: object) => void;
+  isPending?: boolean;
   template: {
     type: string;
     title: string;
@@ -14,7 +16,7 @@ interface Props {
 }
 
 const Form = (props: Props): JSX.Element => {
-  const { onSubmit, template, row } = props;
+  const { onSubmit, template, row, isPending } = props;
 
   const [form, setForm] = useState({});
 
@@ -41,7 +43,9 @@ const Form = (props: Props): JSX.Element => {
           />
         </div>
       ))}
-      <Button margin="5px 0 0 0">{template.submit}</Button>
+      <Button margin="5px 0 0 0">
+        {isPending ? <Loader width="36px" height="36px" /> : template.submit}
+      </Button>
     </form>
   );
 };

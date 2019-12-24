@@ -1,0 +1,31 @@
+.root {
+  display: flex;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  min-height: 36px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 8px;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  justify-content: center;
+  transition-duration: 0.2s;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  background-color: var(--accent);
+}
+
+.button:hover {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.button:active {
+  transform: translateY(2);
+  box-shadow: none;
+}
+
+.secondary {
+  background-color: var(--green);
+}

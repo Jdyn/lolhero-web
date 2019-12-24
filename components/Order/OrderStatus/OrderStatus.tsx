@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import Button from '../../Reusable/Button';
+import Button from '../../Reusable/Button/Button';
 import { Order } from '../../../store/account/types';
 import Loader from '../../Reusable/Loader';
 

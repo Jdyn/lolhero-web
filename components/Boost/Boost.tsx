@@ -52,6 +52,7 @@ const Boost = props => {
         />
       </div>
       <BottomNavigator
+        purchaseOrderRequest={purchaseOrderRequest}
         currentStage={currentStage}
         currentOrder={currentOrder}
         submitOrder={submitOrder}

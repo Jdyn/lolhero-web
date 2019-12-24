@@ -4,6 +4,8 @@ import { formatLP } from '../../../util/helpers';
 import { BoostState, BoostOrderDetails } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import styles from './styles.module.css';
+import { Request } from '../../../store/request/types';
+import Loader from '../../Reusable/Loader';
 
 interface Props {
   currentStage: number;
@@ -15,6 +17,7 @@ interface Props {
   currentOrder: BoostOrderDetails;
   submitOrder: () => void;
   braintreeInstance: Dropin;
+  purchaseOrderRequest: Request;
   updateOrder: (detailsUpate: object, orderUpdate: object) => void;
 }
 
@@ -29,6 +32,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
     currentOrder,
     submitOrder,
     braintreeInstance,
+    purchaseOrderRequest,
     updateOrder
   } = props;
 
@@ -161,7 +165,11 @@ const BottomNavigator = (props: Props): JSX.Element => {
         onClick={(): void => updateStage(currentStage)}
         style={{ backgroundColor: buttonColor() }}
       >
-        {stageText(currentStage)}
+        {purchaseOrderRequest.isPending ? (
+          <Loader height="57px" width="57px" />
+        ) : (
+          stageText(currentStage)
+        )}
       </button>
     </div>
   );

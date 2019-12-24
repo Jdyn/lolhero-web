@@ -53,6 +53,14 @@
   display: inline-block;
 }
 
+.form > span {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .input {
   outline: none;
   border: none;

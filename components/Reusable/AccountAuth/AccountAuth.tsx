@@ -34,9 +34,9 @@ const AccountAuth = (props: Props): JSX.Element => {
         <Form
           template={templates[type]}
           onSubmit={(formType, form): void => authenticate(formType, form, true)}
+          isPending={sessionRequest.isPending}
         />
         <div className={styles.loader}>
-          {sessionRequest.isPending && <Loader width="64px" height="64px" />}
           {sessionRequest.errored && <p>{sessionRequest.error}</p>}
         </div>
       </div>

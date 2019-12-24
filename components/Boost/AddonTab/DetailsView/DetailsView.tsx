@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../../Reusable/Button';
+import Button from '../../../Reusable/Button/Button';
 import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.module.css';

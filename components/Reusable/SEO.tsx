@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-const SEO = () => {
+const SEO = (): JSX.Element => {
   return (
     <Head>
       <title>LoLHero - Boosting</title>

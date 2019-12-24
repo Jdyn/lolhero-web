@@ -73,11 +73,6 @@ const ReviewView = (props: Props): JSX.Element => {
         <span>
           Summoner Spell Select : <b>FREE</b>
         </span>
-        {purchaseOrderRequest.isPending && (
-          <div className={styles.loader}>
-            <Loader width="64px" height="64px" />
-          </div>
-        )}
       </div>
     </>
   );

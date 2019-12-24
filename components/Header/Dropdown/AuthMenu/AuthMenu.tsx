@@ -74,24 +74,20 @@ const AuthMenu = (props: Props): JSX.Element => {
             <div className={styles.modal}>
               <div className={styles.form}>
                 {type === 'menu' ? (
-                  <>
-                    <ul className={styles.modalList}>
-                      {templates[type].items.map(item => (
-                        <Link key={item.title} href={item.link}>
-                          <li className={styles.modalListItem}>{item.title}</li>
-                        </Link>
-                      ))}
-                    </ul>
-                  </>
+                  <ul className={styles.modalList}>
+                    {templates[type].items.map(item => (
+                      <Link key={item.title} href={item.link}>
+                        <li className={styles.modalListItem}>{item.title}</li>
+                      </Link>
+                    ))}
+                  </ul>
                 ) : (
-                  <>
-                    <Form
-                      template={templates[type]}
-                      onSubmit={(formType, form): void => handleAuth(formType, form)}
-                    />
-                    {sessionRequest.errored && <span>{sessionRequest.error}</span>}
-                  </>
+                  <Form
+                    template={templates[type]}
+                    onSubmit={(formType, form): void => handleAuth(formType, form)}
+                  />
                 )}
+                <span>{sessionRequest.errored && <span>{sessionRequest.error}</span>}</span>
               </div>
             </div>
           </>
