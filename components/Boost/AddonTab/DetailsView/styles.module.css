@@ -11,7 +11,7 @@
 
 .root > h3 {
   margin: 0 0 10px 0;
-  font-size: 16px;
+  font-size: 16px;  
   font-weight: 700;
 }
 
@@ -21,6 +21,7 @@
 
 .authWrapper {
   display: flex;
+  color: var(--white);
   flex-direction: column;
 }
 
@@ -32,7 +33,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  color: var(--secondary-white);
+  color: var(--white);
 }
 
 .group {

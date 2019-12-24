@@ -1,9 +1,17 @@
 import React, { useMemo, useCallback } from 'react';
-import ranks from '../../../../lib/ranks';
+import ranks, { Rank } from '../../../../lib/ranks';
 import styles from './styles.module.css';
+import { BoostOrderDetails } from '../../../../store/boost/types';
 
-const BannerRankList = props => {
-  const { isStartRank, updateOrder, currentOrder } = props;
+interface Props {
+  rank: Rank;
+  isStartRank: boolean;
+  updateOrder: (detailsUpdate: object, orderUpdate: object) => void;
+  currentOrder: BoostOrderDetails;
+}
+
+const BannerRankList = (props: Props): JSX.Element => {
+  const { rank, isStartRank, updateOrder, currentOrder } = props;
 
   const handleClick = useCallback(
     rankItem => {
@@ -40,21 +48,23 @@ const BannerRankList = props => {
       <div key={index} className={styles.rankWrapper}>
         {rankList.map(rankItem => {
           const disabled = validate(rankItem.rank);
+          const selected = rank.rank === rankItem.rank;
           return (
             <button
               key={rankItem.title}
               type="button"
               aria-label="rank"
               disabled={disabled}
-              className={`${styles.button} ${disabled && styles.disabled}`}
-              onClick={() => handleClick(rankItem)}
+              className={`${styles.button} ${disabled && styles.disabled} ${selected &&
+                styles.selected}`}
+              onClick={(): void => handleClick(rankItem)}
               style={{ backgroundColor: rankItem.color, borderColor: rankItem.accent }}
             />
           );
         })}
       </div>
     ));
-  }, [handleClick, validate]);
+  }, [handleClick, validate, rank]);
 
   return (
     <div className={styles.root}>

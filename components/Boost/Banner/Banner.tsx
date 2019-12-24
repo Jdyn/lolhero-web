@@ -22,6 +22,7 @@ const Banner = (props: Props): JSX.Element => {
     slider: <BannerRankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
     picker: (
       <BannerRankList
+        rank={rank}
         currentOrder={currentOrder}
         isStartRank={isStartRank}
         updateOrder={updateOrder}

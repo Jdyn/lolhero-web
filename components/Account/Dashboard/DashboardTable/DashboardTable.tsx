@@ -36,7 +36,7 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
           </thead>
           <tbody>
             {orders[filter].orders.map(order => (
-              <tr>
+              <tr key={order.trackingId}>
                 <td>
                   <span>{order.trackingId}</span>
                 </td>

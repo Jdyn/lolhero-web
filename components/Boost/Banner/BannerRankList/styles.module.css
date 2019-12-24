@@ -17,8 +17,8 @@
   border-top: 2px solid var(--white);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.025rem;
-  font-size: 14px;
+  letter-spacing: 0.035rem;
+  font-size: 13px;
   max-width: 168px;
   width: 100%;
   margin: 5px auto 0px auto;
@@ -38,6 +38,10 @@
 
 .disabled {
   opacity: 0.4;
+}
+
+.selected {
+  border-color: var(--white) !important;
 }
 
 .button:hover {
