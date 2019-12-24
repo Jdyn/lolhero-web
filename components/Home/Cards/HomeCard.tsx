@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 interface Props {
   card: { title: string; description: string; step: string };

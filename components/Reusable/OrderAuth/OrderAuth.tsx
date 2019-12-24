@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import Api from '../../../services/api';
 import OrderContainer from '../../../containers/OrderContainer';
 import Button from '../Button';

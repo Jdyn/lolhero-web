@@ -1,7 +1,7 @@
 import React from 'react';
 import { flatRanks } from '../../../lib/ranks';
 import Banner from '../Banner';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { BoostOrderDetails } from '../../../store/boost/types';
 import { Request } from '../../../store/request/types';
 

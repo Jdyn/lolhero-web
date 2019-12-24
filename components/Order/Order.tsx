@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
 import OrderStatus from './OrderStatus';

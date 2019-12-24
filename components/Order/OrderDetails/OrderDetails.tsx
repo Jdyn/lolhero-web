@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import addons from '../../../lib/content';
 import { Order } from '../../../store/account/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 const fields = [
   { type: 'username', title: 'LoL Username', text: 'username' },

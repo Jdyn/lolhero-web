@@ -4,7 +4,7 @@ import AddonTab from './AddonTab';
 import TopNavigator from './TopNavigator/TopNavigator';
 import BoostDisplay from './BoostDisplay/BoostDisplay';
 import BottomNavigator from './BottomNavigator';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 const Boost = props => {
   const {

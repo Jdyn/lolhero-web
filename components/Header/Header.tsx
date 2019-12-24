@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Dropdown from './Dropdown/AuthDisplay';
 import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import ProgressBar from '../Reusable/ProgressBar';
 import Filter from '../Reusable/Filter';
 

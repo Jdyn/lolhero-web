@@ -1,6 +1,6 @@
 import React from 'react';
 import { SessionState } from '../../../store/session/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { formatTime } from '../../../util/helpers';
 
 interface Props {

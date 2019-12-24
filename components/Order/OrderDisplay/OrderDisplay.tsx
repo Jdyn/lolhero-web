@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { flatRanks } from '../../../lib/ranks';
 import { Order } from '../../../store/account/types';
 import Banner from '../../Boost/Banner';

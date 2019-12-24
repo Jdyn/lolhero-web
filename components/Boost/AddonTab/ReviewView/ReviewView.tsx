@@ -2,7 +2,7 @@ import React from 'react';
 import content from '../../../../lib/content';
 import { formatLP } from '../../../../util/helpers';
 import { BoostOrderDetails, BoostState } from '../../../../store/boost/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { Request } from '../../../../store/request/types';
 import Loader from '../../../Reusable/Loader';
 

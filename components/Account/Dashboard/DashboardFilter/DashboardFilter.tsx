@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListOrder, OrderList } from '../../../../store/account/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 interface Props {
   orders: OrderList;

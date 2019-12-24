@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../Button';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 interface Props {
   row?: boolean;

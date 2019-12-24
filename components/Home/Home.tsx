@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import Button from '../Reusable/Button';
 import HomeCard from './Cards/HomeCard';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import Stripes from '../Reusable/Stripes';
 
 const cards = [

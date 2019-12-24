@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { formatTime } from '../../../../util/helpers';
 import { OrderList, Order } from '../../../../store/account/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { SessionState } from '../../../../store/session/types';
 
 interface Props {

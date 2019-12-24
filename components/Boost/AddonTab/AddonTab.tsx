@@ -6,7 +6,7 @@ import BoostView from './BoostView';
 import ReviewView from './ReviewView/ReviewView';
 import DetailsView from './DetailsView/DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { BoostOrderDetails, BoostState } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import { Request } from '../../../store/request/types';

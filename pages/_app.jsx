@@ -9,7 +9,8 @@ import withRedux from '../util/withRedux';
 import Baseline from '../components/Reusable/Baseline';
 import theme from '../lib/theme';
 import SEO from '../components/Reusable/SEO';
-import '../public/static/styles/empty.css';
+import '../public/static/styles/global.css';
+import '../public/static/styles/braintree.css';
 
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({

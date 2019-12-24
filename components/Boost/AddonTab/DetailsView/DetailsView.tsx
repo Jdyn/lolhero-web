@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../../Reusable/Button';
 import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 const templates = {
   signup: {

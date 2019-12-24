@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import { handleAuth } from '../../../store/session/actions';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { SessionState } from '../../../store/session/types';
 import { AppState } from '../../../store';
 import { Request } from '../../../store/request/types';

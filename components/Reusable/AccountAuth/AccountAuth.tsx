@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import Form from '../Form';
 import { Request } from '../../../store/request/types';
 import Loader from '../Loader';

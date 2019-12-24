@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Form from '../../../Reusable/Form';
 import { Request } from '../../../../store/request/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 const templates = {
   signup: {

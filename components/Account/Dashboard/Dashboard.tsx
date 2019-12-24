@@ -4,7 +4,7 @@ import { AccountState } from '../../../store/account/types';
 import DashboardHeader from './DashboardHeader';
 import DashboardFilter from './DashboardFilter';
 import DashboardTable from './DashboardTable';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 interface Props {
   session: SessionState;

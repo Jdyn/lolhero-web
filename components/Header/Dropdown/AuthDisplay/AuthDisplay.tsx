@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import AuthProfile from '../AuthProfile';
 import AuthMenu from '../AuthMenu/AuthMenu';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { Request } from '../../../../store/request/types';
 import { SessionState } from '../../../../store/session/types';
 

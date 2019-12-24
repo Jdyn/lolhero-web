@@ -3,7 +3,7 @@ import { Dropin } from 'braintree-web-drop-in';
 import { formatLP } from '../../../util/helpers';
 import { BoostState, BoostOrderDetails } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
-import styles from './styles.css';
+import styles from './styles.module.css';
 
 interface Props {
   currentStage: number;
