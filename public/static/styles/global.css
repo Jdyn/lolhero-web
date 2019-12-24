@@ -45,8 +45,8 @@ html {
 body {
   margin: 0;
   color: #f0f0f0;
+  background-color: var(--primary-grey);
   font-size: 100%;
-  min-height: 100vh;
   font-family: 'Museo Sans Rounded', 'Open Sans', 'Segoe UI', 'sans-serif';
   font-weight: normal;
   font-style: normal;

@@ -24,10 +24,10 @@ const OrderChat = (props: Props): JSX.Element => {
       <h3>Selected Champions</h3>
       {order.isEditable ? (
         <div>
-          <div className={styles.wrapper}>
-            <h3>{orderForm.details.primaryRole}</h3>
-            <div className={styles.container}>
-              <div className={styles.scroll}>
+          <div className={styles.list}>
+            <div className={styles.scroll}>
+              <div className={styles.wrapper}>
+                <h3>{orderForm.details.primaryRole}</h3>
                 {orderForm.details.champions.map((champion, index) =>
                   champion.position === orderForm.details.primaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
@@ -53,12 +53,8 @@ const OrderChat = (props: Props): JSX.Element => {
                   ) : null
                 )}
               </div>
-            </div>
-          </div>
-          <div className={styles.wrapper}>
-            <h3>{orderForm.details.secondaryRole}</h3>
-            <div className={styles.container}>
-              <div className={styles.scroll}>
+              <div className={styles.wrapper}>
+                <h3>{orderForm.details.secondaryRole}</h3>
                 {orderForm.details.champions.map((champion, index) =>
                   champion.position === orderForm.details.secondaryRole ? (
                     <div className={styles.championItem} key={champion.name}>

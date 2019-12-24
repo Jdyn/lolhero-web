@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'react-jss';
 import { authenticate } from '../store/session/actions';
 import withRedux from '../util/withRedux';
-import Baseline from '../components/Reusable/Baseline';
 import theme from '../lib/theme';
 import SEO from '../components/Reusable/SEO';
 import '../public/static/styles/global.css';
@@ -84,10 +83,8 @@ class Application extends App {
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme.dark}>
-          <Baseline>
-            <SEO />
-            <Component {...pageProps} store={store} />
-          </Baseline>
+          <SEO />
+          <Component {...pageProps} store={store} />
         </ThemeProvider>
       </Provider>
     );

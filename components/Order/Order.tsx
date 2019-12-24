@@ -30,10 +30,12 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
       champions: []
     },
     accountDetails: {
-      username: '',
-      password: ''
+      username: null,
+      password: null
     }
   });
+
+  console.log(orderForm);
 
   const onInitializeOrder = (): void => {
     initializeOrder(orderForm, trackingId as string);

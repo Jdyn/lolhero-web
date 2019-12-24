@@ -20,30 +20,6 @@
   flex-direction: column;
 }
 
-@media (min-width: 640px) {
-  .root > div {
-    flex-direction: row;
-  }
-
-  .wrapper {
-    margin: 10px 10px 0 0;
-  }
-
-  .wrapper:last-child {
-    margin-right: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .root > div {
-    flex-direction: column;
-  }
-
-  .wrapper {
-    margin: 0;
-  }
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -82,8 +58,8 @@
 }
 
 .list {
-  height: 400px;
-  max-height: 400px;
+  height: 456px;
+  max-height: 456px;
   overflow-y: auto;
   border-radius: 18px;
   padding: 15px;
@@ -119,4 +95,28 @@
   width: 25px;
   height: 25px;
   fill: red;
+}
+
+@media (min-width: 640px) {
+  .root > div {
+    flex-direction: row;
+  }
+
+  .wrapper {
+    margin: 10px 10px 0 0;
+  }
+
+  .wrapper:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .root > div {
+    flex-direction: column;
+  }
+
+  .wrapper {
+    margin: 0;
+  }
 }

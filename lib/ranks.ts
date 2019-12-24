@@ -1,3 +1,10 @@
+export interface Rank {
+  title: string;
+  rank: number;
+  color: string;
+  accent: string;
+}
+
 const ranks = [
   [
     {

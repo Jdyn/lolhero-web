@@ -65,11 +65,22 @@ export const fetchOrder = (id: string, email: string, ctx?: NextPageContext) => 
 };
 
 export const initializeOrder = (payload: object, trackingId: string) => (
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  getState: () => AppState
 ): void => {
+  const requestType = accountRequests.INITIALIZE_ORDER;
+  const request = getState().request[requestType] || { isPending: false };
+
+  if (request.isPending) return;
+
+  dispatch(setRequest(true, requestType));
+
   Api.patch(`/account/order/${trackingId}`, payload).then(response => {
     if (response.ok) {
       dispatch(orderUpdated({ order: response.result.order }));
+      dispatch(setRequest(false, requestType));
+    } else {
+      dispatch(setRequest(false, requestType, 'Please fill out every field.'));
     }
   });
 };
