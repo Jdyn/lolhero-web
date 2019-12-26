@@ -10,7 +10,7 @@ interface Props {
   currentOrder: BoostOrderDetails;
 }
 
-const BannerRankList = (props: Props): JSX.Element => {
+const RankList = (props: Props): JSX.Element => {
   const { rank, isStartRank, updateOrder, currentOrder } = props;
 
   const handleClick = useCallback(
@@ -74,4 +74,4 @@ const BannerRankList = (props: Props): JSX.Element => {
   );
 };
 
-export default BannerRankList;
+export default RankList;

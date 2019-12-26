@@ -17,3 +17,7 @@
 .button:active {
   transform: translateY(2px);
 }
+
+.selected {
+  color: var(--accent);
+}

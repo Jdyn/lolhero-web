@@ -1,6 +1,6 @@
 import React from 'react';
-import BannerRankList from './BannerRankList/BannerRankList';
-import BannerRankSlider from './BannerRankSlider';
+import RankList from './RankList';
+import RankSlider from './RankSlider';
 import styles from './styles.module.css';
 import { BoostOrderDetails } from '../../../store/boost/types';
 import { Rank } from '../../../lib/ranks';
@@ -15,13 +15,13 @@ interface Props {
 }
 
 const Banner = (props: Props): JSX.Element => {
-  const { type, rank, updateOrder, currentOrder, isStartRank } = props;
+  const { type, rank, updateOrder, currentOrder, isStartRank, height } = props;
 
   const renderContent = {
     default: <></>,
-    slider: <BannerRankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
+    slider: <RankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
     picker: (
-      <BannerRankList
+      <RankList
         rank={rank}
         currentOrder={currentOrder}
         isStartRank={isStartRank}
@@ -31,7 +31,7 @@ const Banner = (props: Props): JSX.Element => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={{ height }}>
       <div
         className={`${styles.container} ${rank && styles.rank}`}
         style={{

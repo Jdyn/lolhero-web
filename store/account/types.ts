@@ -27,6 +27,7 @@ export interface OrderList {
 export interface Order {
   createdAt: string;
   booster: { username: string } | null;
+  accountDetails: { username: string; password: string };
   details: {
     boostType: string;
     collectionId: number;

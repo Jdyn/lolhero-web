@@ -3,10 +3,8 @@ import App from 'next/app';
 import cookies from 'next-cookies';
 import * as Sentry from '@sentry/browser';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'react-jss';
 import { authenticate } from '../store/session/actions';
 import withRedux from '../util/withRedux';
-import theme from '../lib/theme';
 import SEO from '../components/Reusable/SEO';
 import '../public/static/styles/global.css';
 import '../public/static/styles/braintree.css';
@@ -70,11 +68,6 @@ class Application extends App {
     //     document.addEventListener('tidioChat-ready', onTidioChatApiReady);
     //   }, 10000);
     // }
-
-    const style = document.getElementById('server-side-styles');
-    if (style) {
-      style.parentNode.removeChild(style);
-    }
   }
 
   render() {
@@ -82,10 +75,8 @@ class Application extends App {
 
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme.dark}>
-          <SEO />
-          <Component {...pageProps} store={store} />
-        </ThemeProvider>
+        <SEO />
+        <Component {...pageProps} store={store} />
       </Provider>
     );
   }

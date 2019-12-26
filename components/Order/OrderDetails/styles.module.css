@@ -195,6 +195,35 @@
   margin-right: 0px;
 }
 
+.adminContainer {
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 15px;
+  background-color: var(--primary-grey);
+}
+
+.adminContainer > h3 {
+  margin: 5px 0px;
+  font-size: 16px;
+}
+
+.adminContainer > div {
+  padding: 10px;
+  background-color: var(--secondary-grey);
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
+
+.reveal {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--accent);
+  width: 100%;
+}
+
 @media (min-width: 650px) {
   .container {
     flex-direction: row;
