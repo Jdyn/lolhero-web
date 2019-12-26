@@ -14,7 +14,8 @@
 }
 
 .label {
-  border-top: 2px solid var(--white);
+  border-top: 2px solid var(--border);
+  color: var(--grey);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.035rem;

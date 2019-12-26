@@ -11,19 +11,18 @@
   letter-spacing: 0.025em;
   text-transform: uppercase;
   justify-content: center;
-  transition-duration: 0.2s;
+  align-items: center;
+  transition-duration: 0.15s;
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--accent);
 }
 
-.button:hover {
-  transform: translateY(2px);
-  box-shadow: none;
+.root:hover {
+  transform: translateY(-2px);
 }
 
-.button:active {
-  transform: translateY(2);
-  box-shadow: none;
+.root:active {
+  transform: translateY(2px);
 }
 
 .secondary {

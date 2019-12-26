@@ -52,11 +52,13 @@
 .selected {
   background-color: var(--secondary-grey);
   border: 2px solid var(--tertiary-grey);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
   background-color: var(--secondary-grey);
   border: 2px solid var(--tertiary-grey);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .header {
