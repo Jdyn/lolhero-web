@@ -36,9 +36,7 @@ const AccountAuth = (props: Props): JSX.Element => {
           onSubmit={(formType, form): void => authenticate(formType, form, true)}
           isPending={sessionRequest.isPending}
         />
-        <div className={styles.loader}>
-          {sessionRequest.errored && <p>{sessionRequest.error}</p>}
-        </div>
+        <div className={styles.loader}>{sessionRequest.errored && sessionRequest.error}</div>
       </div>
     </div>
   );

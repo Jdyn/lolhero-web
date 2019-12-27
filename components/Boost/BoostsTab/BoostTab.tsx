@@ -14,32 +14,40 @@ interface Props {
 const BoostTab = (props: Props): JSX.Element => {
   const { currentOrder, updateOrder } = props;
 
-  const [selectedIndex, setIndex] = useState(0);
   const [currentType, setType] = useState(currentOrder.boostType);
-
   const currentContent = useMemo(() => content[currentType], [currentType]);
+
+  const [selectedIndex, setIndex] = useState(
+    currentContent.items.indexOf(
+      currentContent.items.filter(item => item.id === currentOrder.collectionId)[0]
+    )
+  );
 
   useEffect(() => {
     if (currentType !== currentOrder.boostType) {
-      const currentItem = currentContent.items[selectedIndex];
       setIndex(selectedIndex);
+
+      const currentItem = currentContent.items[selectedIndex];
+
       updateOrder({
         collectionId: currentItem.id,
         collectionName: currentItem.title,
         boostType: currentType
       });
     }
-  }, [currentType, currentOrder, selectedIndex, currentContent, updateOrder]);
+  }, [currentType, currentOrder.boostType, selectedIndex, currentContent, updateOrder]);
 
   const handleOrderUpdate = (newSelectedIndex: number): void => {
-    const currentItem = currentContent.items[newSelectedIndex];
-
     setIndex(newSelectedIndex);
-    updateOrder({
-      collectionId: currentItem.id,
-      collectionName: currentItem.title,
-      boostType: currentType
-    });
+
+    const currentItem = currentContent.items[newSelectedIndex];
+    if (currentOrder.collectionId !== currentItem.id) {
+      updateOrder({
+        collectionId: currentItem.id,
+        collectionName: currentItem.title,
+        boostType: currentType
+      });
+    }
   };
 
   return (
@@ -59,19 +67,19 @@ const BoostTab = (props: Props): JSX.Element => {
       </div> */}
       <div className={styles.container}>
         {currentContent.items.map((item, index) => {
-          const isSelected = currentContent.items[index].id === currentOrder.collectionId;
+          const isSelected = selectedIndex === index;
           return (
             <button
               type="button"
               aria-label="boost-type"
               key={item.id}
-              className={`${styles.button} ${isSelected ? styles.selected : ''}`}
+              className={`${styles.button} ${isSelected && styles.selected}`}
               onClick={(): void => handleOrderUpdate(index)}
             >
               <div className={styles.header}>
                 <span>{item.tag}</span>
                 <h2>{item.title}</h2>
-                <h3>{isSelected ? 'selected' : ''}</h3>
+                <h3>{isSelected && 'selected'}</h3>
               </div>
               <p>{item.description}</p>
             </button>

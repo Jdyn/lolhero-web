@@ -31,8 +31,8 @@
 
 .list {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .list > ul {
@@ -55,6 +55,7 @@
   }
 
   .list {
+    justify-content: center;
     flex-direction: row;
   }
 }

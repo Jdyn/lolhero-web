@@ -11,7 +11,7 @@ interface Props {
   session: SessionState;
 }
 
-const labels = ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date'];
+const labels = ['ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date'];
 
 const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
   const { orders, filter, session } = props;

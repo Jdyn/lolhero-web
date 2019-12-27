@@ -14,7 +14,8 @@
 }
 
 .label {
-  border-top: 2px solid var(--white);
+  border-top: 2px solid var(--secondary-white);
+  color: var(--secondary-white);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.035rem;
@@ -37,7 +38,7 @@
 }
 
 .disabled {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 .selected {
@@ -46,4 +47,8 @@
 
 .button:hover {
   transform: scale(1.5);
+}
+
+.button:active {
+  border-color: var(--white) !important;
 }

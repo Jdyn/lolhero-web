@@ -39,7 +39,6 @@
 
 .loader {
   display: flex;
-  margin: 0px;
-  height: 60px;
+  margin-top: 15px;
   justify-content: center;
 }
