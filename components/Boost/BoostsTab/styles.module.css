@@ -9,12 +9,12 @@
 }
 
 .container {
-  margin: 5px 10px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
+  padding: 10px 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(min-content);
+  border-bottom: 2px solid var(--border);
   overflow-y: auto;
-  flex-direction: row;
 }
 
 .filter {
@@ -36,12 +36,11 @@
 }
 
 .button {
-  width: 100%;
   cursor: pointer;
   margin: 5px 10px 5px 10px;
   display: flex;
-  padding: 20px;
-  border-radius: 16px;
+  padding: 25px;
+  border-radius: 18px;
   outline: none;
   border: 2px solid transparent;
   background-color: var(--primary-grey);
@@ -73,7 +72,7 @@
   margin: 0;
   width: 100%;
   font-size: 17px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   transition-duration: 0.15s;
 }
 
@@ -92,28 +91,30 @@
   font-weight: 700;
 }
 
-.header > h3 {
+.selectedText {
   margin: 0;
   color: var(--accent);
-  margin-left: auto;
   font-size: 15px;
   font-weight: 400;
+  height: 15px;
 }
 
 .button > p {
   color: var(--grey);
   margin: 0;
+  margin-top: 5px;
   text-align: left;
   font-size: 16px;
 }
 
 @media (min-width: 640px) {
-  .button {
-    width: 45%;
+  .container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, min-content);
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   .root {
     height: 100%;
     border-right: 2px solid var(--border);
@@ -121,15 +122,8 @@
   }
 
   .container {
-    flex-wrap: nowrap;
-    flex-direction: column;
-  }
-
-  .button {
-    width: auto;
-  }
-
-  .filter {
-    /* border-radius: 0 18px 0 0; */
+    grid-template-columns: 1fr;
+    border-bottom: none;
+    grid-template-rows: repeat(4, min-content);
   }
 }

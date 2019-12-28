@@ -2,7 +2,9 @@
   width: 100%;
   min-height: 350px;
   display: flex !important;
+  border-top: 2px solid var(--border);
   position: relative;
+  z-index: 10;
   flex-direction: column;
   background-color: var(--primary-grey);
   color: var(--secondary-white);
@@ -30,6 +32,7 @@
     /* width: 400px; */
     height: 100%;
     border-left: 2px solid var(--border);
+    border-top: none;
     /* box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.2); */
     /* border-radius: 18px 0 0 18px ; */
   }

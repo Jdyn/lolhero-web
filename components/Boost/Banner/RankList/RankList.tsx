@@ -47,9 +47,8 @@ const RankList = (props: Props): JSX.Element => {
     return ranks.map((rankList, index) => (
       <div key={index} className={styles.rankWrapper}>
         {rankList.map(rankItem => {
-          console.log('list render');
-          const disabled = false; // validate(rankItem.rank);
-          const selected = false; // rank.rank === rankItem.rank;
+          const disabled = validate(rankItem.rank);
+          const selected = rank.rank === rankItem.rank;
           return (
             <button
               key={rankItem.title}
@@ -65,7 +64,7 @@ const RankList = (props: Props): JSX.Element => {
         })}
       </div>
     ));
-  }, [handleClick]);
+  }, [handleClick, rank, validate]);
 
   return (
     <div className={styles.root}>

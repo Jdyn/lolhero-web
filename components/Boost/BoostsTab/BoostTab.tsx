@@ -20,7 +20,7 @@ const BoostTab = (props: Props): JSX.Element => {
   const [selectedIndex, setIndex] = useState(
     currentContent.items.indexOf(
       currentContent.items.filter(item => item.id === currentOrder.collectionId)[0]
-    )
+    ) || 0
   );
 
   useEffect(() => {
@@ -78,8 +78,8 @@ const BoostTab = (props: Props): JSX.Element => {
               <div className={styles.header}>
                 <span>{item.tag}</span>
                 <h2>{item.title}</h2>
-                <h3>{isSelected && 'selected'}</h3>
               </div>
+              {/* <span className={styles.selectedText}>{isSelected && 'selected'}</span> */}
               <p>{item.description}</p>
             </button>
           );
