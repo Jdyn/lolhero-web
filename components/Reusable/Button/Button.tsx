@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
+import Loader from '../Loader';
 
 interface Props {
   children?: React.ReactNode;
@@ -10,10 +11,11 @@ interface Props {
   width?: string;
   maxWidth?: string;
   padding?: string;
+  isPending?: boolean;
 }
 
 const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonElement>) => {
-  const { secondary, onClick, margin, padding } = props;
+  const { secondary, onClick, margin, padding, isPending } = props;
 
   return (
     <button
@@ -23,7 +25,7 @@ const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonEl
       className={`${styles.root} ${secondary && styles.secondary}`}
       style={{ margin, padding }}
     >
-      {props.children}
+      {isPending ? <Loader width="36px" height="36px" /> : props.children}
     </button>
   );
 });

@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   position: relative;
-  box-shadow: 5px 0px 15px 0px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.2); */
   z-index: 30;
   flex-direction: column;
   background-color: var(--primary-grey);
@@ -40,7 +40,7 @@
   cursor: pointer;
   margin: 5px 10px 5px 10px;
   display: flex;
-  padding: 25px 25px;
+  padding: 20px;
   border-radius: 16px;
   outline: none;
   border: 2px solid transparent;

@@ -3,7 +3,7 @@
   flex-direction: column;
   background-color: var(--secondary-grey);
   border-radius: 8px;
-  padding: 25px;
+  padding: 20px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   margin: 10px 10px 10px 10px;
   border: 2px solid var(--tertiary-grey);

@@ -11,7 +11,7 @@ import { Request } from '../../../store/request/types';
 
 interface Props {
   fullAuth?: boolean;
-  trackingId: string | string[];
+  trackingId?: string | string[];
   email?: string;
   account?: AccountState;
   fetchOrderRequest: Request;
@@ -23,7 +23,7 @@ const OrderAuth = (props: Props): JSX.Element => {
   const { trackingId, fullAuth, email, account, fetchOrder, fetchOrderRequest } = props;
 
   const [form, setForm] = useState({
-    email: email || 'test2@test.com',
+    email: email || '',
     trackingId: trackingId || ''
   });
 
@@ -57,7 +57,9 @@ const OrderAuth = (props: Props): JSX.Element => {
               aria-label="search"
               placeholder="Email"
             />
-            <Button margin="10px 0 0 0">search</Button>
+            <Button margin="10px 0 0 0" isPending={fetchOrderRequest.isPending}>
+              search
+            </Button>
           </form>
           {fetchOrderRequest.errored && (
             <span className={styles.error}>{fetchOrderRequest.error}</span>
@@ -79,7 +81,9 @@ const OrderAuth = (props: Props): JSX.Element => {
               aria-label="search"
               placeholder="Verify Email"
             />
-            <Button margin="10px 0 0 0">search</Button>
+            <Button margin="10px 0 0 0" isPending={fetchOrderRequest.isPending}>
+              search
+            </Button>
           </form>
           {fetchOrderRequest.errored && (
             <span className={styles.error}>{fetchOrderRequest.error}</span>

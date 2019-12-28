@@ -85,6 +85,7 @@ const AuthMenu = (props: Props): JSX.Element => {
                   <Form
                     template={templates[type]}
                     onSubmit={(formType, form): void => handleAuth(formType, form)}
+                    isPending={sessionRequest.isPending}
                   />
                 )}
                 <span>{sessionRequest.errored && <span>{sessionRequest.error}</span>}</span>
