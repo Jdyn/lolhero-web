@@ -116,8 +116,8 @@
 @media (min-width: 1025px) {
   .root {
     height: 100%;
-    /* border-right: 2px solid var(--border); */
-    border-radius: 0 18px 18px 0;
+    border-right: 2px solid var(--border);
+    /* border-radius: 0 18px 18px 0; */
   }
 
   .container {
@@ -130,6 +130,6 @@
   }
 
   .filter {
-    border-radius: 0 18px 0 0;
+    /* border-radius: 0 18px 0 0; */
   }
 }

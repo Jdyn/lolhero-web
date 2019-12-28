@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './styles.module.css';
 import { Order } from '../../../store/account/types';
+import champions from '../../../lib/champions';
 
 interface Props {
   order: Order;
@@ -10,6 +11,25 @@ interface Props {
 
 const OrderChat = (props: Props): JSX.Element => {
   const { orderForm, setOrderForm, order } = props;
+
+  const orderChampions = useMemo(() => {
+    const list = [];
+
+    if (order.details.champions) {
+      champions.forEach(champ => {
+        order.details.champions.forEach(item => {
+          if (champ.name === item.name) {
+            list.push({
+              ...item,
+              img: champ.img
+            });
+          }
+        });
+      });
+    }
+
+    return list;
+  }, [order.details.champions]);
 
   const handleDelete = (index: number): void => {
     const champs = [...orderForm.details.champions].filter((champ, i) => {
@@ -89,7 +109,7 @@ const OrderChat = (props: Props): JSX.Element => {
             <div className={styles.wrapper}>
               <h3>{order.details.primaryRole}</h3>
               {order.details.champions && order.details.champions.length > 0 ? (
-                order.details.champions.map((champion, index) =>
+                orderChampions.map((champion, index) =>
                   champion.position === order.details.primaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
                       <img
@@ -108,7 +128,7 @@ const OrderChat = (props: Props): JSX.Element => {
             <div className={styles.wrapper}>
               <h3>{order.details.secondaryRole}</h3>
               {order.details.champions && order.details.champions.length > 0 ? (
-                order.details.champions.map((champion, index) =>
+                orderChampions.map((champion, index) =>
                   champion.position === order.details.secondaryRole ? (
                     <div className={styles.championItem} key={champion.name}>
                       <img

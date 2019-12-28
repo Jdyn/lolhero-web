@@ -19,14 +19,21 @@
   /* background: linear-gradient(0deg, #353535 20%, #303030 50%, #202020 95%) */
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 640px) {
+  .container {
+    grid-template-columns: 100%;
+    grid-template-rows: min-content 600px 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
   .root {
     position: absolute;
     padding: 75px 0 90px 0;
   }
 
   .container {
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2.2fr 1fr;
     grid-template-rows: 100%;
   }
 }

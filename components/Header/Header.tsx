@@ -10,19 +10,20 @@ import Filter from '../Reusable/Filter';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;
+  updateOrder?: (payload: { order: object | null }) => void;
   session: SessionState;
   sessionRequest: Request;
 }
 
 const Header = (props: Props): JSX.Element => {
-  const { handleAuth, session, sessionRequest } = props;
+  const { handleAuth, session, sessionRequest, updateOrder } = props;
 
   const [trackingId, setId] = useState('');
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-
     Router.push('/order/[trackingId]', `/order/${trackingId}`);
+    updateOrder(null);
   };
 
   return (

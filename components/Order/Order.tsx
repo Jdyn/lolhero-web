@@ -12,12 +12,13 @@ import OrderChat from './OrderChat';
 interface Props {
   account: AccountState;
   session: SessionState;
-  order?: Order;
-  initializeOrder: (payload: object, trackingId: string) => void;
+  authEmail?: string;
+  initializeOrder: (payload: object, trackingId: string, email?: string) => void;
+  updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
-  const { session, account, order, initializeOrder } = props;
+  const { session, account, initializeOrder, authEmail, updateOrderStatus } = props;
   const router = useRouter();
   const { trackingId } = router.query;
 
@@ -36,34 +37,44 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   });
 
   const onInitializeOrder = (): void => {
-    initializeOrder(orderForm, trackingId as string);
+    const { champions } = orderForm.details;
+
+    const newChampions = [...champions].map(champ => ({
+      name: champ.name,
+      position: champ.position
+    }));
+
+    const finalForm = { ...orderForm, details: { ...orderForm.details, champions: newChampions } };
+    initializeOrder(finalForm, trackingId as string, authEmail);
   };
 
   return (
     <div className={styles.root}>
-      {order || account.selectedOrder ? (
+      {account.selectedOrder ? (
         <>
-          <OrderHeader session={session} order={order || account.selectedOrder} />
+          <OrderHeader session={session} order={account.selectedOrder} />
           <div className={styles.container}>
             <div className={styles.wrapper}>
               <OrderStatus
-                order={order || account.selectedOrder}
+                order={account.selectedOrder}
                 onInitializeOrder={onInitializeOrder}
+                updateOrderStatus={updateOrderStatus}
+                authEmail={authEmail}
               />
               <OrderDetails
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
-                order={order || account.selectedOrder}
+                order={account.selectedOrder}
               />
               <OrderDisplay
-                order={order || account.selectedOrder}
+                order={account.selectedOrder}
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
               />
               <OrderChat
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
-                order={order || account.selectedOrder}
+                order={account.selectedOrder}
               />
             </div>
           </div>

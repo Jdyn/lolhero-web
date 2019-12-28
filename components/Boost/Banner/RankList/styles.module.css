@@ -14,11 +14,12 @@
 }
 
 .label {
-  border-top: 2px solid var(--secondary-white);
-  color: var(--secondary-white);
+  border-top: 2px solid var(--border);
+  color: var(--grey);
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.035rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.025rem;
+  font-weight: 700;
   font-size: 13px;
   max-width: 168px;
   width: 100%;

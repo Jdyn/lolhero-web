@@ -1,46 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import styles from './styles.module.css';
-import Api from '../../../services/api';
 import OrderContainer from '../../../containers/OrderContainer';
 import Button from '../Button/Button';
+import { SessionState } from '../../../store/session/types';
+import { fetchOrder as getOrder } from '../../../store/account/actions';
+import { AccountState } from '../../../store/account/types';
+import { AppState } from '../../../store';
+import { Request } from '../../../store/request/types';
 
 interface Props {
   fullAuth?: boolean;
   trackingId: string | string[];
   email?: string;
-  errorMessage?: string;
+  account?: AccountState;
+  fetchOrderRequest: Request;
+  fetchOrder: (trackingId: string, email: string) => void;
   onSubmit: (trackingId: string | string[], email: string) => void;
 }
 
 const OrderAuth = (props: Props): JSX.Element => {
-  const { trackingId, fullAuth, email } = props;
-
-  const [order, setOrder] = useState(null);
-  const [error, setError] = useState(null);
+  const { trackingId, fullAuth, email, account, fetchOrder, fetchOrderRequest } = props;
 
   const [form, setForm] = useState({
-    email: email || '',
+    email: email || 'test2@test.com',
     trackingId: trackingId || ''
   });
-
-  const fetchOrder = (): void => {
-    Api.post(`/order/${form.trackingId}`, { email: form.email }).then(response => {
-      if (response.ok) {
-        setOrder(response.result.order);
-      } else {
-        setError(response.error);
-      }
-    });
-  };
 
   const submitEmail = (event: React.FormEvent): void => {
     event.preventDefault();
 
-    fetchOrder();
+    fetchOrder(trackingId as string, form.email);
   };
 
-  return order ? (
-    <OrderContainer order={order} />
+  return account.selectedOrder !== null ? (
+    <OrderContainer authEmail={form.email} />
   ) : (
     <div className={styles.root}>
       {fullAuth ? (
@@ -65,7 +59,9 @@ const OrderAuth = (props: Props): JSX.Element => {
             />
             <Button margin="10px 0 0 0">search</Button>
           </form>
-          {error && <span className={styles.error}>{error}</span>}
+          {fetchOrderRequest.errored && (
+            <span className={styles.error}>{fetchOrderRequest.error}</span>
+          )}
         </div>
       ) : (
         <div className={styles.container}>
@@ -85,11 +81,22 @@ const OrderAuth = (props: Props): JSX.Element => {
             />
             <Button margin="10px 0 0 0">search</Button>
           </form>
-          {error && <span className={styles.error}>{error}</span>}
+          {fetchOrderRequest.errored && (
+            <span className={styles.error}>{fetchOrderRequest.error}</span>
+          )}
         </div>
       )}
     </div>
   );
 };
 
-export default OrderAuth;
+const mapState = (state: AppState): object => ({
+  account: state.account,
+  fetchOrderRequest: state.request.FETCH_ORDER || {}
+});
+
+const mapDispatch = (dispatch): object => ({
+  fetchOrder: (trackingId: string, email: string): void => dispatch(getOrder(trackingId, email))
+});
+
+export default connect(mapState, mapDispatch)(OrderAuth);

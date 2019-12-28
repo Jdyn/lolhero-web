@@ -2,10 +2,11 @@ import React from 'react';
 import { SessionState } from '../../../store/session/types';
 import styles from './styles.module.css';
 import { formatTime } from '../../../util/helpers';
+import { Order } from '../../../store/account/types';
 
 interface Props {
   session: SessionState;
-  order: any;
+  order: Order;
 }
 
 const OrderHeader: React.FC<Props> = (props: Props): JSX.Element => {

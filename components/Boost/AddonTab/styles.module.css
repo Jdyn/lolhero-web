@@ -25,13 +25,13 @@
   margin: 5px 10px;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   .root {
     /* width: 400px; */
     height: 100%;
-    /* border-left: 2px solid var(--border); */
+    border-left: 2px solid var(--border);
     box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 18px 0 0 18px ;
+    /* border-radius: 18px 0 0 18px ; */
   }
 
   .filter {

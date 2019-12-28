@@ -37,7 +37,7 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   }
 };
 
-export const fetchOrder = (id: string, email: string, ctx?: NextPageContext) => async (
+export const fetchOrder = (id: string, email: string = null, ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
 ): Promise<void> => {
@@ -64,10 +64,11 @@ export const fetchOrder = (id: string, email: string, ctx?: NextPageContext) => 
   }
 };
 
-export const initializeOrder = (payload: object, trackingId: string) => (
-  dispatch: Dispatch,
-  getState: () => AppState
-): void => {
+export const initializeOrder = (
+  payload: object,
+  trackingId: string,
+  email: string = null
+) => async (dispatch: Dispatch, getState: () => AppState): Promise<void> => {
   const requestType = accountRequests.INITIALIZE_ORDER;
   const request = getState().request[requestType] || { isPending: false };
 
@@ -75,12 +76,46 @@ export const initializeOrder = (payload: object, trackingId: string) => (
 
   dispatch(setRequest(true, requestType));
 
-  Api.patch(`/account/order/${trackingId}`, payload).then(response => {
-    if (response.ok) {
-      dispatch(orderUpdated({ order: response.result.order }));
-      dispatch(setRequest(false, requestType));
-    } else {
-      dispatch(setRequest(false, requestType, 'Please fill out every field.'));
-    }
-  });
+  let response;
+
+  if (email) {
+    response = await Api.patch(`/order/${trackingId}`, { ...payload, email });
+  } else {
+    response = await Api.patch(`/account/order/${trackingId}`, { ...payload });
+  }
+
+  if (response.ok) {
+    dispatch(orderUpdated({ order: response.result.order }));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, 'Please fill out every field.'));
+  }
+};
+
+export const updateOrderStatus = (
+  status: string,
+  trackingId: string,
+  email: string = null
+) => async (dispatch: Dispatch, getState: () => AppState): Promise<void> => {
+  const requestType = accountRequests.UPDATE_ORDER_STATUS;
+  const request = getState().request[requestType] || { isPending: false };
+
+  if (request.isPending) return;
+
+  dispatch(setRequest(true, requestType));
+
+  let response;
+
+  if (email) {
+    response = await Api.post(`/order/${trackingId}/status`, { email, status });
+  } else {
+    response = await Api.post(`/account/order/${trackingId}/status`, { status });
+  }
+
+  if (response.ok) {
+    dispatch(orderUpdated({ order: response.result.order }));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, response.error));
+  }
 };

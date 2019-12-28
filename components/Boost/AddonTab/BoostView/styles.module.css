@@ -51,7 +51,8 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-evenly;
-  margin: 0 35px;
+  min-width: 165px;
+  margin: 0 auto;
 }
 
 .promoSection > span {

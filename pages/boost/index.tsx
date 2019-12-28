@@ -47,7 +47,7 @@ class CustomBoost extends React.Component<Props> {
     return (
       <>
         <Head>
-          <title>Custom Order - lolhero</title>
+          <title>Custom Order - LoL Hero</title>
         </Head>
         <BoostContainer />
       </>
