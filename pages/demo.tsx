@@ -1,5 +1,4 @@
 import React from 'react';
-import HomeContainer from '../containers/HomeContainer';
 import Layout from '../components/Reusable/Layout';
 import BoostOrder from '../components/Order/Order';
 import { AccountState } from '../store/account/types';

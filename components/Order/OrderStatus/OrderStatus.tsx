@@ -33,6 +33,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
       case 'open':
         return <span>Waiting for order setup...</span>;
       case 'initialized':
+      case 'active':
         if (order.booster) {
           return (
             <span>
@@ -40,7 +41,9 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
             </span>
           );
         }
-        return <span>Looking for a booster . . .</span>;
+        return <span>Looking for a booster...</span>;
+      case 'paused':
+        return <span>Your order is currently paused...</span>
       default:
         return <span>status</span>;
     }
