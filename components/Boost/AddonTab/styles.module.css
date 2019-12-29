@@ -2,14 +2,12 @@
   width: 100%;
   min-height: 350px;
   display: flex !important;
-  border-top: 2px solid var(--border);
+  border-top: 1px solid var(--border);
   position: relative;
   z-index: 10;
   flex-direction: column;
   background-color: var(--primary-grey);
   color: var(--secondary-white);
-  /* border-left: 2px solid var(--border); */
-  /* border-right: 2px solid var(--grey); */
 }
 
 .filter {
@@ -24,17 +22,15 @@
 .content {
   flex-direction: column;
   overflow-y: auto;
-  margin: 5px 10px;
+  padding: 5px;
 }
 
 @media (min-width: 1024px) {
   .root {
-    /* width: 400px; */
     height: 100%;
-    border-left: 2px solid var(--border);
+    border-left: 1px solid var(--border);
     border-top: none;
     /* box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.2); */
-    /* border-radius: 18px 0 0 18px ; */
   }
 
   .filter {

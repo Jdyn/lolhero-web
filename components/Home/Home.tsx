@@ -59,9 +59,18 @@ const Home = (): JSX.Element => {
               Go
             </button>
           </form>
-          <Link href="/boost">
-            <Button padding="15px 20px">Customize Order</Button>
-          </Link>
+          <div className={styles.content}>
+            <Link href="/demo">
+              <Button width="155px" secondary padding="15px 20px">
+                View Demo
+              </Button>
+            </Link>
+            <Link href="/boost">
+              <Button width="155px" padding="15px 20px">
+                Custom Order
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
       <div className={styles.container}>

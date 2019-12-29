@@ -21,7 +21,7 @@
   background-color: var(--red);
   padding: 8px 20px 8px 20px;
   margin: 10px 15px 0 15px;
-  border: 2px solid #f44336;
+  border: 1px solid #f44336;
 }
 
 @media (min-width: 640px) {

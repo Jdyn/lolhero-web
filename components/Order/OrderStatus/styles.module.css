@@ -7,7 +7,7 @@
   padding: 10px 20px;
   flex-direction: column;
   background-color: var(--secondary-grey);
-  border: 2px solid var(--tertiary-grey);
+  border: 1px solid var(--tertiary-grey);
   border-radius: 16px;
 }
 
@@ -22,7 +22,7 @@
 .status {
   display: flex;
   flex: 1;
-  margin: 0px 0px 15px 0px;
+  margin: 0px;
   justify-content: center;
   align-items: center;
 }

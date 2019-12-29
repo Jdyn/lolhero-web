@@ -11,10 +11,10 @@ import OrderChat from './OrderChat';
 
 interface Props {
   account: AccountState;
-  session: SessionState;
+  session?: SessionState;
   authEmail?: string;
   initializeOrder: (payload: object, trackingId: string, email?: string) => void;
-  updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
+  updateOrderStatus: (status: string, trackingId: string, email?: string) => void;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {

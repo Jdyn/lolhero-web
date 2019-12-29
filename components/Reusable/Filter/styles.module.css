@@ -11,10 +11,6 @@
   flex: 1;
 }
 
-.rouned {
-  /* border-radius: 0 18px 0 18px; */
-}
-
 .item {
   display: flex;
   position: relative;
@@ -31,7 +27,7 @@
   border: none;
   background-color: transparent;
   color: var(--secondary-white);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding-bottom: 20px;
   transition-duration: 0.25s;
   pointer-events: all;

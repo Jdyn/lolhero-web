@@ -31,7 +31,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
   const orderStatus = (status: string): JSX.Element => {
     switch (status) {
       case 'open':
-        return <span>Waiting for order setup . . .</span>;
+        return <span>Waiting for order setup...</span>;
       case 'initialized':
         if (order.booster) {
           return (
@@ -54,14 +54,8 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
       </div>
       {order.isEditable ? (
         <div className={styles.wrapper}>
-          <Button
-            grow
-            maxWidth="200px"
-            margin="15px 5px"
-            padding="15px"
-            onClick={onInitializeOrder}
-          >
-            initialize order
+          <Button grow maxWidth="200px" margin="10px" padding="15px" onClick={onInitializeOrder}>
+            start order
           </Button>
         </div>
       ) : (
@@ -74,7 +68,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
             margin="10px 5px"
             padding="15px"
           >
-            Pause Order
+            {order.status === 'paused' ? 'unpause order' : 'pause order'}
           </Button>
           {/* <Button grow maxWidth="125px" margin="0px 5px" padding="15px">
             Edit Order

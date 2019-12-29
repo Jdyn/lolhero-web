@@ -3,7 +3,7 @@
   grid-area: footer;
   background-color: var(--secondary-grey);
   bottom: 0;
-  border-top: 2px solid var(--border);
+  border-top: 1px solid var(--border);
   color: var(--secondary-white);
 }
 

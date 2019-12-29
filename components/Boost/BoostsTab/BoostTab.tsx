@@ -59,11 +59,10 @@ const BoostTab = (props: Props): JSX.Element => {
           onClick={(index: number): void => setType(contentKeys[index])}
         />
       </div>
-
-      {/* <div className={styles.notice}>
+      <div className={styles.notice}>
         {currentContent.description}
         <span>{currentContent.subdescription}</span>
-      </div> */}
+      </div>
       <div className={styles.container}>
         {currentContent.items.map((item, index) => {
           const isSelected = selectedIndex === index;

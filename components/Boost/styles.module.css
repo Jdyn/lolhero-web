@@ -16,7 +16,7 @@
   grid-template-columns: 100%;
   grid-template-rows: min-content 900px 1fr;
   background-color: var(--primary-grey);
-  background: linear-gradient(0deg, #353535 40%, #303030 50%, #252525  100%)
+  /* background: linear-gradient(0deg, #353535 40%, #303030 50%, #252525  100%) */
 }
 
 @media (min-width: 640px) {

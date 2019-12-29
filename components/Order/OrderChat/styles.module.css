@@ -6,7 +6,7 @@
   padding: 25px;
   border-radius: 16px;
   background-color: var(--secondary-grey);
-  border: 2px solid var(--tertiary-grey);
+  border: 1px solid var(--tertiary-grey);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   color: var(--white);
 }
@@ -58,8 +58,8 @@
 }
 
 .list {
-  height: 456px;
-  max-height: 456px;
+  height: 385px;  
+  max-height: 385px;
   overflow-y: auto;
   border-radius: 18px;
   padding: 15px;
@@ -70,7 +70,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid var(--tertiary-grey);
+  border: 1px solid var(--tertiary-grey);
   cursor: pointer;
   transition-duration: 0.1s;
 }
@@ -118,5 +118,10 @@
 
   .wrapper {
     margin: 0;
+  }
+
+  .list {
+    height: 456px;
+    max-height: 456px;
   }
 }

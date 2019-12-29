@@ -36,11 +36,7 @@ const Filter = (props: Props): JSX.Element => {
   };
 
   return (
-    <ul
-      className={`${styles.root} ${extended ? styles.extended : ''} ${
-        rounded ? styles.rounded : ''
-      }`}
-    >
+    <ul className={`${styles.root} ${extended ? styles.extended : ''} `}>
       {Array.isArray(filters) &&
         filters.map((filter, index) => {
           const disabled = untargetableIndices.includes(index);

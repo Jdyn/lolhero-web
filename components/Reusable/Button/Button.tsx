@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonElement>) => {
-  const { secondary, onClick, margin, padding, isPending } = props;
+  const { secondary, onClick, margin, padding, isPending, width } = props;
 
   return (
     <button
@@ -23,7 +23,7 @@ const Button = React.forwardRef((props: Props, ref: React.RefObject<HTMLButtonEl
       ref={ref}
       onClick={onClick}
       className={`${styles.root} ${secondary && styles.secondary}`}
-      style={{ margin, padding }}
+      style={{ margin, padding, width }}
     >
       {isPending ? <Loader width="36px" height="36px" /> : props.children}
     </button>

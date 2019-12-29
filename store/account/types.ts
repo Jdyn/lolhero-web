@@ -2,7 +2,7 @@ import { Champion } from '../boost/types';
 
 export interface AccountState {
   selectedOrder: Order | null;
-  orders: OrderList;
+  orders?: OrderList;
 }
 
 export interface ListBaseOrder {
@@ -26,8 +26,8 @@ export interface OrderList {
 
 export interface Order {
   createdAt: string;
-  booster: { username: string } | null;
-  accountDetails: { username: string; password: string };
+  booster?: { username: string } | null;
+  accountDetails?: { username: string; password: string };
   details: {
     boostType: string;
     collectionId: number;
@@ -50,14 +50,14 @@ export interface Order {
   };
   isEditable: boolean;
   note: string | null;
-  price: number;
+  price: string;
   status: string;
   title: string;
   trackingId: string;
-  user: {
+  user?: {
     role: string;
     username: string;
-  };
+  } | null;
 }
 
 export const accountRequests: {

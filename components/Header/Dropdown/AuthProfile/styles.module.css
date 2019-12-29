@@ -21,12 +21,12 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .container:hover {
   color: var(--accent);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
 }
 
 .wrapper {
@@ -48,7 +48,7 @@
 .portrait {
   width: 44px;
   height: 44px;
-  border: 2px solid #999;
+  border: 1px solid #999;
   border-radius: 50%;
   background-color: var(--primary-grey);
 }

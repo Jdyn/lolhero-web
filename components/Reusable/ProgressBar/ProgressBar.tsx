@@ -74,7 +74,7 @@ const ProgressBar = (props: Props): JSX.Element => {
         width: 18px;
         height: 18px;
         box-sizing: border-box;
-        border: solid 2px transparent;
+        border: solid 1px transparent;
         border-top-color: ${color};
         border-left-color: ${color};
         border-radius: 50%;
