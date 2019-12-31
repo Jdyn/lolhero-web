@@ -8,13 +8,20 @@ const templates = {
   signup: {
     type: 'signup',
     title: 'New Account',
-    fields: ['email', 'username', 'password'],
+    fields: [
+      { name: 'Email', type: 'email', key: 'email' },
+      { name: 'Username', type: 'email', key: 'username' },
+      { name: 'Password', type: 'email', key: 'password' }
+    ],
     submit: 'sign up'
   },
   login: {
     type: 'login',
     title: 'Existing Account',
-    fields: ['username', 'password'],
+    fields: [
+      { name: 'Username', type: 'email', key: 'username' },
+      { name: 'Password', type: 'email', key: 'password' }
+    ],
     submit: 'log in'
   }
 };

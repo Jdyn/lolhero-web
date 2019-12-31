@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import styles from './styles.module.css';
 import Loader from '../Loader';
+import { FormTemplate } from './types';
 
 interface Props {
   row?: boolean;
   onSubmit: (type: string, form: object) => void;
   isPending?: boolean;
-  template: {
-    type: string;
-    title: string;
-    fields: string[];
-    submit: string;
-  };
+  template: FormTemplate;
 }
 
 const Form = (props: Props): JSX.Element => {
@@ -22,6 +18,7 @@ const Form = (props: Props): JSX.Element => {
 
   const submitForm = (event: React.FormEvent): void => {
     event.preventDefault();
+    console.log(form);
     onSubmit(template.type, form);
   };
 
@@ -32,14 +29,18 @@ const Form = (props: Props): JSX.Element => {
       style={{ flexDirection: row ? 'row' : 'column' }}
     >
       <h3>{template.title}</h3>
+      {template.description && <p>{template.description}</p>}
       {template.fields.map(field => (
-        <div className={styles.container} key={field}>
-          <span>{field}</span>
+        <div className={styles.container} key={field.name}>
+          <span>{field.name}</span>
           <input
             className={styles.input}
-            value={form[field] || ''}
-            type={field}
-            onChange={event => setForm({ ...form, [field]: event.target.value })}
+            value={form[field.key || field.name] || ''}
+            type={field.type || field.key}
+            placeholder={field.placeholder}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+              setForm({ ...form, [field.key || field.name]: event.target.value })
+            }
           />
         </div>
       ))}

@@ -6,9 +6,11 @@ import { setRequest } from '../request/actions';
 import { accountRequests } from './types';
 import { orderListFetched, orderUpdated } from './reducers';
 
+type GetState = () => AppState;
+
 export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   dispatch: Dispatch,
-  getState: () => AppState
+  getState: GetState
 ): Promise<void> => {
   const requestType = accountRequests.FETCH_ACCOUNT_ORDER_LIST;
   const request = getState().request[requestType] || { isPending: false };
@@ -39,7 +41,7 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
 
 export const fetchOrder = (id: string, email: string = null, ctx?: NextPageContext) => async (
   dispatch: Dispatch,
-  getState: () => AppState
+  getState: GetState
 ): Promise<void> => {
   const requestType = accountRequests.FETCH_ORDER;
   const request = getState().request[requestType] || { isPending: false };
@@ -58,6 +60,45 @@ export const fetchOrder = (id: string, email: string = null, ctx?: NextPageConte
 
   if (response.ok) {
     dispatch(orderUpdated({ order: response.result.order }));
+    dispatch(setRequest(false, requestType));
+  } else {
+    dispatch(setRequest(false, requestType, response.error));
+  }
+};
+
+export const fetchPasswordReset = (email: string) => async (
+  dispatch: Dispatch,
+  getState: GetState
+): Promise<void> => {
+  const requestType = accountRequests.FETCH_ACCOUNT_PASSWORD_RESET;
+  const request = getState().request[requestType] || { isPending: false };
+
+  if (request.isPending) return;
+
+  dispatch(setRequest(true, requestType));
+
+  await Api.post('/account/password/reset', { email });
+
+  dispatch(setRequest(false, requestType));
+};
+
+export const fetchPasswordUpdate = (password: string, resetToken: string) => async (
+  dispatch: Dispatch,
+  getState: GetState
+): Promise<void> => {
+  const requestType = accountRequests.FETCH_ACCOUNT_PASSWORD_UPDATE;
+  const request = getState().request[requestType] || { isPending: false };
+
+  if (request.isPending) return;
+
+  dispatch(setRequest(true, requestType));
+
+  const response = await Api.patch('/account/password/update', {
+    password,
+    resetToken
+  });
+
+  if (response.ok) {
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, response.error));
@@ -96,7 +137,7 @@ export const updateOrderStatus = (
   status: string,
   trackingId: string,
   email: string = null
-) => async (dispatch: Dispatch, getState: () => AppState): Promise<void> => {
+) => async (dispatch: Dispatch, getState: GetState): Promise<void> => {
   const requestType = accountRequests.UPDATE_ORDER_STATUS;
   const request = getState().request[requestType] || { isPending: false };
 

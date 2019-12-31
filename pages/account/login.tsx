@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Layout from '../components/Reusable/Layout';
-import { handleAuth } from '../store/session/actions';
-import { AppState } from '../store';
-import AccountAuth from '../components/Reusable/AccountAuth';
-import { Request } from '../store/request/types';
+import Layout from '../../components/Reusable/Layout';
+import { handleAuth } from '../../store/session/actions';
+import { AppState } from '../../store';
+import AccountAuth from '../../components/Reusable/AccountAuth';
+import { Request } from '../../store/request/types';
 
 interface Props {
   authenticate?: (type: string, form: object) => void;

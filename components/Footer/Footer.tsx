@@ -59,11 +59,14 @@ const Footer = (): JSX.Element => {
             </Link>
           </ul>
           <ul>
-            <Link href="/login">
+            <Link href="/account/login">
               <li>Log In</li>
             </Link>
-            <Link href="/signup">
+            <Link href="/account/signup">
               <li>Sign Up</li>
+            </Link>
+            <Link href="/account/recover">
+              <li>Forgot Password</li>
             </Link>
           </ul>
         </div>

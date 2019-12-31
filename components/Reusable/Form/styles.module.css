@@ -4,6 +4,10 @@
   color: var(--secondary-white);
 }
 
+.form > p {
+  margin: 0 0 10px 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
