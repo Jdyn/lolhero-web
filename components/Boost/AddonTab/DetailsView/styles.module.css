@@ -4,7 +4,7 @@
   background-color: var(--secondary-grey);
   border-radius: 18px;
   padding: 25px;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 4px rgba(10, 10, 20, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   margin: 10px;
   border: 1px solid var(--tertiary-grey);
 }

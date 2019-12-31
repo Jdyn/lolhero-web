@@ -49,7 +49,6 @@ const Footer = (): JSX.Element => {
               ))}
             </ul>
           </div>
-
           <div className={styles.content}>
             <h3>Resources</h3>
             <ul>
@@ -60,7 +59,7 @@ const Footer = (): JSX.Element => {
             </ul>
           </div>
           <div className={styles.content}>
-            <h3>Orders</h3>
+            <div className={styles.spacer} />
             <ul>
               <li>Contact</li>
               <Link href="/order/track">
@@ -71,7 +70,6 @@ const Footer = (): JSX.Element => {
               </Link>
             </ul>
           </div>
-
           <div className={styles.content}>
             <h3>Account</h3>
             <ul>

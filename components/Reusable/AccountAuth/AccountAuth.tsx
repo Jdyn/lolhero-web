@@ -46,7 +46,9 @@ const AccountAuth = (props: Props): JSX.Element => {
         />
         <div className={styles.error}>{sessionRequest.errored && sessionRequest.error}</div>
         <Link href="/account/recover">
-          <a href="/account/recover">Forgot Password?</a>
+          <a className={styles.link} href="/account/recover">
+            Forgot Password?
+          </a>
         </Link>
       </div>
     </div>

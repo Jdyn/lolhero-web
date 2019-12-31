@@ -39,8 +39,15 @@
   padding: 0px 10px;
 }
 
+.spacer {
+  height: 22px;
+  margin: 15px 0px;
+}
+
 .content > h3 {
-  color: var(--white)
+  color: var(--white);
+  height: 22px;
+  margin: 15px 0px;
 }
 
 .content > ul {

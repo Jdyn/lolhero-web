@@ -49,13 +49,13 @@ const Banner = (props: Props): JSX.Element => {
         <svg
           className={styles.foot}
           preserveAspectRatio="none"
-          viewBox="0 0 100 100"
+          viewBox="0 0 100 110"
           style={{
             fill: rank.color,
             stroke: rank.accent
           }}
         >
-          <path d="M0 0 L50 100 L100 0 Z" />
+          <path d="M0 0 L50 105 L100 0 Z" />
         </svg>
       </div>
     </div>

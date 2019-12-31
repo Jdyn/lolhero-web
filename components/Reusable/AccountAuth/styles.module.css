@@ -37,6 +37,10 @@
   color: var(--secondary-white);
 }
 
+.link {
+  color: var(--grey)
+}
+
 .error {
   display: flex;
   margin-top: 15px;
