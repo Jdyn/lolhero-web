@@ -61,12 +61,12 @@ const Home = (): JSX.Element => {
           </form>
           <div className={styles.content}>
             <Link href="/demo">
-              <Button width="155px" secondary padding="15px 20px">
+              <Button width="155px" secondary padding="15px 20px" margin="5px">
                 View Demo
               </Button>
             </Link>
             <Link href="/boost">
-              <Button width="155px" padding="15px 20px">
+              <Button width="155px" padding="15px 20px" margin="5px">
                 Custom Order
               </Button>
             </Link>

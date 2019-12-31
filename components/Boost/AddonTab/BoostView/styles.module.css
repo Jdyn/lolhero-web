@@ -6,7 +6,7 @@
   border-radius: 18px;
   padding: 25px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
 .root > p {
@@ -79,6 +79,10 @@
 
 .promo:hover {
   transform: translateY(1px);
+}
+
+.promo:active {
+  transform: translateY(-1px);
 }
 
 .selected {

@@ -31,7 +31,7 @@ Toggle.defaultProps = {
   height: 'auto',
   margin: '6px 0',
   padding: '10px',
-  borderRadius: '14px'
+  borderRadius: '16px'
 };
 
 export default Toggle;

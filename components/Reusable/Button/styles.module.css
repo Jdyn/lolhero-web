@@ -12,17 +12,19 @@
   text-transform: uppercase;
   justify-content: center;
   align-items: center;
-  transition-duration: 0.15s;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+  transition: all .15s ease;
+  box-shadow: 0 4px 6px rgba(10, 10, 20, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-color: var(--accent);
 }
 
 .root:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(10, 10, 20, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .root:active {
-  transform: translateY(2px);
+  transform: translateY(1px);
+  box-shadow: 0 6px 12px -4px rgba(10, 10, 20, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
 .secondary {

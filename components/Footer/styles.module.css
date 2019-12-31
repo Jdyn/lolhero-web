@@ -35,14 +35,21 @@
   flex-wrap: wrap;
 }
 
-.list > ul {
+.content {
+  padding: 0px 10px;
+}
+
+.content > h3 {
+  color: var(--white)
+}
+
+.content > ul {
   list-style: none;
   padding: 0;
-  padding-left: 15px;
   margin: 5px 0px;
 }
 
-.list > ul > li {
+.content > ul > li {
   color: var(--secondary-white);
   margin: 10px 0px;
   cursor: pointer;

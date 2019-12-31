@@ -29,46 +29,63 @@ const Footer = (): JSX.Element => {
           <span>© 2019 lolhero.gg | All Rights Reserved</span>
         </div>
         <div className={styles.list}>
-          <ul>
-            {boostOptions.solo.map(item => (
-              <Link href={`${item.url}`} key={item.title}>
-                <li>{item.title}</li>
+          <div className={styles.content}>
+            <h3>Solo Services</h3>
+            <ul>
+              {boostOptions.solo.map(item => (
+                <Link href={`${item.url}`} key={item.title}>
+                  <li>{item.title}</li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.content}>
+            <h3>Duo Services</h3>
+            <ul>
+              {boostOptions.duo.map(item => (
+                <Link href={`${item.url}`} key={item.title}>
+                  <li>{item.title}</li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.content}>
+            <h3>Resources</h3>
+            <ul>
+              <li>F.A.Q</li>
+              <li>About</li>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+            </ul>
+          </div>
+          <div className={styles.content}>
+            <h3>Orders</h3>
+            <ul>
+              <li>Contact</li>
+              <Link href="/order/track">
+                <li>Find Order</li>
               </Link>
-            ))}
-          </ul>
-          <ul>
-            {boostOptions.duo.map(item => (
-              <Link href={`${item.url}`} key={item.title}>
-                <li>{item.title}</li>
+              <Link href="/boost">
+                <li>Create Order</li>
               </Link>
-            ))}
-          </ul>
-          <ul>
-            <li>F.A.Q</li>
-            <li>About</li>
-            <li>Privacy Policy</li>
-            <li>Terms of Service</li>
-          </ul>
-          <ul>
-            <li>Contact</li>
-            <Link href="/order/track">
-              <li>Find Order</li>
-            </Link>
-            <Link href="/boost">
-              <li>Create Order</li>
-            </Link>
-          </ul>
-          <ul>
-            <Link href="/account/login">
-              <li>Log In</li>
-            </Link>
-            <Link href="/account/signup">
-              <li>Sign Up</li>
-            </Link>
-            <Link href="/account/recover">
-              <li>Forgot Password</li>
-            </Link>
-          </ul>
+            </ul>
+          </div>
+
+          <div className={styles.content}>
+            <h3>Account</h3>
+            <ul>
+              <Link href="/account/login">
+                <li>Log In</li>
+              </Link>
+              <Link href="/account/signup">
+                <li>Sign Up</li>
+              </Link>
+              <Link href="/account/recover">
+                <li>Recovery</li>
+              </Link>
+            </ul>
+          </div>
         </div>
         <div />
       </div>

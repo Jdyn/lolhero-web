@@ -97,7 +97,7 @@ const BoostView = (props: Props): JSX.Element => {
                 onClick={(): void => handleLpChange(lp.lp)}
                 width="85px"
                 margin="5px 5px"
-                borderRadius="8px"
+                padding="12px"
                 isSelected={currentOrder.lp === lp.lp}
               >
                 {lp.title}

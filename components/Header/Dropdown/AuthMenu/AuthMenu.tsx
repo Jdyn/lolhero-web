@@ -29,8 +29,8 @@ const templates = {
     title: 'Menu',
     fields: [],
     items: [
-      { title: 'Log In', link: '/login' },
-      { title: 'Sign Up', link: '/signup' }
+      { title: 'Log In', link: '/account/login' },
+      { title: 'Sign Up', link: '/account/signup' }
     ],
     submit: 'ok'
   }

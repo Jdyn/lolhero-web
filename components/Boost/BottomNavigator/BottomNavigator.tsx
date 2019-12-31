@@ -136,11 +136,11 @@ const BottomNavigator = (props: Props): JSX.Element => {
       const { payment, details } = valid;
 
       if ((payment && details) || (valid.payment && session.isLoggedIn)) {
-        return '#4285F4';
+        return '#159570';
       }
       return '#414141';
     }
-    return '#4285F4';
+    return '#159570';
   };
 
   const navItems = {
