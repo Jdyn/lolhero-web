@@ -4,14 +4,14 @@
   background-color: var(--secondary-grey);
   border-radius: 18px;
   padding: 25px;
-  box-shadow: 0 4px 4px rgba(10, 10, 20, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 4px rgba(10, 10, 10, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
   margin: 10px;
   border: 1px solid var(--tertiary-grey);
 }
 
 .root > h3 {
   margin: 0 0 10px 0;
-  font-size: 16px;  
+  font-size: 16px;
   font-weight: 700;
 }
 
