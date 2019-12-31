@@ -19,8 +19,8 @@ const templates = {
     type: 'login',
     title: 'Existing Account',
     fields: [
-      { name: 'Username', type: 'email', key: 'username' },
-      { name: 'Password', type: 'email', key: 'password' }
+      { name: 'Username', type: 'username', key: 'username' },
+      { name: 'Password', type: 'password', key: 'password' }
     ],
     submit: 'log in'
   }

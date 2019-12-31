@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import content from '../../../../lib/boosts';
 import { Rank } from '../../../../lib/ranks';
 import { BoostOrderDetails } from '../../../../store/boost/types';
@@ -21,6 +21,8 @@ const BannerRankSlider = (props: Props): JSX.Element => {
     [currentOrder.boostType, currentOrder.collectionName]
   );
 
+  const [currentAmount, setAmount] = useState(currentOrder.desiredAmount);
+
   useEffect(() => {
     if (currentOrder.desiredAmount > currentCollection.maxAmount) {
       updateOrder({ desiredAmount: parseInt(currentCollection.maxAmount, 0) });
@@ -29,7 +31,7 @@ const BannerRankSlider = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <h3 className={styles.amount}>{currentOrder.desiredAmount}</h3>
+      <h3 className={styles.amount}>{currentAmount}</h3>
       <div className={styles.sliderWrapper}>
         <input
           type="range"
@@ -37,8 +39,9 @@ const BannerRankSlider = (props: Props): JSX.Element => {
           max={currentCollection.maxAmount}
           className={styles.slider}
           style={{ backgroundColor: rank.accent }}
-          value={currentOrder.desiredAmount}
-          onChange={(event): void =>
+          value={currentAmount}
+          onChange={(event: any): void => setAmount(event.target.value)}
+          onMouseUp={(event: any) =>
             updateOrder({ desiredAmount: parseInt(event.target.value, 0) })
           }
         />
