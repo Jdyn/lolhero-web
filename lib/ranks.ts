@@ -10,26 +10,26 @@ const ranks = [
     {
       title: 'Iron IV',
       rank: 1,
-      color: '#616161',
-      accent: '#424242'
+      color: '#424242',
+      accent: '#303030'
     },
     {
       title: 'Iron III',
       rank: 2,
-      color: '#616161',
-      accent: '#424242'
+      color: '#424242',
+      accent: '#303030'
     },
     {
       title: 'Iron II',
       rank: 3,
-      color: '#616161',
-      accent: '#424242'
+      color: '#424242',
+      accent: '#303030'
     },
     {
       title: 'Iron I',
       rank: 4,
-      color: '#616161',
-      accent: '#424242'
+      color: '#424242',
+      accent: '#303030'
     }
   ],
   [
@@ -88,26 +88,26 @@ const ranks = [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#F9A825',
-      accent: '#F57F17'
+      color: '#FB8C00',
+      accent: '#EF6C00'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#F9A825',
-      accent: '#F57F17'
+      color: '#FB8C00',
+      accent: '#EF6C00'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#F9A825',
-      accent: '#F57F17'
+      color: '#FB8C00',
+      accent: '#EF6C00'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#F9A825',
-      accent: '#F57F17'
+      color: '#FB8C00 ',
+      accent: '#EF6C00'
     }
   ],
   [
