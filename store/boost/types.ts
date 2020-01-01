@@ -36,13 +36,6 @@ export interface BoostOrderDetails {
   promos: string[] | null;
 }
 
-export interface Champion {
-  name: string;
-  title: string;
-  position: string;
-  img: string;
-}
-
 interface BoostRequests {
   BOOST_PRICING: 'BOOST_PRICING';
   BOOST_ORDER: 'BOOST_ORDER';

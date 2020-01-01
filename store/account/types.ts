@@ -1,4 +1,4 @@
-import { Champion } from '../boost/types';
+import { Champion } from '../../lib/champions';
 
 export interface AccountState {
   selectedOrder: Order | null;

@@ -24,8 +24,10 @@ const BannerRankSlider = (props: Props): JSX.Element => {
   const [currentAmount, setAmount] = useState(currentOrder.desiredAmount);
 
   useEffect(() => {
-    if (currentOrder.desiredAmount > currentCollection.maxAmount) {
-      updateOrder({ desiredAmount: parseInt(currentCollection.maxAmount, 0) });
+    const maxAmount = parseInt(currentCollection.maxAmount, 0);
+    if (currentOrder.desiredAmount > maxAmount) {
+      updateOrder({ desiredAmount: maxAmount });
+      setAmount(maxAmount);
     }
   }, [currentCollection, updateOrder, currentOrder.desiredAmount]);
 
@@ -40,8 +42,10 @@ const BannerRankSlider = (props: Props): JSX.Element => {
           className={styles.slider}
           style={{ backgroundColor: rank.accent }}
           value={currentAmount}
-          onChange={(event: any): void => setAmount(event.target.value)}
-          onMouseUp={(event: any) =>
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+            setAmount(parseInt(event.target.value, 0))
+          }
+          onMouseUp={(event: any): void =>
             updateOrder({ desiredAmount: parseInt(event.target.value, 0) })
           }
         />

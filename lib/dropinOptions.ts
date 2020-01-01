@@ -29,7 +29,9 @@ const options: any = {
     buttonStyle: {
       color: 'blue',
       shape: 'rect',
-      size: 'responsive'
+      size: 'responsive',
+      tagline: false,
+      label: 'paypal'
     }
   },
   venmo: {

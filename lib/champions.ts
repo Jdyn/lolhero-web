@@ -1,4 +1,11 @@
-const champions = [
+export interface Champion {
+  img: string;
+  name: string;
+  title: string;
+  position?: string;
+}
+
+const champions: Champion[] = [
   {
     title: 'the Darkin Blade',
     name: 'Aatrox',

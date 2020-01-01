@@ -1,4 +1,21 @@
-export default {
+export interface Boosts {
+  [name: string]: {
+    name: string;
+    description: string;
+    subdescription: string;
+    color: string;
+    items: {
+      title: string;
+      type: string;
+      tag: string;
+      maxAmount: string;
+      id: number;
+      description: string;
+    }[];
+  };
+}
+
+const boosts: Boosts = {
   Solo: {
     name: 'Solo Boost',
     description: 'SOLO means one of our boosters will log onto your account.',
@@ -80,3 +97,5 @@ export default {
     ]
   }
 };
+
+export default boosts;

@@ -62,26 +62,26 @@ const ranks = [
     {
       title: 'Silver IV',
       rank: 9,
-      color: '#4d7691',
-      accent: '#2E4757'
+      color: '#616161',
+      accent: '#424242'
     },
     {
       title: 'Silver III',
       rank: 10,
-      color: '#4d7691',
-      accent: '#2E4757'
+      color: '#616161',
+      accent: '#424242'
     },
     {
       title: 'Silver II',
       rank: 11,
-      color: '#4d7691',
-      accent: '#2E4757'
+      color: '#616161',
+      accent: '#424242'
     },
     {
       title: 'Silver I',
       rank: 12,
-      color: '#4d7691',
-      accent: '#2E4757'
+      color: '#616161',
+      accent: '#424242'
     }
   ],
   [
