@@ -88,52 +88,52 @@ const ranks = [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#FFB300',
-      accent: '#FF8F00'
+      color: '#F9A825',
+      accent: '#F57F17'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#FFB300',
-      accent: '#FF8F00'
+      color: '#F9A825',
+      accent: '#F57F17'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#FFB300',
-      accent: '#FF8F00'
+      color: '#F9A825',
+      accent: '#F57F17'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#FFB300',
-      accent: '#FF8F00'
+      color: '#F9A825',
+      accent: '#F57F17'
     }
   ],
   [
     {
       title: 'Platinum IV',
       rank: 17,
-      color: '#009688',
-      accent: '#00695C'
+      color: '#00796B',
+      accent: '#004D40'
     },
     {
       title: 'Platinum III',
       rank: 18,
-      color: '#009688',
-      accent: '#00695C'
+      color: '#00796B',
+      accent: '#004D40'
     },
     {
       title: 'Platinum II',
       rank: 19,
-      color: '#009688',
-      accent: '#00695C'
+      color: '#00796B',
+      accent: '#004D40'
     },
     {
       title: 'Platinum I',
       rank: 20,
-      color: '#009688',
-      accent: '#00695C'
+      color: '#00796B',
+      accent: '#004D40'
     }
   ],
   [
