@@ -19,7 +19,7 @@
   left: 0;
   z-index: -1000;
   width: 100%;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
   height: -webkit-calc(100% - 105px);
   height: -moz-calc(100% - 105px);
   height: calc(100% - 105px);
@@ -36,7 +36,7 @@
   border-left: 8px solid;
   border-right: 8px solid;
   z-index: 10;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
   border-color: var(--secondary-grey);
   flex-direction: column;
   justify-content: space-between;
