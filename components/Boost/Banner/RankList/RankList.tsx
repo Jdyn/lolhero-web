@@ -1,5 +1,5 @@
-import React, { useMemo, useCallback } from 'react';
-import ranks, { Rank } from '../../../../lib/ranks';
+import React, { useMemo, useCallback, useEffect } from 'react';
+import ranks, { Rank, unranked } from '../../../../lib/ranks';
 import styles from './styles.module.css';
 import { BoostOrderDetails } from '../../../../store/boost/types';
 
@@ -8,10 +8,11 @@ interface Props {
   isStartRank: boolean;
   updateOrder: (detailsUpdate: object, orderUpdate: object) => void;
   currentOrder: BoostOrderDetails;
+  isPlacements?: boolean;
 }
 
 const RankList = (props: Props): JSX.Element => {
-  const { rank, isStartRank, updateOrder, currentOrder } = props;
+  const { rank, isStartRank, updateOrder, currentOrder, isPlacements } = props;
 
   const handleClick = useCallback(
     rankItem => {
@@ -43,8 +44,16 @@ const RankList = (props: Props): JSX.Element => {
     [currentOrder.startRank, currentOrder.collectionName, currentOrder.desiredRank, isStartRank]
   );
 
+  useEffect(() => {
+    if (currentOrder.collectionName !== 'Placement Games' && currentOrder.startRank === 28) {
+      updateOrder({ startRank: null }, { startRankTitle: '' });
+    }
+  }, [currentOrder.collectionId, currentOrder.collectionName, updateOrder, currentOrder.startRank]);
+
   const list = useMemo(() => {
-    return ranks.map((rankList, index) => (
+    const items = isPlacements ? [unranked, ...ranks] : ranks;
+
+    return items.map((rankList, index) => (
       <div key={index} className={styles.rankWrapper}>
         {rankList.map(rankItem => {
           const disabled = validate(rankItem.rank);
@@ -64,7 +73,7 @@ const RankList = (props: Props): JSX.Element => {
         })}
       </div>
     ));
-  }, [handleClick, rank, validate]);
+  }, [handleClick, rank, validate, isPlacements]);
 
   return (
     <div className={styles.root}>

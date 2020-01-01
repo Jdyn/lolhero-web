@@ -5,7 +5,16 @@ export interface Rank {
   accent: string;
 }
 
-const ranks = [
+export const unranked: Rank[] = [
+  {
+    title: 'Unranked',
+    rank: 28,
+    color: '#1976D2',
+    accent: '#0D47A1'
+  }
+];
+
+const ranks: Rank[][] = [
   [
     {
       title: 'Iron IV',
@@ -88,52 +97,52 @@ const ranks = [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#FB8C00',
-      accent: '#EF6C00'
+      color: '#FF9100',
+      accent: '#FF6D00'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#FB8C00',
-      accent: '#EF6C00'
+      color: '#FF9100',
+      accent: '#FF6D00'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#FB8C00',
-      accent: '#EF6C00'
+      color: '#FF9100',
+      accent: '#FF6D00'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#FB8C00 ',
-      accent: '#EF6C00'
+      color: '#FF9100 ',
+      accent: '#FF6D00'
     }
   ],
   [
     {
       title: 'Platinum IV',
       rank: 17,
-      color: '#00796B',
-      accent: '#004D40'
+      color: '#00897B',
+      accent: '#00695C'
     },
     {
       title: 'Platinum III',
       rank: 18,
-      color: '#00796B',
-      accent: '#004D40'
+      color: '#00897B',
+      accent: '#00695C'
     },
     {
       title: 'Platinum II',
       rank: 19,
-      color: '#00796B',
-      accent: '#004D40'
+      color: '#00897B',
+      accent: '#00695C'
     },
     {
       title: 'Platinum I',
       rank: 20,
-      color: '#00796B',
-      accent: '#004D40'
+      color: '#00897B',
+      accent: '#00695C'
     }
   ],
   [
@@ -164,7 +173,9 @@ const ranks = [
   ]
 ];
 
-export const flatRanks = () =>
-  [].concat.apply([], [...ranks]).reduce((obj, item) => ((obj[item.rank] = item), obj), {});
+export const flatRanks = (options: { unranked: boolean } = { unranked: false }) => {
+  const items = options.unranked ? [...unranked, ...ranks] : [...ranks];
+  return [].concat.apply([], items).reduce((obj, item) => ((obj[item.rank] = item), obj), {});
+};
 
 export default ranks;

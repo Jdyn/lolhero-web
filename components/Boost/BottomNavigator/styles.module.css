@@ -1,12 +1,12 @@
 .root {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.31fr;
   grid-area: botNav;
   color: var(--white);
   height: auto;
   width: 100%;
   justify-content: center;
-  padding: 0;
   bottom: 0;
   background-color: var(--secondary-grey);
   z-index: 50;
@@ -49,8 +49,7 @@
   display: inline-block;
   outline: none;
   border: none;
-  margin: 15px;
-  width: 100%;
+  margin: 10px;
   border-radius: 16px;
   min-height: 55px;
   cursor: pointer;
@@ -58,6 +57,8 @@
   text-transform: uppercase;
   letter-spacing: 0.8px;
   transition-duration: 0.2s;
+  grid-column: 1 / 5;
+  grid-row: 2 / 3;
   box-shadow: 0 4px 6px rgba(10, 10, 10, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
   font-weight: 700;
   font-size: 20px;
@@ -73,19 +74,31 @@
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 640px) {
   .root {
-    height: 90px;
-    padding: 10px 0;
-    position: fixed;
-    justify-content: flex-end;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.31fr;
   }
 
   .button {
-    margin: 5px 25px 5px 3%;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .root {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1.3fr;
+    grid-template-rows: 1fr;
+    position: fixed;
+    height: 90px;
+  }
+
+  .button {
     display: flex;
-    flex: 1.2;
     justify-content: center;
+    margin: 15px;
+    grid-column: 5 / 6;
+    grid-row: 1 / 2;
   }
 
   .container:nth-child(4) {

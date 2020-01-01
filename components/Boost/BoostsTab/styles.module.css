@@ -13,13 +13,13 @@
   grid-template-columns: 1fr;
   grid-template-rows: repeat(min-content);
   /* gap: 10px; */
+  height: 100%;
   border-bottom: 1px solid var(--border);
   overflow-y: auto;
 }
 
 .wrapper {
   margin: 5px 0px;
-
   overflow-y: auto;
 }
 

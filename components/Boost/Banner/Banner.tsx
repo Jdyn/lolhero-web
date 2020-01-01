@@ -7,24 +7,27 @@ import { Rank } from '../../../lib/ranks';
 
 interface Props {
   type: string;
+  title: string;
   rank: Rank;
   height?: string;
   isStartRank?: boolean;
+  isPlacements?: boolean;
   updateOrder?: () => void;
   currentOrder?: BoostOrderDetails;
 }
 
 const Banner = (props: Props): JSX.Element => {
-  const { type, rank, updateOrder, currentOrder, isStartRank, height } = props;
+  const { type, rank, updateOrder, currentOrder, isStartRank, height, title, isPlacements } = props;
 
   const renderContent = {
     default: <></>,
     slider: <RankSlider rank={rank} currentOrder={currentOrder} updateOrder={updateOrder} />,
-    picker: (
+    division: (
       <RankList
         rank={rank}
         currentOrder={currentOrder}
         isStartRank={isStartRank}
+        isPlacements={isPlacements}
         updateOrder={updateOrder}
       />
     )
@@ -41,7 +44,7 @@ const Banner = (props: Props): JSX.Element => {
       >
         <div className={styles.header}>
           <h1>{rank.title || ''}</h1>
-          <h3>{isStartRank ? 'Current' : 'Desired'}</h3>
+          <h3>{title}</h3>
         </div>
         {renderContent[type]}
       </div>

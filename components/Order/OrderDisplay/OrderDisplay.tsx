@@ -83,11 +83,13 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
       <div className={styles.container}>
         <Banner
           isStartRank
+          title=""
           height="375px"
           type="default"
           rank={ranks[order.details.startRank] || {}}
         />
         <Banner
+          title=""
           height="375px"
           type="default"
           rank={ranks[order.details.desiredRank] || ranks[order.details.startRank]}

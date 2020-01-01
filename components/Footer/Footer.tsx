@@ -50,20 +50,6 @@ const Footer = (): JSX.Element => {
             </ul>
           </div>
           <div className={styles.content}>
-            <h3>Account</h3>
-            <ul>
-              <Link href="/account/login">
-                <li>Log In</li>
-              </Link>
-              <Link href="/account/signup">
-                <li>Sign Up</li>
-              </Link>
-              <Link href="/account/recover">
-                <li>Recovery</li>
-              </Link>
-            </ul>
-          </div>
-          <div className={styles.content}>
             <h3>Resources</h3>
             <ul>
               <li>F.A.Q</li>
@@ -81,6 +67,20 @@ const Footer = (): JSX.Element => {
               </Link>
               <Link href="/boost">
                 <li>Create Order</li>
+              </Link>
+            </ul>
+          </div>
+          <div className={styles.content}>
+            <h3>Account</h3>
+            <ul>
+              <Link href="/account/login">
+                <li>Log In</li>
+              </Link>
+              <Link href="/account/signup">
+                <li>Sign Up</li>
+              </Link>
+              <Link href="/account/recover">
+                <li>Recovery</li>
               </Link>
             </ul>
           </div>
