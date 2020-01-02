@@ -7,10 +7,10 @@ import { fetchAccountOrderList } from '../../store/account/actions';
 class Dashboard extends React.PureComponent<{}> {
   public static async getInitialProps(ctx): Promise<object> {
     const {
-      store: { dispatch, getState }
+      store: { dispatch }
     } = ctx;
 
-    await fetchAccountOrderList(ctx)(dispatch, getState);
+    await dispatch(fetchAccountOrderList(ctx));
 
     return {};
   }

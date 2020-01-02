@@ -15,9 +15,10 @@ const AddonView = (props: Props): JSX.Element => {
 
   const calculatePriceIncrease = (mod: string): string => {
     const { pricing } = boost;
-    const { modifiers } = pricing[currentOrder.boostType];
 
-    if (modifiers) {
+    if (pricing) {
+      const { modifiers } = pricing[currentOrder.boostType];
+
       const cost = Math.round((modifiers[mod] - 1) * 100);
       return `Costs ${cost}%`;
     }

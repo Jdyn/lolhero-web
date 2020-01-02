@@ -38,7 +38,7 @@ const setBoostPrices = (prices: BoostPricing): BoostActionTypes => ({
   prices
 });
 
-export const fetchBoostPrices = (context?: NextPageContext) => async (
+export const fetchBoostPrices = (ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
 ): Promise<void> => {
@@ -49,7 +49,7 @@ export const fetchBoostPrices = (context?: NextPageContext) => async (
 
   dispatch(setRequest(true, requestType));
 
-  const response = await Api.fetch('/prices', { ctx: context });
+  const response = await Api.fetch('/prices', { ctx });
 
   if (response.ok) {
     dispatch(setBoostPrices(response.result));
@@ -81,9 +81,16 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
     dispatch(setRequest(false, requestType));
   }
 
-  const order = { ...getState().boost.order.details, ...detailsUpdate };
-  const pricing = getState().boost.pricing[order.boostType];
-  const price = PriceCalculator(order, pricing);
+  const { boost } = getState();
+
+  let price = 0;
+
+  if (boost.pricing) {
+    const order = { ...boost.order.details, ...detailsUpdate };
+
+    const pricing = boost.pricing[order.boostType];
+    price = PriceCalculator(order, pricing);
+  }
 
   dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
 };

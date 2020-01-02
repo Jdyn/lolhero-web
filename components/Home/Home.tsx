@@ -22,7 +22,7 @@ const cards = [
   {
     title: 'Finally, Begin Tracking Your Order',
     description:
-      'After your purchase, you will recieve detailed instructions on how to further set-up and track your order.',
+      'After order completion, you will be able to set-up and track your order right away. Once you complete the initial set-up, a booster will be able to begin.',
     step: 'step 3'
   }
 ];
@@ -67,7 +67,7 @@ const Home = (): JSX.Element => {
             </Link>
             <Link href="/boost">
               <Button width="155px" padding="15px 20px" margin="5px">
-                Custom Order
+                Custom Boost
               </Button>
             </Link>
           </div>

@@ -26,10 +26,7 @@ const initialState: BoostState = {
       promos: null
     }
   },
-  pricing: {
-    Solo: {},
-    Duo: {}
-  }
+  pricing: null
 };
 
 export default (state = initialState, action: BoostActionTypes): BoostState => {

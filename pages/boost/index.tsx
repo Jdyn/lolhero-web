@@ -12,13 +12,11 @@ interface Props {
 class CustomBoost extends React.Component<Props> {
   public static async getInitialProps(ctx): Promise<object> {
     const {
-      store: { dispatch, getState },
+      store: { dispatch },
       query: { type }
     } = ctx;
 
     const { token } = cookies(ctx);
-
-    await fetchBoostPrices(ctx)(dispatch, getState);
 
     let match = null;
 
@@ -39,6 +37,8 @@ class CustomBoost extends React.Component<Props> {
         })
       );
     }
+
+    await dispatch(fetchBoostPrices(ctx));
 
     return { token };
   }

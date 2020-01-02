@@ -86,6 +86,38 @@ const BoostView = (props: Props): JSX.Element => {
 
   return (
     <>
+      <div className={styles.root}>
+        <h2>Queue</h2>
+        <p>We currently support the following queues types</p>
+        {content.boosts.queues.map(queue => (
+          <Toggle
+            key={queue.queue}
+            onClick={(): void =>
+              currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
+            }
+            isSelected={currentOrder.queue === queue.queue}
+          >
+            {queue.title}
+          </Toggle>
+        ))}
+      </div>
+      <div className={styles.root}>
+        <h2>Server</h2>
+        <p>We currently support the following servers</p>
+        {content.boosts.servers.map(server => {
+          return (
+            <Toggle
+              key={server.server}
+              onClick={(): void =>
+                currentOrder.server !== server.server && updateOrder({ server: server.server })
+              }
+              isSelected={currentOrder.server === server.server}
+            >
+              {server.title}
+            </Toggle>
+          );
+        })}
+      </div>
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={styles.root}>
           <h2>League Points</h2>
@@ -134,38 +166,6 @@ const BoostView = (props: Props): JSX.Element => {
           )}
         </div>
       )}
-      <div className={styles.root}>
-        <h2>Server</h2>
-        <p>We currently support the following servers</p>
-        {content.boosts.servers.map(server => {
-          return (
-            <Toggle
-              key={server.server}
-              onClick={(): void =>
-                currentOrder.server !== server.server && updateOrder({ server: server.server })
-              }
-              isSelected={currentOrder.server === server.server}
-            >
-              {server.title}
-            </Toggle>
-          );
-        })}
-      </div>
-      <div className={styles.root}>
-        <h2>Queue</h2>
-        <p>We currently support the following queues types</p>
-        {content.boosts.queues.map(queue => (
-          <Toggle
-            key={queue.queue}
-            onClick={(): void =>
-              currentOrder.queue !== queue.queue && updateOrder({ queue: queue.queue })
-            }
-            isSelected={currentOrder.queue === queue.queue}
-          >
-            {queue.title}
-          </Toggle>
-        ))}
-      </div>
     </>
   );
 };
