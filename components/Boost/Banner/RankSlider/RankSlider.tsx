@@ -1,13 +1,13 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import content from '../../../../lib/boosts';
 import { Rank } from '../../../../lib/ranks';
-import { BoostOrderDetails } from '../../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
 
 interface Props {
   rank: Rank;
   currentOrder: BoostOrderDetails;
-  updateOrder: (detailsUpdate: object) => void;
+  updateOrder: UpdateOrder;
 }
 
 const BannerRankSlider = (props: Props): JSX.Element => {

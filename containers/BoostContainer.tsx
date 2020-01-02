@@ -4,10 +4,11 @@ import Boost from '../components/Boost';
 import { fetchBoostPrices, updateOrder as orderUpdate, submitOrder } from '../store/boost/actions';
 import { handleAuth } from '../store/session/actions';
 import { AppState } from '../store';
+import { UpdateOrder } from '../store/boost/types';
 
 interface Props {
   type?: string;
-  updateOrder?: (detailsUpdate: object, OrderUpdate?: object) => void;
+  updateOrder?: UpdateOrder;
 }
 
 class BoostContainer extends React.PureComponent<Props> {

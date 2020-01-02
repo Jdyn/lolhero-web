@@ -2,7 +2,7 @@ import React from 'react';
 import RankList from './RankList';
 import RankSlider from './RankSlider';
 import styles from './styles.module.css';
-import { BoostOrderDetails } from '../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
 import { Rank } from '../../../lib/ranks';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   height?: string;
   isStartRank?: boolean;
   isPlacements?: boolean;
-  updateOrder?: () => void;
+  updateOrder?: UpdateOrder;
   currentOrder?: BoostOrderDetails;
 }
 

@@ -5,6 +5,7 @@ import { SessionState } from '../store/session/types';
 import { AccountState, Order } from '../store/account/types';
 import { orderUpdated } from '../store/account/reducers';
 import BoostOrder from '../components/Order';
+import { UpdateOrder } from '../store/boost/types';
 import {
   initializeOrder as initialize,
   updateOrderStatus as updateStatus
@@ -14,7 +15,7 @@ interface Props {
   session?: SessionState;
   account?: AccountState;
   authEmail?: string;
-  updateOrder?: (order: object | null) => void;
+  updateOrder?: UpdateOrder;
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   initializeOrder?: (payload: object, trackingId: string, email?: string) => void;
 }

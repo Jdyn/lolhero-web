@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import content from '../../../../lib/content';
 import Toggle from '../../../Reusable/Toggle/Toggle';
-import { BoostOrderDetails } from '../../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
 
 interface Props {
   currentOrder: BoostOrderDetails;
-  updateOrder: (boostUpdate: object) => void;
+  updateOrder: UpdateOrder;
 }
 
 const BoostView = (props: Props): JSX.Element => {

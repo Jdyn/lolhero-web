@@ -5,7 +5,7 @@ import OrderHeader from './OrderHeader/OrderHeader';
 import OrderDetails from './OrderDetails/OrderDetails';
 import OrderStatus from './OrderStatus';
 import { SessionState } from '../../store/session/types';
-import { AccountState, Order } from '../../store/account/types';
+import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
 import OrderChat from './OrderChat';
 

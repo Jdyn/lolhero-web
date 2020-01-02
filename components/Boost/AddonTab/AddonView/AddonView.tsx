@@ -1,11 +1,11 @@
 import React from 'react';
 import content from '../../../../lib/content';
 import Toggle from '../../../Reusable/Toggle/Toggle';
-import { BoostOrderDetails, BoostState } from '../../../../store/boost/types';
+import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
 
 interface Props {
-  updateOrder: (boostUpdate: object) => void;
+  updateOrder: UpdateOrder;
   boost: BoostState;
   currentOrder: BoostOrderDetails;
 }

@@ -1,12 +1,12 @@
 import React, { useMemo, useCallback, useEffect } from 'react';
 import ranks, { Rank, unranked } from '../../../../lib/ranks';
 import styles from './styles.module.css';
-import { BoostOrderDetails } from '../../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
 
 interface Props {
   rank: Rank;
   isStartRank: boolean;
-  updateOrder: (detailsUpdate: object, orderUpdate: object) => void;
+  updateOrder: UpdateOrder;
   currentOrder: BoostOrderDetails;
   isPlacements?: boolean;
 }

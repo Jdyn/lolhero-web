@@ -9,12 +9,13 @@ import { SessionState } from '../../../store/session/types';
 import { AppState } from '../../../store';
 import { Request } from '../../../store/request/types';
 import { orderUpdated } from '../../../store/account/reducers';
+import { UpdateOrder } from '../../../store/boost/types';
 
 interface Props {
   children?: React.ReactNode;
   session?: SessionState;
   authenticate?: (type: string, form: object) => void;
-  updateOrder?: (payload: { order: object | null }) => void;
+  updateOrder?: UpdateOrder;
   sessionRequest?: Request;
   title?: string;
   description?: string;

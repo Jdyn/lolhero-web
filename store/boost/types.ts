@@ -73,4 +73,6 @@ interface UpdateBoost {
   orderUpdate: object;
 }
 
+export type UpdateOrder = (detailsUpdate: object | null, orderUpdate?: object) => void;
+
 export type BoostActionTypes = SetBoostPrices | UpdateBoost;

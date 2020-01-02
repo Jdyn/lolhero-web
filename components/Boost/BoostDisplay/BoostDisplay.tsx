@@ -2,12 +2,13 @@ import React from 'react';
 import { flatRanks, unranked } from '../../../lib/ranks';
 import Banner from '../Banner';
 import styles from './styles.module.css';
-import { BoostOrderDetails } from '../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
 import { Request } from '../../../store/request/types';
 
 const ranks = flatRanks({ unranked: true });
+
 interface Props {
-  updateOrder: () => void;
+  updateOrder: UpdateOrder;
   currentOrder: BoostOrderDetails;
   purchaseOrderRequest: Request;
 }

@@ -7,7 +7,7 @@ import ReviewView from './ReviewView/ReviewView';
 import DetailsView from './DetailsView/DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
 import styles from './styles.module.css';
-import { BoostOrderDetails, BoostState } from '../../../store/boost/types';
+import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import { Request } from '../../../store/request/types';
 
@@ -15,7 +15,7 @@ const filters = ['boost', 'extras', 'details', 'review'];
 
 interface Props {
   currentStage: number;
-  updateOrder: (detailsUpdate: object) => void;
+  updateOrder: UpdateOrder;
   currentOrder: BoostOrderDetails;
   session: SessionState;
   handleAuth: (type: string, form: object) => void;

@@ -6,11 +6,11 @@ import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.module.css';
 import ProgressBar from '../Reusable/ProgressBar';
-import Filter from '../Reusable/Filter';
+import { UpdateOrder } from '../../store/boost/types';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;
-  updateOrder?: (payload: { order: object | null }) => void;
+  updateOrder?: UpdateOrder;
   session: SessionState;
   sessionRequest: Request;
 }
