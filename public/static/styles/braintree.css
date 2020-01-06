@@ -1,11 +1,11 @@
 [data-braintree-id='upper-container'] {
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   color: #fafafa;
 }
 
 [data-braintree-id='upper-container']:before {
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   color: #fafafa;
   background-color: #323232;
@@ -13,7 +13,7 @@
 
 [data-braintree-id='options'] {
   color: white;
-  border-radius: 12px !important;
+  border-radius: 8px !important;
 }
 
 [data-braintree-id='choose-a-way-to-pay'] {
@@ -34,7 +34,7 @@
   color: #fafafa;
   outline: none;
   transition-duration: 0.2s;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 [data-braintree-id='toggle']:hover {
@@ -53,13 +53,14 @@
 
 [data-braintree-id='card'] {
   background-color: #323232;
-  border-radius: 12px;
+  border-radius: 8px;
+  padding: 10px;
   border: none;
   color: #fafafa;
 }
 
 [data-braintree-id='card-sheet-header'] {
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   color: #fafafa;
 }
@@ -85,17 +86,12 @@
 }
 
 [data-braintree-id='payment-options-container'] {
-  padding-bottom: 0;
-  border-radius: 12px !important;
+  padding: 10px;
 }
 
 [data-braintree-id='payment-options-container'] div {
   background-color: #323232;
   border: none;
-}
-
-[data-braintree-id='payment-options-container']:first-child {
-  border-radius: 0px 0px 12px 12px !important;
 }
 
 [data-braintree-id='payment-options-container'] div:hover {
@@ -109,7 +105,8 @@
 [data-braintree-id='paypal'] {
   background-color: #323232;
   border: none;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 [data-braintree-id='methods-container'] div {

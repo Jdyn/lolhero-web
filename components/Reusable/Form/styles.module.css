@@ -32,8 +32,10 @@
   background-color: var(--primary-grey);
   color: var(--secondary-white);
   transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(10, 10, 10, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .input:focus {
-  box-shadow: 0px 0 0px 1px var(--accent)
+  box-shadow: 0 4px 6px rgba(10, 10, 10, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08),
+    0px 0 0px 1px var(--accent);
 }
