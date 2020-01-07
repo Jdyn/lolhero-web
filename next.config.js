@@ -1,6 +1,7 @@
 module.exports = {
   experimental: { css: true },
   poweredByHeader: false,
+  reactStrictMode: true,
   env: {
     IS_PROD: process.env.NODE_ENV === 'production',
     API_URL:
