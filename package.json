@@ -28,7 +28,6 @@
   "devDependencies": {
     "@types/braintree-web-drop-in": "^1.18.0",
     "@types/js-cookie": "^2.2.4",
-    "@types/next": "^9.0.0",
     "@types/node": "^12.12.24",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.17",
