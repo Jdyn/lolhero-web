@@ -49,7 +49,13 @@ export const fetchBoostPrices = (ctx?: NextPageContext) => async (
 
   dispatch(setRequest(true, requestType));
 
-  const response = await Api.fetch('/prices', { ctx });
+  let response;
+
+  try {
+    response = await Api.fetch('/prices', { ctx });
+  } catch (e) {
+    dispatch(setRequest(false, requestType, 'Failed to Fetch'));
+  }
 
   if (response.ok) {
     dispatch(setBoostPrices(response.result));
