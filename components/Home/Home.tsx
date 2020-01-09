@@ -36,7 +36,7 @@ const Home = (): JSX.Element => {
     const { trackingId } = form;
 
     if (form.trackingId) {
-      Router.push('/order/[trackingId]', `/order/${trackingId}`);
+      Router.push('/order/track/[trackingId]', `/order/track/${trackingId}`);
     }
   };
 

@@ -97,26 +97,26 @@ const ranks: Rank[][] = [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#FF9100',
-      accent: '#FF6D00'
+      color: '#FFA000',
+      accent: '#FF6F00'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#FF9100',
-      accent: '#FF6D00'
+      color: '#FFA000',
+      accent: '#FF6F00'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#FF9100',
-      accent: '#FF6D00'
+      color: '#FFA000',
+      accent: '#FF6F00'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#FF9100 ',
-      accent: '#FF6D00'
+      color: '#FFA000 ',
+      accent: '#FF6F00'
     }
   ],
   [

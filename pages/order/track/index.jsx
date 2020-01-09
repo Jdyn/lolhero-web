@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../components/Reusable/Layout';
-import OrderAuth from '../../components/Reusable/OrderAuth';
+import Layout from '../../../components/Reusable/Layout';
+import OrderAuth from '../../../components/Reusable/OrderAuth';
 
-const TrackOrder = () => {
+const Track = () => {
   const router = useRouter();
 
   const { email, trackingId } = router.query;
@@ -15,4 +15,4 @@ const TrackOrder = () => {
   );
 };
 
-export default TrackOrder;
+export default Track;
