@@ -14,7 +14,10 @@ const fakeAccount: AccountState = {
     status: 'open',
     title: 'Solo | Division Boost - Iron I to Platinum I',
     trackingId: 'ABLC1',
-    user: null,
+    user: {
+      role: 'user',
+      username: 'LoL Hero'
+    },
     details: {
       boostType: 'Solo',
       champions: [],
@@ -32,7 +35,7 @@ const fakeAccount: AccountState = {
       secondaryRole: 'Bottom',
       server: 'NA',
       startRank: 4,
-      summonerName: 'Tyler1'
+      summonerName: 'Not Set'
     }
   }
 };

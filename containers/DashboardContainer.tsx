@@ -20,13 +20,13 @@ class DashboardContainer extends React.PureComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: AppState): Partial<AppState> => ({
+const mapState = (state: AppState): Partial<AppState> => ({
   session: state.session,
   account: state.account
 });
 
-const mapDispatchToProps = (dispatch): object => ({
+const mapDispatch = (dispatch): object => ({
   fetchOrderList: (): void => dispatch(fetchAccountOrderList())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect(mapState, mapDispatch)(DashboardContainer);

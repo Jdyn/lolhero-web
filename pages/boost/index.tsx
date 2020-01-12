@@ -38,8 +38,6 @@ class CustomBoost extends React.Component<Props> {
       );
     }
 
-    await dispatch(fetchBoostPrices(ctx));
-
     return { token };
   }
 

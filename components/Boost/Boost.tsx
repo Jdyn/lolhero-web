@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BoostTab from './BoostsTab';
 import AddonTab from './AddonTab';
 import TopNavigator from './TopNavigator/TopNavigator';
@@ -14,13 +14,18 @@ const Boost = props => {
     session,
     handleAuth,
     submitOrder,
-    purchaseOrderRequest
+    purchaseOrderRequest,
+    fetchBoostPrices
   } = props;
 
   const [valid, setValid] = useState({ payment: false, details: false });
 
   const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
+
+  useEffect(() => {
+    fetchBoostPrices();
+  }, [fetchBoostPrices]);
 
   return (
     <div className={styles.root}>

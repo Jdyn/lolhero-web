@@ -26,6 +26,7 @@ export default App => {
     static async getInitialProps(appContext) {
       const reduxStore = initializeStore();
 
+      // eslint-disable-next-line no-param-reassign
       appContext.ctx.store = reduxStore;
 
       let appProps = {};

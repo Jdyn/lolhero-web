@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+
 import React from 'react';
 import Router from 'next/router';
 import nextCookie from 'next-cookies';
@@ -10,7 +12,6 @@ const auth = ctx => {
     ctx.res.end();
   }
 
-  // Client-side Check
   if (!token) {
     Router.push({ pathname: '/' });
   }
