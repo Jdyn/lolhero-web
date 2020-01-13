@@ -52,7 +52,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       {account.selectedOrder ? (
         <>
-          <OrderHeader session={session} order={account.selectedOrder} />
+          <OrderHeader order={account.selectedOrder} />
           <div className={styles.container}>
             <div className={styles.wrapper}>
               <OrderStatus
