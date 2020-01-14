@@ -2,7 +2,7 @@
   display: flex;
   flex-grow: 1;
   grid-area: status;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   padding: 10px 20px;
   flex-direction: column;

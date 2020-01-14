@@ -7,7 +7,7 @@
   border-radius: 16px;
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   color: var(--white);
 }
 
@@ -23,6 +23,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  flex-basis: 250px;
   width: 100%;
 }
 
@@ -86,6 +87,7 @@
   border: none;
   background-color: transparent;
   margin-left: auto;
+  margin-right: 5px;
   width: 32px;
   padding: 0;
   cursor: pointer;
