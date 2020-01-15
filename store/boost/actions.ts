@@ -116,7 +116,7 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
   };
 
   if (validateOrder(order, dispatchError)) {
-    Api.post('/orders', order)
+    Api.post('/order/create', order)
       .then(response => {
         if (response.ok) {
           dispatch(setRequest(false, requestType));

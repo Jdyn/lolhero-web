@@ -1,5 +1,4 @@
 module.exports = {
-  experimental: { css: true },
   poweredByHeader: false,
   reactStrictMode: true,
   env: {

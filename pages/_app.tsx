@@ -1,7 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import cookies from 'next-cookies';
-import * as Sentry from '@sentry/browser';
+import { init } from '@sentry/browser';
 import { Provider } from 'react-redux';
 import { authenticate } from '../store/session/actions';
 import withRedux from '../util/withRedux';
@@ -10,7 +10,7 @@ import '../public/static/styles/global.css';
 import '../public/static/styles/braintree.css';
 
 if (process.env.IS_PROD) {
-  Sentry.init({
+  init({
     dsn: 'https://c0a74d302c7d426ab2870d252635b9ba@sentry.io/1499991'
   });
 }

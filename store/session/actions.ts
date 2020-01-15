@@ -29,7 +29,7 @@ const login = (
 
   dispatch(setRequest(true, requestType));
 
-  Api.post('/session', form)
+  Api.post('/account/login', form)
     .then((response): void => {
       const { ok, result } = response;
 
@@ -67,7 +67,7 @@ const logout = (): ((dispatch: Function, getState: () => AppState) => void) => (
 
   dispatch(setRequest(true, requestType));
 
-  Api.delete('/session')
+  Api.delete('/account/logout')
     .then((): void => {
       dispatch(setRequest(false, requestType));
       dispatch(setLogout());
@@ -101,7 +101,7 @@ const signup = (
 
   dispatch(setRequest(true, requestType));
 
-  Api.post('/users', form)
+  Api.post('/account/signup', form)
     .then((response): void => {
       const { ok, result } = response;
 
@@ -163,7 +163,7 @@ export const authenticate = (): ((dispatch: any, getState: () => AppState) => vo
 
   dispatch(setRequest(true, requestType));
 
-  Api.fetch('/session')
+  Api.fetch('/account')
     .then((response): void => {
       if (response.ok) {
         const { user } = response.result;
