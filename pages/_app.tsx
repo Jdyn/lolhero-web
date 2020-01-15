@@ -9,33 +9,36 @@ import SEO from '../components/Reusable/SEO';
 import '../public/static/styles/global.css';
 import '../public/static/styles/braintree.css';
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.IS_PROD) {
   Sentry.init({
     dsn: 'https://c0a74d302c7d426ab2870d252635b9ba@sentry.io/1499991'
   });
 }
 
-class Application extends App {
-  static async getInitialProps({ Component, ctx }) {
+interface Props {
+  store: any;
+  pageProps: any;
+  token: string;
+}
+
+class Application extends App<Props> {
+  static async getInitialProps({ Component, ctx }): Promise<any> {
     const { token } = cookies(ctx);
 
-    let pageProps = { token };
+    let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps };
+    return { ...pageProps, token };
   }
 
-  componentDidMount() {
-    const {
-      pageProps: { token },
-      store: { dispatch, getState }
-    } = this.props;
+  componentDidMount(): void {
+    const { token, store } = this.props;
 
     if (token) {
-      authenticate(token)(dispatch, getState);
+      store.dispatch(authenticate());
     } else {
       const payload = {
         type: 'session/REFRESH',
@@ -43,34 +46,11 @@ class Application extends App {
         user: null
       };
 
-      dispatch(payload);
+      store.dispatch(payload);
     }
-
-    // function onTidioChatApiReady() {
-    //   const { user } = store.getState().session;
-
-    //   const metadata = {
-    //     email: user.email,
-    //     name: user.username,
-    //     distinct_id: user.id
-    //   };
-
-    //   document.tidioIdentify = metadata;
-    //   tidioChatApi.setVisitorData(metadata);
-    // }
-
-    // if (window.tidioChatApi) {
-    //   setTimeout(() => {
-    //     window.tidioChatApi.on('ready', onTidioChatApiReady);
-    //   }, 10000);
-    // } else {
-    //   setTimeout(() => {
-    //     document.addEventListener('tidioChat-ready', onTidioChatApiReady);
-    //   }, 10000);
-    // }
   }
 
-  render() {
+  render(): JSX.Element {
     const { Component, pageProps, store } = this.props;
 
     return (

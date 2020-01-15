@@ -152,7 +152,7 @@ const setRefresh = (user: User | null, isLoggedIn: boolean): SessionActionTypes 
   user
 });
 
-export const authenticate = (): ((dispatch: Function, getState: () => AppState) => void) => (
+export const authenticate = (): ((dispatch: any, getState: () => AppState) => void) => (
   dispatch,
   getState
 ): void => {
