@@ -55,7 +55,7 @@ const tos = {
     {
       article: '2.7',
       body:
-        'You, the customer, accept that if you play any ranked games while having bought a tier, placement or net boost from us, we reserve the right to stop the service and announce the boost as complete, with no refunds offered.'
+        'You, the customer, accept that if you play any ranked games while having bought a division, placement or net boost from us, we reserve the right to stop the service and announce the boost as complete, with no refunds offered.'
     },
     {
       article: '2.8',
@@ -65,7 +65,7 @@ const tos = {
     {
       article: '2.9',
       body:
-        'You, the customer, accept that if your KDA is below 1.5 in any Duo Tier or Duo Net Win Service we reserve the right to convert your order into Duo Games following the price of your order, or you can choose to convert your order to Solo with remaining funds being put towards a Solo Tier or Solo Net Win Service.'
+        'You, the customer, accept that if your KDA is below 1.5 in any Duo Division or Duo Net Win Service we reserve the right to convert your order into Duo Games following the price of your order, or you can choose to convert your order to Solo with remaining funds being put towards a Solo Division or Solo Net Win Service.'
     },
     {
       article: '2.10',

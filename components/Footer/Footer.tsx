@@ -26,7 +26,7 @@ const Footer = (): JSX.Element => {
             League of Legends is a registered trademark of Riot Games, Inc. We are in no way
             affiliated with, associated with or endorsed by Riot Games, Inc.
           </p>
-          <span>© 2019 lolhero.gg | All Rights Reserved</span>
+          <span>© 2020 lolhero.gg | All Rights Reserved</span>
         </div>
         <div className={styles.list}>
           <div className={styles.content}>

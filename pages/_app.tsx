@@ -31,7 +31,7 @@ class Application extends App<Props> {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { ...pageProps, token };
+    return { pageProps, token };
   }
 
   componentDidMount(): void {

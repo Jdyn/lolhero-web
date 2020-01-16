@@ -15,8 +15,6 @@ const TOS = (): JSX.Element => {
               {term.body}
             </p>
           ))}
-        </div>
-        <div className={styles.container}>
           <h1>Customer Agreements</h1>
           {tos.duties.map(duty => (
             <p>
