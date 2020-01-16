@@ -53,20 +53,22 @@ const Footer = (): JSX.Element => {
             <h3>Resources</h3>
             <ul>
               <li>F.A.Q</li>
-              <li>About</li>
+              {/* <li>About</li> */}
+              <li>Contact</li>
               <li>Privacy Policy</li>
-              <li>Terms of Service</li>
+              <Link href="/tos">
+                <li>Terms of Service</li>
+              </Link>
             </ul>
           </div>
           <div className={styles.content}>
             <div className={styles.spacer} />
             <ul>
-              <li>Contact</li>
               <Link href="/order/track">
                 <li>Find Order</li>
               </Link>
               <Link href="/boost">
-                <li>Create Order</li>
+                <li>Order Boost</li>
               </Link>
             </ul>
           </div>
