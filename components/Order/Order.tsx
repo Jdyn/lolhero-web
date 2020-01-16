@@ -7,7 +7,7 @@ import OrderStatus from './OrderStatus';
 import { SessionState } from '../../store/session/types';
 import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
-import OrderChat from './OrderChat';
+import OrderChampions from './OrderChampions';
 
 interface Props {
   account: AccountState;
@@ -71,7 +71,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
               />
-              <OrderChat
+              <OrderChampions
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
                 order={account.selectedOrder}

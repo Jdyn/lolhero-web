@@ -9,7 +9,7 @@ interface Props {
   setOrderForm: (update: object) => void;
 }
 
-const OrderChat = (props: Props): JSX.Element => {
+const OrderChampions = (props: Props): JSX.Element => {
   const { orderForm, setOrderForm, order } = props;
 
   const orderChampions = useMemo(() => {
@@ -151,4 +151,4 @@ const OrderChat = (props: Props): JSX.Element => {
   );
 };
 
-export default OrderChat;
+export default OrderChampions;

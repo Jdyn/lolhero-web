@@ -121,8 +121,7 @@ export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState):
         if (response.ok) {
           dispatch(setRequest(false, requestType));
           Router.push({
-            pathname: response.result.success_url,
-            query: { order: response.result }
+            pathname: response.result.success_url
           });
         } else {
           const errors = response.errors || [];
