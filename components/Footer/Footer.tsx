@@ -52,7 +52,9 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <h3>Resources</h3>
             <ul>
-              <li>F.A.Q</li>
+              <Link href="/faq">
+                <li>F.A.Q</li>
+              </Link>
               {/* <li>About</li> */}
               <li>Contact</li>
               <li>Privacy Policy</li>
