@@ -5,6 +5,7 @@ import { AccountState, SetOrderList, OrderUpdate } from './types';
 
 const initialState: AccountState = {
   selectedOrder: null,
+  boosters: null,
   orders: {
     active: {
       title: 'Active Orders',
@@ -27,6 +28,7 @@ const initialState: AccountState = {
 const reducers = {
   orderListFetched: (state: AccountState, action: PayloadAction<SetOrderList>): void => {
     state.orders = action.payload.orders;
+    state.boosters = action.payload.boosters;
   },
   orderUpdated: (state: AccountState, action: PayloadAction<OrderUpdate>): void => {
     state.selectedOrder = action.payload.order;

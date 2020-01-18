@@ -65,6 +65,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
                 order={account.selectedOrder}
+                boosters={account.boosters}
               />
               <OrderDisplay
                 order={account.selectedOrder}

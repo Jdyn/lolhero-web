@@ -67,7 +67,7 @@ const boosts: Boosts = {
         type: 'duo-divisions',
         tag: 'Duo',
         maxAmount: '1',
-        id: 9,
+        id: 5,
         description: 'We play the required amount of games to reach the division you select.'
       },
       {
@@ -75,7 +75,7 @@ const boosts: Boosts = {
         type: 'duo-placements',
         tag: 'Duo',
         maxAmount: '10',
-        id: 11,
+        id: 6,
         description: 'We play your desired amount of placement matches.'
       },
       {
@@ -83,7 +83,7 @@ const boosts: Boosts = {
         type: 'duo-net-wins',
         tag: 'Duo',
         maxAmount: '10',
-        id: 10,
+        id: 7,
         description: 'We ensure a win/loss ratio of 2:1 where each loss adds an additional 2 wins.'
       },
       {
@@ -91,7 +91,7 @@ const boosts: Boosts = {
         type: 'duo-net-games',
         tag: 'Duo',
         maxAmount: '25',
-        id: 12,
+        id: 8,
         description: 'Low cost, guaranteeing high performance without a specific win rate'
       }
     ]

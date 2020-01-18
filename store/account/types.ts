@@ -3,6 +3,7 @@ import { Champion } from '../../lib/champions';
 export interface AccountState {
   selectedOrder: Order | null;
   orders?: OrderList;
+  boosters?: { username: string; id: number }[] | null;
 }
 
 export interface ListBaseOrder {
@@ -80,6 +81,7 @@ export const accountRequests: {
 
 export interface SetOrderList {
   orders: OrderList;
+  boosters?: { username: string; id: number }[];
 }
 
 export interface OrderUpdate {

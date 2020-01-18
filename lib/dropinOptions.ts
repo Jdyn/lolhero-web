@@ -1,7 +1,7 @@
-import { Options } from 'braintree-web-drop-in';
+// import { Options } from 'braintree-web-drop-in';
 
 const options: any = {
-  authorization: 'sandbox_7brmzhhx_cfcsbff65qmxzrgf', // process.env.NODE_ENV === 'production' ? '' : 'sandbox_7brmzhhx_cfcsbff65qmxzrgf',
+  authorization: 'sandbox_7brmzhhx_cfcsbff65qmxzrgf', // process.env.NODE_ENV === 'production' ? 'production_kt5hfrt9_rjbznr7xz82wjj7x	' : 'sandbox_7brmzhhx_cfcsbff65qmxzrgf',
   container: '#dropin-container',
   card: {
     overrides: {

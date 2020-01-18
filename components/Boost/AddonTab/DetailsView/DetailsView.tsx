@@ -10,8 +10,8 @@ const templates = {
     title: 'New Account',
     fields: [
       { name: 'Email', type: 'email', key: 'email' },
-      { name: 'Username', type: 'email', key: 'username' },
-      { name: 'Password', type: 'email', key: 'password' }
+      { name: 'Username', type: 'username', key: 'username' },
+      { name: 'Password', type: 'password', key: 'password' }
     ],
     submit: 'sign up'
   },

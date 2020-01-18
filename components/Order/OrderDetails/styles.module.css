@@ -17,7 +17,7 @@
 }
 
 .root > h3 {
-  margin: 0 0 30px 0;
+  margin: 20px 0 20px 0;
 }
 
 .wrapper {
@@ -194,8 +194,7 @@
 
 .adminContainer {
   border-radius: 8px;
-  margin-top: 10px;
-  padding: 15px;
+  padding: 10px 15px;
   background-color: var(--primary-grey);
 }
 
@@ -215,8 +214,10 @@
   outline: none;
   border: none;
   background-color: transparent;
-  padding: 0;
+  padding: 15px 0px;
   cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--accent);
   width: 100%;
 }

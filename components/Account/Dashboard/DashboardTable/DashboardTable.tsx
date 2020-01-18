@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { formatTime } from '../../../../util/helpers';
-import { OrderList, Order } from '../../../../store/account/types';
+import { OrderList } from '../../../../store/account/types';
 import styles from './styles.module.css';
 import { SessionState } from '../../../../store/session/types';
 
@@ -17,8 +17,8 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
   const { orders, filter, session } = props;
 
   // const labels =
-  //   session.user.role === 'booster'
-  //     ? ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date']
+  //   session.user.role === 'admin'
+  //     ? ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date', 'Assign', 'Set']
   //     : ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date'];
 
   return (
@@ -61,6 +61,11 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
                 <td>
                   <span>{formatTime(order.createdAt)}</span>
                 </td>
+                {/* <td>
+                  <select>
+                    <option>ok</option>
+                  </select>
+                </td> */}
               </tr>
             ))}
           </tbody>

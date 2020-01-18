@@ -23,12 +23,13 @@ const content = [
 
 interface Props {
   order?: Order;
+  boosters?: any;
   orderForm: any;
   setOrderForm: (update: object) => void;
 }
 
 const OrderDetails = (props: Props): JSX.Element => {
-  const { order, orderForm, setOrderForm } = props;
+  const { order, orderForm, setOrderForm, boosters } = props;
 
   const [revealed, setReveal] = useState(false);
 
@@ -150,12 +151,42 @@ const OrderDetails = (props: Props): JSX.Element => {
     </div>
   ) : (
     <div className={styles.root}>
+      {order.accountDetails && (
+        <>
+          <h3>Admin Controls</h3>
+          <div className={styles.adminContainer}>
+            <select>
+              {boosters && boosters.map(booster => <option>{booster.username}</option>)}
+            </select>
+          </div>
+          <h3>Account Details</h3>
+          <div className={styles.adminContainer}>
+            {revealed ? (
+              <>
+                <div>{order.accountDetails.username}</div>
+                <div>{order.accountDetails.password}</div>
+                <button
+                  className={styles.reveal}
+                  type="button"
+                  onClick={(): void => setReveal(false)}
+                >
+                  click to hide
+                </button>
+              </>
+            ) : (
+              <button className={styles.reveal} type="button" onClick={(): void => setReveal(true)}>
+                click to reveal
+              </button>
+            )}
+          </div>
+        </>
+      )}
       <h3>Order Details</h3>
       <div className={styles.wrapper}>
-        <div className={styles.content}>
+        {/* <div className={styles.content}>
           <span>Price</span>
           <h3>{`$${order.price}`}</h3>
-        </div>
+        </div> */}
         <div className={styles.content}>
           <span>Boost Type</span>
           <h3>{order.details.boostType} Boost</h3>
@@ -202,36 +233,8 @@ const OrderDetails = (props: Props): JSX.Element => {
         )}
         <div className={styles.note}>
           <span>Notes</span>
-          <p>{order.note}</p>
+          <p>{`${order.note}`}</p>
         </div>
-        {order.accountDetails && (
-          <>
-            <span>Account Details</span>
-            <div className={styles.adminContainer}>
-              {revealed ? (
-                <>
-                  <div>{order.accountDetails.username}</div>
-                  <div>{order.accountDetails.password}</div>
-                  <button
-                    className={styles.reveal}
-                    type="button"
-                    onClick={(): void => setReveal(false)}
-                  >
-                    click to hide
-                  </button>
-                </>
-              ) : (
-                <button
-                  className={styles.reveal}
-                  type="button"
-                  onClick={(): void => setReveal(true)}
-                >
-                  click to reveal
-                </button>
-              )}
-            </div>
-          </>
-        )}
       </div>
     </div>
   );

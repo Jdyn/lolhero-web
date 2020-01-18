@@ -22,17 +22,23 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   const response = await Api.fetch(`/account/orders`, { ctx });
 
   if (response.ok) {
-    const { completed, active, total } = response.result;
+    const {
+      boosters,
+      orders: { total, completed, active }
+    } = response.result;
 
-    const orders = {
-      ...response.result,
-      total: {
-        ...total,
-        orders: [...completed.orders, ...active.orders]
+    const payload = {
+      boosters,
+      orders: {
+        ...response.result.orders,
+        total: {
+          ...total,
+          orders: [...completed.orders, ...active.orders]
+        }
       }
     };
 
-    dispatch(orderListFetched({ orders }));
+    dispatch(orderListFetched(payload));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, 'Error fetching account orders.'));

@@ -15,7 +15,7 @@ const OrderHeader: React.FC<Props> = (props: Props): JSX.Element => {
       <div className={styles.container}>
         <div className={styles.portrait} />
         <div className={styles.wrapper}>
-          {order && order.user.username}
+          {order?.user && order?.user?.username}
           {order && (
             <div className={styles.content}>
               <div>
