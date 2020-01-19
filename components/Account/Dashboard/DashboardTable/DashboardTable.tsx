@@ -24,52 +24,53 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              {labels.map(label => (
-                <th key={label}>
-                  <div>{label}</div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {orders[filter].orders.map(order => (
-              <tr key={order.trackingId}>
-                <td>
-                  <span>{order.trackingId}</span>
-                </td>
-                <Link
-                  key={order.trackingId}
-                  href="/account/order/[trackingId]"
-                  as={`/account/order/${order.trackingId}`}
-                >
-                  <td>
-                    <span>{order.title}</span>
-                  </td>
-                </Link>
-                <td>
-                  <span>{order.summonerName}</span>
-                </td>
-                <td>
-                  <span>{order.booster ? order.booster.username : '-'}</span>
-                </td>
-                <td>
-                  <span>{order.status}</span>
-                </td>
-                <td>
-                  <span>{formatTime(order.createdAt)}</span>
-                </td>
-                {/* <td>
-                  <select>
-                    <option>ok</option>
-                  </select>
-                </td> */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {orders[filter].orders.length > 0 ? (
+          <>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  {labels.map(label => (
+                    <th key={label}>
+                      <div>{label}</div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {orders[filter].orders.map(order => (
+                  <tr key={order.trackingId}>
+                    <td>
+                      <span>{order.trackingId}</span>
+                    </td>
+                    <Link
+                      key={order.trackingId}
+                      href="/account/order/[trackingId]"
+                      as={`/account/order/${order.trackingId}`}
+                    >
+                      <td>
+                        <span>{order.title}</span>
+                      </td>
+                    </Link>
+                    <td>
+                      <span>{order.summonerName}</span>
+                    </td>
+                    <td>
+                      <span>{order.booster ? order.booster.username : '-'}</span>
+                    </td>
+                    <td>
+                      <span>{order.status}</span>
+                    </td>
+                    <td>
+                      <span>{formatTime(order.createdAt)}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <div className={styles.empty}>There are no orders to show here. :(</div>
+        )}
       </div>
     </div>
   );

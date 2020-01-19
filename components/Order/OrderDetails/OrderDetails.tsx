@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import addons from '../../../lib/content';
-import { Order } from '../../../store/account/types';
+import { Order, AccountState } from '../../../store/account/types';
 import styles from './styles.module.css';
+import { SessionState } from '../../../store/session/types';
+import Button from '../../Reusable/Button';
+import Api from '../../../services/api';
+import { orderUpdated } from '../../../store/account/reducers';
 
 const fields = [
   { type: 'username', title: 'LoL Username', text: 'username' },
@@ -23,15 +28,30 @@ const content = [
 
 interface Props {
   order?: Order;
-  boosters?: any;
+  session: SessionState;
+  account: AccountState;
   orderForm: any;
   setOrderForm: (update: object) => void;
 }
 
-const OrderDetails = (props: Props): JSX.Element => {
-  const { order, orderForm, setOrderForm, boosters } = props;
+const statuses = ['-', 'completed', 'active'];
 
+const OrderDetails = (props: Props): JSX.Element => {
+  const { order, orderForm, setOrderForm, session, account } = props;
+  const dispatch = useDispatch();
   const [revealed, setReveal] = useState(false);
+
+  const [adminUpdate, setAdminUpdate] = useState({});
+
+  const handleAdminUpdate = (): void => {
+    Api.patch(`/orders/${order.trackingId}`, { ...adminUpdate }).then(response => {
+      if (response.ok) {
+        dispatch(orderUpdated({ order: response.result.order }));
+      }
+    });
+  };
+
+  console.log(adminUpdate);
 
   const handleFormUpdate = (formUpdate): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
@@ -87,78 +107,52 @@ const OrderDetails = (props: Props): JSX.Element => {
     }));
   };
 
-  return order.isEditable ? (
+  return (
     <div className={styles.root}>
-      <div className={styles.container}>
+      {session.user.role === 'admin' && (
         <div className={styles.wrapper}>
-          <h3>Order Details</h3>
-          <div className={styles.rolesContainer}>
-            {content.map(item => (
-              <div key={item.text}>
-                <span className={styles.title}>{item.title}</span>
-                <div className={styles.roles}>
-                  {item.roles.map(role => (
-                    <button
-                      type="button"
-                      className={` ${styles.role} ${
-                        orderForm.details[item.text] === role.title ? styles.roleSelected : ''
-                      }`}
-                      key={role.title}
-                      onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
-                    >
-                      <img alt="role" src={role.image} />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <span className={styles.title}>Summoner Name</span>
-            <input
-              className={styles.formInput}
-              type="text"
-              value={orderForm.summonerName}
-              onChange={(event): void => handleFormUpdate({ summonerName: event.target.value })}
-            />
-          </div>
-          {order.details.boostType !== 'Duo' && (
-            <form className={styles.form}>
-              {fields.map(field => (
-                <div key={field.text}>
-                  <span className={styles.title}>{field.title}</span>
-                  <input
-                    className={styles.formInput}
-                    type={field.type}
-                    value={orderForm.details[field.text]}
-                    onChange={(event): void =>
-                      handleFormUpdate({ [field.text]: event.target.value })
-                    }
-                  />
-                </div>
-              ))}
-            </form>
-          )}
-          <span className={styles.title}>Notes</span>
-          <textarea
-            value={orderForm.note || ''}
-            className={styles.notes}
-            onChange={(event): void => setOrderForm({ ...orderForm, note: event.target.value })}
-            placeholder="Anything we should know?"
-          />
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className={styles.root}>
-      {order.accountDetails && (
-        <>
           <h3>Admin Controls</h3>
           <div className={styles.adminContainer}>
-            <select>
-              {boosters && boosters.map(booster => <option>{booster.username}</option>)}
+            <h3>Change Booster</h3>
+            <select className={styles.select}>
+              <option>-</option>
+              {account.boosters &&
+                account.boosters.map(booster => <option>{booster.username}</option>)}
             </select>
+            <h3>Change Status</h3>
+            <select
+              className={styles.select}
+              onChange={(event): void =>
+                setAdminUpdate({
+                  ...adminUpdate,
+                  status: event.target.value === '-' ? order.status : event.target.value
+                })
+              }
+            >
+              {statuses.map(status => (
+                <option value={status}>{status}</option>
+              ))}
+            </select>
+            {/* <div>
+              <input
+                onChange={event =>
+                  setAdminUpdate({
+                    ...adminUpdate,
+                    isEditable: event.target.checked
+                  })
+                }
+                type="checkbox"
+              />
+              <span>allow edit</span>
+            </div> */}
+            <Button margin="15px 0 0 0" width="100%" onClick={handleAdminUpdate}>
+              update
+            </Button>
           </div>
+        </div>
+      )}
+      {order.accountDetails && (
+        <div className={styles.wrapper}>
           <h3>Account Details</h3>
           <div className={styles.adminContainer}>
             {revealed ? (
@@ -179,63 +173,121 @@ const OrderDetails = (props: Props): JSX.Element => {
               </button>
             )}
           </div>
-        </>
+        </div>
       )}
-      <h3>Order Details</h3>
-      <div className={styles.wrapper}>
-        {/* <div className={styles.content}>
-          <span>Price</span>
-          <h3>{`$${order.price}`}</h3>
-        </div> */}
-        <div className={styles.content}>
-          <span>Boost Type</span>
-          <h3>{order.details.boostType} Boost</h3>
-        </div>
-        <div className={styles.content}>
-          <span>Queue Type</span>
-          <h3>{order.details.queue} Queue</h3>
-        </div>
-        <div className={styles.content}>
-          <span>Primary Role</span>
-          <img
-            alt="role"
-            src={addons.roles.filter(role => role.title === order.details.primaryRole)[0].image}
-          />
-        </div>
-        <div className={styles.content}>
-          <span>Secondary Role</span>
-          <img
-            alt="role"
-            src={addons.roles.filter(role => role.title === order.details.secondaryRole)[0].image}
-          />
-        </div>
-        <div className={styles.content}>
-          <span>Server</span>
-          <h3>{order.details.server}</h3>
-        </div>
-        {addons.addons.extras.map(item => (
-          <div key={item.title} className={styles.content}>
-            <span>{item.title}</span>
-            <h3>{order[item.type] === true ? 'Yes' : 'No'}</h3>
-          </div>
-        ))}
-        {order.details.promos && (
-          <div className={styles.promotions}>
-            <span>Promotions</span>
-            <div>
-              {order.details.promos.map((promo: string) => (
-                <div key={promo} className={styles.promo}>
-                  {promo}
+      {order.isEditable ? (
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <h3>Order Details</h3>
+            <div className={styles.rolesContainer}>
+              {content.map(item => (
+                <div key={item.text}>
+                  <span className={styles.title}>{item.title}</span>
+                  <div className={styles.roles}>
+                    {item.roles.map(role => (
+                      <button
+                        type="button"
+                        className={` ${styles.role} ${
+                          orderForm.details[item.text] === role.title ? styles.roleSelected : ''
+                        }`}
+                        key={role.title}
+                        onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
+                      >
+                        <img alt="role" src={role.image} />
+                      </button>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
+            <div>
+              <span className={styles.title}>Summoner Name</span>
+              <input
+                className={styles.formInput}
+                type="text"
+                value={orderForm.summonerName}
+                onChange={(event): void => handleFormUpdate({ summonerName: event.target.value })}
+              />
+            </div>
+            {order.details.boostType !== 'Duo' && (
+              <form className={styles.form}>
+                {fields.map(field => (
+                  <div key={field.text}>
+                    <span className={styles.title}>{field.title}</span>
+                    <input
+                      className={styles.formInput}
+                      type={field.type}
+                      value={orderForm.details[field.text]}
+                      onChange={(event): void =>
+                        handleFormUpdate({ [field.text]: event.target.value })
+                      }
+                    />
+                  </div>
+                ))}
+              </form>
+            )}
+            <span className={styles.title}>Notes</span>
+            <textarea
+              value={orderForm.note || ''}
+              className={styles.notes}
+              onChange={(event): void => setOrderForm({ ...orderForm, note: event.target.value })}
+              placeholder="Anything we should know?"
+            />
           </div>
-        )}
-        <div className={styles.note}>
-          <span>Notes</span>
-          <p>{`${order.note}`}</p>
         </div>
-      </div>
+      ) : (
+        <div className={styles.wrapper}>
+          <h3>Order Details</h3>
+          <div className={styles.content}>
+            <span>Boost Type</span>
+            <h3>{order.details.boostType} Boost</h3>
+          </div>
+          <div className={styles.content}>
+            <span>Queue Type</span>
+            <h3>{order.details.queue} Queue</h3>
+          </div>
+          <div className={styles.content}>
+            <span>Primary Role</span>
+            <img
+              alt="role"
+              src={addons.roles.filter(role => role.title === order.details.primaryRole)[0].image}
+            />
+          </div>
+          <div className={styles.content}>
+            <span>Secondary Role</span>
+            <img
+              alt="role"
+              src={addons.roles.filter(role => role.title === order.details.secondaryRole)[0].image}
+            />
+          </div>
+          <div className={styles.content}>
+            <span>Server</span>
+            <h3>{order.details.server}</h3>
+          </div>
+          {addons.addons.extras.map(item => (
+            <div key={item.title} className={styles.content}>
+              <span>{item.title}</span>
+              <h3>{order[item.type] === true ? 'Yes' : 'No'}</h3>
+            </div>
+          ))}
+          {order.details.promos && (
+            <div className={styles.promotions}>
+              <span>Promotions</span>
+              <div>
+                {order.details.promos.map((promo: string) => (
+                  <div key={promo} className={styles.promo}>
+                    {promo}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className={styles.note}>
+            <span>Notes</span>
+            <p>{`${order.note}`}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

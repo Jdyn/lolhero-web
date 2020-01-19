@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.css';
 import OrderHeader from './OrderHeader/OrderHeader';
@@ -36,6 +36,12 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
+  useEffect(() => {
+    if (session.user.role === 'admin' && !account.boosters) {
+      console.log('called');
+    }
+  }, [account.boosters, session.user.role]);
+
   const onInitializeOrder = (): void => {
     const { champions } = orderForm.details;
 
@@ -65,7 +71,8 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
                 orderForm={orderForm}
                 setOrderForm={setOrderForm}
                 order={account.selectedOrder}
-                boosters={account.boosters}
+                session={session}
+                account={account}
               />
               <OrderDisplay
                 order={account.selectedOrder}

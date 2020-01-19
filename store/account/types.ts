@@ -27,7 +27,7 @@ export interface OrderList {
 
 export interface Order {
   createdAt: string;
-  booster?: { username: string } | null;
+  booster?: { username: string; id: number; role: string } | null;
   accountDetails?: { username: string; password: string };
   details: {
     boostType: string;
@@ -81,7 +81,6 @@ export const accountRequests: {
 
 export interface SetOrderList {
   orders: OrderList;
-  boosters?: { username: string; id: number }[];
 }
 
 export interface OrderUpdate {

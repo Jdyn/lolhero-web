@@ -26,14 +26,18 @@ const RankList = (props: Props): JSX.Element => {
   );
 
   const validate = useCallback(
-    itemIndex => {
+    itemRank => {
       if (currentOrder.collectionName === 'Division Boost') {
+        if (currentOrder.boostType === 'Duo' && itemRank > 21) {
+          return true;
+        }
+
         if (!isStartRank) {
           if (currentOrder.startRank !== null) {
-            return itemIndex < currentOrder.startRank + 1;
+            return itemRank < currentOrder.startRank + 1;
           }
         } else if (currentOrder.desiredRank !== null) {
-          return itemIndex > currentOrder.desiredRank - 1;
+          return itemRank > currentOrder.desiredRank - 1;
         } else {
           return false;
         }
@@ -41,7 +45,13 @@ const RankList = (props: Props): JSX.Element => {
 
       return false;
     },
-    [currentOrder.startRank, currentOrder.collectionName, currentOrder.desiredRank, isStartRank]
+    [
+      currentOrder.startRank,
+      currentOrder.collectionName,
+      currentOrder.boostType,
+      currentOrder.desiredRank,
+      isStartRank
+    ]
   );
 
   useEffect(() => {

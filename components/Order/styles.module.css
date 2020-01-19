@@ -21,6 +21,80 @@
     'chat';
 }
 
+.controls {
+  border-radius: 16px;
+  background-color: var(--secondary-grey);
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+  grid-area: controls;
+}
+
+.controlsWrapper {
+  display: flex;
+  flex: 1;
+  padding: 25px;
+  justify-content: flex-start;
+  flex-direction: column;
+  /* max-height: 700px;
+  overflow: auto; */
+  width: 100%;
+}
+
+.controlsWrapper > h3 {
+  margin: 0 0 15px 0;
+}
+
+.adminContainer {
+  border-radius: 8px;
+  padding: 10px 15px;
+  background-color: var(--primary-grey);
+}
+
+.adminContainer > h3 {
+  margin: 10px 0px;
+  font-size: 16px;
+}
+
+.adminContainer > div {
+  padding: 10px;
+  background-color: var(--secondary-grey);
+  margin: 10px 0px;
+  border-radius: 8px;
+}
+
+.reveal {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 10px 0px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  width: 100%;
+}
+
+.select {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 5px;
+  border: 1px solid var(--tertiary-grey);
+  background-color: var(--secondary-grey);
+  color: var(--secondary-white);
+  border-radius: 8px;
+  height: 30px;
+  width: 100%;
+}
+
+.accountDetails {
+  grid-area: account;
+  border-radius: 16px;
+  background-color: var(--secondary-grey);
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
 @media (min-width: 640px) {
   .wrapper {
     grid-template-columns: 1fr 2fr;
@@ -35,10 +109,11 @@
 @media (min-width: 1024px) {
   .wrapper {
     grid-template-columns: 275px 2fr 275px;
-    grid-template-rows: min-content 1fr;
+    grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
       'details status  status'
-      'details display chat';
+      'details display chat'
+      'controls . account';
   }
 }
 

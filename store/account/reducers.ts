@@ -28,7 +28,6 @@ const initialState: AccountState = {
 const reducers = {
   orderListFetched: (state: AccountState, action: PayloadAction<SetOrderList>): void => {
     state.orders = action.payload.orders;
-    state.boosters = action.payload.boosters;
   },
   orderUpdated: (state: AccountState, action: PayloadAction<OrderUpdate>): void => {
     state.selectedOrder = action.payload.order;

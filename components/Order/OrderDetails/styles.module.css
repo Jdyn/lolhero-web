@@ -3,7 +3,7 @@
   flex-direction: column;
   grid-area: details;
   width: 100%;
-  padding: 25px;
+  padding: 10px;
   border-radius: 16px;
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
@@ -23,13 +23,16 @@
 .wrapper {
   display: flex;
   flex: 1;
+  padding: 15px;
   justify-content: flex-start;
   flex-direction: column;
+  /* max-height: 700px;
+  overflow: auto; */
   width: 100%;
 }
 
 .wrapper > h3 {
-  margin: 0 0 15px 0;
+  margin: 15px 0;
 }
 
 .form {
@@ -199,14 +202,14 @@
 }
 
 .adminContainer > h3 {
-  margin: 5px 0px;
+  margin: 10px 0px;
   font-size: 16px;
 }
 
 .adminContainer > div {
   padding: 10px;
   background-color: var(--secondary-grey);
-  margin-bottom: 5px;
+  margin: 10px 0px;
   border-radius: 8px;
 }
 
@@ -214,11 +217,24 @@
   outline: none;
   border: none;
   background-color: transparent;
-  padding: 15px 0px;
+  padding: 10px 0px;
   cursor: pointer;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--accent);
+  width: 100%;
+}
+
+.select {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 5px;
+  border: 1px solid var(--tertiary-grey);
+  background-color: var(--secondary-grey);
+  color: var(--secondary-white);
+  border-radius: 8px;
+  height: 30px;
   width: 100%;
 }
 
