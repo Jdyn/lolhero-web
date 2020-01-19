@@ -38,7 +38,7 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
       champ => JSON.stringify(champ) === JSON.stringify(champion)
     );
 
-    if (!contains) {
+    if (!contains && orderForm.details.champions.length < 8) {
       setOrderForm({
         ...orderForm,
         details: {

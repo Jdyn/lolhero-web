@@ -42,6 +42,7 @@ const OrderChampions = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <h3>Selected Champions</h3>
+      <span>Maximum of 8 champions</span>
       {order.isEditable ? (
         <div>
           <div className={styles.list}>

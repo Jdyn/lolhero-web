@@ -31,7 +31,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
         return (
           <>
             <h3>Waiting for order setup...</h3>
-            <span>Complete the order details to begin your order!</span>
+            <span>Complete your order details to begin the order!</span>
           </>
         );
       case 'initialized':
@@ -84,7 +84,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
       </div>
       {order.isEditable ? (
         <div className={styles.wrapper}>
-          <Button grow maxWidth="200px" margin="10px" padding="15px" onClick={onInitializeOrder}>
+          <Button grow maxWidth="200px" margin="5px" padding="15px" onClick={onInitializeOrder}>
             start order
           </Button>
         </div>
@@ -96,7 +96,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
               secondary
               maxWidth="200px"
               onClick={onPauseOrder}
-              margin="10px 5px"
+              margin="5px 5px"
               padding="15px"
             >
               {order.status === 'paused' ? 'unpause order' : 'pause order'}

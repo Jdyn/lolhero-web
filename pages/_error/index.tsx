@@ -4,11 +4,12 @@ import Layout from '../../components/Reusable/Layout';
 import styles from './styles.module.css';
 
 interface Props {
+  message: string;
   status: number;
 }
 
 const Error = (props: Props): JSX.Element => {
-  const { status } = props;
+  const { status, message } = props;
 
   return (
     <Layout title={`Error ${status}`}>
@@ -18,7 +19,7 @@ const Error = (props: Props): JSX.Element => {
           <h2>
             Error <span>{status}</span>
           </h2>
-          <p>This page likely does not exist.</p>
+          <p>{message}</p>
         </div>
       </div>
     </Layout>
@@ -36,7 +37,9 @@ Error.getInitialProps = (ctx: NextPageContext): object => {
     status = err.statusCode;
   }
 
-  return { status };
+  const message = status === 404 ? 'This page likely does not exist.' : 'This was not expected.';
+
+  return { status, message };
 };
 
 export default Error;

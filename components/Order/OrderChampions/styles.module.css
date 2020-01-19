@@ -9,10 +9,16 @@
   border: 1px solid var(--tertiary-grey);
   box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   color: var(--white);
+  text-align: center;
 }
 
 .root > h3 {
-  margin: 0 0 15px 0;
+  margin: 0 0 5px 0;
+}
+
+.root > span {
+  color: var(--grey);
+  margin: 0 0 10px 0;
 }
 
 .root > div {
@@ -59,9 +65,10 @@
 }
 
 .list {
-  height: 385px;  
+  height: 385px;
   max-height: 385px;
   overflow-y: auto;
+  text-align: left;
   border-radius: 18px;
   padding: 15px;
   background-color: var(--primary-grey);
