@@ -109,7 +109,7 @@ const OrderDetails = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      {session.user.role === 'admin' && (
+      {session?.user?.role === 'admin' && (
         <div className={styles.wrapper}>
           <h3>Admin Controls</h3>
           <div className={styles.adminContainer}>

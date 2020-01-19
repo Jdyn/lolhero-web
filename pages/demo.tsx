@@ -18,6 +18,7 @@ const fakeAccount: AccountState = {
       role: 'user',
       username: 'LoL Hero'
     },
+    booster: null,
     details: {
       boostType: 'Solo',
       champions: [],
