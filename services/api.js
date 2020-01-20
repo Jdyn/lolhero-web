@@ -3,7 +3,7 @@ import nextCookie from 'next-cookies';
 import 'isomorphic-unfetch';
 
 const API_URL = process.env.IS_PROD
-  ? 'http://api.lolhero.gg/api/v1'
+  ? 'https://api.lolhero.gg/api/v1'
   : 'http://localhost:4000/api/v1';
 
 function headers() {
