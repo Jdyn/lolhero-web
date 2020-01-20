@@ -17,7 +17,7 @@ interface Props {
   account?: AccountState;
   authEmail?: string;
   updateOrder?: UpdateOrder;
-  trackingId: string;
+  trackingId?: string;
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   initializeOrder?: (payload: object, trackingId: string, email?: string) => void;
   getOrder?: (trackingId: string) => void;

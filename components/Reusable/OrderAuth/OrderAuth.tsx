@@ -11,7 +11,7 @@ import { Request } from '../../../store/request/types';
 
 interface Props {
   fullAuth?: boolean;
-  trackingId?: string | string[];
+  trackingId?: string;
   email?: string;
   account?: AccountState;
   fetchOrderRequest: Request;
@@ -34,7 +34,7 @@ const OrderAuth = (props: Props): JSX.Element => {
   };
 
   return account.selectedOrder !== null ? (
-    <OrderContainer authEmail={form.email} />
+    <OrderContainer authEmail={form.email} trackingId={trackingId} />
   ) : (
     <div className={styles.root}>
       {fullAuth ? (
