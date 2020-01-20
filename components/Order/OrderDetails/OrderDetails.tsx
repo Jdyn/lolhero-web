@@ -51,8 +51,6 @@ const OrderDetails = (props: Props): JSX.Element => {
     });
   };
 
-  console.log(adminUpdate);
-
   const handleFormUpdate = (formUpdate): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
 
@@ -117,7 +115,9 @@ const OrderDetails = (props: Props): JSX.Element => {
             <select className={styles.select}>
               <option>-</option>
               {account.boosters &&
-                account.boosters.map(booster => <option>{booster.username}</option>)}
+                account.boosters.map(booster => (
+                  <option key={booster.username}>{booster.username}</option>
+                ))}
             </select>
             <h3>Change Status</h3>
             <select
@@ -130,21 +130,11 @@ const OrderDetails = (props: Props): JSX.Element => {
               }
             >
               {statuses.map(status => (
-                <option value={status}>{status}</option>
+                <option key={status} value={status}>
+                  {status}
+                </option>
               ))}
             </select>
-            {/* <div>
-              <input
-                onChange={event =>
-                  setAdminUpdate({
-                    ...adminUpdate,
-                    isEditable: event.target.checked
-                  })
-                }
-                type="checkbox"
-              />
-              <span>allow edit</span>
-            </div> */}
             <Button margin="15px 0 0 0" width="100%" onClick={handleAdminUpdate}>
               update
             </Button>

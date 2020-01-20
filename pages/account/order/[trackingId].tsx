@@ -11,19 +11,22 @@ interface Props {
 class Order extends React.PureComponent<Props> {
   public static async getInitialProps(ctx): Promise<object> {
     const {
-      store: { dispatch, getState },
+      store,
       query: { trackingId }
     } = ctx;
 
-    await fetchOrder(trackingId, null, ctx)(dispatch, getState);
+    await store.dispatch(fetchOrder(trackingId, null, ctx));
 
     return { trackingId };
   }
 
   public render(): JSX.Element {
     const { trackingId } = this.props;
+
+    // store.dispatch(fetchOrder(trackingId, null));
+
     return (
-      <Layout title={`Order ${trackingId}`}>
+      <Layout title={`Order ${trackingId || ''}`}>
         <OrderContainer />
       </Layout>
     );

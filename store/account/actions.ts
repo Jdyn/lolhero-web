@@ -5,6 +5,7 @@ import { AppState } from '..';
 import { setRequest } from '../request/actions';
 import { accountRequests } from './types';
 import { orderListFetched, orderUpdated } from './reducers';
+import 'isomorphic-unfetch';
 
 type GetState = () => AppState;
 

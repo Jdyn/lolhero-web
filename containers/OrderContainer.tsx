@@ -23,11 +23,11 @@ interface Props {
 const OrderContainer = (props: Props): JSX.Element => {
   const { account, session, initializeOrder, authEmail, updateOrder, updateOrderStatus } = props;
 
-  useEffect(() => {
-    return () => {
-      updateOrder(null);
-    };
-  }, [updateOrder]);
+  // useEffect(() => {
+  //   return () => {
+  //     updateOrder(null);
+  //   };
+  // }, [updateOrder]);
 
   return (
     <BoostOrder
