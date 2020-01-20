@@ -45,7 +45,7 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   }
 };
 
-export const fetchOrder = (id: string, email: string = null, ctx?: NextPageContext) => async (
+export const fetchOrder = (id: string, email?: string, ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: GetState
 ): Promise<void> => {
