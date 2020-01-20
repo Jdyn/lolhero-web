@@ -18,6 +18,8 @@ class CustomBoost extends React.Component<Props> {
 
     const { token } = cookies(ctx);
 
+    await dispatch(fetchBoostPrices(ctx));
+
     let match = null;
 
     Object.keys(boosts).forEach(key => {

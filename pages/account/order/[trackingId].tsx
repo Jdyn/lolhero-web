@@ -8,29 +8,25 @@ interface Props {
   trackingId: string;
 }
 
-class Order extends React.PureComponent<Props> {
-  public static async getInitialProps(ctx): Promise<object> {
-    const {
-      store,
-      query: { trackingId }
-    } = ctx;
+const Order = (props: Props): JSX.Element => {
+  const { trackingId } = props;
 
-    await store.dispatch(fetchOrder(trackingId, null, ctx));
+  return (
+    <Layout title={`Order ${trackingId || ''}`}>
+      <OrderContainer />
+    </Layout>
+  );
+};
 
-    return { trackingId };
-  }
+Order.getInitialProps = async (ctx): Promise<object> => {
+  const {
+    store: { dispatch },
+    query: { trackingId }
+  } = ctx;
 
-  public render(): JSX.Element {
-    const { trackingId } = this.props;
+  await dispatch(fetchOrder(trackingId, null, ctx));
 
-    // store.dispatch(fetchOrder(trackingId, null));
-
-    return (
-      <Layout title={`Order ${trackingId || ''}`}>
-        <OrderContainer />
-      </Layout>
-    );
-  }
-}
+  return { trackingId };
+};
 
 export default withAuth(Order);

@@ -43,7 +43,9 @@ const OrderDetails = (props: Props): JSX.Element => {
 
   const [adminUpdate, setAdminUpdate] = useState({});
 
-  const handleAdminUpdate = (): void => {
+  const handleAdminUpdate = (event): void => {
+    event.preventDefault();
+
     Api.patch(`/orders/${order.trackingId}`, { ...adminUpdate }).then(response => {
       if (response.ok) {
         dispatch(orderUpdated({ order: response.result.order }));

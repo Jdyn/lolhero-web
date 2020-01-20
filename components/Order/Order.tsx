@@ -36,12 +36,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
-  // useEffect(() => {
-  //   if (session.user.role === 'admin' && !account.boosters) {
-  //     console.log('called');
-  //   }
-  // }, [account.boosters, session.user.role]);
-
   const onInitializeOrder = (): void => {
     const { champions } = orderForm.details;
 
