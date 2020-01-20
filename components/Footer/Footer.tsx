@@ -57,7 +57,9 @@ const Footer = (): JSX.Element => {
               </Link>
               {/* <li>About</li> */}
               <li>Contact</li>
-              <li>Privacy Policy</li>
+              <Link href="privacy">
+                <li>Privacy Policy</li>
+              </Link>
               <Link href="/tos">
                 <li>Terms of Service</li>
               </Link>
