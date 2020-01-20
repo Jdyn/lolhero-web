@@ -46,7 +46,7 @@ export const fetchAccountOrderList = (ctx?: NextPageContext) => async (
   }
 };
 
-export const fetchOrder = (id: string, email?: string, ctx?: NextPageContext) => async (
+export const fetchOrder = (id: string, email: string = null) => async (
   dispatch: Dispatch,
   getState: GetState
 ): Promise<void> => {
@@ -62,7 +62,7 @@ export const fetchOrder = (id: string, email?: string, ctx?: NextPageContext) =>
   if (email) {
     response = await Api.post(`/order/${id}`, { email });
   } else {
-    response = await Api.fetch(`/account/order/${id}`, { ctx });
+    response = await Api.fetch(`/account/order/${id}`);
   }
 
   if (response.ok) {

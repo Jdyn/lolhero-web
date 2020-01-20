@@ -25,19 +25,19 @@ class Application extends App<Props> {
   static async getInitialProps({ Component, ctx }): Promise<any> {
     const { token } = cookies(ctx);
 
-    let pageProps = {};
+    let pageProps = { token };
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps, token };
+    return { pageProps };
   }
 
   componentDidMount(): void {
-    const { token, store } = this.props;
+    const { store, pageProps } = this.props;
 
-    if (token) {
+    if (pageProps.token) {
       store.dispatch(authenticate());
     } else {
       const payload = {
@@ -56,7 +56,7 @@ class Application extends App<Props> {
     return (
       <Provider store={store}>
         <SEO />
-        <Component {...pageProps} store={store} />
+        <Component {...pageProps} />
       </Provider>
     );
   }

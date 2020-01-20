@@ -2,57 +2,49 @@ import React from 'react';
 import cookies from 'next-cookies';
 import Head from 'next/head';
 import BoostContainer from '../../containers/BoostContainer';
-import { fetchBoostPrices, updateOrder } from '../../store/boost/actions';
+import { updateOrder } from '../../store/boost/actions';
 import boosts from '../../lib/boosts';
 
-interface Props {
-  type?: string;
-}
+const Boost = (): JSX.Element => {
+  return (
+    <>
+      <Head>
+        <title>Custom Order - LoL Hero</title>
+      </Head>
+      <BoostContainer />
+    </>
+  );
+};
 
-class CustomBoost extends React.Component<Props> {
-  public static async getInitialProps(ctx): Promise<object> {
-    const {
-      store: { dispatch },
-      query: { type }
-    } = ctx;
+Boost.getInitialProps = async (ctx): Promise<object> => {
+  const {
+    store: { dispatch },
+    query: { type }
+  } = ctx;
 
-    const { token } = cookies(ctx);
+  const { token } = cookies(ctx);
 
-    await dispatch(fetchBoostPrices(ctx));
+  let match = null;
 
-    let match = null;
-
-    Object.keys(boosts).forEach(key => {
-      boosts[key].items.forEach(item => {
-        if (item.type === type) {
-          match = item;
-        }
-      });
+  Object.keys(boosts).forEach(key => {
+    boosts[key].items.forEach(item => {
+      if (item.type === type) {
+        match = item;
+      }
     });
+  });
 
-    if (typeof match === 'object' && match !== null) {
-      dispatch(
-        updateOrder({
-          collectionId: match.id,
-          collectionName: match.title,
-          boostType: match.tag
-        })
-      );
-    }
-
-    return { token };
-  }
-
-  render(): JSX.Element {
-    return (
-      <>
-        <Head>
-          <title>Custom Order - LoL Hero</title>
-        </Head>
-        <BoostContainer />
-      </>
+  if (typeof match === 'object' && match !== null) {
+    dispatch(
+      updateOrder({
+        collectionId: match.id,
+        collectionName: match.title,
+        boostType: match.tag
+      })
     );
   }
-}
 
-export default CustomBoost;
+  return { token };
+};
+
+export default Boost;

@@ -5,21 +5,25 @@ import DashboardHeader from './DashboardHeader';
 import DashboardFilter from './DashboardFilter';
 import DashboardTable from './DashboardTable';
 import styles from './styles.module.css';
+import { Request } from '../../../store/request/types';
 
 interface Props {
   session: SessionState;
   account: AccountState;
+  OrderListRequest: Request;
   fetchOrderList: () => void;
 }
 
 const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
-  const { session, account, fetchOrderList } = props;
+  const { session, account, fetchOrderList, OrderListRequest } = props;
 
   const [filter, setFilter] = useState('active');
 
   useEffect(() => {
-    fetchOrderList();
-  }, [fetchOrderList]);
+    if (!OrderListRequest.success) {
+      fetchOrderList();
+    }
+  }, [fetchOrderList, OrderListRequest]);
 
   return (
     <div className={styles.root}>

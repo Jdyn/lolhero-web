@@ -16,5 +16,5 @@
     "jsx": "preserve"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "*.js", "*.jsx", "**/*.ts", "**/*.tsx", "components/Boost/AddonTab/index.ts"]
+  "include": ["next-env.d.ts", "*.js", "*.jsx", "**/*.ts", "**/*.tsx"]
 }

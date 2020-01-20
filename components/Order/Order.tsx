@@ -50,40 +50,36 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      {account.selectedOrder ? (
-        <>
-          <OrderHeader order={account.selectedOrder} />
-          <div className={styles.container}>
-            <div className={styles.wrapper}>
-              <OrderStatus
-                order={account.selectedOrder}
-                onInitializeOrder={onInitializeOrder}
-                updateOrderStatus={updateOrderStatus}
-                authEmail={authEmail}
-              />
-              <OrderDetails
-                orderForm={orderForm}
-                setOrderForm={setOrderForm}
-                order={account.selectedOrder}
-                session={session}
-                account={account}
-              />
-              <OrderDisplay
-                order={account.selectedOrder}
-                orderForm={orderForm}
-                setOrderForm={setOrderForm}
-              />
-              <OrderChampions
-                orderForm={orderForm}
-                setOrderForm={setOrderForm}
-                order={account.selectedOrder}
-              />
-            </div>
+      <>
+        <OrderHeader order={account.selectedOrder} />
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <OrderStatus
+              order={account.selectedOrder}
+              onInitializeOrder={onInitializeOrder}
+              updateOrderStatus={updateOrderStatus}
+              authEmail={authEmail}
+            />
+            <OrderDetails
+              orderForm={orderForm}
+              setOrderForm={setOrderForm}
+              order={account.selectedOrder}
+              session={session}
+              account={account}
+            />
+            <OrderDisplay
+              order={account.selectedOrder}
+              orderForm={orderForm}
+              setOrderForm={setOrderForm}
+            />
+            <OrderChampions
+              orderForm={orderForm}
+              setOrderForm={setOrderForm}
+              order={account.selectedOrder}
+            />
           </div>
-        </>
-      ) : (
-        <div>Order does not exist</div>
-      )}
+        </div>
+      </>
     </div>
   );
 };

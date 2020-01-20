@@ -78,31 +78,35 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.container}>
-        <Loader width="64px" height="64px" />
-        <div className={styles.status}>{orderStatus(order.status)}</div>
-      </div>
-      {order.isEditable ? (
-        <div className={styles.wrapper}>
-          <Button grow maxWidth="200px" margin="5px" padding="15px" onClick={onInitializeOrder}>
-            start order
-          </Button>
-        </div>
-      ) : (
-        <div className={styles.wrapper}>
-          {order.status !== 'completed' && (
-            <Button
-              grow
-              secondary
-              maxWidth="200px"
-              onClick={onPauseOrder}
-              margin="5px 5px"
-              padding="15px"
-            >
-              {order.status === 'paused' ? 'unpause order' : 'pause order'}
-            </Button>
+      {order && (
+        <>
+          <div className={styles.container}>
+            <Loader width="64px" height="64px" />
+            <div className={styles.status}>{orderStatus(order?.status)}</div>
+          </div>
+          {order?.isEditable ? (
+            <div className={styles.wrapper}>
+              <Button grow maxWidth="200px" margin="5px" padding="15px" onClick={onInitializeOrder}>
+                start order
+              </Button>
+            </div>
+          ) : (
+            <div className={styles.wrapper}>
+              {order?.status !== 'completed' && (
+                <Button
+                  grow
+                  secondary
+                  maxWidth="200px"
+                  onClick={onPauseOrder}
+                  margin="5px 5px"
+                  padding="15px"
+                >
+                  {order?.status === 'paused' ? 'unpause order' : 'pause order'}
+                </Button>
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

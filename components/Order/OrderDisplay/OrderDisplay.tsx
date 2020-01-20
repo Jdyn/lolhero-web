@@ -54,47 +54,54 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
     setFilter(filters[index]);
   };
 
-  return order.isEditable && order.details.boostType === 'Solo' ? (
-    <div className={styles.editRoot}>
-      <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
-      {/* <p className={styles.tip}>
-        Select the champions you wish to be played by alternating between the roles above and
-        clicking the champion portraits.
-      </p> */}
-      <div className={styles.championContainer}>
-        <div className={styles.championWrapper}>
-          {champions.map(champion => (
-            <button
-              className={styles.championButton}
-              key={champion.name}
-              type="button"
-              onClick={(): void => handleClick(champion)}
-            >
-              <img alt="champion-icon" className={styles.championImage} src={champion.img} />
-              {/* <span>{champion.name}</span> */}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className={styles.displayRoot}>
-      <h3>{order.title}</h3>
-      <div className={styles.container}>
-        <Banner
-          isStartRank
-          title=""
-          height="375px"
-          type="default"
-          rank={ranks[order.details.startRank] || {}}
-        />
-        <Banner
-          title=""
-          height="375px"
-          type="default"
-          rank={ranks[order.details.desiredRank] || ranks[order.details.startRank]}
-        />
-      </div>
+  return (
+    <div className={styles.root}>
+      {order && (
+        <>
+          {order.isEditable && order.details.boostType === 'Solo' ? (
+            <>
+              <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
+              <div className={styles.championContainer}>
+                <div className={styles.championWrapper}>
+                  {champions.map(champion => (
+                    <button
+                      className={styles.championButton}
+                      key={champion.name}
+                      type="button"
+                      onClick={(): void => handleClick(champion)}
+                    >
+                      <img
+                        alt="champion-icon"
+                        className={styles.championImage}
+                        src={champion.img}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className={styles.banners}>
+              <h3>{order.title}</h3>
+              <div className={styles.container}>
+                <Banner
+                  isStartRank
+                  title=""
+                  height="375px"
+                  type="default"
+                  rank={ranks[order.details.startRank] || {}}
+                />
+                <Banner
+                  title=""
+                  height="375px"
+                  type="default"
+                  rank={ranks[order.details.desiredRank] || ranks[order.details.startRank]}
+                />
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

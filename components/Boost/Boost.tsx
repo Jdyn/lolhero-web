@@ -23,9 +23,9 @@ const Boost = props => {
   const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
 
-  // useEffect(() => {
-  //   fetchBoostPrices();
-  // }, [fetchBoostPrices]);
+  useEffect(() => {
+    fetchBoostPrices();
+  }, [fetchBoostPrices]);
 
   return (
     <div className={styles.root}>

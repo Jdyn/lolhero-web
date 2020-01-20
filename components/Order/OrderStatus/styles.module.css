@@ -9,6 +9,7 @@
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
   border-radius: 16px;
+  min-height: 90px;
 }
 
 .wrapper {

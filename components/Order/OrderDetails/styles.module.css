@@ -3,6 +3,7 @@
   flex-direction: column;
   grid-area: details;
   width: 100%;
+  min-height: 600px;
   padding: 10px;
   border-radius: 16px;
   background-color: var(--secondary-grey);
