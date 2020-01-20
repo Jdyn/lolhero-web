@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import RankList from './RankList';
 import RankSlider from './RankSlider';
 import styles from './styles.module.css';
@@ -18,6 +18,12 @@ interface Props {
 
 const Banner = (props: Props): JSX.Element => {
   const { type, rank, updateOrder, currentOrder, isStartRank, height, title, isPlacements } = props;
+
+  useEffect(() => {
+    if (title === 'Normal Games') {
+      updateOrder({ startRank: 28 }, { startRankTitle: 'Unranked' });
+    }
+  }, [title, updateOrder]);
 
   const renderContent = {
     default: <></>,

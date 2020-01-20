@@ -110,6 +110,20 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             rank: startRank !== null ? ranks[startRank] : {}
           }
         });
+      case 'Normal Games':
+        return generateBanners({
+          first: {
+            title: 'Normal Games',
+            type: 'default',
+            isStartRank: true,
+            rank: ranks[28]
+          },
+          second: {
+            title: 'Desired Games',
+            type: 'slider',
+            rank: ranks[28]
+          }
+        });
       default:
         return null;
     }

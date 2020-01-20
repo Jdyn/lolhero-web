@@ -23,12 +23,9 @@
 
 .wrapper {
   display: flex;
-  flex: 1;
   padding: 15px;
   justify-content: flex-start;
   flex-direction: column;
-  /* max-height: 700px;
-  overflow: auto; */
   width: 100%;
 }
 

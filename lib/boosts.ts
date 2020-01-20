@@ -47,8 +47,8 @@ const boosts: Boosts = {
         description: 'We ensure a win/loss ratio of 2:1 where each loss adds an additional 2 wins.'
       },
       {
-        title: 'Net Games',
-        type: 'solo-net-games',
+        title: 'Normal Games',
+        type: 'solo-normal-games',
         tag: 'Solo',
         maxAmount: '25',
         id: 4,
@@ -90,7 +90,7 @@ const boosts: Boosts = {
         title: 'Net Games',
         type: 'duo-net-games',
         tag: 'Duo',
-        maxAmount: '25',
+        maxAmount: '20',
         id: 8,
         description: 'Low cost, guaranteeing high performance without a specific win rate'
       }

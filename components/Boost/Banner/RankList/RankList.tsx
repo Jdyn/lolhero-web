@@ -27,7 +27,11 @@ const RankList = (props: Props): JSX.Element => {
 
   const validate = useCallback(
     itemRank => {
-      if (currentOrder.collectionName === 'Division Boost') {
+      if (
+        currentOrder.collectionName === 'Division Boost' ||
+        currentOrder.collectionName === 'Net Wins' ||
+        currentOrder.collectionName === 'Net Games'
+      ) {
         if (currentOrder.boostType === 'Duo' && itemRank > 21) {
           return true;
         }

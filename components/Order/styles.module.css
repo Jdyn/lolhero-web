@@ -18,8 +18,8 @@
   grid-template-areas:
     'status'
     'details'
-    'display'
-    'chat';
+    'chat'
+    'display';
 }
 
 .controls {
@@ -97,7 +97,7 @@
 @media (min-width: 660px) {
   .wrapper {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: min-content 1fr 2fr;
+    grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
       'details status'
       'details chat'
