@@ -51,6 +51,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <>
+        <div className={styles.stripe} />
         <OrderHeader order={account.selectedOrder} />
         <div className={styles.container}>
           <div className={styles.wrapper}>

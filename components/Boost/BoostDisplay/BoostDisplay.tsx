@@ -4,6 +4,7 @@ import Banner from '../Banner';
 import styles from './styles.module.css';
 import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
 import { Request } from '../../../store/request/types';
+import Stripes from '../../Reusable/Stripes';
 
 const ranks = flatRanks({ unranked: true });
 
@@ -131,6 +132,7 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
+      <Stripes zIndex={5} version="v2" />
       <div className={styles.container}>{renderContent()}</div>
       {purchaseOrderRequest.errored && (
         <div className={styles.error}>

@@ -42,7 +42,7 @@ const Home = (): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <Stripes />
+      <Stripes version="v1" />
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <h1>LoL Hero</h1>

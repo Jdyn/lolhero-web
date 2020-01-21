@@ -1,6 +1,6 @@
 .root {
   margin: 0;
-  padding: 20px 0 0 0;
+  padding: 23px 0 0 0;
   display: flex;
   flex-grow: 0;
   position: relative;
@@ -28,7 +28,7 @@
   background-color: transparent;
   color: var(--secondary-white);
   border-bottom: 1px solid var(--border);
-  padding-bottom: 20px;
+  padding-bottom: 23px;
   transition-duration: 0.25s;
   pointer-events: all;
 }

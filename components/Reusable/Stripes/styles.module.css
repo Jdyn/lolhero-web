@@ -1,14 +1,23 @@
 .stripes {
   display: grid;
   position: absolute;
-  grid: repeat(4, 180px) / repeat(7, 1fr);
-  top: 75px;
-  z-index: -5;
   width: 100%;
   overflow: hidden;
   transform-origin: 0;
-  background: linear-gradient(150deg,#202020 15%,#343434 70%,#474747 94%);
-  transform: skewY(-6deg);
+}
+
+.v1 {
+  top: 75px;
+  transform: skewY(-5deg);
+  grid: repeat(4, 180px) / repeat(7, 1fr);
+  background: linear-gradient(150deg, #202020 15%, #343434 70%, #474747 94%);
+}
+
+.v2 {
+  height: 100%;
+  transform: skewY(0deg);
+  grid: repeat(4, 1fr) / repeat(7, 1fr);
+  background: linear-gradient(150deg, #202020 15%, #343434 70%, #474747 94%);
 }
 
 .stripes span:first-child {
@@ -37,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  grid-column: span 3;
+  grid-column: span 2;
   grid-row: 4;
   background: #353535;
   border-radius: 0 16px 0 0;
