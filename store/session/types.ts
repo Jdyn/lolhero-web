@@ -25,7 +25,7 @@ export interface User {
   token: string | null;
   username: string | null;
   role: 'user' | 'booster' | 'admin' | null;
-  isAdmin: boolean;
+  isAdmin?: boolean;
 }
 
 interface SetLogin {

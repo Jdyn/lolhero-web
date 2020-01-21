@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import Form from '../../Reusable/Form';
@@ -33,6 +33,7 @@ interface Props {
 const ForgotAuth = (props: Props): JSX.Element => {
   const { resetToken } = props;
   const dispatch = useDispatch();
+  const [error, setError] = useState('');
 
   const passwordRequest = useSelector((state: AppState) => ({
     reset: state.request.FETCH_ACCOUNT_PASSWORD_RESET || {
@@ -57,6 +58,8 @@ const ForgotAuth = (props: Props): JSX.Element => {
   const handleUpdate = (type, form): void => {
     if (form.password === form.verifyPassword && form.password && form.verifyPassword) {
       dispatch(fetchPasswordUpdate(form.password, resetToken));
+    } else {
+      setError('Passwords do not match.');
     }
   };
 
@@ -80,6 +83,7 @@ const ForgotAuth = (props: Props): JSX.Element => {
                 onSubmit={handleUpdate}
               />
               {passwordRequest.update.errored && <p>{passwordRequest.update.error}</p>}
+              <p>{error}</p>
             </div>
           )}
         </div>
