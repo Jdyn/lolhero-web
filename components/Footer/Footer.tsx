@@ -6,7 +6,7 @@ const boostOptions = {
   solo: [
     { title: 'Solo Division', url: '/boost?type=solo-divisions' },
     { title: 'Solo Net Wins', url: '/boost?type=solo-net-wins' },
-    { title: 'Solo Net Games', url: '/boost?type=solo-net-games' },
+    { title: 'Solo Normals', url: '/boost?type=solo-normal-games' },
     { title: 'Solo Placements', url: '/boost?type=solo-placements' }
   ],
   duo: [
