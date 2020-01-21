@@ -88,14 +88,9 @@ const tos = {
         'Orders that were not completed within the given season  are processed accordingly with point 2.12. In the case of a booster proceeding to start your boost but not being able to finish it within the season end, we will issue a partial refund, accordingly.'
     },
     {
-      article: '2.14',
-      body:
-        'You, the customer, accept that "tips" or "gifts" given to our employees are non refundable and non-convertible to store credits.'
-    },
-    {
       article: '2.15',
       body:
-        "You, the customer, accept that if after purchasing an order you show inactivity for 28 days or more and do not show interest in terminating the service, we'll close it and have it as processed."
+        "You, the customer, accept that if after purchasing an order from LolHero, and you show inactivity for 28 days or more and do not show interest in terminating the service, we'll close the order and consider it completed."
     },
     {
       article: '2.16',
