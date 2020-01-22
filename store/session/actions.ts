@@ -4,12 +4,15 @@ import Api from '../../services/api';
 import { setRequest } from '../request/actions';
 import { AppState } from '..';
 import { actions, requests, User, SessionActionTypes } from './types';
+import { setVisitorData } from '../../util/tidio';
 
-const setCurrentSession = (user: { token: string }): void => {
+const setCurrentSession = (user): void => {
   if (user.token) {
     const jsonToken = user.token;
     cookie.set('token', jsonToken);
   }
+
+  setVisitorData(user);
 };
 
 const setLogin = (user: User): SessionActionTypes => ({
