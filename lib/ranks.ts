@@ -1,14 +1,17 @@
 export interface Rank {
   title: string;
   rank: number;
-  color: string;
-  accent: string;
+  color?: string;
+  fill?: string;
+  tag?: string;
+  accent?: string;
 }
 
 export const unranked: Rank[] = [
   {
     title: 'Unranked',
     rank: 28,
+    tag: 'unranked',
     color: '#1976D2',
     accent: '#0D47A1'
   }
@@ -19,156 +22,132 @@ const ranks: Rank[][] = [
     {
       title: 'Iron IV',
       rank: 1,
-      color: '#424242',
-      accent: '#303030'
+      tag: 'iron'
     },
     {
       title: 'Iron III',
       rank: 2,
-      color: '#424242',
-      accent: '#303030'
+      tag: 'iron'
     },
     {
       title: 'Iron II',
       rank: 3,
-      color: '#424242',
-      accent: '#303030'
+      tag: 'iron'
     },
     {
       title: 'Iron I',
       rank: 4,
-      color: '#424242',
-      accent: '#303030'
+      tag: 'iron'
     }
   ],
   [
     {
       title: 'Bronze IV',
       rank: 5,
-      color: '#6D4C41',
-      accent: '#4E342E'
+      tag: 'bronze'
     },
     {
       title: 'Bronze III',
       rank: 6,
-      color: '#6D4C41',
-      accent: '#4E342E'
+      tag: 'bronze'
     },
     {
       title: 'Bronze II',
       rank: 7,
-      color: '#6D4C41',
-      accent: '#4E342E'
+      tag: 'bronze'
     },
     {
       title: 'Bronze I',
       rank: 8,
-      color: '#6D4C41',
-      accent: '#4E342E'
+      tag: 'bronze'
     }
   ],
   [
     {
       title: 'Silver IV',
       rank: 9,
-      color: '#546E7A',
-      accent: '#37474F'
+      tag: 'silver'
     },
     {
       title: 'Silver III',
       rank: 10,
-      color: '#546E7A',
-      accent: '#37474F'
+      tag: 'silver'
     },
     {
       title: 'Silver II',
       rank: 11,
-      color: '#546E7A',
-      accent: '#37474F'
+      tag: 'silver'
     },
     {
       title: 'Silver I',
       rank: 12,
-      color: '#546E7A',
-      accent: '#37474F'
+      tag: 'silver'
     }
   ],
   [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      tag: 'gold'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      tag: 'gold'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      tag: 'gold'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#FFA000 ',
-      accent: '#FF6F00'
+      tag: 'gold'
     }
   ],
   [
     {
       title: 'Platinum IV',
       rank: 17,
-      color: '#00897B',
-      accent: '#00695C'
+      tag: 'platinum'
     },
     {
       title: 'Platinum III',
       rank: 18,
-      color: '#00897B',
-      accent: '#00695C'
+      tag: 'platinum'
     },
     {
       title: 'Platinum II',
       rank: 19,
-      color: '#00897B',
-      accent: '#00695C'
+      tag: 'platinum'
     },
     {
       title: 'Platinum I',
       rank: 20,
-      color: '#00897B',
-      accent: '#00695C'
+      tag: 'platinum'
     }
   ],
   [
     {
       title: 'Diamond IV',
       rank: 21,
-      color: '#342e83',
-      accent: '#1F1C4F'
+      tag: 'diamond'
     },
     {
       title: 'Diamond III',
       rank: 22,
-      color: '#342e83',
-      accent: '#1F1C4F'
+      tag: 'diamond'
     },
     {
       title: 'Diamond II',
       rank: 23,
-      color: '#342e83',
-      accent: '#1F1C4F'
+      tag: 'diamond'
     },
     {
       title: 'Diamond I',
       rank: 24,
-      color: '#342e83',
-      accent: '#1F1C4F'
+      tag: 'diamond'
     }
   ]
 ];

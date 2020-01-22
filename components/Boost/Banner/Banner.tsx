@@ -41,13 +41,7 @@ const Banner = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root} style={{ height }}>
-      <div
-        className={`${styles.container} ${rank && styles.rank}`}
-        style={{
-          backgroundColor: rank.color,
-          borderColor: rank.accent
-        }}
-      >
+      <div className={`${styles.container} ${styles[`${rank.tag}`]}`}>
         <div className={styles.header}>
           <h1>{rank.title || ''}</h1>
           <h3>{title}</h3>
@@ -56,13 +50,9 @@ const Banner = (props: Props): JSX.Element => {
       </div>
       <div className={styles.footer}>
         <svg
-          className={styles.foot}
+          className={`${styles.foot} ${styles[`${rank.tag}-banner`]}`}
           preserveAspectRatio="none"
           viewBox="0 0 100 110"
-          style={{
-            fill: rank.color,
-            stroke: rank.accent
-          }}
         >
           <path d="M0 0 L50 105 L100 0 Z" />
         </svg>

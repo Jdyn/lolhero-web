@@ -40,11 +40,112 @@
   border-color: var(--secondary-grey);
   flex-direction: column;
   justify-content: space-between;
-  transition-duration: 0.2s;
+  transition: all 0.1s ease-in;
 }
 
 .container > span {
   text-align: center;
+}
+
+.footer {
+  width: 100%;
+  height: 105px;
+  min-height: 105px;
+  background-color: transparent;
+  fill: transparent;
+  position: relative;
+  z-index: -100;
+  top: -2px;
+  filter: drop-shadow(-20px 60px 10px rgba(10, 10, 10, 0.4));
+}
+
+.foot {
+  transition-duration: 0.2s;
+  width: 100%;
+  fill: var(--primary-grey);
+  stroke: var(--secondary-grey);
+  will-change: fill;
+  transition: all 0.1s ease-in;
+  height: 105px;
+  position: relative;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.unranked {
+  background-color: #1976d2;
+  border-color: #0d47a1;
+}
+
+.iron {
+  background-color: #424242;
+  border-color: #303030;
+  /* background: linear-gradient(180deg, #424242 25%, #383838 55%, #303030 95%); */
+}
+
+.bronze {
+  background-color: #5d4037;
+  border-color: #4e342e;
+  /* background: linear-gradient(180deg, #795548 25%, #6d4c41 55%, #5d4037 95%) !important; */
+}
+
+.silver {
+  background-color: #455a64;
+  border-color: #37474f;
+}
+
+.gold {
+  /* background: linear-gradient(180deg, #FFB300 25%, #FFA000 55%, #F9A825 94%); */
+  background-color: #f9a825;
+  border-color: #f57f17;
+}
+
+.platinum {
+  /* background: linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%); */
+  background-color: #00796b;
+  border-color: #00695c;
+}
+
+.diamond {
+  /* background: linear-gradient(180deg, #01579B 25%, #0D47A1 55%, #3D5AFE 95%); */
+  background-color: #3d5afe;
+  border-color: #1a237e;
+}
+
+.unranked-banner {
+  fill: #1976d2;
+  stroke: #0d47a1;
+}
+
+.iron-banner {
+  fill: #424242;
+  stroke: #303030;
+}
+
+.bronze-banner {
+  fill: #5d4037;
+  stroke: #4e342e;
+}
+
+.silver-banner {
+  fill: #455a64;
+  stroke: #37474f;
+}
+
+.gold-banner {
+  fill: #f9a825;
+  stroke: #f57f17;
+}
+
+.platinum-banner {
+  fill: #00796b;
+  stroke: #00695c;
+}
+
+.diamond-banner {
+  fill: #3d5afe;
+  stroke: #1a237e;
 }
 
 .wrapper {
@@ -76,28 +177,4 @@
   margin: 0;
   color: var(--white);
   font-size: 16px;
-}
-
-.footer {
-  width: 100%;
-  height: 105px;
-  min-height: 105px;
-  background-color: transparent;
-  fill: transparent;
-  position: relative;
-  z-index: -100;
-  top: -2px;
-  filter: drop-shadow(-20px 60px 10px rgba(10, 10, 10, 0.4));
-}
-
-.foot {
-  transition-duration: 0.2s;
-  width: 100%;
-  fill: var(--primary-grey);
-  stroke: var(--secondary-grey);
-  height: 105px;
-  position: relative;
-  stroke-width: 4;
-  stroke-linejoin: round;
-  stroke-linecap: round;
 }

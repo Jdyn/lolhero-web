@@ -78,10 +78,9 @@ const RankList = (props: Props): JSX.Element => {
               type="button"
               aria-label="rank"
               disabled={disabled}
-              className={`${styles.button} ${disabled && styles.disabled} ${selected &&
-                styles.selected}`}
+              className={`${styles.button} ${styles[`${rankItem.tag}`]} ${disabled &&
+                styles.disabled} ${selected && styles.selected}`}
               onClick={(): void => handleClick(rankItem)}
-              style={{ backgroundColor: rankItem.color, borderColor: rankItem.accent }}
             />
           );
         })}
