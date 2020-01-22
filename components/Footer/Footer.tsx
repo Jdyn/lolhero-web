@@ -68,6 +68,9 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <div className={styles.spacer} />
             <ul>
+              <Link prefetch={false} href="/demo">
+                <li>View Demo</li>
+              </Link>
               <Link prefetch={false} href="/order/track">
                 <li>Find Order</li>
               </Link>
