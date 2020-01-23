@@ -49,7 +49,6 @@ const Boost = props => {
           boost={boost}
           valid={valid}
           setBraintreeInstance={setBraintreeInstance}
-          purchaseOrderRequest={purchaseOrderRequest}
           currentStage={currentStage}
           setStage={setStage}
           currentOrder={currentOrder}

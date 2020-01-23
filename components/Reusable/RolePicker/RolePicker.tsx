@@ -57,7 +57,7 @@ const RolePicker: React.FC<Props> = (props: Props): JSX.Element => {
     </div>
   ) : (
     <>
-      <span className={styles.title}>Primary Role</span>
+      <span className={styles.title}>Primary Position</span>
       <div className={styles.roles}>
         {addons.roles.map(item => {
           const selected = roles.primaryRole === item.title;
@@ -73,7 +73,7 @@ const RolePicker: React.FC<Props> = (props: Props): JSX.Element => {
           );
         })}
       </div>
-      <span className={styles.title}>Secondary Role</span>
+      <span className={styles.title}>Secondary Position</span>
       <div className={styles.roles}>
         {addons.roles.map(item => {
           const selected = roles.secondaryRole === item.title;

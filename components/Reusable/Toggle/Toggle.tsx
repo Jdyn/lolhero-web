@@ -3,8 +3,8 @@ import styles from './styles.module.css';
 
 interface Props {
   children?: React.ReactNode;
-  onClick: (event: React.MouseEvent) => void;
-  isSelected: boolean;
+  onClick?: (event: React.MouseEvent) => void;
+  isSelected?: boolean;
   width?: string;
   margin?: string;
   height?: string;

@@ -9,10 +9,31 @@
   border: 1px solid var(--tertiary-grey);
 }
 
-.root > h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: 700;
+.root > h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.wrapper > h2 {
+  font-size: 20px;
+  margin: 0 0 0 10px;
+  color: var(--white);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.wrapper > img {
+  border-radius: 18px;
+  width: 32px;
+  height: 32px;
 }
 
 .session > span {

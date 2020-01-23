@@ -3,6 +3,8 @@ import Button from '../../../Reusable/Button/Button';
 import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.module.css';
+import RolePicker from '../../../Reusable/RolePicker';
+import Toggle from '../../../Reusable/Toggle';
 
 const templates = {
   signup: {
@@ -29,15 +31,42 @@ const templates = {
 interface Props {
   session: SessionState;
   handleAuth: (type: string, form: object) => void;
+  updateOrder: any;
+  currentOrder: any;
 }
 
 const DetailsView = (props: Props): JSX.Element => {
-  const { session, handleAuth } = props;
+  const { session, handleAuth, updateOrder, currentOrder } = props;
 
   const [type, setType] = useState(null);
 
   return (
     <>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <img alt="role icon" src="/static/images/roles/all.svg" />
+          <h2>Role Select</h2>
+        </div>
+        <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} />
+      </div>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <img alt="flash icon" src="/static/images/flash.jpg" />
+          <h2>Flash Position</h2>
+        </div>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'D'}
+          onClick={(): void => updateOrder({ flashPosition: 'D' })}
+        >
+          Flash on D
+        </Toggle>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'F'}
+          onClick={(): void => updateOrder({ flashPosition: 'F' })}
+        >
+          Flash on F
+        </Toggle>
+      </div>
       <div className={styles.root}>
         {session.isLoggedIn ? (
           <div className={styles.session}>

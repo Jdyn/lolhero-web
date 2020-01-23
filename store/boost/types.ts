@@ -24,6 +24,9 @@ export interface BoostOrderDetails {
   lp: number;
   queue: string;
   server: string;
+  primaryRole: string;
+  secondaryRole: string;
+  flashPosition: string;
   desiredAmount: number;
   startRank: number | null;
   desiredRank: number | null;
