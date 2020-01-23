@@ -5,7 +5,7 @@ import Layout from '../components/Reusable/Layout';
 const content = {
   title: 'Home - Professional Boosting Services',
   description:
-    'LoL Hero is a professional league boosting service who takes extreme care in delivering on the speed and performance promised with every boost.'
+    'LoL Hero is a professional league boosting service who focuses on delivering the speed and performance promised with every boost.'
 };
 
 const index = (): JSX.Element => {
