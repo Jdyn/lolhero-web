@@ -97,26 +97,26 @@ const ranks: Rank[][] = [
     {
       title: 'Gold IV',
       rank: 13,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      color: '#ffba5a',
+      accent: '#ffa259'
     },
     {
       title: 'Gold III',
       rank: 14,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      color: '#ffba5a',
+      accent: '#ffa259'
     },
     {
       title: 'Gold II',
       rank: 15,
-      color: '#FFA000',
-      accent: '#FF6F00'
+      color: '#ffba5a',
+      accent: '#ffa259'
     },
     {
       title: 'Gold I',
       rank: 16,
-      color: '#FFA000 ',
-      accent: '#FF6F00'
+      color: '#ffba5a',
+      accent: '#ffa259'
     }
   ],
   [
@@ -173,7 +173,7 @@ const ranks: Rank[][] = [
   ]
 ];
 
-export const flatRanks = (options: { unranked: boolean } = { unranked: false }) => {
+export const flatRanks = (options: { unranked: boolean } = { unranked: false }): Rank[] => {
   const items = options.unranked ? [...unranked, ...ranks] : [...ranks];
   return [].concat.apply([], items).reduce((obj, item) => ((obj[item.rank] = item), obj), {});
 };

@@ -36,10 +36,13 @@ const Layout = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <Head>
         <title>{title || 'LoL Elo Boosting Services'} - LoL Hero</title>
-        <meta
-          name="description"
-          content={`${description || ''}Professional League Of Legends Boosting Services`}
-        />
+        <meta name="description" content={description} />
+        <meta property="og:title" content="LoLHero" />
+        <meta property="og:site_name" content="LoLHero" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content="https://lolhero.gg" />
+        <meta property="og:type" content="website" />
+        <meta />
       </Head>
       <Header
         session={session}

@@ -40,7 +40,7 @@
   border-color: var(--secondary-grey);
   flex-direction: column;
   justify-content: space-between;
-  transition-duration: 0.2s;
+  transition: 0.2s ease-in all;
 }
 
 .container > span {
@@ -93,6 +93,7 @@
 .foot {
   transition-duration: 0.2s;
   width: 100%;
+  transition: 0.2s ease-in all;
   fill: var(--primary-grey);
   stroke: var(--secondary-grey);
   height: 105px;

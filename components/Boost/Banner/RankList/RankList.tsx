@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useMemo, useCallback, useEffect } from 'react';
 import ranks, { Rank, unranked } from '../../../../lib/ranks';
 import styles from './styles.module.css';
@@ -81,7 +82,10 @@ const RankList = (props: Props): JSX.Element => {
               className={`${styles.button} ${disabled && styles.disabled} ${selected &&
                 styles.selected}`}
               onClick={(): void => handleClick(rankItem)}
-              style={{ backgroundColor: rankItem.color, borderColor: rankItem.accent }}
+              style={{
+                backgroundColor: rankItem.color,
+                borderColor: rankItem.accent
+              }}
             />
           );
         })}

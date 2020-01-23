@@ -13,8 +13,8 @@ interface Props {
   account: AccountState;
   session?: SessionState;
   authEmail?: string;
-  initializeOrder: (payload: object, trackingId: string, email?: string) => void;
-  updateOrderStatus: (status: string, trackingId: string, email?: string) => void;
+  initializeOrder?: (payload: object, trackingId: string, email?: string) => void;
+  updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
@@ -83,6 +83,15 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
       </>
     </div>
   );
+};
+
+BoostOrder.defaultProps = {
+  initializeOrder: (): void => {
+    // do nothing
+  },
+  updateOrderStatus: (): void => {
+    // do nothing
+  }
 };
 
 export default BoostOrder;
