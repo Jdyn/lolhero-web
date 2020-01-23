@@ -6,6 +6,7 @@ import DashboardFilter from './DashboardFilter';
 import DashboardTable from './DashboardTable';
 import styles from './styles.module.css';
 import { Request } from '../../../store/request/types';
+import RolePicker from '../../Reusable/RolePicker';
 
 interface Props {
   session: SessionState;
@@ -27,6 +28,7 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
+      <RolePicker />
       <DashboardHeader session={session} />
       <DashboardFilter orders={account.orders} setFilter={setFilter} filter={filter} />
       <DashboardTable orders={account.orders} filter={filter} session={session} />

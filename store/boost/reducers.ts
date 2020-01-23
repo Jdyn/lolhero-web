@@ -16,7 +16,7 @@ const initialState: BoostState = {
       server: 'NA',
       startRank: null,
       desiredRank: null,
-      desiredAmount: 5,
+      desiredAmount: 10,
       boostType: 'Solo',
       collectionId: 1,
       collectionName: 'Division Boost',

@@ -16,6 +16,16 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  z-index: 10;
+  flex-direction: column;
+}
+
 .error {
   display: flex;
   color: var(--white);
@@ -27,7 +37,7 @@
 }
 
 @media (min-width: 640px) {
-  .container {
+  .wrapper {
     flex-direction: row;
     align-items: normal;
   }

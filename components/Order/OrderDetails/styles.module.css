@@ -67,16 +67,6 @@
   width: 100%;
 }
 
-.roles {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  background-color: var(--primary-grey);
-  padding: 3px;
-  width: 100%;
-  border-radius: 8px;
-}
-
 .content {
   display: flex;
   flex-direction: row;
@@ -99,34 +89,11 @@
 .note {
   display: flex;
   flex-direction: column;
-  /* margin: 0 0px 15px 0; */
 }
 
 .content > h3 {
   font-size: 16px;
   margin: 0;
-}
-
-.role {
-  display: flex;
-  min-width: 36px;
-  height: 36px;
-  background-color: var(--primary-grey);
-  outline: none;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  transition-duration: 0.2s;
-  cursor: pointer;
-}
-
-.roleSelected {
-  background-color: var(--tertiary-grey);
-}
-
-.role:hover {
-  background-color: var(--tertiary-grey);
 }
 
 .title {

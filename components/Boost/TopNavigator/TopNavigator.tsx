@@ -31,7 +31,7 @@ const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
       return [];
     }
 
-    return [3];
+    return [0];
   };
 
   return (
