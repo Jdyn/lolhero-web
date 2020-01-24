@@ -27,6 +27,7 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={styles.root}>
+      <div className={styles.stripe} />
       <DashboardHeader session={session} />
       <DashboardFilter orders={account.orders} setFilter={setFilter} filter={filter} />
       <DashboardTable orders={account.orders} filter={filter} session={session} />
