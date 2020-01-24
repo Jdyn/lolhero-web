@@ -7,11 +7,10 @@ import { SessionState } from '../../../store/session/types';
 import Button from '../../Reusable/Button';
 import Api from '../../../services/api';
 import { orderUpdated } from '../../../store/account/reducers';
-import RolePicker from '../../Reusable/RolePicker';
 
 const fields = [
-  { type: 'username', title: 'LoL Username', text: 'username' },
-  { type: 'password', title: 'LoL Password', text: 'password' }
+  { type: 'username', title: 'League Username', text: 'username' },
+  { type: 'password', title: 'League Password', text: 'password' }
 ];
 
 interface Props {
@@ -163,11 +162,11 @@ const OrderDetails = (props: Props): JSX.Element => {
             <div className={styles.container}>
               <div className={styles.wrapper}>
                 <h3>Order Details</h3>
-                <div className={styles.rolesContainer}>
+                {/* <div className={styles.rolesContainer}>
                   <div className={styles.roles}>
                     <RolePicker onClick={(payload): void => handleRoleUpdate(payload)} />
                   </div>
-                </div>
+                </div> */}
                 <div>
                   <span className={styles.title}>Summoner Name</span>
                   <input
