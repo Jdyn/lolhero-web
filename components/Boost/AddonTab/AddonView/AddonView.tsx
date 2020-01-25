@@ -3,6 +3,7 @@ import content from '../../../../lib/content';
 import Toggle from '../../../Reusable/Toggle/Toggle';
 import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
+import RolePicker from '../../../Reusable/RolePicker';
 
 interface Props {
   updateOrder: UpdateOrder;
@@ -24,23 +25,17 @@ const AddonView = (props: Props): JSX.Element => {
     }
 
     return 'Costs 0%';
-
-    // if (modifiers) {
-    //   if (typeof boost.price === 'number') {
-    //     if (!isSelected) {
-    //       const total = modifiers[mod] * price - price;
-    //       return `$${Math.round(total * 100) / 100}`;
-    //     }
-    //     const originalPrice = price / modifiers[mod];
-    //     const total = modifiers[mod] * originalPrice - originalPrice;
-    //     return `$${Math.round(total * 100) / 100}`;
-    //   }
-    // }
-    // return '$0';
   };
 
   return (
     <>
+      <div className={styles.root}>
+        {/* <div className={styles.wrapper}>
+          <img alt="role icon" src="/static/images/roles/all.svg" />
+        </div> */}
+        <h2>Roles</h2>
+        <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} />
+      </div>
       {content.addons.extras.map(extra => (
         <div className={styles.root} key={extra.title}>
           <h2>{extra.title}</h2>

@@ -27,3 +27,23 @@
   color: var(--secondary-white);
   margin-bottom: 10px;
 }
+
+.wrapper > h2 {
+  font-size: 20px;
+  margin: 0 0 0 10px;
+  color: var(--white);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.wrapper > img {
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}

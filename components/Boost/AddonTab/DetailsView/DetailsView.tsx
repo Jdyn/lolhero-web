@@ -43,31 +43,6 @@ const DetailsView = (props: Props): JSX.Element => {
   return (
     <>
       <div className={styles.root}>
-        <div className={styles.wrapper}>
-          <img alt="role icon" src="/static/images/roles/all.svg" />
-          <h2>Role Select</h2>
-        </div>
-        <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} />
-      </div>
-      <div className={styles.root}>
-        <div className={styles.wrapper}>
-          <img alt="flash icon" src="/static/images/flash.jpg" />
-          <h2>Flash Position</h2>
-        </div>
-        <Toggle
-          isSelected={currentOrder.flashPosition === 'D'}
-          onClick={(): void => updateOrder({ flashPosition: 'D' })}
-        >
-          Flash on D
-        </Toggle>
-        <Toggle
-          isSelected={currentOrder.flashPosition === 'F'}
-          onClick={(): void => updateOrder({ flashPosition: 'F' })}
-        >
-          Flash on F
-        </Toggle>
-      </div>
-      <div className={styles.root}>
         {session.isLoggedIn ? (
           <div className={styles.session}>
             You are currently logged in as <span>{session.user.username}</span>.

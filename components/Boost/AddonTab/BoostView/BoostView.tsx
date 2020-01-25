@@ -88,7 +88,7 @@ const BoostView = (props: Props): JSX.Element => {
     <>
       <div className={styles.root}>
         <h2>Queue</h2>
-        <p>We currently support the following queues types</p>
+        <p>Choose which queue you want your order to be in!</p>
         {content.boosts.queues.map(queue => (
           <Toggle
             key={queue.queue}
@@ -103,7 +103,7 @@ const BoostView = (props: Props): JSX.Element => {
       </div>
       <div className={styles.root}>
         <h2>Server</h2>
-        <p>We currently support the following servers</p>
+        <p>We currently only support orders on the following servers</p>
         {content.boosts.servers.map(server => {
           return (
             <Toggle
@@ -118,10 +118,29 @@ const BoostView = (props: Props): JSX.Element => {
           );
         })}
       </div>
+      <div className={styles.root}>
+        <div className={styles.wrapper}>
+          <img alt="flash icon" src="/static/images/flash.jpg" />
+          <h2>Flash</h2>
+        </div>
+        <p>Put flash on the key you use in-game!</p>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'D'}
+          onClick={(): void => updateOrder({ flashPosition: 'D' })}
+        >
+          Flash on D
+        </Toggle>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'F'}
+          onClick={(): void => updateOrder({ flashPosition: 'F' })}
+        >
+          Flash on F
+        </Toggle>
+      </div>
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={styles.root}>
           <h2>League Points</h2>
-          <p>How much LP do you have?</p>
+          <p>Your current LP will help us discount your order!</p>
           <div className={styles.lp}>
             {content.boosts.lp.map(lp => (
               <Toggle
