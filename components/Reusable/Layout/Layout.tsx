@@ -10,6 +10,8 @@ import { AppState } from '../../../store';
 import { Request } from '../../../store/request/types';
 import { orderUpdated } from '../../../store/account/reducers';
 import { UpdateOrder } from '../../../store/boost/types';
+import { pageview } from '../../../services/gtag';
+import { useRouter } from 'next/router';
 
 interface Props {
   children?: React.ReactNode;
@@ -31,6 +33,10 @@ const Layout = (props: Props): JSX.Element => {
     description,
     updateOrder
   } = props;
+
+  const router = useRouter();
+  const { pathname } = router;
+  pageview(pathname);
 
   return (
     <div className={styles.root}>
