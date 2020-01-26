@@ -42,7 +42,7 @@ const fakeAccount: AccountState = {
 };
 
 const content = {
-  title: 'Home - Professional Boosting Services',
+  title: 'Order Demo',
   description:
     'See how your order will look when you purchase a league boost at LoL Hero. You can see how easy it is to track your order throughout the entire process.'
 };

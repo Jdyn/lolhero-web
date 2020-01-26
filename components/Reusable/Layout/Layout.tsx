@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import Header from '../../Header';
 import Footer from '../../Footer';
@@ -11,7 +12,6 @@ import { Request } from '../../../store/request/types';
 import { orderUpdated } from '../../../store/account/reducers';
 import { UpdateOrder } from '../../../store/boost/types';
 import { pageview } from '../../../services/gtag';
-import { useRouter } from 'next/router';
 
 interface Props {
   children?: React.ReactNode;
@@ -41,7 +41,7 @@ const Layout = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <Head>
-        <title>{title || 'LoL Elo Boosting Services'} - LoL Hero</title>
+        <title>{`${title} - LoL Elo Boosting | LoLHero.gg`} - LoL Hero</title>
         <meta name="description" content={description} />
         <meta property="og:description" content={description} />
       </Head>
