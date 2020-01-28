@@ -60,18 +60,9 @@
 .selected {
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
-  /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); */
-}
-
-.button:hover {
-  background-color: var(--secondary-grey);
-  /* transform: translateY(-1px); */
-  border: 1px solid var(--tertiary-grey);
-  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .button:active {
-  /* transform: translateY(1px); */
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
@@ -134,6 +125,12 @@
     height: 100%;
     border-right: 1px solid var(--border);
     /* border-radius: 0 18px 18px 0; */
+  }
+
+  .button:hover {
+    background-color: var(--secondary-grey);
+    border: 1px solid var(--tertiary-grey);
+    box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   }
 
   .container {

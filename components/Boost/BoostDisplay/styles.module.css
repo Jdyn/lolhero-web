@@ -2,7 +2,6 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  /* background-color: var(--primary-grey); */
   flex-grow: 1;
 }
 
@@ -26,6 +25,18 @@
   flex-direction: column;
 }
 
+.bannerContainer {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+}
+
+.bannerContainer:first-child {
+  border-bottom: 1px solid var(--border);
+}
+
 .error {
   display: flex;
   color: var(--white);
@@ -40,5 +51,9 @@
   .wrapper {
     flex-direction: row;
     align-items: normal;
+  }
+
+  .bannerContainer:first-child {
+    border-bottom: none;
   }
 }

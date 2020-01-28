@@ -29,7 +29,7 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
     const { first, second } = items;
     return (
       <>
-        <Banner
+        {/* <Banner
           title={first.title}
           type={first.type}
           isStartRank={first.isStartRank}
@@ -45,7 +45,28 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
           rank={second.rank}
           updateOrder={updateOrder}
           currentOrder={currentOrder}
-        />
+        /> */}
+        <div className={styles.bannerContainer}>
+          <Banner
+            title={first.title}
+            type={first.type}
+            isStartRank={first.isStartRank}
+            isPlacements={first.isPlacements}
+            rank={first.rank}
+            currentOrder={currentOrder}
+            updateOrder={updateOrder}
+          />
+        </div>
+        <div className={styles.bannerContainer}>
+          <Banner
+            title={second.title}
+            type={second.type}
+            isStartRank={second.isStartRank}
+            rank={second.rank}
+            updateOrder={updateOrder}
+            currentOrder={currentOrder}
+          />
+        </div>
       </>
     );
   };
