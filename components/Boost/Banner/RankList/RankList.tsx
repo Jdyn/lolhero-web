@@ -70,17 +70,18 @@ const RankList = (props: Props): JSX.Element => {
 
     return items.map((rankList, index) => (
       <div key={index} className={styles.rankWrapper}>
-        {rankList.map(rankItem => {
+        {rankList.map((rankItem, rankPosition) => {
           const disabled = validate(rankItem.rank);
           const selected = rank.rank === rankItem.rank;
           return (
             <button
               key={rankItem.title}
               type="button"
-              aria-label="rank"
+              aria-label={`${rankItem.tag} ${rankPosition + 1}`}
               disabled={disabled}
-              className={`${styles.button} ${styles[`${rankItem.tag}`]} ${disabled &&
-                styles.disabled} ${selected && styles.selected}`}
+              className={`${styles.button} ${styles[`${rankItem.tag}`]} ${
+                disabled ? styles.disabled : ''
+              } ${selected ? styles.selected : ''}`}
               onClick={(): void => handleClick(rankItem)}
             />
           );
