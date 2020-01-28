@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 
-const filters = ['boost', 'details', 'setup', 'review'];
+const filters = ['boost', 'setup', 'details', 'review'];
 
 interface Props {
   currentStage: number;

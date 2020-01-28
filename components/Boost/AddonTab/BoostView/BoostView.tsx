@@ -118,25 +118,6 @@ const BoostView = (props: Props): JSX.Element => {
           );
         })}
       </div>
-      <div className={styles.root}>
-        <div className={styles.wrapper}>
-          <img alt="flash icon" src="/static/images/flash.jpg" />
-          <h2>Flash</h2>
-        </div>
-        <p>Put flash on the key you use in-game!</p>
-        <Toggle
-          isSelected={currentOrder.flashPosition === 'D'}
-          onClick={(): void => updateOrder({ flashPosition: 'D' })}
-        >
-          Flash on D
-        </Toggle>
-        <Toggle
-          isSelected={currentOrder.flashPosition === 'F'}
-          onClick={(): void => updateOrder({ flashPosition: 'F' })}
-        >
-          Flash on F
-        </Toggle>
-      </div>
       {currentOrder.collectionName === 'Division Boost' && (
         <div className={styles.root}>
           <h2>League Points</h2>

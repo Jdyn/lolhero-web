@@ -36,6 +36,26 @@ const AddonView = (props: Props): JSX.Element => {
         <h2>Roles</h2>
         <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} />
       </div>
+      <div className={styles.root}>
+        <h2>Flash</h2>
+        {/* <div className={styles.wrapper}>
+          <img alt="flash icon" src="/static/images/flash.jpg" />
+          <h2>Flash</h2>
+        </div> */}
+        <p>Put flash on the key you use in-game!</p>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'D'}
+          onClick={(): void => updateOrder({ flashPosition: 'D' })}
+        >
+          Flash on D
+        </Toggle>
+        <Toggle
+          isSelected={currentOrder.flashPosition === 'F'}
+          onClick={(): void => updateOrder({ flashPosition: 'F' })}
+        >
+          Flash on F
+        </Toggle>
+      </div>
       {content.addons.extras.map(extra => (
         <div className={styles.root} key={extra.title}>
           <h2>{extra.title}</h2>

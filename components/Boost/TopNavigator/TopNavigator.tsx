@@ -13,7 +13,7 @@ interface Props {
   currentStage: number;
 }
 
-const filters = ['boost', 'details', 'setup', 'review'];
+const filters = ['boost', 'setup', 'details', 'review'];
 
 const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
   const { boost, valid, session, setStage, currentStage } = props;
