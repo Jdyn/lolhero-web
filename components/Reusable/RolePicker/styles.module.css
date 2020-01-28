@@ -1,0 +1,40 @@
+.roles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: var(--primary-grey);
+  padding: 3px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.role {
+  display: flex;
+  padding: 10px;
+  background-color: var(--primary-grey);
+  outline: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin: 10px 0px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.roleSelected {
+  background-color: var(--accent);
+}
+
+.role:hover {
+  background-color: var(--accent);
+}

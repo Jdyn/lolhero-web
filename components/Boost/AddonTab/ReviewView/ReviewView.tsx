@@ -3,17 +3,14 @@ import content from '../../../../lib/content';
 import { formatLP } from '../../../../util/helpers';
 import { BoostOrderDetails, BoostState } from '../../../../store/boost/types';
 import styles from './styles.module.css';
-import { Request } from '../../../../store/request/types';
-import Loader from '../../../Reusable/Loader';
 
 interface Props {
   currentOrder: BoostOrderDetails;
   boost: BoostState;
-  purchaseOrderRequest: Request;
 }
 
 const ReviewView = (props: Props): JSX.Element => {
-  const { currentOrder, boost, purchaseOrderRequest } = props;
+  const { currentOrder, boost } = props;
 
   const formatTitle = (): string => {
     const { boostType, lp, desiredAmount, collectionName } = currentOrder;
@@ -68,10 +65,10 @@ const ReviewView = (props: Props): JSX.Element => {
           VPN Protection: <b>FREE</b>
         </span>
         <span>
-          Champion & Role Select: <b>FREE</b>
+          Champion Preferences: <b>FREE</b>
         </span>
         <span>
-          Summoner Spell Select : <b>FREE</b>
+          Flash Position: <b>FREE</b>
         </span>
       </div>
     </>

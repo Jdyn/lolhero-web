@@ -3,6 +3,8 @@ import Button from '../../../Reusable/Button/Button';
 import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.module.css';
+import RolePicker from '../../../Reusable/RolePicker';
+import Toggle from '../../../Reusable/Toggle';
 
 const templates = {
   signup: {
@@ -29,10 +31,12 @@ const templates = {
 interface Props {
   session: SessionState;
   handleAuth: (type: string, form: object) => void;
+  updateOrder: any;
+  currentOrder: any;
 }
 
 const DetailsView = (props: Props): JSX.Element => {
-  const { session, handleAuth } = props;
+  const { session, handleAuth, updateOrder, currentOrder } = props;
 
   const [type, setType] = useState(null);
 

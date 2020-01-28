@@ -152,7 +152,7 @@ const ranks: Rank[][] = [
   ]
 ];
 
-export const flatRanks = (options: { unranked: boolean } = { unranked: false }) => {
+export const flatRanks = (options: { unranked: boolean } = { unranked: false }): any => {
   const items = options.unranked ? [...unranked, ...ranks] : [...ranks];
   return [].concat.apply([], items).reduce((obj, item) => ((obj[item.rank] = item), obj), {});
 };

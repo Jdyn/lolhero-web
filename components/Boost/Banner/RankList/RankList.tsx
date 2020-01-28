@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useMemo, useCallback, useEffect } from 'react';
 import ranks, { Rank, unranked } from '../../../../lib/ranks';
 import styles from './styles.module.css';

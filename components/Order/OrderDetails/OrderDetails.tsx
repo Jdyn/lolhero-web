@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import addons from '../../../lib/content';
 import { Order, AccountState } from '../../../store/account/types';
@@ -9,21 +9,8 @@ import Api from '../../../services/api';
 import { orderUpdated } from '../../../store/account/reducers';
 
 const fields = [
-  { type: 'username', title: 'LoL Username', text: 'username' },
-  { type: 'password', title: 'LoL Password', text: 'password' }
-];
-
-const content = [
-  {
-    title: 'Primary Role',
-    text: 'primaryRole',
-    roles: addons.roles
-  },
-  {
-    title: 'Secondary Role',
-    text: 'secondaryRole',
-    roles: addons.roles
-  }
+  { type: 'username', title: 'League Username', text: 'username' },
+  { type: 'password', title: 'League Password', text: 'password' }
 ];
 
 interface Props {
@@ -53,24 +40,22 @@ const OrderDetails = (props: Props): JSX.Element => {
     });
   };
 
+  const handleRoleUpdate = (payload): void => {
+    setOrderForm({
+      ...orderForm,
+      details: {
+        ...orderForm.details,
+        ...payload
+      }
+    });
+  };
+
   const handleFormUpdate = (formUpdate): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
 
     if (primaryRole || secondaryRole) {
       const { details } = orderForm;
       if (details.primaryRole !== undefined && details.secondaryRole !== undefined) {
-        if (primaryRole === details.secondaryRole || secondaryRole === details.primaryRole) {
-          setOrderForm(prev => ({
-            ...prev,
-            details: {
-              ...prev.details,
-              secondaryRole: prev.details.primaryRole,
-              primaryRole: prev.details.secondaryRole
-            }
-          }));
-          return;
-        }
-
         const champs = orderForm.details.champions.filter(champ => {
           const primRole = primaryRole || orderForm.details.primaryRole;
           const secRole = secondaryRole || orderForm.details.secondaryRole;
@@ -177,27 +162,11 @@ const OrderDetails = (props: Props): JSX.Element => {
             <div className={styles.container}>
               <div className={styles.wrapper}>
                 <h3>Order Details</h3>
-                <div className={styles.rolesContainer}>
-                  {content.map(item => (
-                    <div key={item.text}>
-                      <span className={styles.title}>{item.title}</span>
-                      <div className={styles.roles}>
-                        {item.roles.map(role => (
-                          <button
-                            type="button"
-                            className={` ${styles.role} ${
-                              orderForm.details[item.text] === role.title ? styles.roleSelected : ''
-                            }`}
-                            key={role.title}
-                            onClick={(): void => handleFormUpdate({ [item.text]: role.title })}
-                          >
-                            <img alt="role" src={role.image} />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                {/* <div className={styles.rolesContainer}>
+                  <div className={styles.roles}>
+                    <RolePicker onClick={(payload): void => handleRoleUpdate(payload)} />
+                  </div>
+                </div> */}
                 <div>
                   <span className={styles.title}>Summoner Name</span>
                   <input

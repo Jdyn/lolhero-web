@@ -33,7 +33,7 @@ const Footer = (): JSX.Element => {
             <h3>Solo Services</h3>
             <ul>
               {boostOptions.solo.map(item => (
-                <Link href={`${item.url}`} key={item.title}>
+                <Link prefetch={false} href={`${item.url}`} key={item.title}>
                   <li>{item.title}</li>
                 </Link>
               ))}
@@ -43,7 +43,7 @@ const Footer = (): JSX.Element => {
             <h3>Duo Services</h3>
             <ul>
               {boostOptions.duo.map(item => (
-                <Link href={`${item.url}`} key={item.title}>
+                <Link prefetch={false} href={`${item.url}`} key={item.title}>
                   <li>{item.title}</li>
                 </Link>
               ))}
@@ -52,15 +52,15 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <h3>Resources</h3>
             <ul>
-              <Link href="/faq">
+              <Link prefetch={false} href="/faq">
                 <li>F.A.Q</li>
               </Link>
               {/* <li>About</li> */}
               <li>Contact</li>
-              <Link href="privacy">
+              <Link prefetch={false} href="privacy">
                 <li>Privacy Policy</li>
               </Link>
-              <Link href="/tos">
+              <Link prefetch={false} href="/tos">
                 <li>Terms of Service</li>
               </Link>
             </ul>
@@ -68,10 +68,13 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <div className={styles.spacer} />
             <ul>
-              <Link href="/order/track">
+              <Link prefetch={false} href="/demo">
+                <li>View Demo</li>
+              </Link>
+              <Link prefetch={false} href="/order/track">
                 <li>Find Order</li>
               </Link>
-              <Link href="/boost">
+              <Link prefetch={false} href="/boost">
                 <li>Order Boost</li>
               </Link>
             </ul>
@@ -79,13 +82,13 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <h3>Account</h3>
             <ul>
-              <Link href="/account/login">
+              <Link prefetch={false} href="/account/login">
                 <li>Log In</li>
               </Link>
-              <Link href="/account/signup">
+              <Link prefetch={false} href="/account/signup">
                 <li>Sign Up</li>
               </Link>
-              <Link href="/account/recover">
+              <Link prefetch={false} href="/account/recover">
                 <li>Recovery</li>
               </Link>
             </ul>

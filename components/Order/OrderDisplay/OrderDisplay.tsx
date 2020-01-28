@@ -18,8 +18,8 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
   const { order, orderForm, setOrderForm } = props;
 
   const filters = [
-    orderForm.details.primaryRole || 'Role 1',
-    orderForm.details.secondaryRole || 'Role 2'
+    order?.details.primaryRole || 'Role 1',
+    order?.details.secondaryRole || 'Role 2'
   ];
 
   const [currentFilter, setFilter] = useState(filters[0]);

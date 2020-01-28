@@ -4,14 +4,13 @@ import Filter from '../../Reusable/Filter/Filter';
 import AddonView from './AddonView';
 import BoostView from './BoostView';
 import ReviewView from './ReviewView/ReviewView';
-import DetailsView from './DetailsView/DetailsView';
+import DetailsView from './DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
 import styles from './styles.module.css';
 import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
-import { Request } from '../../../store/request/types';
 
-const filters = ['boost', 'extras', 'details', 'review'];
+const filters = ['boost', 'setup', 'details', 'review'];
 
 interface Props {
   currentStage: number;
@@ -20,7 +19,6 @@ interface Props {
   session: SessionState;
   handleAuth: (type: string, form: object) => void;
   setBraintreeInstance: (instance: object) => void;
-  purchaseOrderRequest: Request;
   boost: BoostState;
   valid: { payment: boolean; details: boolean };
   setStage: (newStage: number) => void;
@@ -34,7 +32,6 @@ const AddonTab = (props: Props): JSX.Element => {
     session,
     handleAuth,
     setBraintreeInstance,
-    purchaseOrderRequest,
     boost,
     valid,
     setStage
@@ -52,14 +49,15 @@ const AddonTab = (props: Props): JSX.Element => {
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
     1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} boost={boost} />,
-    2: <DetailsView handleAuth={handleAuth} session={session} />,
-    3: (
-      <ReviewView
+    2: (
+      <DetailsView
+        handleAuth={handleAuth}
+        session={session}
+        updateOrder={updateOrder}
         currentOrder={currentOrder}
-        boost={boost}
-        purchaseOrderRequest={purchaseOrderRequest}
       />
-    )
+    ),
+    3: <ReviewView currentOrder={currentOrder} boost={boost} />
   };
 
   const validateView = (): number[] => {

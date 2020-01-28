@@ -5,7 +5,6 @@ import Filter from '../../Reusable/Filter/Filter';
 import { BoostState } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 
-const filters = ['boost', 'extras', 'details', 'review'];
 interface Props {
   boost: BoostState;
   valid: { payment: boolean; details: boolean };
@@ -13,6 +12,8 @@ interface Props {
   setStage: (newStage: number) => void;
   currentStage: number;
 }
+
+const filters = ['boost', 'setup', 'details', 'review'];
 
 const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
   const { boost, valid, session, setStage, currentStage } = props;

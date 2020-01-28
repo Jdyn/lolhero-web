@@ -41,10 +41,16 @@ const fakeAccount: AccountState = {
   }
 };
 
+const content = {
+  title: 'Order Demo',
+  description:
+    'See how your order will look when you purchase a league boost at LoL Hero. You can see how easy it is to track your order throughout the entire process.'
+};
+
 const Demo = (): JSX.Element => {
   return (
-    <Layout title="Home - Professional Boosting Services">
-      <BoostOrder account={fakeAccount} initializeOrder={() => {}} updateOrderStatus={() => {}} />
+    <Layout title={content.title} description={content.description}>
+      <BoostOrder account={fakeAccount} />
     </Layout>
   );
 };

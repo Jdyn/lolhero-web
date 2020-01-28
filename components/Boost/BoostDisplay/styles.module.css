@@ -15,6 +15,28 @@
   flex-direction: column;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  z-index: 10;
+  flex-direction: column;
+}
+
+.bannerContainer {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+}
+
+.bannerContainer:first-child {
+  border-bottom: 1px solid var(--border);
+}
+
 .error {
   display: flex;
   color: var(--white);
@@ -26,8 +48,12 @@
 }
 
 @media (min-width: 640px) {
-  .container {
+  .wrapper {
     flex-direction: row;
     align-items: normal;
+  }
+
+  .bannerContainer:first-child {
+    border-bottom: none;
   }
 }
