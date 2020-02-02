@@ -1,11 +1,17 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import cookies from 'next-cookies';
 import Head from 'next/head';
 import BoostContainer from '../../containers/BoostContainer';
 import { updateOrder } from '../../store/boost/actions';
 import boosts from '../../lib/boosts';
+import { pageview } from '../../services/gtag';
 
 const Boost = (): JSX.Element => {
+  const router = useRouter();
+  const { pathname } = router;
+  pageview(pathname);
+
   return (
     <>
       <Head>
