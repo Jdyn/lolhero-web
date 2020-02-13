@@ -13,7 +13,7 @@ const Stripes: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={`${styles.stripes} ${version && styles[`${version}`]}`} style={{ zIndex }}>
       {version === 'v1' && (
         <video
-          preload="none"
+          preload="auto"
           loop
           autoPlay
           playsInline
