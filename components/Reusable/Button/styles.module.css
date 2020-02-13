@@ -6,7 +6,7 @@
   min-height: 36px;
   font-weight: 700;
   font-size: 13px;
-  color: #fff;  
+  color: #fff;
   border-radius: 8px;
   letter-spacing: 0.025em;
   text-transform: uppercase;
@@ -14,7 +14,7 @@
   align-items: center;
   transition: all 0.15s ease;
   box-shadow: 0 4px 6px rgba(10, 10, 10, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
-  background-color: var(--accent);
+  background: var(--accent);
 }
 
 .root:hover {
@@ -27,6 +27,10 @@
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
+.large {
+  padding: 15px 20px !important;
+}
+
 .secondary {
-  background-color: var(--green);
+  background: var(--green);
 }

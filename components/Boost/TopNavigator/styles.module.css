@@ -28,6 +28,8 @@
   transition-duration: 0.15s;
   border-bottom: 1px solid var(--border);
   color: var(--white);
+  text-transform: uppercase;
+  font-family: 'oswald';
   font-size: 28px;
 }
 

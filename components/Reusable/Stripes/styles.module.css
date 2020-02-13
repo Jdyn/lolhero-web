@@ -8,46 +8,86 @@
 
 .v1 {
   top: 75px;
-  transform: skewY(-5deg);
-  grid: repeat(4, 180px) / repeat(7, 1fr);
-  background: linear-gradient(150deg, #202020 15%, #343434 70%, #474747 94%);
+  transform: skewY(-10deg);
+  height: 800px;
+  grid: repeat(4, calc(100% / 4)) / repeat(6, 1fr);
+  opacity: 0.5;
+  overflow: hidden;
+  background-size: cover;
 }
 
 .v2 {
   height: 100%;
   transform: skewY(0deg);
-  grid: repeat(4, 1fr) / repeat(7, 1fr);
+  grid: repeat(4, 1fr) / repeat(6, 1fr);
   background: linear-gradient(150deg, #202020 15%, #343434 70%, #474747 94%);
 }
 
-.stripes span:first-child {
-  grid-column: span 1;
-  background: #222222;
+.v3 {
+  position: relative !important;
+}
+
+/* .v1::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6) !important;
+} */
+
+.video {
+  display: flex;
+  align-items: stretch;
+  z-index: -1;
+  position: absolute;
+  object-fit: cover;
+  object-position: center top;
+  width: 100%;
+  height: 99.9%;
+}
+
+/* .video::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8) !important;
+} */
+
+.stripes > span {
+  opacity: 1;
 }
 
 .stripes span:nth-child(2) {
-  grid-column: span 2;
-  background: #252525;
+  grid-column: span 1;
+  background: #222222;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
 }
 
-.stripes span:nth-child(3) {
+/* .stripes span:nth-child(2) {
+  grid-column: span 2;
+  background: #252525;
+} */
+
+/* .stripes span:nth-child(3) {
   grid-column: span 4;
+  background: #282828;
+} */
+
+.stripes span:nth-child(4) {
+  grid-column: 6;
+  grid-row: 3;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px 0 0 8px;
   background: #282828;
 }
 
-.stripes span:nth-child(4) {
-  grid-column: 7;
-  grid-row: 3;
-  border-radius: 16px 0 0 16px;
-  background: #454545;
-}
-
 .stripes span:nth-child(5) {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  display: block;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   grid-column: span 2;
   grid-row: 4;
-  background: #353535;
-  border-radius: 0 16px 0 0;
+  background: #252525;
+  border-radius: 0 8px 0 0;
 }

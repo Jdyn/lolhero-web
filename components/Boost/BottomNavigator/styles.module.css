@@ -87,7 +87,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .root {
     grid-template-columns: 1fr 1fr 1fr 1fr 1.244fr;
     grid-template-rows: 1fr;

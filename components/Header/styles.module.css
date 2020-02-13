@@ -8,7 +8,9 @@
   border-bottom: 1px solid var(--border);
   background-color: var(--secondary-grey);
   top: 0;
+  /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2); */
   left: 0;
+  /* opacity: 0.5; */
 }
 
 .logo {
@@ -24,6 +26,8 @@
   transition-duration: 0.2s;
   border-bottom: 1px solid var(--border);
   color: var(--white);
+  text-transform: uppercase;
+  font-family: 'oswald';
   font-size: 28px;
 }
 
@@ -58,7 +62,7 @@
   color: var(--accent);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .root {
     padding: 0px 45px 0px 0px;
   }

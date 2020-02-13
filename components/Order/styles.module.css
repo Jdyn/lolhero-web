@@ -119,7 +119,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
     grid-template-rows: min-content 1fr;

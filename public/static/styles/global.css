@@ -1,17 +1,25 @@
-@font-face {
+/* @font-face {
   font-family: 'Museo Sans Rounded';
   src: url('/static/fonts/museosansrounded-500.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'Museo Sans Rounded';
   src: url('/static/fonts/museosansrounded-700.woff2') format('woff2');
   font-weight: 700;
   font-display: swap;
   font-style: bold;
+} */
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/static/fonts/oswald.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
 }
 
 *,
@@ -49,7 +57,7 @@ body {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   background-color: var(--primary-grey);
   font-size: 100%;
-  font-family: 'Museo Sans Rounded', 'Segoe UI', 'Open Sans', 'sans-serif';
+  font-family: 'Open Sans', 'Museo Sans Rounded', 'Segoe UI', 'Open Sans', 'sans-serif';
   font-weight: normal;
   font-style: normal;
   text-rendering: optimizeLegibility;

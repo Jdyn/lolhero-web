@@ -42,44 +42,59 @@ const Home = (): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <Stripes version="v1" />
-      <div className={styles.container}>
-        <div className={styles.wrapper}>
-          <h1>LoLHero</h1>
-          <h2>Boosting Services</h2>
-          <form className={styles.form} onSubmit={handleOrderSearch}>
-            <input
-              value={form.trackingId}
-              onChange={(event): void => setForm({ trackingId: event.target.value })}
-              placeholder="Enter Tracking ID"
-              aria-label="search"
-              className={styles.search}
-            />
-            <button type="submit" className={styles.formSubmit}>
-              Go
-            </button>
-          </form>
-          <div className={styles.content}>
-            <Link href="/demo">
-              <Button width="155px" secondary padding="15px 20px" margin="5px">
-                View Demo
-              </Button>
-            </Link>
-            <Link href="/boost">
-              <Button width="155px" padding="15px 20px" margin="5px">
-                Custom Boost
-              </Button>
-            </Link>
+      <section className={styles.section}>
+        <Stripes version="v1" />
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <h1>LoL Hero</h1>
+            <h2>S10 Boosting Services</h2>
+            <form className={styles.form} onSubmit={handleOrderSearch}>
+              <input
+                value={form.trackingId}
+                onChange={(event): void => setForm({ trackingId: event.target.value })}
+                placeholder="Enter Tracking ID"
+                aria-label="search"
+                className={styles.search}
+              />
+              <button type="submit" className={styles.formSubmit}>
+                Go
+              </button>
+            </form>
+            <div className={styles.content}>
+              <Link href="/demo">
+                <Button width="155px" secondary large>
+                  View Demo
+                </Button>
+              </Link>
+              <Link href="/boost">
+                <Button width="155px" large>
+                  View Options
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
+      </section>
+      <div className={styles.test}>
+        <div />
       </div>
-      <div className={styles.container}>
-        <div className={styles.cardsContainer}>
-          {cards.map(item => (
-            <HomeCard card={item} key={item.title} />
-          ))}
+
+      {/* <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.cardsContainer}>
+            {cards.map(item => (
+              <HomeCard card={item} key={item.title} />
+            ))}
+          </div>
         </div>
-      </div>
+      </section> */}
+
+      {/* <div className={styles.container}>
+        <div className={styles.dashboard}>
+          <img src="/static/images/dashboard.png" />
+        </div>
+      </div> */}
+
       {/* <div className={styles.infoContainer}>
         <div className={styles.stripe} />
       </div> */}

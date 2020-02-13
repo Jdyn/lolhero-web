@@ -2,9 +2,7 @@ import cookie from 'js-cookie';
 import nextCookie from 'next-cookies';
 import 'isomorphic-unfetch';
 
-const API_URL = process.env.IS_PROD
-  ? 'https://api.lolhero.gg/api/v1'
-  : 'http://localhost:4000/api/v1';
+const API_URL = true ? 'https://api.lolhero.gg/api/v1' : 'http://localhost:4000/api/v1';
 
 function headers() {
   const token = cookie.get('token');

@@ -120,7 +120,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .root {
     height: 100%;
     border-right: 1px solid var(--border);
