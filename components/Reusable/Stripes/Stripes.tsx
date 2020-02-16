@@ -17,6 +17,7 @@ const Stripes: React.FC<Props> = (props: Props): JSX.Element => {
           loop
           autoPlay
           playsInline
+          muted
           src="/static/images/art/hero.mp4"
           className={styles.video}
         >
