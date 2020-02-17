@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './styles.module.css';
 import Loader from '../Loader';
 
@@ -13,21 +14,37 @@ interface Props {
   padding?: string;
   isPending?: boolean;
   large?: boolean;
+  href?: string;
 }
 
 const Button: React.FC<Props> = React.forwardRef(
   (props: Props, ref: React.RefObject<HTMLButtonElement>) => {
-    const { secondary, onClick, margin, padding, isPending, width, large } = props;
+    const { secondary, onClick, margin, padding, isPending, width, large, href } = props;
 
-    return (
+    return href ? (
+      <Link href={href}>
+        <button
+          type="submit"
+          ref={ref}
+          onClick={onClick}
+          className={`
+        ${styles.root}
+        ${secondary ? styles.secondary : ''}
+        ${large ? styles.large : ''}`}
+          style={{ margin, padding, width }}
+        >
+          {isPending ? <Loader width="36px" height="36px" /> : props.children}
+        </button>
+      </Link>
+    ) : (
       <button
         type="submit"
         ref={ref}
         onClick={onClick}
         className={`
-        ${styles.root}
-        ${secondary ? styles.secondary : ''}
-        ${large ? styles.large : ''}`}
+    ${styles.root}
+    ${secondary ? styles.secondary : ''}
+    ${large ? styles.large : ''}`}
         style={{ margin, padding, width }}
       >
         {isPending ? <Loader width="36px" height="36px" /> : props.children}

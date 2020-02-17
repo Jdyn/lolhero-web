@@ -34,7 +34,7 @@ const Stripes: React.FC<Props> = (props: Props): JSX.Element => {
 };
 
 Stripes.defaultProps = {
-  zIndex: -5
+  zIndex: -1
 };
 
 export default Stripes;

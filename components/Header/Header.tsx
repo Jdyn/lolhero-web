@@ -27,7 +27,7 @@ const Header = (props: Props): JSX.Element => {
   };
 
   return (
-    <header className={styles.root}>
+    <header className={styles.header}>
       <ProgressBar options={{ showSpinner: false }} />
       <Link href="/">
         <div className={styles.logo}>LoLHero</div>

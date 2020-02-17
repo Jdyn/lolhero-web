@@ -19,7 +19,7 @@ const boostOptions = {
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className={styles.root}>
+    <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <p>

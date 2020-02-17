@@ -1,4 +1,4 @@
-.root {
+.header {
   display: flex;
   position: relative;
   grid-area: header;
@@ -63,7 +63,7 @@
 }
 
 @media (min-width: 1025px) {
-  .root {
+  .header {
     padding: 0px 45px 0px 0px;
   }
 }

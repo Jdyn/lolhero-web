@@ -1,8 +1,9 @@
-.root {
+.footer {
   display: flex;
   grid-area: footer;
   background-color: var(--secondary-grey);
   bottom: 0;
+  padding: 30px 20px;
   border-top: 1px solid var(--border);
   color: var(--secondary-white);
 }
@@ -11,7 +12,6 @@
   display: grid;
   margin: 0 auto;
   max-width: 1040px;
-  padding: 30px 20px;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr;
 }

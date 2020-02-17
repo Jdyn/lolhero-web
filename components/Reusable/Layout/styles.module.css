@@ -1,9 +1,9 @@
-.root {
-  display: grid;
+.layout {
+  /* display: grid;
   grid-template-rows: min-content 1fr min-content;
   grid-template-columns: 1fr;
   grid-template-areas:
     'header'
     'component'
-    'footer';
+    'footer'; */
 }

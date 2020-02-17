@@ -1,10 +1,32 @@
 .root {
-  display: grid;
+  height: 650px;
   position: relative;
-  background: red;
-  grid: 1fr / repeat(4, 1fr);
+}
+
+.container {
+  position: absolute;
   width: 100%;
-  height: 800px;
+  height: 100%;
+  transform: skewY(-10deg);
+  transform-origin: top left;
   overflow: hidden;
-  /* transform: skewY(10deg); */
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  width: 100%;
+  height: calc(100% + 18vw);
+  transform: skewY(10deg);
+  opacity: 0.5;
+  background: no-repeat url('/static/images/art/darius.jpg');
+  background-size: cover;
+  transform-origin: bottom left;
+}
+
+.content {
+  transform: skewY(10deg);
+  transform-origin: 0;
 }

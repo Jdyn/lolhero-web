@@ -39,7 +39,7 @@ const Layout = (props: Props): JSX.Element => {
   pageview(pathname);
 
   return (
-    <div className={styles.root}>
+    <>
       <Head>
         <title>{`${title} - LoL Elo Boosting | LoLHero.gg`} - LoL Hero</title>
         <meta name="description" content={description} />
@@ -53,7 +53,7 @@ const Layout = (props: Props): JSX.Element => {
       />
       {children}
       <Footer />
-    </div>
+    </>
   );
 };
 
