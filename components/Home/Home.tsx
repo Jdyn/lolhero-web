@@ -42,7 +42,8 @@ const Home = (): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <Stripes version="v1" zIndex={110}>
+      <section className={styles.section}>
+        <Stripes version="v1" />
         <div className={styles.container}>
           <div className={styles.wrapper}>
             <h1>LoL Hero</h1>
@@ -73,11 +74,10 @@ const Home = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </Stripes>
-
-      {/* <div className={styles.test}>
+      </section>
+      <div className={styles.test}>
         <div />
-      </div> */}
+      </div>
 
       {/* <section className={styles.section}>
         <div className={styles.container}>
@@ -95,7 +95,7 @@ const Home = (): JSX.Element => {
         </div>
       </div> */}
 
-      {/* <div className={styles.infoContainer}>
+      <div className={styles.infoContainer}>
         <div className={styles.infoItem}>
           <div style={{ backgroundImage: 'url(/static/images/art/strategy.jpg)' }} />
         </div>
@@ -105,7 +105,7 @@ const Home = (): JSX.Element => {
         <div className={styles.infoItem}>
           <div style={{ backgroundImage: 'url(/static/images/art/glory.jpg)' }} />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

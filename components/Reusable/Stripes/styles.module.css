@@ -7,7 +7,6 @@
 }
 
 .v1 {
-  position: relative;
   top: 75px;
   transform: skewY(-10deg);
   height: 800px;
