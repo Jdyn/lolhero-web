@@ -12,8 +12,43 @@
 .container {
   padding: 0px 20px;
   height: 100%;
-  z-index: 10;
+  z-index: 110;
   /* margin-bottom: 150px; */
+}
+
+.infoContainer {
+  display: grid;
+  position: relative;
+  grid: 1fr / repeat(3, 1fr);
+  height: 750px;
+  z-index: 80;
+  background: red;
+  margin-top: -35vh;
+}
+
+.infoItem {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-grey);
+}
+
+.infoItem > div {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50%;
+  opacity: 0.5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.infoItem:nth-child(1) {
+  padding-top: 20vh;
+}
+
+.infoItem:nth-child(2) {
+  padding-top: 10vh;
 }
 
 .test {
@@ -22,10 +57,11 @@
   width: 100%;
   overflow: hidden;
   transform-origin: 0;
-  /* background: url('/static/images/art/download.jpg'); */
+  z-index: 90;
+  background: var(--primary-grey);
   transform: skewY(-10deg);
-  height: 800px;
-  opacity: 0.5;
+  height: 650px;
+  opacity: 1;
 }
 
 /* .test::after {
@@ -49,34 +85,35 @@
   background: no-repeat url('/static/images/art/darius.jpg');
   background-size: cover;
   transform: skewY(10deg);
-  opacity: 1;
+  opacity: 0.5;
 }
 
-.test > div::after {
+.test::after {
   content: '';
   display: block;
   position: absolute;
   left: 0;
   overflow: hidden;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
-  height: 40%;
-  transform: skewY(-10deg);
-  background: linear-gradient(180deg, transparent 10%, #2c2c2c 45%);
+  height: 30%;
+  /* transform: skewY(-10deg); */
+  background: linear-gradient(180deg, transparent 10%, #2c2c2c 90%);
 }
 
-/* .test > div::before {
+.test::before {
   content: '';
   display: block;
   position: absolute;
-  overflow: hidden;
+  /* overflow: hidden; */
   left: 0;
-  top: 0;
+  z-index: 200;
+  bottom: -10%;
   width: 100%;
-  height: 40%;
-  transform: skewY(-10deg);
-  background: linear-gradient(0deg, transparent 10%, #252525 45%);
-} */
+  height: 10%;
+  background: red;
+  /* background: linear-gradient(360deg, transparent 10%, #2c2c2c 90%); */
+}
 
 .wrapper {
   display: flex;
@@ -124,13 +161,6 @@
   align-items: center;
   /* margin: 35px 0 120px 0; */
   padding: 10px 10px 0px 10px;
-}
-
-.infoContainer {
-  height: 400px;
-  margin: 200px 0 0 0;
-  background-color: var(--secondary-grey);
-  transform: skewY(-6deg);
 }
 
 .stripe {
