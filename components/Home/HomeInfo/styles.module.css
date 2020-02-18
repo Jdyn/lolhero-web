@@ -1,5 +1,11 @@
-.root {
-  height: 650px;
+.primary {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.info {
+  height: 400px;
   position: relative;
 }
 
@@ -20,8 +26,6 @@
   width: 100%;
   height: calc(100% + 18vw);
   transform: skewY(10deg);
-  opacity: 0.5;
-  background: no-repeat url('/static/images/art/darius.jpg');
   background-size: cover;
   transform-origin: bottom left;
 }

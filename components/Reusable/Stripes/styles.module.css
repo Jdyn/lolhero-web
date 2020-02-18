@@ -10,7 +10,7 @@
   transform: skewY(-10deg);
   transform-origin: 0;
   background-size: cover;
-  height: 800px;
+  height: 850px;
 }
 
 .v2 {
@@ -78,6 +78,6 @@
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   grid-column: span 2;
   grid-row: 4;
-  background: #252525;
+  background: var(--secondary-grey);
   border-radius: 0 8px 0 0;
 }
