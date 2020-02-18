@@ -9,7 +9,7 @@
 .v1 {
   top: 75px;
   transform: skewY(-10deg);
-  height: 800px;
+  height: 100vh;
   grid: repeat(4, calc(100% / 4)) / repeat(6, 1fr);
   opacity: 0.5;
   overflow: hidden;

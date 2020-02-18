@@ -46,7 +46,7 @@ const Home = (): JSX.Element => {
         <Stripes version="v1" />
         <div className={styles.container}>
           <div className={styles.wrapper}>
-            <h1>LoL Hero</h1>
+            <h1>LoLHero</h1>
             <h2>S10 Boosting Services</h2>
             <form className={styles.form} onSubmit={handleOrderSearch}>
               <input
