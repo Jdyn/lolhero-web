@@ -32,8 +32,10 @@
 }
 
 .nav {
-  display: flex;
+  display: none;
+  flex: 0.7;
   height: 75px;
+  cursor: pointer;
 }
 
 .searchForm {
@@ -65,6 +67,10 @@
 @media (min-width: 1025px) {
   .header {
     padding: 0px 45px 0px 0px;
+  }
+
+  .nav {
+    display: flex;
   }
 }
 
