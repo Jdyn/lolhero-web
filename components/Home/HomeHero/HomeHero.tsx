@@ -21,7 +21,7 @@ const HomeHero = (): JSX.Element => {
     <section className={styles.root}>
       <Stripes version="v1" />
       <div className={styles.container}>
-        <h1>LoL Hero</h1>
+        <h1>LoLHero</h1>
         <h2>S10 Boosting Services</h2>
         <form className={styles.form} onSubmit={handleSearch}>
           <input
