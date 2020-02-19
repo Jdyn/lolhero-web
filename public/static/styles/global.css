@@ -39,9 +39,10 @@
   --white: #fafafa;
   --secondary-white: #d7dadc;
   --grey: #999;
-  --accent: #6772e5;
+  --accent: #ef5350;
   --green: #159570;
-  --red: #ef5350;
+  --red: #6772e5;
+  --yellow: #FFC400;
 }
 
 html {
