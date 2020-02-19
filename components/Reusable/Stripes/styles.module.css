@@ -10,7 +10,7 @@
   transform: skewY(-10deg);
   transform-origin: 0;
   background-size: cover;
-  height: 800px;
+  height: 100vh;
 }
 
 .v2 {

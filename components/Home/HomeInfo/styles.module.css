@@ -26,6 +26,17 @@
   transform-origin: bottom left;
 }
 
+.container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(180deg, transparent 10%, #2c2c2c 85%);
+}
+
 .content {
   transform: skewY(10deg);
   transform-origin: 0;

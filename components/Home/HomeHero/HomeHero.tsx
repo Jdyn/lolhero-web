@@ -36,11 +36,11 @@ const HomeHero = (): JSX.Element => {
           </button>
         </form>
         <div className={styles.wrapper}>
-          <Button width="155px" secondary large href="/demo">
-            View Demo
+          <Button width="150px" secondary large href="/demo">
+            order demo
           </Button>
-          <Button width="155px" large href="/boost">
-            View Options
+          <Button width="150px" large href="/boost">
+            order pricing
           </Button>
         </div>
       </div>

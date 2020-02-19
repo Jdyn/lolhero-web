@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
     <>
       <HomeHero />
       <HomeInfo />
-      <HomeSteps />
+      {/* <HomeSteps /> */}
     </>
   );
 };
