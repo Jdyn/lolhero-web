@@ -34,3 +34,7 @@
 .secondary {
   background: var(--red);
 }
+
+.green {
+  background: var(--green);
+}

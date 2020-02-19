@@ -50,13 +50,13 @@ const DetailsView = (props: Props): JSX.Element => {
         ) : (
           <>
             <Button
-              secondary
               margin="0 0 10px 0"
               onClick={(): void => setType(prev => (prev === 'login' ? null : 'login'))}
             >
               {type === 'login' ? 'back' : 'log in'}
             </Button>
             <Button
+              secondary
               margin="0 0 20px 0"
               onClick={(): void => setType(prev => (prev === 'signup' ? null : 'signup'))}
             >
