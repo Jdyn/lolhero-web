@@ -5,22 +5,13 @@ interface Props {
   filters: string[];
   selectedIndex?: number;
   extended?: boolean;
-  rounded?: boolean;
-  stealth?: boolean;
-  onClick: (currentIndex?: number) => void;
+  noSelect?: boolean;
+  onClick: (currentIndex?: number, filter?: string) => void;
   untargetableIndices: number[];
 }
 
 const Filter = (props: Props): JSX.Element => {
-  const {
-    filters,
-    selectedIndex,
-    onClick,
-    untargetableIndices,
-    extended,
-    rounded,
-    stealth
-  } = props;
+  const { filters, selectedIndex, onClick, untargetableIndices, extended, noSelect } = props;
 
   const [state, set] = useState(selectedIndex || 0);
 
@@ -30,7 +21,7 @@ const Filter = (props: Props): JSX.Element => {
 
   const handleClick = (index: number): void => {
     if (typeof onClick === 'function') {
-      onClick(index);
+      onClick(index, filters[index]);
     }
     set(index);
   };
@@ -40,12 +31,14 @@ const Filter = (props: Props): JSX.Element => {
       {Array.isArray(filters) &&
         filters.map((filter, index) => {
           const disabled = untargetableIndices.includes(index);
+          const select = state === index && !noSelect;
           return (
             <button
               key={filter}
               type="button"
-              className={`${styles.item} ${state === index && styles.selected} ${disabled &&
-                styles.disabled} `}
+              className={`${styles.item} ${select ? styles.selected : ''} ${
+                disabled ? styles.disabled : ''
+              } `}
               onClick={(): void => handleClick(index)}
               style={{
                 width: `calc(100% / ${props.filters.length})`

@@ -7,6 +7,7 @@ import { SessionState } from '../../store/session/types';
 import styles from './styles.module.css';
 import ProgressBar from '../Reusable/ProgressBar';
 import { UpdateOrder } from '../../store/boost/types';
+import Filter from '../Reusable/Filter';
 
 interface Props {
   handleAuth: (type: string, form: object) => void;
@@ -14,6 +15,23 @@ interface Props {
   session: SessionState;
   sessionRequest: Request;
 }
+
+const filters = {
+  home: {
+    title: 'home',
+    url: '/'
+  },
+  order: {
+    title: 'order now',
+    url: '/boost'
+  },
+  demo: {
+    title: 'demo',
+    url: '/demo'
+  }
+};
+
+const filterArray = Object.keys(filters); // Object.keys(filters).map(key => filters[key].title)
 
 const Header = (props: Props): JSX.Element => {
   const { handleAuth, session, sessionRequest, updateOrder } = props;
@@ -26,15 +44,19 @@ const Header = (props: Props): JSX.Element => {
     updateOrder(null);
   };
 
+  const handleClick = (_: number, filter: string): void => {
+    Router.push(filters[filter].url);
+  };
+
   return (
     <header className={styles.header}>
       <ProgressBar options={{ showSpinner: false }} />
       <Link href="/">
         <div className={styles.logo}>LoLHero</div>
       </Link>
-      {/* <div className={styles.nav}>
-        <Filter filters={['home']} />
-      </div> */}
+      <div className={styles.nav}>
+        <Filter noSelect extended filters={filterArray} onClick={handleClick} />
+      </div>
       <form className={styles.searchForm} onSubmit={handleSubmit}>
         <input
           value={trackingId}
