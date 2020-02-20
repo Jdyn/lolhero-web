@@ -41,7 +41,7 @@ const Layout = (props: Props): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{`${title} - LoL Elo Boosting | LoLHero.gg`} - LoL Hero</title>
+        <title>{`${title} - LoL Boosting | lolhero.gg`}</title>
         <meta name="description" content={description} />
         <meta property="og:description" content={description} />
       </Head>

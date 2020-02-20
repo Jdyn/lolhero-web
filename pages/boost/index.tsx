@@ -7,6 +7,12 @@ import { updateOrder } from '../../store/boost/actions';
 import boosts from '../../lib/boosts';
 import { pageview } from '../../services/gtag';
 
+const content = {
+  title: 'Custom Order - LoL Boosting | lolhero.gg',
+  desc:
+    'Build your League Of Legends boost from the ground up with an immense amount of customization options to fit your goals'
+};
+
 const Boost = (): JSX.Element => {
   const router = useRouter();
   const { pathname } = router;
@@ -15,7 +21,9 @@ const Boost = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Custom Order - LoL Hero</title>
+        <title>{content.title}</title>
+        <meta name="description" content={content.desc} />
+        <meta property="og:description" content={content.desc} />
       </Head>
       <BoostContainer />
     </>
