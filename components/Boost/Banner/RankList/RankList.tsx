@@ -3,6 +3,7 @@ import React, { useMemo, useCallback, useEffect } from 'react';
 import ranks, { Rank, unranked } from '../../../../lib/ranks';
 import styles from './styles.module.css';
 import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
+import RankItem from './RankItem';
 
 interface Props {
   rank: Rank;
@@ -63,26 +64,24 @@ const RankList = (props: Props): JSX.Element => {
     if (currentOrder.collectionName !== 'Placement Games' && currentOrder.startRank === 28) {
       updateOrder({ startRank: null }, { startRankTitle: '' });
     }
-  }, [currentOrder.collectionId, currentOrder.collectionName, updateOrder, currentOrder.startRank]);
+  }, [currentOrder.collectionName, updateOrder, currentOrder.startRank]);
 
   const list = useMemo(() => {
     const items = isPlacements ? [unranked, ...ranks] : ranks;
 
     return items.map((rankList, index) => (
       <div key={index} className={styles.rankWrapper}>
-        {rankList.map((rankItem, rankPosition) => {
+        {rankList.map((rankItem, tier) => {
           const disabled = validate(rankItem.rank);
           const selected = rank.rank === rankItem.rank;
           return (
-            <button
-              key={rankItem.title}
-              type="button"
-              aria-label={`${rankItem.tag} ${rankPosition + 1}`}
+            <RankItem
+              key={rankItem.title + index}
+              rankItem={rankItem}
+              rankTier={tier}
               disabled={disabled}
-              className={`${styles.button} ${styles[`${rankItem.tag}`]} ${
-                disabled ? styles.disabled : ''
-              } ${selected ? styles.selected : ''}`}
-              onClick={(): void => handleClick(rankItem)}
+              selected={selected}
+              onClick={handleClick}
             />
           );
         })}

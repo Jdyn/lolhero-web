@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import content from '../../../../lib/content';
 import Toggle from '../../../Reusable/Toggle/Toggle';
-import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../../store/boost/types';
+import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
 import RolePicker from '../../../Reusable/RolePicker';
 
 interface Props {
   updateOrder: UpdateOrder;
-  boost: BoostState;
+  pricing?: any;
   currentOrder: BoostOrderDetails;
 }
 
 const AddonView = (props: Props): JSX.Element => {
-  const { updateOrder, currentOrder, boost } = props;
+  const { updateOrder, currentOrder, pricing } = props;
 
-  const calculatePriceIncrease = (mod: string): string => {
-    const { pricing } = boost;
+  const calculatePriceIncrease = useCallback(
+    (mod: string): string => {
+      if (pricing) {
+        const { modifiers } = pricing[currentOrder.boostType];
 
-    if (pricing) {
-      const { modifiers } = pricing[currentOrder.boostType];
+        const cost = Math.round((modifiers[mod] - 1) * 100);
+        return `Costs ${cost}%`;
+      }
 
-      const cost = Math.round((modifiers[mod] - 1) * 100);
-      return `Costs ${cost}%`;
-    }
-
-    return 'Costs 0%';
-  };
+      return 'Costs 0%';
+    },
+    [pricing, currentOrder.boostType]
+  );
 
   return (
     <>

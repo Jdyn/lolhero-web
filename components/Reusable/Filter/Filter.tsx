@@ -6,12 +6,21 @@ interface Props {
   selectedIndex?: number;
   extended?: boolean;
   noSelect?: boolean;
-  onClick: (currentIndex?: number, filter?: string) => void;
+  onClick?: (currentIndex?: number, filter?: string) => void;
   untargetableIndices: number[];
+  fontSize?: string;
 }
 
 const Filter = (props: Props): JSX.Element => {
-  const { filters, selectedIndex, onClick, untargetableIndices, extended, noSelect } = props;
+  const {
+    filters,
+    selectedIndex,
+    onClick,
+    untargetableIndices,
+    extended,
+    noSelect,
+    fontSize
+  } = props;
 
   const [state, set] = useState(selectedIndex || 0);
 
@@ -27,7 +36,7 @@ const Filter = (props: Props): JSX.Element => {
   };
 
   return (
-    <ul className={`${styles.root} ${extended ? styles.extended : ''} `}>
+    <div className={`${styles.root} ${extended ? styles.extended : ''} `}>
       {Array.isArray(filters) &&
         filters.map((filter, index) => {
           const disabled = untargetableIndices.includes(index);
@@ -41,14 +50,15 @@ const Filter = (props: Props): JSX.Element => {
               } `}
               onClick={(): void => handleClick(index)}
               style={{
-                width: `calc(100% / ${props.filters.length})`
+                width: `calc(100% / ${filters.length})`,
+                fontSize
               }}
             >
               {filter}
             </button>
           );
         })}
-    </ul>
+    </div>
   );
 };
 
@@ -56,4 +66,4 @@ Filter.defaultProps = {
   untargetableIndices: []
 } as Partial<Props>;
 
-export default Filter;
+export default React.memo(Filter);

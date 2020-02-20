@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import dropin from 'braintree-web-drop-in';
 import Filter from '../../Reusable/Filter/Filter';
 import AddonView from './AddonView';
@@ -7,8 +7,13 @@ import ReviewView from './ReviewView/ReviewView';
 import DetailsView from './DetailsView';
 import dropinOptions from '../../../lib/dropinOptions';
 import styles from './styles.module.css';
-import { BoostOrderDetails, BoostState, UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
+import {
+  BoostOrderDetails,
+  UpdateOrder,
+  BoostOrder,
+  BoostPricing
+} from '../../../store/boost/types';
 
 const filters = ['boost', 'setup', 'details', 'review'];
 
@@ -19,7 +24,9 @@ interface Props {
   session: SessionState;
   handleAuth: (type: string, form: object) => void;
   setBraintreeInstance: (instance: object) => void;
-  boost: BoostState;
+  pricing: BoostPricing;
+  paymentMethodIsSelected: boolean;
+  boostOrder: BoostOrder;
   valid: { payment: boolean; details: boolean };
   setStage: (newStage: number) => void;
 }
@@ -32,8 +39,10 @@ const AddonTab = (props: Props): JSX.Element => {
     session,
     handleAuth,
     setBraintreeInstance,
-    boost,
+    pricing,
+    paymentMethodIsSelected,
     valid,
+    boostOrder,
     setStage
   } = props;
 
@@ -48,7 +57,7 @@ const AddonTab = (props: Props): JSX.Element => {
 
   const views = {
     0: <BoostView currentOrder={currentOrder} updateOrder={updateOrder} />,
-    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} boost={boost} />,
+    1: <AddonView currentOrder={currentOrder} updateOrder={updateOrder} pricing={pricing} />,
     2: (
       <DetailsView
         handleAuth={handleAuth}
@@ -57,17 +66,13 @@ const AddonTab = (props: Props): JSX.Element => {
         currentOrder={currentOrder}
       />
     ),
-    3: <ReviewView currentOrder={currentOrder} boost={boost} />
+    3: <ReviewView currentOrder={currentOrder} boostOrder={boostOrder} />
   };
 
-  const validateView = (): number[] => {
+  const validateView = useMemo((): number[] => {
     const { payment, details } = valid;
-    const { isLoggedIn } = session;
-    const {
-      order: { paymentMethodIsSelected }
-    } = boost;
 
-    const confirmedLoggedIn = isLoggedIn && paymentMethodIsSelected;
+    const confirmedLoggedIn = session.isLoggedIn && paymentMethodIsSelected;
     const confirmedEmail = payment && details && paymentMethodIsSelected;
 
     if (confirmedLoggedIn || confirmedEmail) {
@@ -75,7 +80,14 @@ const AddonTab = (props: Props): JSX.Element => {
     }
 
     return [3];
-  };
+  }, [session.isLoggedIn, valid, paymentMethodIsSelected]);
+
+  const handleFilter = useCallback(
+    (index: number): void => {
+      setStage(index);
+    },
+    [setStage]
+  );
 
   return (
     <div className={styles.root}>
@@ -83,9 +95,9 @@ const AddonTab = (props: Props): JSX.Element => {
         <Filter
           extended
           filters={filters}
-          untargetableIndices={validateView()}
+          untargetableIndices={validateView}
           selectedIndex={currentStage}
-          onClick={(index: number): void => setStage(index)}
+          onClick={handleFilter}
         />
       </div>
       {Object.keys(views).map((view, index) => {
@@ -105,4 +117,4 @@ const AddonTab = (props: Props): JSX.Element => {
   );
 };
 
-export default AddonTab;
+export default React.memo(AddonTab);

@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import Filter from '../../Reusable/Filter/Filter';
-import { BoostState } from '../../../store/boost/types';
-import { SessionState } from '../../../store/session/types';
 
 interface Props {
-  boost: BoostState;
+  paymentMethodIsSelected: boolean;
   valid: { payment: boolean; details: boolean };
-  session: SessionState;
+  isLoggedIn: boolean;
   setStage: (newStage: number) => void;
   currentStage: number;
 }
@@ -16,14 +14,10 @@ interface Props {
 const filters = ['boost', 'setup', 'details', 'review'];
 
 const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
-  const { boost, valid, session, setStage, currentStage } = props;
+  const { paymentMethodIsSelected, valid, isLoggedIn, setStage, currentStage } = props;
 
-  const validateView = (): number[] => {
+  const validateView = useMemo((): number[] => {
     const { payment, details } = valid;
-    const { isLoggedIn } = session;
-    const {
-      order: { paymentMethodIsSelected }
-    } = boost;
 
     const confirmedLoggedIn = isLoggedIn && paymentMethodIsSelected;
     const confirmedEmail = payment && details && paymentMethodIsSelected;
@@ -33,7 +27,7 @@ const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
     }
 
     return [3];
-  };
+  }, [isLoggedIn, valid, paymentMethodIsSelected]);
 
   return (
     <div className={styles.root}>
@@ -46,11 +40,11 @@ const TopNavigator: React.FC<Props> = (props: Props): JSX.Element => {
           extended
           filters={filters}
           selectedIndex={currentStage}
-          untargetableIndices={validateView()}
+          untargetableIndices={validateView}
         />
       </div>
     </div>
   );
 };
 
-export default TopNavigator;
+export default React.memo(TopNavigator);

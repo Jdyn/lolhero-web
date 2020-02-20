@@ -1,27 +1,26 @@
 import React from 'react';
 import content from '../../../../lib/content';
 import { formatLP } from '../../../../util/helpers';
-import { BoostOrderDetails, BoostState } from '../../../../store/boost/types';
+import { BoostOrderDetails, BoostOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
 
 interface Props {
   currentOrder: BoostOrderDetails;
-  boost: BoostState;
+  boostOrder: BoostOrder;
 }
 
 const ReviewView = (props: Props): JSX.Element => {
-  const { currentOrder, boost } = props;
+  const { currentOrder, boostOrder } = props;
 
   const formatTitle = (): string => {
     const { boostType, lp, desiredAmount, collectionName } = currentOrder;
     switch (collectionName) {
       case 'Division Boost':
-        return `${boostType.toUpperCase()} | ${collectionName} - From ${boost.order
-          .startRankTitle || 'TBD'} (${formatLP(lp)} LP) to ${boost.order.desiredRankTitle ||
-          'TBD'}`;
+        return `${boostType.toUpperCase()} | ${collectionName} - From ${boostOrder.startRankTitle ||
+          'TBD'} (${formatLP(lp)} LP) to ${boostOrder.desiredRankTitle || 'TBD'}`;
       default:
-        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${boost.order
-          .startRankTitle || 'TBD'}`;
+        return `${boostType.toUpperCase()} | ${desiredAmount} ${collectionName} - ${boostOrder.startRankTitle ||
+          'TBD'}`;
     }
   };
 

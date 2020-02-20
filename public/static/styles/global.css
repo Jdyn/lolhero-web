@@ -1,14 +1,47 @@
 /* @font-face {
-  font-family: 'Museo Sans Rounded';
-  src: url('/static/fonts/museosansrounded-500.woff2') format('woff2');
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel-Regular.woff') format('woff');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 } */
 
+/* 
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-display: swap;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel-Bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+  font-style: bold;
+} */
+
 /* @font-face {
-  font-family: 'Museo Sans Rounded';
-  src: url('/static/fonts/museosansrounded-700.woff2') format('woff2');
+  font-family: 'Beaufort';
+  src: url('/static/fonts/Beaufort-Regular.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Beaufort';
+  src: url('/static/fonts/Beaufort-Bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+  font-style: bold;
+} */
+
+/* @font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel-Bold.woff') format('woff');
   font-weight: 700;
   font-display: swap;
   font-style: bold;
@@ -27,6 +60,7 @@
 *::after {
   box-sizing: inherit;
   scrollbar-color: #999 #353535;
+  font-family: inherit;
   scrollbar-width: thin;
 }
 
@@ -57,11 +91,16 @@ body {
   color: #f0f0f0;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   background-color: var(--primary-grey);
+  font-family: 'Open Sans', 'Arial', 'sans-serif';
   font-size: 100%;
-  font-family: 'Open Sans', 'Museo Sans Rounded', 'Segoe UI', 'Open Sans', 'sans-serif';
   font-weight: normal;
   font-style: normal;
   text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font-family: 'Open Sans', 'Arial', 'sans-serif';
 }
 
 #nprogress {

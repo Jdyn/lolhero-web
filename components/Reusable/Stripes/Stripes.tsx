@@ -37,4 +37,4 @@ Stripes.defaultProps = {
   zIndex: -1
 };
 
-export default Stripes;
+export default React.memo(Stripes);

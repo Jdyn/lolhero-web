@@ -16,7 +16,7 @@
 .v2 {
   height: 100%;
   transform: skewY(0deg);
-  grid: repeat(4, 1fr) / repeat(6, 1fr);
+  /* grid: repeat(4, 1fr) / repeat(6, 1fr); */
   background: linear-gradient(150deg, #202020 15%, #343434 70%, #474747 94%);
 }
 
@@ -45,7 +45,7 @@
 } */
 
 .stripes > span {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .stripes span:nth-child(2) {
@@ -80,4 +80,8 @@
   grid-row: 4;
   background: #252525;
   border-radius: 0 8px 0 0;
+}
+
+.v2 > span {
+  display: none !important;
 }

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import BoostTab from './BoostsTab';
 import AddonTab from './AddonTab';
 import TopNavigator from './TopNavigator/TopNavigator';
 import BoostDisplay from './BoostDisplay/BoostDisplay';
 import BottomNavigator from './BottomNavigator';
 import styles from './styles.module.css';
+import { formatLP } from '../../util/helpers';
 
 const Boost = props => {
   const {
@@ -22,22 +23,44 @@ const Boost = props => {
 
   const [currentStage, setStage] = useState(0);
   const [braintreeInstance, setBraintreeInstance] = useState(null);
+  const { queue, server, lp } = currentOrder;
+  const { price } = boost;
 
   useEffect(() => {
     fetchBoostPrices();
   }, [fetchBoostPrices]);
+
+  const navItems = useMemo(() => {
+    const items = {
+      Queue: queue,
+      Server: server,
+      LP: formatLP(lp) || '-',
+      Total: `$${price || 0}`
+    };
+
+    return Object.keys(items).map(key => (
+      <div key={key} className={styles.bottomNav}>
+        <h3>{items[key]}</h3>
+        <span>{key}</span>
+      </div>
+    ));
+  }, [queue, server, lp, price]);
 
   return (
     <div className={styles.root}>
       <TopNavigator
         currentStage={currentStage}
         setStage={setStage}
-        session={session}
-        boost={boost}
+        isLoggedIn={session.isLoggedIn}
+        paymentMethodIsSelected={boost.order.paymentMethodIsSelected}
         valid={valid}
       />
       <div className={styles.container}>
-        <BoostTab currentOrder={currentOrder} updateOrder={updateOrder} />
+        <BoostTab
+          boostType={currentOrder.boostType}
+          collectionId={currentOrder.collectionId}
+          updateOrder={updateOrder}
+        />
         <BoostDisplay
           currentOrder={currentOrder}
           updateOrder={updateOrder}
@@ -46,7 +69,9 @@ const Boost = props => {
         <AddonTab
           handleAuth={handleAuth}
           session={session}
-          boost={boost}
+          pricing={boost.pricing}
+          boostOrder={boost.order}
+          paymentMethodIsSelected={boost.paymentMethodIsSelected}
           valid={valid}
           setBraintreeInstance={setBraintreeInstance}
           currentStage={currentStage}
@@ -58,7 +83,6 @@ const Boost = props => {
       <BottomNavigator
         purchaseOrderRequest={purchaseOrderRequest}
         currentStage={currentStage}
-        currentOrder={currentOrder}
         submitOrder={submitOrder}
         updateOrder={updateOrder}
         valid={valid}
@@ -66,8 +90,9 @@ const Boost = props => {
         session={session}
         setStage={setStage}
         braintreeInstance={braintreeInstance}
-        boost={boost}
-      />
+      >
+        {navItems}
+      </BottomNavigator>
     </div>
   );
 };

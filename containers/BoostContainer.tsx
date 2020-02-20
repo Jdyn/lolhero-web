@@ -17,9 +17,11 @@ class BoostContainer extends React.PureComponent<Props> {
   }
 }
 
+const emptyPurchaseOrderRequest = { error: { errored: false, message: '' } };
+
 const mapStateToProps = (state: AppState): object => ({
   session: state.session,
-  purchaseOrderRequest: state.request.PURCHASE_ORDER || { error: { errored: false, message: '' } },
+  purchaseOrderRequest: state.request.PURCHASE_ORDER || emptyPurchaseOrderRequest,
   currentOrder: state.boost.order.details,
   boost: state.boost
 });

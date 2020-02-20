@@ -1,30 +1,32 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Filter from '../../Reusable/Filter/Filter';
 import content from '../../../lib/boosts';
-import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
+import { UpdateOrder } from '../../../store/boost/types';
 import styles from './styles.module.css';
 
 const contentKeys = Object.keys(content);
+type BoostType = 'Solo' | 'Duo';
 
 interface Props {
-  currentOrder: BoostOrderDetails;
+  boostType: BoostType;
+  collectionId: number;
   updateOrder: UpdateOrder;
 }
 
 const BoostTab = (props: Props): JSX.Element => {
-  const { currentOrder, updateOrder } = props;
+  const { updateOrder, boostType, collectionId } = props;
 
-  const [currentType, setType] = useState(currentOrder.boostType);
+  const [currentType, setType] = useState(boostType);
   const currentContent = useMemo(() => content[currentType], [currentType]);
 
   const [selectedIndex, setIndex] = useState(
     currentContent.items.indexOf(
-      currentContent.items.filter(item => item.id === currentOrder.collectionId)[0]
+      currentContent.items.filter(item => item.id === collectionId)[0]
     ) || 0
   );
 
   useEffect(() => {
-    if (currentType !== currentOrder.boostType) {
+    if (currentType !== boostType) {
       setIndex(selectedIndex);
 
       const currentItem = currentContent.items[selectedIndex];
@@ -35,13 +37,13 @@ const BoostTab = (props: Props): JSX.Element => {
         boostType: currentType
       });
     }
-  }, [currentType, currentOrder.boostType, selectedIndex, currentContent, updateOrder]);
+  }, [currentType, boostType, selectedIndex, currentContent, updateOrder]);
 
   const handleOrderUpdate = (newSelectedIndex: number): void => {
     setIndex(newSelectedIndex);
 
     const currentItem = currentContent.items[newSelectedIndex];
-    if (currentOrder.collectionId !== currentItem.id) {
+    if (collectionId !== currentItem.id) {
       updateOrder({
         collectionId: currentItem.id,
         collectionName: currentItem.title,
@@ -50,13 +52,17 @@ const BoostTab = (props: Props): JSX.Element => {
     }
   };
 
+  const handleFilterUpdate = useCallback((index: number): void => {
+    setType(contentKeys[index] as BoostType);
+  }, []);
+
   return (
     <div className={styles.root}>
       <div className={styles.filter}>
         <Filter
           filters={contentKeys}
           selectedIndex={currentType === 'Solo' ? 0 : 1}
-          onClick={(index: number): void => setType(contentKeys[index])}
+          onClick={handleFilterUpdate}
         />
       </div>
       {/* <div className={styles.notice}>
@@ -88,4 +94,4 @@ const BoostTab = (props: Props): JSX.Element => {
   );
 };
 
-export default BoostTab;
+export default React.memo(BoostTab);

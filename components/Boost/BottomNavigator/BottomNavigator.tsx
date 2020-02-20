@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dropin } from 'braintree-web-drop-in';
-import { formatLP } from '../../../util/helpers';
-import { BoostState, BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
+import { UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import styles from './styles.module.css';
 import { Request } from '../../../store/request/types';
@@ -10,11 +9,10 @@ import Loader from '../../Reusable/Loader';
 interface Props {
   currentStage: number;
   setStage: (state: number) => void;
-  boost: BoostState;
   session: SessionState;
   valid: { details: boolean; payment: boolean };
   setValid: (state: object) => void;
-  currentOrder: BoostOrderDetails;
+  children: React.ReactNode;
   submitOrder: () => void;
   braintreeInstance: Dropin;
   purchaseOrderRequest: Request;
@@ -23,13 +21,12 @@ interface Props {
 
 const BottomNavigator = (props: Props): JSX.Element => {
   const {
+    children,
     currentStage,
     setStage,
-    boost,
     session,
     valid,
     setValid,
-    currentOrder,
     submitOrder,
     braintreeInstance,
     purchaseOrderRequest,
@@ -143,21 +140,9 @@ const BottomNavigator = (props: Props): JSX.Element => {
     return '#159570';
   };
 
-  const navItems = {
-    Queue: currentOrder.queue,
-    Server: currentOrder.server,
-    LP: formatLP(currentOrder.lp) || '-',
-    Total: `$${boost.price || 0}`
-  };
-
   return (
     <div className={styles.root}>
-      {Object.keys(navItems).map(key => (
-        <div key={key} className={styles.container}>
-          <h3>{navItems[key]}</h3>
-          <span>{key}</span>
-        </div>
-      ))}
+      {children}
       <button
         type="button"
         id="submit-button"
@@ -165,7 +150,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
         onClick={(): void => updateStage(currentStage)}
         style={{ backgroundColor: buttonColor() }}
       >
-        {purchaseOrderRequest.isPending ? (
+        {purchaseOrderRequest?.isPending ? (
           <Loader height="57px" width="57px" />
         ) : (
           stageText(currentStage)
@@ -175,4 +160,4 @@ const BottomNavigator = (props: Props): JSX.Element => {
   );
 };
 
-export default BottomNavigator;
+export default React.memo(BottomNavigator);

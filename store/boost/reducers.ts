@@ -7,9 +7,9 @@ const initialState: BoostState = {
     type: 'boost',
     nonce: null,
     email: null,
-    paymentMethodIsSelected: false,
     startRankTitle: '',
     desiredRankTitle: '',
+    paymentMethodIsSelected: false,
     details: {
       lp: 20,
       queue: 'Solo',

@@ -19,7 +19,8 @@ const boosts: Boosts = {
   Solo: {
     name: 'Solo Boost',
     description: 'SOLO means one of our boosters will log onto your account.',
-    subdescription: ' If you want to play alongside the booster, you can select our duo option.',
+    subdescription:
+      'If you want to play alongside the booster, you can select our duo option above.',
     color: '#4285F4',
     items: [
       {
@@ -59,7 +60,7 @@ const boosts: Boosts = {
   Duo: {
     name: 'Duo Boost',
     description: 'DUO means you will play alongside our booster on your own account.',
-    subdescription: ' if you do not want to play, you can select our solo option.',
+    subdescription: ' if you do not want to play, you can select our solo option above.',
     color: '#e53935',
     items: [
       {
