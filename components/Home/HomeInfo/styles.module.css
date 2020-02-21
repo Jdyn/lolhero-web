@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex: 1;
-  min-height: 75vh;
+  min-height: 85vh;
   position: relative;
 }
 
@@ -30,16 +30,29 @@
   transform-origin: bottom left;
 }
 
-.container::after {
+/* .root::before {
   content: '';
-  display: block;
+  display: flex;
   position: absolute;
-  left: 0;
-  bottom: 0px;
+  top: 0;
+  z-index: 3;
   width: 100%;
   height: 30%;
-  border: -2px solid transparent;
-  background: linear-gradient(180deg, transparent 10%, #2c2c2c 85%);
+  transform: skewY(-10deg);
+  transform-origin: bottom left;
+  background: linear-gradient(0deg, transparent 20%, #2c2c2c 70%);
+} */
+
+.root::after {
+  content: '';
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 20%;
+  transform: skewY(-9deg);
+  transform-origin: bottom left;
+  background: linear-gradient(180deg, transparent 20%, #2c2c2c 70%);
 }
 
 .content {

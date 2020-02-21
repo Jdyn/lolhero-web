@@ -58,7 +58,7 @@ const OrderAuth = (props: Props): JSX.Element => {
               placeholder="Email"
             />
             <Button margin="10px 0 0 0" isPending={fetchOrderRequest.isPending}>
-              search
+              verify
             </Button>
           </form>
           {fetchOrderRequest.errored && (
@@ -82,7 +82,7 @@ const OrderAuth = (props: Props): JSX.Element => {
               placeholder="Verify Email"
             />
             <Button margin="10px 0 0 0" isPending={fetchOrderRequest.isPending}>
-              search
+              verify
             </Button>
           </form>
           {fetchOrderRequest.errored && (

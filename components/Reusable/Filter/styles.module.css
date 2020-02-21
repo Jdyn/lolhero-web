@@ -2,7 +2,6 @@
   margin: 0;
   padding: 23px 0 0 0;
   display: flex;
-  flex-grow: 0;
   position: relative;
   flex-direction: row;
 }

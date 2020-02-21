@@ -42,9 +42,9 @@ const Button: React.FC<Props> = React.forwardRef(
         ref={ref}
         onClick={onClick}
         className={`
-    ${styles.root}
-    ${secondary ? styles.secondary : ''}
-    ${large ? styles.large : ''}`}
+      ${styles.root}
+      ${secondary ? styles.secondary : ''}
+      ${large ? styles.large : ''}`}
         style={{ margin, padding, width }}
       >
         {isPending ? <Loader width="36px" height="36px" /> : props.children}
