@@ -9,7 +9,7 @@ const HomeInfo = (): JSX.Element => {
         <div className={styles.hero}>
           <h1>Stuck in elo hell?</h1>
           <p>
-            If your stuck in elo hell and your teammates are continously holding you back, we are
+            If you’re stuck in elo hell and your teammates are continously holding you back, we are
             here to help. Getting unlucky teammates is frustrating and can make it feel impossible
             to climb. we can give you a slight push in the right direction!
           </p>
