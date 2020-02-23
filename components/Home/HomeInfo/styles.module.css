@@ -10,7 +10,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  padding-top: 50px;
+  /* padding-top: 50px; */
   transform: skewY(-10deg);
   transform-origin: top left;
   overflow: hidden;
@@ -24,9 +24,10 @@
   width: 100%;
   height: calc(100% + 18vw);
   transform: skewY(10deg);
-  opacity: 0.5;
+  opacity: 0.3;
   background: no-repeat url('/static/images/art/darius.jpg');
   background-size: cover;
+  background-position: 40%;
   transform-origin: bottom left;
 }
 
@@ -57,28 +58,47 @@
 
 .content {
   display: flex;
+  position: relative;
   flex-direction: column;
-  max-width: 1040px;
-  justify-content: center;
-  margin: 0 auto 30% auto;
+  max-width: 975px;
+  align-items: center;
+  margin: 0 auto 10% auto;
   padding: 25px;
-  transform: skewY(10deg);
-  transform-origin: 0;
+  /* transform: skewY(-10deg); */
+  transform-origin: top right;
 }
 
-.content > h1 {
-  /* display: flex; */
-  font-family: 'oswald';
-  font-size: 32px;
-  /* justify-content: flex-end; */
+.hero {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   width: 100%;
-  text-align: center;
+  /* justify-content: center; */
+}
+
+.hero > h1 {
+  display: flex;
+  font-family: 'oswald';
+  font-size: 35px;
+  /* width: 50%; */
+  margin: 0 0 30px 0;
+  justify-content: center;
   text-transform: uppercase;
 }
 
-.content > p {
+.hero > p {
   display: flex;
-  justify-content: flex-end;
   text-align: center;
-  width: 100%;
+  justify-content: center;
+  opacity: 1;
+  margin: 0;
+  opacity: 0.85;
+  font-size: 20px;
+  /* width: 50%; */
+}
+
+@media (min-width: 650px) {
+  .container::before {
+    background-position: top left;
+  }
 }
