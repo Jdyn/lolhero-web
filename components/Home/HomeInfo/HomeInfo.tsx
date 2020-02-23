@@ -5,16 +5,15 @@ const HomeInfo = (): JSX.Element => {
   return (
     <section className={styles.root}>
       <div className={styles.container} />
-      <div className={styles.hero}>
-        {/* <h1>Stuck in elo hell?</h1>
-        <p>
-          Stripe builds the most powerful and flexible tools for internet commerce. Whether you’re
-          creating a subscription service, an on-demand marketplace, an e-commerce store, or a
-          crowdfunding platform, Stripe’s meticulously designed APIs and unmatched functionality
-          help you create the best possible product for your users. Millions of the world’s most
-          innovative technology companies are scaling faster and more efficiently by building their
-          businesses on Stripe.
-        </p> */}
+      <div className={styles.content}>
+        <div className={styles.hero}>
+          <h1>Stuck in elo hell?</h1>
+          <p>
+            If your stuck in elo hell and your teammates are continously holding you back, we are
+            here to help. Getting unlucky teammates is frustrating and can make it feel impossible
+            to climb. we can give you a slight push in the right direction!
+          </p>
+        </div>
       </div>
     </section>
   );

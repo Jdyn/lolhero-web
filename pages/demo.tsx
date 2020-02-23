@@ -16,7 +16,7 @@ const fakeAccount: AccountState = {
     trackingId: 'ABLC1',
     user: {
       role: 'user',
-      username: 'LoL Hero'
+      username: 'LoLHero'
     },
     booster: null,
     details: {

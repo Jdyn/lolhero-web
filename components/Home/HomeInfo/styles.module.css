@@ -60,7 +60,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  max-width: 975px;
+  max-width: 825px;
   align-items: center;
   margin: 0 auto 10% auto;
   padding: 25px;
@@ -73,16 +73,20 @@
   flex-direction: column;
   flex: 1;
   width: 100%;
+  color: var(--secondary-white);
   /* justify-content: center; */
 }
 
 .hero > h1 {
   display: flex;
-  font-family: 'oswald';
+  font-family: 'burbank';
+  letter-spacing: 0.025em;
   font-size: 35px;
   /* width: 50%; */
   margin: 0 0 30px 0;
   justify-content: center;
+  text-align: center;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
 }
 
@@ -92,7 +96,7 @@
   justify-content: center;
   opacity: 1;
   margin: 0;
-  opacity: 0.85;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
   font-size: 20px;
   /* width: 50%; */
 }
