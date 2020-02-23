@@ -29,8 +29,9 @@
   border-bottom: 1px solid var(--border);
   color: var(--white);
   text-transform: uppercase;
-  font-family: 'oswald';
-  font-size: 28px;
+  font-family: 'burbank';
+  font-size: 42px;
+  letter-spacing: 0.025em;
 }
 
 .logo:hover {

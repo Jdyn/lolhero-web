@@ -52,7 +52,7 @@
 .stripes span:nth-child(2) {
   grid-column: span 1;
   background: #222222;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 16px 16px 0;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -70,7 +70,7 @@
   grid-column: 6;
   grid-row: 3;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 8px 0 0 8px;
+  border-radius: 16px 0 0 16px;
   background: #282828;
 }
 
@@ -80,7 +80,7 @@
   grid-column: span 2;
   grid-row: 4;
   background: #252525;
-  border-radius: 0 8px 0 0;
+  border-radius: 0 16px 0 0;
 }
 
 .v2 > span {

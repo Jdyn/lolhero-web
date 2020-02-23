@@ -80,9 +80,11 @@
   --white: #fafafa;
   --secondary-white: #d7dadc;
   --grey: #999;
-  --accent: #1a73e8;
+  --accent: #1565c0;
+  --light-accent: #1e88e5;
   --green: #159570;
   --red: #ef5350;
+  --light-red: #e57373;
   --yellow: #ffc400;
 }
 

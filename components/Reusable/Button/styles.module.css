@@ -7,7 +7,7 @@
   font-weight: 700;
   font-size: 13px;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 16px;
   letter-spacing: 0.025em;
   text-transform: uppercase;
   text-align: center;
@@ -19,11 +19,13 @@
 .root:hover {
   transform: translateY(-1px);
   box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+  background: var(--light-accent);
 }
 
 .root:active {
   transform: translateY(1px);
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
+  background: var(--light-accent);
 }
 
 .large {
@@ -32,6 +34,10 @@
 
 .secondary {
   background: var(--red);
+}
+
+.secondary:hover {
+  background: var(--light-red) !important;
 }
 
 .green {
