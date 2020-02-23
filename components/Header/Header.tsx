@@ -55,7 +55,7 @@ const Header = (props: Props): JSX.Element => {
         <div className={styles.logo}>LoLHero</div>
       </Link>
       <div className={styles.nav}>
-        <Filter noSelect extended filters={filterArray} onClick={handleClick} fontSize="14px" />
+        <Filter noSelect extended filters={filterArray} onClick={handleClick} />
       </div>
       <form className={styles.searchForm} onSubmit={handleSubmit}>
         <input

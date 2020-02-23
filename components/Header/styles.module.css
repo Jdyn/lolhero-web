@@ -21,19 +21,21 @@
   height: 75px;
   justify-content: center;
   margin: 0px 64px;
+  text-align: center;
   cursor: pointer;
   width: 100%;
   transition-duration: 0.2s;
   border-bottom: 1px solid var(--border);
   color: var(--white);
   text-transform: uppercase;
-  font-family: 'oswald';
-  font-size: 28px;
+  font-family: 'burbank';
+  letter-spacing: 0.025em;
+  font-size: 42px;
 }
 
 .nav {
   display: none;
-  flex: 1;
+  flex: 0.8;
   height: 75px;
   cursor: pointer;
 }
@@ -82,6 +84,7 @@
   .logo {
     max-width: 205px;
     padding: 0px 45px;
-    margin: 0;
+    margin: 10px 0 0 0;
+    top: -10px;
   }
 }

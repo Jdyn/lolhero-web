@@ -13,17 +13,19 @@
   padding-top: 100px;
   text-transform: uppercase;
   text-align: center;
-  font-family: 'oswald';
 }
 
 .container > h1 {
   margin: 0;
-  font-size: 45px;
+  font-family: 'burbank';
+  letter-spacing: 0.025em;
+  font-size: 60px;
 }
 
 .container > h2 {
   margin: 0;
-  font-size: 32px;
+  font-family: 'burbank';
+  font-size: 40px;
 }
 
 .wrapper {

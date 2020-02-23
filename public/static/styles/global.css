@@ -1,55 +1,62 @@
-/* @font-face {
-  font-family: 'Spiegel';
-  src: url('/static/fonts/Spiegel-Regular.woff') format('woff');
-  font-weight: 500;
+@font-face {
+  font-family: 'museo';
+  src: url('/static/fonts/museo-300.woff2') format('woff2');
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
-} */
-
-/* 
-@font-face {
-  font-family: 'Spiegel';
-  src: url('/static/fonts/Spiegel-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-display: swap;
-  font-style: bold;
 }
 
 @font-face {
-  font-family: 'Spiegel';
-  src: url('/static/fonts/Spiegel-Bold.woff') format('woff');
-  font-weight: 700;
-  font-display: swap;
-  font-style: bold;
-} */
-
-/* @font-face {
-  font-family: 'Beaufort';
-  src: url('/static/fonts/Beaufort-Regular.woff') format('woff');
+  font-family: 'museo';
+  src: url('/static/fonts/museo-500.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Beaufort';
-  src: url('/static/fonts/Beaufort-Bold.woff') format('woff');
+  font-family: 'museo';
+  src: url('/static/fonts/museo-700.woff2') format('woff2');
   font-weight: 700;
   font-display: swap;
-  font-style: bold;
-} */
+  font-style: normal;
+}
 
-/* @font-face {
-  font-family: 'Spiegel';
-  src: url('/static/fonts/Spiegel-Bold.woff') format('woff');
+@font-face {
+  font-family: 'museo';
+  src: url('/static/fonts/dinn-300.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'dinn';
+  src: url('/static/fonts/dinn-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'dinn';
+  src: url('/static/fonts/dinn-700.woff2') format('woff2');
   font-weight: 700;
   font-display: swap;
-  font-style: bold;
-} */
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'Oswald';
   src: url('/static/fonts/oswald.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'burbank';
+  src: url('/static/fonts/Burbankt.ttf') format('truetype');
   font-weight: normal;
   font-display: swap;
   font-style: normal;
@@ -75,7 +82,7 @@
   --grey: #999;
   --accent: #1a73e8;
   --green: #159570;
-  --red: #e53935;
+  --red: #ef5350;
   --yellow: #ffc400;
 }
 
@@ -92,16 +99,11 @@ body {
   color: #f0f0f0;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   background-color: var(--primary-grey);
-  font-family: 'Open Sans', 'Arial', 'sans-serif';
+  font-family: 'dinn', 'Times New Roman', 'sans-serif';
   font-size: 100%;
   font-weight: normal;
   font-style: normal;
   text-rendering: optimizeLegibility;
-}
-
-button,
-input {
-  font-family: 'Open Sans', 'Arial', 'sans-serif';
 }
 
 #nprogress {
