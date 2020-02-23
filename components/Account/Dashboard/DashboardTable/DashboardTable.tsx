@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { formatTime } from '../../../../util/helpers';
 import { OrderList } from '../../../../store/account/types';
 import styles from './styles.module.css';
 import { SessionState } from '../../../../store/session/types';
+import champions from '../../../../lib/champions';
 
 interface Props {
   orders: OrderList;
@@ -11,67 +12,83 @@ interface Props {
   session: SessionState;
 }
 
-const labels = ['ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date'];
-
 const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
   const { orders, filter, session } = props;
 
-  // const labels =
-  //   session.user.role === 'admin'
-  //     ? ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date', 'Assign', 'Set']
-  //     : ['Tracking ID', 'Service', 'Summoner', 'Booster', 'Status', 'Date'];
+  const orderStatus = (status: string): string => {
+    switch (status) {
+      case 'open':
+        return 'Complete your order details to begin your order!';
+      case 'initialized':
+      case 'active':
+        return 'Your order is currently in progress!';
+      case 'paused':
+        return 'We will not continue your order while it is paused.';
+      case 'completed':
+        return 'Your order is now complete!';
+      default:
+        return 'Ooops, we cannot determine the status of your order.';
+    }
+  };
+
+  const orderChampions = useCallback(order => {
+    const list = [];
+
+    if (order?.champions) {
+      champions.forEach(champ => {
+        order.champions.forEach(item => {
+          if (champ.name === item.name) {
+            list.push({
+              ...item,
+              img: champ.img
+            });
+          }
+        });
+      });
+    }
+
+    console.log(list);
+
+    return list;
+  }, []);
 
   return (
     <div className={styles.root}>
-      <div className={styles.container}>
-        {orders[filter].orders.length > 0 ? (
-          <>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  {labels.map(label => (
-                    <th key={label}>
-                      <div>{label}</div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {orders[filter].orders.map(order => (
-                  <tr key={order.trackingId}>
-                    <td>
-                      <span>{order.trackingId}</span>
-                    </td>
-                    <Link
-                      key={order.trackingId}
-                      href="/account/order/[trackingId]"
-                      as={`/account/order/${order.trackingId}`}
-                    >
-                      <td>
-                        <span>{order.title}</span>
-                      </td>
-                    </Link>
-                    <td>
-                      <span>{order.summonerName}</span>
-                    </td>
-                    <td>
-                      <span>{order.booster ? order.booster.username : '-'}</span>
-                    </td>
-                    <td>
-                      <span>{order.status}</span>
-                    </td>
-                    <td>
-                      <span>{formatTime(order.createdAt)}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        ) : (
-          <div className={styles.empty}>There are no orders to show here. :(</div>
-        )}
-      </div>
+      {orders[filter].orders.length > 0 ? (
+        orders[filter].orders.map(order => (
+          <div key={order.trackingId} className={styles.container}>
+            <div className={styles.wrapper}>
+              <div className={styles.header}>
+                <Link href="/account/order/[trackingId]" as={`/account/order/${order.trackingId}`}>
+                  <h1>{order.title}</h1>
+                </Link>
+                <div>
+                  <span># {order.trackingId} - </span>
+                  <span>{order.status}</span>
+                  <time>{formatTime(order.createdAt)}</time>
+                </div>
+              </div>
+              <div className={styles.content}>
+                <span>
+                  {order.booster
+                    ? `Your current hero is ${order.booster.username}`
+                    : 'You currently do not have a hero assigned to your order.'}
+                </span>
+                <span>{orderStatus(order.status)}</span>
+              </div>
+            </div>
+            <div className={styles.champions}>
+              {orderChampions(order).map(champion => (
+                <div className={styles.championItem} key={champion.name}>
+                  <img alt="champion-icon" className={styles.championImage} src={champion.img} />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className={styles.empty}>There are no orders to show here. :(</div>
+      )}
     </div>
   );
 };

@@ -73,9 +73,9 @@
   --white: #fafafa;
   --secondary-white: #d7dadc;
   --grey: #999;
-  --accent: #6772e5;
+  --accent: #1a73e8;
   --green: #159570;
-  --red: #ef5350;
+  --red: #e53935;
   --yellow: #ffc400;
 }
 
@@ -84,6 +84,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 body {

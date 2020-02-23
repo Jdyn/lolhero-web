@@ -20,10 +20,11 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   const [filter, setFilter] = useState('active');
 
   useEffect(() => {
-    if (!OrderListRequest.success) {
-      fetchOrderList();
-    }
-  }, [fetchOrderList, OrderListRequest]);
+    fetchOrderList();
+    // if (!OrderListRequest.success) {
+    //   fetchOrderList();
+    // }
+  }, [fetchOrderList]);
 
   return (
     <div className={styles.root}>
