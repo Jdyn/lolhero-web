@@ -56,7 +56,7 @@ const Button: React.FC<Props> = React.forwardRef(
 Button.defaultProps = {
   margin: '5px',
   width: 'auto',
-  padding: '0px 15px',
+  padding: '0px 0',
   secondary: false,
   onClick: null,
   large: false

@@ -25,6 +25,7 @@
 .container > h2 {
   margin: 0;
   font-family: 'burbank';
+  letter-spacing: 0.025em;
   font-size: 40px;
 }
 

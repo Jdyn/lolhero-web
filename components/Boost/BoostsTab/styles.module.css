@@ -66,11 +66,13 @@
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* .button:active {
-  background-color: var(--secondary-grey);
-  border: 1px solid var(--tertiary-grey);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-} */
+.Solo {
+  color: var(--accent);
+}
+
+.Duo {
+  color: var(--red) !important;
+}
 
 .header {
   display: flex;
@@ -83,17 +85,20 @@
 }
 
 .header > span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   color: var(--accent);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: left;
-  width: 55px;
+  margin-right: 5px;
 }
 
 .header > h2 {
   margin: 0;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -110,7 +115,7 @@
   margin: 0;
   margin-top: 5px;
   text-align: left;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 @media (min-width: 640px) {

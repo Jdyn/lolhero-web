@@ -133,11 +133,11 @@ const BottomNavigator = (props: Props): JSX.Element => {
       const { payment, details } = valid;
 
       if ((payment && details) || (valid.payment && session.isLoggedIn)) {
-        return '#159570';
+        return 'enabled';
       }
-      return '#414141';
+      return 'disabled';
     }
-    return '#159570';
+    return 'enabled';
   };
 
   return (
@@ -146,9 +146,8 @@ const BottomNavigator = (props: Props): JSX.Element => {
       <button
         type="button"
         id="submit-button"
-        className={styles.button}
+        className={`${styles.button} ${styles[buttonColor()]}`}
         onClick={(): void => updateStage(currentStage)}
-        style={{ backgroundColor: buttonColor() }}
       >
         {purchaseOrderRequest?.isPending ? (
           <Loader height="57px" width="57px" />

@@ -81,7 +81,7 @@ const BoostTab = (props: Props): JSX.Element => {
               onClick={(): void => handleOrderUpdate(index)}
             >
               <div className={styles.header}>
-                <span>{item.tag}</span>
+                <span className={`${styles[currentType]}`}>{item.tag}</span>
                 <h2>{item.title}</h2>
               </div>
               {/* <span className={styles.selectedText}>{isSelected && 'selected'}</span> */}

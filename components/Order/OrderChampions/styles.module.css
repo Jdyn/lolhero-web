@@ -76,11 +76,11 @@
 }
 
 .championItem > img {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  overflow: hidden;
   border: 1px solid var(--tertiary-grey);
-  cursor: pointer;
   transition-duration: 0.1s;
 }
 

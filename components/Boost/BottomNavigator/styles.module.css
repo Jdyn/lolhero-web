@@ -46,6 +46,14 @@
   box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
 }
 
+.enabled {
+  background: var(--green);
+}
+
+.disabled {
+  background: #414141;
+}
+
 @media (min-width: 640px) {
   .root {
     grid-template-columns: 1fr 1fr 1fr 1fr;

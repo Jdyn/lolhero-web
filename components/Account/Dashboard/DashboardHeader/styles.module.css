@@ -11,7 +11,7 @@
   z-index: 20;
   flex-grow: 1;
   padding: 25px 0px;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 }
@@ -24,6 +24,8 @@
   text-align: center;
   color: var(--white);
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   flex: 1;
 }
@@ -47,6 +49,11 @@
   .container {
     flex-direction: row;
     margin: 0;
+  }
+
+  .username {
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 
   .portrait {

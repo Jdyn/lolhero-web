@@ -32,7 +32,9 @@
   flex-direction: row;
   font-size: 1.125rem;
   cursor: pointer;
+  text-decoration: underline;
   line-height: 1.4;
+  /* text-underline-offset: 10px; */
 }
 
 .champions {
