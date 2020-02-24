@@ -29,8 +29,7 @@
   color: var(--white);
   text-transform: uppercase;
   font-family: 'burbank';
-  letter-spacing: 0.025em;
-  font-size: 42px;
+  font-size: 36px;
 }
 
 .nav {

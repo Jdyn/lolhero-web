@@ -1,6 +1,7 @@
 .root {
-  min-height: 600px;
   height: 100vh;
+  min-height: 600px;
+  max-height: 2040px;
 }
 
 .container {
@@ -18,7 +19,6 @@
 .container > h1 {
   margin: 0;
   font-family: 'burbank';
-  letter-spacing: 0.025em;
   font-size: 60px;
 }
 
@@ -26,17 +26,11 @@
   margin: 0;
   font-family: 'burbank';
   letter-spacing: 0.025em;
-  font-size: 40px;
+  font-size: 25px;
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  max-width: 320px;
-  flex: 1;
-  flex-wrap: wrap;
+  display: grid;
 }
 
 .form {
@@ -82,4 +76,19 @@
   min-width: 0;
   font-size: 16px;
   background-color: transparent;
+}
+
+@media (min-width: 650px) {
+
+  .container > h1 {
+    font-size: 75px;
+  }
+
+  .container > h2 {
+    font-size: 35px;
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
 }
