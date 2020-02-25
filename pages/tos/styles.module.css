@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+}
+
+.container {
+  max-width: 850px;
+  background-color: var(--secondary-grey);
+  padding: 25px;
+  border-radius: 16px;
+  margin: 20px auto;
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container > h1 {
+  color: var(--white);
+  text-align: center;
+}
+
+.container > p {
+  color: var(--secondary-white);
+  margin: 25px 0px;
+  line-height: 20px;
+}
+
+.container > p > span {
+  color: var(--grey);
+  margin-right: 10px;
+}
