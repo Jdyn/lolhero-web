@@ -4,7 +4,7 @@
   /* min-height: 600px;
   max-height: 1040px; */
   position: relative;
-  transform: skewY(-10deg);
+  /* transform: skewY(-10deg); */
   transform-origin: bottom left;
 }
 
@@ -14,8 +14,8 @@
   width: 100%;
   max-width: 1040px;
   padding: 0px 20px;
-  transform: skewY(10deg);
-  margin: 150px auto 25px auto;
+  /* transform: skewY(10deg); */
+  margin: 0px auto 0px auto;
 }
 
 .root::before {
