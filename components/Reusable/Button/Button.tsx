@@ -28,8 +28,8 @@ const Button: React.FC<Props> = React.forwardRef(
           ref={ref}
           onClick={onClick}
           className={`
-        ${styles.root}
-        ${secondary ? styles.secondary : ''}
+        ${styles.button}
+        ${secondary ? styles.secondary : styles.primary}
         ${large ? styles.large : ''}`}
           style={{ margin, padding, width }}
         >
@@ -42,8 +42,8 @@ const Button: React.FC<Props> = React.forwardRef(
         ref={ref}
         onClick={onClick}
         className={`
-      ${styles.root}
-      ${secondary ? styles.secondary : ''}
+      ${styles.button}
+      ${secondary ? styles.secondary : styles.primary}
       ${large ? styles.large : ''}`}
         style={{ margin, padding, width }}
       >

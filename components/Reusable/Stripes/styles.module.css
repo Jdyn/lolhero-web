@@ -12,7 +12,7 @@
   background-size: cover;
   height: 100vh;
   min-height: 600px;
-  max-height: 2040px;
+  max-height: 1140px;
 }
 
 .v2 {
@@ -72,7 +72,7 @@
   grid-row: 3;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   border-radius: 16px 0 0 16px;
-  background: var(--primary-grey);
+  background: var(--secondary-grey);
 }
 
 .stripes span:nth-child(5) {

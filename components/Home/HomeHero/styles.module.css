@@ -1,7 +1,7 @@
 .root {
   height: 100vh;
   min-height: 600px;
-  max-height: 2040px;
+  max-height: 1140px;
 }
 
 .container {
@@ -12,20 +12,21 @@
   color: var(--white);
   padding: 25px;
   padding-top: 100px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-align: center;
 }
 
 .container > h1 {
   margin: 0;
   font-family: 'burbank';
+  letter-spacing: 0.025em;
+  text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
   font-size: 60px;
 }
 
 .container > h2 {
   margin: 0;
   font-family: 'burbank';
-  letter-spacing: 0.025em;
   font-size: 25px;
 }
 

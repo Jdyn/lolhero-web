@@ -62,6 +62,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'bumper';
+  src: url('/static/fonts/bumper.ttf') format('');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
 /* @font-face {
   font-family: 'burbank';
   src: url('/static/fonts/burbank-bold.ttf') format('truetype');
@@ -81,7 +89,7 @@
 
 :root {
   --border: #5f5f5f;
-  --primary-grey: #2c2c2c;
+  --primary-grey: #2a2a2a;
   --secondary-grey: #252525;
   --tertiary-grey: #202020;
   --quartinary-grey: #151515;
@@ -90,7 +98,7 @@
   --grey: #999;
   --accent: #1565c0;
   --light-accent: #1e88e5;
-  --green: #43A047;
+  --green: #43a047;
   --red: #ef5350;
   --light-red: #e57373;
   --purple: #dc6ac8;

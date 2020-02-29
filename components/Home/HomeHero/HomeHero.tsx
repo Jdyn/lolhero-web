@@ -21,9 +21,9 @@ const HomeHero = (): JSX.Element => {
     <section className={styles.root}>
       <Stripes version="v1" />
       <div className={styles.container}>
-        <h1>LoLHero</h1>
-        <h2>League Of Legends</h2>
-        <h2>Elo Boosting</h2>
+        <h1>LOLHERO</h1>
+        {/* <h2>League Of Legends</h2>
+        <h2>Elo Boosting</h2> */}
         <form className={styles.form} onSubmit={handleSearch}>
           <input
             value={form.trackingId}

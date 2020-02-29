@@ -25,8 +25,8 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const [orderForm, setOrderForm] = useState({
     note: '',
     details: {
-      primaryRole: 'Middle',
-      secondaryRole: 'Bottom',
+      primaryRole: account?.selectedOrder?.details?.primaryRole,
+      secondaryRole: account?.selectedOrder?.details?.primaryRole,
       summonerName: '',
       champions: []
     },
@@ -35,6 +35,17 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
       password: null
     }
   });
+
+  useEffect(() => {
+    setOrderForm(prev => ({
+      ...prev,
+      details: {
+        ...prev.details,
+        primaryRole: account.selectedOrder?.details?.primaryRole || null,
+        secondaryRole: account.selectedOrder?.details?.secondaryRole || null
+      }
+    }));
+  }, [setOrderForm, account.selectedOrder]);
 
   const onInitializeOrder = (): void => {
     const { champions } = orderForm.details;
@@ -47,6 +58,8 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     const finalForm = { ...orderForm, details: { ...orderForm.details, champions: newChampions } };
     initializeOrder(finalForm, trackingId as string, authEmail);
   };
+
+  console.log(orderForm);
 
   return (
     <div className={styles.root}>
