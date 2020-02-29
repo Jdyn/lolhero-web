@@ -18,9 +18,8 @@ export interface Boosts {
 const boosts: Boosts = {
   Solo: {
     name: 'Solo Boost',
-    description: 'SOLO means one of our boosters will log onto your account.',
-    subdescription:
-      'If you want to play alongside the booster, you can select our duo option above.',
+    description: 'SOLO means one of our heroes will log onto your account.',
+    subdescription: 'If you want to play with our hero, you can select our duo service.',
     color: '#4285F4',
     items: [
       {
@@ -29,7 +28,7 @@ const boosts: Boosts = {
         tag: 'Solo',
         maxAmount: '1',
         id: 1,
-        description: 'We play the required amount of games to reach the division you select.'
+        description: 'We play any amount of games necessary to reach the rank of your choosing.'
       },
       {
         title: 'Placement Games',
@@ -37,7 +36,7 @@ const boosts: Boosts = {
         tag: 'Solo',
         maxAmount: '10',
         id: 2,
-        description: 'We play your desired amount of placement matches.'
+        description: 'We will play the amount of placement games you choose.'
       },
       {
         title: 'Net Wins',
@@ -45,22 +44,23 @@ const boosts: Boosts = {
         tag: 'Solo',
         maxAmount: '10',
         id: 3,
-        description: 'We ensure a win/loss ratio of 2:1 where each loss adds an additional 2 wins.'
-      },
-      {
-        title: 'Normal Games',
-        type: 'solo-normal-games',
-        tag: 'Solo',
-        maxAmount: '25',
-        id: 4,
-        description: 'Low cost, guaranteeing high performance without a specific win rate'
+        description:
+          'We guarantee a win ratio of 2 to 1 where each loss adds an additional 2 wins to your boost.'
       }
+      // {
+      //   title: 'Normal Games',
+      //   type: 'solo-normal-games',
+      //   tag: 'Solo',
+      //   maxAmount: '25',
+      //   id: 4,
+      //   description: 'Low cost, guaranteeing high performance without a specific win rate'
+      // }
     ]
   },
   Duo: {
     name: 'Duo Boost',
-    description: 'DUO means you will play alongside our booster on your own account.',
-    subdescription: ' if you do not want to play, you can select our solo option above.',
+    description: 'DUO means you will play with one of our heroes on your own account.',
+    subdescription: " if you don't want to play, you can select our solo option.",
     color: '#e53935',
     items: [
       {
@@ -69,7 +69,7 @@ const boosts: Boosts = {
         tag: 'Duo',
         maxAmount: '1',
         id: 5,
-        description: 'We play the required amount of games to reach the division you select.'
+        description: 'We play any amount of games necessary to reach the rank of your choosing.'
       },
       {
         title: 'Placement Games',
@@ -77,7 +77,7 @@ const boosts: Boosts = {
         tag: 'Duo',
         maxAmount: '10',
         id: 6,
-        description: 'We play your desired amount of placement matches.'
+        description: 'We will play the amount of placement games you choose.'
       },
       {
         title: 'Net Wins',
@@ -85,16 +85,17 @@ const boosts: Boosts = {
         tag: 'Duo',
         maxAmount: '10',
         id: 7,
-        description: 'We ensure a win/loss ratio of 2:1 where each loss adds an additional 2 wins.'
-      },
-      {
-        title: 'Net Games',
-        type: 'duo-net-games',
-        tag: 'Duo',
-        maxAmount: '20',
-        id: 8,
-        description: 'Low cost, guaranteeing high performance without a specific win rate'
+        description:
+          'We guarantee a win ratio of 2 to 1 where each loss adds an additional 2 wins to your boost.'
       }
+      // {
+      //   title: 'Net Games',
+      //   type: 'duo-net-games',
+      //   tag: 'Duo',
+      //   maxAmount: '20',
+      //   id: 8,
+      //   description: 'Low cost, guaranteeing high performance without a specific win rate'
+      // }
     ]
   }
 };

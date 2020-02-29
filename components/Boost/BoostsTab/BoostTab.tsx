@@ -65,10 +65,10 @@ const BoostTab = (props: Props): JSX.Element => {
           onClick={handleFilterUpdate}
         />
       </div>
-      {/* <div className={styles.notice}>
+      <div className={styles.notice}>
         {currentContent.description}
-        <span>{currentContent.subdescription}</span>
-      </div> */}
+        <span> {currentContent.subdescription}</span>
+      </div>
       <div className={styles.container}>
         {currentContent.items.map((item, index) => {
           const isSelected = selectedIndex === index;

@@ -37,7 +37,6 @@
   border-left: 8px solid;
   border-right: 8px solid;
   z-index: 10;
-  border-radius: 8px 8px 0px 0px;
   border-color: var(--secondary-grey);
   flex-direction: column;
   justify-content: space-between;

@@ -63,8 +63,8 @@
 }
 
 @font-face {
-  font-family: 'bumper';
-  src: url('/static/fonts/bumper.ttf') format('');
+  font-family: 'avant';
+  src: url('/static/fonts/avant.otf') format('opentype');
   font-weight: normal;
   font-display: swap;
   font-style: normal;

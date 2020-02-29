@@ -29,13 +29,12 @@
 
 .notice {
   color: var(--white);
-  margin: 10px 15px;
-  padding: 25px;
-  font-size: 16px;
+  margin: 10px 10px 5px 10px;
+  padding: 20px;
+  font-size: 17px;
   border: 1px solid var(--tertiary-grey);
-  box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3);
-  border-radius: 18px;
-  will-change: box-shadow;
+  /* box-shadow: 0 6px 12px -4px rgba(10, 10, 10, 0.3), 0 3px 7px -5px rgba(0, 0, 0, 0.3); */
+  border-radius: 16px;
   background-color: var(--secondary-grey);
 }
 

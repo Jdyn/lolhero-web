@@ -1,19 +1,24 @@
 import React from 'react';
-import HomeContainer from '../containers/HomeContainer';
+import { connect } from 'react-redux';
+import Home from '../components/Home';
 import Layout from '../components/Reusable/Layout';
 
 const content = {
   title: 'Home - Professional Boosting Services',
-  description: ''
-  // 'LoL Hero is a professional league boosting service who focuses on delivering the speed and performance promised with every boost.'
+  description:
+    'LoLHero is the first modern league of legends boosting service that focuses on delivering advanced features and functionality while sporting the most skilled boosting team in the game.'
 };
 
-const index = (): JSX.Element => {
+const HomeContainer = (props): JSX.Element => {
   return (
     <Layout title={content.title} description={content.description}>
-      <HomeContainer />
+      <Home {...props} />
     </Layout>
   );
 };
 
-export default index;
+const mapStateToProps = state => ({
+  sessionRequest: state.request.AUTHENTICATE || {}
+});
+
+export default connect(mapStateToProps)(HomeContainer);

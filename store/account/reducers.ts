@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AccountState, SetOrderList, OrderUpdate } from './types';
 

@@ -1,35 +1,21 @@
 .root {
   display: flex;
-  flex-direction: row;
-  /* min-height: 600px;
-  max-height: 1040px; */
+  flex-direction: column;
   position: relative;
-  /* transform: skewY(-10deg); */
-  transform-origin: bottom left;
+  overflow: hidden;
+  margin-top: -150px;
 }
 
-.container {
+.primary {
   display: flex;
   flex-direction: row;
   width: 100%;
   max-width: 1140px;
   padding: 0px 20px;
-  /* transform: skewY(10deg); */
-  margin: 0px auto 0px auto;
+  margin: 0 auto 100px auto;
 }
 
-.root::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  /* transform: skewY(10deg); */
-  overflow: hidden;
-  background: var(--primary-grey);
-  transform-origin: top right;
-}
-
-.image {
+.content {
   display: flex;
   position: relative;
   width: 100%;
@@ -37,76 +23,29 @@
   flex: 1.5;
   overflow: hidden;
   opacity: 0.5;
-  margin-top: -150px;
   border-radius: 50%;
+  box-shadow: 0 0 40px 50px var(--primary-grey) inset;
   background: no-repeat url('/static/images/art/darius.jpg');
   background-size: cover;
   background-position: 40%;
 }
 
-.image::before {
-  content: '';
-  display: block;
-  box-shadow: 0 0 40px 50px var(--primary-grey) inset;
-  border-radius: 50%;
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
-}
-
-/* .root::before {
-  content: '';
-  display: flex;
-  position: absolute;
-  top: 0;
-  z-index: 3;
-  width: 100%;
-  height: 30%;
-  transform: skewY(-10deg);
-  transform-origin: bottom left;
-  background: linear-gradient(0deg, transparent 20%, #2c2c2c 70%);
-} */
-
-/* .root::after {
-  content: '';
-  display: flex;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  height: 20%;
-  transform: skewY(-9deg);
-  transform-origin: bottom left;
-  background: linear-gradient(180deg, transparent 20%, #2c2c2c 70%);
-} */
-
-.content {
-  display: flex;
-  flex: 1;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  padding-right: 25px;
-  transform-origin: top right;
-}
-
 .hero {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex: 1;
+  padding-right: 25px;
   width: 100%;
-  /* justify-content: center; */
 }
 
 .hero > h1 {
   display: flex;
-  font-family: 'burbank';
+  font-family: 'avant';
   color: var(--white);
   letter-spacing: 0.025em;
   font-size: 2.5em;
-  /* width: 50%; */
   margin: 0 0 30px 0;
   justify-content: center;
   text-align: center;
@@ -124,11 +63,25 @@
   margin: 0;
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
   font-size: 20px;
-  /* width: 50%; */
+}
+
+.secondary {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  padding-top: 150px;
+}
+
+.secondary:before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 180%;
+  top: 0;
+  transform: skewY(-10deg);
+  background: var(--secondary-grey)
 }
 
 @media (min-width: 650px) {
-  .image::before {
-    background-position: top left;
-  }
 }

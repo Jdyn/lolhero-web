@@ -1,60 +1,24 @@
-import { BoostState, boostActions, BoostActionTypes } from './types';
+/* eslint-disable no-param-reassign */
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { BoostState, SetBoostUpdate, SetBoostPrices, initialState } from './types';
 
-const initialState: BoostState = {
-  price: null,
-  stage: 0,
-  order: {
-    type: 'boost',
-    nonce: null,
-    email: null,
-    startRankTitle: '',
-    desiredRankTitle: '',
-    paymentMethodIsSelected: false,
-    details: {
-      lp: 20,
-      queue: 'Solo',
-      server: 'NA',
-      flashPosition: 'D',
-      primaryRole: 'Middle',
-      secondaryRole: 'Bottom',
-      startRank: null,
-      desiredRank: null,
-      desiredAmount: 10,
-      boostType: 'Solo',
-      collectionId: 1,
-      collectionName: 'Division Boost',
-      isExpress: false,
-      isIncognito: false,
-      isUnrestricted: false,
-      promos: null
-    }
+const reducers = {
+  boostUpdated: (state: BoostState, action: PayloadAction<SetBoostUpdate>): void => {
+    const { newPrice, orderUpdate, detailsUpdate } = action.payload;
+    state.price = newPrice;
+    state.order = { ...state.order, ...orderUpdate };
+    state.order.details = { ...state.order.details, ...detailsUpdate };
   },
-  pricing: null
-};
-
-export default (state = initialState, action: BoostActionTypes): BoostState => {
-  switch (action.type) {
-    case boostActions.UPDATE_BOOST:
-      return {
-        ...state,
-        price: action.newPrice,
-        order: {
-          ...state.order,
-          ...action.orderUpdate,
-          details: {
-            ...state.order.details,
-            ...action.detailsUpdate
-          }
-        }
-      };
-    case boostActions.FETCH_BOOST_PRICES:
-      return {
-        ...state,
-        pricing: {
-          ...action.prices
-        }
-      };
-    default:
-      return state;
+  boostPricingFetched: (state: BoostState, action: PayloadAction<SetBoostPrices>): void => {
+    state.pricing = { ...action.payload };
   }
 };
+
+const boost = createSlice({
+  name: 'boost',
+  initialState,
+  reducers
+});
+
+export const { boostUpdated, boostPricingFetched } = boost.actions;
+export default boost.reducer;

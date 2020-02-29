@@ -1,3 +1,35 @@
+export const initialState: BoostState = {
+  price: null,
+  stage: 0,
+  order: {
+    type: 'boost',
+    nonce: null,
+    email: null,
+    startRankTitle: '',
+    desiredRankTitle: '',
+    paymentMethodIsSelected: false,
+    details: {
+      lp: 20,
+      queue: 'Solo',
+      server: 'NA',
+      flashPosition: 'D',
+      primaryRole: 'Middle',
+      secondaryRole: 'Bottom',
+      startRank: null,
+      desiredRank: null,
+      desiredAmount: 10,
+      boostType: 'Solo',
+      collectionId: 1,
+      collectionName: 'Division Boost',
+      isExpress: false,
+      isIncognito: false,
+      isUnrestricted: false,
+      promos: null
+    }
+  },
+  pricing: null
+};
+
 export interface BoostState {
   price: number | null;
   stage: number | null;
@@ -61,21 +93,15 @@ export const boostActions: BoostActions = {
   UPDATE_BOOST: 'UPDATE_BOOST'
 };
 
-interface SetBoostPrices {
-  type: typeof boostActions.FETCH_BOOST_PRICES;
-  prices: {
-    Solo: object;
-    Duo: object;
-  };
+export interface SetBoostPrices {
+  Solo: object;
+  Duo: object;
 }
 
-interface UpdateBoost {
-  type: typeof boostActions.UPDATE_BOOST;
+export interface SetBoostUpdate {
   newPrice: number;
   detailsUpdate: object;
   orderUpdate: object;
 }
 
 export type UpdateOrder = (detailsUpdate: object | null, orderUpdate?: object) => void;
-
-export type BoostActionTypes = SetBoostPrices | UpdateBoost;

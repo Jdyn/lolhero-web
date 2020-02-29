@@ -18,7 +18,7 @@
 
 .container > h1 {
   margin: 0;
-  font-family: 'burbank';
+  font-family: 'avant';
   letter-spacing: 0.025em;
   text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
   font-size: 60px;
@@ -26,7 +26,9 @@
 
 .container > h2 {
   margin: 0;
-  font-family: 'burbank';
+  font-family: 'avant';
+  text-transform: uppercase;
+  text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
   font-size: 25px;
 }
 
@@ -41,7 +43,7 @@
   width: 100%;
   max-width: 450px;
   max-height: 60px;
-  border-radius: 8px;
+  border-radius: 16px;
   background-color: var(--tertiary-grey);
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   padding: 10px 16px;
@@ -83,10 +85,6 @@
 
   .container > h1 {
     font-size: 75px;
-  }
-
-  .container > h2 {
-    font-size: 35px;
   }
 
   .wrapper {

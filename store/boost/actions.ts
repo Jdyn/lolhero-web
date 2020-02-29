@@ -4,7 +4,8 @@ import Router from 'next/router';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import PriceCalculator from '../../util/PriceCalculator';
-import { boostActions, boostRequests, BoostActionTypes, BoostOrder, BoostPricing } from './types';
+import { boostRequests, BoostOrder } from './types';
+import { boostUpdated, boostPricingFetched } from './reducers';
 import { setRequest } from '../request/actions';
 import { AppState } from '..';
 
@@ -33,11 +34,6 @@ const validateOrder = (order: BoostOrder, dispatchError: (message: string) => vo
   return true;
 };
 
-const setBoostPrices = (prices: BoostPricing): BoostActionTypes => ({
-  type: boostActions.FETCH_BOOST_PRICES,
-  prices
-});
-
 export const fetchBoostPrices = (ctx?: NextPageContext) => async (
   dispatch: Dispatch,
   getState: () => AppState
@@ -58,23 +54,12 @@ export const fetchBoostPrices = (ctx?: NextPageContext) => async (
   }
 
   if (response.ok) {
-    dispatch(setBoostPrices(response.result));
+    dispatch(boostPricingFetched(response.result));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, 'Failed to Fetch'));
   }
 };
-
-const setBoost = (
-  newPrice: number,
-  detailsUpdate: object,
-  orderUpdate: object
-): BoostActionTypes => ({
-  type: boostActions.UPDATE_BOOST,
-  newPrice,
-  detailsUpdate,
-  orderUpdate
-});
 
 export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch: Dispatch,
@@ -89,16 +74,22 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
 
   const { boost } = getState();
 
-  let price = 0;
+  let newPrice = 0;
 
   if (boost.pricing) {
     const order = { ...boost.order.details, ...detailsUpdate };
 
     const pricing = boost.pricing[order.boostType];
-    price = PriceCalculator(order, pricing);
+    newPrice = PriceCalculator(order, pricing);
   }
 
-  dispatch(setBoost(price, { ...detailsUpdate }, { ...orderUpdate }));
+  const payload = {
+    newPrice,
+    detailsUpdate,
+    orderUpdate
+  };
+
+  dispatch(boostUpdated(payload));
 };
 
 export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState): void => {

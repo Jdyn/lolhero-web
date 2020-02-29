@@ -31,13 +31,13 @@ class Application extends App<Props> {
   static async getInitialProps({ Component, ctx }): Promise<any> {
     const { token } = cookies(ctx);
 
-    let pageProps = { token };
+    let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps };
+    return { pageProps, token };
   }
 
   componentDidMount(): void {
