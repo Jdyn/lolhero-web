@@ -13,6 +13,7 @@ interface Props {
 
 const LogIn = (props: Props): JSX.Element => {
   const { authenticate, sessionRequest } = props;
+
   return (
     <Layout title="Log In">
       <AccountAuth type="login" authenticate={authenticate} sessionRequest={sessionRequest} />
@@ -25,7 +26,7 @@ const mapStateToProps = (state: AppState): object => ({
 });
 
 const mapDispatch = (dispatch): object => ({
-  authenticate: (type: 'login' | 'logout' | 'signup', form: object, redirect: boolean): void =>
+  authenticate: (type: 'login' | 'logout' | 'signup', form: object, redirect?: string): void =>
     dispatch(handleAuth(type, form, redirect))
 });
 

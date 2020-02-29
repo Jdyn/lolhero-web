@@ -8,12 +8,12 @@ const auth = ctx => {
   const { token } = nextCookie(ctx);
 
   if (ctx.req && !token) {
-    ctx.res.writeHead(302, { Location: '/' });
+    ctx.res.writeHead(302, { Location: '/account/login' });
     ctx.res.end();
   }
 
   if (!token) {
-    Router.push({ pathname: '/' });
+    Router.push({ pathname: '/account/login' });
   }
 
   return token;

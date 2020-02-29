@@ -16,7 +16,7 @@ import { pageview } from '../../../services/gtag';
 interface Props {
   children?: React.ReactNode;
   session?: SessionState;
-  authenticate?: (type: string, form: object) => void;
+  handleAuth?: (type: string, form: object) => void;
   updateOrder?: UpdateOrder;
   sessionRequest?: Request;
   title?: string;
@@ -24,15 +24,7 @@ interface Props {
 }
 
 const Layout = (props: Props): JSX.Element => {
-  const {
-    children,
-    session,
-    authenticate,
-    sessionRequest,
-    title,
-    description,
-    updateOrder
-  } = props;
+  const { children, session, handleAuth, sessionRequest, title, description, updateOrder } = props;
 
   const router = useRouter();
   const { pathname } = router;
@@ -47,7 +39,7 @@ const Layout = (props: Props): JSX.Element => {
       </Head>
       <Header
         session={session}
-        handleAuth={authenticate}
+        handleAuth={handleAuth}
         sessionRequest={sessionRequest}
         updateOrder={updateOrder}
       />
@@ -63,7 +55,7 @@ const mapStateToProps = (state: AppState): object => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: (type, form): void => dispatch(handleAuth(type, form)),
+  handleAuth: (type, form, redirect): void => dispatch(handleAuth(type, form, redirect)),
   updateOrder: (order): void => dispatch(orderUpdated({ order }))
 });
 

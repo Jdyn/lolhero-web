@@ -23,7 +23,7 @@ const setLogin = (user: User): SessionActionTypes => ({
 
 const login = (
   form: object,
-  redirect: boolean
+  redirect?: string
 ): ((dispatch: Function, getState: () => AppState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const request = getState().request[requestType] || { isPending: false };
@@ -42,7 +42,7 @@ const login = (
         dispatch(setLogin(user));
         dispatch(setRequest(false, requestType));
         if (redirect) {
-          Router.push('/');
+          Router.push(redirect);
         }
       } else {
         const error = 'An Error has occurred logging in. Please try again.';
@@ -95,7 +95,7 @@ const setSignup = (user: User): SessionActionTypes => ({
 
 const signup = (
   form: object,
-  redirect: boolean
+  redirect?: string
 ): ((dispatch: Function, getState: () => AppState) => void) => (dispatch, getState): void => {
   const requestType = requests.AUTHENTICATE;
   const request = getState().request[requestType] || { isPending: false };
@@ -114,7 +114,7 @@ const signup = (
         dispatch(setSignup(user));
         dispatch(setRequest(false, requestType));
         if (redirect) {
-          Router.push('/');
+          Router.push(redirect);
         }
       } else {
         const { errors } = response;
@@ -132,7 +132,7 @@ const signup = (
 export const handleAuth = (
   type: 'login' | 'logout' | 'signup',
   form: object,
-  redirect?: boolean
+  redirect?: string
 ): ((dispatch: Function) => void) => (dispatch): void => {
   switch (type) {
     case 'login':

@@ -42,7 +42,7 @@ const templates = {
 export type Types = 'login' | 'signup' | 'profile' | 'menu' | '';
 
 interface Props {
-  handleAuth: (type: string, form: object) => void;
+  handleAuth: (type: string, form: object, redirect?: string) => void;
   modalRef: React.RefObject<HTMLDivElement>;
   isOpen: boolean;
   type: Types;
@@ -94,7 +94,9 @@ const AuthMenu = (props: Props): JSX.Element => {
                 ) : (
                   <Form
                     template={templates[type]}
-                    onSubmit={(formType, form): void => handleAuth(formType, form)}
+                    onSubmit={(formType, form): void =>
+                      handleAuth(formType, form, '/account/dashboard')
+                    }
                     isPending={sessionRequest.isPending}
                   />
                 )}

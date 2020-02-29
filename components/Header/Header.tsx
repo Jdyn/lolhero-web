@@ -10,7 +10,7 @@ import { UpdateOrder } from '../../store/boost/types';
 import Filter from '../Reusable/Filter';
 
 interface Props {
-  handleAuth: (type: string, form: object) => void;
+  handleAuth: (type: string, form: object, redirect?: string) => void;
   updateOrder?: UpdateOrder;
   session: SessionState;
   sessionRequest: Request;

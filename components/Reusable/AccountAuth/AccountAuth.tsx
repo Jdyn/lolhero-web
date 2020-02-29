@@ -29,7 +29,7 @@ const templates: { [name: string]: FormTemplate } = {
 
 interface Props {
   type: 'login' | 'signup';
-  authenticate: (type: string, form: object, redirect: boolean) => void;
+  authenticate: (type: string, form: object, redirect?: string) => void;
   sessionRequest: Request;
 }
 
@@ -41,7 +41,7 @@ const AccountAuth = (props: Props): JSX.Element => {
       <div className={styles.container}>
         <Form
           template={templates[type]}
-          onSubmit={(formType, form): void => authenticate(formType, form, true)}
+          onSubmit={(formType, form): void => authenticate(formType, form, '/account/dashboard')}
           isPending={sessionRequest.isPending}
         />
         <div className={styles.error}>{sessionRequest.errored && sessionRequest.error}</div>
