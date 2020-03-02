@@ -1,9 +1,9 @@
 .button {
-    width: 12px;
-    border: 1px solid;
+    width: 14px;
+    border: 2px solid;
     margin: 1.5px 1px;
     cursor: pointer;
-    height: 35px;
+    height: 38px;
     outline: none;
     padding: 0;
     border-radius: 3px;
@@ -16,8 +16,8 @@
   }
   
   .iron {
-    background-color: #383838;
-    border-color: #292929;
+    background-color: #616161;
+    border-color: #424242;
     /* background: linear-gradient(180deg, #424242 25%, #383838 55%, #303030 95%); */
   }
   
@@ -40,8 +40,8 @@
   
   .platinum {
     /* 'linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%)' */
-    background-color: #00796b;
-    border-color: #00695c;
+    background-color: #26A69A;
+    border-color: #00796B;
   }
   
   .diamond {
@@ -62,6 +62,7 @@
   
   .button:hover {
     transform: scale(1.5);
+    z-index: 10;
   }
   
   .button:active {

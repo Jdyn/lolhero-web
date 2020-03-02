@@ -29,8 +29,8 @@
   border-bottom: 1px solid var(--border);
   color: var(--white);
   text-transform: uppercase;
-  font-family: 'burbank';
-  font-size: 36px;
+  font-family: 'avant';
+  font-size: 32px;
 }
 
 .logo:hover {
