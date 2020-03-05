@@ -29,23 +29,25 @@ const RankList = (props: Props): JSX.Element => {
 
   const validate = useCallback(
     itemRank => {
-      if (itemRank > 20 && itemRank !== 28) {
-        return true;
-      }
-
-      if (!isStartRank) {
-        if (currentOrder.startRank !== null) {
-          return itemRank < currentOrder.startRank + 1;
+      if (currentOrder.collectionName !== 'Placement Games') {
+        if (itemRank > 20 && itemRank !== 28) {
+          return true;
         }
-      } else if (currentOrder.desiredRank !== null) {
-        return itemRank > currentOrder.desiredRank - 1;
-      } else {
-        return false;
+
+        if (!isStartRank) {
+          if (currentOrder.startRank !== null) {
+            return itemRank < currentOrder.startRank + 1;
+          }
+        } else if (currentOrder.desiredRank !== null) {
+          return itemRank > currentOrder.desiredRank - 1;
+        } else {
+          return false;
+        }
       }
 
       return false;
     },
-    [currentOrder.startRank, currentOrder.desiredRank, isStartRank]
+    [currentOrder.startRank, currentOrder.desiredRank, isStartRank, currentOrder.collectionId]
   );
 
   useEffect(() => {

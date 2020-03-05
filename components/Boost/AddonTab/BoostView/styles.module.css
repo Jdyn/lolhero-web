@@ -12,12 +12,12 @@
 .root > p {
   color: var(--grey);
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 
 .root > h2 {
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 0;
   color: var(--white);
   margin-bottom: 10px;
@@ -63,8 +63,8 @@
 
 .promo {
   cursor: pointer;
-  height: 32px;
-  width: 32px;
+  height: 34px;
+  width: 34px;
   border-radius: 8px;
   border: none;
   outline: none;
@@ -74,6 +74,7 @@
   justify-content: center;
   font-weight: 700;
   background-color: var(--primary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
   transition-duration: 0.2s;
 }
 
