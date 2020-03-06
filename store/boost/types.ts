@@ -27,14 +27,30 @@ export const initialState: BoostState = {
       promos: null
     }
   },
-  pricing: null
+  pricing: null,
+  api: {
+    purchaseOrder: {
+      pending: false,
+      success: false,
+      errored: false,
+      error: null
+    }
+  }
 };
+
+export interface ApiState {
+  pending: boolean;
+  success: boolean;
+  errored: boolean;
+  error: string | null;
+}
 
 export interface BoostState {
   price: number | null;
   stage: number | null;
   order: BoostOrder;
   pricing: BoostPricing;
+  api: { [name: string]: ApiState };
 }
 
 export interface BoostPricing {
@@ -81,16 +97,6 @@ export const boostRequests: BoostRequests = {
   BOOST_PRICING: 'BOOST_PRICING',
   BOOST_ORDER: 'BOOST_ORDER',
   PURCHASE_ORDER: 'PURCHASE_ORDER'
-};
-
-interface BoostActions {
-  FETCH_BOOST_PRICES: 'FETCH_BOOST_PRICES';
-  UPDATE_BOOST: 'UPDATE_BOOST';
-}
-
-export const boostActions: BoostActions = {
-  FETCH_BOOST_PRICES: 'FETCH_BOOST_PRICES',
-  UPDATE_BOOST: 'UPDATE_BOOST'
 };
 
 export interface SetBoostPrices {

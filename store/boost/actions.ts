@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { NextPageContext } from 'next';
 import Router from 'next/router';
 import { Dispatch } from 'redux';
@@ -8,6 +9,7 @@ import { boostRequests, BoostOrder } from './types';
 import { boostUpdated, boostPricingFetched } from './reducers';
 import { setRequest } from '../request/actions';
 import { AppState } from '..';
+import { purchase } from './api';
 
 const validateOrder = (order: BoostOrder, dispatchError: (message: string) => void): boolean => {
   const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
@@ -92,42 +94,70 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch(boostUpdated(payload));
 };
 
-export const submitOrder = () => (dispatch: Dispatch, getState: () => AppState): void => {
-  const requestType = boostRequests.PURCHASE_ORDER;
-  const request = getState().request[requestType] || { isPending: false };
+export const submitOrder = createAsyncThunk<Promise<void>, void, { state: AppState }>(
+  'boost/purchaseOrder',
+  async (_, { getState, dispatch }) => {
+    const requestType = boostRequests.PURCHASE_ORDER;
 
-  if (request.isPending) return;
+    const {
+      request: { [requestType]: request },
+      boost: { order }
+    } = getState();
 
-  dispatch(setRequest(true, requestType));
+    if (request?.isPending) return;
 
-  const order = { ...getState().boost.order };
+    dispatch(setRequest(true, requestType));
 
-  const dispatchError = (error: string): void => {
-    dispatch(setRequest(false, requestType, error));
-  };
+    const { ok, result, error } = await purchase(order);
 
-  if (validateOrder(order, dispatchError)) {
-    Api.post('/order/create', order)
-      .then(response => {
-        if (response.ok) {
-          dispatch(setRequest(false, requestType));
-          Router.push({
-            pathname: response.result.success_url
-          });
-        } else {
-          const errors = response.errors || [];
-          const message =
-            errors[Object.keys(errors)[0]] ||
-            'There was an error placing your order. Please try again later or contact support.';
-
-          dispatchError(message);
-        }
-      })
-      .catch(error => {
-        dispatchError(
-          'There was an error placing your order. Please try again later or contact support.'
-        );
-        Sentry.captureException(error);
-      });
+    if (ok) {
+      dispatch(setRequest(false, requestType));
+      Router.push({ pathname: result.success_url });
+    } else {
+      dispatch(setRequest(false, requestType, error));
+    }
   }
-};
+);
+
+// export const submitOrder = () => async (
+//   dispatch: Dispatch,
+//   getState: () => AppState
+// ): Promise<void> => {
+//   const requestType = boostRequests.PURCHASE_ORDER;
+//   const request = getState().request[requestType] || { isPending: false };
+
+//   if (request.isPending) return;
+
+//   dispatch(setRequest(true, requestType));
+
+//   const order = { ...getState().boost.order };
+
+//   const dispatchError = (error: string): void => {
+//     dispatch(setRequest(false, requestType, error));
+//   };
+
+//   if (validateOrder(order, dispatchError)) {
+//     Api.post('/order/create', order)
+//       .then(response => {
+//         if (response.ok) {
+//           dispatch(setRequest(false, requestType));
+//           Router.push({
+//             pathname: response.result.success_url
+//           });
+//         } else {
+//           const errors = response.errors || [];
+//           const message =
+//             errors[Object.keys(errors)[0]] ||
+//             'There was an error placing your order. Please try again later or contact support.';
+
+//           dispatchError(message);
+//         }
+//       })
+//       .catch(error => {
+//         dispatchError(
+//           'There was an error placing your order. Please try again later or contact support.'
+//         );
+//         Sentry.captureException(error);
+//       });
+//   }
+// };

@@ -10,7 +10,7 @@ import request from './request/reducers';
 import session from './session/reducers';
 import account from './account/reducers';
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   account,
   session,
   request,
