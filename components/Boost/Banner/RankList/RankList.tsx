@@ -29,12 +29,8 @@ const RankList = (props: Props): JSX.Element => {
 
   const validate = useCallback(
     itemRank => {
-      if (
-        currentOrder.collectionName === 'Division Boost' ||
-        currentOrder.collectionName === 'Net Wins' ||
-        currentOrder.collectionName === 'Net Games'
-      ) {
-        if (currentOrder.boostType === 'Duo' && itemRank > 21) {
+      if (currentOrder.collectionName !== 'Placement Games') {
+        if (itemRank > 20 && itemRank !== 28) {
           return true;
         }
 
@@ -51,13 +47,7 @@ const RankList = (props: Props): JSX.Element => {
 
       return false;
     },
-    [
-      currentOrder.startRank,
-      currentOrder.collectionName,
-      currentOrder.boostType,
-      currentOrder.desiredRank,
-      isStartRank
-    ]
+    [currentOrder.startRank, currentOrder.desiredRank, isStartRank, currentOrder.collectionId]
   );
 
   useEffect(() => {

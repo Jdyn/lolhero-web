@@ -1,16 +1,19 @@
 .root {
   display: flex;
+  /* position: relative; */
   flex-direction: column;
 }
 
 .container {
   display: flex;
+  /* position: relative; */
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .rankWrapper {
   display: flex;
+  /* position: relative; */
 }
 
 .label {
@@ -20,8 +23,14 @@
   /* text-transform: uppercase; */
   letter-spacing: 0.025rem;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 1rem;
   max-width: 168px;
   width: 100%;
   margin: 5px auto 0px auto;
+}
+
+@media (min-width: 640px) {
+  .label {
+    font-size: 0.8vw;
+  }
 }

@@ -25,7 +25,7 @@ const mapStateToProps = (state: AppState): object => ({
 });
 
 const mapDispatch = (dispatch): object => ({
-  authenticate: (type: 'login' | 'logout' | 'signup', form: object, redirect: boolean): void =>
+  authenticate: (type: 'login' | 'logout' | 'signup', form: object, redirect: string): void =>
     dispatch(handleAuth(type, form, redirect))
 });
 

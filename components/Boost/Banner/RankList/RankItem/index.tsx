@@ -23,7 +23,7 @@ const RankItem = (props: Props): JSX.Element => {
       type="button"
       aria-label={`${rankItem.tag} ${rankTier + 1}`}
       disabled={disabled}
-      className={`${styles.button} ${styles[`${rankItem.tag}`]} ${
+      className={`${styles.rankItem} ${styles[`${rankItem.tag}`]} ${
         disabled ? styles.disabled : ''
       } ${selected ? styles.selected : ''}`}
       onClick={handleOnClick}

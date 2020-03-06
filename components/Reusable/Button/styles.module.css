@@ -5,7 +5,7 @@
   border: none;
   min-height: 36px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   flex: 1;
   color: #fff;
   border-radius: 16px;
@@ -32,9 +32,9 @@
   background: var(--accent);
 }
 
-.primary:focus {
+/* .primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(81, 127, 243, 0.5);
-}
+} */
 
 .large {
   /* height: 45px; */

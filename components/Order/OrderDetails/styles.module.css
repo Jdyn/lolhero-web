@@ -180,6 +180,15 @@
   border-radius: 8px;
 }
 
+.adminContainer > input {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  background-color: var(--secondary-grey);
+  margin: 10px 0px;
+  border-radius: 8px;
+}
+
 .reveal {
   outline: none;
   border: none;

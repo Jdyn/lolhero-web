@@ -19,7 +19,6 @@
 .container > h1 {
   margin: 0;
   font-family: 'avant';
-  letter-spacing: 0.025em;
   text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
   font-size: 60px;
 }

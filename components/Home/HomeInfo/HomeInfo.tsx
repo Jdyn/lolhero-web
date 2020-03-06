@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles.module.css';
-import HomeSteps from '../HomeSteps';
 
 const HomeInfo = (): JSX.Element => {
   return (
@@ -16,9 +15,21 @@ const HomeInfo = (): JSX.Element => {
         </div>
         <div className={styles.content} />
       </div>
-      <div className={styles.secondary}>
-        <HomeSteps />
-      </div>
+      <section className={styles.secondary}>
+        <div className={styles.secondaryRoot}>
+          <div className={styles.secondaryContainer}>
+            <h1>A truly modern boosting experience</h1>
+            <p>
+              We understand that many players don’t have the time or patience to grind out the
+              ranked seasonal rewards. Not to mention all the trolls that run it down mid on the
+              ranked ladder in League Of Legends. Because of this, we’re here to offer our help with
+              our LoL boosting services! If you are too busy with work to play, or just can’t stand
+              all the griefers in your games, we offer the greatest and smoothest boosting
+              experience available.
+            </p>
+          </div>
+        </div>
+      </section>
     </section>
   );
 };
