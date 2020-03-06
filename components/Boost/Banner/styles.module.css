@@ -139,6 +139,7 @@
   .container {
     border-left: 0.4vw solid;
     border-right: 0.4vw solid;
+    border-color: var(--secondary-grey);
     padding: 35px 0.2vw;
   }
 
