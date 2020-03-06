@@ -11,7 +11,12 @@ interface Props {
   setStage: (state: number) => void;
   session: SessionState;
   valid: { details: boolean; payment: boolean };
-  setValid: (state: object) => void;
+  setValid: React.Dispatch<
+    React.SetStateAction<{
+      payment: boolean;
+      details: boolean;
+    }>
+  >;
   children: React.ReactNode;
   submitOrder: () => void;
   braintreeInstance: Dropin;
@@ -33,7 +38,10 @@ const BottomNavigator = (props: Props): JSX.Element => {
     updateOrder
   } = props;
 
-  const [detailsForm, setDetailsForm] = useState({});
+  const [detailsForm, setDetailsForm] = useState({
+    'details-email': '',
+    'details-email-confirmation': ''
+  });
 
   const updateStage = (stage: number): void => {
     if (stage === 3) {
@@ -42,14 +50,14 @@ const BottomNavigator = (props: Props): JSX.Element => {
       if (braintreeInstance) {
         if ((valid.details && valid.payment) || (session.isLoggedIn && valid.payment)) {
           braintreeInstance.requestPaymentMethod((error, payload) => {
-            if (!error) {
+            if (!error && payload) {
               setStage(currentStage + 1);
               updateOrder(
                 {},
                 {
                   paymentMethodIsSelected: true,
                   nonce: payload.nonce,
-                  email: detailsForm['details-email'] || session.user.email
+                  email: detailsForm['details-email']
                 }
               );
             }
@@ -76,8 +84,10 @@ const BottomNavigator = (props: Props): JSX.Element => {
     let validCount = 0;
 
     Object.keys(detailsForm).forEach((key: string) => {
-      if (validate(detailsForm[key])) {
-        validCount += 1;
+      if (key === 'details-email' || key === 'details-email-confirmation') {
+        if (validate(detailsForm[key])) {
+          validCount += 1;
+        }
       }
     });
 
