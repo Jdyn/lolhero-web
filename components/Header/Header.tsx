@@ -21,7 +21,7 @@ const filters = {
     title: 'home',
     url: '/'
   },
-  order: {
+  pricing: {
     title: 'order now',
     url: '/boost'
   },

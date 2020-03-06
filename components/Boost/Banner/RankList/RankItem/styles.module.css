@@ -1,70 +1,86 @@
-.button {
-    width: 14px;
-    border: 2px solid;
-    margin: 1.5px 1px;
-    cursor: pointer;
-    height: 38px;
-    outline: none;
-    padding: 0;
-    border-radius: 3px;
-    transition-duration: 0.1s;
+.rankItem {
+  width: calc(55vw / 12);
+  height: calc((65vw / 12) * 1.8);
+  border: 0.6vw solid;
+  margin: 1.5px 1px;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  border-radius: 3px;
+  transition-duration: 0.1s;
+}
+
+@media (min-width: 640px) {
+  .rankItem {
+    width: calc(20vw / 12);
+    height: calc((20vw / 8) * 1.8);
+    border: 0.2vw solid;
   }
-  
-  .unranked {
-    background-color: #1976d2;
-    border-color: #0d47a1;
+}
+
+@media (min-width: 1025px) {
+  .rankItem {
+    width: calc(10vw / 12);
+    height: calc((10vw / 8) * 1.8);
+    border: 0.1vw solid;
   }
-  
-  .iron {
-    background-color: #616161;
-    border-color: #424242;
-    /* background: linear-gradient(180deg, #424242 25%, #383838 55%, #303030 95%); */
-  }
-  
-  .bronze {
-    background-color: #5d4037;
-    border-color: #4e342e;
-    /* background: linear-gradient(180deg, #795548 25%, #6d4c41 55%, #5d4037 95%) !important; */
-  }
-  
-  .silver {
-    background-color: #455a64;
-    border-color: #37474f;
-  }
-  
-  .gold {
-    /* color: 'linear-gradient(180deg, #FFB300 25%, #FFA000 55%, #F9A825 94%)', */
-    background-color: #f9a825;
-    border-color: #f57f17;
-  }
-  
-  .platinum {
-    /* 'linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%)' */
-    background-color: #26A69A;
-    border-color: #00796B;
-  }
-  
-  .diamond {
-    /* 'linear-gradient(180deg, #01579B 25%, #0D47A1 55%, #3D5AFE 95%)' */
-    background-color: #3d5afe;
-    border-color: #1a237e;
-  }
-  
-  .disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: scale(1) !important;
-  }
-  
-  .selected {
-    border-color: var(--white) !important;
-  }
-  
-  .button:hover {
-    transform: scale(1.5);
-    z-index: 10;
-  }
-  
-  .button:active {
-    border-color: var(--white) !important;
-  }
+}
+
+.unranked {
+  background-color: #1976d2;
+  border-color: #0d47a1;
+}
+
+.iron {
+  background-color: #616161;
+  border-color: #424242;
+  /* background: linear-gradient(180deg, #424242 25%, #383838 55%, #303030 95%); */
+}
+
+.bronze {
+  background-color: #5d4037;
+  border-color: #4e342e;
+  /* background: linear-gradient(180deg, #795548 25%, #6d4c41 55%, #5d4037 95%) !important; */
+}
+
+.silver {
+  background-color: #455a64;
+  border-color: #37474f;
+}
+
+.gold {
+  /* color: 'linear-gradient(180deg, #FFB300 25%, #FFA000 55%, #F9A825 94%)', */
+  background-color: #f9a825;
+  border-color: #f57f17;
+}
+
+.platinum {
+  /* 'linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%)' */
+  background-color: #26a69a;
+  border-color: #00796b;
+}
+
+.diamond {
+  /* 'linear-gradient(180deg, #01579B 25%, #0D47A1 55%, #3D5AFE 95%)' */
+  background-color: #3d5afe;
+  border-color: #1a237e;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: scale(1) !important;
+}
+
+.selected {
+  border-color: var(--white) !important;
+}
+
+.button:hover {
+  transform: scale(1.5);
+  z-index: 10;
+}
+
+.button:active {
+  border-color: var(--white) !important;
+}

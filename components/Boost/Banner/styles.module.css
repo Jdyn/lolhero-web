@@ -1,9 +1,10 @@
 .root {
   z-index: 5;
   height: 90%;
-  max-height: 545px;
   display: flex;
-  max-width: 245px;
+  max-height: calc(85vh - 15vh);
+  max-width: 65vw;
+  min-width: 185px;
   position: relative;
   flex-grow: 1;
   flex-basis: 100%;
@@ -21,9 +22,9 @@
   z-index: -1000;
   width: 100%;
   border-radius: 8px 8px 0px 0px;
-  height: -webkit-calc(100% - 105px);
-  height: -moz-calc(100% - 105px);
-  height: calc(100% - 105px);
+  height: -webkit-calc(100% - 15vh);
+  height: -moz-calc(100% - 15vh);
+  height: calc(100% - 15vh);
   box-shadow: -20px -20px 25px rgba(10, 10, 10, 0.1), -20px 60px 25px rgba(10, 10, 10, 0.4);
 }
 
@@ -47,10 +48,41 @@
   text-align: center;
 }
 
+.wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+  z-index: 1000;
+  bottom: -5px;
+  width: 100%;
+  /* height: 105%; */
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.header > h1 {
+  margin: 10px 0;
+  font-size: 1rem;
+  min-height: 36px;
+}
+
+.header > h3 {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.1rem;
+}
+
 .footer {
   width: 100%;
-  height: 105px;
-  min-height: 105px;
+  height: 10vh;
+  /* min-height: 105px; */
   background-color: transparent;
   fill: transparent;
   position: relative;
@@ -66,11 +98,67 @@
   stroke: var(--secondary-grey);
   will-change: fill;
   transition: all 0.1s ease-in;
-  height: 105px;
+  height: 100%;
   position: relative;
-  stroke-width: 4;
+  stroke-width: 4px;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+@media (min-width: 640px) {
+  .root {
+    max-height: calc(85vh - 15vh);
+    max-width: 30vw;
+  }
+
+  .root::after {
+    height: -webkit-calc(100% - 15vh);
+    height: -moz-calc(100% - 15vh);
+    height: calc(100% - 15vh);
+  }
+
+  .footer {
+    height: 10vh;
+  }
+
+  .header > h1 {
+    font-size: 1.1rem;
+  }
+
+  .header > h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .root {
+    max-height: calc(85vh - 15vh);
+    max-width: 15vw;
+  }
+
+  .container {
+    border-left: 0.4vw solid;
+    border-right: 0.4vw solid;
+    padding: 35px 0.2vw;
+  }
+
+  .root::after {
+    height: -webkit-calc(100% - 15vh);
+    height: -moz-calc(100% - 15vh);
+    height: calc(100% - 15vh);
+  }
+
+  .footer {
+    height: 15vh;
+  }
+  
+  .header > h1 {
+    font-size: 1.1vw;
+  }
+
+  .header > h3 {
+    font-size: 1vw;
+  }
 }
 
 .unranked {
@@ -97,14 +185,14 @@
 
 .gold {
   /* background: linear-gradient(180deg, #FFB300 25%, #FFA000 55%, #F9A825 94%); */
-  background-color: #FFC107;
-  border-color: #F9A825;
+  background-color: #ffc107;
+  border-color: #f9a825;
 }
 
 .platinum {
   /* background: linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%); */
-  background-color: #26A69A;
-  border-color: #00796B;
+  background-color: #26a69a;
+  border-color: #00796b;
 }
 
 .diamond {
@@ -134,47 +222,16 @@
 }
 
 .gold-banner {
-  fill: #FFC107;
-  stroke: #F9A825;
+  fill: #ffc107;
+  stroke: #f9a825;
 }
 
 .platinum-banner {
-  fill: #26A69A;
-  stroke: #00796B;
+  fill: #26a69a;
+  stroke: #00796b;
 }
 
 .diamond-banner {
   fill: #3d5afe;
   stroke: #1a237e;
-}
-
-.wrapper {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  flex: 1;
-  z-index: 1000;
-  bottom: -5px;
-  width: 100%;
-  /* height: 105%; */
-}
-
-.header {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.header > h1 {
-  margin: 10px 0;
-  font-size: 30px;
-  min-height: 36px;
-}
-
-.header > h3 {
-  margin: 0;
-  color: var(--white);
-  font-size: 16px;
 }

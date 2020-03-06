@@ -27,7 +27,7 @@
 
 .bannerContainer {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   background: transparent;
   height: 100%;
   width: 100%;
