@@ -90,7 +90,7 @@
   color: var(--accent);
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: avant;
+  font-family: caros;
   text-transform: uppercase;
   text-align: left;
   margin-right: 5px;
@@ -99,7 +99,7 @@
 .header > h2 {
   margin: 0;
   font-size: 1.1rem;
-  font-family: avant;
+  font-family: caros;
   font-weight: 700;
 }
 

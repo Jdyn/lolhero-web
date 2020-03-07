@@ -23,11 +23,11 @@ const HomeInfo = (): JSX.Element => {
           <div className={styles.secondaryContainer}>
             <h1>We strive to be a service worthy of your trust</h1>
             <p>
-              Having been playing the game since the beginning, we understand all of our customers’
-              needs and frustrations, because we’ve been there. The necessity of your order’s
-              privacy and anonymity is one of our top priorities. Our team consists of only the most
-              skilled and well-trained players. Our main goal is getting your boost done quickly,
-              securely and without hassle.
+              We have been playing the game since the beginning, so we understand all of your needs
+              and frustrations, because we’ve been there. The necessity of your order’s privacy and
+              anonymity is our top priority. Our team consists of only the most skilled and
+              well-trained players and our goal is to get your boost done quickly, securely and
+              without hassle.
             </p>
             <div className={styles.cards}>
               <div className={styles.card}>
@@ -43,11 +43,11 @@ const HomeInfo = (): JSX.Element => {
               <div className={styles.card}>
                 <h1>safety and security</h1>
                 <p>
-                  We ensure every order is treated with great care in terms of security. We operate
-                  with a VPN for free on request and can play in offline mode. We make it a huge
-                  point to follow any and all instruction given to us by our customers. Your hero
-                  preferences, region, and even timeslots you want us to fulfil your order during.
-                  For more information, you can check out our F.A.Q section.
+                  We ensure every order is treated with great care. We operate with a VPN for free
+                  on request and can play in offline mode. We make it a huge point to follow any and
+                  all instruction given to us by our customers. Your hero preferences, roles, and
+                  even time slots you want us to play during can all be set. For more information,
+                  you can check out our F.A.Q section.
                 </p>
               </div>
               <div className={styles.card}>

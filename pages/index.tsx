@@ -6,7 +6,7 @@ import Layout from '../components/Reusable/Layout';
 const content = {
   title: 'Home - Professional Boosting Services',
   description:
-    'LoLHero is the first modern league of legends boosting service that focuses on delivering advanced features and functionality while sporting the most skilled boosting team in the game.'
+    'LoLHero is the first modern league of legends boosting service that focuses on delivering advanced features and functionality while maintaing the highest level players.'
 };
 
 const HomeContainer = (props): JSX.Element => {

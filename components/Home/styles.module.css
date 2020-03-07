@@ -18,7 +18,7 @@
 
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .hero {
@@ -29,10 +29,10 @@
 
 .hero > h1 {
   display: flex;
-  font-family: 'avant';
+  font-family: 'caros';
   color: var(--white);
-  font-size: 2em;
-  margin: 0 0 30px 0;
+  font-size: 1.5rem;
+  margin: 0 0 15px 0;
   justify-content: center;
   text-align: center;
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
@@ -48,7 +48,8 @@
   margin: 0;
   align-self: center;
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  line-height: 25px;
 }
 
 .container {
@@ -61,7 +62,7 @@
 }
 
 .container > h1 {
-  font-family: 'avant';
+  font-family: 'caros';
   color: var(--white);
   letter-spacing: 0.025em;
   font-size: 1.5rem;
@@ -73,8 +74,9 @@
 
 .container > p {
   margin: 15px 0px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--secondary-white);
+  line-height: 25px;
 }
 
 .container > span {
@@ -83,7 +85,7 @@
   margin-top: auto;
   cursor: pointer;
   transition-duration: 0.25s;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .container > span:hover {
@@ -99,6 +101,10 @@
 @media (min-width: 650px) {
   .root {
     flex-direction: column;
+  }
+
+  .wrapper {
+    flex-direction: row;
   }
 
   .container:first-child {

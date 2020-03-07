@@ -11,7 +11,7 @@ const Stripes: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <div className={`${styles.stripes} ${version && styles[`${version}`]}`} style={{ zIndex }}>
-      {version === 'v1' && (
+      {/* {version === 'v1' && (
         <video
           preload="auto"
           loop
@@ -23,7 +23,7 @@ const Stripes: React.FC<Props> = (props: Props): JSX.Element => {
         >
           <track kind="captions" />
         </video>
-      )}
+      )} */}
       <span />
       <span />
       <span />

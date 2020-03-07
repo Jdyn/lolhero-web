@@ -11,8 +11,24 @@
   transform-origin: 0;
   background-size: cover;
   height: 100vh;
+
   min-height: 600px;
   max-height: 1140px;
+}
+
+.v1::before {
+  content: '""';
+  position: absolute;
+  background: no-repeat url('/static/images/art/ashe.jpg');
+  transform: skewY(10deg);
+  top: 75px;
+  z-index: -1;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  /* background-position: 40%; */
+  background-size: cover;
 }
 
 .v2 {
@@ -50,7 +66,7 @@
   opacity: 1 !important;
 }
 
-.stripes span:nth-child(2) {
+.stripes span:nth-child(1) {
   grid-column: span 1;
   background: var(--secondary-grey);
   border-radius: 0 16px 16px 0;

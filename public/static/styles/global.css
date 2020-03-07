@@ -1,29 +1,5 @@
 @font-face {
-  font-family: 'museo';
-  src: url('/static/fonts/museo-300.woff2') format('woff2');
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'museo';
-  src: url('/static/fonts/museo-500.woff2') format('woff2');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'museo';
-  src: url('/static/fonts/museo-700.woff2') format('woff2');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'museo';
+  font-family: 'dinn';
   src: url('/static/fonts/dinn-300.woff2') format('woff2');
   font-weight: 300;
   font-display: swap;
@@ -46,26 +22,34 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Oswald';
-  src: url('/static/fonts/oswald.woff2') format('woff2');
-  font-weight: normal;
+/* @font-face {
+  font-family: 'caros';
+  src: url('/static/fonts/caros-300.woff') format('woff');
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'burbank';
-  src: url('/static/fonts/burbank.woff') format('woff');
-  font-weight: normal;
+  font-family: 'caros';
+  src: url('/static/fonts/caros-500.woff') format('woff');
+  font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'avant';
-  src: url('/static/fonts/banner.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'caros';
+  src: url('/static/fonts/caros-700.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'caros';
+  src: url('/static/fonts/caros.woff') format('woff');
+  font-weight: 900;
   font-display: swap;
   font-style: normal;
 }
