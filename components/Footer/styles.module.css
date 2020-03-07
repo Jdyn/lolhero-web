@@ -11,7 +11,7 @@
 .container {
   display: grid;
   margin: 0 auto;
-  max-width: 1040px;
+  max-width: 1080px;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr;
 }
@@ -64,7 +64,7 @@
 
 @media (min-width: 650px) {
   .container {
-    grid-template-columns: 1.1fr 2fr;
+    grid-template-columns: 1.3fr 2fr;
     grid-template-rows: 1fr;
   }
 

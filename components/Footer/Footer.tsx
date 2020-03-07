@@ -6,13 +6,11 @@ const boostOptions = {
   solo: [
     { title: 'Solo Division', url: '/boost?type=solo-divisions' },
     { title: 'Solo Net Wins', url: '/boost?type=solo-net-wins' },
-    { title: 'Solo Normals', url: '/boost?type=solo-normal-games' },
     { title: 'Solo Placements', url: '/boost?type=solo-placements' }
   ],
   duo: [
     { title: 'Duo Division', url: '/boost?type=duo-divisions' },
     { title: 'Duo Net Wins', url: '/boost?type=duo-net-wins' },
-    { title: 'Duo Net Games', url: '/boost?type=duo-net-games' },
     { title: 'Duo Placements', url: '/boost?type=duo-placements' }
   ]
 };
@@ -23,8 +21,10 @@ const Footer = (): JSX.Element => {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <p>
-            League of Legends is a registered trademark of Riot Games, Inc. We are in no way
-            affiliated with, associated with or endorsed by Riot Games, Inc.
+            LoLHero isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot
+            Games or anyone officially involved in producing or managing League of Legends. League
+            of Legends is a registered trademark of Riot Games, Inc. We are in no way affiliated
+            with, associated with or endorsed by Riot Games, Inc.
           </p>
           <span>© 2020 lolhero.gg | All Rights Reserved</span>
         </div>
@@ -55,8 +55,7 @@ const Footer = (): JSX.Element => {
               <Link prefetch={false} href="/faq">
                 <li>F.A.Q</li>
               </Link>
-              {/* <li>About</li> */}
-              <li>Contact</li>
+
               <Link prefetch={false} href="privacy">
                 <li>Privacy Policy</li>
               </Link>
@@ -93,6 +92,20 @@ const Footer = (): JSX.Element => {
               </Link>
             </ul>
           </div>
+          {/* <div className={styles.content}>
+            <h3>Orders</h3>
+            <ul>
+              <Link prefetch={false} href="/demo">
+                <li>View Demo</li>
+              </Link>
+              <Link prefetch={false} href="/order/track">
+                <li>Find Order</li>
+              </Link>
+              <Link prefetch={false} href="/boost">
+                <li>Order Boost</li>
+              </Link>
+            </ul>
+          </div> */}
         </div>
         <div />
       </div>

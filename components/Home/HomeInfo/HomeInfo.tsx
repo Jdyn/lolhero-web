@@ -21,7 +21,7 @@ const HomeInfo = (): JSX.Element => {
       <section className={styles.secondary}>
         <div className={styles.secondaryRoot}>
           <div className={styles.secondaryContainer}>
-            <h1>We strive to be a service worthy of your trust</h1>
+            <h1>We are a service worthy of your trust</h1>
             <p>
               We have been playing the game since the beginning, so we understand all of your needs
               and frustrations, because we’ve been there. The necessity of your order’s privacy and
