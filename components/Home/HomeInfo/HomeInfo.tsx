@@ -23,10 +23,11 @@ const HomeInfo = (): JSX.Element => {
           <div className={styles.secondaryContainer}>
             <h1>We strive to be a service worthy of your trust</h1>
             <p>
-              Having been in the boosting industry for years, we understand all our customers’ needs
-              and frustrations. Our team consists of only the most skilled and well-trained
-              boosters. Our only priority is to get your boosting order done quickly, securely and
-              without hassle.
+              Having been playing the game since the beginning, we understand all of our customers’
+              needs and frustrations, because we’ve been there. The necessity of your order’s
+              privacy and anonymity is one of our top priorities. Our team consists of only the most
+              skilled and well-trained players. Our main goal is getting your boost done quickly,
+              securely and without hassle.
             </p>
             <div className={styles.cards}>
               <div className={styles.card}>
