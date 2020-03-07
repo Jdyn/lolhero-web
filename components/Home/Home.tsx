@@ -3,6 +3,7 @@ import Link from 'next/link';
 import HomeHero from './HomeHero';
 import HomeInfo from './HomeInfo';
 import styles from './styles.module.css';
+import Button from '../Reusable/Button';
 
 const Home = (): JSX.Element => {
   return (
@@ -10,6 +11,12 @@ const Home = (): JSX.Element => {
       <HomeHero />
       <HomeInfo />
       <section className={styles.tertiary}>
+        <section className={styles.banner}>
+          <div>
+            <h1>Secure your League of Legends season rewards today!</h1>
+            <Button href="/boost">Purchase Now</Button>
+          </div>
+        </section>
         <div className={styles.root}>
           <div className={styles.hero}>
             <h1>What is League Of Legends Boosting</h1>
