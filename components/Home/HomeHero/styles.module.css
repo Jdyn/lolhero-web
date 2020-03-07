@@ -33,6 +33,7 @@
 
 .wrapper {
   display: grid;
+  font-family: avant;
 }
 
 .form {
