@@ -20,7 +20,7 @@ export const purchase = async (order: BoostOrder): Promise<Response> => {
     const response = await Api.post(routes.purchase, order);
 
     const { ok, result } = response;
-    console.log(response);
+
     if (ok) {
       return { ok, result };
     }
