@@ -28,7 +28,6 @@
 }
 
 .primary {
-  /* border: 1px solid #0f4be1; */
   background: var(--accent);
 }
 
@@ -41,14 +40,14 @@
   padding: 15px 20px !important;
 }
 
+.green {
+  background: var(--green) !important;
+}
+
 .secondary {
   background: var(--red);
 }
 
 .secondary:hover {
   background: var(--light-red) !important;
-}
-
-.green {
-  background: var(--green);
 }

@@ -3,8 +3,6 @@ import Button from '../../../Reusable/Button/Button';
 import Form from '../../../Reusable/Form';
 import { SessionState } from '../../../../store/session/types';
 import styles from './styles.module.css';
-import RolePicker from '../../../Reusable/RolePicker';
-import Toggle from '../../../Reusable/Toggle';
 
 const templates = {
   signup: {
@@ -31,12 +29,10 @@ const templates = {
 interface Props {
   session: SessionState;
   handleAuth: (type: string, form: object) => void;
-  updateOrder: any;
-  currentOrder: any;
 }
 
 const DetailsView = (props: Props): JSX.Element => {
-  const { session, handleAuth, updateOrder, currentOrder } = props;
+  const { session, handleAuth } = props;
 
   const [type, setType] = useState(null);
 
@@ -45,7 +41,7 @@ const DetailsView = (props: Props): JSX.Element => {
       <div className={styles.root}>
         {session.isLoggedIn ? (
           <div className={styles.session}>
-            You are currently logged in as <span>{session.user.username}</span>.
+            You are currently logged in as <span>{session?.user?.username}</span>.
           </div>
         ) : (
           <>
@@ -56,8 +52,8 @@ const DetailsView = (props: Props): JSX.Element => {
               {type === 'login' ? 'back' : 'log in'}
             </Button>
             <Button
-              secondary
               margin="0 0 20px 0"
+              green
               onClick={(): void => setType(prev => (prev === 'signup' ? null : 'signup'))}
             >
               {type === 'signup' ? 'back' : 'create account'}

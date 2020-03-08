@@ -8,6 +8,7 @@ interface Props {
   onClick?: (event: React.MouseEvent) => void;
   secondary?: boolean;
   margin?: string;
+  green?: boolean;
   grow?: boolean;
   width?: string;
   maxWidth?: string;
@@ -19,7 +20,7 @@ interface Props {
 
 const Button: React.FC<Props> = React.forwardRef(
   (props: Props, ref: React.RefObject<HTMLButtonElement>) => {
-    const { secondary, onClick, margin, padding, isPending, width, large, href } = props;
+    const { secondary, onClick, margin, padding, isPending, width, large, href, green } = props;
 
     return href ? (
       <Link href={href}>
@@ -30,7 +31,8 @@ const Button: React.FC<Props> = React.forwardRef(
           className={`
         ${styles.button}
         ${secondary ? styles.secondary : styles.primary}
-        ${large ? styles.large : ''}`}
+        ${large ? styles.large : ''}
+        ${green ? styles.green : ''}`}
           style={{ margin, padding, width }}
         >
           {isPending ? <Loader width="36px" height="36px" /> : props.children}
@@ -42,9 +44,10 @@ const Button: React.FC<Props> = React.forwardRef(
         ref={ref}
         onClick={onClick}
         className={`
-      ${styles.button}
-      ${secondary ? styles.secondary : styles.primary}
-      ${large ? styles.large : ''}`}
+        ${styles.button}
+        ${secondary ? styles.secondary : styles.primary}
+        ${large ? styles.large : ''}
+        ${green ? styles.green : ''}`}
         style={{ margin, padding, width }}
       >
         {isPending ? <Loader width="36px" height="36px" /> : props.children}

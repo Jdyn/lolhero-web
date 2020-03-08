@@ -33,11 +33,10 @@ const HomeInfo = (): JSX.Element => {
               <div className={styles.card}>
                 <h1>high level heroes</h1>
                 <p>
-                  Joining the LoLHero team is not easy. We employ a very rigorous application
-                  process to ensure we only bring in the best. The minimum rank we accept is Master
-                  tier, unless someone shows extreme potential. If any Heroes are underperforming,
-                  we try to work with them, but we are willing to replace any underperforming
-                  members, which makes our team constantly evolving and up-to-date with the meta.
+                  Joining our team is not easy. We employ a very rigorous application process to
+                  ensure we only bring in the best. The minimum rank we accept is around Master tier
+                  and we are willing to replace any underperforming members, which makes our team
+                  constantly evolving and up-to-date with the meta.
                 </p>
               </div>
               <div className={styles.card}>
@@ -46,18 +45,16 @@ const HomeInfo = (): JSX.Element => {
                   We ensure every order is treated with great care. We operate with a VPN for free
                   on request and can play in offline mode. We make it a huge point to follow any and
                   all instruction given to us by our customers. Your hero preferences, roles, and
-                  even time slots you want us to play during can all be set. For more information,
-                  you can check out our F.A.Q section.
+                  even time slots you want us to play during can all be set.
                 </p>
               </div>
               <div className={styles.card}>
                 <h1>pricing strategy</h1>
                 <p>
                   Low prices prevent us from maintaining the highest level players, leads to lower
-                  quality work, and lower your account’s security. At LoLHero, We offer the most
-                  competitive pricing for the quality of service we provide. Prices are continously
-                  fluctuating and we provide discount codes throughout the season. We will always
-                  ensure our prices are representative of service we provide.
+                  quality work, and lowers your account security. We offer the most competitive
+                  pricing for the quality of service we provide. Prices are continuously
+                  fluctuating, but we will always ensure our prices are as low as they can be.
                 </p>
               </div>
             </div>
