@@ -47,7 +47,7 @@ const RankList = (props: Props): JSX.Element => {
 
       return false;
     },
-    [currentOrder.startRank, currentOrder.desiredRank, isStartRank, currentOrder.collectionId]
+    [currentOrder.collectionName, currentOrder.desiredRank, currentOrder.startRank, isStartRank]
   );
 
   useEffect(() => {

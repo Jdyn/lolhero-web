@@ -152,9 +152,9 @@
   .footer {
     height: 15vh;
   }
-  
+
   .header > h1 {
-    font-size: 1.1vw;
+    font-size: 1.5vw;
   }
 
   .header > h3 {
@@ -163,76 +163,76 @@
 }
 
 .unranked {
-  background-color: #1976d2;
-  border-color: #0d47a1;
+  background-color: var(--banner-unranked);
+  border-color: var(--banner-unranked-trim);
 }
 
 .iron {
-  background-color: #424242;
-  border-color: #303030;
+  background-color: var(--banner-iron);
+  border-color: var(--banner-iron-trim);
   /* background: linear-gradient(180deg, #424242 25%, #383838 55%, #303030 95%); */
 }
 
 .bronze {
-  background-color: #5d4037;
-  border-color: #4e342e;
+  background-color: var(--banner-bronze);
+  border-color: var(--banner-bronze-trim);
   /* background: linear-gradient(180deg, #795548 25%, #6d4c41 55%, #5d4037 95%) !important; */
 }
 
 .silver {
-  background-color: #455a64;
-  border-color: #37474f;
+  background-color: var(--banner-silver);
+  border-color: var(--banner-silver-trim);
 }
 
 .gold {
   /* background: linear-gradient(180deg, #FFB300 25%, #FFA000 55%, #F9A825 94%); */
-  background-color: #ffc107;
-  border-color: #f9a825;
+  background-color: var(--banner-gold);
+  border-color: var(--banner-gold-trim);
 }
 
 .platinum {
   /* background: linear-gradient(180deg, #4DB6AC 25%, #00897B 55%, #00796B 95%); */
-  background-color: #26a69a;
-  border-color: #00796b;
+  background-color: var(--banner-plat);
+  border-color: var(--banner-plat-trim);
 }
 
 .diamond {
   /* background: linear-gradient(180deg, #01579B 25%, #0D47A1 55%, #3D5AFE 95%); */
-  background-color: #3d5afe;
-  border-color: #1a237e;
+  background-color: var(--banner-diamond);
+  border-color: var(--banner-diamond-trim);
 }
 
 .unranked-banner {
-  fill: #1976d2;
-  stroke: #0d47a1;
+  fill: var(--banner-unranked);
+  stroke: var(--banner-unranked-trim);
 }
 
 .iron-banner {
-  fill: #424242;
-  stroke: #303030;
+  fill: var(--banner-iron);
+  stroke: var(--banner-iron-trim);
 }
 
 .bronze-banner {
-  fill: #5d4037;
-  stroke: #4e342e;
+  fill: var(--banner-bronze);
+  stroke: var(--banner-bronze-trim);
 }
 
 .silver-banner {
-  fill: #455a64;
-  stroke: #37474f;
+  fill: var(--banner-silver);
+  stroke: var(--banner-silver-trim);
 }
 
 .gold-banner {
-  fill: #ffc107;
-  stroke: #f9a825;
+  fill: var(--banner-gold);
+  stroke: var(--banner-gold-trim);
 }
 
 .platinum-banner {
-  fill: #26a69a;
-  stroke: #00796b;
+  fill: var(--banner-plat);
+  stroke: var(--banner-plat-trim);
 }
 
 .diamond-banner {
-  fill: #3d5afe;
-  stroke: #1a237e;
+  fill: var(--banner-diamond);
+  stroke: var(--banner-diamond-trim);
 }

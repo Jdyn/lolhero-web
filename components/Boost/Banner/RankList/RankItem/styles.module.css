@@ -67,7 +67,7 @@
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: 0.2;
   cursor: not-allowed;
   transform: scale(1) !important;
 }
@@ -77,7 +77,7 @@
 }
 
 .button:hover {
-  transform: scale(1.5);
+  transform: scale(1.5) !important;
   z-index: 10;
 }
 
