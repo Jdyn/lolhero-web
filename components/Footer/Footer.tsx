@@ -52,10 +52,7 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <h3>Resources</h3>
             <ul>
-              <Link prefetch={false} href="/faq">
-                <li>F.A.Q</li>
-              </Link>
-
+              <li>Refund Policy</li>
               <Link prefetch={false} href="privacy">
                 <li>Privacy Policy</li>
               </Link>
@@ -67,7 +64,10 @@ const Footer = (): JSX.Element => {
           <div className={styles.content}>
             <div className={styles.spacer} />
             <ul>
-              <Link prefetch={false} href="/demo">
+              <li>F.A.Q</li>
+              <li>Jobs</li>
+              <li>Contact Us</li>
+              {/* <Link prefetch={false} href="/demo">
                 <li>View Demo</li>
               </Link>
               <Link prefetch={false} href="/order/track">
@@ -75,7 +75,7 @@ const Footer = (): JSX.Element => {
               </Link>
               <Link prefetch={false} href="/boost">
                 <li>Order Boost</li>
-              </Link>
+              </Link> */}
             </ul>
           </div>
           <div className={styles.content}>

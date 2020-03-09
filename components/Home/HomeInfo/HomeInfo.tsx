@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './styles.module.css';
 
 const HomeInfo = (): JSX.Element => {
@@ -12,9 +13,17 @@ const HomeInfo = (): JSX.Element => {
             help. Getting unlucky teammates is frustrating and makes it feel impossible to climb. we
             will give you a slight push in the right direction!
           </p>
+          <div>What we offer: </div>
           <ul>
-            <li>Free champion preferences and roles</li>
+            <li>Free Role / Champion Selection</li>
+            <li>In-Depth Order Customization</li>
+            <li>Solo / Duo Placement Games</li>
+            <li>Solo / Duo Divison Climbing</li>
+            <li>Solo / Duo Net Win Boosts</li>
           </ul>
+          <Link href="/boost">
+            <span>Check it out</span>
+          </Link>
         </div>
         <div className={styles.content} />
       </div>

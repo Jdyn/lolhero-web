@@ -23,10 +23,10 @@ const Home = (): JSX.Element => {
             <p>
               We understand that many players don’t have the time or patience to grind out the
               ranked season rewards. Not to mention all the trolls that constantly feed in your
-              games. Because of this, we’re here to offer a service where we play with you, or
-              alongside you to reach your goals! If you are too busy with work to play, or just
-              can’t stand all the griefers in your games, we offer the greatest and smoothest
-              boosting experience available.
+              games. Because of this, we’re here to offer a service where we play with you, or for
+              you to reach your goals! If you are too busy with work to play, or just can’t stand
+              all the griefers in your games, we offer the greatest and smoothest boosting
+              experience available.
             </p>
           </div>
           <div className={styles.wrapper}>
@@ -47,7 +47,7 @@ const Home = (): JSX.Element => {
               <p>
                 We offer a bunch of unique add-ons and options that allow you to customize your
                 order from the group up. We highly recommend utilizing some of these options to get
-                the most value out of your order! Check out these options on the order page!
+                the most value out of your order! Check out these options on the order page.
               </p>
               <Link href="/boost">
                 <span>Learn about these options</span>
