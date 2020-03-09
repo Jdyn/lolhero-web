@@ -19,8 +19,19 @@ interface Props {
 }
 
 const Button: React.FC<Props> = React.forwardRef(
-  (props: Props, ref: React.RefObject<HTMLButtonElement>) => {
-    const { secondary, onClick, margin, padding, isPending, width, large, href, green } = props;
+  (props: Props, ref: React.RefObject<HTMLButtonElement>): JSX.Element => {
+    const {
+      children,
+      secondary,
+      onClick,
+      margin,
+      padding,
+      isPending,
+      width,
+      large,
+      href,
+      green
+    } = props;
 
     return href ? (
       <Link href={href}>
@@ -35,7 +46,7 @@ const Button: React.FC<Props> = React.forwardRef(
         ${green ? styles.green : ''}`}
           style={{ margin, padding, width }}
         >
-          {isPending ? <Loader width="36px" height="36px" /> : props.children}
+          {isPending ? <Loader width="36px" height="36px" /> : children}
         </button>
       </Link>
     ) : (
@@ -50,7 +61,7 @@ const Button: React.FC<Props> = React.forwardRef(
         ${green ? styles.green : ''}`}
         style={{ margin, padding, width }}
       >
-        {isPending ? <Loader width="36px" height="36px" /> : props.children}
+        {isPending ? <Loader width="36px" height="36px" /> : children}
       </button>
     );
   }
