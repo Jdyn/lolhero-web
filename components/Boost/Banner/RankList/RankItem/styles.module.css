@@ -1,6 +1,6 @@
 .rankItem {
-  width: calc(50vw / 12);
-  height: calc((50vw / 12) * 1.8);
+  width: calc(47vw / 12);
+  height: calc((60vw / 12) * 1.8);
   border: 0.6vw solid;
   margin: 1.5px 1px;
   cursor: pointer;
@@ -62,7 +62,8 @@
 }
 
 .disabled {
-  opacity: 0.4;
+  opacity: 0.3;
+  /* background-color: var(--red); */
   cursor: not-allowed;
   transform: scale(1) !important;
 }
@@ -71,11 +72,11 @@
   border-color: var(--white) !important;
 }
 
-.button:hover {
-  transform: scale(1.5) !important;
+.rankItem:hover {
+  transform: scale(1.6);
   z-index: 10;
 }
 
-.button:active {
+.rankItem:active {
   border-color: var(--white) !important;
 }

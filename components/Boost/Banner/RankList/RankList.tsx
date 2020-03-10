@@ -29,7 +29,10 @@ const RankList = (props: Props): JSX.Element => {
 
   const validate = useCallback(
     itemRank => {
-      if (currentOrder.collectionName !== 'Placement Games') {
+      if (
+        currentOrder.collectionName !== 'Placement Games' &&
+        currentOrder.collectionName !== 'Net Wins'
+      ) {
         if (itemRank > 20 && itemRank !== 28) {
           return true;
         }
@@ -43,6 +46,10 @@ const RankList = (props: Props): JSX.Element => {
         } else {
           return false;
         }
+      }
+
+      if (itemRank > 20 && itemRank !== 28) {
+        return true;
       }
 
       return false;
