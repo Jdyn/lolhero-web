@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../../components/Reusable/Layout';
+import Layout from '../../../components/shared/Layout';
 import ForgotAuth from '../../../components/Account/ForgotAuth';
 
 const Forgot = (): JSX.Element => {

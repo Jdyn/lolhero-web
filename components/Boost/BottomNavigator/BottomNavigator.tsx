@@ -4,7 +4,7 @@ import { UpdateOrder } from '../../../store/boost/types';
 import { SessionState } from '../../../store/session/types';
 import styles from './styles.module.css';
 import { Request } from '../../../store/request/types';
-import Loader from '../../Reusable/Loader';
+import Loader from '../../shared/Loader';
 
 interface Props {
   currentStage: number;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Reusable/Layout';
+import Layout from '../components/shared/Layout';
 import BoostOrder from '../components/Order/Order';
 import { AccountState } from '../store/account/types';
 

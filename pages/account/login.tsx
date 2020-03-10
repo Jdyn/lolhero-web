@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Layout from '../../components/Reusable/Layout';
+import Layout from '../../components/shared/Layout';
 import { handleAuth } from '../../store/session/actions';
 import { AppState } from '../../store';
-import AccountAuth from '../../components/Reusable/AccountAuth';
+import AccountAuth from '../../components/shared/AccountAuth';
 import { Request } from '../../store/request/types';
 
 interface Props {

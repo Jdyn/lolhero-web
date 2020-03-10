@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Reusable/Layout';
+import Layout from '../../components/shared/Layout';
 
 const content = {
   title: 'Contact Us',

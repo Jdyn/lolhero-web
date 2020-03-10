@@ -4,7 +4,7 @@ import Banner from '../Banner';
 import styles from './styles.module.css';
 import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
 import { Request } from '../../../store/request/types';
-import Stripes from '../../Reusable/Stripes';
+import Stripes from '../../shared/Stripes';
 
 const ranks = flatRanks({ unranked: true });
 

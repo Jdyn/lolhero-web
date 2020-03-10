@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../../components/Reusable/Layout';
+import Layout from '../../../components/shared/Layout';
 import styles from './success.module.css';
 
 const OrderSuccess = (): JSX.Element => {

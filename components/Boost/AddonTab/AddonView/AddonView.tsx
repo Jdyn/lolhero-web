@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import content from '../../../../lib/content';
-import Toggle from '../../../Reusable/Toggle/Toggle';
+import Toggle from '../../../shared/Toggle/Toggle';
 import { BoostOrderDetails, UpdateOrder } from '../../../../store/boost/types';
 import styles from './styles.module.css';
-import RolePicker from '../../../Reusable/RolePicker';
+import RolePicker from '../../../shared/RolePicker';
 
 interface Props {
   updateOrder: UpdateOrder;

@@ -4,7 +4,7 @@ import { flatRanks } from '../../../lib/ranks';
 import { Order } from '../../../store/account/types';
 import Banner from '../../Boost/Banner';
 import champions from '../../../lib/champions';
-import Filter from '../../Reusable/Filter';
+import Filter from '../../shared/Filter';
 
 const ranks = flatRanks();
 

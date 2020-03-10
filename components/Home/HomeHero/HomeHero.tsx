@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
-import Button from '../../Reusable/Button';
+import Button from '../../shared/Button';
 import styles from './styles.module.css';
-import Stripes from '../../Reusable/Stripes';
+import Stripes from '../../shared/Stripes';
 
 const HomeHero = (): JSX.Element => {
   const [form, setForm] = useState({ trackingId: '' });

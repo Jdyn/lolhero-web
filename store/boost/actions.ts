@@ -1,7 +1,5 @@
-import * as Sentry from '@sentry/browser';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { NextPageContext } from 'next';
 import Router from 'next/router';
+import * as Sentry from '@sentry/browser';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import PriceCalculator from '../../util/PriceCalculator';
@@ -9,54 +7,40 @@ import { boostRequests, BoostOrder } from './types';
 import { boostUpdated, boostPricingFetched } from './reducers';
 import { setRequest } from '../request/actions';
 import { AppState } from '..';
-import { purchase } from './api';
 
-const validateOrder = (order: BoostOrder, dispatchError: (message: string) => void): boolean => {
+type GetState = () => AppState;
+
+const validateOrder = (order: BoostOrder, dispatchError: (message: string) => boolean): boolean => {
   const { collectionName, startRank, desiredRank, desiredAmount } = order.details;
 
-  if (!startRank) {
-    dispatchError('You must have a starting rank.');
-    return false;
-  }
+  if (!startRank) return dispatchError('You must have a starting rank.');
 
   if (collectionName === 'Division Boost') {
-    if (!desiredRank) {
-      dispatchError('You must have a desired rank.');
-      return false;
-    }
-    if (startRank > desiredRank) {
-      dispatchError('Your starting rank cannot be greater than your desired rank.');
-      return false;
-    }
-  } else if (!desiredAmount) {
-    dispatchError('You must have a desired amount.');
-    return false;
+    if (!desiredRank) return dispatchError('You must have a desired rank.');
+    if (startRank > desiredRank)
+      return dispatchError('Your starting rank cannot be greater than your desired rank.');
   }
+
+  if (!desiredAmount) return dispatchError('You must have a desired amount.');
 
   return true;
 };
 
-export const fetchBoostPrices = (ctx?: NextPageContext) => async (
+export const fetchBoostPrices = () => async (
   dispatch: Dispatch,
-  getState: () => AppState
+  getState: GetState
 ): Promise<void> => {
   const requestType = boostRequests.BOOST_PRICING;
-  const request = getState().request[requestType] || { isPending: false };
+  const request = getState().request[requestType];
 
-  if (request.isPending) return;
+  if (request?.isPending) return;
 
   dispatch(setRequest(true, requestType));
 
-  let response;
+  const { ok, result } = await Api.fetch('/prices');
 
-  try {
-    response = await Api.fetch('/prices', { ctx });
-  } catch (e) {
-    dispatch(setRequest(false, requestType, 'Failed to Fetch'));
-  }
-
-  if (response.ok) {
-    dispatch(boostPricingFetched(response.result));
+  if (ok) {
+    dispatch(boostPricingFetched(result));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, 'Failed to Fetch'));
@@ -65,7 +49,7 @@ export const fetchBoostPrices = (ctx?: NextPageContext) => async (
 
 export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch: Dispatch,
-  getState: () => AppState
+  getState: GetState
 ): void => {
   const requestType = boostRequests.PURCHASE_ORDER;
   const request = getState().request[requestType] || { errored: false };
@@ -94,70 +78,46 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
   dispatch(boostUpdated(payload));
 };
 
-export const submitOrder = createAsyncThunk<Promise<void>, void, { state: AppState }>(
-  'boost/purchaseOrder',
-  async (_, { getState, dispatch }) => {
-    const requestType = boostRequests.PURCHASE_ORDER;
+export const submitOrder = () => async (
+  dispatch: Dispatch,
+  getState: () => AppState
+): Promise<void> => {
+  const requestType = boostRequests.PURCHASE_ORDER;
+  const request = getState().request[requestType] || { isPending: false };
 
-    const {
-      request: { [requestType]: request },
-      boost: { order }
-    } = getState();
+  if (request.isPending) return;
 
-    if (request?.isPending) return;
+  dispatch(setRequest(true, requestType));
 
-    dispatch(setRequest(true, requestType));
+  const order = { ...getState().boost.order };
 
-    const { ok, result, error } = await purchase(order);
+  const dispatchError = (error: string): boolean => {
+    dispatch(setRequest(false, requestType, error));
+    return false;
+  };
 
-    if (ok) {
-      dispatch(setRequest(false, requestType));
-      Router.push({ pathname: result.success_url });
-    } else {
-      dispatch(setRequest(false, requestType, error));
-    }
+  if (validateOrder(order, dispatchError)) {
+    Api.post('/order/create', order)
+      .then(response => {
+        if (response.ok) {
+          dispatch(setRequest(false, requestType));
+          Router.push({
+            pathname: response.result.success_url
+          });
+        } else {
+          const errors = response.errors || [];
+          const message =
+            errors[Object.keys(errors)[0]] ||
+            'There was an error placing your order. Please try again later or contact support.';
+
+          dispatchError(message);
+        }
+      })
+      .catch(error => {
+        dispatchError(
+          'There was an error placing your order. Please try again later or contact support.'
+        );
+        Sentry.captureException(error);
+      });
   }
-);
-
-// export const submitOrder = () => async (
-//   dispatch: Dispatch,
-//   getState: () => AppState
-// ): Promise<void> => {
-//   const requestType = boostRequests.PURCHASE_ORDER;
-//   const request = getState().request[requestType] || { isPending: false };
-
-//   if (request.isPending) return;
-
-//   dispatch(setRequest(true, requestType));
-
-//   const order = { ...getState().boost.order };
-
-//   const dispatchError = (error: string): void => {
-//     dispatch(setRequest(false, requestType, error));
-//   };
-
-//   if (validateOrder(order, dispatchError)) {
-//     Api.post('/order/create', order)
-//       .then(response => {
-//         if (response.ok) {
-//           dispatch(setRequest(false, requestType));
-//           Router.push({
-//             pathname: response.result.success_url
-//           });
-//         } else {
-//           const errors = response.errors || [];
-//           const message =
-//             errors[Object.keys(errors)[0]] ||
-//             'There was an error placing your order. Please try again later or contact support.';
-
-//           dispatchError(message);
-//         }
-//       })
-//       .catch(error => {
-//         dispatchError(
-//           'There was an error placing your order. Please try again later or contact support.'
-//         );
-//         Sentry.captureException(error);
-//       });
-//   }
-// };
+};

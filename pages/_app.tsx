@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
 import { authenticate } from '../store/session/actions';
 import withRedux from '../util/withRedux';
-import SEO from '../components/Reusable/SEO';
+import SEO from '../components/shared/SEO';
 import '../public/static/styles/global.css';
 import '../public/static/styles/braintree.css';
 

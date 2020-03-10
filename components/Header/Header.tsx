@@ -5,9 +5,9 @@ import Dropdown from './Dropdown/AuthDisplay';
 import { Request } from '../../store/request/types';
 import { SessionState } from '../../store/session/types';
 import styles from './styles.module.css';
-import ProgressBar from '../Reusable/ProgressBar';
+import ProgressBar from '../shared/ProgressBar';
 import { UpdateOrder } from '../../store/boost/types';
-import Filter from '../Reusable/Filter';
+import Filter from '../shared/Filter';
 
 interface Props {
   handleAuth: (type: string, form: object, redirect?: string) => void;

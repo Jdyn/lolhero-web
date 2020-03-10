@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Reusable/Layout';
+import Layout from '../../components/shared/Layout';
 import tos from '../../lib/tos';
 import styles from './styles.module.css';
 

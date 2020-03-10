@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../../components/Reusable/Layout';
+import Layout from '../../../components/shared/Layout';
 import ForgotAuth from '../../../components/Account/ForgotAuth';
 
 class Forgot extends React.PureComponent<{}> {

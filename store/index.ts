@@ -21,7 +21,7 @@ const store = (preloadedState: object = {}): EnhancedStore =>
   configureStore({
     reducer,
     middleware: [...getDefaultMiddleware()],
-    devTools: true, // process.env.NODE_ENV !== 'production',
+    devTools: process.env.NODE_ENV !== 'production',
     preloadedState
   });
 

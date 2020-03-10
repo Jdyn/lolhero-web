@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
-import Filter from '../../Reusable/Filter/Filter';
+import Filter from '../../shared/Filter/Filter';
 
 interface Props {
   paymentMethodIsSelected: boolean;

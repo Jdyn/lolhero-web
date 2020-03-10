@@ -4,7 +4,7 @@ import addons from '../../../lib/content';
 import { Order, AccountState } from '../../../store/account/types';
 import styles from './styles.module.css';
 import { SessionState } from '../../../store/session/types';
-import Button from '../../Reusable/Button';
+import Button from '../../shared/Button';
 import Api from '../../../services/api';
 import { orderUpdated } from '../../../store/account/reducers';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Reusable/Layout';
+import Layout from '../../components/shared/Layout';
 import styles from './styles.module.css';
 
 const TOS = (): JSX.Element => {

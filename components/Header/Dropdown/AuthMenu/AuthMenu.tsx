@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Form from '../../../Reusable/Form';
+import Form from '../../../shared/Form';
 import { Request } from '../../../../store/request/types';
 import styles from './styles.module.css';
 

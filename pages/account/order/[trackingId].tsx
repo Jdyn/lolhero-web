@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../../components/Reusable/Layout';
+import Layout from '../../../components/shared/Layout';
 import withAuth from '../../../util/withAuth';
 import OrderContainer from '../../../containers/OrderContainer';
 

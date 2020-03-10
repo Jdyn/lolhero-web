@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import Filter from '../../Reusable/Filter/Filter';
+import Filter from '../../shared/Filter/Filter';
 import content from '../../../lib/boosts';
 import { UpdateOrder } from '../../../store/boost/types';
 import styles from './styles.module.css';

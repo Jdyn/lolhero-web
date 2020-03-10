@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
-import Button from '../../Reusable/Button/Button';
+import Button from '../../shared/Button/Button';
 import { Order } from '../../../store/account/types';
-import Loader from '../../Reusable/Loader';
+import Loader from '../../shared/Loader';
 
 interface Props {
   children?: React.ReactNode;

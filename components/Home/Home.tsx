@@ -3,7 +3,7 @@ import Link from 'next/link';
 import HomeHero from './HomeHero';
 import HomeInfo from './HomeInfo';
 import styles from './styles.module.css';
-import Button from '../Reusable/Button';
+import Button from '../shared/Button';
 
 const Home = (): JSX.Element => {
   return (

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import Form from '../../Reusable/Form';
+import Form from '../../shared/Form';
 import styles from './styles.module.css';
 import { fetchPasswordReset, fetchPasswordUpdate } from '../../../store/account/actions';
 import { AppState } from '../../../store';
-import Button from '../../Reusable/Button';
+import Button from '../../shared/Button';
 
 const templates = {
   reset: {

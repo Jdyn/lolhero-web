@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextPageContext } from 'next';
-import Layout from '../../components/Reusable/Layout';
+import Layout from '../../components/shared/Layout';
 import styles from './styles.module.css';
 
 interface Props {
