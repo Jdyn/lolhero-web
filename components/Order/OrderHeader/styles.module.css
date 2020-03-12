@@ -22,7 +22,7 @@
   flex: 1;
   font-weight: 500;
   margin: 0 0 10px 0;
-  font-size: 23px;
+  font-size: 1.2rem;
   text-align: center;
   color: var(--white);
   margin: 15px 0;
@@ -47,12 +47,12 @@
   padding: 0 10px;
   margin-bottom: 10px;
   flex: 1;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .content > div > span {
   color: var(--grey);
-  font-size: 14px;
+  font-size: 1rem;
   margin-top: 5px;
   text-align: center;
 }

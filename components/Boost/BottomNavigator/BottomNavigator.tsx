@@ -39,7 +39,7 @@ const BottomNavigator = (props: Props): JSX.Element => {
   } = props;
 
   const [detailsForm, setDetailsForm] = useState({
-    'details-email': '',
+    'details-email': session.user.email || '',
     'details-email-confirmation': ''
   });
 
@@ -76,6 +76,16 @@ const BottomNavigator = (props: Props): JSX.Element => {
       });
     }
   }, [braintreeInstance, setValid]);
+
+  useEffect(() => {
+    if (session.user) {
+      setDetailsForm(prev => ({
+        ...prev,
+        ['details-email']: session.user.email,
+        ['details-email-confirmation']: session.user.email
+      }));
+    }
+  }, [session.user]);
 
   useEffect(() => {
     const validate = (string: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(string);

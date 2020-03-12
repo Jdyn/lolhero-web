@@ -59,8 +59,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     initializeOrder(finalForm, trackingId as string, authEmail);
   };
 
-  console.log(orderForm);
-
   return (
     <div className={styles.root}>
       <>

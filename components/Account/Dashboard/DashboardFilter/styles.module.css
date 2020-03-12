@@ -39,7 +39,7 @@
 }
 
 .filter > h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 20px 0px;
 }
 
@@ -50,7 +50,7 @@
 
 .filter > span {
   margin: 5px 0;
-  font-size: 50px;
+  font-size: 3.5rem;
 }
 
 @media (min-width: 650px) {

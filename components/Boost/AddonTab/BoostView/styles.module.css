@@ -40,7 +40,7 @@
 }
 
 .promos > h2 {
-  font-size: 20px;
+  font-size: 1.1rem;
   margin: 0;
   width: 100%;
   margin-bottom: 10px;
@@ -91,7 +91,7 @@
 }
 
 .wrapper > h2 {
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 0 0 0 10px;
   color: var(--white);
 }

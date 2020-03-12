@@ -71,7 +71,7 @@
 .content {
   display: flex;
   flex-direction: row;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 0 0px 15px 0;
   align-items: center;
 }
@@ -93,7 +93,7 @@
 }
 
 .content > h3 {
-  font-size: 16px;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -102,12 +102,12 @@
   width: 100%;
   justify-content: flex-start;
   margin: 10px 0px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
 }
 
 .notes {
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 24px;
   padding: 15px;
   border: none;
@@ -148,7 +148,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
+  font-size: 1rem;
   font-weight: 800;
   width: 32px;
   height: 32px;
@@ -170,7 +170,7 @@
 
 .adminContainer > h3 {
   margin: 10px 0px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .adminContainer > div {

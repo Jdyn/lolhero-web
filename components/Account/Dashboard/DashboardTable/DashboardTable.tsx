@@ -47,8 +47,6 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
       });
     }
 
-    console.log(list);
-
     return list;
   }, []);
 

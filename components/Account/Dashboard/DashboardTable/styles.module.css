@@ -75,7 +75,7 @@
 }
 
 .header > div > time::before {
-  font-size: 16px;
+  font-size: 1rem;
   content: '\0000a0\002022\0000a0';
 }
 

@@ -44,7 +44,7 @@ const HomeInfo = (): JSX.Element => {
                 <p>
                   Joining our team is not easy. We employ a very rigorous application process to
                   ensure we only bring in the best. The minimum rank we accept is around Master tier
-                  and we are willing to replace any underperforming members, which makes our team
+                  and we are willing to replace any underperforming members which makes our team
                   constantly evolving and up-to-date with the meta.
                 </p>
               </div>

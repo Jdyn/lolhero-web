@@ -13,11 +13,11 @@
   color: var(--grey);
   margin: 0;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .root > h2 {
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 0;
   color: var(--white);
   margin-bottom: 10px;
@@ -29,7 +29,7 @@
 }
 
 .wrapper > h2 {
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 0 0 0 10px;
   color: var(--white);
 }

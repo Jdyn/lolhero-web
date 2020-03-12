@@ -10,9 +10,7 @@
   align-items: center;
   justify-content: center;
   color: var(--white);
-  padding: 25px;
-  padding-top: 100px;
-  /* text-transform: uppercase; */
+  padding: 100px 25px 25px 25px;
   text-align: center;
 }
 
@@ -20,7 +18,7 @@
   margin: 0;
   font-family: 'caros';
   text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
-  font-size: 60px;
+  font-size: 4.5rem;
 }
 
 .container > h2 {
@@ -28,7 +26,7 @@
   font-family: 'caros';
   text-transform: uppercase;
   text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.7);
-  font-size: 25px;
+  font-size: 1.3rem;
 }
 
 .wrapper {
@@ -77,13 +75,13 @@
   border: none;
   outline: none;
   min-width: 0;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: transparent;
 }
 
 @media (min-width: 650px) {
   .container > h1 {
-    font-size: 75px;
+    font-size: 5rem;
   }
 
   .wrapper {
