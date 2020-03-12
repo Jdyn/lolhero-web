@@ -96,77 +96,10 @@ const OrderDetails = (props: Props): JSX.Element => {
     <div className={styles.root}>
       {order && (
         <>
-          {session?.user?.role === 'admin' && (
-            <div className={styles.wrapper}>
-              <h3>Admin Controls</h3>
-              <div className={styles.adminContainer}>
-                <h3>Change Booster</h3>
-                <select className={styles.select}>
-                  <option>-</option>
-                  {account.boosters &&
-                    account.boosters.map(booster => (
-                      <option key={booster.username}>{booster.username}</option>
-                    ))}
-                </select>
-                <h3>Change Status</h3>
-                <select
-                  className={styles.select}
-                  onChange={(event): void =>
-                    setAdminUpdate({
-                      ...adminUpdate,
-                      status: event.target.value === '-' ? order.status : event.target.value
-                    })
-                  }
-                >
-                  {statuses.map(status => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-                <Button margin="15px 0 0 0" width="100%" onClick={handleAdminUpdate}>
-                  update
-                </Button>
-              </div>
-            </div>
-          )}
-          {order.accountDetails && (
-            <div className={styles.wrapper}>
-              <h3>Account Details</h3>
-              <div className={styles.adminContainer}>
-                {revealed ? (
-                  <>
-                    <div>{order.accountDetails.username}</div>
-                    <div>{order.accountDetails.password}</div>
-                    <button
-                      className={styles.reveal}
-                      type="button"
-                      onClick={(): void => setReveal(false)}
-                    >
-                      click to hide
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    className={styles.reveal}
-                    type="button"
-                    onClick={(): void => setReveal(true)}
-                  >
-                    click to reveal
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
           {order.isEditable ? (
             <div className={styles.container}>
               <div className={styles.wrapper}>
                 <h3>Order Details</h3>
-                {/* <div className={styles.rolesContainer}>
-                  <div className={styles.roles}>
-                    <RolePicker onClick={(payload): void => handleRoleUpdate(payload)} />
-                  </div>
-                </div> */}
                 <div>
                   <span className={styles.title}>Summoner Name</span>
                   <input
@@ -194,7 +127,7 @@ const OrderDetails = (props: Props): JSX.Element => {
                       </div>
                     ))}
                   </form>
-                )}
+                )} 
                 <span className={styles.title}>Notes</span>
                 <textarea
                   value={orderForm.note || ''}
@@ -235,22 +168,26 @@ const OrderDetails = (props: Props): JSX.Element => {
                   }
                 />
               </div>
-              <div className={styles.content}>
-                <span>Server</span>
-                <h3>{order.details.server}</h3>
-              </div>
               {addons.addons.extras.map(item => (
                 <div key={item.title} className={styles.content}>
                   <span>{item.title}</span>
                   <h3>{order[item.type] === true ? 'Yes' : 'No'}</h3>
                 </div>
               ))}
+              <div className={styles.content}>
+                <span>Server</span>
+                <h3>{order.details.server}</h3>
+              </div>
+              <div className={styles.content}>
+                <span>Flash Position</span>
+                <h3>{order.details.flashPosition}</h3>
+              </div>
               {order.details.promos && (
                 <div className={styles.promotions}>
                   <span>Promotions</span>
                   <div>
-                    {order.details.promos.map((promo: string) => (
-                      <div key={promo} className={styles.promo}>
+                    {order.details.promos.map((promo: string, index) => (
+                      <div key={index} className={styles.promo}>
                         {promo}
                       </div>
                     ))}

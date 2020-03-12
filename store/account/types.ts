@@ -43,6 +43,7 @@ export interface Order {
     isIncognito: boolean;
     isUnrestricted: boolean;
     lp: number;
+    flashPosition: string;
     champions: Champion[];
     promos: [] | null;
     queue: string;

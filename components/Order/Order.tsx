@@ -8,6 +8,7 @@ import { SessionState } from '../../store/session/types';
 import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
 import OrderChampions from './OrderChampions';
+import OrderAdmin from './OrderAdmin/OrderAdmin';
 
 interface Props {
   account: AccountState;
@@ -89,6 +90,9 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
             />
+            {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
+              <OrderAdmin account={account} order={account.selectedOrder} session={session} />
+            )}
           </div>
         </div>
       </>

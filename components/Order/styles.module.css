@@ -14,8 +14,9 @@
   gap: 20px;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content min-content min-content min-content;
+  grid-template-rows: min-content min-content min-content min-content min-content;
   grid-template-areas:
+    'admin'
     'status'
     'details'
     'display'
@@ -115,7 +116,8 @@
     grid-template-areas:
       'details status'
       'details display'
-      'details chat';
+      'details chat'
+      'admin .';
   }
 }
 
@@ -125,7 +127,8 @@
     grid-template-rows: min-content 1fr;
     grid-template-areas:
       'details status  status'
-      'details display chat';
+      'details display chat'
+      'admin . .';
   }
 }
 

@@ -1,0 +1,60 @@
+.root {
+  grid-area: 'admin';
+  border-radius: 16px;
+  padding: 20px;
+  background-color: var(--secondary-grey);
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.adminContainer {
+  border-radius: 8px;
+  padding: 10px 15px;
+  background-color: var(--primary-grey);
+}
+
+.adminContainer > h3 {
+  margin: 10px 0px;
+  font-size: 1rem;
+}
+
+.adminContainer > div {
+  padding: 10px;
+  background-color: var(--secondary-grey);
+  margin: 10px 0px;
+  border-radius: 8px;
+}
+
+.adminContainer > input {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  background-color: var(--secondary-grey);
+  margin: 10px 0px;
+  border-radius: 8px;
+}
+
+.reveal {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 10px 0px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  width: 100%;
+}
+
+.select {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 5px;
+  border: 1px solid var(--tertiary-grey);
+  background-color: var(--secondary-grey);
+  color: var(--secondary-white);
+  border-radius: 8px;
+  height: 30px;
+  width: 100%;
+}

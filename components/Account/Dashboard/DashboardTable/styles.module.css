@@ -116,6 +116,22 @@
   align-items: center;
 }
 
+.severity4::before {
+  background: var(--red) !important;
+}
+
+.severity3::before {
+  background: var(--yellow) !important;
+}
+
+.severity2::before {
+  background: var(--green) !important;
+}
+
+.severity1::before {
+  background: #1a73e8 !important;
+}
+
 @media (min-width: 640px) {
   .container {
     flex-direction: row;

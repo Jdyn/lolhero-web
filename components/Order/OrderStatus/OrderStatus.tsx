@@ -95,10 +95,10 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
               {order?.status !== 'completed' && (
                 <Button
                   grow
-                  secondary
+                  green
                   maxWidth="200px"
                   onClick={onPauseOrder}
-                  margin="5px 5px"
+                  margin="10px 5px"
                   padding="15px"
                 >
                   {order?.status === 'paused' ? 'unpause order' : 'pause order'}

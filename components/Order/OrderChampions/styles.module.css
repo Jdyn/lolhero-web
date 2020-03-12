@@ -4,7 +4,7 @@
   grid-area: chat;
   width: 100%;
   padding: 25px;
-  height: 600px;
+  /* height: 600px; */
   border-radius: 16px;
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
@@ -30,7 +30,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  flex-basis: 200px;
+  flex: 1;
   width: 100%;
 }
 

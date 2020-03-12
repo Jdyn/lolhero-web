@@ -82,7 +82,6 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
             </>
           ) : (
             <div className={styles.banners}>
-              <h3>{order.title}</h3>
               <div className={styles.container}>
                 <Banner
                   isStartRank

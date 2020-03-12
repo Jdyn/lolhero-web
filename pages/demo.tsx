@@ -30,6 +30,7 @@ const fakeAccount: AccountState = {
       isIncognito: false,
       isUnrestricted: false,
       lp: 20,
+      flashPosition: 'F',
       primaryRole: 'Middle',
       promos: null,
       queue: 'Solo',
