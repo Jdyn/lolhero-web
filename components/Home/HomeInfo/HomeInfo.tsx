@@ -51,10 +51,10 @@ const HomeInfo = (): JSX.Element => {
               <div className={styles.card}>
                 <h1>safety and security</h1>
                 <p>
-                  We ensure every order is treated with great care. We operate with a VPN for free
-                  on request and can play in offline mode. We make it a huge point to follow any and
-                  all instruction given to us by our customers. Your hero preferences, roles, and
-                  even time slots you want us to play during can all be set.
+                  We ensure every order is handled with immense care. We operate with a VPN on
+                  request and play league in offline mode. We make it a huge point to follow any
+                  instructions given to us by our customers. Your champion preferences, roles, and
+                  the time slots you want us to play are followed strictly by our heroes.
                 </p>
               </div>
               <div className={styles.card}>
@@ -63,7 +63,7 @@ const HomeInfo = (): JSX.Element => {
                   Low prices prevent us from maintaining the highest level players, leads to lower
                   quality work, and lowers your account security. We offer the most competitive
                   pricing for the quality of service we provide. Prices are continuously
-                  fluctuating, but we will always ensure our prices are as low as they can be.
+                  fluctuating, but we will always ensure our prices are as low as possible.
                 </p>
               </div>
             </div>
