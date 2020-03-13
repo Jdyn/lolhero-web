@@ -2,8 +2,8 @@
   z-index: 5;
   height: 90%;
   display: flex;
-  max-height: calc(85vh - 15vh);
-  max-width: 65vw;
+  max-height: 90%;
+  /* max-width: 65vw; */
   min-width: 185px;
   position: relative;
   flex-grow: 1;
@@ -107,8 +107,8 @@
 
 @media (min-width: 640px) {
   .root {
-    max-height: calc(85vh - 15vh);
-    max-width: 30vw;
+    /* max-height: calc(100vh - 15vh); */
+    max-width: 30%;
   }
 
   .root::after {
@@ -118,7 +118,7 @@
   }
 
   .footer {
-    height: 15vh;
+    height: 20%;
   }
 
   .header > h1 {
@@ -133,7 +133,7 @@
 @media (min-width: 1025px) {
   .root {
     max-height: calc(85vh - 15vh);
-    max-width: 15vw;
+    max-width: 30%;
   }
 
   .container {
@@ -150,15 +150,15 @@
   }
 
   .footer {
-    height: 15vh;
+    height: 20%;
   }
 
   .header > h1 {
-    font-size: 1.5vw;
+    font-size: 1.2rem;
   }
 
   .header > h3 {
-    font-size: 1vw;
+    font-size: 1rem;
   }
 }
 

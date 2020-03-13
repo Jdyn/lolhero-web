@@ -1,8 +1,8 @@
 .rankItem {
-  width: calc(47vw / 12);
-  height: calc((60vw / 12) * 1.8);
+  width: calc(100% / 4);
+  height: calc((10vw / 8) * 2);
   border: 0.6vw solid;
-  margin: 1.5px 1px;
+  margin: 2.5% 1.5%;
   cursor: pointer;
   outline: none;
   padding: 0;
@@ -12,7 +12,6 @@
 
 @media (min-width: 640px) {
   .rankItem {
-    width: calc(20vw / 12);
     height: calc((20vw / 8) * 1.8);
     border: 0.2vw solid;
   }
@@ -20,8 +19,7 @@
 
 @media (min-width: 1025px) {
   .rankItem {
-    width: calc(10vw / 12);
-    height: calc((10vw / 8) * 1.8);
+    height: calc((12vw / 8) * 1.5);
     border: 0.1vw solid;
   }
 }

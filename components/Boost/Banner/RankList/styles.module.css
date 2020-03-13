@@ -2,17 +2,21 @@
   display: flex;
   /* position: relative; */
   flex-direction: column;
+  width: 100%;
 }
 
 .container {
   display: flex;
-  /* position: relative; */
   justify-content: center;
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
   flex-wrap: wrap;
 }
 
 .rankWrapper {
   display: flex;
+  width: calc(90% * 2 / 6);
   /* position: relative; */
 }
 
@@ -24,7 +28,6 @@
   letter-spacing: 0.025rem;
   font-weight: 700;
   font-size: 1rem;
-  max-width: 168px;
   width: 100%;
   margin: 5px auto 0px auto;
 }
