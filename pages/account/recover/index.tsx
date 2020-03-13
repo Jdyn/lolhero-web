@@ -5,7 +5,7 @@ import ForgotAuth from '../../../components/Account/ForgotAuth';
 class Forgot extends React.PureComponent<{}> {
   render(): JSX.Element {
     return (
-      <Layout title="Forgot Password">
+      <Layout stripe title="Forgot Password">
         <ForgotAuth />
       </Layout>
     );

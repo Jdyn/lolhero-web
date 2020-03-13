@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const TOS = (): JSX.Element => {
   return (
-    <Layout title="Privacy Policy">
+    <Layout stripe title="Privacy Policy">
       <div className={styles.root}>
         <div className={styles.container}>
           <div className={styles.hero}>

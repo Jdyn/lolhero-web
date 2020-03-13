@@ -21,10 +21,20 @@ interface Props {
   sessionRequest?: Request;
   title?: string;
   description?: string;
+  stripe?: boolean;
 }
 
 const Layout = (props: Props): JSX.Element => {
-  const { children, session, handleAuth, sessionRequest, title, description, updateOrder } = props;
+  const {
+    children,
+    session,
+    handleAuth,
+    sessionRequest,
+    title,
+    description,
+    updateOrder,
+    stripe
+  } = props;
 
   const router = useRouter();
   const { pathname } = router;
@@ -43,6 +53,7 @@ const Layout = (props: Props): JSX.Element => {
         sessionRequest={sessionRequest}
         updateOrder={updateOrder}
       />
+      {stripe && <div className={styles.stripe} />}
       {children}
       <Footer />
     </>

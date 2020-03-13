@@ -1,11 +1,10 @@
 .root {
   display: flex;
   flex: 1;
-  min-height: 70vh;
+  min-height: calc(100vh - 75px);
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: var(--primary-grey);
 }
 
 .container {

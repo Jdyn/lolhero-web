@@ -8,7 +8,7 @@ const Forgot = (): JSX.Element => {
   const { resetToken } = router.query;
 
   return (
-    <Layout title="Forgot Password">
+    <Layout stripe title="Forgot Password">
       <ForgotAuth resetToken={resetToken as string} />
     </Layout>
   );

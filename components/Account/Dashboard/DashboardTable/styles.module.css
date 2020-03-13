@@ -19,7 +19,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  flex: 1;
 }
 
 .header {
@@ -38,12 +38,13 @@
 }
 
 .champions {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
   justify-content: flex-start;
   align-self: start;
-  flex: 0.5;
-  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: var(--primary-grey);
 }
 
 .championItem {

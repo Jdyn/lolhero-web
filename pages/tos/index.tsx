@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 const TOS = (): JSX.Element => {
   return (
-    <Layout title="Terms Of Service">
+    <Layout stripe title="Terms Of Service">
       <div className={styles.root}>
         <div className={styles.container}>
           <h1>Terms Of Service</h1>

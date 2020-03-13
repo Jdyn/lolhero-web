@@ -1,10 +1,13 @@
-.layout {
+.stripe {
+  display: grid;
+  position: absolute;
+  grid: repeat(4, 165px) / repeat(7, 1fr);
+  top: 75px;
+  z-index: -5;
+  width: 100%;
   overflow: hidden;
-  /* display: grid;
-  grid-template-rows: min-content 1fr min-content;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    'header'
-    'component'
-    'footer'; */
+  transform-origin: 0;
+  /* background-color: var(--secondary-grey); */
+  background: linear-gradient(90deg, #252525 15%, #303030 70%, #353535 95%);
+  transform: skewY(-8deg);
 }

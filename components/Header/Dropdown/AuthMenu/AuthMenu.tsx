@@ -100,7 +100,12 @@ const AuthMenu = (props: Props): JSX.Element => {
                     isPending={sessionRequest.isPending}
                   />
                 )}
-                <span>{sessionRequest.errored && <span>{sessionRequest.error}</span>}</span>
+                <div className={styles.error}>
+                  {sessionRequest.errored && <span>{sessionRequest.error}</span>}
+                </div>
+                <Link href="/account/recover">
+                  <span>Forgot Password?</span>
+                </Link>
               </div>
             </div>
           </>

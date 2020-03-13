@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
-import Form from '../Form';
-import { FormTemplate } from '../Form/types';
+import Form from '../../shared/Form';
+import { FormTemplate } from '../../shared/Form/types';
 import { Request } from '../../../store/request/types';
 
 const templates: { [name: string]: FormTemplate } = {

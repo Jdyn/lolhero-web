@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Layout from '../../components/shared/Layout';
 import { handleAuth } from '../../store/session/actions';
 import { AppState } from '../../store';
-import AccountAuth from '../../components/shared/AccountAuth';
+import AccountAuth from '../../components/Account/AccountAuth';
 import { Request } from '../../store/request/types';
 
 interface Props {
@@ -15,7 +15,7 @@ const LogIn = (props: Props): JSX.Element => {
   const { authenticate, sessionRequest } = props;
 
   return (
-    <Layout title="Log In">
+    <Layout stripe title="Log In">
       <AccountAuth type="login" authenticate={authenticate} sessionRequest={sessionRequest} />
     </Layout>
   );

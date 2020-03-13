@@ -6,6 +6,7 @@ import { AccountState } from '../store/account/types';
 const date = new Date();
 
 const fakeAccount: AccountState = {
+  currentFilter: 'active',
   selectedOrder: {
     createdAt: date.toString(),
     isEditable: true,
