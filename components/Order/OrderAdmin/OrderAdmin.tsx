@@ -23,13 +23,10 @@ const OrderAdmin: React.FC<Props> = (props: Props): JSX.Element => {
 
   const [adminUpdate, setAdminUpdate] = useState({});
 
-  console.log(adminUpdate);
-
   const handleAdminUpdate = (event): void => {
     event.preventDefault();
 
     Api.patch(`/orders/${order.trackingId}`, { ...adminUpdate }).then(response => {
-      console.log(response.result.order);
       if (response.ok) {
         dispatch(orderUpdated({ order: response.result.order }));
       }
