@@ -66,7 +66,7 @@ export const fetchOrder = (id: string, email: string = null) => async (
   }
 
   if (response.ok) {
-    dispatch(orderUpdated({ order: response.result.order }));
+    dispatch(orderUpdated({ order: response.result.order, boosters: response.result.boosters }));
     dispatch(setRequest(false, requestType));
   } else {
     dispatch(setRequest(false, requestType, response.error));

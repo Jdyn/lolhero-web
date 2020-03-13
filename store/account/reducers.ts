@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AccountState, SetOrderList, OrderUpdate } from './types';
+import { AccountState, SetOrderList, OrderUpdate, FilterUpdate } from './types';
 
 const initialState: AccountState = {
   selectedOrder: null,
   boosters: null,
+  currentFilter: 'active',
   orders: {
     active: {
       title: 'Active Orders',
@@ -28,8 +29,14 @@ const reducers = {
   orderListFetched: (state: AccountState, action: PayloadAction<SetOrderList>): void => {
     state.orders = action.payload.orders;
   },
+  filterUpdated: (state: AccountState, action: PayloadAction<FilterUpdate>): void => {
+    state.currentFilter = action.payload.filter;
+  },
   orderUpdated: (state: AccountState, action: PayloadAction<OrderUpdate>): void => {
     state.selectedOrder = action.payload.order;
+    if (action.payload.boosters) {
+      state.boosters = action.payload.boosters;
+    }
   }
 };
 
@@ -39,5 +46,5 @@ const account = createSlice({
   reducers
 });
 
-export const { orderListFetched, orderUpdated } = account.actions;
+export const { orderListFetched, orderUpdated, filterUpdated } = account.actions;
 export default account.reducer;

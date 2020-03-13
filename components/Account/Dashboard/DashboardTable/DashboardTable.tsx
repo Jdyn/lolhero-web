@@ -57,24 +57,29 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
     return { boost, order };
   }, []);
 
-  const orderChampions = useCallback(order => {
-    const list = [];
+  const orderChampions = useCallback(
+    order => {
+      const list = [];
 
-    if (order?.champions) {
-      champions.forEach(champ => {
-        order.champions.forEach(item => {
-          if (champ.name === item.name) {
-            list.push({
-              ...item,
-              img: champ.img
-            });
-          }
+      if (order?.champions) {
+        champions.forEach(champ => {
+          order.champions.forEach(item => {
+            if (champ.name === item.name) {
+              list.push({
+                ...item,
+                img: champ.img
+              });
+            }
+          });
         });
-      });
-    }
+      }
 
-    return list;
-  }, []);
+      console.log(list);
+
+      return list;
+    },
+    [orders]
+  );
 
   return (
     <div className={styles.root}>

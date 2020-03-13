@@ -1,9 +1,11 @@
 import { Champion } from '../../lib/champions';
+import { User } from '../session/types';
 
 export interface AccountState {
   selectedOrder: Order | null;
   orders?: OrderList;
-  boosters?: { username: string; id: number }[] | null;
+  boosters?: User[];
+  currentFilter: 'active' | 'total' | 'completed';
 }
 
 export interface ListBaseOrder {
@@ -86,4 +88,9 @@ export interface SetOrderList {
 
 export interface OrderUpdate {
   order: Order;
+  boosters?: User[];
+}
+
+export interface FilterUpdate {
+  filter: 'active' | 'completed' | 'total';
 }

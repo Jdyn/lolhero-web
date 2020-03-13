@@ -4,12 +4,12 @@ import styles from './styles.module.css';
 
 interface Props {
   orders: OrderList;
-  setFilter: Function;
+  filterUpdated: Function;
   filter: string;
 }
 
 const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
-  const { orders, setFilter, filter } = props;
+  const { orders, filterUpdated, filter } = props;
 
   return (
     <div className={styles.root}>
@@ -22,7 +22,7 @@ const DashboardFilter: React.FC<Props> = (props: Props): JSX.Element => {
               type="button"
               key={orderKey}
               className={`${styles.filter} ${filter === orderKey ? styles.selected : ''}`}
-              onClick={(): void => setFilter(orderKey)}
+              onClick={(): void => filterUpdated({ filter: orderKey })}
             >
               <h3>{order.title}</h3>
               <span>{order.count}</span>

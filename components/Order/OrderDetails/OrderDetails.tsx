@@ -18,13 +18,14 @@ interface Props {
   session: SessionState;
   account: AccountState;
   orderForm: any;
+  isEditable: boolean;
   setOrderForm: (update: object) => void;
 }
 
 const statuses = ['-', 'completed', 'active', 'open'];
 
 const OrderDetails = (props: Props): JSX.Element => {
-  const { order, orderForm, setOrderForm, session, account } = props;
+  const { order, orderForm, setOrderForm, session, account, isEditable } = props;
   const dispatch = useDispatch();
   const [revealed, setReveal] = useState(false);
 
@@ -96,7 +97,7 @@ const OrderDetails = (props: Props): JSX.Element => {
     <div className={styles.root}>
       {order && (
         <>
-          {order.isEditable ? (
+          {isEditable ? (
             <div className={styles.container}>
               <div className={styles.wrapper}>
                 <h3>Order Details</h3>

@@ -21,6 +21,7 @@ export const requests: SessionRequests = {
 };
 
 export interface User {
+  id?: number;
   email: string | null;
   token: string | null;
   username: string | null;

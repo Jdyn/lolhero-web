@@ -16,17 +16,20 @@ interface Props {
 const statuses = ['-', 'completed', 'active', 'open'];
 
 const OrderAdmin: React.FC<Props> = (props: Props): JSX.Element => {
-  const { order, session } = props;
+  const { order, session, account } = props;
   const dispatch = useDispatch();
 
   const [revealed, setReveal] = useState(false);
 
   const [adminUpdate, setAdminUpdate] = useState({});
 
+  console.log(adminUpdate);
+
   const handleAdminUpdate = (event): void => {
     event.preventDefault();
 
     Api.patch(`/orders/${order.trackingId}`, { ...adminUpdate }).then(response => {
+      console.log(response.result.order);
       if (response.ok) {
         dispatch(orderUpdated({ order: response.result.order }));
       }
@@ -40,12 +43,22 @@ const OrderAdmin: React.FC<Props> = (props: Props): JSX.Element => {
           <h3>Admin Controls</h3>
           <div className={styles.adminContainer}>
             <h3>Change Booster</h3>
-            <select className={styles.select}>
+            <select
+              className={styles.select}
+              onChange={(event): void =>
+                setAdminUpdate({
+                  ...adminUpdate,
+                  booster_id: event.target.value === '-' ? null : event.target.value
+                })
+              }
+            >
               <option>-</option>
-              {/* {account.boosters &&
+              {account.boosters &&
                 account.boosters.map(booster => (
-                  <option key={booster.username}>{booster.username}</option>
-                ))} */}
+                  <option key={booster.username} value={booster.id}>
+                    {booster.username}
+                  </option>
+                ))}
             </select>
             <h3>Change Status</h3>
             <select
@@ -69,7 +82,7 @@ const OrderAdmin: React.FC<Props> = (props: Props): JSX.Element => {
           </div>
         </div>
       )}
-      {order?.accountDetails && (
+      {order?.accountDetails ? (
         <div className={styles.wrapper}>
           <h3>Account Details</h3>
           <div className={styles.adminContainer}>
@@ -92,6 +105,8 @@ const OrderAdmin: React.FC<Props> = (props: Props): JSX.Element => {
             )}
           </div>
         </div>
+      ) : (
+        <span>Account details not yet set.</span>
       )}
     </div>
   );

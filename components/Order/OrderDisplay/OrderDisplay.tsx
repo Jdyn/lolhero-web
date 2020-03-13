@@ -11,11 +11,12 @@ const ranks = flatRanks();
 interface Props {
   order?: Order;
   orderForm: any;
+  isEditable: boolean;
   setOrderForm: (update: object) => void;
 }
 
 const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
-  const { order, orderForm, setOrderForm } = props;
+  const { order, orderForm, setOrderForm, isEditable } = props;
 
   const filters = [
     order?.details.primaryRole || 'Role 1',
@@ -58,7 +59,7 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       {order && (
         <>
-          {order.isEditable && order.details.boostType === 'Solo' ? (
+          {isEditable && order.details.boostType === 'Solo' ? (
             <>
               <Filter filters={filters} onClick={(index: number): void => handleFilter(index)} />
               <div className={styles.championContainer}>

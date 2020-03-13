@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.css';
 import OrderHeader from './OrderHeader/OrderHeader';
@@ -37,6 +37,21 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
+  const isEditable = useMemo(() => {
+    if (account.selectedOrder) {
+      const { isEditable, booster, user } = account.selectedOrder;
+      if (booster?.username === user?.username) {
+        return false;
+      }
+
+      if (isEditable) {
+        return true;
+      }
+    }
+
+    return false;
+  }, [account.selectedOrder]);
+
   useEffect(() => {
     setOrderForm(prev => ({
       ...prev,
@@ -71,11 +86,13 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               order={account.selectedOrder}
               onInitializeOrder={onInitializeOrder}
               updateOrderStatus={updateOrderStatus}
+              isEditable={isEditable}
               authEmail={authEmail}
             />
             <OrderDetails
               orderForm={orderForm}
               setOrderForm={setOrderForm}
+              isEditable={isEditable}
               order={account.selectedOrder}
               session={session}
               account={account}
@@ -83,6 +100,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
             <OrderDisplay
               order={account.selectedOrder}
               orderForm={orderForm}
+              isEditable={isEditable}
               setOrderForm={setOrderForm}
             />
             <OrderChampions

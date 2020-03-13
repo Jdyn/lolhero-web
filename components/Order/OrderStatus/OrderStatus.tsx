@@ -9,11 +9,12 @@ interface Props {
   onInitializeOrder: () => void;
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   authEmail?: string;
+  isEditable: boolean;
   order: Order;
 }
 
 const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
-  const { order, onInitializeOrder, updateOrderStatus, authEmail } = props;
+  const { order, onInitializeOrder, updateOrderStatus, authEmail, isEditable } = props;
 
   const onPauseOrder = (event: React.MouseEvent): void => {
     event.preventDefault();
@@ -84,9 +85,15 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
             <Loader width="64px" height="64px" />
             <div className={styles.status}>{orderStatus(order?.status)}</div>
           </div>
-          {order?.isEditable ? (
+          {isEditable ? (
             <div className={styles.wrapper}>
-              <Button grow maxWidth="200px" margin="5px" padding="15px" onClick={onInitializeOrder}>
+              <Button
+                grow
+                maxWidth="200px"
+                margin="10px 5px"
+                padding="15px"
+                onClick={onInitializeOrder}
+              >
                 start order
               </Button>
             </div>

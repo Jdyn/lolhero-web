@@ -26,11 +26,13 @@ const TOS = (): JSX.Element => {
               <li>Your email address</li>
               <li>Your username</li>
               <li>
-                Your password, which is encrypted, hashed, and salted before entering our database.
+                Your password, which is turned into random numbers and letters before entering our
+                database.
                 <ul>
                   <li>
-                    We take extreme caution in handling user information. Passwords can never be
-                    seen and are encrypted with a modern hashing algorithm.
+                    Technicals: Passwords are encrypted, hashed, and salted. We take extreme caution
+                    in handling user information. Passwords can never be seen and are encrypted with
+                    a modern hashing algorithm.
                   </li>
                 </ul>
               </li>
