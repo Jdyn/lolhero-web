@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/shared/Layout';
-import BoostOrder from '../components/Order/Order';
+import BoostOrder from '../components/Order';
 import { AccountState } from '../store/account/types';
 
 const date = new Date();

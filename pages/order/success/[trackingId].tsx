@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../../../components/shared/Layout';
-import styles from './success.module.css';
+import styles from './index.module.css';
 
 const OrderSuccess = (): JSX.Element => {
   const router = useRouter();

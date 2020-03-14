@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPageContext } from 'next';
 import Layout from '../../components/shared/Layout';
-import styles from './styles.module.css';
+import styles from './index.module.css';
 
 interface Props {
   message: string;

@@ -98,8 +98,9 @@
   --banner-plat: #00695c;
   --banner-plat-trim: #004d40;
 
-  --banner-diamond: #3d5afe;
-  --banner-diamond-trim: #1a237e;
+  --banner-diamond: #01579b;
+  --banner-diamond-trim: #1a237e
+  ;
 }
 
 html {

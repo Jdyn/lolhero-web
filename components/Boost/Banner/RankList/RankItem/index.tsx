@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useCallback } from 'react';
-import styles from './styles.module.css';
+import styles from './index.module.css';
 import { Rank } from '../../../../../lib/ranks';
 
 interface Props {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/shared/Layout';
 import faq from '../../lib/faq';
-import styles from './styles.module.css';
+import styles from './index.module.css';
 
 const FAQ = (): JSX.Element => {
   return (
