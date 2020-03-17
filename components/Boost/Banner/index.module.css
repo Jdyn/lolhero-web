@@ -137,8 +137,8 @@
   }
 
   .container {
-    border-left: 0.4vw solid;
-    border-right: 0.4vw solid;
+    border-left: 3% solid;
+    border-right: 3% solid;
     border-color: var(--secondary-grey);
     padding: 35px 0.2vw;
   }
@@ -150,7 +150,7 @@
   }
 
   .footer {
-    height: 15vh;
+    height: 20%;
   }
 }
 

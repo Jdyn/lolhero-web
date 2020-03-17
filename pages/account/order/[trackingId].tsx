@@ -21,7 +21,7 @@ interface Props {
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { account, session, fetchOrder, updateOrder } = props;
+  const { account, session, fetchOrder, updateOrder, initializeOrder } = props;
   const router = useRouter();
   const { trackingId } = router.query;
 
