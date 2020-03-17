@@ -64,7 +64,7 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
         return (
           <>
             <h3>Your order is complete!</h3>
-            <span>Thank you for choosing LoL Hero.</span>
+            <span>Thank you for choosing LoLHero.</span>
           </>
         );
       default:

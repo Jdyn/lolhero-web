@@ -15,7 +15,7 @@
   max-height: 950px;
 }
 
-/* .v1::before {
+.v1::before {
   content: '""';
   position: absolute;
   background: no-repeat url('/static/images/art/ashe.jpg');
@@ -27,7 +27,7 @@
   height: 100%;
   opacity: 0.6;
   background-size: cover;
-} */
+}
 
 .v2 {
   height: 100%;

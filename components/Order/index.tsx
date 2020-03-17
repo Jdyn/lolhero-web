@@ -47,9 +47,13 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   });
 
   useEffect(() => {
-    fetchOrder(trackingId);
+    if (typeof fetchOrder === 'function') {
+      fetchOrder(trackingId);
+    }
     return (): void => {
-      updateOrder(null);
+      if (typeof updateOrder === 'function') {
+        updateOrder(null);
+      }
     };
   }, [fetchOrder, trackingId, updateOrder]);
 
