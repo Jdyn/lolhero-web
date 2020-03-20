@@ -10,6 +10,7 @@ import { orderUpdated } from '../../../store/account/reducers';
 import BoostOrder from '../../../components/Order';
 import { UpdateOrder } from '../../../store/boost/types';
 import { initializeOrder, updateOrderStatus, fetchOrder } from '../../../store/account/actions';
+import { SocketProvider } from '../../../components/shared/SocketProvider';
 
 interface Props {
   session?: SessionState;
@@ -26,7 +27,8 @@ const OrderContainer = (props: Props): JSX.Element => {
   const { trackingId } = router.query;
 
   return (
-    <Layout title={`Order ${trackingId}`}>
+    <Layout stripe title={`Order ${trackingId}`}>
+      {/* <SocketProvider url="ws://localhost:4000/socket" params={{ token: session.user.token }}> */}
       <BoostOrder
         trackingId={trackingId as string}
         fetchOrder={fetchOrder}
@@ -36,6 +38,7 @@ const OrderContainer = (props: Props): JSX.Element => {
         updateOrderStatus={updateOrderStatus}
         initializeOrder={initializeOrder}
       />
+      {/* </SocketProvider> */}
     </Layout>
   );
 };

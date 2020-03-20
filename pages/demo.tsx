@@ -10,6 +10,7 @@ const fakeAccount: AccountState = {
   selectedOrder: {
     createdAt: date.toString(),
     isEditable: true,
+    id: 1,
     note: '123',
     price: '160.0',
     status: 'open',

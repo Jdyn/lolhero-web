@@ -1,7 +1,8 @@
 .stripe {
-  display: grid;
+  display: flex;
   position: absolute;
-  grid: repeat(4, 165px) / repeat(7, 1fr);
+  height: 660px;
+  /* grid: repeat(4, 165px) / repeat(7, 1fr); */
   top: 75px;
   z-index: -5;
   width: 100%;

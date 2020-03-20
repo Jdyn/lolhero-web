@@ -29,6 +29,7 @@ export interface OrderList {
 
 export interface Order {
   createdAt: string;
+  id: number;
   booster?: { username: string; id: number; role: string } | null;
   accountDetails?: { username: string; password: string };
   details: {

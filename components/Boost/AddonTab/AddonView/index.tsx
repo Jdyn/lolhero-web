@@ -35,7 +35,7 @@ const AddonView = (props: Props): JSX.Element => {
           <img alt="role icon" src="/static/images/roles/all.svg" />
         </div> */}
         <h2>Roles</h2>
-        <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} />
+        {/* <RolePicker size="16px" onClick={roles => updateOrder({ ...roles })} /> */}
       </div>
       <div className={styles.root}>
         <h2>Flash</h2>

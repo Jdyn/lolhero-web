@@ -78,14 +78,14 @@ const BottomNavigator = (props: Props): JSX.Element => {
   }, [braintreeInstance, setValid]);
 
   useEffect(() => {
-    if (session.user) {
+    if (session?.user?.email) {
       setDetailsForm(prev => ({
         ...prev,
-        ['details-email']: session.user.email,
-        ['details-email-confirmation']: session.user.email
+        'details-email': session.user.email,
+        'details-email-confirmation': session.user.email
       }));
     }
-  }, [session.user]);
+  }, [session]);
 
   useEffect(() => {
     const validate = (string: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(string);

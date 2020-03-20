@@ -78,7 +78,7 @@ export interface BoostOrderDetails {
   desiredAmount: number;
   startRank: number | null;
   desiredRank: number | null;
-  boostType: string;
+  boostType: 'Solo' | 'Duo';
   collectionId: number;
   collectionName: string;
   isExpress: boolean;

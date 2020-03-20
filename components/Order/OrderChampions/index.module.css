@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  grid-area: chat;
+  grid-area: champions;
   width: 100%;
   padding: 25px;
   /* height: 600px; */

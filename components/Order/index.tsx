@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Socket } from 'phoenix';
 import styles from './index.module.css';
 import OrderHeader from './OrderHeader';
 import OrderDetails from './OrderDetails';
@@ -8,6 +9,8 @@ import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
 import OrderChampions from './OrderChampions';
 import OrderAdmin from './OrderAdmin';
+import OrderChat from './OrderChat';
+import Button from '../shared/Button';
 
 interface Props {
   account: AccountState;
@@ -46,6 +49,46 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
+  const [channel, setChannel] = useState(null);
+  const [socket, setSocket] = useState(null);
+
+  // useEffect(() => {
+  //   let sock;
+
+  //   if (session.user.token && account.selectedOrder) {
+  //     sock = new Socket('ws://localhost:4000/socket', {
+  //       params: { token: session.user.token },
+  //       heartbeatIntervalMs: null
+  //     });
+  //     sock.connect();
+
+  //     setSocket(sock);
+  //   }
+  //   return () => {
+  //     if (sock) {
+  //       sock.disconnect();
+  //     }
+  //   };
+  // }, [session.user.token, account.selectedOrder, setSocket]);
+
+  const joinChannel = () => {
+    const chann = socket.channel(`order:${account.selectedOrder.trackingId}`);
+    chann.join();
+    chann.push('request:chat_history').receive('ok', payload => {
+      console.log(payload);
+    });
+
+    setChannel(chann);
+  };
+
+  const sendMessage = () => {
+    channel.push('send:message', {
+      message: 'Hello World',
+      userId: session.user.id,
+      orderId: account.selectedOrder.id
+    });
+  };
+
   useEffect(() => {
     if (typeof fetchOrder === 'function') {
       fetchOrder(trackingId);
@@ -57,7 +100,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     };
   }, [fetchOrder, trackingId, updateOrder]);
 
-  const isEditable = useMemo(() => {
+  const editable = useMemo(() => {
     if (account.selectedOrder) {
       const { isEditable, booster, user } = account.selectedOrder;
       if (booster?.username === user?.username) {
@@ -98,7 +141,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   return (
     <div className={styles.root}>
       <>
-        <div className={styles.stripe} />
         <OrderHeader order={account.selectedOrder} />
         <div className={styles.container}>
           <div className={styles.wrapper}>
@@ -106,13 +148,13 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               order={account.selectedOrder}
               onInitializeOrder={onInitializeOrder}
               updateOrderStatus={updateOrderStatus}
-              isEditable={isEditable}
+              isEditable={editable}
               authEmail={authEmail}
             />
             <OrderDetails
               orderForm={orderForm}
               setOrderForm={setOrderForm}
-              isEditable={isEditable}
+              isEditable={editable}
               order={account.selectedOrder}
               session={session}
               account={account}
@@ -120,17 +162,20 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
             <OrderDisplay
               order={account.selectedOrder}
               orderForm={orderForm}
-              isEditable={isEditable}
+              isEditable={editable}
               setOrderForm={setOrderForm}
             />
-            <OrderChampions
+            <OrderChat />
+            <Button onClick={joinChannel} />
+            <Button onClick={sendMessage} />
+            {/* <OrderChampions
               orderForm={orderForm}
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
-            />
-            {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
+            /> */}
+            {/* {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
-            )}
+            )} */}
           </div>
         </div>
       </>

@@ -20,7 +20,7 @@
     'status'
     'details'
     'display'
-    'chat';
+    'champions';
 }
 
 .controls {
@@ -116,7 +116,7 @@
     grid-template-areas:
       'details status'
       'details display'
-      'details chat'
+      /* 'details champions' */
       'admin .';
   }
 }
@@ -124,7 +124,7 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: min-content 1fr;
+    grid-template-rows: 90px 500px;
     grid-template-areas:
       'details status  status'
       'details display chat'

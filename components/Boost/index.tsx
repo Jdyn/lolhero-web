@@ -6,8 +6,22 @@ import BoostDisplay from './BoostDisplay';
 import BottomNavigator from './BottomNavigator';
 import styles from './index.module.css';
 import { formatLP } from '../../util/helpers';
+import { SessionState } from '../../store/session/types';
+import { Request } from '../../store/request/types';
+import { BoostOrderDetails, BoostState, UpdateOrder } from '../../store/boost/types';
 
-const Boost = props => {
+interface Props {
+  session: SessionState;
+  purchaseOrderRequest: Request;
+  currentOrder: BoostOrderDetails;
+  boost: BoostState;
+  handleAuth: (type: string, form: object) => void;
+  fetchBoostPrices: () => void;
+  updateOrder: UpdateOrder;
+  submitOrder: () => void;
+}
+
+const Boost = (props: Props): JSX.Element => {
   const {
     updateOrder,
     currentOrder,
@@ -71,7 +85,7 @@ const Boost = props => {
           session={session}
           pricing={boost.pricing}
           boostOrder={boost.order}
-          paymentMethodIsSelected={boost.paymentMethodIsSelected}
+          paymentMethodIsSelected={boost.order.paymentMethodIsSelected}
           valid={valid}
           setBraintreeInstance={setBraintreeInstance}
           currentStage={currentStage}
