@@ -3,7 +3,7 @@
   flex-direction: column;
   grid-area: champions;
   width: 100%;
-  padding: 25px;
+  padding: 20px;
   /* height: 600px; */
   border-radius: 16px;
   background-color: var(--secondary-grey);
@@ -31,17 +31,22 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  width: 100%;
-}
-
-.wrapper > h3 {
-  margin: 15px 0px;
-}
-
-.container {
   background-color: var(--primary-grey);
   padding: 15px;
   border-radius: 16px;
+  width: 100%;
+}
+
+.wrapper:first-child {
+  margin-bottom: 15px;
+}
+
+.wrapper > h3 {
+  margin: 0px 0px 15px 0px;
+}
+
+.container {
+  padding: 15px;
   flex-basis: 200px;
   height: 180px;
   max-height: 180px;
@@ -66,8 +71,7 @@
   overflow-y: auto;
   text-align: left;
   border-radius: 18px;
-  padding: 15px;
-  background-color: var(--primary-grey);
+  padding: 0px;
 }
 
 .championItem {
@@ -112,12 +116,21 @@
     flex-direction: row;
   }
 
+  .scroll {
+    flex-direction: row;
+    width: 100%;
+  }
+
   .wrapper {
     margin: 10px 10px 0 0;
   }
 
   .wrapper:last-child {
     margin-right: 0;
+  }
+
+  .wrapper:first-child {
+    margin-bottom: 0px;
   }
 }
 
@@ -126,8 +139,14 @@
     flex-direction: column;
   }
 
-  .wrapper {
+  .scroll {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .wrapper:first-child {
     margin: 0;
+    margin-bottom: 15px;
   }
 
   .list {
