@@ -14,13 +14,14 @@
   gap: 20px;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content min-content min-content min-content min-content;
+  grid-template-rows: min-content min-content min-content min-content 550px min-content;
   grid-template-areas:
     'admin'
     'status'
     'details'
-    'display'
-    'champions';
+    'champions'
+    'chat'
+    'display';
 }
 
 .controls {
@@ -112,11 +113,11 @@
 @media (min-width: 660px) {
   .wrapper {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-rows: min-content min-content 550px;
     grid-template-areas:
       'details status'
-      'details display'
-      /* 'details champions' */
+      'details champions'
+      'chat display'
       'admin .';
   }
 }
@@ -124,7 +125,7 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 500px 500px;
+    grid-template-rows: 90px 550px 550px;
     grid-template-areas:
       'details status  status'
       'details display champions'
