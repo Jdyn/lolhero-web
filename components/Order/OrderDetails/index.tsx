@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import addons from '../../../lib/content';
-import { Order, AccountState } from '../../../store/account/types';
+import { Order } from '../../../store/account/types';
 import styles from './index.module.css';
-import { SessionState } from '../../../store/session/types';
-import Button from '../../shared/Button';
-import Api from '../../../services/api';
-import { orderUpdated } from '../../../store/account/reducers';
 
 const fields = [
   { type: 'username', title: 'League Username', text: 'username' },
@@ -15,41 +10,13 @@ const fields = [
 
 interface Props {
   order?: Order;
-  session: SessionState;
-  account: AccountState;
   orderForm: any;
   isEditable: boolean;
   setOrderForm: (update: object) => void;
 }
 
-const statuses = ['-', 'completed', 'active', 'open'];
-
 const OrderDetails = (props: Props): JSX.Element => {
-  const { order, orderForm, setOrderForm, session, account, isEditable } = props;
-  const dispatch = useDispatch();
-  const [revealed, setReveal] = useState(false);
-
-  const [adminUpdate, setAdminUpdate] = useState({});
-
-  const handleAdminUpdate = (event): void => {
-    event.preventDefault();
-
-    Api.patch(`/orders/${order.trackingId}`, { ...adminUpdate }).then(response => {
-      if (response.ok) {
-        dispatch(orderUpdated({ order: response.result.order }));
-      }
-    });
-  };
-
-  const handleRoleUpdate = (payload): void => {
-    setOrderForm({
-      ...orderForm,
-      details: {
-        ...orderForm.details,
-        ...payload
-      }
-    });
-  };
+  const { order, orderForm, setOrderForm, isEditable } = props;
 
   const handleFormUpdate = (formUpdate): void => {
     const { primaryRole, secondaryRole, summonerName, note } = formUpdate;
@@ -97,10 +64,10 @@ const OrderDetails = (props: Props): JSX.Element => {
     <div className={styles.root}>
       {order && (
         <>
+          <h3>Order Details</h3>
           {isEditable ? (
             <div className={styles.container}>
               <div className={styles.wrapper}>
-                <h3>Order Details</h3>
                 <div>
                   <span className={styles.title}>Summoner Name</span>
                   <input
@@ -142,7 +109,6 @@ const OrderDetails = (props: Props): JSX.Element => {
             </div>
           ) : (
             <div className={styles.wrapper}>
-              <h3>Order Details</h3>
               <div className={styles.content}>
                 <span>Boost Type</span>
                 <h3>{order.details.boostType} Boost</h3>

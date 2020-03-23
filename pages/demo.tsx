@@ -16,6 +16,7 @@ const fakeAccount: AccountState = {
     status: 'open',
     title: 'Solo | Division Boost - Iron I to Platinum I',
     trackingId: 'ABLC1',
+    messages: [],
     user: {
       role: 'user',
       username: 'LoLHero'

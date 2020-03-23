@@ -37,6 +37,9 @@ const reducers = {
     if (action.payload.boosters) {
       state.boosters = action.payload.boosters;
     }
+  },
+  orderChatUpdated: (state: AccountState, action: PayloadAction<any>): void => {
+    state.selectedOrder.messages = [...state.selectedOrder.messages, { ...action.payload.message }];
   }
 };
 
@@ -46,5 +49,5 @@ const account = createSlice({
   reducers
 });
 
-export const { orderListFetched, orderUpdated, filterUpdated } = account.actions;
+export const { orderListFetched, orderUpdated, filterUpdated, orderChatUpdated } = account.actions;
 export default account.reducer;

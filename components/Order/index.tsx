@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Socket } from 'phoenix';
+import { useDispatch } from 'react-redux';
 import styles from './index.module.css';
 import OrderHeader from './OrderHeader';
 import OrderDetails from './OrderDetails';
@@ -10,7 +10,7 @@ import OrderDisplay from './OrderDisplay';
 import OrderChampions from './OrderChampions';
 import OrderAdmin from './OrderAdmin';
 import OrderChat from './OrderChat';
-import Button from '../shared/Button';
+import socket from '../../services/socket';
 
 interface Props {
   account: AccountState;
@@ -35,6 +35,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     authEmail
   } = props;
 
+  const dispatch = useDispatch();
   const [orderForm, setOrderForm] = useState({
     note: '',
     details: {
@@ -49,45 +50,17 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   });
 
-  const [channel, setChannel] = useState(null);
-  const [socket, setSocket] = useState(null);
+  useEffect(() => {
+    if (!socket.exists() && session?.user?.token) {
+      socket.init('ws://localhost:4000/socket', {
+        token: session.user.token
+      });
+    }
 
-  // useEffect(() => {
-  //   let sock;
-
-  //   if (session.user.token && account.selectedOrder) {
-  //     sock = new Socket('ws://localhost:4000/socket', {
-  //       params: { token: session.user.token },
-  //       heartbeatIntervalMs: null
-  //     });
-  //     sock.connect();
-
-  //     setSocket(sock);
-  //   }
-  //   return () => {
-  //     if (sock) {
-  //       sock.disconnect();
-  //     }
-  //   };
-  // }, [session.user.token, account.selectedOrder, setSocket]);
-
-  const joinChannel = () => {
-    const chann = socket.channel(`order:${account.selectedOrder.trackingId}`);
-    chann.join();
-    chann.push('request:chat_history').receive('ok', payload => {
-      console.log(payload);
-    });
-
-    setChannel(chann);
-  };
-
-  const sendMessage = () => {
-    channel.push('send:message', {
-      message: 'Hello World',
-      userId: session.user.id,
-      orderId: account.selectedOrder.id
-    });
-  };
+    if (socket.exists()) {
+      socket.joinChat(`order:${trackingId}`, dispatch);
+    }
+  }, [dispatch, session, trackingId]);
 
   useEffect(() => {
     if (typeof fetchOrder === 'function') {
@@ -156,8 +129,6 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               setOrderForm={setOrderForm}
               isEditable={editable}
               order={account.selectedOrder}
-              session={session}
-              account={account}
             />
             <OrderDisplay
               order={account.selectedOrder}
@@ -165,17 +136,15 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               isEditable={editable}
               setOrderForm={setOrderForm}
             />
-            <OrderChat />
-            <Button onClick={joinChannel} />
-            <Button onClick={sendMessage} />
-            {/* <OrderChampions
+            <OrderChat messages={account?.selectedOrder?.messages} session={session} />
+            <OrderChampions
               orderForm={orderForm}
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
-            /> */}
-            {/* {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
+            />
+            {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
-            )} */}
+            )}
           </div>
         </div>
       </>

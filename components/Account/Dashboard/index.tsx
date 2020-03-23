@@ -5,6 +5,8 @@ import DashboardHeader from './DashboardHeader';
 import DashboardFilter from './DashboardFilter';
 import DashboardTable from './DashboardTable';
 import styles from './index.module.css';
+import socket from '../../../services/socket';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   session: SessionState;
@@ -15,10 +17,17 @@ interface Props {
 
 const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   const { session, account, fetchOrderList, filterUpdated } = props;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchOrderList();
   }, [fetchOrderList]);
+
+  useEffect(() => {
+    if (session.user.token && !socket.exists()) {
+      socket.init('ws://localhost:4000/socket', { params: { token: session.user.token } });
+    }
+  }, [session.user.token]);
 
   return (
     <div className={styles.root}>

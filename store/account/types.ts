@@ -30,6 +30,7 @@ export interface OrderList {
 export interface Order {
   createdAt: string;
   id: number;
+  messages: object[] | null;
   booster?: { username: string; id: number; role: string } | null;
   accountDetails?: { username: string; password: string };
   details: {

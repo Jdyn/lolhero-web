@@ -124,10 +124,11 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 500px;
+    grid-template-rows: 90px 500px 500px;
     grid-template-areas:
       'details status  status'
-      'details display chat'
+      'details display champions'
+      '. . chat'
       'admin . .';
   }
 }
