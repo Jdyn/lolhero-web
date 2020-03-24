@@ -54,7 +54,7 @@ const content = {
 const Demo = (): JSX.Element => {
   return (
     <Layout title={content.title} description={content.description}>
-      <BoostOrder account={fakeAccount} />
+      <BoostOrder isDemo account={fakeAccount} />
     </Layout>
   );
 };

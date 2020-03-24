@@ -133,14 +133,14 @@
 @media (min-width: 1025px) {
   .root {
     max-height: calc(85vh - 15vh);
-    max-width: 15vw;
+    max-width: 30%;
   }
 
   .container {
     border-left: 3% solid;
     border-right: 3% solid;
     border-color: var(--secondary-grey);
-    padding: 35px 0.2vw;
+    padding: 35px 5%;
   }
 
   .root::after {

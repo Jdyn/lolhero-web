@@ -21,8 +21,9 @@
 
 .content {
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: overlay;
   padding: 5px;
+  margin: 5px;
 }
 
 @media (min-width: 1025px) {

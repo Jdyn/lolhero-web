@@ -48,39 +48,12 @@ const OrderChampions = (props: Props): JSX.Element => {
           {order.isEditable ? (
             <>
               <div className={styles.list}>
-                <div className={styles.scroll}>
-                  <div className={styles.wrapper}>
-                    <h3>{order.details.primaryRole}</h3>
+                <div className={styles.wrapper}>
+                  <h3>{order.details.primaryRole}</h3>
+                  <div className={styles.scroll}>
                     {orderForm.details.champions.map((champion, index) =>
                       champion.position === order.details.primaryRole ? (
-                        <div className={styles.championItem} key={champion.name}>
-                          <img
-                            alt="champion-icon"
-                            className={styles.championImage}
-                            src={champion.img}
-                          />
-                          <span>{champion.name}</span>
-                          <button
-                            className={styles.cancel}
-                            aria-label="remove-champion"
-                            type="button"
-                            onClick={(): void => handleDelete(index)}
-                          >
-                            <img
-                              alt="cancel-champion"
-                              className={styles.cancelImage}
-                              src="/static/images/cancel.svg"
-                            />
-                          </button>
-                        </div>
-                      ) : null
-                    )}
-                  </div>
-                  <div className={styles.wrapper}>
-                    <h3>{order.details.secondaryRole}</h3>
-                    {orderForm.details.champions.map((champion, index) =>
-                      champion.position === order.details.secondaryRole ? (
-                        <div className={styles.championItem} key={champion.name}>
+                        <div className={styles.championItem} key={index}>
                           <img
                             alt="champion-icon"
                             className={styles.championImage}
@@ -104,6 +77,33 @@ const OrderChampions = (props: Props): JSX.Element => {
                     )}
                   </div>
                 </div>
+                <div className={styles.wrapper}>
+                  <h3>{order.details.secondaryRole}</h3>
+                  {orderForm.details.champions.map((champion, index) =>
+                    champion.position === order.details.secondaryRole ? (
+                      <div className={styles.championItem} key={index}>
+                        <img
+                          alt="champion-icon"
+                          className={styles.championImage}
+                          src={champion.img}
+                        />
+                        <span>{champion.name}</span>
+                        <button
+                          className={styles.cancel}
+                          aria-label="remove-champion"
+                          type="button"
+                          onClick={(): void => handleDelete(index)}
+                        >
+                          <img
+                            alt="cancel-champion"
+                            className={styles.cancelImage}
+                            src="/static/images/cancel.svg"
+                          />
+                        </button>
+                      </div>
+                    ) : null
+                  )}
+                </div>
               </div>
             </>
           ) : (
@@ -114,7 +114,7 @@ const OrderChampions = (props: Props): JSX.Element => {
                   {order.details.champions && order.details.champions.length > 0 ? (
                     orderChampions.map((champion, index) =>
                       champion.position === order.details.primaryRole ? (
-                        <div className={styles.championItem} key={champion.name}>
+                        <div className={styles.championItem} key={index}>
                           <img
                             alt="champion-icon"
                             className={styles.championImage}
@@ -133,7 +133,7 @@ const OrderChampions = (props: Props): JSX.Element => {
                   {order.details.champions && order.details.champions.length > 0 ? (
                     orderChampions.map((champion, index) =>
                       champion.position === order.details.secondaryRole ? (
-                        <div className={styles.championItem} key={champion.name}>
+                        <div className={styles.championItem} key={index}>
                           <img
                             alt="champion-icon"
                             className={styles.championImage}

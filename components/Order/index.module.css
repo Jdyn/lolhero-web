@@ -96,28 +96,27 @@
   box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.stripe {
-  display: grid;
-  position: absolute;
-  grid: repeat(4, 165px) / repeat(7, 1fr);
-  top: 75px;
-  z-index: -5;
+.matches {
+  display: flex;
   width: 100%;
-  overflow: hidden;
-  transform-origin: 0;
-  /* background-color: var(--secondary-grey); */
-  background: linear-gradient(90deg, #252525 15%, #303030 70%, #353535 95%);
-  transform: skewY(-8deg);
+  height: min-content;
+  min-height: 550px;
+  background-color: var(--secondary-grey);
+  border-radius: 16px;
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+  grid-area: matches;
 }
 
 @media (min-width: 660px) {
   .wrapper {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: min-content min-content 550px;
+    grid-template-rows: 90px 400px 550px;
     grid-template-areas:
       'details status'
       'details champions'
-      'chat display'
+      'details display'
+      'chat matches'
       'admin .';
   }
 }
@@ -125,12 +124,13 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 550px 550px;
+    grid-template-rows: 90px 500px 550px min-content;
     grid-template-areas:
       'details status  status'
       'details display champions'
-      '. . chat'
-      'admin . .';
+      'matches matches chat'
+      'matches matches .';
+    /* 'admin . .'; */
   }
 }
 

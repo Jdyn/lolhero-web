@@ -17,6 +17,7 @@ interface Props {
   session?: SessionState;
   trackingId?: string;
   authEmail?: string;
+  isDemo?: boolean;
   initializeOrder?: (payload: object, trackingId: string, email?: string) => void;
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   fetchOrder?: (trackingId: string, email?: string) => void;
@@ -32,7 +33,8 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     fetchOrder,
     updateOrder,
     trackingId,
-    authEmail
+    authEmail,
+    isDemo
   } = props;
 
   const dispatch = useDispatch();
@@ -51,13 +53,14 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   });
 
   useEffect(() => {
-    if (!socket.exists() && session?.user?.token) {
+    if (!socket.exists() && session?.user?.token && !isDemo) {
+      Notification.requestPermission();
       socket.init('ws://localhost:4000/socket', {
         token: session.user.token
       });
     }
 
-    if (socket.exists()) {
+    if (socket.exists() && !isDemo) {
       socket.joinChat(`order:${trackingId}`, dispatch);
     }
   }, [dispatch, session, trackingId]);
@@ -136,12 +139,13 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               isEditable={editable}
               setOrderForm={setOrderForm}
             />
-            <OrderChat messages={account?.selectedOrder?.messages} session={session} />
             <OrderChampions
               orderForm={orderForm}
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
             />
+            <div className={styles.matches}></div>
+            <OrderChat messages={account?.selectedOrder?.messages} session={session} />
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
             )}
