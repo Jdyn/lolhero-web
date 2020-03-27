@@ -44,7 +44,7 @@ const OrderChampions = (props: Props): JSX.Element => {
       {order && (
         <>
           <h3>Selected Champions</h3>
-          <span>Maximum of 8 champions</span>
+          {/* <span>Maximum of 8 champions</span> */}
           {order.isEditable ? (
             <>
               <div className={styles.list}>
@@ -53,96 +53,68 @@ const OrderChampions = (props: Props): JSX.Element => {
                   <div className={styles.scroll}>
                     {orderForm.details.champions.map((champion, index) =>
                       champion.position === order.details.primaryRole ? (
-                        <div className={styles.championItem} key={index}>
-                          <img
-                            alt="champion-icon"
-                            className={styles.championImage}
-                            src={champion.img}
-                          />
-                          <span>{champion.name}</span>
-                          <button
-                            className={styles.cancel}
-                            aria-label="remove-champion"
-                            type="button"
-                            onClick={(): void => handleDelete(index)}
-                          >
-                            <img
-                              alt="cancel-champion"
-                              className={styles.cancelImage}
-                              src="/static/images/cancel.svg"
-                            />
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          aria-label="remove champion"
+                          className={styles.championItem}
+                          onClick={(): void => handleDelete(index)}
+                          style={{ backgroundImage: `url(${champion.img})` }}
+                        />
                       ) : null
                     )}
                   </div>
                 </div>
                 <div className={styles.wrapper}>
                   <h3>{order.details.secondaryRole}</h3>
-                  {orderForm.details.champions.map((champion, index) =>
-                    champion.position === order.details.secondaryRole ? (
-                      <div className={styles.championItem} key={index}>
-                        <img
-                          alt="champion-icon"
-                          className={styles.championImage}
-                          src={champion.img}
-                        />
-                        <span>{champion.name}</span>
+                  <div className={styles.scroll}>
+                    {orderForm.details.champions.map((champion, index) =>
+                      champion.position === order.details.secondaryRole ? (
                         <button
-                          className={styles.cancel}
-                          aria-label="remove-champion"
                           type="button"
+                          aria-label="remove champion"
+                          className={styles.championItem}
                           onClick={(): void => handleDelete(index)}
-                        >
-                          <img
-                            alt="cancel-champion"
-                            className={styles.cancelImage}
-                            src="/static/images/cancel.svg"
-                          />
-                        </button>
-                      </div>
-                    ) : null
-                  )}
+                          style={{ backgroundImage: `url(${champion.img})` }}
+                        />
+                      ) : null
+                    )}
+                  </div>
                 </div>
               </div>
             </>
           ) : (
             <div className={styles.list}>
-              <div className={styles.scroll}>
-                <div className={styles.wrapper}>
-                  <h3>{order.details.primaryRole}</h3>
+              <div className={styles.wrapper}>
+                <h3>{order.details.primaryRole}</h3>
+                <div className={styles.scroll}>
                   {order.details.champions && order.details.champions.length > 0 ? (
-                    orderChampions.map((champion, index) =>
-                      champion.position === order.details.primaryRole ? (
-                        <div className={styles.championItem} key={index}>
-                          <img
-                            alt="champion-icon"
-                            className={styles.championImage}
-                            src={champion.img}
-                          />
-                          <span>{champion.name}</span>
-                        </div>
-                      ) : null
-                    )
+                    orderChampions
+                      .filter(champion => champion.position === order.details.primaryRole)
+                      .map((champion, index) => (
+                        <div
+                          className={styles.championItem}
+                          style={{ backgroundImage: `url(${champion.img})` }}
+                          key={index}
+                        />
+                      ))
                   ) : (
                     <div>None</div>
                   )}
                 </div>
-                <div className={styles.wrapper}>
-                  <h3>{order.details.secondaryRole}</h3>
+              </div>
+              <div className={styles.wrapper}>
+                <h3>{order.details.secondaryRole}</h3>
+                <div className={styles.scroll}>
                   {order.details.champions && order.details.champions.length > 0 ? (
-                    orderChampions.map((champion, index) =>
-                      champion.position === order.details.secondaryRole ? (
-                        <div className={styles.championItem} key={index}>
-                          <img
-                            alt="champion-icon"
-                            className={styles.championImage}
-                            src={champion.img}
-                          />
-                          <span>{champion.name}</span>
-                        </div>
-                      ) : null
-                    )
+                    orderChampions
+                      .filter(champion => champion.position === order.details.secondaryRole)
+                      .map((champion, index) => (
+                        <div
+                          className={styles.championItem}
+                          style={{ backgroundImage: `url(${champion.img})` }}
+                          key={index}
+                        />
+                      ))
                   ) : (
                     <div>None</div>
                   )}

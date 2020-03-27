@@ -18,7 +18,7 @@
 .v1::before {
   content: '""';
   position: absolute;
-  background: no-repeat url('/static/images/art/ashe.jpg');
+  background: no-repeat url('/static/images/art/env4.jpg');
   transform: skewY(10deg);
   top: 0px;
   z-index: -1;

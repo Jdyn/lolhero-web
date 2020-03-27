@@ -63,7 +63,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     if (socket.exists() && !isDemo) {
       socket.joinChat(`order:${trackingId}`, dispatch);
     }
-  }, [dispatch, session, trackingId]);
+  }, [dispatch, isDemo, session, trackingId]);
 
   useEffect(() => {
     if (typeof fetchOrder === 'function') {
@@ -144,7 +144,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
             />
-            <div className={styles.matches}></div>
+            {/* <div className={styles.matches} /> */}
             <OrderChat messages={account?.selectedOrder?.messages} session={session} />
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
