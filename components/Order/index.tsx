@@ -4,6 +4,7 @@ import styles from './index.module.css';
 import OrderHeader from './OrderHeader';
 import OrderDetails from './OrderDetails';
 import OrderStatus from './OrderStatus';
+import OrderStats from './OrderStats';
 import { SessionState } from '../../store/session/types';
 import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
@@ -11,6 +12,7 @@ import OrderChampions from './OrderChampions';
 import OrderAdmin from './OrderAdmin';
 import OrderChat from './OrderChat';
 import socket from '../../services/socket';
+import OrderMatches from './OrderMatches';
 
 interface Props {
   account: AccountState;
@@ -144,7 +146,8 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
             />
-            <div className={styles.matches}></div>
+            <OrderStats />
+            <OrderMatches />
             <OrderChat messages={account?.selectedOrder?.messages} session={session} />
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />

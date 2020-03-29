@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  width: 100%;
+  height: min-content;
+  min-height: 550px;
+  background-color: var(--secondary-grey);
+  border-radius: 16px;
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+  grid-area: matches;
+}

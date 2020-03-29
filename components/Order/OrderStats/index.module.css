@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  grid-area: matchStats;
+  width: 100%;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: var(--secondary-grey);
+  border: 1px solid var(--tertiary-grey);
+  box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: var(--white);
+  text-align: center;
+}
