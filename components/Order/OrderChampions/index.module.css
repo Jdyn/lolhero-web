@@ -3,8 +3,7 @@
   flex-direction: column;
   grid-area: champions;
   width: 100%;
-  padding: 20px 7px 20px 20px;
-  /* height: 600px; */
+  padding: 20px;
   border-radius: 16px;
   background-color: var(--secondary-grey);
   border: 1px solid var(--tertiary-grey);
@@ -31,8 +30,6 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: var(--primary-grey);
-  padding: 10px;
   border-radius: 16px;
   width: 100%;
 }
@@ -51,15 +48,12 @@
   height: 180px;
   max-height: 180px;
   margin-bottom: 20px;
-  /* overflow-y: auto; */
 }
 
 .scroll {
   display: flex;
   height: 100%;
   flex-direction: column;
-  /* overflow-y: auto; */
-  /* padding-right: 10px; */
   max-height: 100%;
 }
 
@@ -70,10 +64,9 @@
 .list {
   height: 100%;
   overflow-y: auto;
-  padding-right: 15px;
   overflow: overlay;
-  /* background-color: var(--primary-grey);
-  padding: 15px; */
+  background-color: var(--primary-grey);
+  padding: 15px;
   border-radius: 16px;
   text-align: left;
 }
