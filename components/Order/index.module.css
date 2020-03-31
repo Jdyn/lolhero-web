@@ -124,7 +124,7 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 500px 550px min-content;
+    grid-template-rows: 90px 550px 550px min-content;
     grid-template-areas:
       'details status  status'
       'details display champions'

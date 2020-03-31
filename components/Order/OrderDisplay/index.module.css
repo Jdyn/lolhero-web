@@ -38,6 +38,7 @@
   background-color: var(--primary-grey);
   border-radius: 18px;
   padding: 15px;
+  height: 80%;
   /* width: 100%; */
 }
 
@@ -47,7 +48,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
-  max-height: 350px;
   justify-content: center;
 }
 
@@ -62,13 +62,19 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid var(--tertiary-grey);
+  border: 2px solid var(--tertiary-grey);
   cursor: pointer;
-  transition-duration: 0.1s;
-  /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) */
+  transition-duration: 0.15s;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 110%;
 }
 
 .championImage:hover {
+  transform: scale(1.5);
+}
+
+.championImage:active {
   transform: scale(1.3);
 }
 

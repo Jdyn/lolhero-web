@@ -71,10 +71,9 @@ const OrderDisplay: React.FC<Props> = (props: Props): JSX.Element => {
                       type="button"
                       onClick={(): void => handleClick(champion)}
                     >
-                      <img
-                        alt="champion-icon"
+                      <div
                         className={styles.championImage}
-                        src={champion.img}
+                        style={{ backgroundImage: `url(${champion.img})` }}
                       />
                     </button>
                   ))}
