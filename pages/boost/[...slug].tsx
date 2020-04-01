@@ -11,7 +11,7 @@ import Boost from '../../components/Boost';
 import boosts from '../../lib/boosts';
 
 const content = {
-  title: 'Custom Order - LoL Boosting | lolhero.gg',
+  title: 'Order Boost - LoL Boosting | lolhero.gg',
   desc:
     'Build your League Of Legends boost from the ground up with an immense amount of customization options to fit your goals'
 };
