@@ -138,7 +138,7 @@ const BoostDisplay: React.FC<Props> = (props: Props): JSX.Element => {
     <div className={styles.root}>
       <Stripes zIndex={5} version="v2" />
       <div className={styles.container}>
-        <div className={styles.wrapper}>{renderContent()}</div>
+        {renderContent()}
         {purchaseOrderRequest.errored && (
           <div className={styles.error}>
             <span>Error: {purchaseOrderRequest.error}</span>

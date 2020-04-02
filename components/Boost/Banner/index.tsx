@@ -4,6 +4,7 @@ import RankSlider from './RankSlider';
 import styles from './index.module.css';
 import { BoostOrderDetails, UpdateOrder } from '../../../store/boost/types';
 import { Rank } from '../../../lib/ranks';
+import RankIcon from '../../shared/RankIcon';
 
 interface Props {
   type: string;
@@ -42,6 +43,7 @@ const Banner = (props: Props): JSX.Element => {
   return (
     <div className={styles.root} style={{ height }}>
       <div className={`${styles.container} ${styles[`${rank.tag}`]}`}>
+        <RankIcon tag={rank.tag} />
         <div className={styles.header}>
           <h1>{rank.title || ''}</h1>
           <h3>{title}</h3>

@@ -1,0 +1,40 @@
+.svg {
+  /* height: 25%; */
+  width: 70%;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  transition-duration: 0.15s;
+  filter: drop-shadow(0px 0px 5px rgba(20, 20, 20, 0.3));
+}
+
+.svg > path {
+  fill: var(--secondary-grey)
+}
+
+.unranked {
+  fill: var(--banner-unranked-trim);
+}
+
+.iron > path {
+  fill: var(--banner-iron-trim);
+}
+
+.bronze > path {
+  fill: var(--banner-bronze-trim);
+}
+
+.silver > path {
+  fill: var(--banner-silver-trim);
+}
+
+.gold > path {
+  fill: var(--banner-gold-trim);
+}
+
+.platinum > path {
+  fill: var(--banner-plat-trim);
+}
+
+.diamond > path {
+  fill: var(--banner-diamond-trim);
+}

@@ -1,5 +1,5 @@
 .rankItem {
-  width: calc(47vw / 12);
+  width: calc(60vw / 12);
   height: calc((60vw / 12) * 1.8);
   border: 0.6vw solid;
   margin: 1.5px 1px;

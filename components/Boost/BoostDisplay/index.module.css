@@ -48,7 +48,7 @@
 }
 
 @media (min-width: 640px) {
-  .wrapper {
+  .container {
     flex-direction: row;
     align-items: normal;
   }
