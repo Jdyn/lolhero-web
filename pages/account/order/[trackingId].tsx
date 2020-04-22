@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import Layout from '../../../components/shared/Layout';
@@ -10,6 +10,7 @@ import { orderUpdated } from '../../../store/account/reducers';
 import BoostOrder from '../../../components/Order';
 import { UpdateOrder } from '../../../store/boost/types';
 import { initializeOrder, updateOrderStatus, fetchOrder } from '../../../store/account/actions';
+import { Request } from '../../../store/request/types';
 
 interface Props {
   session?: SessionState;
@@ -18,10 +19,11 @@ interface Props {
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   initializeOrder?: (payload: object, trackingId: string, email?: string) => void;
   fetchOrder?: (trackingId: string, email?: string) => void;
+  orderRequest: Request;
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { account, session, fetchOrder, updateOrder, initializeOrder } = props;
+  const { account, session, fetchOrder, updateOrder, initializeOrder, orderRequest } = props;
   const router = useRouter();
   const { trackingId } = router.query;
 
@@ -32,6 +34,7 @@ const OrderContainer = (props: Props): JSX.Element => {
         fetchOrder={fetchOrder}
         updateOrder={updateOrder}
         account={account}
+        orderRequest={orderRequest}
         session={session}
         updateOrderStatus={updateOrderStatus}
         initializeOrder={initializeOrder}
@@ -40,9 +43,16 @@ const OrderContainer = (props: Props): JSX.Element => {
   );
 };
 
+OrderContainer.getInitialProps = (ctx: any) => {
+  return ctx.store.dispatch(fetchOrder(ctx.query.trackingId));
+};
+
+const orderRequest = { isPending: false };
+
 const mapState = (state: AppState): object => ({
   session: state.session,
-  account: state.account
+  account: state.account,
+  orderRequest: state.request.FETCH_ORDER || orderRequest
 });
 
 const mapDispatch = (dispatch): object => ({

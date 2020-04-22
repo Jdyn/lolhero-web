@@ -107,8 +107,8 @@ const DashboardTable: React.FC<Props> = (props: Props): JSX.Element => {
                 </div>
               </div>
               <div className={styles.champions}>
-                {orderChampions(order).map(champion => (
-                  <div className={styles.championItem} key={champion.name}>
+                {orderChampions(order).map((champion, index) => (
+                  <div className={styles.championItem} key={index}>
                     <img alt="champion-icon" className={styles.championImage} src={champion.img} />
                   </div>
                 ))}

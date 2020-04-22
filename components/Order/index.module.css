@@ -96,16 +96,16 @@
   box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.matches {
+.tile {
   display: flex;
   width: 100%;
-  height: min-content;
-  min-height: 550px;
+  height: 100%;
   background-color: var(--secondary-grey);
   border-radius: 16px;
+  padding: 20px;
   border: 1px solid var(--tertiary-grey);
   box-shadow: 0 7px 14px rgba(10, 10, 10, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
-  grid-area: matches;
+  grid-area: hero;
 }
 
 @media (min-width: 660px) {
@@ -124,11 +124,12 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 550px 550px min-content;
+    grid-template-rows: 90px 550px 265px 265px;
     grid-template-areas:
       'details status  status'
       'details display champions'
       'matchStats matches chat'
+      'hero matches chat'
       'admin . .';
   }
 }

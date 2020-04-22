@@ -6,9 +6,7 @@ interface Props {
 }
 
 const OrderStats: React.FC<Props> = (props: Props): JSX.Element => {
-  return <div className={styles.root}>
-
-  </div>;
+  return <div className={styles.root}>Order Stats</div>;
 };
 
 export default OrderStats;

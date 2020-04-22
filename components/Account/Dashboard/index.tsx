@@ -24,7 +24,7 @@ const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   }, [fetchOrderList]);
 
   useEffect(() => {
-    if (session.user.token && !socket.exists()) {
+    if (session.user.token && !socket.isAlive()) {
       socket.init('ws://localhost:4000/socket', { params: { token: session.user.token } });
     }
   }, [session.user.token]);

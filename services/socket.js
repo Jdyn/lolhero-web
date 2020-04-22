@@ -1,5 +1,5 @@
 import { Socket } from 'phoenix';
-import { orderChatUpdated } from '../store/account/reducers';
+import { orderChatUpdated, orderChatFetched } from '../store/account/reducers';
 
 let socket = null;
 let channel = null;
@@ -19,7 +19,7 @@ export default {
       socket.connect();
     }
   },
-  exists: () => {
+  isAlive: () => {
     return socket !== null;
   },
   joinChat: (url, dispatch) => {
@@ -27,9 +27,9 @@ export default {
       channel = socket.channel(url);
       channel.join();
       listeners(dispatch);
-      // channel.push('request:chat_history', {}).receive('ok', payload => {
-      //   dispatch(orderChatFetched({ messages: payload.result.messages }));
-      // });
+      channel.push('request:chat_history', {}).receive('ok', payload => {
+        dispatch(orderChatFetched({ messages: payload.result.messages }));
+      });
     }
   },
   leaveChat: () => {

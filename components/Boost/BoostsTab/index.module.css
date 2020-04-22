@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   position: relative;
-  /* box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.2); */
   z-index: 30;
   flex-direction: column;
   background-color: var(--primary-grey);
@@ -12,7 +11,8 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(min-content);
-  /* gap: 10px; */
+  gap: 10px;
+  margin: 10px;
   height: 100%;
   border-bottom: 1px solid var(--border);
   overflow-y: auto;
@@ -44,7 +44,7 @@
 
 .button {
   cursor: pointer;
-  margin: 10px;
+  margin: 0px;
   display: flex;
   padding: 25px;
   border-radius: 18px;

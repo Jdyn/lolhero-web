@@ -13,6 +13,7 @@ import OrderAdmin from './OrderAdmin';
 import OrderChat from './OrderChat';
 import socket from '../../services/socket';
 import OrderMatches from './OrderMatches';
+import { Request } from '../../store/request/types';
 
 interface Props {
   account: AccountState;
@@ -24,6 +25,7 @@ interface Props {
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   fetchOrder?: (trackingId: string, email?: string) => void;
   updateOrder?: (order: object) => void;
+  orderRequest: Request;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
@@ -36,8 +38,11 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     updateOrder,
     trackingId,
     authEmail,
-    isDemo
+    isDemo,
+    orderRequest
   } = props;
+
+  const { selectedOrder } = account;
 
   const dispatch = useDispatch();
   const [orderForm, setOrderForm] = useState({
@@ -55,28 +60,28 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   });
 
   useEffect(() => {
-    if (!socket.exists() && session?.user?.token && !isDemo) {
+    if (!socket.isAlive() && orderRequest.success) {
       Notification.requestPermission();
       socket.init('ws://localhost:4000/socket', {
         token: session.user.token
       });
     }
 
-    if (socket.exists() && !isDemo) {
+    if (socket.isAlive() && orderRequest.success) {
       socket.joinChat(`order:${trackingId}`, dispatch);
     }
-  }, [dispatch, session, trackingId]);
+  }, [dispatch, isDemo, session, trackingId, orderRequest]);
 
-  useEffect(() => {
-    if (typeof fetchOrder === 'function') {
-      fetchOrder(trackingId);
-    }
-    return (): void => {
-      if (typeof updateOrder === 'function') {
-        updateOrder(null);
-      }
-    };
-  }, [fetchOrder, trackingId, updateOrder]);
+  // useEffect(() => {
+  //   if (typeof fetchOrder === 'function') {
+  //     fetchOrder(trackingId);
+  //   }
+  //   return (): void => {
+  //     if (typeof updateOrder === 'function') {
+  //       updateOrder(null);
+  //     }
+  //   };
+  // }, [fetchOrder, trackingId, updateOrder]);
 
   const editable = useMemo(() => {
     if (account.selectedOrder) {
@@ -147,6 +152,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               order={account.selectedOrder}
             />
             <OrderStats />
+            <div className={styles.tile}>Your Hero</div>
             <OrderMatches />
             <OrderChat messages={account?.selectedOrder?.messages} session={session} />
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (

@@ -30,7 +30,7 @@ const RankIcon = (props: Props): JSX.Element => {
       case 'platinum':
       case 'diamond':
         return (
-          <svg viewBox="4 5 24 22" className={`${styles.svg} ${styles[`${tag}`]}`}>
+          <svg viewBox="4 5 24 22" className={`${styles.svg} ${styles.v2} ${styles[`${tag}`]}`}>
             <title>rank-gold</title>
             <path d="M16 6c0 0 1.018 1.528 2.165 3.693-0.679-0.233-1.407-0.359-2.165-0.359s-1.486 0.126-2.165 0.359c1.147-2.165 2.165-3.693 2.165-3.693z" />
             <path d="M22.667 16c0-2.318-1.183-4.36-2.979-5.554 2.436-0.744 7.645-3.112 7.645-3.112 0 1.625-1.32 6.77-4.675 9 0.005-0.11 0.008-0.222 0.008-0.333z" />
