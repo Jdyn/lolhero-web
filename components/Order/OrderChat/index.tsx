@@ -32,7 +32,7 @@ const OrderChat: React.FC<Props> = (props: Props): JSX.Element => {
       return;
     }
 
-    if (socket.exists()) {
+    if (socket.isAlive()) {
       socket.sendMessage(form.message);
       setForm({ message: '' });
     }

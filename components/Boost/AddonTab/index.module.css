@@ -23,7 +23,7 @@
   flex-direction: column;
   overflow-y: overlay;
   padding: 5px;
-  margin: 5px;
+  margin-right: 5px;
 }
 
 @media (min-width: 1025px) {

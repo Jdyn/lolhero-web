@@ -74,16 +74,16 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     }
   }, [dispatch, isDemo, session, trackingId, orderRequest]);
 
-  // useEffect(() => {
-  //   if (typeof fetchOrder === 'function') {
-  //     fetchOrder(trackingId);
-  //   }
-  //   return (): void => {
-  //     if (typeof updateOrder === 'function') {
-  //       updateOrder(null);
-  //     }
-  //   };
-  // }, [fetchOrder, trackingId, updateOrder]);
+  useEffect(() => {
+    if (typeof fetchOrder === 'function') {
+      fetchOrder(trackingId);
+    }
+    return (): void => {
+      if (typeof updateOrder === 'function') {
+        updateOrder(null);
+      }
+    };
+  }, [fetchOrder, trackingId, updateOrder]);
 
   const editable = useMemo(() => {
     if (account.selectedOrder) {
