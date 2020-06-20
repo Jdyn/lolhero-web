@@ -25,7 +25,7 @@ interface Props {
   updateOrderStatus?: (status: string, trackingId: string, email?: string) => void;
   fetchOrder?: (trackingId: string, email?: string) => void;
   updateOrder?: (order: object) => void;
-  orderRequest: Request;
+  orderRequest?: Request;
 }
 
 const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
