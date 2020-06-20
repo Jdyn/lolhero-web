@@ -7,10 +7,11 @@ import { SessionState } from '../../../store/session/types';
 interface Props {
   messages?: any;
   session: SessionState;
+  isDemo: boolean;
 }
 
 const OrderChat: React.FC<Props> = (props: Props): JSX.Element => {
-  const { messages, session } = props;
+  const { messages, session, isDemo } = props;
   const [form, setForm] = useState({
     message: ''
   });
@@ -25,6 +26,12 @@ const OrderChat: React.FC<Props> = (props: Props): JSX.Element => {
 
   const handleMessage = (event): void => {
     event.preventDefault();
+    if (isDemo) {
+      event.preventDefault();
+      setForm({ message: '' });
+      return;
+    }
+
     if (socket.exists()) {
       socket.sendMessage(form.message);
       setForm({ message: '' });

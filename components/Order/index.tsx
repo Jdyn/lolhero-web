@@ -60,15 +60,17 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   });
 
   useEffect(() => {
-    if (!socket.isAlive() && orderRequest.success) {
-      Notification.requestPermission();
-      socket.init('ws://localhost:4000/socket', {
-        token: session.user.token
-      });
-    }
+    if (!isDemo) {
+      if (!socket.isAlive() && orderRequest.success) {
+        Notification.requestPermission();
+        socket.init('ws://localhost:4000/socket', {
+          token: session.user.token
+        });
+      }
 
-    if (socket.isAlive() && orderRequest.success) {
-      socket.joinChat(`order:${trackingId}`, dispatch);
+      if (socket.isAlive() && orderRequest.success) {
+        socket.joinChat(`order:${trackingId}`, dispatch);
+      }
     }
   }, [dispatch, isDemo, session, trackingId, orderRequest]);
 
@@ -154,7 +156,11 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
             <OrderStats />
             <div className={styles.tile}>Your Hero</div>
             <OrderMatches />
-            <OrderChat messages={account?.selectedOrder?.messages} session={session} />
+            <OrderChat
+              messages={account?.selectedOrder?.messages}
+              session={session}
+              isDemo={isDemo}
+            />
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
             )}

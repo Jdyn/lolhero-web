@@ -31,7 +31,7 @@ const filters = {
   }
 };
 
-const filterArray = Object.keys(filters); // Object.keys(filters).map(key => filters[key].title)
+const filterArray = Object.keys(filters);
 
 const Header = (props: Props): JSX.Element => {
   const { handleAuth, session, sessionRequest, updateOrder } = props;

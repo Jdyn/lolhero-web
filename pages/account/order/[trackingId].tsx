@@ -47,7 +47,7 @@ OrderContainer.getInitialProps = (ctx: any) => {
   return ctx.store.dispatch(fetchOrder(ctx.query.trackingId));
 };
 
-const orderRequest = { isPending: false };
+const orderRequest = { isPending: false, success: false };
 
 const mapState = (state: AppState): object => ({
   session: state.session,
