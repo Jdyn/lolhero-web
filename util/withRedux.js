@@ -1,47 +1,58 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import createStore from '../store';
 
+let reduxStore;
 const isServer = typeof window === 'undefined';
-const NEXT_STORE = '__NEXT_REDUX_STORE__';
 
-const initializeStore = initialState => {
+const initializeStore = (initialState = {}) => {
   if (isServer) {
     return createStore(initialState);
   }
 
-  if (!window[NEXT_STORE]) {
-    window[NEXT_STORE] = createStore(initialState);
+  if (!reduxStore) {
+    reduxStore = createStore(initialState);
   }
-  return window[NEXT_STORE];
+
+  return reduxStore;
 };
 
-export default App => {
-  return class WithRedux extends React.Component {
-    static async getInitialProps(appContext) {
+export const withRedux = (PageComponent, { ssr = true } = {}) => {
+  const WithRedux = ({ initialReduxState, ...props }) => {
+    const store = initializeStore(initialReduxState);
+    return (
+      <Provider store={store}>
+        <PageComponent {...props} />
+      </Provider>
+    );
+  };
+
+  if (process.env.NODE_ENV !== 'production') {
+    WithRedux.displayName = `withRedux(${PageComponent.displayName ||
+      PageComponent.name ||
+      'Component'})`;
+  }
+
+  if (ssr || PageComponent.getInitialProps) {
+    WithRedux.getInitialProps = async context => {
       const reduxStore = initializeStore();
 
       // eslint-disable-next-line no-param-reassign
-      appContext.ctx.store = reduxStore;
+      context.reduxStore = reduxStore;
 
-      let appProps = {};
-      if (typeof App.getInitialProps === 'function') {
-        appProps = await App.getInitialProps(appContext);
-      }
+      const pageProps =
+        typeof PageComponent.getInitialProps === 'function'
+          ? await PageComponent.getInitialProps(context)
+          : {};
 
       return {
-        ...appProps,
+        ...pageProps,
         initialReduxState: reduxStore.getState()
       };
-    }
+    };
+  }
 
-    constructor(props) {
-      super(props);
-
-      this.reduxStore = initializeStore(props.initialReduxState);
-    }
-
-    render() {
-      return <App {...this.props} store={this.reduxStore} />;
-    }
-  };
+  return WithRedux;
 };
+
+export default withRedux;

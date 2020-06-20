@@ -28,44 +28,32 @@ interface Props {
 }
 
 class Application extends App<Props> {
-  static async getInitialProps({ Component, ctx }): Promise<any> {
-    const { token } = cookies(ctx);
+  // componentDidMount(): void {
+  //   const { reduxStore, pageProps } = this.props;
+  //   console.log(this.props);
+  //   if (pageProps.token) {
+  //     reduxStore.dispatch(authenticate());
+  //   } else {
+  //     const payload = {
+  //       type: 'session/REFRESH',
+  //       isLoggedIn: false,
+  //       user: null
+  //     };
 
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps: { ...pageProps, token } };
-  }
-
-  componentDidMount(): void {
-    const { store, pageProps } = this.props;
-
-    if (pageProps.token) {
-      store.dispatch(authenticate());
-    } else {
-      const payload = {
-        type: 'session/REFRESH',
-        isLoggedIn: false,
-        user: null
-      };
-
-      store.dispatch(payload);
-    }
-  }
+  //     reduxStore.dispatch(payload);
+  //   }
+  // }
 
   render(): JSX.Element {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Provider store={store}>
+      <>
         <SEO />
         <Component {...pageProps} />
-      </Provider>
+      </>
     );
   }
 }
 
-export default withRedux(Application);
+export default Application;

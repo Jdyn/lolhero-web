@@ -21,4 +21,4 @@ const mapStateToProps = state => ({
   sessionRequest: state.request.AUTHENTICATE || {}
 });
 
-export default connect(mapStateToProps)(HomeContainer);
+export default HomeContainer;

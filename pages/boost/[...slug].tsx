@@ -9,6 +9,7 @@ import { handleAuth } from '../../store/session/actions';
 import { AppState } from '../../store';
 import Boost from '../../components/Boost';
 import boosts from '../../lib/boosts';
+import withRedux from '../../util/withRedux';
 
 const content = {
   title: 'Order Boost - LoL Boosting | lolhero.gg',
@@ -34,7 +35,7 @@ const BoostContainer = (props): JSX.Element => {
 
 BoostContainer.getInitialProps = async (ctx): Promise<object> => {
   const {
-    store: { dispatch },
+    reduxStore: { dispatch },
     query: { type }
   } = ctx;
 
@@ -79,4 +80,5 @@ const mapDispatchToProps = dispatch => ({
   submitOrder: (): void => dispatch(submitOrder())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoostContainer);
+
+export default withRedux(connect(mapStateToProps, mapDispatchToProps)(BoostContainer));
