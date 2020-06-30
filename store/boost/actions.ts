@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/react';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import PriceCalculator from '../../util/PriceCalculator';

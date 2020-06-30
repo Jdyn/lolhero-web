@@ -1,7 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import cookies from 'next-cookies';
-import { init } from '@sentry/browser';
+import { init } from '@sentry/react';
 import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
 import { authenticate } from '../store/session/actions';
