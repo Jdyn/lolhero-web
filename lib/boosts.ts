@@ -28,7 +28,7 @@ const boosts: Boosts = {
         tag: 'Solo',
         maxAmount: '1',
         id: 1,
-        description: 'We play any amount of games necessary to reach the rank of your choosing.'
+        description: 'We play the necessary amount of games to reach the rank of your choice.'
       },
       {
         title: 'Placement Games',
@@ -36,7 +36,7 @@ const boosts: Boosts = {
         tag: 'Solo',
         maxAmount: '10',
         id: 2,
-        description: 'We will play the amount of placement games you choose.'
+        description: 'We will play the specified amount of placement games.'
       },
       {
         title: 'Net Wins',
@@ -69,7 +69,7 @@ const boosts: Boosts = {
         tag: 'Duo',
         maxAmount: '1',
         id: 5,
-        description: 'We play any amount of games necessary to reach the rank of your choosing.'
+        description: 'We play any amount of games necessary to reach the rank of your choice.'
       },
       {
         title: 'Placement Games',

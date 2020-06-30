@@ -20,7 +20,7 @@
 
 @media (min-width: 1025px) {
   .rankItem {
-    width: calc(10vw / 12);
+    width: calc(10vw / 13);
     height: calc((10vw / 8) * 1.8);
     border: 0.1vw solid;
   }
