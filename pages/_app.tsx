@@ -1,12 +1,13 @@
-import React from 'react';
-import App from 'next/app';
-import cookies from 'next-cookies';
+import React, { useEffect } from 'react';
+import { NextPage } from 'next';
+import { useDispatch } from 'react-redux';
+import cookies from 'js-cookie';
 import { init } from '@sentry/react';
-import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
 import { authenticate } from '../store/session/actions';
-import withRedux from '../util/withRedux';
 import SEO from '../components/shared/SEO';
+import { wrapper } from '../store';
+
 import '../public/static/styles/global.css';
 import '../public/static/styles/braintree.css';
 
@@ -22,29 +23,19 @@ if (process.env.IS_PROD) {
 })();
 
 interface Props {
-  store: any;
   pageProps: any;
-  token: string;
+  Component: NextPage;
 }
 
-class Application extends App<Props> {
-  static async getInitialProps({ Component, ctx }): Promise<any> {
-    const { token } = cookies(ctx);
+const Application = (props: Props): JSX.Element => {
+  const { Component, pageProps } = props;
+  const dispatch = useDispatch();
 
-    let pageProps = {};
+  useEffect(() => {
+    const token = cookies.get('token');
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps: { ...pageProps, token } };
-  }
-
-  componentDidMount(): void {
-    const { store, pageProps } = this.props;
-
-    if (pageProps.token) {
-      store.dispatch(authenticate());
+    if (token) {
+      dispatch(authenticate());
     } else {
       const payload = {
         type: 'session/REFRESH',
@@ -52,20 +43,16 @@ class Application extends App<Props> {
         user: null
       };
 
-      store.dispatch(payload);
+      dispatch(payload);
     }
-  }
+  }, [dispatch]);
 
-  render(): JSX.Element {
-    const { Component, pageProps, store } = this.props;
+  return (
+    <>
+      <SEO />
+      <Component {...pageProps} />
+    </>
+  );
+};
 
-    return (
-      <Provider store={store}>
-        <SEO />
-        <Component {...pageProps} />
-      </Provider>
-    );
-  }
-}
-
-export default withRedux(Application);
+export default wrapper.withRedux(Application);

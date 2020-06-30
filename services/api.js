@@ -1,6 +1,5 @@
 import cookie from 'js-cookie';
 import nextCookie from 'next-cookies';
-import 'isomorphic-unfetch';
 
 const { API_URL } = process.env;
 

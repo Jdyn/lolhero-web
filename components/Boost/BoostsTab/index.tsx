@@ -1,14 +1,13 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import Filter from '../../shared/Filter';
 import content from '../../../lib/boosts';
 import { UpdateOrder } from '../../../store/boost/types';
 import styles from './index.module.css';
 
 const contentKeys = Object.keys(content);
-type BoostType = 'Solo' | 'Duo';
 
 interface Props {
-  boostType: BoostType;
+  boostType: 'Solo' | 'Duo';
   collectionId: number;
   updateOrder: UpdateOrder;
 }
@@ -16,8 +15,7 @@ interface Props {
 const BoostTab = (props: Props): JSX.Element => {
   const { updateOrder, boostType, collectionId } = props;
 
-  const [currentType, setType] = useState(boostType);
-  const currentContent = useMemo(() => content[currentType], [currentType]);
+  const currentContent = useMemo(() => content[boostType], [boostType]);
 
   const [selectedIndex, setIndex] = useState(
     currentContent.items.indexOf(
@@ -25,43 +23,33 @@ const BoostTab = (props: Props): JSX.Element => {
     ) || 0
   );
 
-  useEffect(() => {
-    if (currentType !== boostType) {
-      setIndex(selectedIndex);
-
-      const currentItem = currentContent.items[selectedIndex];
-
-      updateOrder({
-        collectionId: currentItem.id,
-        collectionName: currentItem.title,
-        boostType: currentType
-      });
-    }
-  }, [currentType, boostType, selectedIndex, currentContent, updateOrder]);
-
   const handleOrderUpdate = (newSelectedIndex: number): void => {
     setIndex(newSelectedIndex);
 
     const currentItem = currentContent.items[newSelectedIndex];
-    if (collectionId !== currentItem.id) {
-      updateOrder({
-        collectionId: currentItem.id,
-        collectionName: currentItem.title,
-        boostType: currentType
-      });
-    }
+
+    updateOrder({
+      collectionId: currentItem.id,
+      collectionName: currentItem.title
+    });
   };
 
-  const handleFilterUpdate = useCallback((index: number): void => {
-    setType(contentKeys[index] as BoostType);
-  }, []);
+  const handleFilterUpdate = (index: number): void => {
+    const currentItem = content[contentKeys[index]].items[selectedIndex];
+
+    updateOrder({
+      collectionId: currentItem.id,
+      collectionName: currentItem.title,
+      boostType: contentKeys[index]
+    });
+  };
 
   return (
     <div className={styles.root}>
       <div className={styles.filter}>
         <Filter
           filters={contentKeys}
-          selectedIndex={currentType === 'Solo' ? 0 : 1}
+          selectedIndex={boostType === 'Solo' ? 0 : 1}
           onClick={handleFilterUpdate}
         />
       </div>
@@ -71,7 +59,7 @@ const BoostTab = (props: Props): JSX.Element => {
       </div> */}
       <div className={styles.container}>
         {currentContent.items.map((item, index) => {
-          const isSelected = selectedIndex === index;
+          const isSelected = item.id === collectionId;
           return (
             <button
               type="button"
@@ -81,7 +69,7 @@ const BoostTab = (props: Props): JSX.Element => {
               onClick={(): void => handleOrderUpdate(index)}
             >
               <div className={styles.header}>
-                <span className={`${styles[currentType]}`}>{item.tag}</span>
+                <span className={`${styles[boostType]}`}>{item.tag}</span>
                 <h2>{item.title}</h2>
               </div>
               {/* <span className={styles.selectedText}>{isSelected && 'selected'}</span> */}

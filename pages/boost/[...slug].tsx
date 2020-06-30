@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import cookies from 'next-cookies';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { pageview } from '../../services/gtag';
 import { fetchBoostPrices, updateOrder, submitOrder } from '../../store/boost/actions';
 import { handleAuth } from '../../store/session/actions';
-import { AppState } from '../../store';
+import { AppState, wrapper } from '../../store';
 import Boost from '../../components/Boost';
 import boosts from '../../lib/boosts';
 
@@ -18,7 +18,34 @@ const content = {
 
 const BoostContainer = (props): JSX.Element => {
   const router = useRouter();
+  const dispatch = useDispatch();
   pageview(router.pathname);
+
+  const { type } = router.query;
+
+  useEffect(() => {
+    if (type) {
+      let match = null;
+
+      Object.keys(boosts).forEach(key => {
+        boosts[key].items.forEach(item => {
+          if (item.type === type) {
+            match = item;
+          }
+        });
+      });
+
+      if (typeof match === 'object' && match !== null) {
+        dispatch(
+          updateOrder({
+            collectionId: match.id,
+            collectionName: match.title,
+            boostType: match.tag
+          })
+        );
+      }
+    }
+  }, [dispatch, type]);
 
   return (
     <>
@@ -30,37 +57,6 @@ const BoostContainer = (props): JSX.Element => {
       <Boost {...props} />
     </>
   );
-};
-
-BoostContainer.getInitialProps = async (ctx): Promise<object> => {
-  const {
-    store: { dispatch },
-    query: { type }
-  } = ctx;
-
-  const { token } = cookies(ctx);
-
-  let match = null;
-
-  Object.keys(boosts).forEach(key => {
-    boosts[key].items.forEach(item => {
-      if (item.type === type) {
-        match = item;
-      }
-    });
-  });
-
-  if (typeof match === 'object' && match !== null) {
-    dispatch(
-      updateOrder({
-        collectionId: match.id,
-        collectionName: match.title,
-        boostType: match.tag
-      })
-    );
-  }
-
-  return { token };
 };
 
 const emptyPurchaseOrderRequest = { error: { errored: false, message: '' } };

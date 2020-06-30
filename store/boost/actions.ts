@@ -66,6 +66,7 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
     const order = { ...boost.order.details, ...detailsUpdate };
 
     const pricing = boost.pricing[order.boostType];
+    console.log(order);
     newPrice = PriceCalculator(order, pricing);
   }
 

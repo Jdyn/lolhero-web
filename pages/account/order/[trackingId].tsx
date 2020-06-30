@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Layout from '../../../components/shared/Layout';
 import withAuth from '../../../util/withAuth';
 import { AppState } from '../../../store';
@@ -23,9 +23,16 @@ interface Props {
 }
 
 const OrderContainer = (props: Props): JSX.Element => {
-  const { account, session, fetchOrder, updateOrder, initializeOrder, orderRequest } = props;
+  const { account, session, updateOrder, initializeOrder, orderRequest, updateOrderStatus } = props;
   const router = useRouter();
+  const dispatch = useDispatch();
   const { trackingId } = router.query;
+
+  useEffect(() => {
+    if (trackingId) {
+      dispatch(fetchOrder(trackingId as string));
+    }
+  }, [dispatch, trackingId]);
 
   return (
     <Layout stripe title={`Order ${trackingId}`}>
@@ -41,10 +48,6 @@ const OrderContainer = (props: Props): JSX.Element => {
       />
     </Layout>
   );
-};
-
-OrderContainer.getInitialProps = (ctx: any) => {
-  return ctx.store.dispatch(fetchOrder(ctx.query.trackingId));
 };
 
 const orderRequest = { isPending: false, success: false };

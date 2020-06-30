@@ -42,7 +42,9 @@ const reducers = {
     state.selectedOrder.messages = [...state.selectedOrder.messages, { ...action.payload.message }];
   },
   orderChatFetched: (state: AccountState, action: PayloadAction<any>): void => {
-    state.selectedOrder.messages = action.payload.messages;
+    if (state.selectedOrder) {
+      state.selectedOrder.messages = action.payload.messages;
+    }
   }
 };
 
