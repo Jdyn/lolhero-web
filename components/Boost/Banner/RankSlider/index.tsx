@@ -39,8 +39,8 @@ const BannerRankSlider = (props: Props): JSX.Element => {
           type="range"
           min="1"
           max={currentCollection.maxAmount}
-          className={styles.slider}
-          style={{ backgroundColor: rank.accent }}
+          className={`${styles.slider} ${styles[rank.tag]}`}
+          style={{ background: rank.accent }}
           value={currentAmount}
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
             setAmount(parseInt(event.target.value, 0))
