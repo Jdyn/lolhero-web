@@ -37,12 +37,12 @@ const OrderStatus: React.FC<Props> = (props: Props): JSX.Element => {
         );
       case 'initialized':
       case 'active':
-        if (order.booster) {
+        if (order?.booster) {
           return (
             <>
               <h3>Your order is currently in progress!</h3>
               <span>
-                Your current hero is <b>{order.booster.username}</b>
+                Your current hero is <b>{order?.booster?.username}</b>
               </span>
             </>
           );

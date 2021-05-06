@@ -47,6 +47,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
   const [orderForm, setOrderForm] = useState({
     note: '',
+    summonerName: null,
     details: {
       primaryRole: account?.selectedOrder?.details?.primaryRole,
       secondaryRole: account?.selectedOrder?.details?.primaryRole,
@@ -98,7 +99,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   }, [account.selectedOrder]);
 
   useEffect(() => {
-    setOrderForm(prev => ({
+    setOrderForm((prev) => ({
       ...prev,
       details: {
         ...prev.details,
@@ -111,7 +112,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
   const onInitializeOrder = (): void => {
     const { champions } = orderForm.details;
 
-    const newChampions = [...champions].map(champ => ({
+    const newChampions = [...champions].map((champ) => ({
       name: champ.name,
       position: champ.position
     }));

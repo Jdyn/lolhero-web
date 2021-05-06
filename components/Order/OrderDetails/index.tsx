@@ -1,4 +1,5 @@
 import React from 'react';
+import { OrderForm } from '../types';
 import addons from '../../../lib/content';
 import { Order } from '../../../store/account/types';
 import styles from './index.module.css';
@@ -10,9 +11,9 @@ const fields = [
 
 interface Props {
   order?: Order;
-  orderForm: any;
+  orderForm: OrderForm;
   isEditable: boolean;
-  setOrderForm: (update: object) => void;
+  setOrderForm: React.Dispatch<React.SetStateAction<OrderForm>>;
 }
 
 const OrderDetails = (props: Props): JSX.Element => {
@@ -24,7 +25,7 @@ const OrderDetails = (props: Props): JSX.Element => {
     if (primaryRole || secondaryRole) {
       const { details } = orderForm;
       if (details.primaryRole !== undefined && details.secondaryRole !== undefined) {
-        const champs = orderForm.details.champions.filter(champ => {
+        const champs = orderForm.details.champions.filter((champ) => {
           const primRole = primaryRole || orderForm.details.primaryRole;
           const secRole = secondaryRole || orderForm.details.secondaryRole;
           return champ.position === primRole || champ.position === secRole;
@@ -44,7 +45,7 @@ const OrderDetails = (props: Props): JSX.Element => {
     }
 
     if (summonerName || note) {
-      setOrderForm(prev => ({
+      setOrderForm((prev) => ({
         ...prev,
         details: {
           ...prev.details,
@@ -54,7 +55,7 @@ const OrderDetails = (props: Props): JSX.Element => {
       return;
     }
 
-    setOrderForm(prev => ({
+    setOrderForm((prev) => ({
       ...prev,
       accountDetails: { ...prev.accountDetails, ...formUpdate }
     }));
@@ -81,7 +82,7 @@ const OrderDetails = (props: Props): JSX.Element => {
                 </div>
                 {order.details.boostType !== 'Duo' && (
                   <form className={styles.form}>
-                    {fields.map(field => (
+                    {fields.map((field) => (
                       <div key={field.text}>
                         <span className={styles.title}>{field.title}</span>
                         <input
@@ -122,7 +123,7 @@ const OrderDetails = (props: Props): JSX.Element => {
                 <img
                   alt="role"
                   src={
-                    addons.roles.filter(role => role.title === order.details.primaryRole)[0].image
+                    addons.roles.filter((role) => role.title === order.details.primaryRole)[0].image
                   }
                 />
               </div>
@@ -131,11 +132,12 @@ const OrderDetails = (props: Props): JSX.Element => {
                 <img
                   alt="role"
                   src={
-                    addons.roles.filter(role => role.title === order.details.secondaryRole)[0].image
+                    addons.roles.filter((role) => role.title === order.details.secondaryRole)[0]
+                      .image
                   }
                 />
               </div>
-              {addons.addons.extras.map(item => (
+              {addons.addons.extras.map((item) => (
                 <div key={item.title} className={styles.content}>
                   <span>{item.title}</span>
                   <h3>{order[item.type] === true ? 'Yes' : 'No'}</h3>

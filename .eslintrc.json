@@ -19,6 +19,7 @@
   "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
   "rules": {
     "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
     "import/prefer-default-export": "off",
     "no-shadow": [0],
     "react/proptypes": [0],
