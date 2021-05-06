@@ -1,4 +1,4 @@
-export default (order, pricing) => {
+const calculator = (order, pricing) => {
   const basePrice = currentPrice => {
     if (typeof currentPrice !== 'number') return currentPrice;
 
@@ -129,3 +129,5 @@ export default (order, pricing) => {
 
   return calculate();
 };
+
+export default calculator;

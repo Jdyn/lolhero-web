@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import * as Sentry from '@sentry/react';
 import { Dispatch } from 'redux';
 import Api from '../../services/api';
 import PriceCalculator from '../../util/PriceCalculator';
@@ -66,7 +65,6 @@ export const updateOrder = (detailsUpdate: object, orderUpdate?: object) => (
     const order = { ...boost.order.details, ...detailsUpdate };
 
     const pricing = boost.pricing[order.boostType];
-    console.log(order);
     newPrice = PriceCalculator(order, pricing);
   }
 
@@ -114,11 +112,10 @@ export const submitOrder = () => async (
           dispatchError(message);
         }
       })
-      .catch(error => {
+      .catch(() => {
         dispatchError(
           'There was an error placing your order. Please try again later or contact support.'
         );
-        Sentry.captureException(error);
       });
   }
 };

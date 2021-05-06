@@ -14,13 +14,12 @@
   gap: 20px;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content min-content min-content min-content 550px min-content;
+  grid-template-rows: min-content min-content min-content min-content 550px;
   grid-template-areas:
     'admin'
     'status'
     'details'
     'champions'
-    'chat'
     'display';
 }
 
@@ -116,7 +115,6 @@
       'details status'
       'details champions'
       'details display'
-      'chat matches'
       'admin .';
   }
 }
@@ -124,12 +122,10 @@
 @media (min-width: 1025px) {
   .wrapper {
     grid-template-columns: 275px 1fr 275px;
-    grid-template-rows: 90px 550px 265px 265px;
+    grid-template-rows: 90px 550px;
     grid-template-areas:
       'details status  status'
       'details display champions'
-      'matchStats matches chat'
-      'hero matches chat'
       'admin . .';
   }
 }

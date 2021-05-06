@@ -4,15 +4,15 @@ import styles from './index.module.css';
 import OrderHeader from './OrderHeader';
 import OrderDetails from './OrderDetails';
 import OrderStatus from './OrderStatus';
-import OrderStats from './OrderStats';
+// import OrderStats from './OrderStats';
 import { SessionState } from '../../store/session/types';
 import { AccountState } from '../../store/account/types';
 import OrderDisplay from './OrderDisplay';
 import OrderChampions from './OrderChampions';
 import OrderAdmin from './OrderAdmin';
-import OrderChat from './OrderChat';
+// import OrderChat from './OrderChat';
 import socket from '../../services/socket';
-import OrderMatches from './OrderMatches';
+// import OrderMatches from './OrderMatches';
 import { Request } from '../../store/request/types';
 
 interface Props {
@@ -34,7 +34,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     account,
     initializeOrder,
     updateOrderStatus,
-    fetchOrder,
+    // fetchOrder,
     updateOrder,
     trackingId,
     authEmail,
@@ -42,7 +42,7 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
     orderRequest
   } = props;
 
-  const { selectedOrder } = account;
+  // const { selectedOrder } = account;
 
   const dispatch = useDispatch();
   const [orderForm, setOrderForm] = useState({
@@ -150,14 +150,14 @@ const BoostOrder: React.FC<Props> = (props: Props): JSX.Element => {
               setOrderForm={setOrderForm}
               order={account.selectedOrder}
             />
-            <OrderStats />
-            <div className={styles.tile}>Your Hero</div>
+            {/* <OrderStats /> */}
+            {/* <div className={styles.tile}>Your Hero</div>
             <OrderMatches />
             <OrderChat
               messages={account?.selectedOrder?.messages}
               session={session}
               isDemo={isDemo}
-            />
+            /> */}
             {(session?.user.role === 'admin' || session?.user?.role === 'booster') && (
               <OrderAdmin account={account} order={account.selectedOrder} session={session} />
             )}
